@@ -5,8 +5,8 @@ class App {
     private $method = 'index';
     private function splitUrl(){
         $URL = $_GET['url'] ?? 'home';
-        //$URL = explode("/", trim($URL,"/"));
-         //show($URL) ;
+        //  $URL = explode("/", trim($URL,"/"));
+        // show($URL) ;
 
         return $URL;
     }

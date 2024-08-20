@@ -1,7 +1,7 @@
 <?php 
 
 if($_SERVER['SERVER_NAME'] == 'localhost'){
-    define('ROOT','http://localhost/mvc/public');
+    define('ROOT','http://localhost/PawCentral/public');
     /**
      * database config
      */
@@ -11,7 +11,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('DBPASS','');
     define('DBDRIVER','');
 }else{
-    define('ROOT', 'https://www.websitename.com');
+     define('ROOT', 'https://www.pawcentral.com');  //put the website name here 
 
     define('DBNAME','pawcentral');
     define('DBHOST','localhost');
