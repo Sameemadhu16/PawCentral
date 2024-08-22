@@ -1,0 +1,1 @@
+<?php echo "this is medical registration page";

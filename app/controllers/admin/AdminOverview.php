@@ -6,6 +6,6 @@ class AdminOverview {
 
     public function index() {
 
-        $this->view('admin/adminoverview');
+        $this->view('admin/overview');
     }
 }
