@@ -1,5 +1,7 @@
 <?php
 class App {
+
+    
     
     private $controller = 'Home';
     private $method = 'index';
@@ -17,8 +19,6 @@ class App {
         $URL = $this->splitURL();
         $routeValue = $URL;
 
-        
-        
         if (isset($existsRoutes[$routeValue])) {
 
             $routeData = $existsRoutes[$routeValue];

@@ -1,3 +1,1 @@
-<?php
-
-echo"this is sign in page";
+<?php echo"this is sign in page";
