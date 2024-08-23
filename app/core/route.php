@@ -7,7 +7,7 @@ route('signin','SignIn@index');
 
 // Admin routing
 
-route('admin/overveiw','admin/AdminOverview@index');
+route('admin/overview','admin/AdminOverview@index');
 route('admin/announcement','admin/AdminAnnouncement@index');
 route('admin/notice','admin/AdminNotice@index');
 route('admin/medical_registration','admin/AdminMedicalRegistration@index');
