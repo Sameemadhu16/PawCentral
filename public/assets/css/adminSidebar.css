@@ -1,61 +1,113 @@
+/* Sidebar styling */
 .sidebar {
-    width: 250px;
-    background-color: #6A0DAD; /* Sidebar background color */
-    color: white;
+    width: 300px;
+    background-color: #6A0DAD;
     padding-top: 20px;
-    height: 100vh;
-    position: fixed; /* Keeps the sidebar fixed to the left */
-    margin-top: 20px;
+    height: 85vh; /* Keeps the sidebar fixed to the left */
+    margin-top: 15px;
     margin-left: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    border-radius: 15px; /* Added rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition for toggling */
 }
 
-.sidebar .logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.sidebar .logo img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-}
-
-.sidebar .logo h1 {
-    font-size: 24px;
-    margin: 0;
-}
-
+/* Sidebar list styling */
 .sidebar ul {
     text-decoration: none;
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
     width: 100%; /* Ensures the links take up the full width */
 }
 
+/* List item styling */
 .sidebar ul li {
     width: 100%;
 }
 
+/* Link styling */
 .sidebar ul li a {
-    display: block;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
     padding: 15px 20px;
     color: white;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
+    font-size: 20px;
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
+    border-radius: 10px; /* Added rounded corners to the links */
+    text-size-adjust: 16px;
 }
 
+/* Icon spacing */
+.sidebar ul li a .icon {
+    margin-right: 10px; /* Space between the icon and text */
+}
+
+/* Active and hover states */
 .sidebar ul li.active,
 .sidebar ul li:hover {
-    background-color: #7C4BB2; /* Slightly darker for hover/active */
+    background-color: #ffffff; /* Slightly darker for hover/active */
     cursor: pointer;
-    
+    border-radius: 10px; 
+    margin-left: 3px;
+    margin-right: 3px;
 }
 
 .sidebar ul li a:hover {
+    transform: scale(1.1);
     text-decoration: none;
+    color: black;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        transform: translateX(-100%); /* Hide sidebar initially on mobile */
+        position: fixed; /* Sidebar fixed to the left on mobile */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Show sidebar when active */
+    }
+    
+    .sidebar ul li a {
+        padding: 10px 15px;
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+    /* Adjust content to full width when sidebar is hidden */
+    .content {
+        margin-left: 0; /* Remove margin to align content on small screens */
+        padding: 20px;
+    }
+}
+
+/* Sidebar toggle button for mobile */
+.sidebar-toggle {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background-color: #6A0DAD;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-toggle {
+        display: block; /* Show toggle button on mobile */
+    }
 }

@@ -1,52 +1,91 @@
 /* Main container to include sidebar and content */
 .main-container {
     display: flex;
-    
 }
 
 /* Content section */
 .content {
     flex: 1;
-    background-color: #F0F0F0; /* Light gray background for content */
+    background-color: #ffffff;
     padding: 20px;
     margin-top: 20px;
-    margin-left: 260px; /* To align with fixed sidebar */
+    margin-left: 100px; /* To align with fixed sidebar */
     overflow: auto;
-    
+    border-radius: 15px;
 }
 
 /* Overview grid layout */
 .overview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns grid */
+    gap: 20px; /* Gap between cards */
     margin-top: 20px;
 }
 
 /* Individual card styling */
 .card {
-    background-color: white;
-    padding: 100px;
-    height: 40px;
-    flex: 1 1 100px; /* Flexible layout for cards */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: rgb(236, 222, 236);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 18px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: sans-serif;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    height: 80px; /* Fixed height for cards */
+    position: relative; /* Relative positioning for before element */
 }
 
-/* Card hover effect */
+/* Card hover effect with enhanced animation */
+.card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #fff; /* Initial background color */
+}
+
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9; /* Subtle background color change on hover */
+}
+
+.card:hover::before {
+    width: 8px; /* Increase the width of the vertical line on hover */
 }
 
 /* Style for numbers inside cards */
 .card span {
     font-weight: bold;
     font-size: 24px;
-    color: #6A0DAD; /* Matches the sidebar color */
+    color: black;
+}
+
+/* Vertical line on the left of each card */
+.card::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #6A0DAD; /* Matches the sidebar color */
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: width 0.3s ease; /* Smooth width transition on hover */
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+    .overview {
+        grid-template-columns: 1fr; /* Change to one column on small screens */
+    }
+    
+    .content {
+        margin-left: 0; /* Remove margin to align with sidebar on small screens */
+    }
 }
