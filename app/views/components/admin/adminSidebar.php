@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/adminSidebar.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
     <ul>
         <li ><a href="../admin/overview">Overview</a></li>
         <li ><a href="../admin/announcement">Announcements</a></li>

@@ -11,7 +11,7 @@
     <?php include("../app/views/components/header.php"); ?>
     
     <div class="main-container">
-        <?php include("../app/views/components/adminSidebar.php"); ?>
+        <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <!-- Content Section -->
         <div class="content">

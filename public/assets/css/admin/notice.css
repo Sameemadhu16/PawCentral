@@ -1,0 +1,122 @@
+/* Container styling */
+.main-container {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 15px;
+}
+
+h2 {
+    font-family:  sans-serif;
+    font-size: 32px;
+    color: #333;
+}
+
+/* Button styling */
+.add-notice {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.add-notice:hover {
+    background-color: #0056b3;
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Card container */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Card styling */
+.card {
+    background-color: rgb(236, 222, 236);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #fff;
+    position:relative;
+    overflow: hidden;
+    font-family: sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    height: 80px; /* Fixed height for cards */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9; /* Subtle background color change on hover */
+}
+
+.card:hover::before {
+    width: 8px; /* Increase the width of the vertical line on hover */
+}
+
+/* Card content */
+.card-content {
+    flex: 1;
+}
+
+
+/* Vertical line on the left of each card */
+.card::before {
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #6A0DAD; /* Matches the sidebar color */
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: width 0.3s ease; /* Smooth width transition on hover */
+}
+
+/* Card actions */
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.card-actions .edit-icon,
+.card-actions .delete-icon {
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card-actions .edit-icon:hover,
+.card-actions .delete-icon:hover {
+    transform: scale(1.2);
+}

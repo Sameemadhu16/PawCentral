@@ -1,1 +1,72 @@
-<?php echo "this is notice page";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>PawCentral Dashboard - Notices</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/notice.css">
+</head>
+
+<body>
+    <!-- Include the Header and Sidebar components -->
+    <?php include("../app/views/components/header.php"); ?>
+
+    <div class="main-container">
+        <?php include("../app/views/components/admin/adminSidebar.php"); ?>
+
+        <!-- Content Section -->
+        <div class="content">
+            <div class="container">
+                <h2>Notices</h2>
+                <button class="add-notice" onclick="window.location.href='../app/views/components/admin/addNotice.php'">Add Notice</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-content">
+                    Notice 1
+                    <p>
+                        this is a notice of PawCentral
+                    </p>
+                </div>
+
+                <div class="card-actions">
+                    <i class="edit-icon">✏️</i>
+                    <i class="delete-icon">🗑️</i>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                     Notice 2
+                     <p>
+                        this is a notice of PawCentral
+                    </p>
+                </div>
+
+                <div class="card-actions">
+                    <i class="edit-icon">✏️</i>
+                    <i class="delete-icon">🗑️</i>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                     Notice 3
+                     <p>
+                        this is a notice of PawCentral
+                    </p>
+                </div>
+                
+                <div class="card-actions">
+                    <i class="edit-icon">✏️</i>
+                    <i class="delete-icon">🗑️</i>
+                </div>
+            </div>
+
+         </div>
+        
+       
+    </div>
+</body>
+
+</html>
