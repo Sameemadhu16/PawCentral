@@ -48,7 +48,7 @@
 }
 
 /* Active and hover states */
-.sidebar ul li.active,
+.sidebar ul li.active ,
 .sidebar ul li:hover {
     background-color: #ffffff; /* Slightly darker for hover/active */
     cursor: pointer;
@@ -61,6 +61,11 @@
     transform: scale(1.1);
     text-decoration: none;
     color: black;
+}
+
+.sidebar ul li.active {
+    background-color: #ffffff; /* Keeps the selected section white */
+    color: black; /* Keeps the text color black when active */
 }
 
 /* Mobile responsiveness */
