@@ -16,56 +16,7 @@
     <div class="main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
-        <!-- Content Section -->
-        <div class="content">
-            <div class="container">
-                <h2>Announcements</h2>
-                <button class="add-announcement" onclick="window.location.href='http://localhost/PawCentral/public/admin/add_announcement'">Add Announcement</button>
-            </div>
-            
-            <div class="card">
-                <div class="card-content">
-                    Announcement 1
-                    <p>
-                        this is a announcemnet of PawCentral
-                    </p>
-                </div>
-
-                <div class="card-actions">
-                    <i class="edit-icon">✏️</i>
-                    <i class="delete-icon">🗑️</i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                     Announcement 2
-                     <p>
-                        this is a announcemnet of PawCentral
-                    </p>
-                </div>
-
-                <div class="card-actions">
-                    <i class="edit-icon">✏️</i>
-                    <i class="delete-icon">🗑️</i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                     Announcement 3
-                     <p>
-                        this is a announcemnet of PawCentral
-                    </p>
-                </div>
-                
-                <div class="card-actions">
-                    <i class="edit-icon">✏️</i>
-                    <i class="delete-icon">🗑️</i>
-                </div>
-            </div>
-
-         </div>
+        
         
        
     </div>

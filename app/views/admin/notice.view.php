@@ -18,7 +18,7 @@
         <div class="content">
             <div class="container">
                 <h2>Notices</h2>
-                <button class="add-notice" onclick="window.location.href='../app/views/components/admin/addNotice.php'">Add Notice</button>
+                <button class="add-notice" onclick="window.location.href='http://localhost/PawCentral/public/admin/add_notice'">Add Notice</button>
             </div>
             
             <div class="card">
