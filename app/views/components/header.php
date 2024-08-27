@@ -1,7 +1,9 @@
 <header class="navbar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
     <div class="navbar-logo">
-        <img src="./assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
+    <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
+
+        <!-- <img src="/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo"> -->
         <h1>PawCentral</h1>
     </div>
 
@@ -34,7 +36,7 @@
         <li><a href="#">Lost & Found</a></li>
     </ul>
     <div class="user-profile">
-        <img src="./assets/images/unreg_user.png" alt="User Profile">
+        <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
     </div>
 
 </header>
