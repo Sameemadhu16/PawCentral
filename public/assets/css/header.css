@@ -1,52 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 .navbar {
-    background-color: #6A0DAD; /* Matches your theme */
+    background-color: #6A0DAD;
     color: white;
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Distributes space between left and right sections */
+    align-items: center; /* Centers content vertically */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    
-}
-
-.navbar-left {
-    display: flex;
-    align-items: center;
+    margin:0;
 }
 
 .navbar-logo {
-    width: 45px;
-    height: 45px;
-    margin-right: 10px;
-    cursor: pointer;
-    border-radius: 50%; /* Makes the logo circular */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
-    background-color: white;
+    display: flex;
+    align-items: center; /* Aligns the logo and website name vertically */
 }
 
 .navbar-logo:hover {
-    transform: scale(1.1); /* Grows the logo slightly on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Increases shadow depth on hover */
+    cursor: pointer;
+    transform: scale(1.01);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
+.navbar-logo {
+    width: 50px;
+    height: 45px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #6A0DAD;
+}
 
 .navbar h1 {
-    font-size: 24px;
+    font-size: 35px;
     margin: 0;
-    font-weight: bold; /* Makes the text bolder */
-    font-family: 'Poppins', sans-serif; /* Uses a modern, elegant font */
-    background: linear-gradient(45deg, #FFB246, #78e512); /* Adds a gradient to the text */
-    -webkit-background-clip: text; /* Ensures the gradient only applies to the text */
-    -webkit-text-fill-color: transparent; /* Makes the background-clip effect work */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
-    letter-spacing: 1px; /* Slightly increases spacing between letters */
-    transition: transform 0.3s ease; /* Adds smooth hover effect */
-}
-
-.navbar h1:hover {
-    transform: scale(1.05); /* Slightly enlarges the text on hover */
+    font-weight: bold;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
 }
 
 
@@ -55,23 +52,26 @@
     display: flex;
     margin: 0;
     padding: 0;
-
+    margin-left: auto; /* Pushes links to the right */
+    align-items: center; /* Aligns links vertically */
 }
 
 .navbar-links li {
-    margin-right: 20px;
-    list-style: none; /* Removes bullet points */
-    display: inline-block; /* Ensures horizontal alignment */
+    margin: 0px;
+    margin-bottom: 0px;
+    list-style: none;
+    display: inline-block;
     position: relative;
 }
 
 .navbar-links li a {
-    color: black;
+    font-family: sans-serif;
+    color: white;
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold; /* Makes the text bold */
-    padding: 5px 10px; /* Adds some spacing inside the link */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition on hover */
+    font-weight: bold;
+    padding: 15px 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
 }
 
@@ -82,7 +82,7 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #6A0DAD; /* Accent color for the underline */
+    background-color: orange;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out;
@@ -94,24 +94,88 @@
 }
 
 .navbar-links li a:hover {
-    color: #FFB246; /* Changes text color on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+    color: #FFB246;
+    transform: translateY(-2px);
 }
 
-
+.user-profile {
+    margin-left: 20px; /* Adds spacing between links and profile picture */
+}
 
 .user-profile img {
     width: 45px;
     height: 45px;
-    border-radius: 50%; /* Keeps the image circular */
+    border-radius: 50%;
     cursor: pointer;
-    border: 2px solid #fff; /* Adds a white border around the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    border: 2px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .user-profile img:hover {
-    transform: scale(1.1); /* Slightly enlarges the image on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deepens the shadow on hover */
+    transform: scale(1.01);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* Hamburger Menu Icon */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.navbar-toggle .hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 1270px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #6A0DAD;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-links li {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 385px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+        display: none;
+    }
+
 }
 
