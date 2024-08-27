@@ -1,0 +1,35 @@
+/* Hero Section */
+.hero {
+
+    background-image: url('../images/herobg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    text-align: center;
+    padding: 100px 20px;
+    padding-top: 50px;
+    max-height: 400px;
+    background-color: #DDA0DD;
+}
+
+.hero h2 {
+    font-size: 70px;
+    color: #FFF;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.hero h3 {
+    margin-top: 5px;
+    font-size: 32px;
+    color: #FFD700;
+}
+
+.hero p {
+    margin: 20px 0;
+    color: white;
+}
+
