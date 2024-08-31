@@ -1,3 +1,7 @@
+.body {
+    margin:0;
+}
+
 /* Main container to include sidebar and content */
 .main-container {
     display: flex;

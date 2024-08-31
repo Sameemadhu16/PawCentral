@@ -90,6 +90,10 @@
         font-family: sans-serif;
     }
 
+    .sidebar ul li a.nav-link.active {
+        background-color: #ffffff; /* Active background color */
+    }
+
     /* Adjust content to full width when sidebar is hidden */
     .content {
         margin-left: 0; /* Remove margin to align content on small screens */

@@ -6,7 +6,7 @@
     <title>PawCentral Dashboard - Overview</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/overview.css">
 </head>
-<body>
+<body class="body">
     <!-- Include the Header and Sidebar Components -->
     <?php include("../app/views/components/header.php"); ?>
     
