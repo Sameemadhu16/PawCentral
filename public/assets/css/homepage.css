@@ -3,8 +3,8 @@
 
 .section-hr {
     border: none;
-    height: 1px; /* Thickness of the line */
-    background: linear-gradient(to right, #f0f0f0, #000, #f0f0f0);
+    height: 2px; /* Thickness of the line */
+    background: linear-gradient(to right, #f0f0f0, #732bc0, #f0f0f0);
      /* Gradient color */
     margin: 40px auto; /* Adds space around the divider */
     width: 80%; /* Adjusts the width of the divider */
