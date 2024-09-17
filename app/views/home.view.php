@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/homepage.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/homepage.css">
     <!-- <link rel="stylesheet" href="./assets/css/homepage1.css">  CSS FOR STATS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Document</title>
@@ -49,7 +49,7 @@
     <!-- Interactive Sections -->
     <section class="interactive-sections">
         <div class="interactive-card">
-            <img src="./assets/images/events_bg.jpg" alt="Events">
+            <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Events">
             <div class="card-display">
                 <h3>Find and Join Events</h3>
             </div>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="interactive-card">
-            <img src="./assets/images/products_bg.png" alt="Pet Products">
+            <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
             <div class="card-display">
                 <h3>Pet Products & Services</h3>
             </div>
@@ -89,7 +89,7 @@
     <div class="donation-overlay">
         <h1>Help the community in need</h1>
         <div class="donate-icon">
-            <img src="./assets/images/donate.png" alt="Donation Icon">
+            <img src="<?= ROOT ?>/assets/images/donate.png" alt="Donation Icon">
         </div>
     </div>
 </section>
