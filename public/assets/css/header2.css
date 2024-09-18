@@ -1,0 +1,113 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.navbar {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Distributes space between left and right sections */
+    align-items: center; /* Centers content vertically */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin:0;
+}
+
+.navbar-logo {
+    width: 50px;
+    height: 45px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #000000; /* Aligns the logo and website name vertically */
+}
+
+.navbar-logo-set{
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-logo:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+ 
+.navbar h1 {
+    font-size: 35px;
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+.user-profile {
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-profile img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1270px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #6A0DAD;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-links li {
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 385px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+        display: none;
+    }
+
+}
+

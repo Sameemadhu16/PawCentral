@@ -1,13 +1,11 @@
 <?php
 class App {
 
-    
-    
     private $controller = 'Home';
     private $method = 'index';
     private function splitUrl(){
         $URL = $_GET['url'] ?? 'home';
-        //  $URL = explode("/", trim($URL,"/"));
+        // $URL = explode("/", trim($URL,"/"));
         // show($URL) ;
 
         return $URL;
