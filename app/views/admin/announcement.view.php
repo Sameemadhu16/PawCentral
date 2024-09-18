@@ -18,7 +18,7 @@
         <!-- Content Section -->
         <div class="content">
             <div class="container">
-                <h2>Announcements</h2>
+                <h1>Announcements</h1>
                 <button class="add-announcement" onclick="window.location.href='http://localhost/PawCentral/public/admin/add_announcement'">Add Announcement</button>
             </div>
             

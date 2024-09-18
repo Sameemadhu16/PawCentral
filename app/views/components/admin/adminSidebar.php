@@ -1,10 +1,10 @@
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script> src="../assets/js/adminSidebar.js"</script>
+    <!-- <script src="<?= ROOT ?>/assets/js/admin/adminSidebar.js" defer></script> -->
     <ul>
         <li >
-            <a href="../admin/overview" class="nav-link">
+            <a href="../admin/overview" class="nav-link ">
                 <i class="fas fa-tasks icon"></i>
                 Overview
             </a>
@@ -65,3 +65,11 @@
         </li>
     </ul>
 </div>
+
+<script>
+    document.getElementById("toggleSidebar").addEventListener("click", function () {
+    var sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+});
+
+</script>

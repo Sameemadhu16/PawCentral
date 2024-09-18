@@ -1,0 +1,92 @@
+/* General styles */
+body {
+    font-family: 'outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    overflow-y: hidden;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Donations Section */
+.donations-section {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.donations-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.donation-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 6px solid #6D2EFF;
+}
+
+.donation-info p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.donation-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.approve-button {
+    background-color: #00C2C2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.approve-button:hover {
+    background-color: #00A5A5;
+}
+
+.reject-button {
+    background-color: #FF5959;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reject-button:hover {
+    background-color: #E04A4A;
+}
+
+.donation-status a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.donation-status a:hover {
+    text-decoration: underline;
+}

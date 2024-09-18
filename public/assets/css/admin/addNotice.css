@@ -1,10 +1,10 @@
 /* General styles */
 body {
-    font-family: 'outfit', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: #ffffff; /* Subtle background color */
+    overflow-y: hidden;
 }
 
 .main-container {
@@ -32,7 +32,7 @@ header {
     letter-spacing: 1.5px;
 }
 
-.announcement-form {
+.notice-form {
     padding: 20px;
     width: 100%;
     margin-top: 20px;
@@ -41,69 +41,94 @@ header {
     margin: 0 auto; /* Center the form horizontally */
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease; /* Smooth transition on hover */
 }
 
-.announcement-form:hover {
+.notice-form:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow on hover */
 }
 
-.announcement-form h1 {
+.notice-form h1 {
     margin-bottom: 20px;
     font-size: 28px;
     color: #333;
 }
 
-.announcement-form label {
+.notice-form label {
     display: block;
     margin: 10px 0 5px;
     font-weight: 500;
-    color: #555;
+    color: #424242;
 }
 
-.announcement-form input[type="text"],
-.announcement-form input[type="date"],
-.announcement-form textarea {
-    width:90%;
+.notice-form input[type="text"],
+.notice-form input[type="date"],
+.notice-form textarea {
+    width: 90%;
     padding: 12px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.announcement-form input[type="text"]:focus,
-.announcement-form input[type="date"]:focus,
-.announcement-form textarea:focus {
+/* Hover effect for inputs */
+.notice-form input[type="text"]:hover,
+.notice-form input[type="date"]:hover,
+.notice-form textarea:hover {
+    border-color: #6D2EFF; /* Change border color on hover */
+    background-color: #f9f9ff; /* Slight background color change on hover */
+}
+
+.notice-form input[type="text"]:focus,
+.notice-form input[type="date"]:focus,
+.notice-form textarea:focus {
     border-color: #6D2EFF; /* Highlight border on focus */
     outline: none;
 }
 
-.announcement-form .image-upload {
+.notice-form .image-upload {
     border: 2px dashed #ccc;
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
     transition: border-color 0.3s ease;
-    width: 90%
+    width: 90%;
+    margin-bottom: 20px;
 }
 
-.announcement-form .image-upload:hover {
+.notice-form .image-upload:hover {
     border-color: #6D2EFF; /* Change border color on hover */
 }
 
-.announcement-form .image-upload i {
+.notice-form .image-upload i {
     font-size: 48px;
     color: #ccc;
 }
 
-.announcement-form .image-upload span {
+.notice-form .image-upload span {
     display: block;
     margin-top: 10px;
     color: #ccc;
+}
+
+.notice-form button {
+    padding: 12px 20px;
+    background-color: #28c42d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.notice-form button:hover {
+    background-color: #158a21;
+    
 }
 
 .done-button {
@@ -137,7 +162,7 @@ header {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .announcement-form {
+    .notice-form {
         padding: 15px;
         max-width: 100%;
     }

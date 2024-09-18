@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCentral Admin Dashboard - Add Nitices</title>
+    <title>PawCentral Admin Dashboard - Add Notices</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/addNotice.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <div class="content">
-            <section class="announcement-form">
+            <section class="notice-form">
                 <h1>Add Notice</h1>
                 <form>
                     <label for="title">Title</label>

@@ -1,77 +1,96 @@
+.body{
+    overflow-y: hidden;
+    margin: 0px;
+}
+
 .main-container {
     display: flex;
     width: 100%;
     min-height: 100vh;
+
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
+.content{
+    margin-top: 10px;
 
-h1 {
-    text-align: left;
-    font-size: 24px;
-    margin-bottom: 20px;
 }
-
-table {
+.mr_table_t{
     width: 100%;
-    border-collapse: collapse;
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.medical-registration-table {
+    width: 100%;
+    border-spacing: 0 5px;
+   
 }
 
-th {
-    background-color: #f8f9fa;
-    color: #555;
-}
-
-td {
-    background-color: white;
-    vertical-align: middle;
-}
-
-.btn-view, .btn-approve, .btn-reject, .btn-email {
-    padding: 8px 16px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: white;
+.medical-registration-table th, .medical-registration-table td {
     text-align: center;
-    display: inline-block;
-    margin-right: 5px;
+    margin-top: 10px;
 }
 
-.btn-view {
-    background-color: #007bff;
+.medical-registration-table th {
+    margin: 0;
+    padding: 0;
+    background-color: #d7d7d7;
+    font-weight: 600;
+    color: #000000;
+}
+.medical-registration-table tbody {
+    display: block;
+    max-height: 500px; /* Adjust this value as needed */
+    overflow-y: auto;
+    width: 100%;
 }
 
-.btn-approve {
-    background-color: #28a745;
+.medical-registration-table thead,
+.medical-registration-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
-
-.btn-reject {
-    background-color: #dc3545;
-}
-
-.btn-email {
-    background-color: #17a2b8;
-}
-
-.status-dropdown {
-    padding: 8px;
-    border-radius: 5px;
+.action-select {
+    width: 80%;
+    padding: 5px;
     font-size: 14px;
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #495057;
+    margin: 5px;
+    transition: margin-color 0.3s ease;
+}
+
+.action-select.approve {
+    margin: 5px;
+    border-color: green;
+}
+
+.action-select.reject {
+    margin: 5px;
+    border-color: red;
+}
+
+.view-btn {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    border: 1px solid #ddd;
+}
+
+.view-btn:hover {
+    background-color: #0056b3;
 }

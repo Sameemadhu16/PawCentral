@@ -1,0 +1,90 @@
+body {
+    overflow-y: hidden;
+    margin: 0px;
+}
+
+.main-container{
+    display: flex;
+    
+}
+
+.user-accounts-section {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+
+.user-accounts-section h2 {
+    color: #333;
+    margin-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 300px;
+    background-color: #FFD692;
+    margin-bottom: 5px;
+    
+    margin-left: 50px;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-danger {
+    background-color: #FF9549; /* Red card for banned users */
+    color: #fff;
+}
+
+.card-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    color: #666;
+    position: absolute;
+    margin-bottom: 5px;
+}
+
+.card-subtitle i {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

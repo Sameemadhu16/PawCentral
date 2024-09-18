@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
@@ -19,10 +20,10 @@
         <!-- Content Section -->
         <div class="content">
             <div class="container">
-                <h2>Notices</h2>
+                <h1>Notices</h1>
                 <button class="add-notice" onclick="window.location.href='http://localhost/PawCentral/public/admin/add_notice'">Add Notice</button>
             </div>
-            
+
             <div class="card">
                 <div class="card-content">
                     Notice 1
@@ -40,8 +41,8 @@
 
             <div class="card">
                 <div class="card-content">
-                     Notice 2
-                     <p>
+                    Notice 2
+                    <p>
                         this is a notice of PawCentral
                     </p>
                 </div>
@@ -54,21 +55,21 @@
 
             <div class="card">
                 <div class="card-content">
-                     Notice 3
-                     <p>
+                    Notice 3
+                    <p>
                         this is a notice of PawCentral
                     </p>
                 </div>
-                
+
                 <div class="card-actions">
                     <i class="fas fa-edit edit-icon"></i>
                     <i class="fas fa-trash delete-icon"></i>
                 </div>
             </div>
 
-         </div>
-        
-       
+        </div>
+
+
     </div>
 </body>
 
