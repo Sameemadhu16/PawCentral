@@ -7,15 +7,16 @@
     display: flex;
     width: 100%;
     min-height: 100vh;
-
 }
 
 .container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
+    flex: 1;
+    background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
     border-radius: 8px;
 }
 .content{
@@ -26,9 +27,17 @@
     width: 100%;
 }
 
+.mr_row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
 .medical-registration-table {
-    width: 100%;
+    width: full;
     border-spacing: 0 5px;
+    padding: 5px;
    
 }
 
@@ -56,6 +65,7 @@
     display: table;
     width: 100%;
     table-layout: fixed;
+    cursor: pointer;
 }
 .action-select {
     width: 80%;

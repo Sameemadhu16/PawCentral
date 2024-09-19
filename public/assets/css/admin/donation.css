@@ -1,6 +1,6 @@
 /* General styles */
 body {
-    font-family: 'outfit', sans-serif;
+    font-family:  sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,13 +10,18 @@ body {
 
 .main-container {
     display: flex;
-    width: 100%;
-    min-height: 100vh;
+    
 }
 
 .content {
     flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
 }
 
 /* Donations Section */
@@ -40,6 +45,15 @@ body {
     justify-content: space-between;
     align-items: center;
     border-left: 6px solid #6D2EFF;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: #f5efef; /* Subtle background color change on hover */
 }
 
 .donation-info p {

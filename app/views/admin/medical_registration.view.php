@@ -17,8 +17,11 @@
     <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container">
-        <?php include("../app/views/components/admin/adminSidebar.php"); ?>
-
+        <div>
+            <?php include("../app/views/components/admin/adminSidebar.php"); ?>
+        
+        </div>
+       
         <div class="container">
             <h1>Medical Registrations</h1>
             <div class="content">
@@ -41,6 +44,7 @@
                         </th>
                     </thead>
                     <tbody>
+                        <div class="">
                         <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
@@ -53,7 +57,9 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        </div>
+                        
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -65,7 +71,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -77,7 +83,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -89,7 +95,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -101,7 +107,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -113,7 +119,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -125,7 +131,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -137,7 +143,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>
@@ -149,7 +155,7 @@
                             </td>
                             <td><button class="view-btn">Send</button></td>
                         </tr>
-                        <tr>
+                        <tr class="mr_row">
                             <td>Sameera Madhuranga</td>
                             <td>DVM</td>
                             <td><button class="view-btn">View </button></td>

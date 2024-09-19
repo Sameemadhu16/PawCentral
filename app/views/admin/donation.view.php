@@ -29,7 +29,7 @@
                         <button class="reject-button">Reject</button>
                     </div>
                     <div class="donation-status">
-                        <a href="#">View History ></a>
+                        <a href="#">See more ></a>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                         <button class="reject-button">Reject</button>
                     </div>
                     <div class="donation-status">
-                        <a href="#">View History ></a>
+                        <a href="#">See more ></a>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
                         <button class="reject-button">Reject</button>
                     </div>
                     <div class="donation-status">
-                        <a href="#">View History ></a>
+                        <a href="#">See more></a>
                     </div>
                 </div>
             </section>
