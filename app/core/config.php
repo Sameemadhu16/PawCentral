@@ -11,7 +11,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('DBPASS','');
     define('DBDRIVER','');
 }else{
-     define('ROOT', 'https://www.pawcentral.com');  //put the website name here 
+     define('ROOT', 'https://www.pawcentral.com');  //put the website name here if hosted 
 
     define('DBNAME','pawcentral');
     define('DBHOST','localhost');
