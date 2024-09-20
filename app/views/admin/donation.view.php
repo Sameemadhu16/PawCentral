@@ -59,6 +59,66 @@
                         <button class="reject-button">Reject</button>
                     </div>
                     <div class="donation-status">
+                        <a href="#">See more ></a>
+                    </div>
+                </div>
+
+                <div class="donation-card">
+                    <div class="donation-info">
+                        <p>Name: Sameera Madhuranga</p>
+                        <p>Society: sadasda</p>
+                        <p>Donation Amount: 10000 LKR</p>
+                    </div>
+                    <div class="donation-actions">
+                        <button class="approve-button">Approve</button>
+                        <button class="reject-button">Reject</button>
+                    </div>
+                    <div class="donation-status">
+                        <a href="#">See more ></a>
+                    </div>
+                </div>
+                
+                <div class="donation-card">
+                    <div class="donation-info">
+                        <p>Name: Sameera Madhuranga</p>
+                        <p>Society: sadasda</p>
+                        <p>Donation Amount: 10000 LKR</p>
+                    </div>
+                    <div class="donation-actions">
+                        <button class="approve-button">Approve</button>
+                        <button class="reject-button">Reject</button>
+                    </div>
+                    <div class="donation-status">
+                        <a href="#">See more ></a>
+                    </div>
+                </div>
+
+                <div class="donation-card">
+                    <div class="donation-info">
+                        <p>Name: Sameera Madhuranga</p>
+                        <p>Society: sadasda</p>
+                        <p>Donation Amount: 10000 LKR</p>
+                    </div>
+                    <div class="donation-actions">
+                        <button class="approve-button">Approve</button>
+                        <button class="reject-button">Reject</button>
+                    </div>
+                    <div class="donation-status">
+                        <a href="#">See more ></a>
+                    </div>
+                </div>
+
+                <div class="donation-card">
+                    <div class="donation-info">
+                        <p>Name: Sameera Madhuranga</p>
+                        <p>Society: sadasda</p>
+                        <p>Donation Amount: 10000 LKR</p>
+                    </div>
+                    <div class="donation-actions">
+                        <button class="approve-button">Approve</button>
+                        <button class="reject-button">Reject</button>
+                    </div>
+                    <div class="donation-status">
                         <a href="#">See more></a>
                     </div>
                 </div>

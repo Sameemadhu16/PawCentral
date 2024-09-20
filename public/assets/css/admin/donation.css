@@ -28,7 +28,13 @@ body {
 .donations-section {
     max-width: 1000px;
     margin: 0 auto;
+    
+    /* Add these properties to make it scrollable */
+    max-height: 700px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 
 .donations-section h2 {
     color: #333;
@@ -38,12 +44,14 @@ body {
 .donation-card {
     background-color: #fff;
     border-radius: 10px;
+    cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position:relative;
     border-left: 6px solid #6D2EFF;
     font-weight: bold;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -53,18 +61,30 @@ body {
 .donation-card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-    background-color: #f5efef; /* Subtle background color change on hover */
+    background-color: #fffcfc; /* Subtle background color change on hover */
+}
+
+.donation-info{
+   margin: 0;
+   
 }
 
 .donation-info p {
     margin: 5px 0;
     color: #333;
     font-size: 16px;
+    margin-bottom: 15px;
+    
 }
 
 .donation-actions {
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    margin-top: 80px;
+    position: absolute; /* Position it relative to the parent */
+    right: 0; /* Align to right */
+    bottom: 1;
+    margin-right: 10px; /* Align to bottom */
 }
 
 .approve-button {
@@ -75,6 +95,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width : 100px;
 }
 
 .approve-button:hover {
@@ -89,12 +110,23 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width : 100px;
 }
 
 .reject-button:hover {
     background-color: #E04A4A;
 }
 
+
+.donation-status{
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 80px;
+}
 .donation-status a {
     color: #1a73e8;
     text-decoration: none;
@@ -102,5 +134,5 @@ body {
 }
 
 .donation-status a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
