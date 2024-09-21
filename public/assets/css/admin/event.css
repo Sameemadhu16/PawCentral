@@ -1,0 +1,145 @@
+body {
+    overflow-y: hidden;
+    margin: 0px;
+}
+
+.main-container{
+    display: flex;
+    
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow-y: hidden;
+    overflow-x: hidden;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    color: #000000;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    font-family:  sans-serif;
+}
+
+.event-section {
+    width: 100%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    max-height:550px; /* Adjust based on layout */
+    overflow-y: auto; /* Enable scrolling if content exceeds max-height */
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.interactive-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.interactive-card {
+    position: relative;
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
+    min-width: 150px; /* Adjust as needed */
+    overflow: hidden;
+    border-radius: 10px;
+    height: 200px;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.interactive-card:hover img {
+    transform: scale(1.1);
+}
+
+.card-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.35);
+    transition: opacity 0.3s;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.interactive-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.interactive-card:hover .card-display {
+    opacity: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .interactive-card {
+        flex: 1 1 calc(50% - 20px); /* Two cards per row */
+    }
+
+    .card {
+        width: calc(50% - 30px); /* Two cards per row in cards-container */
+    }
+}
+
+@media (max-width: 768px) {
+    .interactive-sections {
+        flex-direction: column;
+    }
+
+    .interactive-card {
+        flex: 1 1 100%;
+        height: 300px;
+    }
+
+}
+
+/* Optional: Customize scrollbar for WebKit browsers */
+.interactive-sections::-webkit-scrollbar,
+.event-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.interactive-sections::-webkit-scrollbar-thumb,
+.event-section::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
