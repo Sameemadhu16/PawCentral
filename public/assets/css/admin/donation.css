@@ -24,21 +24,25 @@ body {
     border-radius: 8px;
 }
 
+
+.content h2 {
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.content:hover {
+    
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
 /* Donations Section */
 .donations-section {
     max-width: 1000px;
     margin: 0 auto;
-    
-    /* Add these properties to make it scrollable */
-    max-height: 700px; /* Adjust the height as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-
-.donations-section h2 {
-    color: #333;
-    margin-bottom: 20px;
+    max-height: 600px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+  
 }
 
 .donation-card {
@@ -47,7 +51,7 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,7 +92,7 @@ body {
 }
 
 .approve-button {
-    background-color: #00C2C2;
+    background-color: #00a550;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -99,11 +103,11 @@ body {
 }
 
 .approve-button:hover {
-    background-color: #00A5A5;
+    background-color: #01793b;
 }
 
 .reject-button {
-    background-color: #FF5959;
+    background-color: #E0001B;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -114,7 +118,7 @@ body {
 }
 
 .reject-button:hover {
-    background-color: #E04A4A;
+    background-color: #8b0808;
 }
 
 
