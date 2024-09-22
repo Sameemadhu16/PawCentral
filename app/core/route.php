@@ -18,3 +18,5 @@ route('admin/post','admin/AdminPost');
 route('admin/donation','admin/AdminDonation');
 route('admin/profile','admin/AdminProfile');
 
+// User routings
+route('announcements','announcements');

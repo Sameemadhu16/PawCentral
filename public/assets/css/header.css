@@ -36,14 +36,16 @@ body, html {
     background-color: #6A0DAD;
 }
 
-.navbar h1 {
+.navbar a {
     font-size: 35px;
     margin: 0;
     font-weight: bold;
     font-family: sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     letter-spacing: 1px;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    text-decoration:none;
+    color:inherit;
 }
 
 

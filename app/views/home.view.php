@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/homepage.css">
     <!-- <link rel="stylesheet" href="./assets/css/homepage1.css">  CSS FOR STATS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <title>Document</title>
 </head>
 <body>
