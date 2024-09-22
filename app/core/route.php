@@ -3,7 +3,10 @@
 route('home','Home@index');
 route('signup','SignUp@index');
 route('signin','SignIn@index');
-
+route('service','service@index');
+route('service/postpet','service/postpet@index');
+route('service/postpet/postpetnext','service/postpet/postpetnext@index');
+route('service/postpet.postpetnext/selling','service/postpet/postpetnext//selling@index');
 
 // Admin routing
 

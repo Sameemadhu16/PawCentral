@@ -1,0 +1,63 @@
+ .title {
+    
+    position: relative;
+    top: 150px;
+    left: 500px;
+    width: 150px;
+}
+.title hr {
+    
+   width: 95px;
+   position: relative;
+   left: -35px;
+   top: -15px;
+   border:none;
+   border-top: 5px solid #B720FE;
+   border-radius: 4px;
+   
+
+}
+.form {
+    position: relative;
+    top: 170px;
+    font-family: 'Inter';
+    left: 250px;
+    width: 400px;
+    font-weight:300;
+} 
+.form input {
+    width: 800px;
+    height: 40px;
+    border-radius: 14px;
+    border: 0.5px solid black;
+}
+.form h3 {
+    width: 300px;
+}
+.title h2 {
+    font-family: 'Inter';
+    font-weight:600;
+}
+.arrow-button {
+    position: relative;
+    top: 180px;
+}
+.box {
+    width: 800px;
+    height: 150px;
+}
+.button {
+    position: relative;
+    top: 180px;
+    left: 1150px;
+    font-family: 'Inter';
+    color: white;
+    background-color: #B720FE;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    width: 150px;
+}
+.button:hover {
+    background-color: #7d0eb1;
+}
