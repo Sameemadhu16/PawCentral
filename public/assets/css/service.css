@@ -21,12 +21,12 @@
 
 .createPost {
     background-color: rgba(151, 71, 255, 0.7); 
-    background-image: url('C:/Users/HP/Desktop/Group project/UI/CreatePost/imgs/WhatsApp Image 2024-08-31 at 09.33.54.jpeg');
+    background-image: url('../images/WhatsApp\ Image\ 2024-08-31\ at\ 09.33.54.jpeg');
 }
 
 .managePost {
     background-color: rgba(151, 71, 255, 0.7); 
-    background-image: url('C:/Users/HP/Desktop/Group project/UI/CreatePost/imgs/WhatsApp Image 2024-08-31 at 09.34.56.jpeg');
+    background-image: url('../images/WhatsApp\ Image\ 2024-08-31\ at\ 09.34.56.jpeg');
 }
 
 .createPost::after, .managePost::after {
