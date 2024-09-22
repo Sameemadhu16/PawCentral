@@ -36,6 +36,7 @@
     align-items: center;
     cursor: pointer;
     font-size: 20px;
+    font-weight: bold;
     border-radius: 10px;
     background-color: #fff;
     position:relative;
@@ -49,13 +50,12 @@
 .content:hover {
     
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-    background-color: #f9f9f9; /* Subtle background color change on hover */
 }
 
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-    background-color: #ece8e8; /* Subtle background color change on hover */
+    background-color: #f7f3ff; /* Subtle background color change on hover */
 }
 
 .card:hover::before {
