@@ -34,7 +34,7 @@
         <li><a href="#">Events</a></li>
         <li><a href="#">Services</a></li>
         <li><a href="#">home for a pet</a></li>
-        <li><a href="#">Lost & Found</a></li>
+        <li><a href="lostandfound">Lost & Found</a></li>
     </ul>
     <div class="user-profile">
         <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">

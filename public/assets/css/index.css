@@ -4,3 +4,8 @@ body {
     margin: 0;
     /* padding: 4vh; */
 }
+
+.heading {
+    color: #6200ee;
+    text-align: center;
+}
