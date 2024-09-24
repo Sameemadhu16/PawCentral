@@ -1,8 +1,8 @@
 <?php
 
-class selling{
+class Selling{
     use controller;
     public function index(){
-        $this->view("seliing");
+        $this->view("selling");
     }
 }

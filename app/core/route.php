@@ -6,7 +6,7 @@ route('signin','SignIn@index');
 route('service','Service@index');
 route('service/postpet','Postpet@index');
 route('service/postpet/postpetnext','postpetnext@index');
-route('service/postpet/postpetnext/selling','selling@index');
+route('service/postpet/postpetnext/selling','Selling@index');
 
 // Admin routing
 
