@@ -31,7 +31,7 @@
         <li><a href="#">Find a Pet</a></li>
         <li><a href="announcements">Awareness</a></li>
         <li><a href="#">Medical Care</a></li>
-        <li><a href="#">Events</a></li>
+        <li><a href="eventsandcampaigns">Events</a></li>
         <li><a href="#">Services</a></li>
         <li><a href="#">home for a pet</a></li>
         <li><a href="lostandfound">Lost & Found</a></li>

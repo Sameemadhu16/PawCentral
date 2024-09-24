@@ -21,3 +21,4 @@ route('admin/profile','admin/AdminProfile');
 // User routings
 route('announcements','announcements');
 route('lostandfound','lostandfound');
+route('eventsandcampaigns','events');

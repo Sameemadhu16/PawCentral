@@ -6,6 +6,7 @@
     <title>What's Mew in Pet World</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/announcements.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/pagination.css">
 </head>
 <body>
     

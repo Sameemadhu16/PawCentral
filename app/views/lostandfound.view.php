@@ -7,29 +7,32 @@
     
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/lostandfound.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/pagination.css">
 </head>
 <body>
     
     <?php include("../app/views/components/header.php");?>
 
     <div class="pets-container">
-        <h1 class="heading">Lost & Found pets</h1>
-        <div class="filter-buttons">
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="lost">Lost</button>
-            <button class="filter-btn" data-filter="found">Found</button>
+        <div class="lostandfound-sec">
+            <h1 class="heading">Lost & Found pets</h1>
+            <div class="filter-buttons">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="lost">Lost</button>
+                <button class="filter-btn" data-filter="found">Found</button>
+            </div>
+            <div class="report-lost-buttons">
+                <button id="reportLost">Report Lost</button>
+                <button id="reportFound">Report Found</button>
+            </div>
+            </div>
+            <div id="petList" class="pet-list"></div>
         </div>
-        <div class="report-lost-buttons">
-            <button id="reportLost">Report Lost</button>
-            <button id="reportFound">Report Found</button>
-        </div>
-        </div>
-        <div id="petList" class="pet-list"></div>
         <div class="pagination">
-            <button id="prevPage">&lt;</button>
+            <button id="prevPage">previous</button>
             <span id="currentPage">1</span>
-            <button id="nextPage">&gt</button>
+            <button id="nextPage">next</button>
         </div>
     </div>
     <script src="<?= ROOT?>/assets/js/lostandfound.js"></script>
