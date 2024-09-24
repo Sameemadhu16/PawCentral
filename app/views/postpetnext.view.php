@@ -12,42 +12,42 @@
 <body>
     <?php include '../app/views/components/header.php'?>
     <div class="container">
-    <div class="title">
-        <h2>Post Pet </h2>
-        <hr/>
-    </div>
-    <div class="div1and2">
-        <div class="list">
+        <div class="title">
+            <h2>Post Pet </h2>
+            <hr/>
+        </div>
+        <div class="div1and2">
+            <div class="list">
+                <ul>
+                    <li><h4>Accepepted Formats:</h4><p>JPG,PNG,MP4</p></li>
+                    <li><h4>File size Limit:</h4><p>10MB per Image,50MB per video</p></li>
+                    <li><h4>Upload upto 5 photos and 1 video</h4></li>
+                    <li><h4>Ensure your video are lit and focused</h4></li>
+                    <li><h4>Reccomended Resolution:</h4><p>1080px x 1080px or higher for best resutls</p></li>
+                </ul>
+            </div>
+            <div class="drag-box">
+                <div class="content">
+                    <h1>DRAG HERE</h1>
+                    <button class="browse">Browse</button>
+                </div>
+            
+            </div>
+        
+        </div>
+        <div class="upload-div">
+            <button class="upload">Upload</button>
+        </div>
+        
+        <div class="summary">
             <ul>
-                <li><h4>Accepepted Formats:</h4><p>JPG,PNG,MP4</p></li>
-                <li><h4>File size Limit:</h4><p>10MB per Image,50MB per video</p></li>
-                <li><h4>Upload upto 5 photos and 1 video</h4></li>
-                <li><h4>Ensure your video are lit and focused</h4></li>
-                <li><h4>Reccomended Resolution:</h4><p>1080px x 1080px or higher for best resutls</p></li>
+                <li><h4>High quality pictures and videos greatly increases your pet's chances of finding the perfect home.Take a moment review your upload before submitting.</h4></li>
+                
             </ul>
         </div>
-        <div class="drag-box">
-            <div class="content">
-                <h1>DRAG HERE</h1>
-                <button class="browse">Browse</button>
-            </div>
-           
+        <div class="next">
+            <button>NEXT</button>
         </div>
-       
-    </div>
-    <div class="upload-div">
-        <button class="upload">Upload</button>
-    </div>
-    
-    <div class="summary">
-        <ul>
-            <li><h4>High quality pictures and videos greatly increases your pet's chances of finding the perfect home.Take a moment review your upload before submitting.</h4></li>
-            
-        </ul>
-    </div>
-    <div class="next">
-        <button>NEXT</button>
-    </div>
     </div>
     
 </body>
