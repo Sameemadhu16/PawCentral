@@ -15,12 +15,7 @@
                 </i>Announcements
             </a>
         </li>
-        <li >
-            <a href="../admin/notice" class="nav-link">
-                <i class="fas fa-clipboard icon">
-                </i>Notices
-            </a>
-        </li>
+        
         <li >
             <a href="../admin/medical_registration" class="nav-link" >
                 <i class="fas fa-medkit icon">

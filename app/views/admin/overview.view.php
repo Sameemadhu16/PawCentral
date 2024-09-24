@@ -17,7 +17,6 @@
         <div class="content">
             <div class="overview">
                 <div class="card">Announcements <span>15</span></div>
-                <div class="card">Notices <span>15</span></div>
                 <div class="card">Medical Registrations <span>15</span></div>
                 <div class="card">Reports <span>15</span></div>
                 <div class="card">User Accounts <span>25</span></div>

@@ -24,15 +24,14 @@
                     
                     <label for="date">Date</label>
                     <input type="date" id="date" required>
+
+                    <label for="time">Time</label>
+                    <input type="time" id="time" required>
                     
                     <label for="description">Description</label>
                     <textarea id="description" placeholder="Add Description" required></textarea>
                     
-                    <label for="images">Images</label>
-                    <div class="image-upload">
-                        <i class="fas fa-image"></i>
-                        <span>Add Image here</span>
-                    </div>
+                    
                     
                     <button type="submit" class="done-button">
                         <i class="fas fa-check-circle"></i> Done
