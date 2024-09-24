@@ -40,9 +40,21 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" required>
-                        <!-- <span class="password-toggle">Hide</span> -->
                     </div>
                     <p class="password-hint">Use 8 or more characters with a mix of letters, numbers & symbols</p>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="phone">Do you provide a service?</label>
+                            <div class="isService-radio">
+                                <div class="radio-button">
+                                    <input type="radio" id="isService-no" name="isService" checked>No
+                                </div>
+                                <div class="radio-button">
+                                    <input type="radio" id="isService-yes" name="isService">Yes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group checkbox">
                         <input type="checkbox" id="terms" name="terms" required>
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
@@ -55,5 +67,6 @@
             </section>
         </main>
     </div>
+    <script src="./assets/js/signup.js"></script>
 </body>
 </html>

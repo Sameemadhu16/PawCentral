@@ -105,7 +105,7 @@ main {
 label {
     display: block;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 16px;
     color: #000000;
 }
 
@@ -131,6 +131,20 @@ input[type="password"] {
     color: #000000;
     margin-top: 5px;
 }
+
+
+/* isService buttons */
+.isService-radio {
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+}
+    /* radio-button */
+    .isService-radio .radio-button{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
 .checkbox {
     display: flex;
