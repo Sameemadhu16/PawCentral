@@ -9,9 +9,7 @@
 </head>
 <body>
     <?php include("../app/views/components/header2.php"); ?>
-
     <div class="container">
-
         <main>
             <section class="signup-hero">
                 <h2>Find a pet</h2>
@@ -60,7 +58,7 @@
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="signup-button">Sign up</button>
+                        <button type="submit" class="signup-button" id="signup-button">Sign up</button>
                         <p class="login-link">Already have an account? <a href="#">Log in</a></p>
                     </div>
                 </form>
