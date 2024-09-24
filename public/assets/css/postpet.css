@@ -5,6 +5,7 @@
     left: 500px;
     width: 150px;
 }
+
 .title hr {
     
    width: 95px;
@@ -14,9 +15,8 @@
    border:none;
    border-top: 5px solid #B720FE;
    border-radius: 4px;
-   
-
 }
+
 .form {
     position: relative;
     top: 170px;

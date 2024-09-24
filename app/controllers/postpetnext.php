@@ -1,6 +1,6 @@
 <?php 
 
-class postpetnext{
+class Postpetnext{
     use controller;
     public function index(){
         $this->view("postpetnext");
