@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/postpetnext.css">
+    <link rel="stylesheet" href="../../assets/css/postpetnext.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <?php include '../app/views/components/header.php'?>
+    <div class="container">
     <div class="title">
         <h2>Post Pet </h2>
         <hr/>
@@ -33,13 +35,20 @@
         </div>
        
     </div>
-    <button class="upload">Upload</button>
+    <div class="upload-div">
+        <button class="upload">Upload</button>
+    </div>
+    
     <div class="summary">
         <ul>
             <li><h4>High quality pictures and videos greatly increases your pet's chances of finding the perfect home.Take a moment review your upload before submitting.</h4></li>
             
         </ul>
     </div>
-    <button class="next">NEXT</button>
+    <div class="next">
+        <button>NEXT</button>
+    </div>
+    </div>
+    
 </body>
 </html>
