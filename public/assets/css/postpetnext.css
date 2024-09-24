@@ -209,7 +209,7 @@ hr {
 .upload {
     width: 15%;
     padding: 12px 0;
-    background-color: #b720b7;
+    background-color: #b720fe;
     color: white;
     border: none;
     border-radius: 5px;
@@ -247,7 +247,7 @@ hr {
 .next button {
     width: 15%;
     padding: 12px 0;
-    background-color:#b720b7;
+    background-color:#b720fe;
     color: white;
     border: none;
     border-radius: 5px;
