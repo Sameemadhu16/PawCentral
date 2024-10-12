@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="./assets/css/fonts.css">
 </head>
 <body>
-    <?php include("../app/views/components/header2.php"); ?>
+    <?php 
+        include("../app/views/components/header2.php");
+        $nextURL="";
+    ?>
     <div class="container">
         <main>
             <section class="signup-hero">
