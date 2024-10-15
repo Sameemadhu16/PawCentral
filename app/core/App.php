@@ -1,46 +1,45 @@
 <?php
-class App {
 
-    
-    
+class App
+{
     private $controller = 'Home';
     private $method = 'index';
-    private function splitUrl(){
-        $URL = $_GET['url'] ?? 'home';
-        //  $URL = explode("/", trim($URL,"/"));
-        // show($URL) ;
 
+    private function splitURL()
+    {
+        $URL = $_GET['url'] ?? 'home';
+        $URL = explode("/", trim($URL,"/"));
         return $URL;
     }
-    
-    public function loadController(){
 
-        $existsRoutes = $GLOBALS['router'];
+    public function loadController()
+    {
         $URL = $this->splitURL();
-        $routeValue = $URL;
 
-        if (isset($existsRoutes[$routeValue])) {
-
-            $routeData = $existsRoutes[$routeValue];
-
-            $filename =  "../app/controllers/" . trim($routeData['class'], '/') . ".php";
-            $className = basename($filename, ".php");
-            $functionName = trim($routeData['function']);
-
-            if (file_exists($filename)) {
-                require $filename;
-                $this->method = $functionName;
-                $this->controller =  ucfirst($className);
-            }
-        } else {
-            $filename =  "../app/controllers/_404.php";
+        /**select controller */
+        $filename = "../app/controllers/" . ucfirst($URL[0]) . ".php";
+        if (file_exists($filename)) {
             require $filename;
-            $this->controller =  "_404";
+            $this->controller =  ucfirst($URL[0]);
+            unset($URL[0]);
+        } else {
+
+            $filename = "../app/controllers/_404.php";
+            require $filename;
+            $this->controller = "_404";
         }
-
-
         $controller = new $this->controller;
-        call_user_func_array([$controller, $this->method], []);
-    }
 
+        /**select method */
+        if(!empty($URL[1]))
+        {
+            if(method_exists($controller,$URL[1]))
+            {
+                $this->method = $URL[1];
+                unset($URL[1]);
+            }
+        }
+        show($URL);
+        call_user_func_array([$controller, $this->method], $URL);
+    }
 }
