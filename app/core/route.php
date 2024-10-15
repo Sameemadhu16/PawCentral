@@ -22,3 +22,4 @@ route('admin/profile','admin/AdminProfile');
 route('announcements','announcements');
 route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
+route('lostandfound/report-found','ReportFound');

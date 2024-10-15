@@ -36,5 +36,18 @@
         </div>
     </div>
     <script src="<?= ROOT?>/assets/js/lostandfound.js"></script>
+    
+    <script>
+        // Event listener for the "Report Lost" button
+        document.getElementById('reportLost').addEventListener('click', function() {
+            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-found'; // Replace with the actual 'lost' form URL
+        });
+
+        // Event listener for the "Report Found" button
+        document.getElementById('reportFound').addEventListener('click', function() {
+            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-found'; // This will redirect to your 'found' form
+        });
+    </script>
+
 </body>
 </html>
