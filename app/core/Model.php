@@ -4,9 +4,9 @@ class Model{
 
     use Database;
 
-    // get all the ressults
+    // get all the results
     public function where($data){
-        $query="select * fro users where id = :id ";
+        $query="select * from users where id = :id ";
         $this->query($query,['id'=>2]);
     }
     

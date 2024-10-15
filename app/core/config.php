@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('ROOT','http://localhost/PawCentral/public');
