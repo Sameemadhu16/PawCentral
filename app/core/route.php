@@ -1,8 +1,12 @@
 <?php
 
 route('home','Home@index');
+
+//signup login routing
 route('signup','SignUp@index');
+route('signup/signupnext','SignUpNext@index');
 route('signin','SignIn@index');
+route('login','Login@index');
 
 
 // Admin routing

@@ -2,14 +2,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const isServiceYes = document.getElementById('isService-yes');
     const isServiceNo = document.getElementById('isService-no');
     const signupButton = document.getElementById('signup-button');
+    const nextButton = document.getElementById('next-button');
+    const form=document.querySelector('form');
 
-    const originalButtonText = signupButton.textContent;
+    const originalButton = signupButton.style.display;
 
     function updateButtonText() {
         if (isServiceYes.checked) {
-            signupButton.textContent = 'NEXT';
+            nextButton.style.display = 'block';
+            signupButton.style.display='none';
         } else {
-            signupButton.textContent = originalButtonText;
+            signupButton.style.display = 'block';
+            nextButton.style.display='none';
         }
     }
 

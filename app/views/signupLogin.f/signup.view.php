@@ -23,7 +23,7 @@
             </section>
             <section class="signup-form-section">
                 <h2>Sign up now</h2>
-                <form class="signup-form">
+                <form class="signup-form" method="POST ">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="first-name">First name</label>
@@ -61,13 +61,14 @@
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="signup-button" id="signup-button">Sign up</button>
-                        <p class="login-link">Already have an account? <a href="#">Log in</a></p>
+                        <button type="submit" class="button" id="signup-button">Sign up</button>
+                        <button class="button" id="next-button" style="display: none;"><a href="signup/signupnext">NEXT</a></button>
+                        <p class="login-link">Already have an account? <a href="login">Log in</a></p>
                     </div>
                 </form>
             </section>
         </main>
     </div>
-    <script src="./assets/js/signup.js"></script>
+    <!-- <script src="./assets/js/"></script> -->
 </body>
 </html>

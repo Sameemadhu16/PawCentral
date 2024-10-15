@@ -6,7 +6,7 @@ body, html {
 
 
 .navbar {
-    background-color: #6A0DAD;
+    background-color: #6b0dad;
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -33,15 +33,25 @@ body, html {
     height: 45px;
     margin-right: 10px;
     border-radius: 50%;
-    background-color: #6A0DAD;
+    background-color: rgba(156, 14, 199, 0.025); /* Aligns the logo and website name vertically */
+    
+}
+
+.navbar-logo-set{
+    display: flex;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 
 .navbar h1 {
     font-size: 35px;
+    color: white;
     margin: 0;
     font-weight: bold;
     font-family: sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    /* text-shadow: 2px 2px 4px rgb(0, 0, 0); */
     letter-spacing: 1px;
     transition: transform 0.3s ease;
 }

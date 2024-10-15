@@ -30,6 +30,7 @@ header {
 main {
     display: flex;
     background-color: #ffffff;
+    align-items: center;
     border-radius: 10px;
     overflow: hidden;
     padding:30px;
@@ -68,6 +69,7 @@ main {
     border: 1px solid #666;
     border-radius: 8px;
     padding: 64px 60px;
+    height: fit-content;
 }
 
 .signup-form-section h2{
@@ -159,9 +161,10 @@ input[type="password"] {
 .checkbox label {
     font-size: 14px;
     color: #333;
+    margin: 0;
 }
 
-.signup-button {
+.button {
     background-color: #5d5d5d;
     color: #ffffff;
     border: none;
@@ -172,8 +175,13 @@ input[type="password"] {
     width: 164px;
 }
 
-.signup-button:hover{
+.button:hover{
     background-color: black;
+}
+
+.button a{
+    text-decoration: none;
+    color: white;
 }
 
 .login-link {
