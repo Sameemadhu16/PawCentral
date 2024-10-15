@@ -1,6 +1,6 @@
 <?php
 
-class USer
+class User
 {
     use Model;
 
