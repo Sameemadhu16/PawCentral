@@ -1,105 +1,105 @@
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
 .title {
-    text-align: center;
-    margin-bottom: 30px;
+    
+    position: relative;
+    top: 150px;
+    left: 500px;
+    width: 150px;
+    font-family: 'Inter';
+    font-weight: 600;
 }
-
-.title h2 {
-    font-size: 32px;
-    color: #333;
-}
-
 .title hr {
-    width: 50px;
-    height: 2px;
-    background-color: #333;
-    border: none;
-    margin: 10px auto;
+    
+   width: 95px;
+   position: relative;
+   left: -35px;
+   top: -15px;
+   border:none;
+   border-top: 5px solid #B720FE;
+   border-radius: 4px;
 }
-
-.form1 {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-label {
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-input[type="checkbox"] {
-    margin-left: 10px;
-}
-
-h3 {
-    font-size: 20px;
-    margin-top: 30px;
-}
-
-a {
-    color: #007BFF;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.text {
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
-}
-
-.conclusion {
-    margin-top: 20px;
-}
-
-button {
+.review {
+    position: relative;
+    top: 300px;
+    left: 1150px;
+    background-color: #B720FE;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007BFF;
-    color: white;
+    width: 150px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+    
+    color: #FFFF;
+    font-weight: 600;
+    font-family: 'Inter';
 }
-
-button:hover {
-    background-color: #0056b3;
+.form1 {
+    font-family: 'Inter';
+    font-weight: 300;
+    width: 750px;
+    position: relative;
+    top: 180px;
+    left: 300px;
 }
-
-button.submit {
-    background-color: #28a745;
+.price {
+    width: 500px;
+    font-size: 15px;
+    position: relative;
+    left: 130px;
 }
-
-button.submit:hover {
-    background-color: #218838;
+.pricel {
+    font-size: 25px;
+}
+.city {
+    width: 500px;
+    position: relative;
+    left: 144px;
+    font-size:15px;
+}
+.cityl{
+    position: relative;
+    left: 50px;
+    font-size: 25px;
+}
+.address {
+    width: 500px;
+    position: relative;
+    left: 97px;
+}
+.addressl{
+    position: relative;
+    left: 50px;
+    font-size: 25px;
+}
+.location {
+    font-size: 25px;
+}
+.fee {
+    position: relative;
+    left: 180px;
+    font-weight: 800px;
+}
+.feebox {
+    position: relative;
+    left: 14px;
+    
+}
+.text {
+    position: relative;
+    top: 250px;
+    left: 450px;
+    font-family:'Inter';
+    width: 700px;
+}
+.submit {
+    
+    position: relative;
+    top: 330px;
+    left: 1150px;
+    background-color: #B720FE;
+    padding: 10px 20px;
+    width: 150px;
+    border: none;
+        
+    color: #FFFF;
+    font-weight: 600;
+    font-family: 'Inter';
+    
 }
