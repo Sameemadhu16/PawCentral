@@ -53,7 +53,7 @@ input[type="text"] {
 }
 
 input[type="checkbox"] {
-    margin-left: 10px;
+    margin-left: -800px;
 }
 
 h3 {
@@ -84,7 +84,7 @@ a:hover {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007BFF;
+    background-color: #b720fe;
     color: white;
     border: none;
     border-radius: 5px;
@@ -93,13 +93,13 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #7d0eb1;
 }
 
 button.submit {
-    background-color: #28a745;
+    background-color: #b720fe;
 }
 
 button.submit:hover {
-    background-color: #218838;
+    background-color:#7d0eb1;
 }

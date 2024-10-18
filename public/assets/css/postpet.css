@@ -1,63 +1,95 @@
- .title {
-    
-    position: relative;
-    top: 150px;
-    left: 500px;
-    width: 150px;
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.title h2 {
+    font-size: 32px;
+    color: #333;
 }
 
 .title hr {
-    
-   width: 95px;
-   position: relative;
-   left: -35px;
-   top: -15px;
-   border:none;
-   border-top: 5px solid #B720FE;
-   border-radius: 4px;
+    width: 50px;
+    height: 2px;
+    background-color: #333;
+    border: none;
+    margin: 10px auto;
 }
 
 .form {
-    position: relative;
-    top: 170px;
-    font-family: 'Inter';
-    left: 250px;
-    width: 400px;
-    font-weight:300;
-} 
-.form input {
-    width: 800px;
-    height: 40px;
-    border-radius: 14px;
-    border: 0.5px solid black;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
-.form h3 {
-    width: 300px;
+
+form h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
 }
-.title h2 {
-    font-family: 'Inter';
-    font-weight:600;
+
+form input[type="text"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
-.arrow-button {
-    position: relative;
-    top: 180px;
+
+input::placeholder {
+    color: #999;
 }
-.box {
-    width: 800px;
-    height: 150px;
-}
+
 .button {
-    position: relative;
-    top: 180px;
-    left: 1150px;
-    font-family: 'Inter';
+    display: block;
+    width: auto;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #b720fe;
     color: white;
-    background-color: #B720FE;
     border: none;
-    padding: 10px 20px;
-    font-weight: 600;
-    width: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+    margin-left:900px;
 }
+
 .button:hover {
-    background-color: #7d0eb1;
+    background-color: #7b0eb1;
+}
+
+.arrow-button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #b720fe;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+
+.arrow-button img {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    display: block;
+}
+
+.arrow-button:hover {
+    background-color: #7b0eb1;
 }
