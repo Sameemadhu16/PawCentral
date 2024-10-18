@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCentral - Find a Pet</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/findMedi.style.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+</head>
+<body>
+    <?php include("../app/views/components/header.php"); ?>
+    <div class="container">
+
+        <!-- header -->
+        <h1>Medical Care Centers</h1>
+
+        <!-- search bar -->
+        <div class="search-container">
+            <form action="#" method="POST">
+                <div class="search-field">
+                    <label for="namesearch">Vet center name</label>
+                    <input type="text" name="name_search" placeholder="">
+                </div>
+                <div class="search-field">
+                    <label for="locationsearch">Location</label>
+                    <input type="text" name="location_search" placeholder="">
+                </div>
+                <div class="search-submit">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="results-container">
+            <?php if (isset($data['medicines'])): ?>
+                <?php foreach ($data['medicines'] as $medicine): ?>
+                    <div class="result">
+                        <h3><?= $medicine['name'] ?></h3>
+                        <p><?= $medicine['description'] ?></p>
+                        <p><?= $medicine['price'] ?></p>
+                        <p><?= $medicine['quantity'] ?></p>
+                        <p><?= $medicine['expiry_date'] ?></p>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>
