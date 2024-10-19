@@ -1,14 +1,20 @@
-// adminSidebar.js
-document.addEventListener('DOMContentLoaded', function () {
-    const links = document.querySelectorAll('.nav-link');
+// Select all the sidebar links
+const links = document.querySelectorAll(".sidebar li a");
 
-    links.forEach(link => {
-        link.addEventListener('click', function () {
-            // Remove active class from all links
-            links.forEach(l => l.classList.remove('active'));
-
-            // Add active class to the clicked link
-            this.classList.add('active');
+// Add event listener to each link
+links.forEach(link => {
+    link.addEventListener('click', (event) => {
+        // Remove 'active' class from all links
+        links.forEach(link => {
+            link.classList.remove('active');
         });
+
+        // Add 'active' class to the clicked link
+        link.classList.add('active');
     });
+
+    // Check if the link href matches the current page URL
+    if (link.href === window.location.href) {
+        link.classList.add('active');
+    }
 });
