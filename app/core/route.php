@@ -1,8 +1,12 @@
 <?php
 
 route('home','Home@index');
+
+//signup login routing
 route('signup','SignUp@index');
+route('signup/signupnext','SignUpNext@index');
 route('signin','SignIn@index');
+route('login','Login@index');
 
 
 // Admin routing
@@ -15,6 +19,10 @@ route('admin/notice','admin/AdminNotice@index');
 route('admin/add_notice','admin/AdminAddNotice@index');
 route('admin/medical_registration','admin/AdminMedicalRegistration@index');
 route('admin/report','admin/AdminReport@index');
+
+//medical routing
+route('medical','Medical/FindMedi@index');
+
 route('admin/user_account','admin/AdminUserAccount@index');
 route('admin/event','admin/AdminEvent@index');
 route('admin/post','admin/AdminPost@index');
