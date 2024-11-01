@@ -23,4 +23,4 @@ route('admin/donation','admin/AdminDonation');
 route('admin/profile','admin/AdminProfile');
 
 //medical routing
-route('findmedical','Medical/FindMedi@index');
+route('medical','Medical/FindMedi@index');

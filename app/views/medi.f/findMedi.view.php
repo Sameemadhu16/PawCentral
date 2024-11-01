@@ -30,7 +30,68 @@
                 </div>
             </form>
         </div>
+        
+        <!-- card grid -->
+        <div id="cardGrid" class="grid-container">
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+            <!-- example card -->
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <div class="card-content">
+                    <h2 class="card-title">${center.name}</h2>
+                    <p class="card-subtitle">${center.location}</p>
+                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                </div>
+            </div>
+        </div>
+        
+        
 
+        <!-- remove this -->
         <div class="results-container">
             <?php if (isset($data['medicines'])): ?>
                 <?php foreach ($data['medicines'] as $medicine): ?>
@@ -44,6 +105,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+
     </div>
 </body>
 </html>
