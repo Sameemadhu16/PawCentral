@@ -6,9 +6,9 @@ body, html {
 
 
 .navbar {
-    background-color: #6A0DAD;
+    background-color: #6b0dad;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 168.5px;
     display: flex;
     justify-content: space-between; /* Distributes space between left and right sections */
     align-items: center; /* Centers content vertically */
@@ -33,15 +33,25 @@ body, html {
     height: 45px;
     margin-right: 10px;
     border-radius: 50%;
-    background-color: #6A0DAD;
+    background-color: rgba(156, 14, 199, 0.025); /* Aligns the logo and website name vertically */
+    
+}
+
+.navbar-logo-set{
+    display: flex;
+    /* flex:1;
+    justify-content: center;
+    align-items: center; */
+    text-decoration: none;
 }
 
 .navbar h1 {
     font-size: 35px;
+    color: white;
     margin: 0;
     font-weight: bold;
-    font-family: sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    /* font-family: sans-serif; */
+    /* text-shadow: 2px 2px 4px rgb(0, 0, 0); */
     letter-spacing: 1px;
     transition: transform 0.3s ease;
 }
@@ -52,27 +62,36 @@ body, html {
     display: flex;
     margin: 0;
     padding: 0;
-    margin-left: auto; /* Pushes links to the right */
+    margin: 0 60px;
+    /* margin: auto; Pushes links to the right */
     align-items: center; /* Aligns links vertically */
+    gap: 4px;
+    justify-content: center;
 }
 
 .navbar-links li {
     margin: 0px;
     margin-bottom: 0px;
     list-style: none;
-    display: inline-block;
+    /* display: inline-block; */
     position: relative;
+    padding: 8px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-links li a {
-    font-family: sans-serif;
     color: white;
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
-    padding: 15px 20px;
     transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .navbar-links li a::before {

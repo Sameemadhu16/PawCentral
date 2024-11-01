@@ -1,5 +1,4 @@
 <?php
-
 class App
 {
     private $controller = 'Home';
