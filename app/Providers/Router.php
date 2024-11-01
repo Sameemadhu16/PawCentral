@@ -7,4 +7,4 @@ function route($url, $classData){
    $function = isset($classDataArray[1])?$classDataArray[1]:'index';
    $GLOBALS['router'][$url] = array('class'=>$class, 'function'=> $function);
 
-} 
+}

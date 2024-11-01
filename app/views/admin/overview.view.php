@@ -6,18 +6,17 @@
     <title>PawCentral Dashboard - Overview</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/overview.css">
 </head>
-<body>
+<body class="body">
     <!-- Include the Header and Sidebar Components -->
     <?php include("../app/views/components/header.php"); ?>
     
     <div class="main-container">
-        <?php include("../app/views/components/adminSidebar.php"); ?>
+        <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <!-- Content Section -->
         <div class="content">
             <div class="overview">
                 <div class="card">Announcements <span>15</span></div>
-                <div class="card">Notices <span>15</span></div>
                 <div class="card">Medical Registrations <span>15</span></div>
                 <div class="card">Reports <span>15</span></div>
                 <div class="card">User Accounts <span>25</span></div>

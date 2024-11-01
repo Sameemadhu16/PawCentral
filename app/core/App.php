@@ -1,22 +1,28 @@
 <?php
-class App {
-
+class App
+{
     private $controller = 'Home';
     private $method = 'index';
-    private function splitUrl(){
-        $URL = $_GET['url'] ?? 'home';
-        // $URL = explode("/", trim($URL,"/"));
-        // show($URL) ;
 
+    // split the routing path
+    private function splitURL()
+    {
+        // $URL = $_GET["url"] ?? 'home';
+        // $URL = explode("/", $URL);
+        // return $URL;
+        $URL = $_GET["url"] ?? 'home';
+        //$URL = explode("/", $URL);
         return $URL;
     }
-    
-    public function loadController(){
 
+
+    // router path split files name, find the server if not included then, load the 404 file 
+    public function loadController()
+    {
         $existsRoutes = $GLOBALS['router'];
         $URL = $this->splitURL();
         $routeValue = $URL;
-
+        
         if (isset($existsRoutes[$routeValue])) {
 
             $routeData = $existsRoutes[$routeValue];
@@ -40,5 +46,4 @@ class App {
         $controller = new $this->controller;
         call_user_func_array([$controller, $this->method], []);
     }
-
 }

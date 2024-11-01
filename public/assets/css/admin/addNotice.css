@@ -1,0 +1,174 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffffff; /* Subtle background color */
+    overflow-y: hidden;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    overflow: auto;
+    border-radius: 15px;
+}
+
+header {
+    background-color: #6D2EFF;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.notice-form {
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 100px; 
+    max-width: 1000px; /* Adjust max width if needed */
+    margin: 0 auto; /* Center the form horizontally */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+.notice-form:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow on hover */
+}
+
+.notice-form h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.notice-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+    color: #424242;
+}
+
+.notice-form input[type="text"],
+.notice-form input[type="date"],
+.notice-form textarea {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect for inputs */
+.notice-form input[type="text"]:hover,
+.notice-form input[type="date"]:hover,
+.notice-form textarea:hover {
+    border-color: #6D2EFF; /* Change border color on hover */
+    background-color: #f9f9ff; /* Slight background color change on hover */
+}
+
+.notice-form input[type="text"]:focus,
+.notice-form input[type="date"]:focus,
+.notice-form textarea:focus {
+    border-color: #6D2EFF; /* Highlight border on focus */
+    outline: none;
+}
+
+.notice-form .image-upload {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.notice-form .image-upload:hover {
+    border-color: #6D2EFF; /* Change border color on hover */
+}
+
+.notice-form .image-upload i {
+    font-size: 48px;
+    color: #ccc;
+}
+
+.notice-form .image-upload span {
+    display: block;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.notice-form button {
+    padding: 12px 20px;
+    background-color: #28c42d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.notice-form button:hover {
+    background-color: #158a21;
+    
+}
+
+.done-button {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right: 50px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.done-button i {
+    margin-right: 8px;
+}
+
+.done-button:hover {
+    background-color: #0088cc; /* Darker blue on hover */
+}
+
+.done-button:active {
+    background-color: #006699; /* Even darker blue on click */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notice-form {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    .done-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
