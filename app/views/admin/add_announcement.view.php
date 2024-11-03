@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="body">
     <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
 
@@ -21,18 +22,15 @@
                 <form>
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter Title" required>
-                    
+
                     <label for="date">Date</label>
                     <input type="date" id="date" required>
 
-                    <label for="time">Time</label>
-                    <input type="time" id="time" required>
-                    
                     <label for="description">Description</label>
-                    <textarea id="description" placeholder="Add Description" required></textarea>
-                    
-                    
-                    
+                    <textarea class="textarea_class" id="description" placeholder="Add Description" required></textarea>
+
+
+
                     <button type="submit" class="done-button">
                         <i class="fas fa-check-circle"></i> Done
                     </button>

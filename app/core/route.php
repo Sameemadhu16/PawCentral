@@ -5,7 +5,6 @@ route('home','Home@index');
 //signup login routing
 route('signup','SignUp@index');
 route('signup/signupnext','SignUpNext@index');
-route('signin','SignIn@index');
 route('login','Login@index');
 
 
@@ -14,6 +13,7 @@ route('login','Login@index');
 route('admin/overview','admin/AdminOverview@index');
 route('admin/announcement','admin/AdminAnnouncement@index');
 route('admin/add_announcement','admin/AdminAddAnnouncement@index');
+route('admin/edit_announcement','admin/AdminEditAnnouncement@index');
 route('admin/notice','admin/AdminNotice@index');
 route('admin/add_notice','admin/AdminAddNotice@index');
 route('admin/medical_registration','admin/AdminMedicalRegistration@index');

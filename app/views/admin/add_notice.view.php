@@ -21,7 +21,7 @@
                 <form>
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter Title" required>
-                    
+                
                     <label for="date">Date</label>
                     <input type="date" id="date" required>
                     
