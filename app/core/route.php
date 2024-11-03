@@ -3,9 +3,13 @@
 route('home','Home@index');
 
 //signup login routing
-route('signup','SignUp@index');
-route('signup/signupnext','SignUpNext@index');
-route('login','Login@index');
+route('signup', 'SignupController@index');          // GET request for the first signup step
+route('signup/submit', 'SignupController@handleFirstStep');  // POST request to handle first signup step submission
+
+route('signup/signupnext', 'SignupNextController@index');    // GET request for the second signup step
+route('signup/signupnext/submit', 'SignupNextController@handleSecondStep');  // POST request for second signup step submission
+
+route('login', 'Login@index');   // GET request for login
 
 
 // Admin routing
