@@ -7,6 +7,8 @@ class User
     protected $table = 'users';
     public $errors = [];
 
+
+    //validate the first step og sign up
     public function validate($data)
     {
         $this->errors = [];
@@ -24,8 +26,50 @@ class User
         //check the password character length
         if (strlen($data['password']) < 8){
             $this->errors[] = 'Password must be at least 8 characters';
-        }
 
+        }
         return empty($this->errors);
     }
+
+    //validate second step of the sign up (signupNext)
+    public function validateSecondStep($data)
+    {
+        $this->errors = [];
+
+        //Check if service details are empty
+        if ($data['is_service'] === 'yes'){
+            if (empty($data['service_type']) || empty($data['service_name']) || empty($data['location'])){
+                $this->errors[] = "Service details are required";
+            }
+        }
+        if (empty($data['proof']['name'])){
+            $this->errors[] = 'Proof of service is required';
+        }
+        return empty($this->errors);
+    }
+
+    public function create($data)
+    {
+        //password hashing
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        //process and save the proof of file
+        if(isset($data['proof']) && !empty($data['proof']['name'])){
+            $data['proof_of_service'] = $this->uploadFile($data['proof']);
+        }
+        unset($data['proof']);
+        $this->insert($data);
+
+    }
+
+    private function uploadFile($file)
+    {
+        $targetDir = "uploads/proofs/";
+        $filePath = $targetDir . basename($file['name']);
+        move_uploaded_file($file["tmp_name"], $filePath);
+        return $filePath;
+    }
+
+
+
 }
