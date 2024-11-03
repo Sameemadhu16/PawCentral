@@ -7,6 +7,7 @@
     <title>PawCentral Dashboard - Announcements</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/announcement.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/admin/deleteAnnouncement.js" defer></script>
 </head>
 
 <body class="body">
@@ -40,10 +41,10 @@
                         <a href="../admin/edit_announcement">
                             <i class="fas fa-edit edit-icon"></i>
                         </a>
-                        <i class="fas fa-trash delete-icon"></i>
+                        <i class="fas fa-trash delete-icon" onclick="openModal()"></i>
                     </div>
 
-                </div>
+                </div> 
 
                 <div class="announcement-card">
                     <div class="announcement-info">
@@ -184,6 +185,19 @@
                     </div>
 
                 </div>
+
+
+                <!-- Delete Confirmation Modal -->
+                 <div id="deleteModal" class="modal">
+                    <div class="modal-content">
+                        <p>Are you sure you want to delete this announcement?</p>
+                        <div class="modal-actions">
+                            <button onclick="deleteItem()">Yes</button>
+                            <button onclick="closeModal()">No</button>
+                        </div>
+                    </div>
+                </div>
+
 
 
 
@@ -193,61 +207,6 @@
             </section>
 
 
-
-
-
-
-            <!-- <div class="card">
-                <div class="card-content">
-                    
-                    <p>
-                    <h4>Announcement title
-                    Date: 2024/07/20
-                    time: 10 .. 20 pm
-                    </h4>
-                    
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-                        versions of Lorem Ipsum.
-                    </p>
-                </div>
-
-                <div class="card-actions">
-                    <i class="fas fa-edit edit-icon"></i>
-                    <i class="fas fa-trash delete-icon"></i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    Announcement 2
-                    <p>
-                        this is a announcemnet of PawCentral
-                    </p>
-                </div>
-
-                <div class="card-actions">
-                    <i class="fas fa-edit edit-icon"></i>
-                    <i class="fas fa-trash delete-icon"></i>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    Announcement 3
-                    <p>
-                        this is a announcemnet of PawCentral
-                    </p>
-                </div>
-
-                <div class="card-actions">
-                    <i class="fas fa-edit edit-icon"></i>
-                    <i class="fas fa-trash delete-icon"></i>
-                </div>
-            </div> -->
 
         </div>
 
