@@ -14,3 +14,7 @@ function redirect($path){
     header("Location:".ROOT."/".$path);
     die;
 }
+
+function isLoggedIn() {
+    return isset($_SESSION['user_id']);
+}

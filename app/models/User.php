@@ -51,12 +51,12 @@ class User
     public function create($data) {
         try {
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-    
+
             if (isset($data['proof']) && !empty($data['proof']['name'])) {
                 $data['proof_of_service'] = $this->uploadFile($data['proof']);
             }
             unset($data['proof']);
-            
+
             $this->insert($data);
         } catch (Exception $e) {
             $this->errors[] = "Error saving user: " . $e->getMessage();
@@ -64,7 +64,7 @@ class User
         }
         return true;
     }
-    
+
 
     private function uploadFile($file)
     {
@@ -72,6 +72,26 @@ class User
         $filePath = $targetDir . basename($file['name']);
         move_uploaded_file($file["tmp_name"], $filePath);
         return $filePath;
+    }
+
+    // Validate user login
+    public function validateLogin($email, $password) {
+        // Retrieve the user by email
+        $user = $this->getUserByEmail($email);
+
+        // If user exists and password is correct, return true
+        if ($user && password_verify($password, $user->password)) {
+            return true;
+        }
+
+        // Otherwise, return false
+        $this->errors[] = 'Invalid email or password';
+        return false;
+    }
+
+    // Get user by email
+    public function getUserByEmail($email) {
+        return $this->first(['email' => $email]);
     }
 
 

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawCentral - Find a Pet</title>
     <link rel="stylesheet" href="./assets/css/signUpPage.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
+    <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </head>
+
 <body>
-    <?php 
-        include("../app/views/components/header2.php");
-        $nextURL="";
+    <?php
+    include("../app/views/components/header2.php");
+    $nextURL = "";
     ?>
     <div class="container">
         <main>
@@ -27,8 +31,17 @@
                 <div class="signup-head">
                     <h2>Sign In</h2>
                 </div>
-                
-                <form class="signup-form" method="POST">
+
+                <!-- Display error messages -->
+                <?php if (!empty($errors)): ?>
+                    <div class="error-messages-container">
+                        <?php foreach ($errors as $error): ?>
+                            <p class="error-message-item"><?= htmlspecialchars($error) ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <form class="signup-form" method="POST" action="<?= ROOT ?>/login/authenticate">
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" id="email" name="email" required>
@@ -42,7 +55,7 @@
                         <label for="remember">Remember me</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="button" id="button">Sign up</button>
+                        <button type="submit" class="button" id="button">Sign In</button>
                         <p class="login-link">Don't have an account? <a href="signup">Register</a></p>
                     </div>
                 </form>
@@ -51,4 +64,5 @@
     </div>
     <script src="./assets/js/signup.js"></script>
 </body>
+
 </html>
