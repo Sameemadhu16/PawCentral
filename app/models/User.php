@@ -48,19 +48,23 @@ class User
         return empty($this->errors);
     }
 
-    public function create($data)
-    {
-        //password hashing
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-        //process and save the proof of file
-        if(isset($data['proof']) && !empty($data['proof']['name'])){
-            $data['proof_of_service'] = $this->uploadFile($data['proof']);
+    public function create($data) {
+        try {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    
+            if (isset($data['proof']) && !empty($data['proof']['name'])) {
+                $data['proof_of_service'] = $this->uploadFile($data['proof']);
+            }
+            unset($data['proof']);
+            
+            $this->insert($data);
+        } catch (Exception $e) {
+            $this->errors[] = "Error saving user: " . $e->getMessage();
+            return false;
         }
-        unset($data['proof']);
-        $this->insert($data);
-
+        return true;
     }
+    
 
     private function uploadFile($file)
     {

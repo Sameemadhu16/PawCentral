@@ -7,31 +7,37 @@ class SignUp {
         $this->view("signupLogin.f/signup");
     }
 
-    //handle from submission fro the first step
-    public function handleFirstStep()
-    {
+    // Handle form submission for the first step
+    public function handleFirstStep() {
         $user = new User;
 
-        //collect from data
+        // Collect form data
         $data = [
-            'first_name' => $_POST['first-name'] ?? '',
-            'last_name' => $_POST['last-name'] ?? '',
+            'first_name' => $_POST['first_name'] ?? '',
+            'last_name' => $_POST['last_name'] ?? '',
             'email' => $_POST['email'] ?? '',
             'password' => $_POST['password'] ?? '',
-            'is_service' => $_POST['isService'] ?? 'no'
+            'is_service' => $_POST['is_service'] ?? 'no'
         ];
 
-        //validate data using the User Model
-        if ($user->validate($data)){
-            //store form data in session to pass to the second step
-            $_SESSION['signup_data'] = $data;
+        // Validate data using the User model
+        if ($user->validate($data)) {
+            if ($data['is_service'] === 'no') {
+                // If "No" is selected, create the user directly
+                $user->create($data);
 
-            //Redirect to the second step
-            redirect('signupnext');
+                // Clear session data and redirect to login
+                unset($_SESSION['signup_data']);
+                redirect('login');
+            } else {
+                // If "Yes" is selected, store data in session and redirect to step 2
+                $_SESSION['signup_data'] = $data;
+                redirect('signup/signupnext');
+            }
         } else {
-            //pass validation errors to the view
+            // Pass validation errors to the view if validation fails
             $data['errors'] = $user->errors;
-            $this->view('signup', $data);
+            $this->view('signupLogin.f/signup', $data);
         }
     }
 }
