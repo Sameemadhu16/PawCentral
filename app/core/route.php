@@ -23,3 +23,4 @@ route('announcements','announcements');
 route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
 route('lostandfound/report-found','ReportFound');
+route('lostandfound/idoflost','LostPet');
