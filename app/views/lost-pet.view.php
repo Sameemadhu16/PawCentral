@@ -38,14 +38,15 @@
 
         <div class="specs"><p>Found by :</p><span>Oshan Gamage</span></div>
         <div class="specs"><p>Location :</p><span>Panadura</span></div>
-        <div class="specs"><p>height :</p><span>Oshan Gamage</span></div>
+        <div class="specs"><p>height :</p><span>2.5ft</span></div>
+        <div class="specs"><p>Sex :</p><span>Male</span></div>
         <div class="specs"><p>Age :</p><span>12 months</span></div>
         <div class="specs"><p>health condition :</p><span>No harm</span></div>
         <div class="specs"><p>color :</p><span>Brown</span></div>
 
         <!-- Contact Info -->
         <div class="contact-section">
-            <img class="contact-icon" src="call.png" alt="Contact Icon" width="30px">
+            <img class="contact-icon" src="<?=ROOT?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
             <span>Contact : </span>
             <div class="contact-info">
                 <!-- Contact Info placeholders -->
@@ -77,6 +78,8 @@
         const petPost = {
             name: "Tiny",
             breed: "German Shepherd",
+            sex: "Male",
+            height:"2.5",
             postedOn: "Sun, 5th September, 4:02 PM",
             location: "36/2 Sri lankarama rd - Panadura",
             images: [

@@ -18,9 +18,6 @@ body {
     position: relative;
 }
 
-/* BACKGROUND IMAGE */
-
-
 h2 {
     text-align: center;
     color: #7202bf; /* Bright purple for headers */
@@ -49,11 +46,10 @@ h2 {
     font-weight: bold;
     display: block;
     margin-top: 10px;
-    /* color: black; Purple for labels */
 }
 
 
-.report-found-form input[type="text"], input[type="file"],input[type="tel"], textarea {
+.report-found-form input[type="text"], .report-found-form input[type="file"], .report-found-form input[type="tel"], .report-found-form textarea {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -69,7 +65,7 @@ h2 {
 }
 
 
-.report-found-form input[type="text"]:focus, textarea:focus {
+.report-found-form input[type="text"]:focus, .report-found-form textarea:focus, .report-found-form input[type="tel"]:focus {
     border-color: #7202bf; /* Focus color */
     outline: none;
 }

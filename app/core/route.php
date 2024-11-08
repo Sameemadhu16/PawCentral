@@ -22,5 +22,9 @@ route('admin/profile','admin/AdminProfile');
 route('announcements','announcements');
 route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
+route('eventsandcampaigns/event_id','EventInfo');
 route('lostandfound/report-found','ReportFound');
 route('lostandfound/idoflost','LostPet');
+// merchanted pets
+route('findapet/post_id','PetPost_purchase');
+

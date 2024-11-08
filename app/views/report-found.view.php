@@ -55,7 +55,7 @@
 
           <!-- Contact Information -->
           <label for="contact">Contact Information:</label>
-          <small style="margin-left: 20px;">enter in the 0********* format.</small>
+          <small style="margin-left: 20px;">(enter in the 0********* format.)</small>
           <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" placeholder="enter your contact details (phone number)" required />
           
 
