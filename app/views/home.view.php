@@ -87,11 +87,11 @@
         Contribute to a greater society where animals live as good a life as you are.
     </p>
 <section class="community-help-section">
-    <div class="donation-overlay">
+    <!-- <div class="donation-overlay">
         <h1>Help the community in need</h1>
         <div class="donate-icon">
             <img src="<?= ROOT ?>/assets/images/donate.png" alt="Donation Icon">
-        </div>
+        </div> -->
     </div>
 </section>
 </section>
