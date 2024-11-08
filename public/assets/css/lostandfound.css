@@ -118,3 +118,28 @@ button:hover {
     margin: 0 10px;
     font-size: 18px;
 } */
+
+
+
+/* Make the entire card clickable */
+.pet-card-link {
+    text-decoration: none;
+    color: inherit; /* Keeps text color consistent */
+}
+.pet-card-link:hover {
+    background-color: #cff4ff;
+    transform: scale(1.008); 
+    /* font-size: 1.2em; */
+    /* Slightly enlarge the card */
+    transition: transform 0.1s ease, background-color 0.2s ease; /* Smooth transition for scaling and background color */
+}
+/* Increase font size on hover */
+.pet-card:hover .pet-info h2 {
+    transition: color 0.3s ease; /* Smooth transition for font size */
+    color: #333;
+} 
+.pet-card-link:hover .pet-info p {
+    font-size: 1em; /* Adjust other text size if desired */
+    transition: font-size 0.2s ease; /* Smooth transition for font size */
+    color: #2951c9;
+}
