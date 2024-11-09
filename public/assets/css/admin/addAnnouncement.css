@@ -1,166 +1,178 @@
 .body {
-    margin:0px;
+    margin: 0;
     overflow-y: hidden;
+    background-color: #f3f4f6;
 }
 
 .main-container {
     display: flex;
-    
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .content {
-    flex: 1;
+    width: 90%; /* Increased width for a wider layout */
+    max-width: 800px; /* Set a larger max-width */
     background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-    margin-left: 100px; /* To align with fixed sidebar */
-    overflow: auto;
-    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease;
 }
 
+.content:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
 
 .announcement-form {
-    padding: 20px;
-    width: 100%;
-    margin-top: 20px;
-    margin-left: 100px; 
-    max-width: 1000px; /* Adjust max width if needed */
-    margin: 0 auto; /* Center the form horizontally */
     background-color: #ffffff;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
-}
-
-.announcement-form:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow on hover */
 }
 
 .announcement-form h1 {
+    font-size: 32px;
     margin-bottom: 20px;
-    font-size: 28px;
     color: #333;
+    text-align: center;
 }
 
 .announcement-form label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 15px 0 5px;
     font-weight: 500;
     color: #424242;
+    font-size: 16px;
 }
 
 .announcement-form input[type="text"],
 .announcement-form input[type="date"],
 .announcement-form textarea {
-    width: 90%;
-    padding: 12px;
+    width: 100%;
+    padding: 14px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.textarea_class{
-    min-height: 200px;
+.textarea_class {
+    min-height: 150px;
 }
 
-/* Hover effect for inputs */
 .announcement-form input[type="text"]:hover,
 .announcement-form input[type="date"]:hover,
 .announcement-form textarea:hover {
-    border-color: #6D2EFF; /* Change border color on hover */
-    background-color: #f9f9ff; /* Slight background color change on hover */
+    border-color: #6D2EFF;
+    background-color: #f9f9ff;
 }
 
 .announcement-form input[type="text"]:focus,
 .announcement-form input[type="date"]:focus,
 .announcement-form textarea:focus {
-    border-color: #6D2EFF; /* Highlight border on focus */
+    border-color: #6D2EFF;
     outline: none;
 }
 
-.announcement-form .image-upload {
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-    width: 90%;
-    margin-bottom: 20px;
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.announcement-form .image-upload:hover {
-    border-color: #6D2EFF; /* Change border color on hover */
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
 }
 
-.announcement-form .image-upload i {
-    font-size: 48px;
-    color: #ccc;
+.back-icon a:hover {
+    color: #005fa3;
 }
 
-.announcement-form .image-upload span {
-    display: block;
-    margin-top: 10px;
-    color: #ccc;
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
 }
 
-.announcement-form button {
-    padding: 12px 20px;
-    background-color: #28c42d;
-    color: #fff;
-    border: none;
+.error-message {
+    background-color: #ffdddd; /* Light red background */
+    color: #d8000c; /* Dark red text color */
+    border-left: 4px solid #d8000c; /* Red border to the left */
+    padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    max-width: 600px; /* Adjust width as needed */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    animation: bounce 0.6s ease-in-out;
+    position: relative;
 }
 
-.announcement-form button:hover {
-    background-color: #158a21;
+.bounce-animation {
+    animation: bounce 0.6s ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Automatic Dismiss after 10 seconds */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.error-message {
+    animation: fadeOut 10s forwards;
 }
 
 
 .done-button {
-    background-color: #00aaff;
-    color: #fff;
+    padding: 14px 24px;
+    background-color: #0077cc;
+    color: #ffffff;
     border: none;
-    margin-top: 10px;
-    margin-left:auto;
-    margin-right: 50px;
-    padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.done-button i {
-    margin-right: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .done-button:hover {
-    background-color: #0088cc; /* Darker blue on hover */
+    background-color: #005fa3;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 .done-button:active {
-    background-color: #006699; /* Even darker blue on click */
+    background-color: #00477d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-    .announcement-form {
-        padding: 15px;
-        max-width: 100%;
+    .content {
+        width: 95%;
+        padding: 20px;
     }
-    
-    .done-button {
-        width: 100%;
-        justify-content: center;
+    .announcement-form h1 {
+        font-size: 28px;
     }
 }
