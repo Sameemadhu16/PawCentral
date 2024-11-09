@@ -1,8 +1,6 @@
 /* General styles */
-body {
-    font-family:  sans-serif;
-    margin: 0px;
-    background-color: #ffffff;
+.body {
+    margin:0;
     overflow-y: hidden;
 }
 
