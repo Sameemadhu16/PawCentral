@@ -8,66 +8,90 @@ trait Model
     protected $order_type = "desc";
     protected $order_column = "id";
 
+    // Generic get function for retrieving data with flexible options
+    public function get($conditions = [], $options = [])
+    {
+        // Default query
+        $query = "SELECT * FROM $this->table";
+        $data = [];
+
+        // Add WHERE clause if conditions are specified
+        if (!empty($conditions)) {
+            $keys = array_keys($conditions);
+            $query .= " WHERE ";
+
+            foreach ($keys as $key) {
+                $query .= "$key = :$key AND ";
+            }
+
+            $query = rtrim($query, " AND ");
+            $data = $conditions;
+        }
+
+        // Apply order and pagination options
+        $order_column = $options['order_column'] ?? $this->order_column;
+        $order_type = $options['order_type'] ?? $this->order_type;
+        $limit = $options['limit'] ?? $this->limit;
+        $offset = $options['offset'] ?? $this->offset;
+
+        $query .= " ORDER BY $order_column $order_type LIMIT $limit OFFSET $offset";
+
+        // Execute query and return result
+        return $this->query($query, $data);
+    }
+
     public function findAll()
     {
-
-        $query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
-
-
-        return $this->query($query);
+        return $this->get();
     }
 
     public function where($data, $data_not = [])
     {
         $keys = array_keys($data);
         $keys_not = array_keys($data_not);
-        $query = "select * from $this->table where ";
+        $query = "SELECT * FROM $this->table WHERE ";
 
         foreach ($keys as $key) {
-            $query .= $key . " = :" . $key . " && ";
+            $query .= "$key = :$key AND ";
         }
 
         foreach ($keys_not as $key) {
-            $query .= $key . " != :" . $key . " && ";
+            $query .= "$key != :$key AND ";
         }
 
-        $query = trim($query, " && ");
+        $query = rtrim($query, " AND ");
 
-        $query .= "order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+        $query .= " ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         $data = array_merge($data, $data_not);
 
         return $this->query($query, $data);
     }
+
     public function first($data, $data_not = [])
     {
-
         $keys = array_keys($data);
         $keys_not = array_keys($data_not);
-        $query = "select * from $this->table where ";
+        $query = "SELECT * FROM $this->table WHERE ";
 
         foreach ($keys as $key) {
-            $query .= $key . " = :" . $key . " && ";
+            $query .= "$key = :$key AND ";
         }
 
         foreach ($keys_not as $key) {
-            $query .= $key . " != :" . $key . " && ";
+            $query .= "$key != :$key AND ";
         }
 
-        $query = trim($query, " && ");
-
-        $query .= " limit $this->limit offset $this->offset";
+        $query = rtrim($query, " AND ");
+        $query .= " LIMIT 1";
         $data = array_merge($data, $data_not);
 
         $result = $this->query($query, $data);
 
-        if ($result)
-            return $result[0];
-
-        return false;
+        return $result ? $result[0] : false;
     }
+
     public function insert($data)
     {
-        // Remove unwanted data based on allowedColumns, if specified
         if (!empty($this->allowedColumns)) {
             foreach ($data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
@@ -76,22 +100,16 @@ trait Model
             }
         }
 
-        // Prepare the query with placeholders
         $keys = array_keys($data);
-        $query = "insert into $this->table (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
+        $query = "INSERT INTO $this->table (" . implode(",", $keys) . ") VALUES (:" . implode(",:", $keys) . ")";
 
-        // Execute the query
         $result = $this->query($query, $data);
 
-        // Return true if insertion was successful, false otherwise
         return $result !== false;
     }
 
-
-
     public function update($id, $data, $id_column = 'id')
     {
-        /*remove unwanted data */
         if (!empty($this->allowedColumns)) {
             foreach ($data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
@@ -101,31 +119,24 @@ trait Model
         }
 
         $keys = array_keys($data);
-        $query = "update $this->table set ";
+        $query = "UPDATE $this->table SET ";
 
         foreach ($keys as $key) {
-            $query .= $key . " = :" . $key . ", ";
+            $query .= "$key = :$key, ";
         }
 
-        $query = trim($query, ", ");
-
-        $query .= " where $id_column = :$id_column";
+        $query = rtrim($query, ", ");
+        $query .= " WHERE $id_column = :$id_column";
 
         $data[$id_column] = $id;
-        $this->query($query, $data);
-
-        return false;
+        return $this->query($query, $data) !== false;
     }
 
     public function delete($id, $id_column = 'id')
     {
-
         $data[$id_column] = $id;
-        $query = "delete from $this->table where $id_column = :$id_column ";
+        $query = "DELETE FROM $this->table WHERE $id_column = :$id_column";
 
-        $this->query($query, $data);
-
-
-        return false;
+        return $this->query($query, $data) !== false;
     }
 }
