@@ -67,8 +67,7 @@ trait Model
     }
     public function insert($data)
     {
-
-        /*remove unwanted data */
+        // Remove unwanted data based on allowedColumns, if specified
         if (!empty($this->allowedColumns)) {
             foreach ($data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
@@ -77,12 +76,17 @@ trait Model
             }
         }
 
+        // Prepare the query with placeholders
         $keys = array_keys($data);
         $query = "insert into $this->table (" . implode(",", $keys) . ") values (:" . implode(",:", $keys) . ")";
-        $this->query($query, $data);
 
-        return false;
+        // Execute the query
+        $result = $this->query($query, $data);
+
+        // Return true if insertion was successful, false otherwise
+        return $result !== false;
     }
+
 
 
     public function update($id, $data, $id_column = 'id')
