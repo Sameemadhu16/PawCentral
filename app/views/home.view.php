@@ -55,7 +55,7 @@
                 <h3>Find and Join Events</h3>
             </div>
             <div class="card-overlay">
-                <h4>Find and Join Events</h4>
+                <h3>Find and Join Events</h3>
                 <p>Discover events and communities near you and get involved.</p>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 <h3>Pet Products & Services</h3>
             </div>
             <div class="card-overlay">
-                <h4>Pet Products & Services</h4>
+                <h3>Pet Products & Services</h3>
                 <p>Shop for high-quality pet products and services.</p>
             </div>
         </div>
@@ -87,11 +87,11 @@
         Contribute to a greater society where animals live as good a life as you are.
     </p>
 <section class="community-help-section">
-    <!-- <div class="donation-overlay">
+    <div class="donation-overlay">
         <h1>Help the community in need</h1>
         <div class="donate-icon">
             <img src="<?= ROOT ?>/assets/images/donate.png" alt="Donation Icon">
-        </div> -->
+        </div>
     </div>
 </section>
 </section>
