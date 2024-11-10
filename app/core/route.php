@@ -34,8 +34,6 @@ route('admin/donation_card', 'admin/AdminDonationCard@index');
 // Medical routing
 route('medical', 'Medical/FindMedi@index');
 
-
-
 // User routings
 route('announcements','announcements');
 route('lostandfound','lostandfound');
