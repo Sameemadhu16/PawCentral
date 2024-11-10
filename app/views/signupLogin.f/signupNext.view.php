@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawCentral - Find a Pet</title>
+    <link rel="stylesheet" href="../assets/css/signUpPageNext.css">
+    <link rel="stylesheet" href="../assets/css/fonts.css">
+</head>
+<body>
+    <?php 
+        include("../app/views/components/header2.php");
+        $nextURL="";
+    ?>
+    <div class="container">
+        <main>
+            <section class="signup-hero">
+                <h2>Find a pet</h2>
+                <p>Get access to all the pet related services.</p>
+                <span class="image-container">
+                    <img src="<?= ROOT ?>/assets/images/signupdog.jpg" alt="Happy dog" class="pet-image">
+                </span>
+            </section>
+            <section class="signup-form-section">
+                <div class="signup-head">
+                    <h2>Sign up now</h2>
+                    <a href="../signup" class="back-button">
+                        <span class="arrow">&#8592;</span>
+                        <span class="text">Back</span>
+                    </a>
+                </div>
+                
+                <form class="signup-form" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-type">What service do you provide?</label>
+                            <div class="dropdown">
+                                <select>
+                                    <option value="" disabled selected></option>
+                                    <option value="medical-provider">Medical Provider</option>
+                                    <option value="seller">Seller - Pet seller, Pet renter, Animal breeding and Pet importer</option>
+                                    <option value="adoption-shelter">Adoption shelter</option>
+                                    <option value="care-service-provider">Care service provider - Pet transporter and Pet sitter</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-name">Name of the service</label>
+                            <input type="text" id="service-name" name="service-name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="proof">Proof of service</label>
+                        <input type="file" id="fileUpload" name="fileUpload">
+                    </div>
+                    
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
+                    </div>
+                    <div class="button-login-section">
+                        <button type="submit" class="button" id="signup-button">Sign up</button>
+                        <p class="login-link">Already have an account? <a href="../login">Log in</a></p>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <!-- <script src="./assets/js/signup.js"></script> -->
+</body>
+</html>

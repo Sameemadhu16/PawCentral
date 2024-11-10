@@ -1,0 +1,166 @@
+.body {
+    margin:0px;
+    overflow-y: hidden;
+}
+
+.main-container {
+    display: flex;
+    
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+
+
+.announcement-form {
+    padding: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 100px; 
+    max-width: 1000px; /* Adjust max width if needed */
+    margin: 0 auto; /* Center the form horizontally */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+.announcement-form:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow on hover */
+}
+
+.announcement-form h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.announcement-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+    color: #424242;
+}
+
+.announcement-form input[type="text"],
+.announcement-form input[type="date"],
+.announcement-form textarea {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.textarea_class{
+    min-height: 200px;
+}
+
+/* Hover effect for inputs */
+.announcement-form input[type="text"]:hover,
+.announcement-form input[type="date"]:hover,
+.announcement-form textarea:hover {
+    border-color: #6D2EFF; /* Change border color on hover */
+    background-color: #f9f9ff; /* Slight background color change on hover */
+}
+
+.announcement-form input[type="text"]:focus,
+.announcement-form input[type="date"]:focus,
+.announcement-form textarea:focus {
+    border-color: #6D2EFF; /* Highlight border on focus */
+    outline: none;
+}
+
+.announcement-form .image-upload {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.announcement-form .image-upload:hover {
+    border-color: #6D2EFF; /* Change border color on hover */
+}
+
+.announcement-form .image-upload i {
+    font-size: 48px;
+    color: #ccc;
+}
+
+.announcement-form .image-upload span {
+    display: block;
+    margin-top: 10px;
+    color: #ccc;
+}
+
+.announcement-form button {
+    padding: 12px 20px;
+    background-color: #28c42d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.announcement-form button:hover {
+    background-color: #158a21;
+}
+
+
+.done-button {
+    background-color: #00aaff;
+    color: #fff;
+    border: none;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right: 50px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.done-button i {
+    margin-right: 8px;
+}
+
+.done-button:hover {
+    background-color: #0088cc; /* Darker blue on hover */
+}
+
+.done-button:active {
+    background-color: #006699; /* Even darker blue on click */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .announcement-form {
+        padding: 15px;
+        max-width: 100%;
+    }
+    
+    .done-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,106 @@
+.body{
+    overflow-y: hidden;
+    margin: 0px;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+.content{
+    margin-top: 10px;
+
+}
+.mr_table_t{
+    width: 100%;
+}
+
+.mr_row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.medical-registration-table {
+    width: full;
+    border-spacing: 0 5px;
+    padding: 5px;
+   
+}
+
+.medical-registration-table th, .medical-registration-table td {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.medical-registration-table th {
+    margin: 0;
+    padding: 0;
+    background-color: #d7d7d7;
+    font-weight: 600;
+    color: #000000;
+}
+.medical-registration-table tbody {
+    display: block;
+    max-height: 500px; /* Adjust this value as needed */
+    overflow-y: auto;
+    width: 100%;
+}
+
+.medical-registration-table thead,
+.medical-registration-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    cursor: pointer;
+}
+.action-select {
+    width: 80%;
+    padding: 5px;
+    font-size: 14px;
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #495057;
+    margin: 5px;
+    transition: margin-color 0.3s ease;
+}
+
+.action-select.approve {
+    margin: 5px;
+    border-color: green;
+}
+
+.action-select.reject {
+    margin: 5px;
+    border-color: red;
+}
+
+.view-btn {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background-color: #0056b3;
+}

@@ -4,6 +4,6 @@ class SignUp {
     use Controller;
 
     public function index() {
-        $this->view("signup");
+        $this->view("signupLogin.f/signup");
     }
 }
