@@ -1,6 +1,6 @@
-body {
+.body {
+    margin:0;
     overflow-y: hidden;
-    margin: 0px;
 }
 
 .main-container{

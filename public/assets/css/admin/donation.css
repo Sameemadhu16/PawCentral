@@ -1,11 +1,8 @@
 /* General styles */
-body {
-    font-family:  sans-serif;
+.body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #ffffff;
     overflow-y: hidden;
+    background-color: #f3f4f6;
 }
 
 .main-container {

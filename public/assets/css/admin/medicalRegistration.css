@@ -1,6 +1,7 @@
-.body{
+.body {
+    margin: 0;
     overflow-y: hidden;
-    margin: 0px;
+    background-color: #f3f4f6;
 }
 
 .main-container {
