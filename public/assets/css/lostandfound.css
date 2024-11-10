@@ -1,0 +1,145 @@
+
+.lostandfound-sec{
+    min-height: 80vh;
+}
+
+.pets-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filter-buttons{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+.filters{
+    display: flex;
+    /* justify-content; */
+    margin-bottom: 20px;
+    height: 50%;
+    margin-top: auto;
+}
+
+.report-lost-buttons {
+    display: flex;
+    flex-direction: column; /* Stacks the buttons vertically */
+    align-items: flex-end;  /* Aligns the buttons to the right */
+    margin-bottom: 20px;
+} 
+
+.pets-container button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #8450e4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #6A0DAD;
+}
+
+.filter-btn.active {
+    background-color: #6A0DAD;
+}
+
+.pet-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.pet-cards {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pet-cards h3 {
+    margin-top: 0;
+}
+
+.pet-card {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5; /* Light background color */
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 500px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pet-image {
+    width: 120px;
+    height: 150px;
+    border-radius: 10px; /* Rounds the corners of the image */
+    object-fit: cover; /* Keeps the image proportions */
+    margin-right: 20px;
+    padding: 0;
+}
+
+.pet-info h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    /* color: #5b0399; */
+}
+
+.pet-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666; /* Gray color for additional info */
+}
+
+
+/* MOVED TO pagination.css IN CSS ASSETS */
+/* .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 15px;
+    margin: 0 5px;
+}
+
+#currentPage {
+    margin: 0 10px;
+    font-size: 18px;
+} */
+
+
+
+/* Make the entire card clickable */
+.pet-card-link {
+    text-decoration: none;
+    color: inherit; /* Keeps text color consistent */
+}
+.pet-card-link:hover {
+    background-color: #cff4ff;
+    transform: scale(1.008); 
+    /* font-size: 1.2em; */
+    /* Slightly enlarge the card */
+    transition: transform 0.1s ease, background-color 0.2s ease; /* Smooth transition for scaling and background color */
+}
+/* Increase font size on hover */
+.pet-card:hover .pet-info h2 {
+    transition: color 0.3s ease; /* Smooth transition for font size */
+    color: #333;
+} 
+.pet-card-link:hover .pet-info p {
+    font-size: 1em; /* Adjust other text size if desired */
+    transition: font-size 0.2s ease; /* Smooth transition for font size */
+    color: #2951c9;
+}
