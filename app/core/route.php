@@ -30,5 +30,25 @@ route('admin/donation', 'admin/AdminDonation@index');
 route('admin/profile', 'admin/AdminProfile@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
 
+
 // Medical routing
 route('medical', 'Medical/FindMedi@index');
+
+
+
+// User routings
+route('announcements','announcements');
+route('lostandfound','lostandfound');
+route('eventsandcampaigns','events');
+route('eventsandcampaigns/event_id','EventInfo');
+route('lostandfound/report-found','ReportFound');
+route('lostandfound/idoflost','LostPet');
+
+// merchanted pets
+route('findapet/post_id','PetPost_purchase');
+
+
+
+
+
+
