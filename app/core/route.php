@@ -18,6 +18,7 @@ route('admin/overview', 'admin/AdminOverview@index');
 route('admin/announcement', 'admin/AdminAnnouncement@index');
 route('admin/add_announcement', 'admin/AdminAddAnnouncement@index');
 route('admin/add_announcement/submit', 'admin/AdminAddAnnouncement@submit');
+route('admin/view_announcement', 'admin/AdminViewAnnouncement@index');
 route('admin/edit_announcement', 'admin/AdminEditAnnouncement@index');
 route('admin/notice', 'admin/AdminNotice@index');
 route('admin/add_notice', 'admin/AdminAddNotice@index');
