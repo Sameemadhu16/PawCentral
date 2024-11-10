@@ -40,8 +40,12 @@
         <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
 
     </ul>
-    <a class="user-profile" href="signup">
-        <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
-    </a>
+
+    <!-- User profile -->
+    <div class="user-profile">
+        <a class="user-profile" href="signup">
+            <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
+        </a>
+    </div>
 
 </header>
