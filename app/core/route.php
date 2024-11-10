@@ -18,27 +18,13 @@ route('admin/notice','admin/AdminNotice@index');
 route('admin/add_notice','admin/AdminAddNotice@index');
 route('admin/medical_registration','admin/AdminMedicalRegistration@index');
 route('admin/report','admin/AdminReport@index');
+
+//medical routing
+route('medical','Medical/FindMedi@index');
+
 route('admin/user_account','admin/AdminUserAccount@index');
 route('admin/event','admin/AdminEvent@index');
 route('admin/post','admin/AdminPost@index');
 route('admin/donation','admin/AdminDonation@index');
 route('admin/profile','admin/AdminProfile@index');
 route('admin/donation_card','admin/AdminDonationCard@index');
-
-
-// User routings
-route('announcements','announcements');
-route('lostandfound','lostandfound');
-route('eventsandcampaigns','events');
-route('eventsandcampaigns/event_id','EventInfo');
-route('lostandfound/report-found','ReportFound');
-route('lostandfound/idoflost','LostPet');
-// merchanted pets
-route('findapet/post_id','PetPost_purchase');
-
-
-//medical routing
-route('medical','Medical/FindMedi@index');
-
-
-
