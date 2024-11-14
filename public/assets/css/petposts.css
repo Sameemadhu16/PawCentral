@@ -1,0 +1,322 @@
+/* Search bar container */
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+    justify-self: center;
+    padding: 15px 15px;
+    max-width: 540px;
+    background-color: rgb(132, 80, 228,.75);
+    border-radius:12px;
+}
+.searchbox {
+    display: flex;
+    flex-direction: column;
+}
+.searchbox label{
+    padding-bottom: 5px;
+    padding-left: 10%;
+    font-weight: 700;
+    display: inline-block;
+    width: 100px;
+    color: #333;
+}
+.search-container select,
+.search-container input[type="text"],
+.search-container button {
+    padding: 8px;
+    font-size: 1em;
+    border: 2px solid #8450e4;
+    border-radius: 8px;
+    background-color: white;
+    color: #5e35b1;
+    outline: none;
+}
+.search-container select:hover{
+    border-color: #6a0dad;
+    background-color: #f1e4ff;
+    outline: none;
+}
+
+/* asdasdasd */
+
+/* Existing select styling */
+.search-container select {
+    padding: 8px;
+    font-size: 1em;
+    border: 2px solid #8450e4;
+    border-radius: 8px;
+    background-color: white;
+    color: #5e35b1;
+    outline: none;
+    
+    /* appearance: none; */
+        /* Removes default arrow for custom styling */
+    /* -webkit-appearance: none;  */
+        /* For Safari */
+    /* -moz-appearance: none;  */
+        /* For Firefox */ 
+
+    cursor: pointer;
+    position: relative;
+}
+
+/* Add a custom arrow */
+/* Styles are not supported by edge. Use chrome for checking */
+    .search-container select::after {
+        content: '▼';
+        position: absolute;
+        right: 12px;
+        color: #6a0dad;
+        pointer-events: none;
+    }
+
+    /* Dropdown option styling */
+    .search-container select option {
+        background-color: #fff0ff; /* Light background color */
+        color: #5e35b1; /* Text color */
+        padding: 8px;
+    }
+
+    /* Add a hover effect to options */
+    .search-container select option:hover {
+        background-color: #cd9eff; /* Highlighted background on hover */
+        /* color: #4527a0; */
+        color: white;
+    }
+
+
+/* asdasdasdas */
+
+.search-container button {
+    background-color: #5e35b1;
+    color: white;
+    cursor: pointer;
+
+    /* background-color: #2951c9; */
+    font-weight: 700;
+
+    border: none;
+    width: 100px;
+    height: 40px;
+    align-self:flex-end;
+}
+.search-container button:hover {
+    /* background-color: #4527a0; */
+    background-color: #6a0dad;
+    /* color: rgb(252, 188, 71); */
+}
+
+
+/* Pet cards grid */
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.card {
+    /* color: white; */
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+    position: relative;
+    margin: 0px;
+    margin-bottom: 15px;
+    padding: 0px;
+    padding-bottom: 10px;
+}
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+
+    margin: 0px;
+    padding: 0px;
+    
+    margin-bottom: 10px;
+}
+.card p {
+    margin: 3px 0;
+    padding: 0;
+}
+.card span.price {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #d1b8ff;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 2px;
+    color: #333;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color:#f1e4ff;
+    transition: background-color .7s ease;
+    transition: transform .3s ease;
+}
+.card:hover img {
+    transform: scale(1.2);
+    transition: transform .3s ease;
+}
+.card:hover span.price {
+    background-color: #b085ff;
+    color: black;
+    
+    transition: background-color .4s ease;
+}
+/* Corner label styling */
+.corner-label {
+    position: absolute;
+    z-index: 100;
+    top: 8px;
+    right: -20px; /* Adjust to move the label closer/farther from the edge */
+    transform: rotate(45deg); /* Angle the label */
+    color: white;
+    padding: 3px 20px;
+    min-width: 30px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Optional: shadow for depth */
+
+/* maekt the label triangle */
+    /* top: -12px;
+    right: -26px; 
+    padding-top: 30px; */
+    
+}
+.corner-label.export {
+    background-color:purple; /* Label background color */
+}
+.corner-label.sell {
+    background-color: green; /* Label background color */
+}
+.corner-label.rent {
+    background-color: blue; /* Label background color */
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.pagination a {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #d1c4e9;
+    color: #5e35b1;
+    font-weight: bold;
+    text-decoration: none;
+}
+.pagination a.active {
+    background-color: #5e35b1;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 70%;
+    }
+    .searchbox label{
+        padding: 0px;
+        padding-bottom: 5px;
+        padding-left: 2%;
+        /* color: black; */
+        color: #121212;
+    }
+
+    .search-container button{
+        /* justify-self: center; */
+        align-self: center;
+        width: 50%;
+    }
+    .card{
+        /* background-color:#f5f5f5; */
+        background-color:#f1e4ff;
+    }
+    .card p {
+        font-size: .9em;
+    }
+    .card span.price {
+        background-color: #b085ff;
+        color: black;
+    }
+
+    .results-container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .pagination a {
+        padding: 8px 12px;
+    }
+
+    
+/* Header  */
+h1 {
+    font-size: 1.5em;
+}
+}
+
+
+
+
+@media (max-width: 410px) {
+
+    .search-container {
+        font-size: .9em;
+        padding: 10px;
+        width: 85%
+    }
+    .searchbox label{
+        padding-bottom: 3px;
+        color: black;
+    }
+    .search-container button{
+        font-size: .9em;
+    }
+    .card img {
+        height: 120px;
+        border-radius: 6px; 
+    }
+    .card p {
+        font-size: .8em;
+    }
+    .card span.price {
+        background-color: #b085ff;
+        color: black;
+        font-size:.95em;
+    }
+    .results-container {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+
+    
+
+    .pagination a {
+        padding: 6px 10px;
+    }
+
+
+    h1 {
+        font-size: 1.3em;
+    }
+}
+
+
+
