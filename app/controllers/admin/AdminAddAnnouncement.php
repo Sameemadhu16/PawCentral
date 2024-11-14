@@ -1,13 +1,16 @@
 <?php
 
-class AdminAddAnnouncement {
+class AdminAddAnnouncement
+{
     use Controller;
 
-    public function index() {
+    public function index()
+    {
         $this->view('admin/add_announcement');
     }
 
-    public function submit() {
+    public function submit()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $announcementModel = new Announcement;
 
@@ -15,7 +18,7 @@ class AdminAddAnnouncement {
             $data = [
                 'title' => $_POST['title'],
                 'content' => $_POST['description'],
-                'date' => $_POST['date'],
+                //  'date' => $_POST['date'],
                 'user_id' => $_SESSION['user_id'] ?? 1 // Set to 1 for testing if no session user_id
             ];
 
@@ -24,11 +27,15 @@ class AdminAddAnnouncement {
 
             // Debugging: output result and check if it proceeds to redirect
             if ($result) {
-                echo "Data inserted successfully. Redirecting..."; // Debugging statement
+
+                //echo "Data inserted successfully. Redirecting..."; 
+
                 redirect('admin/announcement');
                 exit; // Ensure script stops after redirect
             } else {
-                echo "Data insertion failed.";
+
+                // echo "Data insertion failed.";
+
                 $data['error'] = 'Failed to create announcement. Please try again.';
                 $this->view('admin/add_announcement', $data);
             }

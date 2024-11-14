@@ -34,8 +34,8 @@
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" placeholder="Enter Title" required>
 
-                    <label for="date">Date</label>
-                    <input type="date" id="date" name="date" required>
+                    <!-- <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required> -->
 
                     <label for="description">Description</label>
                     <textarea class="textarea_class" id="description" name="description" placeholder="Add Description" required></textarea>

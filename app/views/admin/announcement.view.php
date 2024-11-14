@@ -45,16 +45,7 @@
                 <?php endif; ?>
             </section>
 
-            <!-- Delete Confirmation Modal -->
-            <!-- <div id="deleteModal" class="modal">
-                <div class="modal-content">
-                    <p>Are you sure you want to delete this announcement?</p>
-                    <div class="modal-actions">
-                        <button onclick="deleteItem()">Yes</button>
-                        <button onclick="closeModal()">No</button>
-                    </div>
-                </div>
-            </div> -->
+            
         </div>
     </div>
 </body>
