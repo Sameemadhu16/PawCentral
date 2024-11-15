@@ -1,11 +1,12 @@
 .body {
-    margin:0;
+    margin: 0;
     overflow-y: hidden;
+    background-color: #f3f4f6;
 }
 
-.main-container{
+/* Container styling */
+.main-container {
     display: flex;
-    
 }
 
 .user-accounts-section {
@@ -14,67 +15,133 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
-    margin-left: 100px; /* To align with fixed sidebar */
+    margin-left: 100px;
     overflow: auto;
     border-radius: 8px;
 }
 
 .user-accounts-section h2 {
-    color: #333;
-    margin-bottom: 30px;
+    /* color: #333; */
+    margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Overview Cards Section */
 .cards-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap; /* To fit cards in a row */
+
 }
 
+
 .card {
-    width: 100%;
-    max-width: 300px;
-    background-color: #FFD692;
-    margin-bottom: 5px;
-    
-    margin-left: 50px;
-    padding: 20px;
+    width: 150px;
+    background-color:  #FFD54F;
+    padding: 15px;
     border-radius: 8px;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* Hover effect */
+.cards-container .card:hover {
+    transform: translateY(-5px); /* Slightly lifts the card */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow */
+    background-color: #FFCA28; 
 }
 
-.card-danger {
-    background-color: #FF9549; /* Red card for banned users */
-    color: #fff;
-}
+
+
+
 
 .card-number {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    
 }
 
 .card-title {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 16px;
+    margin-bottom: 3px;
+    
 }
 
 .card-subtitle {
-    font-size: 14px;
+    font-size: 12px;
     color: #666;
-    position: absolute;
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .card-subtitle i {
-    margin-right: 5px;
+    margin-right: 3px;
+}
+
+/* Search and Filter Section */
+.search-filter-container {
+    display: flex;
+    gap: 30px; /* Increase gap to add more space between items */
+    margin-bottom: 20px;
+    padding: 15px; /* Adds padding inside the container for a more spacious look */
+    align-items: center;
+    justify-items: center;
+     background-color: #eaeff1; 
+    border-radius: 8px; /* Optional: Adds rounded corners for a nicer look */
+}
+
+
+.search-bar {
+    padding: 10px;
+    width: 100%;
+    max-width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filter-dropdown {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    max-width: 200px;
+}
+
+/* User List Section */
+.user-list {
+    overflow-y: scroll;
+    display: grid;
+    gap: 15px;
+    max-height: 390px;
+}
+
+.user-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-card p {
+    margin: 5px 0;
+    font-size: 15px;
+    color: #333;
 }
 
 @media (max-width: 768px) {
@@ -83,8 +150,11 @@
         align-items: center;
     }
 
-    .card {
+    .search-filter-container {
+        flex-direction: column;
+    }
+
+    .search-bar, .filter-dropdown {
         width: 100%;
-        max-width: 300px;
     }
 }
