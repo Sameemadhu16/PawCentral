@@ -16,25 +16,25 @@
             </a>
         </li>
         <li>
-            <a href="../shelter/my_pets" class="nav-link">
+            <a href="../shelter/my_pet" class="nav-link">
                 <i class="fas fa-image icon"></i>
                 <span>My Pets</span>
             </a>
         </li>
         <li>
-            <a href="../shelter/events" class="nav-link">
+            <a href="../shelter/event" class="nav-link">
                 <i class="fas fa-calendar-check icon"></i>
                 <span>Events</span>
             </a>
         </li>
         <li>
-            <a href="../shelter/posts" class="nav-link">
+            <a href="../shelter/post" class="nav-link">
                 <i class="fas fa-blog icon"></i>
                 <span>Posts (adoptions)</span>
             </a>
         </li>
         <li>
-            <a href="../shelter/donations" class="nav-link">
+            <a href="../shelter/donation" class="nav-link">
                 <i class="fas fa-donate icon"></i>
                 <span>Donations</span>
             </a>
