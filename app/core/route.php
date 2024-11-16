@@ -47,7 +47,9 @@ route('lostandfound/idoflost','LostPet');
 route('findapet/post_id','PetPost_purchase');
 
 
-
+//pet shelter routings
+route('shelter/profile','shelter/Profile@index');
+route('shelter/notification','shelter/Notification@index');
 
 
 
