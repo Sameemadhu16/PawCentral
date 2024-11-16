@@ -41,21 +41,21 @@
         
     <!-- Results Container (Cards) -->
     <div class="results-container">
-        <div class="card">
+        <a href="<?=ROOT?>/findapet/post_id" class="card">
             
             <span class="corner-label sell">Sell</span>
                 <img src="<?= ROOT ?>/assets/images/pets/merchant/sell1.webp" alt="Cat">            
-            <p>Cat - Lusi</p>
+            <p class="name">Cat - Lusi</p>
             <p> Panadura</p>
             <span class="price">Rs. 2500</span>
-        </div>
-        <div class="card">            
+</a>
+        <a href="<?=ROOT?>/findapet/post_id" class="card">            
             <span class="corner-label rent">Rent</span>
             <img src="<?= ROOT ?>/assets/images/pets/merchant/nopic.jpg" alt="Puppy">
-            <p>Tiny - Puppy</p>
+            <p class="name">Tiny - Puppy</p>
             <p>Kalutara</p>
             <span class="price">Rs. 2500</span>
-        </div>
+</a>
         <div class="card">
             
             <span class="corner-label sell">Sell</span>

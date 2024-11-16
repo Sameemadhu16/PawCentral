@@ -31,7 +31,7 @@
 
         <li><a href="<?= ROOT ?>/findapet">Find a Pet</a></li>
         <li><a href="<?= ROOT ?>/announcements">Awareness</a></li>
-        <li><a href="#">Medical Care</a></li>
+        <li><a href="<?= ROOT ?>/medicalcare">Medical Care</a></li>
         <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
         <li><a href="#">Services</a></li>
         <li><a href="#">home for a pet</a></li>
