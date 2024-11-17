@@ -91,20 +91,6 @@
         
         
 
-        <!-- remove this -->
-        <div class="results-container">
-            <?php if (isset($data['medicines'])): ?>
-                <?php foreach ($data['medicines'] as $medicine): ?>
-                    <div class="result">
-                        <h3><?= $medicine['name'] ?></h3>
-                        <p><?= $medicine['description'] ?></p>
-                        <p><?= $medicine['price'] ?></p>
-                        <p><?= $medicine['quantity'] ?></p>
-                        <p><?= $medicine['expiry_date'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
 
     </div>
 </body>

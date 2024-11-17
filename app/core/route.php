@@ -20,7 +20,11 @@ route('admin/medical_registration','admin/AdminMedicalRegistration@index');
 route('admin/report','admin/AdminReport@index');
 
 //medical routing
-route('medical','Medical/FindMedi@index');
+route('medical-centers','Medical/FindMedi@index');
+route('medical-center','Medical/MediCenter@index');
+route('medical-appointment-date','Medical/Appointment_Date@index');
+route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
+route('medical-appointment-reason','Medical/Appointment_Reason@index');
 
 route('admin/user_account','admin/AdminUserAccount@index');
 route('admin/event','admin/AdminEvent@index');

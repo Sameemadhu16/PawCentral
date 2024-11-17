@@ -69,6 +69,6 @@
             </section>
         </main>
     </div>
-    <!-- <script src="./assets/js/"></script> -->
+    <script src="./assets/js/signupLogin/signup.js"></script>
 </body>
 </html>
