@@ -19,17 +19,14 @@
         <div class="content">
             <section class="announcement-form">
                 <h1>Edit Announcement</h1>
-                <form>
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="Enter Title" required>
+                <form action="<?= ROOT ?>/admin/edit_announcement/submit" method="POST">
+                    <input type="hidden" name="id" value="<?=htmlspecialchars($announcement->id)?>" >
 
-                    <label for="date">Date</label>
-                    <input type="date" id="date" required>
+                    <label for="title">title</label>
+                    <input type="text" id="title" name="title" value="<?=htmlspecialchars($announcement->title) ?>" placeholder="Enter Title" required>
 
                     <label for="description">Description</label>
-                    <textarea class="textarea_class" id="description" placeholder="Add Description" required></textarea>
-
-
+                    <textarea class="textarea_class" id="description" name="description" placeholder="Add Description" required><?=htmlspecialchars($announcement->content)?></textarea>
 
                     <button type="submit" class="done-button">
                         <i class="fas fa-check-circle"></i> Update

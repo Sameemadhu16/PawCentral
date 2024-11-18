@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '1024M');
 
 class Announcement {
     use Model;
@@ -18,5 +19,9 @@ class Announcement {
     public function create($data) {
         // Attempt to insert data into the database
         return $this->insert($data) ? true : false;
+    }
+
+    public function update($id, $data) {
+        return $this->update($id, $data);
     }
 }

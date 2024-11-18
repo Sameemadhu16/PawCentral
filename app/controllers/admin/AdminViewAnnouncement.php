@@ -1,9 +1,11 @@
 <?php
 
-class AdminViewAnnouncement {
+class AdminViewAnnouncement
+{
     use Controller;
 
-    public function index($id ) {
+    public function index($id)
+    {
         if (!$id) {
             // Redirect if no ID is provided
             redirect('admin/announcement');
@@ -16,11 +18,13 @@ class AdminViewAnnouncement {
 
         if (!$announcement) {
             // Redirect if no matching announcement is found
-            // redirect('admin/announcement');
-            print_r('gg');
+            redirect('admin/announcement');
+            //print_r('gg');
         }
 
         // Pass the announcement to the view
         $this->view('admin/view_announcement', ['announcement' => $announcement]);
     }
+
+    
 }
