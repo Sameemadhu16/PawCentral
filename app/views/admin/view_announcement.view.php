@@ -15,18 +15,13 @@
     <?php include("../app/views/components/header.php"); ?>
 
     <div class="announcement-details">
-        <div class="back-icon">
-            <a href="<?= ROOT ?>/admin/announcement">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-        </div>
-        <h2>Announcement Title</h2>
-        <h5>Date: YYYY-MM-DD</h5>
-        <p>This is a detailed description of the announcement. It contains all the important information related to the announcement.</p>
+        <h2><?= htmlspecialchars($announcement->title) ?></h2>
+        <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>
+        <p><?= htmlspecialchars($announcement->content) ?></p>
 
         <div class="actions">
-            <button class="edit-button">Update</button>
-            <button class="delete-button" onclick="openDeleteModal()">Delete</button>
+            <a href="<?= ROOT ?>/admin/edit_announcement?id=<?= $announcement->id ?>" class="edit-button">Edit</a>
+            <button class="delete-button" onclick="openDeleteModal(<?= $announcement->id ?>)">Delete</button>
         </div>
     </div>
 
@@ -34,8 +29,8 @@
     <div id="deleteModal" class="modal">
         <div class="modal-content">
             <p>Are you sure you want to delete this announcement?</p>
-            <button class="confirm-button" onclick="confirmDelete()">Yes</button>
-            <button class="cancel-button" onclick="closeDeleteModal()">No</button>
+            <button onclick="confirmDelete(<?= $announcement->id ?>)">Yes</button>
+            <button onclick="closeDeleteModal()">No</button>
         </div>
     </div>
 

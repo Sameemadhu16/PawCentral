@@ -26,7 +26,7 @@
                 <!-- Check if announcements are available -->
                 <?php if (!empty($announcements)): ?>
                     <?php foreach ($announcements as $announcement): ?>
-                        <div class="announcement-card" onclick="window.location.href='<?= ROOT ?>/admin/view_announcement ? id=<?= $announcement->id ?>'">
+                        <div class="announcement-card" onclick="window.location.href='<?= ROOT ?>/admin/view_announcement?id=<?= $announcement->id ?>'">
                             <div class="announcement-info">
                                 <h3><?= htmlspecialchars($announcement->title) ?></h3>
                                 <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>

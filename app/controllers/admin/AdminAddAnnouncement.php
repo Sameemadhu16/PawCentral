@@ -28,7 +28,7 @@ class AdminAddAnnouncement
             // Debugging: output result and check if it proceeds to redirect
             if ($result) {
 
-                //echo "Data inserted successfully. Redirecting..."; 
+                //echo "Data inserted successfully. Redirecting...";
 
                 redirect('admin/announcement');
                 exit; // Ensure script stops after redirect
