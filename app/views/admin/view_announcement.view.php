@@ -14,14 +14,26 @@
 <body class="body">
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="announcement-details">
-        <h2><?= htmlspecialchars($announcement->title) ?></h2>
-        <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>
-        <p><?= htmlspecialchars($announcement->content) ?></p>
+    <div class="main-container">
+        <div class="content">
+            <div class="announcement-details">
+                <div class="back-icon">
+                    <a href="<?= ROOT ?>/admin/announcement">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="announcement-content">
+                    <h2><?= htmlspecialchars($announcement->title) ?></h2>
+                    <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>
+                    <p><?= htmlspecialchars($announcement->content) ?></p>
 
-        <div class="actions">
-            <a href="<?= ROOT ?>/admin/edit_announcement?id=<?= $announcement->id ?>" class="edit-button">Edit</a>
-            <button class="delete-button" onclick="openDeleteModal(<?= $announcement->id ?>)">Delete</button>
+                </div>
+
+                <div class="actions">
+                    <a href="<?= ROOT ?>/admin/edit_announcement?id=<?= $announcement->id ?>" class="edit-button">Edit</a>
+                    <button class="delete-button" onclick="openDeleteModal(<?= $announcement->id ?>)">Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 

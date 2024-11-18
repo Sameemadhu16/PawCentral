@@ -33,7 +33,7 @@ class AdminEditAnnouncement{
             $data = [
                 'title' => $_POST['title'],
                 'content' => $_POST['description'],
-                'date' => $_POST['date'],
+                'updated_at' => date('Y-m-d H:i:s')
             ];
 
             // Get the ID for the update

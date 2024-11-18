@@ -17,11 +17,11 @@ class Announcement {
 
     // Insert announcement and return true on success, false on failure
     public function create($data) {
-        // Attempt to insert data into the database
         return $this->insert($data) ? true : false;
     }
 
-    public function update($id, $data) {
-        return $this->update($id, $data);
-    }
+    // Update announcement by ID
+    // public function update($id, $data) {
+    //     return parent::update($id, $data); // Call the update function from the Model trait
+    // }
 }
