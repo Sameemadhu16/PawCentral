@@ -61,8 +61,13 @@
 
     cursor: pointer;
     position: relative;
-}
 
+    width: 130px;
+    overflow: hidden; /* Ensure overflowing content is clipped */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    white-space: nowrap; /* Prevent the text from wrapping */
+    display: block; /* Ensure consistent behavior */
+}
 /* Add a custom arrow */
 /* Styles are not supported by edge. Use chrome for checking */
     .search-container select::after {
@@ -109,9 +114,6 @@
     /* color: rgb(252, 188, 71); */
 }
 
-body{
-    background-color: #f1e4ff;
-}
 /* Pet cards grid */
 .results-container {
     display: grid;
@@ -256,6 +258,13 @@ body{
         /* color: black; */
         color: #121212;
     }
+    .search-container select {    
+        width: 100%;
+        overflow: hidden; /* Ensure overflowing content is clipped */
+        text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+        white-space: nowrap; /* Prevent the text from wrapping */
+        display: block; /* Ensure consistent behavior */
+    }
 
     .search-container button{
         /* justify-self: center; */
@@ -386,5 +395,9 @@ h1 {
  }
  .btn-appointment:hover {
     background-color: rgb(37, 37, 168);
+ }
+
+ .card:hover {
+    background-color:rgb(131, 174, 255,.4);
  }
  

@@ -1,11 +1,11 @@
 <?php
 
-class Medical_Care {
+class Services {
 
     use Controller;
 
     public function index() {
 
-        $this->view('medical-centres');
+        $this->view('services');
     }
 }

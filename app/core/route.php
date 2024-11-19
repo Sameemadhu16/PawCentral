@@ -37,7 +37,7 @@ route('lostandfound/idoflost','LostPet');
 route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
 // medical centres
-route('medicalcare','Medical_Care');
+route('services','Services');
 
 
 //medical routing
