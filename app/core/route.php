@@ -21,8 +21,7 @@ route('admin/add_announcement/submit', 'admin/AdminAddAnnouncement@submit');
 route('admin/view_announcement', 'admin/AdminViewAnnouncement@index');
 route('admin/edit_announcement', 'admin/AdminEditAnnouncement@index');
 route('admin/edit_announcement/submit', 'admin/AdminEditAnnouncement@submit');
-route('admin/notice', 'admin/AdminNotice@index');
-route('admin/add_notice', 'admin/AdminAddNotice@index');
+
 route('admin/medical_registration', 'admin/AdminMedicalRegistration@index');
 route('admin/report', 'admin/AdminReport@index');
 route('admin/user_account', 'admin/AdminUserAccount@index');
