@@ -192,7 +192,7 @@
 }
 
 .modal-content .cancel-button {
-    background-color: #28a745; /* Green for "No" button */
+    background-color: #007bff; /* Green for "No" button */
     color: #fff;
 }
 
@@ -201,6 +201,6 @@
 }
 
 .modal-content .cancel-button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 

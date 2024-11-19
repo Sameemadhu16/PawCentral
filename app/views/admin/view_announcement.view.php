@@ -41,8 +41,8 @@
     <div id="deleteModal" class="modal">
         <div class="modal-content">
             <p>Are you sure you want to delete this announcement?</p>
-            <button onclick="confirmDelete(<?= $announcement->id ?>)">Yes</button>
-            <button onclick="closeDeleteModal()">No</button>
+            <button onclick="confirmDelete(<?= $announcement->id ?>)" class="confirm-button">Yes</button>
+            <button onclick="closeDeleteModal()" class="cancel-button">No</button>
         </div>
     </div>
 
