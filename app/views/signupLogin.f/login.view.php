@@ -32,16 +32,18 @@
                     <h2>Sign In</h2>
                 </div>
 
-                <!-- Display error messages -->
                 <?php if (!empty($errors)): ?>
                     <div class="error-messages-container">
                         <?php foreach ($errors as $error): ?>
-                            <p class="error-message-item"><?= htmlspecialchars($error) ?></p>
+                            <p class="error-message-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <?= htmlspecialchars($error) ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
-                <form class="signup-form" method="POST" action="<?= ROOT ?>/login/authenticate">
+                <form class="signup-form" method="POST" >
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" id="email" name="email" required>
@@ -55,7 +57,7 @@
                         <label for="remember">Remember me</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="button" id="button">Sign In</button>
+                        <button type="submit" class="button" name="login" id="button">Sign In</button>
                         <p class="login-link">Don't have an account? <a href="signup">Register</a></p>
                     </div>
                 </form>

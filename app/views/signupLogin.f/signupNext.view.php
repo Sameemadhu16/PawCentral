@@ -6,6 +6,7 @@
     <title>PawCentral - Find a Pet</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPageNext.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
 </head>
 <body>
     <?php include("../app/views/components/header2.php"); ?>
@@ -30,14 +31,17 @@
 
                 <!-- Display error messages -->
                 <?php if (!empty($errors)): ?>
-                    <div class="error-messages">
+                    <div class="error-messages-container">
                         <?php foreach ($errors as $error): ?>
-                            <p><?= htmlspecialchars($error) ?></p>
+                            <p class="error-message-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <?= htmlspecialchars($error) ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
-                <form class="signup-form" method="POST" action="<?= ROOT ?>/signup/signupnext/submit" enctype="multipart/form-data">
+                <form class="signup-form" method="POST"  enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="service_type">What service do you provide?</label>
@@ -70,7 +74,7 @@
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="button" id="signup-button">Sign up</button>
+                        <button type="submit" class="button" name="stepTwoSubmit" id="signup-button">Sign up</button>
                         <p class="login-link">Already have an account? <a href="<?= ROOT ?>/login">Log in</a></p>
                     </div>
                 </form>

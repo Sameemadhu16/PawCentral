@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '1024M');
 
 class Announcement {
     use Model;
@@ -11,12 +12,16 @@ class Announcement {
         'date',
         'content',
         'user_id', // added 'user_id'
-        'created_at'
+        'updated_at'
     ];
 
     // Insert announcement and return true on success, false on failure
     public function create($data) {
-        // Attempt to insert data into the database
         return $this->insert($data) ? true : false;
     }
+
+    // Update announcement by ID
+    // public function update($id, $data) {
+    //     return parent::update($id, $data); // Call the update function from the Model trait
+    // }
 }

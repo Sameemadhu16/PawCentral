@@ -21,9 +21,9 @@
     transition: box-shadow 0.3s ease;
 }
 
-.content:hover {
+/* .content:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .announcement-form {
     background-color: #ffffff;
@@ -59,7 +59,7 @@
 }
 
 .textarea_class {
-    min-height: 150px;
+    min-height: 250px;
 }
 
 .announcement-form input[type="text"]:hover,

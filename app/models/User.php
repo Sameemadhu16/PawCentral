@@ -48,7 +48,7 @@ class User
         return empty($this->errors);
     }
 
-    public function create($data) {
+    public function createUser($data) {
         try {
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
