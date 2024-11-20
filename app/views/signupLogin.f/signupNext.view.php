@@ -6,6 +6,7 @@
     <title>PawCentral - Find a Pet</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPageNext.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
 </head>
 <body>
     <?php include("../app/views/components/header2.php"); ?>
@@ -30,9 +31,12 @@
 
                 <!-- Display error messages -->
                 <?php if (!empty($errors)): ?>
-                    <div class="error-messages">
+                    <div class="error-messages-container">
                         <?php foreach ($errors as $error): ?>
-                            <p><?= htmlspecialchars($error) ?></p>
+                            <p class="error-message-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <?= htmlspecialchars($error) ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>

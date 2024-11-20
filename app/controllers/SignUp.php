@@ -24,7 +24,7 @@ class SignUp {
         if ($user->validate($data)) {
             if ($data['is_service'] === 'no') {
                 // If "No" is selected, create the user directly
-                $user->create($data);
+                $user->createUser($data);
 
                 // Clear session data and redirect to login
                 unset($_SESSION['signup_data']);

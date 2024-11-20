@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPage.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </head>
 
@@ -31,7 +32,10 @@
                 <?php if (!empty($errors)): ?>
                     <div class="error-messages-container">
                         <?php foreach ($errors as $error): ?>
-                            <p class="error-message-item"><?= htmlspecialchars($error) ?></p>
+                            <p class="error-message-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <?= htmlspecialchars($error) ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>

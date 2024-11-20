@@ -23,7 +23,7 @@ class SignUpNext {
             echo "Validation passed.<br>"; // Debug message
 
             // Attempt to create the user in the database
-            $user->create($data);
+            $user->createUser($data);
             echo "User created.<br>"; // Debug message
 
             // Clear session data

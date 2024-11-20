@@ -32,11 +32,13 @@
                     <h2>Sign In</h2>
                 </div>
 
-                <!-- Display error messages -->
                 <?php if (!empty($errors)): ?>
                     <div class="error-messages-container">
                         <?php foreach ($errors as $error): ?>
-                            <p class="error-message-item"><?= htmlspecialchars($error) ?></p>
+                            <p class="error-message-item">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <?= htmlspecialchars($error) ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
