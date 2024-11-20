@@ -5,13 +5,8 @@ route('home', 'Home@index');
 
 // Signup and Login routing
 route('signup', 'SignUp@index');                 // Display signup page (first step)
-route('signup/submit', 'SignUp@handleFirstStep'); // Handle first step of signup
-
 route('signup/signupnext', 'SignUpNext@index');  // Display signup second step
-route('signup/signupnext/submit', 'SignUpNext@handleSecondStep'); // Handle second step of signup
-
 route('login', 'Login@index');// Route for displaying the login page
-route('login/authenticate', 'Login@authenticate');
 
 // Admin routing
 route('admin/overview', 'admin/AdminOverview@index');

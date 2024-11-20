@@ -40,7 +40,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="signup-form" method="POST" action="<?= ROOT ?>/signup/submit">
+                <form class="signup-form" method="POST" >
                     <div class="form-row">
                         <div class="form-group">
                             <label for="first_name">First name</label>
@@ -76,7 +76,7 @@
                         <label for="terms">By creating an account, I agree to the Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="button" id="signup-button">Sign up</button>
+                        <button type="submit" class="button" name="stepOneSubmit" id="signup-button">Sign up</button>
                         <p class="login-link">Already have an account? <a href="<?= ROOT ?>/login">Log in</a></p>
                     </div>
 

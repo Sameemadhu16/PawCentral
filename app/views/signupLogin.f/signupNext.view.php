@@ -41,7 +41,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="signup-form" method="POST" action="<?= ROOT ?>/signup/signupnext/submit" enctype="multipart/form-data">
+                <form class="signup-form" method="POST"  enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="service_type">What service do you provide?</label>
@@ -74,7 +74,7 @@
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
-                        <button type="submit" class="button" id="signup-button">Sign up</button>
+                        <button type="submit" class="button" name="stepTwoSubmit" id="signup-button">Sign up</button>
                         <p class="login-link">Already have an account? <a href="<?= ROOT ?>/login">Log in</a></p>
                     </div>
                 </form>

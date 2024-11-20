@@ -5,13 +5,17 @@ class Login{
 
     public function index() {
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+            $this->authenticate();
+        }
+
          // Display the login form, check for any session errors
-         $data['errors'] = $_SESSION['errors'] ?? [];
-         unset($_SESSION['errors']); // Clear errors after displaying
+        $data['errors'] = $_SESSION['errors'] ?? [];
+        unset($_SESSION['errors']); // Clear errors after displaying
         $this->view("signupLogin.f/login",$data);
     }
 
-    public function authenticate() {
+    private function authenticate() {
         $user = new User;
 
         $email = $_POST['email'] ?? '';
@@ -19,8 +23,9 @@ class Login{
 
         if ($user->validateLogin($email, $password)) {
             // Set user session and redirect to home
-            $_SESSION['user_id'] = $user->getUserByEmail($email)->id;
+            $_SESSION['user'] = $user->getUserByEmail($email);
             redirect('home');
+            // show($_SESSION['user']);
         } else {
             // Set error messages in session and redirect back to /login
             $_SESSION['errors'] = $user->errors;

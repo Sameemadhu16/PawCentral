@@ -4,12 +4,19 @@ class SignUpNext {
     use Controller;
 
     public function index() {
+
+        $user = new User;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['stepTwoSubmit'])) {
+            $this->handleSecondStep($user);
+        }
+
         $this->view("signupLogin.f/signupNext");
     }
 
     // Handle the second step form submission
-    public function handleSecondStep() {
-        $user = new User;
+    private function handleSecondStep($user) {
+
 
         // Collect data from session and form submission
         $data = $_SESSION['signup_data'] ?? [];
