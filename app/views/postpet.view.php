@@ -17,15 +17,15 @@
     </div>
    
     <div class="form">
-        <form id="postpetform" method="POST" action="<?=ROOT?>/postpet/submit">
+        <form id="postpetform" method="POST" action="<?=ROOT?>/service/postpet/postpetnext">
             <h3>Trade Type</h3>
             <input type="text" name="tradeType" placeholder="ex:Rent">
             <h3>Pet's Name</h3>
             <input type="text" name="petName" placeholder="Enter the pet's name:">
             <h3>Species</h3>
-            <input type="text" name="Species" placeholder="ex:Germen shepard">
+            <input type="text" name="species" placeholder="ex:Germen shepard">
             <h3>Breed</h3>
-            <input type="text" name="Breed" placeholder="Enter age:">
+            <input type="text" name="breed" placeholder="Enter age:">
             <h3>Gender/Special Needs</h3>
             <input  type="text" name="genderNeeds" placeholder="ex:Rent" class="box">
             <h3>Contact Name:</h3>
@@ -34,10 +34,10 @@
             <input type="text" name="contactNumber" placeholder="ex:-077 34 353">
             <h3>E-mail</h3>
             <input type="email" name="email" placeholder="Enter the E-mail:">
-            
+            <button type="submit" class="button">NEXT</button>
         </form>
     </div>
-    <button type="submit" class="button">NEXT</button>
+    
     <button class="arrow-button"><img src=""></button>
 </body>
 </html>

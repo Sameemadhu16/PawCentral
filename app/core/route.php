@@ -5,9 +5,9 @@ route('signup','SignUp@index');
 route('signin','SignIn@index');
 route('service','Service@index');
 route('service/postpet','Postpet@index');
-route('service/postpet/postpetnext','postpetnext@index');
+route('service/postpet/postpetnext','Postpetnext@index');
 route('service/postpet/postpetnext/selling','Selling@index');
-route('service/manage','Mange@index');
+route('service/manage','Manage@index');
 // Admin routing
 
 route('admin/overview','admin/AdminOverview@index');
