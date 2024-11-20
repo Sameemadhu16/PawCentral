@@ -38,7 +38,8 @@ route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
 // medical centres
 route('services','Services');
-
+// Pet shelters
+route('shelters','PetShelters');
 
 //medical routing
 route('medical','Medical/FindMedi@index');

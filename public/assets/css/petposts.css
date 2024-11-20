@@ -11,6 +11,7 @@
     background-color: rgb(132, 80, 228,.75);
     border-radius:12px;
 }
+
 .searchbox {
     display: flex;
     flex-direction: column;
@@ -39,6 +40,21 @@
     background-color: #f1e4ff;
     outline: none;
 }
+/*
+    SOECIFIFC STYLES IF NEEDED FOR SHELTERS (NEEDS MODIFICATIONS)
+
+.shelters {
+    width: 50% !important;
+    flex-direction: row;
+    align-items: center;
+}
+.shelters label {
+    align-self: center;
+    margin: 0px;
+    padding-right: 5px;
+    align-self: right;
+    width: auto;
+} */
 
 /* asdasdasd */
 
@@ -180,10 +196,14 @@
     background-color:#f1e4ff;
     transition: background-color .7s ease;
     transition: transform .3s ease;
+    margin-bottom: 5px;
 }
 .card:hover img {
     transform: scale(1.2);
     transition: transform .3s ease;
+}
+.card:hover p.name{
+    margin: 4px;
 }
 .card:hover span.price {
     background-color: #b085ff;
