@@ -1,11 +1,11 @@
 <?php
 
-class PostpetModel{
+class PostPetModel{
     use Database;
 
-    public function insertpost($data){
-        $query="INSERT INTO pets(tradetype,petname,species,breed,genderneeds,contactname,contactnumber,email)
-        VALUES(:tradetype,:petname,:species,:breed<:genderneeds,:contactnumber,:contactname,:email)";
+    public function insertPost($data){
+        $query="INSERT INTO pets(tradeType,petName,species,breed,genderNeeds,contactName,contactNumber,email)
+        VALUES(:tradeType,:petName,:species,:breed,:genderNeeds,:contactNumber,:contactName,:email)";
         $this->query($query,$data);
     }
 }

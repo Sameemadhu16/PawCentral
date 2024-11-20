@@ -17,27 +17,27 @@
     </div>
    
     <div class="form">
-        <form>
+        <form id="postpetform" method="POST" action="<?=ROOT?>/postpet/submit">
             <h3>Trade Type</h3>
-            <input type="text" placeholder="ex:Rent">
+            <input type="text" name="tradeType" placeholder="ex:Rent">
             <h3>Pet's Name</h3>
-            <input type="text" placeholder="Enter the pet's name:">
+            <input type="text" name="petName" placeholder="Enter the pet's name:">
             <h3>Species</h3>
-            <input type="text" placeholder="ex:Germen shepard">
+            <input type="text" name="Species" placeholder="ex:Germen shepard">
             <h3>Breed</h3>
-            <input type="text" placeholder="Enter age:">
+            <input type="text" name="Breed" placeholder="Enter age:">
             <h3>Gender/Special Needs</h3>
-            <input  type="text" placeholder="ex:Rent" class="box">
+            <input  type="text" name="genderNeeds" placeholder="ex:Rent" class="box">
             <h3>Contact Name:</h3>
-            <input type="text" placeholder="Enter your name:">
+            <input type="text" name="contactName" placeholder="Enter your name:">
             <h3>Contact Number</h3>
-            <input type="text" placeholder="ex:-077 34 353">
+            <input type="text" name="contactNumber" placeholder="ex:-077 34 353">
             <h3>E-mail</h3>
-            <input type="email" placeholder="Enter the E-mail:">
+            <input type="email" name="email" placeholder="Enter the E-mail:">
             
         </form>
     </div>
-    <button class="button">NEXT</button>
+    <button type="submit" class="button">NEXT</button>
     <button class="arrow-button"><img src=""></button>
 </body>
 </html>

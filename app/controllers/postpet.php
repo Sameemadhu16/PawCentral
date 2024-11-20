@@ -6,7 +6,7 @@ class Postpet{
     }
     public function submit(){
         if($_SERVER['REQUEST_METHOD']==='POST'){
-            $model=new PostpetModel();
+            $model=new PostPetModel();
             $data=[
                 'tradeType'=>htmlspecialchars($_POST['tradeType']),
                 'petName'=>htmlspecialchars($_POST['petName']),
@@ -15,7 +15,7 @@ class Postpet{
                 'genderNeeds'=>htmlspecialchars($_POST['genderNeeds']),
                 'contactName'=>htmlspecialchars($_POST['contactName']),
                 'contactNumber'=>htmlspecialchars($_POST['contactNumber']),
-                'email'=>filter_var($_POST['email']),FILTER_SANITIZE_EMAIL,
+                'email'=>filter_var($_POST['email'],FILTER_SANITIZE_EMAIL),
             ];
 
 
