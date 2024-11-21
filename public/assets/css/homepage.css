@@ -24,7 +24,7 @@
     padding: 100px 20px;
     padding-top: 50px;
     max-height: 400px;
-    background-color: #DDA0DD;
+    background-color:thistle;
 }
 
 .hero h2 {
@@ -450,15 +450,15 @@
 
      /* Hero section */
      .hero h2 {
-        font-size: 2.7rem;
+        font-size: 2.1rem;
         margin-top: 5px;
     }
     .hero h3 {
-        font-size: 1.5rem;
+        font-size: 1.15rem;
     }
     .hero p {
         margin: 20px 0;
-        font-size: .9rem;
+        font-size: .85rem;
     }
 
     /* Stats section */
