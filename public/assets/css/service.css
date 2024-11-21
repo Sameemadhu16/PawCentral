@@ -1,0 +1,118 @@
+.createAndManageBox {
+    display: flex;
+    gap: 75px;
+    position: relative;
+    top: 120px;
+    left: 350px;
+    width: 700px;
+}
+.createPost, .managePost {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 35px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden; 
+}
+
+.createPost {
+    background-color: rgba(151, 71, 255, 0.7); 
+    background-image: url('C:/Users/HP/Desktop/Group project/UI/CreatePost/imgs/WhatsApp Image 2024-08-31 at 09.33.54.jpeg');
+}
+
+.managePost {
+    background-color: rgba(151, 71, 255, 0.7); 
+    background-image: url('C:/Users/HP/Desktop/Group project/UI/CreatePost/imgs/WhatsApp Image 2024-08-31 at 09.34.56.jpeg');
+}
+
+.createPost::after, .managePost::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(151, 71, 255, 0.7); 
+    border-radius: 35px; 
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+.createPost > *, .managePost > * {
+    position: relative;
+    z-index: 2; 
+}
+
+
+.createPost ul li,
+.managePost ul li {
+    margin-bottom: 10px; 
+    font-weight: 400;
+    font-family: 'Inter';
+}
+.createPost h3 {
+    position: relative;
+    left: 60px;
+    color: #FFFF;
+    font-weight: 200;
+    font-family: 'Inter';
+    font-size: 25px;
+}
+.managePost h3 {
+    position: relative;
+    left: 40px;
+    color: #FFFF;
+    font-weight: 200;
+    font-family: 'Inter';
+    font-size: 25px;
+}
+
+.managePost button {
+    position: relative;
+    top: 45px;
+    background-color: #B720FE;
+    padding: 10px 20px;
+    width: 150px;
+    border: none;
+    left: 48px;
+    color: #FFFF;
+    font-weight: 600;
+    font-family: 'Inter';
+}
+.createPost button {
+    background-color: #B720FE;
+    padding: 10px 20px;
+    width: 150px;
+    border: none;
+    position: relative;
+    left: 45px;
+    color: #FFFF;
+    font-weight: 600;
+    font-family: 'Inter';
+}
+.createPost button:hover {
+    background-color: #7d0eb1;
+}
+.managePost button:hover {
+    background-color: #7d0eb1;
+}
+.welcomeMessage {
+    position: relative;
+    top: 80px;
+    left: 350px;
+    width: 700px;
+}
+.welcomeMessage hr {
+    width: 375px; 
+    position: relative;
+    left: -160px; 
+    border: none; 
+    border-top: 5px solid #B720FE; 
+    
+}
+
+

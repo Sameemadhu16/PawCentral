@@ -1,5 +1,13 @@
 <?php
 
+
+
+route('service','Service@index');
+route('service/postpet','Postpet@index');
+route('service/postpet/postpetnext','Postpetnext@index');
+route('service/postpet/postpetnext/selling','Selling@index');
+route('service/manage','Manage@index');
+
 // Home route
 route('home', 'Home@index');
 
@@ -7,6 +15,7 @@ route('home', 'Home@index');
 route('signup', 'SignUp@index');                 // Display signup page (first step)
 route('signup/signupnext', 'SignUpNext@index');  // Display signup second step
 route('login', 'Login@index');// Route for displaying the login page
+
 
 // Admin routing
 route('admin/overview', 'admin/AdminOverview@index');
