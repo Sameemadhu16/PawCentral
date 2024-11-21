@@ -17,7 +17,7 @@
     <!-- Hero section -->
     <section class="herov">
         <video class="herov-video" autoplay loop muted poster="<?=ROOT?>/assets/images/herobg.png">
-          <source src="<?=ROOT?>/assets/videos/herobg.mp4" type="video/mp4">
+          <source src="<?=ROOT?>/assets/videos/Pawsteps.mp4" type="video/mp4">
           <!-- <source src="path/to/your/video.webm" type="video/webm"> -->
         </video>
         <div class="herov-content">
@@ -35,20 +35,20 @@
     <div class="stat-item" id="adopt-stat"> 
         <i class="fas fa-paw"></i> 
         <h4 class="count" data-target="100">0</h4> 
-        <p>pets awaiting to be adopted</p> 
-        <a href="#see-pets">See pets</a> 
+        <p>Waiting to be Adopted</p> 
+        <a href="<?=ROOT?>/findapet">See pets</a> 
     </div> 
     <div class="stat-item" id="vets-stat"> 
         <i class="fas fa-user-md"></i> 
         <h4 class="count" data-target="50">0</h4>
-        <p>medical professionals</p> 
-        <a href="#visit-vets">Visit Vets</a> 
+        <p>Medical Professionals</p> 
+        <a href="<?=ROOT?>/#">Visit Vets</a> 
     </div> 
     <div class="stat-item" id="shop-stat"> 
         <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
         <h4 class="count" data-target="200">0</h4> 
-        <p>available for buying</p> 
-        <a href="#shop">See pets</a> 
+        <p>Available for Buying</p> 
+        <a href="<?=ROOT?>/findapet">See pets</a> 
     </div> 
 </section>
 
@@ -106,43 +106,42 @@
 
 <script>
     // Function to count up from 0 to the target value
-function countUp(element) {
-  const target = +element.getAttribute('data-target'); // Get target number
-  const speed = 100; // Speed of animation in milliseconds
-  const increment = Math.ceil(target / speed); // Increment step
-  let current = 0;
+    function countUp(element) {
+    const target = +element.getAttribute('data-target'); // Get target number
+    const speed = 100; // Speed of animation in milliseconds
+    const increment = Math.ceil(target / speed); // Increment step
+    let current = 0;
 
-  const updateCount = () => {
-    current += increment;
-    if (current >= target) {
-      element.innerText = `${target}+`; // Set final value with '+' appended
-    } else {
-      element.innerText = current;
-      requestAnimationFrame(updateCount); // Recursively update
+    const updateCount = () => {
+        current += increment;
+        if (current >= target) {
+        element.innerText = `${target}+`; // Set final value with '+' appended
+        } else {
+        element.innerText = current;
+        requestAnimationFrame(updateCount); // Recursively update
+        }
+    };
+
+    updateCount();
     }
-  };
 
-  updateCount();
-}
+    // Intersection Observer to detect visibility in the viewport
+    const stats = document.querySelectorAll('.count');
+    const observer = new IntersectionObserver(
+    (entries, observer) => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const stat = entry.target;
+            countUp(stat); // Start count-up animation
+            observer.unobserve(stat); // Stop observing once animated
+        }
+        });
+    },
+    { threshold: 0.5 } // Trigger when 50% visible
+    );
 
-// Intersection Observer to detect visibility in the viewport
-const stats = document.querySelectorAll('.count');
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const stat = entry.target;
-        countUp(stat); // Start count-up animation
-        observer.unobserve(stat); // Stop observing once animated
-      }
-    });
-  },
-  { threshold: 0.5 } // Trigger when 50% visible
-);
-
-// Observe each stat item
-stats.forEach(stat => observer.observe(stat));
-
+    // Observe each stat item
+    stats.forEach(stat => observer.observe(stat));
 
 </script>
 

@@ -91,7 +91,7 @@
 }
 
 .stat-item a:hover {
-    background-color: orange;
+    background-color:  #5f27cd;
 }
 
 
@@ -256,9 +256,50 @@
     transform: scale(.8);
 }
 .donate-icon img {
-    width: 50%;
-    /* height: 60%; */
-} 
+    width: 100%; /* Match the container size */
+    height: 100%; /* Match the container size */
+    object-fit: cover; /* Maintain aspect ratio */
+    border-radius: 50%; /* Ensure circular shape */
+}
+
+.donate-icon {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0px;
+    margin: 0px;
+    transition: transform 0.5s ease;
+}
+
+
+.donation-overlay:hover .donate-icon {
+    transform: scale(1.5);
+    box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.8), /* Tighter glow */
+                0 0 10px 10px rgba(255, 215, 0, 0.6);   
+    animation: glow-pulse 2s infinite alternate;
+}
+
+
+
+
+/* Glow Pulse Animation */
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 5px 3px rgba(255, 215, 0, 0.8),
+                    0 0 10px 5px rgba(255, 215, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 8px 6px rgba(255, 215, 0, 0.8),
+                    0 0 12px 10px rgba(255, 215, 0, 0.6);
+    }
+}
+
 
 
 @media (max-width: 1140px) {
