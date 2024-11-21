@@ -1,0 +1,152 @@
+/* Sidebar styling */
+.sidebar {
+    width: 300px;
+    background-color: #6A0DAD;
+    padding-top: 40px;
+    height: 85vh; /* Keeps the sidebar fixed to the left */
+    margin-top: 15px;
+    margin-left: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px; /* Added rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition for toggling */
+}
+
+/* Sidebar list styling */
+.sidebar ul {
+    text-decoration: none;
+    list-style-type: none;
+    padding: 10px;
+    width: 100%; /* Ensures the links take up the full width */
+}
+
+/* List item styling */
+.sidebar ul li {
+    width: 100%;
+}
+
+/* Link styling */
+.sidebar ul li a {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    border-radius: 10px; /* Added rounded corners to the links */
+    text-size-adjust: 16px;
+}
+
+/* Icon spacing */
+.sidebar ul li a .icon {
+    margin-right: 20px; /* Space between the icon and text */
+    margin-left: 10px; /* Space between the icon and the edge of the link */
+}
+
+.sidebar li a.active {
+    background-color: white;
+    color: black; /* Adjust text color for visibility */
+}
+
+.sidebar ul li a:hover {
+    background-color: #9e83e1; 
+    color: black; 
+    text-decoration: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}
+
+/* Logout tab */
+.logout-tab {
+    margin-bottom: 20px; /* Add margin at the bottom */
+    padding: 10px 20px;
+}
+
+.logout-tab a {
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-tab a:hover {
+    background-color: #9e83e1;
+    border-radius: 10px;
+}
+
+/* Responsive Sidebar Collapsed */
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar.collapsed ul li a span,
+.sidebar.collapsed .logout-tab a span {
+    display: none;
+}
+
+.sidebar.collapsed ul li a .icon,
+.sidebar.collapsed .logout-tab a .icon {
+    margin: 0 auto;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        transform: translateX(-100%); /* Hide sidebar initially on mobile */
+        position: fixed; /* Sidebar fixed to the left on mobile */
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Show sidebar when active */
+    }
+    
+    .sidebar ul li a {
+        padding: 10px 15px;
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+    .sidebar ul li a.nav-link.active {
+        background-color: #ffffff; /* Active background color */
+    }
+
+    /* Adjust content to full width when sidebar is hidden */
+    .content {
+        margin-left: 0; /* Remove margin to align content on small screens */
+        padding: 20px;
+    }
+}
+
+/* Sidebar toggle button for mobile */
+.sidebar-toggle {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background-color: #6A0DAD;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar-toggle {
+        display: block; /* Show toggle button on mobile */
+    }
+}
