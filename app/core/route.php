@@ -40,6 +40,8 @@ route('findapet/post_id','PetPost_purchase');
 route('services','Services');
 // Pet shelters
 route('shelters','PetShelters');
+// Donation requests
+route('donationsnsupport','DonationsAndSupport');
 
 //medical routing
 route('medical','Medical/FindMedi@index');

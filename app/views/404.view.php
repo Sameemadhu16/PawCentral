@@ -10,12 +10,13 @@
   <div class="container">
     <div class="content">
         
-      <h1 class="h1">404</h1>
     </div>
     <div class="ascii-art">
     
 
         <div class="error-container">
+          
+      <h1 class="h1">404</h1>
             <h2 class="oops">Oops!</h2>
         <h2 class="error">page you're looking for doesn't exist.</h2>
         
