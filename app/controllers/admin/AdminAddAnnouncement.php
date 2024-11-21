@@ -6,10 +6,16 @@ class AdminAddAnnouncement
 
     public function index()
     {
+        $announcementModel = new Announcement;
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitAnnouncement'])) {
+            $this->submit($announcementModel);
+            return;
+        }
         $this->view('admin/add_announcement');
     }
 
-    public function submit()
+    private function submit($announcementModel)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $announcementModel = new Announcement;
