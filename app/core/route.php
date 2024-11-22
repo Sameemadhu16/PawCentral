@@ -51,8 +51,14 @@ route('lostandfound/idoflost','LostPet');
 route('userprofile','user/UserProfile@index');
 
 // merchanted pets
+route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
-
+// medical centres
+route('services','Services');
+// Pet shelters
+route('shelters','PetShelters');
+// Donation requests
+route('donationsnsupport','DonationsAndSupport');
 
 //pet shelter routings
 route('shelter/profile','shelter/Profile@index');
