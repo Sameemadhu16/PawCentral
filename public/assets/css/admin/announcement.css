@@ -108,11 +108,16 @@
 
 .announcement-info p {
     margin: 5px 0;
-    color: #000000;
+    color: #333;
+    line-height: 1.6;
     font-size: 16px;
-    margin-bottom: 15px;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limits to 3 lines */
+    -webkit-box-orient: vertical;
 }
+
 
 /* Card actions */
 .card-actions {

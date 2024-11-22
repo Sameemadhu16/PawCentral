@@ -1,0 +1,139 @@
+/* General Styles */
+.body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    overflow-y: hidden;
+}
+
+.main-container {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+
+/* Page Title */
+h2 {
+    color: #000;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Header Section */
+.header-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Ask for Support Button */
+.ask-support-button {
+    width: 250px;
+    margin-left: auto;
+    /* margin-right: 100px; */
+    background-color: #4FC3F7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    ;
+}
+
+.ask-support-button:hover {
+    background-color: #2196F3;
+}
+
+.donation-section {
+    margin-bottom: 20px;
+    overflow-y: scroll;
+    max-height: 600px;
+    margin-left: 20px;
+}
+/* Donation Card */
+.donation-card {
+    display: flex;
+    align-items: center;
+    background-color: #8FC7FF;
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.donation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon-section {
+    font-size: 96px;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.details-section {
+    margin-left: 20px;
+    flex: 1;
+    text-align: left;
+}
+
+.details-section h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.details-section .progress-bar {
+    width: 90%;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    height: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.details-section .progress {
+    display: block;
+    height: 10px;
+    border-radius: 8px;
+}
+
+.details-section p {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Remove Request Button */
+.remove-request-button {
+    background-color: #FFA500;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-request-button:hover {
+    background-color: #FF8C00;
+}

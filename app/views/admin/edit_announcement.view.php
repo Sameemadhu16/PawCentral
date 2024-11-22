@@ -19,7 +19,18 @@
         <div class="content">
             <section class="announcement-form">
                 <h1>Edit Announcement</h1>
-                <form>
+
+
+                <!-- Display error if it exists -->
+                <?php if (!empty($error)): ?>
+                    <div class="error-message bounce-animation"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+
+
+                <form  method="POST">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($announcement->id) ?>">
+
+
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter Title" required>
 
@@ -30,10 +41,8 @@
                     <textarea class="textarea_class" id="description" placeholder="Add Description" required></textarea>
 
 
+                    <button type="submit" name="submitAnnouncement" class="done-button">Update</button>
 
-                    <button type="submit" class="done-button">
-                        <i class="fas fa-check-circle"></i> Update
-                    </button>
                 </form>
             </section>
         </div>

@@ -26,174 +26,22 @@
 
             <section class="announcement-section">
 
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
+                <!-- Check if announcements are available -->
+                <?php if (!empty($announcements)): ?>
+                    <?php foreach ($announcements as $announcement): ?>
+                        <div class="announcement-card" onclick="window.location.href='<?= ROOT ?>/admin/view_announcement?id=<?= $announcement->id ?>'">
+                            <div class="announcement-info">
+                                <h3><?= htmlspecialchars($announcement->title) ?></h3>
+                                <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>
+                                <p class="description"><?= htmlspecialchars($announcement->content) ?></p>
+                            </div>
+                            <!-- <div class="card-actions">
+                                <a href="<?= ROOT ?>/admin/edit_announcement?id=<?= $announcement->id ?>">
+                                    <i class="fas fa-edit edit-icon"></i>
+                                </a>
+                                <i class="fas fa-trash delete-icon" onclick="openModal(<?= $announcement->id ?>)"></i>
+                            </div> -->
 
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon" onclick="openModal()"></i>
-                    </div>
-
-                </div> 
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-                <div class="announcement-card">
-                    <div class="announcement-info">
-                        <h3>Announcement title</h3>
-                        <h5>Date: 2024/07/20 </h5>
-
-
-                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                            a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                            remaining essentially unchanged. </p>
-                    </div>
-                    <div class="card-actions">
-                        <a href="../admin/edit_announcement">
-                            <i class="fas fa-edit edit-icon"></i>
-                        </a>
-                        <i class="fas fa-trash delete-icon"></i>
-                    </div>
-
-                </div>
-
-
-                <!-- Delete Confirmation Modal -->
-                 <div id="deleteModal" class="modal">
-                    <div class="modal-content">
-                        <p>Are you sure you want to delete this announcement?</p>
-                        <div class="modal-actions">
-                            <button onclick="deleteItem()">Yes</button>
-                            <button onclick="closeModal()">No</button>
                         </div>
                     </div>
                 </div>

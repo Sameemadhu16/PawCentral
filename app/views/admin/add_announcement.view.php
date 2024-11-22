@@ -19,7 +19,18 @@
         <div class="content">
             <section class="announcement-form">
                 <h1>Add Announcement</h1>
+
                 <form>
+
+
+                <!-- Display error if it exists -->
+                <?php if (!empty($error)): ?>
+                    <div class="error-message bounce-animation"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+
+
+                <form  method="POST">
+
                     <label for="title">Title</label>
                     <input type="text" id="title" placeholder="Enter Title" required>
 
@@ -31,9 +42,12 @@
 
 
 
+
                     <button type="submit" class="done-button">
                         <i class="fas fa-check-circle"></i> Done
-                    </button>
+
+                    <button type="submit" name="submitAnnouncement" class="done-button">Done</button>
+
                 </form>
             </section>
         </div>
