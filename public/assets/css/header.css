@@ -39,7 +39,7 @@ body, html {
     display: flex;
     text-decoration: none;
     align-items: center;
-
+}
 
 .navbar h1 {
     font-size: 35px;
@@ -61,7 +61,7 @@ body, html {
     align-items: center;
     gap: 4px;
     justify-content: center;
-/*     margin-left: auto; /* Pushes links to the right */ */    
+/*     margin-left: auto; /* Pushes links to the right */    
     z-index: 100;
 }
 
