@@ -23,6 +23,10 @@
         <span id="currentPage" class="current-page">1</span>
         <button id="nextPage" onclick="changePage(1)">Next</button>
     </div>
+    
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
+
     <script src="<?= ROOT?>/assets/js/announcements.js"></script>
 </body>
 </html>
