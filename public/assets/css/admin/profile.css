@@ -1,15 +1,14 @@
 /* General styles */
-.body {
-    margin: 0;
+body {
+    font-family:  sans-serif;
+    margin: 0px;
+    background-color: #ffffff;
     overflow-y: hidden;
-    background-color: #f3f4f6;
 }
 
+/* Flex layout for responsive design */
 .main-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -18,45 +17,45 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
-    margin-left: 100px;
+    margin-left: 100px; /* To align with fixed sidebar */
     overflow: auto;
     border-radius: 8px;
 }
 
 /* Profile section styling */
 .profile-section h1 {
+    margin-left: 20px;
     color: #333;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
+    
 }
 
-/* Profile container */
+/* Increase the size of the profile container */
 .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
     width: 100%;
     max-width: 800px;
-    min-height: 500px;
     margin: 0 auto;
     font-weight: bold;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid #52b3be;
+    border: 2px solid #52b3be; /* Border around profile container */
 }
 
-/* Profile picture */
+/* Profile picture styling */
 .profile-pic {
     position: relative;
     width: 120px;
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 30px;
-    border: 3px solid #52b3be;
+    margin-bottom: 20px;
+    border: 2px solid #52b3be; /* Border around profile picture */
 }
 
 .profile-pic img {
@@ -65,93 +64,57 @@
     object-fit: cover;
 }
 
-/* .overlay-icon {
+.overlay-icon {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     right: -5px;
     font-size: 24px;
-    color: #ffffff;
-    background-color: #ffc107;
+    color: #ffdd88;
+    background-color: #fff;
     border-radius: 50%;
-    padding: 5px;
-    border: 2px solid #fff;
-} */
+    padding: 3px;
+    border: 2px solid #ffdd88; /* Match border of profile picture */
+}
 
-/* Profile details */
-
+/* Profile details styling */
 .profile-details {
-    /* background-color: #007bff; */
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 60%;
     text-align: left;
-    /* border: 2px solid #52b3be; */
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    width: 100%;
+    justify-content: space-between;
+    justify: space-between;
+    
 }
 
 .profile-details p {
-    justify-content: center;
-    gap: 160px;
     font-size: 16px;
-    margin: 10px 0;
+    margin: 30px 30px; /* Increased margin to create more gap between details */
     color: #333;
-    display: flex;
 }
 
 .profile-details p span {
     font-weight: bold;
-    color: #1a73e8;
-    min-width: 100px; 
-    margin-right: 20px;/* Adjusts spacing for the labels */
+    color: #1a73e8; /* Blue color for labels */
+    margin-right: 150px;
+    margin-left: 200px;
 }
 
-
-.button-section {
-    width: 60%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-/* Log out button */
+/* Log out button styling */
 .logout-button {
-    background-color: #dc3545;
+    background-color: #fb0606;
     color: #fff;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 40px;
-    font-size: 16px;
+    margin-top: 20px;
     transition: background-color 0.3s ease;
-    width: 80%;
-    max-width: 200px;
+    width: 400px;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .logout-button:hover {
-    background-color: #c82333;;
-}
-
-.update-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 40px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    width: 80%;
-    max-width: 200px;
-
-}
-
-.update-button:hover {
-    background-color: #0056b3;
+    background-color: #7f1616;
 }
 
 /* Responsive Design */
@@ -162,11 +125,12 @@
 
     .container {
         margin: 10px 20px;
+        max-width: 100%;
     }
 
     .profile-container {
-        max-width: 100%;
-        padding: 20px;
+        max-width: 100%; /* Expand to full width on mobile */
+        padding: 20px; /* Adjust padding for smaller screens */
     }
 
     .profile-pic {
@@ -175,26 +139,25 @@
     }
 
     .profile-details p {
-        font-size: 14px;
+        font-size: 14px; /* Adjust font size for smaller screens */
     }
 
     .logout-button {
-        padding: 10px 20px;
+        padding: 8px 16px;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        margin-left: 0;
-        padding: 15px;
+        margin-left: 0px;
     }
 
     .profile-details p {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .logout-button {
-        width: 100%;
-        padding: 10px;
+        width: 100%; /* Make button full width on small screens */
+        padding: 10px 0;
     }
 }

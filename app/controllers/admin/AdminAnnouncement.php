@@ -1,20 +1,11 @@
 <?php
 
-class AdminAnnouncement
-{
+class AdminAnnouncement {
+
     use Controller;
 
-    public function index()
-    {
-        $announcementModel = new Announcement();
+    public function index() {
 
-        // Retrieve all announcements, ordered by the most recent ones
-        $announcements = $announcementModel->get([], [
-            'order_column' => 'updated_at',
-            'order_type' => 'desc'
-        ]);
-
-        // Pass announcements to the view
-        $this->view('admin/announcement', ['announcements' => $announcements]);
+        $this->view('admin/announcement');
     }
 }

@@ -1,0 +1,233 @@
+
+
+/* Container for the lost pet post */
+.lost-pet-container {
+    max-width: 800px;
+    /* margin: 20px auto; */
+    justify-content: center;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    /* BACKGROUND contrast ADDED */
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Title styling */
+.breadcrumb{
+    font-size: 17px;
+}
+.breadcrumb a{
+    text-decoration: none;
+    color:#333;
+}
+
+.post-title {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+/* Styling for posted information */
+.post-info {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.post-info p {
+    color: #666;
+    font-size: 14px;
+    margin: 3px;
+    padding: f0px;
+}
+
+/* Pet image and slider container */
+.pet-image-container {
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    z-index: 1;
+}
+.pet-image {
+    /* RESPONSIVE IMAGE SIZE */
+    max-width: 100%;
+    max-height: 40vh;
+    border-radius: 10px;
+
+    /* when the img doesnt load */
+    min-height: 100px;
+}
+
+.slider-arrow {
+    position: absolute;
+    border-radius: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    height: 100%;
+    width: 15%;
+    transition: background 0.3s ease;  /* Smooth transition for the hover effect */
+}
+.slider-arrow:hover{
+    font-size: 60px;
+    /* color: #2951c9; */
+    color: #6a0dad;
+    transition: font-size .3s ease;
+}
+.slider-arrow.right:hover {
+    background: linear-gradient(
+        to left, 
+        rgba(102, 102, 102, .5), 
+        rgba(102, 102, 102, 0) 80%
+    );
+}
+.slider-arrow.left:hover {
+    background: linear-gradient(
+        to right, 
+        rgba(102, 102, 102, .5), 
+        rgba(102, 102, 102, 0) 80%
+    );
+}
+.slider-arrow.left {
+    left: 0;
+}
+.slider-arrow.right {
+    right: 0;
+}
+
+.price{
+    font-weight:bold;
+    color: purple;
+    padding: 10px;
+    margin-top: 400px;
+    margin: 20px;
+}
+
+/* INFO specs */
+.info{
+    color:#3f3a3a;
+    font-size: 11px;
+}
+
+.specdiv{
+    margin: 15px;
+    display: flex;
+}
+
+.specs{
+    font-size:12px;
+    padding-top: 4px;
+    margin-left: 10%;
+    color: grey;
+    /* display: inline-block; */
+}
+.specs p{
+    max-width: 180px;
+    min-width: 70px;
+    display: inline-block;
+    margin: 0;
+}
+
+.specs span{
+    color: #3f3a3a;
+    margin-left: 10px;
+    /* float: right; */
+    padding-right: 100px;
+    width:400px
+}
+
+
+/* hidden info css */
+.extra-info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .7s ease;
+}
+
+.extra-info.open {
+    max-height: 500px; /* Set a max-height large enough to show all content */
+}
+.more-button {
+    /* background-color: red; */
+    margin-left: 10%;
+    font-size: 12px;
+    cursor: pointer;
+    color: #2951c9;
+    /* color: #8450e4; */
+    display: inline-flex;
+    align-items: center;
+}
+.more-button span {
+    margin-left: 3px;
+    font-size:10px;
+}
+.more-button p {
+    margin:0;
+    font-size: 10px;
+    transform: rotate(0deg);
+    transition: transform .3s;
+}
+.more-button.active span {
+    transform: rotate(180deg); /* Rotate arrow when active */
+}
+
+
+/* Contact section */
+.reveal-info {
+    color: purple;
+    cursor: pointer;
+    /* text-decoration: underline; */
+    font-size: 15px !important;
+}
+.contact-section {
+    display: flex;
+    align-items: center;
+    margin: 20px 5%;
+}
+.contact-icon {
+    margin-right: 10px;
+    width: 30px;
+}
+.contact-info {
+    background-color: #f0f0f0;
+    padding: 7px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.contact-info span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* Description section */
+.description-section {
+    margin-top: 10px;
+}
+.description-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.description-section p {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .post-title {
+        font-size: 18px;
+    }
+    .contact-info span {
+        font-size: 14px;
+    }
+}
+
+
+
+  
