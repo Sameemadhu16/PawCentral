@@ -1,0 +1,75 @@
+.image-container {
+    background-image: url('https://cdn.usegalileo.ai/stability/5d194808-68df-4c4b-bda0-d9418d1692cd.png');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+  }
+  .name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    padding: 0px;
+    margin-right: auto;
+  }
+  .reason {
+    margin: 0px;
+    margin-right: auto;
+  }
+
+  .goal {
+    font-size: 16px;
+    margin: 4px;
+    margin-bottom: 16px;    
+    margin-right: auto;
+  }
+
+  .progress-bar {
+    background-color: #e0dce5;
+    border-radius: 8px;
+    height: 10px;
+    margin: 12px;
+    margin-bottom: 0px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .progress {
+    background-color: #141118;
+    height: 100%;
+  }
+
+  .description {
+    font-size: 16px;
+    margin-bottom: 16px;
+    margin-right: auto;
+  }
+
+ .donationreq {
+  width: 20%;
+  outline: #8019e6;
+  border: #8019e6 1px solid;
+  padding: 20px;
+  margin: 0 auto; /* Center the .donationreq on the page */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+}
+
+.donate-btn {
+  display: inline-block;
+  width: 80%;
+  max-width: 200px; /* Optional: set a max width for better responsiveness */
+  padding: 12px;
+  background-color: #8019e6;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+  
+ 

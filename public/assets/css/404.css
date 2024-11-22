@@ -1,0 +1,145 @@
+/* General Reset */
+/* body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+body {
+  
+  font-family: 'Arial', sans-serif;
+  /* background: linear-gradient(to bottom right, #5c0579, #9e6bd9); */
+  background-color: rgb(121, 16, 156);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+/* Content Section */
+.h1 {
+  font-size: 160px;
+  margin: 10px;
+  font-weight: 900;
+  /* text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); */
+}
+
+.content p {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #e4d1f8;
+}
+
+/* ASCII Art */
+.ascii-art {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.ascii-art pre {
+  font-size: 10px;
+  font-weight:bolder;
+  color: #e4d1f8;
+  margin: 0;
+  padding: 0px;
+  line-height: 1.2;
+}
+
+/* Button */
+.home-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgb(128, 25, 230, .7);
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.home-btn:hover {
+  /* background-color: rgb(100, 8, 143,.7); */
+  background-color: rgb(92, 5, 121);
+  /* background-color: rgb(128, 25, 230, .1); */
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+.error-containter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-size: 1em;
+      gap: 0px;
+      margin: 0px;
+      padding:10px;
+}
+.oops{
+  font-size: 2.3rem;
+  padding: 0;
+  margin: 0;
+}
+.error {
+  font-weight: 700;
+  font-size: 1.4em;
+}
+
+
+@media(max-width:1100px) {
+  .h1{
+      font-size: 130px;
+  }
+  .ascii-art pre {
+      font-size: 6px;
+    }
+    .oops{
+      font-size: 2rem;
+  }
+  .error {
+      font-weight: 700;
+      font-size: 1.3em;
+  }
+    .home-btn {
+      padding: 12px 30px;
+      font-size: 20px;
+    }
+}
+
+@media(max-width:520px) {
+  .h1{
+      font-size: 100px;
+  }
+  .ascii-art pre {
+      font-size: 4px;
+  }
+  .ascii-art {
+      flex-direction: column;
+  }
+  .oops{
+      font-size: 1.8rem;
+  }
+  .error {
+      font-size: 1.1em;
+  }
+  .home-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  }
+}

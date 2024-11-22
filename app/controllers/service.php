@@ -1,9 +1,8 @@
 <?php
 
-class SignIn{
+class Service{
     use Controller;
-
     public function index(){
-        $this->view("signin");
+        $this->view("service");
     }
 }
