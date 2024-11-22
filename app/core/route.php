@@ -1,5 +1,13 @@
 <?php
 
+// Middleware-like function for admin-only routes
+// function adminRoute($path, $controllerAction) {
+//     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+//         route($path, $controllerAction);
+//     } else {
+//         redirect('login'); // Redirect to login if not admin
+//     }
+// }
 // Home route
 route('home', 'Home@index');
 
@@ -60,5 +68,8 @@ route('service/postpet','Postpet@index');
 route('service/postpet/postpetnext','Postpetnext@index');
 route('service/postpet/postpetnext/selling','Selling@index');
 route('service/manage','Manage@index');
+
+
+
 
 

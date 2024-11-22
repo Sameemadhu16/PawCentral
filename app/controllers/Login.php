@@ -30,6 +30,13 @@ class Login{
         if ($user->validateLogin($email, $password)) {
             // Set user session and redirect to home
             $_SESSION['user'] = $user->getUserByEmail($email);
+            $_SESSION['user_id'] = $_SESSION['user']->id;
+            if ($_SESSION['user']->role == 'admin') {
+                redirect('admin/overview');
+            }
+            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'adoption-shelter') {
+                redirect('shelter/profile');
+            }
             redirect('home');
             // show($_SESSION['user']);
         } else {
