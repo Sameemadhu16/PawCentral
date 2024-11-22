@@ -96,6 +96,7 @@
 </section>
 
 
+<?php include("../app/views/components/footer.php")?>
 
 </body>
 </html>

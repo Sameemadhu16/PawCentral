@@ -7,6 +7,7 @@ body, html {
 
 .navbar {
     background-color: #6b0dad;
+    /* background:linear-gradient(135deg, #6A0DAD,#8119c2); */
     color: white;
     padding: 10px 168.5px;
     display: flex;
