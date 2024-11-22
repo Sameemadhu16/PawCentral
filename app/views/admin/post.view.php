@@ -78,17 +78,6 @@
                             <p>Shop for high-quality pet products and services.</p>
                         </div>
                     </div>
-                    
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
 
                     <div class="interactive-card">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">

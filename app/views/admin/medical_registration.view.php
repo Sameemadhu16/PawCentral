@@ -23,7 +23,7 @@
         </div>
        
         <div class="container">
-            <h2>Medical Registrations</h2>
+            <h1>Medical Registrations</h1>
             <div class="content">
                 <table class="medical-registration-table">
                     <thead class="mr_table_t">

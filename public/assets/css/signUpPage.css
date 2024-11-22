@@ -3,11 +3,10 @@
     padding: 0;
 } */
 
-.body {
+body {
     margin: 0;
     padding: 0;
     background-color: #eeee;
-    overflow-y: hidden;
 }
 
 .container {

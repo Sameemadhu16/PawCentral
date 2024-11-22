@@ -1,7 +1,6 @@
-.body {
-    margin: 0;
+body {
     overflow-y: hidden;
-    background-color: #f3f4f6;
+    margin: 0px;
 }
 
 .main-container{
@@ -22,10 +21,10 @@
     margin-bottom: 20px;
 }
 
-/* .content:hover {
+.content:hover {
     
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-} */
+}
 
 .content h2 {
     color: #000000;

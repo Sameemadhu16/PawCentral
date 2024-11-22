@@ -1,7 +1,6 @@
 .body {
-    margin: 0;
+    margin:0;
     overflow-y: hidden;
-    background-color: #f3f4f6;
 }
 
 /* Main container to include sidebar and content */
@@ -45,19 +44,19 @@
     overflow: hidden;
     font-family: sans-serif;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /*Subtle shadow for depth*/
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     height: 80px; /* Fixed height for cards */
 }
 
 .content:hover {
     
-    /* box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-    background-color: #f0f8ff; /* Subtle background color change on hover */
+    background-color: #f7f3ff; /* Subtle background color change on hover */
 }
 
 .card:hover::before {
