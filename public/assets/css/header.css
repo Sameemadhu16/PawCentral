@@ -15,6 +15,7 @@ body, html {
     align-items: center; /* Centers content vertically */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin:0;
+    z-index: 100;
 }
 
 .navbar-logo {
@@ -46,7 +47,7 @@ body, html {
     text-decoration: none;
 }
 
-.navbar h1 {
+.navbar a {
     font-size: 35px;
     color: white;
     margin: 0;
@@ -54,7 +55,14 @@ body, html {
     /* font-family: sans-serif; */
     /* text-shadow: 2px 2px 4px rgb(0, 0, 0); */
     letter-spacing: 1px;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    text-decoration:none;
+    color:inherit;
+    
+}
+
+.navbar h1{
+    font-size: 37px;
 }
 
 
@@ -66,8 +74,10 @@ body, html {
     margin: 0 60px;
     /* margin: auto; Pushes links to the right */
     align-items: center; /* Aligns links vertically */
-    gap: 4px;
-    justify-content: center;
+
+    
+    z-index: 100;
+
 }
 
 .navbar-links li {
@@ -76,10 +86,10 @@ body, html {
     list-style: none;
     /* display: inline-block; */
     position: relative;
-    padding: 8px 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    
+    
+
 }
 
 .navbar-links li a {
@@ -89,10 +99,7 @@ body, html {
     font-weight: bold;
     transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+
 }
 
 .navbar-links li a::before {
@@ -106,6 +113,8 @@ body, html {
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out;
+
+    
 }
 
 .navbar-links li a:hover::before {
@@ -157,10 +166,31 @@ body, html {
     transition: all 0.3s ease;
 }
 
-
+@media (max-width:1300px){
+    .navbar-links li a {
+        font-size: 15px;
+        padding: 15px 10px;
+        
+    }
+}
 
 /* Responsive Styles */
-@media (max-width: 1270px) {
+@media (max-width: 1140px) {
+
+    .navbar-logo {
+        width: 50px;
+        height: 35px;
+    }
+
+    .user-profile img {
+        width: 30px;
+        height: 30px;
+    }
+    .navbar-toggle .hamburger {
+        width: 25px;
+        height: 3px;
+        padding: 0px;
+    }
     
     .navbar h1 {
         font-size: 33px;
@@ -192,8 +222,8 @@ body, html {
 
 @media (max-width: 385px) {
     
-    .navbar h1 {
-        font-size: 33px;
+    .navbar h1{
+        /* font-size: 33px; */
         display: none;
     }
 
