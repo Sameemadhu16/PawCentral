@@ -97,6 +97,9 @@
 </section>
 </section>
 
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
+
 <script>
     // Function to count up from 0 to the target value
 function countUp(element) {
@@ -105,7 +108,6 @@ function countUp(element) {
   const increment = Math.ceil(target / speed); // Increment step
   let current = 0;
 
-<?php include("../app/views/components/footer.php")?>
   const updateCount = () => {
     current += increment;
     if (current >= target) {
