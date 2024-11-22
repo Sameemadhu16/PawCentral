@@ -46,14 +46,14 @@
                 <form class="signup-form" method="POST" >
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" >
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" >
                     </div>
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="remember" name="remember" required>
+                        <input type="checkbox" id="remember" name="remember" >
                         <label for="remember">Remember me</label>
                     </div>
                     <div class="button-login-section">

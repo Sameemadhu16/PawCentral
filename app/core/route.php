@@ -1,13 +1,13 @@
 <?php
 
-
-
-route('service','Service@index');
-route('service/postpet','Postpet@index');
-route('service/postpet/postpetnext','Postpetnext@index');
-route('service/postpet/postpetnext/selling','Selling@index');
-route('service/manage','Manage@index');
-
+// Middleware-like function for admin-only routes
+// function adminRoute($path, $controllerAction) {
+//     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+//         route($path, $controllerAction);
+//     } else {
+//         redirect('login'); // Redirect to login if not admin
+//     }
+// }
 // Home route
 route('home', 'Home@index');
 
@@ -21,11 +21,8 @@ route('login', 'Login@index');// Route for displaying the login page
 route('admin/overview', 'admin/AdminOverview@index');
 route('admin/announcement', 'admin/AdminAnnouncement@index');
 route('admin/add_announcement', 'admin/AdminAddAnnouncement@index');
-route('admin/add_announcement/submit', 'admin/AdminAddAnnouncement@submit');
 route('admin/view_announcement', 'admin/AdminViewAnnouncement@index');
 route('admin/edit_announcement', 'admin/AdminEditAnnouncement@index');
-route('admin/edit_announcement/submit', 'admin/AdminEditAnnouncement@submit');
-
 route('admin/medical_registration', 'admin/AdminMedicalRegistration@index');
 route('admin/report', 'admin/AdminReport@index');
 route('admin/user_account', 'admin/AdminUserAccount@index');
@@ -65,6 +62,17 @@ route('shelter/profile','shelter/Profile@index');
 route('shelter/notification','shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
 route('shelter/lost_and_found','shelter/LostAndFound@index');
+route('shelter/event','shelter/Events@index');
+
+
+//service routings
+route('service','Service@index');
+route('service/postpet','Postpet@index');
+route('service/postpet/postpetnext','Postpetnext@index');
+route('service/postpet/postpetnext/selling','Selling@index');
+route('service/manage','Manage@index');
+
+
 
 
 
