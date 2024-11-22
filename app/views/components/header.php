@@ -25,16 +25,21 @@
 
     <!-- FILTER THE TABS BASED ON THE USER ROLE ACCESSES -->
     <ul class="navbar-links">
-        <li><a href="#">Find Pet</a></li>
-        <li><a href="#">Awareness</a></li>
-        <li><a href="<?=ROOT?>/medical-centers">Medical</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Find a home</a></li>
-        <li><a href="#">Lost & Found</a></li>
+        <li><a href="<?= ROOT ?>/findapet">Find a Pet</a></li>
+        <li><a href="<?= ROOT ?>/announcements">Awareness</a></li>
+        <li><a href="<?=ROOT?>/medical-centers">Medical Care</a></li>
+        <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
+        <li><a href="<?= ROOT ?>/services">Services</a></li>
+        <li><a href="<?= ROOT ?>/shelters">home for a pet</a></li>
+        <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
+        <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
     </ul>
-    <a class="user-profile" href="signup">
-        <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
-    </a>
+
+    <!-- User profile -->
+    <div class="user-profile">
+        <a class="user-profile" href="signup">
+            <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
+        </a>
+    </div>
 
 </header>

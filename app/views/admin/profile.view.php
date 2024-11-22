@@ -27,12 +27,17 @@
                         <i class="fas fa-user-circle overlay-icon"></i>
                     </div>
                     <div class="profile-details">
-                        <p><span>Name       : </span>Sameera Madhuranga</p>
-                        <p><span>UserId     : </span>231243543255</p>
-                        <p><span>Email      : </span>sameeramadhu@gmail.com</p>
-                        <p><span>Mobile No  : </span>0712345678</p>
+                        <p><span>Name : </span>Sameera Madhuranga</p>
+                        <p><span>UserId : </span>231243543255</p>
+                        <p><span>Email : </span>sameeramadhu@gmail.com</p>
+                        <p><span>Mobile No : </span>0712345678</p>
                     </div>
-                    <button class="logout-button">Log Out</button>
+
+                    <div class="button-section">
+                        <button class="logout-button">Log Out</button>
+                        <button class="update-button">Update</button>
+                    </div>
+
                 </div>
             </div>
         </div>

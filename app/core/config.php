@@ -9,6 +9,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('DBHOST','localhost');
     define('DBUSER','root');
     define('DBPASS','');
+    // define('DBPASS','root');
     define('DBDRIVER','');
 }else{
      define('ROOT', 'https://www.pawcentral.com');  //put the website name here if hosted 

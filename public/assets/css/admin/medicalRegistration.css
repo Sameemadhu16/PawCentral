@@ -1,6 +1,7 @@
-.body{
+.body {
+    margin: 0;
     overflow-y: hidden;
-    margin: 0px;
+    background-color: #f3f4f6;
 }
 
 .main-container {
@@ -25,6 +26,7 @@
 }
 .mr_table_t{
     width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mr_row{
@@ -32,12 +34,14 @@
     justify-content: space-between;
     margin-bottom: 5px;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .medical-registration-table {
     width: full;
     border-spacing: 0 5px;
     padding: 5px;
+    border: 3px solid #52b3be;
    
 }
 
