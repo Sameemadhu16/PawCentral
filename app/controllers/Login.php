@@ -21,6 +21,12 @@ class Login{
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
+        if (empty($email) || empty($password)) {
+            // Set error messages in session and redirect back to /login
+            $_SESSION['errors'] = ['Please enter your email and password'];
+            redirect('login');
+        }
+
         if ($user->validateLogin($email, $password)) {
             // Set user session and redirect to home
             $_SESSION['user'] = $user->getUserByEmail($email);

@@ -1,13 +1,5 @@
 <?php
 
-
-
-route('service','Service@index');
-route('service/postpet','Postpet@index');
-route('service/postpet/postpetnext','Postpetnext@index');
-route('service/postpet/postpetnext/selling','Selling@index');
-route('service/manage','Manage@index');
-
 // Home route
 route('home', 'Home@index');
 
@@ -55,5 +47,12 @@ route('shelter/donation','shelter/Donation@index');
 route('shelter/lost_and_found','shelter/LostAndFound@index');
 route('shelter/event','shelter/Events@index');
 
+
+//service routings
+route('service','Service@index');
+route('service/postpet','Postpet@index');
+route('service/postpet/postpetnext','Postpetnext@index');
+route('service/postpet/postpetnext/selling','Selling@index');
+route('service/manage','Manage@index');
 
 
