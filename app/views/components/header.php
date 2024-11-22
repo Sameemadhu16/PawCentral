@@ -1,14 +1,10 @@
 <header class="navbar font-inter">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
-
-    <div class="navbar-logo">
-    <a href="home" class="navbar-link">
-    <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <a href="<?= ROOT?>" class="navbar-logo-set">
+        <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
+        <h1>PawCentral</h1>
     </a>
-        <!-- <img src="/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo"> -->
-        <a href="<?=ROOT?>/home" class="navbar-link navbar-text"><h1>PawCentral</h1></a>
-    </div>
-
 
     <script>
         // To mark the currently selected tab

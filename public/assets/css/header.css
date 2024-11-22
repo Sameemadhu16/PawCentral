@@ -14,7 +14,6 @@ body, html {
     align-items: center; /* Centers content vertically */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin:0;
-    z-index: 100;
 }
 
 .navbar-logo {
@@ -37,21 +36,14 @@ body, html {
     background-color: #6A0DAD;
 }
 
-.navbar a {
+.navbar h1 {
     font-size: 35px;
     margin: 0;
     font-weight: bold;
     font-family: sans-serif;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     letter-spacing: 1px;
-    /* transition: transform 0.3s ease; */
-    text-decoration:none;
-    color:inherit;
-    
-}
-
-.navbar h1{
-    font-size: 37px;
+    transition: transform 0.3s ease;
 }
 
 
@@ -99,8 +91,6 @@ body, html {
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out;
-
-    
 }
 
 .navbar-links li a:hover::before {
@@ -210,8 +200,8 @@ body, html {
 
 @media (max-width: 385px) {
     
-    .navbar h1{
-        /* font-size: 33px; */
+    .navbar h1 {
+        font-size: 33px;
         display: none;
     }
 
