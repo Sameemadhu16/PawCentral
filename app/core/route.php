@@ -44,6 +44,9 @@ route('eventsandcampaigns/event_id','EventInfo');
 route('lostandfound/report-found','ReportFound');
 route('lostandfound/idoflost','LostPet');
 
+// userprofile
+route('userprofile','user/UserProfile@index');
+
 // merchanted pets
 route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
