@@ -22,12 +22,7 @@
                 </i>Medical Registrations
             </a>
         </li>
-        <li>
-            <a href="../admin/report" class="nav-link">
-                <i class="fas fa-file-alt icon">
-                </i>Reports
-            </a>
-        </li>
+        
         <li>
             <a href="../admin/user_account" class="nav-link">
                 <i class="fas fa-users icon">
