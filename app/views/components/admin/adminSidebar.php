@@ -54,6 +54,13 @@
             </a>
         </li>
     </ul>
+
+    <div class="logout-tab">
+        <a href="../logout" class="nav-link">
+            <i class="fas fa-sign-out-alt icon"></i>
+            <span>Logout</span>
+        </a>
+    </div>
 </div>
 
 <script>

@@ -64,7 +64,9 @@
 /* Logout tab */
 .logout-tab {
     margin-bottom: 20px; /* Add margin at the bottom */
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
+    width: 80%;
+    height: 20px;
 }
 
 .logout-tab a {
@@ -79,7 +81,7 @@
 }
 
 .logout-tab a:hover {
-    background-color: #9e83e1;
+    /* background-color: #9e83e1; */
     border-radius: 10px;
 }
 
@@ -113,7 +115,7 @@
     .sidebar.active {
         transform: translateX(0); /* Show sidebar when active */
     }
-    
+
     .sidebar ul li a {
         padding: 10px 15px;
         font-size: 16px;
