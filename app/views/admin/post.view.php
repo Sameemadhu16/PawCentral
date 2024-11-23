@@ -56,129 +56,165 @@
 
             <div class="post-section">
                 <section class="interactive-sections">
-                    
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
 
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
 
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
 
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
-                        </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                    </div>
+
+                    <div class="interactive-card">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
                     <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Pet Products">
-                        <div class="card-display">
-                            <h3>Pet Products & Services</h3>
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
-                        <div class="card-overlay">
-                            <h4>Pet Products & Services</h4>
-                            <p>Shop for high-quality pet products and services.</p>
+                    </div>
+                    <div class="interactive-card">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="interactive-card">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="interactive-card">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="interactive-card">
+                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                        <div class="card-content">
+                            <h3>Post Title: Pet Adoption Day</h3>
+                            <p>Type: Adoption Post</p>
+                            <p>Author: Jane Doe</p>
+                            <!-- <div class="post-actions">
+                                <button class="approve-button" onclick="approvePost()">Approve</button>
+                                <button class="edit-button" onclick="editPost()">Edit</button>
+                                <button class="delete-button" onclick="deletePost()">Delete</button>
+                            </div> -->
                         </div>
                     </div>
                     <!-- Add more interactive-card divs as needed -->

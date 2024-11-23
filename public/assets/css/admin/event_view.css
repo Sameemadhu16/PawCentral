@@ -1,0 +1,195 @@
+.body {
+    margin: 0;
+    overflow-y: hidden;
+    background-color: #f3f4f6;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/* Event Header */
+
+.event-container {
+    width: 90%;
+    max-width: 800px;
+    min-height: 550px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease;
+}
+.event-container h1 {
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Event Card */
+.event-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    min-height: 250px;
+}
+
+/* Event Image */
+.event-image {
+    max-width: 200px;
+    max-height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Event Details */
+.event-details {
+    flex: 1;
+}
+
+.event-details h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.event-details p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Event Actions */
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+}
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back-icon a:hover {
+    color: #005fa3;
+}
+
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
+}
+.approve-btn,
+.delete-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white;
+    text-align: center;
+    width: 100px;
+}
+
+/* Approve Button */
+.approve-btn {
+    background-color: #28a745;
+}
+
+.approve-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-3px);
+}
+
+/* Event Description */
+.event-description {
+    margin-top: 20px;
+}
+
+.event-description h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.event-description p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .event-image {
+        max-width: 100%;
+    }
+
+    .event-actions {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .approve-btn,
+    .delete-btn {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 15px;
+    }
+
+    .event-details h2 {
+        font-size: 18px;
+    }
+
+    .event-description h3 {
+        font-size: 16px;
+    }
+
+    .event-description p {
+        font-size: 12px;
+    }
+}

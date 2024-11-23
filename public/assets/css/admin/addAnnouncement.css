@@ -20,7 +20,10 @@
     border-radius: 12px;
     transition: box-shadow 0.3s ease;
 }
-
+.container h2{
+    font-family:  sans-serif;
+    color: #000000;
+}
 /* .content:hover {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 } */
