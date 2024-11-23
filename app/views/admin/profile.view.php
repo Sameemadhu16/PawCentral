@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="button-section">
-                        <button class="logout-button">Log Out</button>
+                        <!-- <button class="logout-button">Log Out</button> -->
                         <button class="update-button">Update</button>
                     </div>
 

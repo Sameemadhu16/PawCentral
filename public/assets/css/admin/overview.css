@@ -29,6 +29,7 @@
     margin-top: 20px;
 }
 
+
 /* Individual card styling */
 .card {
     background-color: rgb(236, 222, 236);
@@ -83,6 +84,21 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: width 0.3s ease; /* Smooth width transition on hover */
+}
+.generate-button {
+    background-color: #6A0DAD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.generate-button:hover {
+    background-color: #500a82;
 }
 
 /* Media query for mobile responsiveness */

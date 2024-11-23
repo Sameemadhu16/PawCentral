@@ -2,11 +2,18 @@
     margin: 0;
     overflow-y: hidden;
     background-color: #f3f4f6;
+    overflow: hidden;
 }
 
-.main-container{
+/* Container styling */
+.main-container {
     display: flex;
-    
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .content {
@@ -16,136 +23,105 @@
     padding: 20px;
     margin-top: 20px;
     margin-left: 100px; /* To align with fixed sidebar */
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: scroll;
     border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-/* .content:hover {
     
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
-} */
-
-.content h2 {
-    color: #000000;
-    margin-bottom: 20px;
+}
+.content h2{
     font-family:  sans-serif;
-    font-weight: bold;
+    color: #000000;
 }
 
-.event-section {
-    width: 100%;
-    padding: 10px;
-    background-color: #f9f9f9;
-    max-height:550px; /* Adjust based on layout */
-    overflow-y: auto; /* Enable scrolling if content exceeds max-height */
-    border-radius: 10px;
-    margin-right: 10px;
-}
-
-.interactive-sections {
+.event-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    /* background-color: #0077cc; */
+    /* overflow-y: scroll; */
+    max-height: 550px;
+    /* margin-bottom: 50px; */
 }
 
-.interactive-card {
-    position: relative;
-    flex: 1 1 calc(33.333% - 20px); /* Three cards per row */
-    min-width: 150px; /* Adjust as needed */
-    overflow: hidden;
-    border-radius: 10px;
-    height: 200px;
-    transition: transform 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.interactive-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s;
-}
-
-.interactive-card:hover img {
-    transform: scale(1.1);
-}
-
-.card-display {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 24px;
-    background: rgba(0, 0, 0, 0.35);
-    transition: opacity 0.3s;
-}
-
-.card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.event-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-.interactive-card:hover .card-overlay {
-    opacity: 1;
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.interactive-card:hover .card-display {
-    opacity: 0;
+/* .event-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+} */
+
+.event-details {
+    margin-top: 10px;
+}
+
+.event-details h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.event-details p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.event-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.approve-btn, .delete-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.approve-btn {
+    background-color: #0077cc;
+    color: #fff;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.approve-btn:hover {
+    background-color: #005fa3;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .interactive-card {
-        flex: 1 1 calc(50% - 20px); /* Two cards per row */
-    }
-
-    .card {
-        width: calc(50% - 30px); /* Two cards per row in cards-container */
-    }
-}
-
 @media (max-width: 768px) {
-    .interactive-sections {
-        flex-direction: column;
+    .event-card {
+        width: calc(50% - 20px);
     }
-
-    .interactive-card {
-        flex: 1 1 100%;
-        height: 300px;
-    }
-
 }
 
-/* Optional: Customize scrollbar for WebKit browsers */
-.interactive-sections::-webkit-scrollbar,
-.event-section::-webkit-scrollbar {
-    width: 8px;
-}
-
-.interactive-sections::-webkit-scrollbar-thumb,
-.event-section::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
+@media (max-width: 480px) {
+    .event-card {
+        width: 100%;
+    }
 }

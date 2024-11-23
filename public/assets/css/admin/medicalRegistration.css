@@ -20,10 +20,15 @@
     overflow: auto;
     border-radius: 8px;
 }
+.container h2{
+    font-family:  sans-serif;
+    color: #000000;
+}
 .content{
     margin-top: 10px;
 
 }
+
 .mr_table_t{
     width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
