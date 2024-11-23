@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/homepage.css">
     <!-- <link rel="stylesheet" href="./assets/css/homepage1.css">  CSS FOR STATS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <title>Document</title>
 </head>
 <body>
@@ -55,7 +56,7 @@
                 <h3>Find and Join Events</h3>
             </div>
             <div class="card-overlay">
-                <h4>Find and Join Events</h4>
+                <h3>Find and Join Events</h3>
                 <p>Discover events and communities near you and get involved.</p>
             </div>
         </div>
@@ -65,7 +66,7 @@
                 <h3>Pet Products & Services</h3>
             </div>
             <div class="card-overlay">
-                <h4>Pet Products & Services</h4>
+                <h3>Pet Products & Services</h3>
                 <p>Shop for high-quality pet products and services.</p>
             </div>
         </div>
@@ -95,6 +96,9 @@
     </div>
 </section>
 </section>
+
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
 
 <script>
     // Function to count up from 0 to the target value
