@@ -10,15 +10,15 @@
             </a>
         </li>
         <li>
-            <a href="../shelter/notification" class="nav-link">
+            <a href="../shelter/adoption_requests" class="nav-link">
                 <i class="fas fa-list icon"></i>
-                <span>Notifications</span>
+                <span>Adoption requests</span>
             </a>
         </li>
         <li>
-            <a href="../shelter/my_pet" class="nav-link">
-                <i class="fas fa-image icon"></i>
-                <span>My Pets</span>
+            <a href="../shelter/requests_to_adopt" class="nav-link">
+                <i class="fas fa-tasks icon"></i>
+                <span>Requests to adopt</span>
             </a>
         </li>
         <li>
@@ -40,9 +40,9 @@
             </a>
         </li>
         <li>
-            <a href="../shelter/lost_and_found" class="nav-link">
-                <i class="fas fa-tags icon"></i>
-                <span>Lost & Found</span>
+            <a href="../shelter/sell_pets" class="nav-link">
+                <i class="fas fa-store icon"></i>
+                <span>SELL Pets?</span>
             </a>
         </li>
     </ul>
