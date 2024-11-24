@@ -18,6 +18,11 @@ trait Database {
         $con = $this->connect();
         $stmt = $con->prepare($query);
     
+        // Debugging: Print the query and data for inspection
+    // echo "Query: $query\n";
+    // echo "Data: ";
+    // print_r($data);
+    
         $check = $stmt->execute($data);
     
         // If the query was successful, check if we are fetching data or simply returning a success result

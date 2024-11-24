@@ -1,0 +1,193 @@
+/* General Styles */
+.body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    overflow-y: hidden;
+}
+
+.main-container {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 100px; /* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+
+.topicnbuttons {
+    display: flex;
+    /* flex-direction: row; */
+    /* background-color: greenyellow; */
+}
+.topicnbuttons button{
+    /* margin-left: auto; */
+    justify-self: flex-end;
+    margin-left: auto;
+}
+
+/* Pets Container */
+.pets-container {
+    flex: 1;
+    margin-left: 20px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    max-height: 600px;
+}
+
+/* Pet Card */
+.pet-card {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    max-width: 600px;
+    transition: transform 0.3s ease;
+  }
+  
+  .pet-card:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Pet photo */
+  .pet-photo {
+    /* width: 100%; */
+    width: 200px;
+    height: 100%;
+    max-height: 150px;
+    /* object-fit: cover; */
+    object-fit: scale-down;
+    border-radius: 10px 0 0 0px;
+    background: linear-gradient(to right, white, rgb(172, 172, 172), white); /* Gradient background */
+  }
+  
+  /* Pet details */
+  .pet-details {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .details h3 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .details p {
+    margin: 5px 0;
+    color: #555;
+    font-size: .9rem;
+  }
+
+  .date {
+    font-size: .7rem !important;
+  }
+  
+  /* Action button */
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    margin: 0px;
+    width: 100%;
+    /* background-color: red; */
+    justify-content: right;
+  }
+  .action-button {
+    background-color: #6a11cb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s ease;
+  }
+  .fixedsize {
+    max-width: 170px !important;
+  }
+  
+  .action-button:hover {
+    background-color: #2575fc;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .pet-card {
+      flex-direction: column;
+      align-items: center;
+    }
+        
+    .details h3 {
+        margin: 0 0 10px;
+        color: #333;
+        font-size: 1.4rem;
+    }
+    
+    .details p {
+        margin: 5px 0;
+        color: #555;
+        font-size: .9rem;
+    }
+
+    .date {
+        font-size: .7rem !important;
+    }
+  
+    .pet-photo {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 0px 0px 0 0;
+    }
+   
+    
+  
+    .action-button {
+      width: 45%;
+      min-width:150px ;
+      margin: 10px;
+    }
+  }
+
+  @media (max-width: 500px) {  
+    .details h3 {
+        margin: 0 0 10px;
+        color: #333;
+        font-size: 1.1rem;
+    }
+    
+    .details p {
+        margin: 5px 0;
+        color: #555;
+        font-size: .8rem;
+    }
+
+    .date {
+        font-size: .65rem !important;
+    }
+  
+    .pet-photo {
+      width: 100%;
+      border-radius: 0px 0px 0 0;
+    }
+    .buttons {
+        flex-direction: column;
+    }
+    .action-button {
+        padding: 8px 16px;
+        margin: 0px 10px;
+        margin-bottom: 8px;
+        font-size: .8rem;
+    }
+  }

@@ -48,7 +48,11 @@ route('lostandfound/report-found','ReportFound');
 route('lostandfound/idoflost','LostPet');
 
 // userprofile
-route('userprofile','user/UserProfile@index');
+route('userprofile','user/Profile@index');
+route('userprofile/profile','user/Profile@index');
+route('userprofile/notifications','user/Notification@index');
+route('userprofile/donations','user/Donation@index');
+route('userprofile/lost_and_found','user/LostAndFound@index');
 
 // merchanted pets
 route('findapet/post_id','PetPost_purchase');
