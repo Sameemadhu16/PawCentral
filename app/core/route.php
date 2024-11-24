@@ -65,4 +65,6 @@ route('medical-center','Medical/MediCenter@index');
 route('medical-appointment-date','Medical/Appointment_Date@index');
 route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
 route('medical-appointment-reason','Medical/Appointment_Reason@index');
-
+//medical profile
+route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
+route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
