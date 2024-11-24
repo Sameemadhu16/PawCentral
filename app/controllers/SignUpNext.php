@@ -11,7 +11,8 @@ class SignUpNext {
             $this->handleSecondStep($user);
         }
 
-        $this->view("signupLogin.f/signupNext");
+        $this->view("signupLogin.f/signupNext" , $_SESSION['signup_data2'] ?? []);
+        unset($_SESSION['signup_data2']);
     }
 
     // Handle the second step form submission
@@ -27,24 +28,25 @@ class SignUpNext {
 
         // Validate the data for the second step
         if ($user->validateSecondStep($data)) {
-            echo "Validation passed.<br>"; // Debug message
+            // echo "Validation passed.<br>"; // Debug message
 
             // Attempt to create the user in the database
             $user->createUser($data);
-            echo "User created.<br>"; // Debug message
+            // echo "User created.<br>"; // Debug message
 
             // Clear session data
             unset($_SESSION['signup_data']);
-            echo "Session cleared.<br>"; // Debug message
+            // echo "Session cleared.<br>"; // Debug message
 
             // Redirect to login
             redirect('login');
-            echo "Redirecting to login.<br>"; // Debug message (should not display if redirect works)
+            // echo "Redirecting to login.<br>"; // Debug message (should not display if redirect works)
 
         } else {
             // Pass errors to the view if validation fails
             $data['errors'] = $user->errors;
-            $this->view('signupLogin.f/signupNext', $data);
+            $_SESSION['signup_data2'] = $data;
+            // $this->view('signupLogin.f/signupNext', $data);
         }
     }
 }
