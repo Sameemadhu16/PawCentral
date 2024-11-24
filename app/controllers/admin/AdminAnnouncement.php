@@ -14,6 +14,7 @@ class AdminAnnouncement
             'order_type' => 'desc'
         ]);
 
+        // echo password_hash('lehan1234*', PASSWORD_DEFAULT);
         // Pass announcements to the view
         $this->view('admin/announcement', ['announcements' => $announcements]);
     }

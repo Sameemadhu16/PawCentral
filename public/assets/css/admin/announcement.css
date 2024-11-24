@@ -27,7 +27,7 @@
 }
 
 /* .content:hover {
-    
+
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
 } */
@@ -116,9 +116,9 @@
 
 .announcement-info p {
     margin: 5px 0;
-    color: #333;
+     color: #333; 
     line-height: 1.6;
-    font-size: 16px;
+    /* font-size: 16px; */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -126,7 +126,13 @@
     -webkit-box-orient: vertical;
 }
 
-
+.description{
+    /* font-weight: bold; */
+    font-family: sans-serif;
+    font-size: 16px;
+    /* color: #a12e2e; */
+    /* background-color: aqua; */
+}
 /* Card actions */
 .card-actions {
     display: flex;

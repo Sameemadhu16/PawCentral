@@ -30,7 +30,7 @@
                 <?php endif; ?>
 
 
-                <form action="<?= ROOT ?>/admin/add_announcement/submit" method="POST">
+                <form  method="POST">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" placeholder="Enter Title" required>
 
@@ -40,7 +40,7 @@
                     <label for="description">Description</label>
                     <textarea class="textarea_class" id="description" name="description" placeholder="Add Description" required></textarea>
 
-                    <button type="submit" class="done-button">Done</button>
+                    <button type="submit" name="submitAnnouncement" class="done-button">Done</button>
                 </form>
             </section>
         </div>

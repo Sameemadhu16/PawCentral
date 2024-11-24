@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
 
         <div class="user-accounts-section">
             <h2>User Accounts</h2>
-            
+
             <!-- Overview Cards Section -->
             <div class="cards-container">
                 <div class="card">
@@ -53,7 +54,7 @@
 
             <!-- Search and Filter Section -->
             <div class="search-filter-container">
-                <input type="text" class="search-bar" placeholder="Search users..." > <i class="fas fa-search" ></i>
+                <input type="text" class="search-bar" placeholder="Search users..."> <i class="fas fa-search"></i>
                 <select class="filter-dropdown">
                     <option value="">Filter by User Type</option>
                     <option value="regular">Regular User</option>
@@ -68,61 +69,76 @@
             <!-- User List -->
             <div class="user-list">
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+
+
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
                 <div class="user-card">
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-                <div class="user-card">
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
@@ -133,4 +149,19 @@
         </div>
     </div>
 </body>
+<script>
+    function markAsBanned(button) {
+        // Change the button text to "Banned"
+        button.textContent = "Banned";
+
+        // Disable the button to prevent further clicks
+        button.disabled = true;
+
+        // Optional: Change the button's style to indicate it's banned
+        button.style.backgroundColor = "#b0bec5"; // Greyed-out background
+        button.style.color = "#ffffff"; // White text
+        button.style.cursor = "not-allowed"; // Change cursor to not-allowed
+    }
+</script>
+
 </html>

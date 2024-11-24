@@ -1,14 +1,16 @@
 <header class="navbar font-inter">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
-    <a href="<?= ROOT?>" class="navbar-logo-set">
-        <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
-        <h1>PawCentral</h1>
+
+    <div class="navbar-logo">
+    <a href="home" class="navbar-link">
+    <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
     </a>
+        <!-- <img src="/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo"> -->
+        <a href="<?=ROOT?>/home" class="navbar-link navbar-text"><h1>PawCentral</h1></a>
+    </div>
 
-    
+
     <script>
-
         // To mark the currently selected tab
     function toggleNavbar() {
         const navbarLinks = document.querySelector('.navbar-links');
@@ -26,16 +28,23 @@
 
     <!-- FILTER THE TABS BASED ON THE USER ROLE ACCESSES -->
     <ul class="navbar-links">
-        <li><a href="#">Find Pet</a></li>
-        <li><a href="#">Awareness</a></li>
-        <li><a href="#">Medical</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Find a home</a></li>
-        <li><a href="#">Lost & Found</a></li>
+
+        <li><a href="<?= ROOT ?>/findapet">Find a Pet</a></li>
+        <li><a href="<?= ROOT ?>/announcements">Awareness</a></li>
+        <li><a href="#">Medical Care</a></li>
+        <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
+        <li><a href="<?= ROOT ?>/services">Services</a></li>
+        <li><a href="<?= ROOT ?>/shelters">home for a pet</a></li>
+        <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
+        <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
+
     </ul>
-    <a class="user-profile" href="signup">
-        <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
-    </a>
+
+    <!-- User profile -->
+    <div class="user-profile">
+        <a class="user-profile" href="signup">
+            <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
+        </a>
+    </div>
 
 </header>
