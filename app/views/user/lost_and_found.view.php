@@ -31,14 +31,14 @@
         <?php foreach ($pets as $pet): ?>
             <div class="pet-card" id=<?= htmlspecialchars($pet->id); ?>>
                 <img src=<?=htmlspecialchars($pet->img1)?> alt="nikkhy" class="pet-photo">
-                <div class="pet-details">
+                <a class="pet-details" href="<?=ROOT?>/home">
                     <div class="details">
                         <h3><?= htmlspecialchars($pet->petName); ?> - <?= htmlspecialchars($pet->breed); ?></h3>
                         <p><?= htmlspecialchars($pet->status); ?></p>
                         <p><?= htmlspecialchars($pet->address); ?> - <?= htmlspecialchars($pet->location); ?></p>
                         <p class="date">Reported on: <?= htmlspecialchars($pet->publishedOn); ?></p>
                     </div>
-                </div>
+                </a>
                 <div class="buttons">
                     <button class="action-button">Update info</button>
                     <button class="action-button">Mark complete</button>

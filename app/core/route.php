@@ -52,6 +52,7 @@ route('userprofile/profile','user/Profile@index');
 route('userprofile/notifications','user/Notification@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/lost_and_found','user/LostAndFound@index');
+route('lostandfound/{postid}','user/LostAndFound@show');
 
 // merchanted pets
 route('findapet','PetPosts');

@@ -32,4 +32,25 @@ class LostAndFound
         // Pass data to the view
         $this->view('user/lost_and_found', $data);
     }
+
+
+    // Method to show the detailed view of a pet
+    public function show($petid)
+    {
+        // Initialize the model
+        $model = new LostAndFoundModel();
+
+        // Retrieve the pet data by petid
+        $data['pet'] = $model->getPetById($petid);
+
+        // Check if pet data was found
+        if (!$data['pet']) {
+            // Handle error if pet not found (optional)
+            echo "Pet not found.";
+            exit;
+        }
+
+        // Pass data to the view
+        $this->view('lost-pet', $data);
+    }
 }

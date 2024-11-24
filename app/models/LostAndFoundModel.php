@@ -14,4 +14,11 @@ class LostAndFoundModel
 
     return $result;
     }
+
+    public function getPetById($petid)
+    {
+        $query = "SELECT * FROM $this->table WHERE id = :petid";
+        $data = ['petid' => $petid];
+        return $this->get_row($query, $data);  // Assuming get_row fetches one record
+    }
 }

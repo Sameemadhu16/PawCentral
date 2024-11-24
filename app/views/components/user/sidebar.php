@@ -4,37 +4,37 @@
     <script src="<?= ROOT ?>/assets/js/admin/adminSidebar.js" defer></script>
     <ul>
         <li>
-            <a href="../userprofile/notifications" class="nav-link ">
+            <a href="<?=ROOT?>/userprofile/notifications" class="nav-link ">
                 <i class="fas fa-tasks icon"></i>
                 Notifications
             </a>
         </li>
         <li>
-            <a href="../userprofile/mypets" class="nav-link">
+            <a href="<?=ROOT?>/userprofile/mypets" class="nav-link">
                 <i class="fas fa-medkit icon">
                 </i>My Pets
             </a>
         </li>
         <li>
-            <a href="../userprofile/event" class="nav-link">
+            <a href="<?=ROOT?>/userprofile/event" class="nav-link">
                 <i class="fas fa-calendar-alt icon">
                 </i>Events
             </a>
         </li>
         <li>
-            <a href="../userprofile/lost_and_found" class="nav-link">
+            <a href="<?=ROOT?>/userprofile/lost_and_found" class="nav-link">
                 <i class="fas fa-tags icon"></i>
                 <span>Lost & Found</span>
             </a>
         </li>
         <li>
-            <a href="../userprofile/donations" class="nav-link">
+            <a href="<?=ROOT?>/userprofile/donations" class="nav-link">
                 <i class="fas fa-hand-holding-usd icon">
                 </i>Donations
             </a>
         </li>
         <li>
-            <a href="../userprofile/profile" class="nav-link">
+            <a href="<?=ROOT?>/userprofile/profile" class="nav-link">
                 <i class="fas fa-user icon">
                 </i>Profile
             </a>
