@@ -75,26 +75,23 @@ class User
         return empty($this->errors);
     }
 
-    public function createUser($data)
-    {
-        try {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    // public function createUser($data)
+    // {
+    //     try {
+    //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            if (isset($data['proof']) && !empty($data['proof']['name'])) {
-                $data['proof_of_service'] = $this->uploadFile($data['proof']);
-            }
-            unset($data['proof']);
+            
 
-            $this->insert($data);
-        } catch (Exception $e) {
-            $this->errors[] = "Error saving user: " . $e->getMessage();
-            return false;
-        }
-        return true;
-    }
+    //         $this->insert($data);
+    //     } catch (Exception $e) {
+    //         $this->errors[] = "Error saving user: " . $e->getMessage();
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
 
-    private function uploadFile($file)
+    public function uploadFile($file)
     {
         $targetDir = "uploads/proofs/";
         $filePath = $targetDir . basename($file['name']);
