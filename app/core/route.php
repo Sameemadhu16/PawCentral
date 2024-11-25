@@ -68,3 +68,5 @@ route('medical-appointment-reason','Medical/Appointment_Reason@index');
 //medical profile
 route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
 route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
+route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');

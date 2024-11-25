@@ -1,18 +1,17 @@
 <div class="sidebar" id="sidebar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medicalSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="<?= ROOT ?>/assets/js/admin/adminSidebar.js" defer></script>
-    <!-- <script src="<?= ROOT ?>/assets/js/medical/profile/medical-profile-spa.js" defer></script> -->
+    <script src="<?= ROOT ?>/assets/js/medical/profile/medicalSidebar.js" defer></script>
 
     <ul>
         <li>
-            <a href="<?=ROOT?>/medical-center/dashboard/profile" class="nav-link active" data-page="profile">
+            <a href="#" class="nav-link active" data-page="profile">
                 <i class="fas fa-user icon"></i>
-                Profiles
+                Profile
             </a>
         </li>
         <li>
-            <a href="<?=ROOT?>/medical-center/dashboard/appointments" class="nav-link" data-page="appointments">
+            <a href="#" class="nav-link" data-page="appointments">
                 <i class="fas fa-bullhorn icon"></i>
                 Appointments
             </a>

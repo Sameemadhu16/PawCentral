@@ -6,6 +6,11 @@
     <title>PawCentral - Find a Pet</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-profile-spa.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-profile.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-appointments.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-veterinarians.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <?php include("../app/views/components/header.php"); ?>

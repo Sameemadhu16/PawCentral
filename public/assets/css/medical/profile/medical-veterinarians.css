@@ -1,0 +1,106 @@
+:root {
+    --primary-color: #6A0DAD;
+    --secondary-color: #882FC8;
+    --accent-color: #FFFFFF;
+    --text-color: #000000;
+    --light-gray: #F0F0F0;
+    --dark-gray: #333333;
+}
+
+.page-style-veterinarians{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-style-veterinarians .body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.add-button-div{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+    width: 100%;
+}
+
+.page-style-veterinarians .add-vet-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.page-style-veterinarians .vet-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(400px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.page-style-veterinarians .vet-card {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+    padding: 20px;
+    width:100%;
+    max-width: 380px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-style-veterinarians .vet-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.page-style-veterinarians .vet-image {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.page-style-veterinarians .vet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-style-veterinarians .vet-card h3 {
+    color: var(--primary-color);
+}
+
+.page-style-veterinarians .edit-btn, .delete-btn {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 85px;
+}
+
+.page-style-veterinarians .buttons-div{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.delete-btn {
+    background-color: var(--dark-gray);
+}

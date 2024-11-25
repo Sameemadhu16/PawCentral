@@ -18,3 +18,22 @@ links.forEach(link => {
         link.classList.add('active');
     }
 });
+
+// Add sidebar toggle functionality
+const sidebar = document.getElementById('sidebar');
+const toggleButton = document.createElement('button');
+toggleButton.className = 'sidebar-toggle';
+toggleButton.innerHTML = '<i class="fas fa-bars"></i>';
+
+sidebar.appendChild(toggleButton);
+
+toggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+// Close sidebar when clicking outside
+document.addEventListener('click', (event) => {
+    if (!sidebar.contains(event.target) && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+    }
+});

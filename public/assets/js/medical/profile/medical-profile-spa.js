@@ -19,6 +19,17 @@ function loadPage(page) {
         return;
     }
 
+    // Remove any existing page-specific classes
+    const existingClasses = Array.from(pageWindow.classList);
+    existingClasses.forEach(className => {
+        if (className.startsWith('page-style-')) {
+            pageWindow.classList.remove(className);
+        }
+    });
+
+    // Add the new page-specific class
+    pageWindow.classList.add(`page-style-${page}`);
+
     fetch(`http://localhost/PawCentral/public/medical-center/dashboard/${page}`)
         .then(response => response.text())
         .then(html => {
@@ -44,29 +55,29 @@ function loadPage(page) {
         });
 }
 
-function loadPanel(panleName, callback) {
-    // load panel html
-    fetch(URL).then(res => res.text()).then(() => {
-          // set inner html
-          callback();
-    })
-  }
+// function loadPanel(panleName, callback) {
+//     // load panel html
+//     fetch(URL).then(res => res.text()).then(() => {
+//           // set inner html
+//           callback();
+//     })
+//   }
   
   
-  // usage example 
+//   // usage example 
   
-  function userPanelActions() {
-    // what ever you wanna do after loading panel html
-  }
-  
-  
-  function productPanelActions() {
-    // what ever you wanna do after loading panel html
-  }
+//   function userPanelActions() {
+//     // what ever you wanna do after loading panel html
+//   }
   
   
-  // switch to panel user 
-  loadPanel('user', userPanelActions);
+//   function productPanelActions() {
+//     // what ever you wanna do after loading panel html
+//   }
   
-  // switch to panel product
-  loadPanel('product', productPanelActions);
+  
+//   // switch to panel user 
+//   loadPanel('user', userPanelActions);
+  
+//   // switch to panel product
+//   loadPanel('product', productPanelActions);
