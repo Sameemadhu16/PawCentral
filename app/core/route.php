@@ -32,6 +32,7 @@ route('admin/post', 'admin/AdminPost@index');
 route('admin/post_info', 'admin/AdminPostInfo@index');
 route('admin/donation', 'admin/AdminDonation@index');
 route('admin/profile', 'admin/AdminProfile@index');
+route('admin/profile_view','admin/AdminProfileView@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
 
 
