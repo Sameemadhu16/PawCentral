@@ -16,25 +16,26 @@
         <h2>Selling</h2>
         <hr/>
     </div>
-    <form class="form1">
+    <form class="form1" action="<?=ROOT?>/service/postpet/postpetnext/selling/submit" method="POST">
         <label class="pricel">Price:</label>
-        <input type="text" placeholder="0.00" class="price"><br><br><br>
+        <input type="text" name="price" placeholder="0.00" class="price"><br><br><br>
         <label class="fee">Fee is negotiable</label>
-        <input class="feebox" type="checkbox"><br>
+        <input class="feebox" name="feebox" type="checkbox"><br>
         <h3 class="location">Location Details:</h3>
         <label class="cityl">City:</label>
-        <input type="text" class="city"><br><br>
+        <input type="text" name="city" class="city"><br><br>
         <label class="addressl">Exact<br>Address:</label>
-        <input type="text" class="address"><br><br><br>
+        <input type="text" name="address" class="address"><br><br><br>
         <label class="terms">I agree to terms and conditions</label>
-        <input class="terms" type="checkbox"><br>
+        <input class="terms" name="checkbox" type="checkbox"><br>
         <a href="terms">Review Terms</a>
+        <button class="submit">Submit</button><br>
     </form>
     
     <p class="text">Confirm that all information is accurate and ready for submission</p>
     <div class="conclusion"></div>
-    <button class="review">Review</button><br>
-    <button class="submit">Submit</button>
+    
+    
     </div>
     </div>
     

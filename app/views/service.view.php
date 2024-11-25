@@ -25,7 +25,7 @@
                 <li>Manage international pet <br/>imports.</li>
                 <li>Offering pets for <br/>temporary stays.</li>
             </ul>
-            <button>Create Post</button>
+            <button onclick="location.href='<?=ROOT?> /service/postpet'">Create Post</button>
         </div>
         <div class="managePost">
             <h3>Manage Post</h3>
@@ -35,9 +35,15 @@
                 <li>Track engagement and <br/>performance</li>
                 <li>Ensure your pets find the <br/>right homes</li>
             </ul>
-            <button>View Post</button>
+            <button onclick="location.href='<?=ROOT?> /service/manage'">View Post</button>
         </div>
     </div>
     
 </body>
 </html>
+<?php
+if(isset($_SESSION['success_message'])){
+    echo "<script>alert('".$_SESSION['success_message']."');</script>";
+    unset($_SESSION['success_message']);
+}
+?>

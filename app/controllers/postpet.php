@@ -6,8 +6,8 @@ class Postpet{
     }
     public function submit(){
         if($_SERVER['REQUEST_METHOD']==='POST'){
-            $model=new PostPetModel();
-            $data=[
+            $model=new Postpet();
+            $data1=[
                 'tradeType'=>htmlspecialchars($_POST['tradeType']),
                 'petName'=>htmlspecialchars($_POST['petName']),
                 'species'=>htmlspecialchars($_POST['species']),
@@ -17,12 +17,13 @@ class Postpet{
                 'contactNumber'=>htmlspecialchars($_POST['contactNumber']),
                 'email'=>filter_var($_POST['email'],FILTER_SANITIZE_EMAIL),
             ];
+            $_SESSION['postpet_data'] = $data1;
 
+            // Redirect to the next page (confirmation page)
+            header("Location: ". ROOT . "/service/postpet/postpetnext");
+            exit(); // Prevent further execution
 
-            $model->insertPost($data);
-
-            header("location:". ROOT ."postpet/postpetnext");
-            exit;
+          
         }
     }
 }
