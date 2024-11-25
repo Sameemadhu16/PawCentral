@@ -34,7 +34,6 @@ CREATE TABLE `announcements` (
   `user_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -43,11 +42,12 @@ CREATE TABLE `announcements` (
 -- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`id`, `user_id`, `title`, `content`, `date`, `created_at`, `updated_at`) VALUES
-(10, 2, 'Pet Adoption Event', 'Join us this weekend for our annual pet adoption event. Find your new furry friend! orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2024-10-31', '2024-11-10 06:03:28', '2024-11-10 06:03:28'),
-(11, 2, 'Grooming Services Discount', 'Get 20% off all grooming services this week. Book your appointment now!', '2024-11-01', '2024-11-10 06:04:24', '2024-11-10 06:04:24'),
-(12, 2, 'New Veterinarian Joining', 'We\'re pleased to welcome Dr. Smith to our veterinary team. She specializes in exotic pets.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2024-10-27', '2024-11-10 06:04:52', '2024-11-10 06:04:52'),
-(13, 2, 'Pet Training Classes', 'New series of pet training classes starting next month. Early bird discounts available!', '2024-09-30', '2024-11-10 06:05:35', '2024-11-10 06:05:35');
+INSERT INTO `announcements` (`id`, `user_id`, `title`, `content`, `created_at`, `updated_at`) VALUES
+(11, 2, 'Grooming Services Discount', 'Get 20% off all grooming services this week. Book your appointment now!', '2024-11-10 06:04:24', '2024-11-10 06:04:24'),
+(12, 2, 'New Veterinarian Joining', 'We\'re pleased to welcome Dr. Smith to our veterinary team. She specializes in exotic pets.orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2024-11-10 06:04:52', '2024-11-10 06:04:52'),
+(13, 2, 'Pet Training Classes', 'New series of pet training classes starting next month. Early bird discounts available!', '2024-11-10 06:05:35', '2024-11-10 06:05:35'),
+(17, 3, ' New markdown! Biggest sale in 60+ days', 'Editable Pet Profile CANVA template, Dog Adoption Marketing Flyer,Doggie Daycare Printable,Pet Sitter Notes,About my Puppy Dog.Animal Rescue one.qwerty', '2024-11-14 08:14:44', '2024-11-20 09:05:52'),
+(19, 2, 'Party decor for gatherings and celebrations', 'Editable new puppy announcement digital fur baby reveal tiny paws announcement haven\'t told the cat social media dog reveal dog announcement one.\r\n\r\n', '2024-11-20 13:38:30', '2024-11-22 22:40:04');
 
 -- --------------------------------------------------------
 
@@ -98,19 +98,34 @@ CREATE TABLE `users` (
   `service_type` varchar(100) DEFAULT NULL,
   `service_name` varchar(100) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
+  `mobile_no` int(20) DEFAULT NULL,
+  `profile_pic` varchar(255) DEFAULT NULL,
   `proof_of_service` varchar(255) DEFAULT NULL,
   `email_verified` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `role` enum('user','admin') DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `is_service`, `service_type`, `service_name`, `location`, `proof_of_service`, `email_verified`, `created_at`, `updated_at`) VALUES
-(1, 'Test', 'User', 'test@example.com', 'hashed_password', 'no', NULL, NULL, NULL, NULL, 1, '2024-11-10 05:31:45', '2024-11-10 05:31:45'),
-(2, 'sameera', 'Madhuranga', 'sameemadhu2003@gmail.com', '$2y$10$s./aJR4mB2uovKO3XjNt5O8IbHFstlB0euUt0W0h1OoDpZxJRja56', 'no', NULL, NULL, NULL, NULL, 0, '2024-11-10 05:45:12', '2024-11-10 05:45:12');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `is_service`, `service_type`, `service_name`, `location`, `mobile_no`, `profile_pic`, `proof_of_service`, `email_verified`, `created_at`, `updated_at`, `role`) VALUES
+(2, 'sameera', 'Madhuranga', 'sameemadhu2003@gmail.com', '$2y$10$s./aJR4mB2uovKO3XjNt5O8IbHFstlB0euUt0W0h1OoDpZxJRja56', 'no', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2024-11-10 05:45:12', '2024-11-22 15:22:35', 'admin'),
+(3, 'Shanuka ', 'Malshan', 'shanukamalshan@gmail.com', '$2y$10$pkFVyIr7HHO1CwOdIzn8N.QKp5O8f9yIckvrrzZTCZUICr8.3y9..', 'yes', 'care-service-provider', 'medical provider', 'nalwala,srilanka', NULL, NULL, 'uploads/proofs/Lecture01_CPT101 (1).pdf', 0, '2024-11-14 08:10:56', '2024-11-14 08:10:56', 'user'),
+(4, 'sandaru', 'Nihara', 'sandaru@gmail.com', '$2y$10$00Mqqk0DbfeWAD25PSbz5eAvgDBwp5y.ChoybHsg027tU94UkXT3.', 'yes', 'care-service-provider', 'medical provider', 'matara', NULL, NULL, 'uploads/proofs/Lecture01_CPT101 (1).pdf', 0, '2024-11-17 17:13:44', '2024-11-17 17:13:44', 'user'),
+(5, 'Irumi', 'Theekshana', 'irumi@gmail.com', '$2y$10$ByTpr.Z25ExRSJzjnYYRFOqiEqTrxssgpmucutGTxOaLuTgUds3TS', 'yes', 'medical-provider', 'medical provider', 'Akuressa', NULL, NULL, 'uploads/proofs/Lecture01_CPT101 (1).pdf', 0, '2024-11-20 04:01:34', '2024-11-20 04:01:34', 'user'),
+(6, 'Hirun', 'Mihisara', 'hirun@gmail.com', '$2y$10$tcux4OKfceZfYRPJUbDQqeg6VKeBfiJcYqYR0b1/ViYxTDnXvf0.W', 'no', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2024-11-20 08:09:26', '2024-11-20 08:09:26', 'user'),
+(7, 'sachith', 'avintha', 'sachith@gmail.com', '$2y$10$DubFNEjGev.5kP4thP44s.c8n9f3QsWH/WGzxobJ1eicJ.i.8MwCO', 'yes', 'adoption-shelter', 'shelter', 'Dehiwala,Collombo', NULL, NULL, 'uploads/proofs/Lecture05_CPT101 (1).pdf', 0, '2024-11-20 12:29:45', '2024-11-20 12:29:45', 'user'),
+(8, 'shashika', 'Ekanayake', 'shashika@gmail.com', '$2y$10$eKrwNnEQPIYsxJ3anCpTXOiEQY/EpHubgQXZQeLw/pbr5Yt2JdNj.', 'yes', 'adoption-shelter', 'shelter', 'matara', NULL, NULL, 'uploads/proofs/Lecture01_CPT101 (1).pdf', 0, '2024-11-20 12:39:32', '2024-11-20 12:39:32', 'user'),
+(11, 'Bhakthi', 'Dhanesha', 'bhakthi11@gmail.com', '$2y$10$DAtpObysT1VwrgUDXXuE/edaIdCgzFBvO28a0Au8vVQycBncuZncm', 'yes', 'medical-provider', 'medical provider', 'matara', NULL, NULL, 'uploads/proofs/Lecture05_CPT101 (1).pdf', 0, '2024-11-20 13:33:40', '2024-11-20 13:33:40', 'user'),
+(12, 'Ashan', 'Kavinda', 'ashan@gmail.com', '$2y$10$.Cn/IsBV9w1M02v2EPFHOeEOIieR1cOD73Z8bRDeor57MUG9vG/hK', 'yes', 'care-service-provider', 'medical provider', 'matara', NULL, NULL, 'uploads/proofs/Lecture02_CPT101.pdf', 0, '2024-11-21 05:44:28', '2024-11-21 05:44:28', 'user'),
+(13, 'ishan', 'lakshitha', 'ishan123@gmail.com', '$2y$10$P336cXGpbLNt4suNgc8w7uIq.IA6kex/nEZFO36iMAHSJFxdqON2i', 'yes', 'medical-provider', 'medical provider', 'galle', NULL, NULL, 'uploads/proofs/22000895.pdf', 0, '2024-11-21 16:03:44', '2024-11-21 16:03:44', 'user'),
+(17, 'Lehan', 'lehan', 'lehan@gmail.com', '$2y$10$RvbUdv5L9o/MqvlkAKvJSeIulruVLlOzlfghmAYpCpcl.qm7TAMqm', 'no', NULL, NULL, NULL, NULL, NULL, NULL, 0, '2024-11-22 15:17:08', '2024-11-22 15:17:52', 'admin'),
+(21, 'sandaru', 'nihara', 'sandaru@gail.com', '$2y$10$ohSxdlkJxm9dHEHXpDzFIOcpT3vLH/zscdGERLMdUgBR3WEmSlQ4q', 'yes', 'medical-provider', 'medical provider', 'matara', NULL, NULL, NULL, 0, '2024-11-24 12:13:09', '2024-11-24 12:13:09', 'user'),
+(28, 'ishadi', 'Malshani', 'ishadi@gmail.com', '$2y$10$ZqLS89InbCSsTdJrF8ZTJOhw.cDcH6Vwt7QToCABx0/bxQDUhZ9Lq', 'yes', 'medical-provider', 'medical provider', 'Akuressa', NULL, NULL, 'uploads/proofs/Lecture05_CPT101 (1).pdf', 0, '2024-11-24 13:17:57', '2024-11-24 13:17:57', 'user'),
+(29, 'shammu', 'ashan', 'shammu@gmail.com', '$2y$10$0o2Yd/P1KAbhctSdgxcOVey7qlFqfPnlbMcRavqEr2gaiP7YvT52G', 'yes', 'medical-provider', 'medical provider', 'matara', NULL, NULL, 'uploads/proofs/Lecture01_CPT101 (1).pdf', 0, '2024-11-24 17:03:44', '2024-11-24 17:03:44', 'user');
 
 --
 -- Indexes for dumped tables
