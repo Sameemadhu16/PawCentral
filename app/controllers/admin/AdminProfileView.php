@@ -10,8 +10,10 @@ class AdminProfileView{
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin'])){
         $this->updateProfile();
         }
+
+        $status = $this->getProfile();
         // show($_SESSION['user']);
-        $this->view('admin/profile_view');
+        $this->view('admin/profile_view',['profile' => $status]);
     }
 
     private function updateProfile(){
@@ -110,10 +112,15 @@ class AdminProfileView{
             }
         }
 
-        // public function getProfile(){
-        //     $user = new User();
-        //     $arr['id']=$_SESSION['user']->id;
-        //     $profile = $user->first($arr);
-        //     return $profile;
-        // }
+        private function getProfile(){
+
+            $id = $_SESSION['user']->id;
+            
+            if($id){
+                $user = new User();
+                $userUpdate = $user->first(['id'=>$id]);
+                // show($userUpdate);
+                return $userUpdate;
+            }
+        }
     }
