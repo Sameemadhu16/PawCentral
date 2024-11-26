@@ -18,7 +18,7 @@
 
         <!-- Post Title -->
         <div class="post-title">
-            <span id="pet-name"><?= htmlspecialchars($pet->petname ?? 'Unknown') ?></span> 
+            <span id="pet-name"><?= htmlspecialchars($pet->petName ?? 'Unknown') ?></span> 
             - <span id="pet-breed"><?= htmlspecialchars($pet->breed ?? 'Unknown') ?></span>
         </div>
 

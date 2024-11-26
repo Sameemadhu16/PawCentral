@@ -13,6 +13,16 @@ body::before {
     background-repeat: no-repeat;
     filter: brightness(70%);  /* Adjust the percentage to control dimming */
 }
+.imgs-cont {
+    display: flex;
+    flex-direction: row;
+}
+.image-slot{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* height: 200px; */
+}
 
 body {
     position: relative;
@@ -23,6 +33,37 @@ h2 {
     color: #7202bf; /* Bright purple for headers */
     font-weight: bold;
     font-size: 28px;
+}
+
+/* Style for the horizontal rule (hr) */
+.sectiondiv {
+    border: none;              /* Remove the default border */
+    border-top: 2px solid #7202bf; /* Light gray solid line */
+    margin: 35px 0;            /* Add some space above and below the line */
+    width: 90%;               /* Ensure it spans the entire width */
+    opacity: 0.5;              /* Slightly reduce the opacity for a more subtle effect */
+    align-self: center;
+    justify-self: center;
+}
+
+/* Optional: Add a subtle text label in the middle */
+.sectiondiv.with-label {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    color: #7202bf;
+}
+
+.sectiondiv.with-label::before, .sectiondiv.with-label::after {
+    content: "";
+    flex: 1;
+    border-top: 2px solid #7202bf; /* Solid lines on either side */
+    margin: 0 10px;
+}
+
+.sectiondiv.with-label span {
+    font-weight: bold; /* Make the text in the middle bold */
 }
 
 .report-found-form {
@@ -122,7 +163,7 @@ h2 {
     color: #333; /* Dark text for dropdown options */
 }
 .report-found-form option:hover {
-    background-color: rgb(114, 2, 191, .6);
+    background-color: rgb(114, 2, 191);
 }
 
 @media (max-width: 768px) {
@@ -146,4 +187,53 @@ h2 {
     h2 {
         font-size: 22px;
     }
+    .imgs-cont {
+        display: flex;
+        flex-direction:column;
+    }
+}
+
+@media (max-width:380px) {
+    .report-found-form {
+        padding: 25px;
+        margin: 10px;
+    }
+
+    .report-found-form input, select, textarea, label {
+        font-size: 13px !important;
+    }
+    .report-found-form input[type="text"], .report-found-form input[type="file"], .report-found-form input[type="tel"], .report-found-form textarea {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .report-found-form select {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    
+    .report-found-form button[type="submit"]{
+        padding: 7px;
+        font-size: 13px;
+        width: 50%;
+        background-color: #7202bf !important;
+    }
+    .report-found-form button{
+        justify-self: center;
+        align-self: center;
+        margin-left: 25%;
+    }
+    .imgs-cont {
+        display: flex;
+        flex-direction:column;
+    }
+    #imagePreviewContainer img{
+        height: 55px;
+    }
+    .heading {
+        font-size: 20px !important;
+    }
+    
+
 }

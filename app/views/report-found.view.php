@@ -182,6 +182,11 @@
           </script>
 
 
+
+            <!-- Lost/found/Contact personnel info -->
+            <hr class="sectiondiv">
+
+
           <!-- LOST/FOUND status -->
           <label for="status">Lost/Found Status:</label>
           <select id="status" name="status" required>
@@ -227,6 +232,12 @@
                 });
               </script>
           
+
+          
+            <!-- Pets decription/status -->
+            <hr class="sectiondiv">
+
+
           <label for="health">Health Condition:</label>
           <select id="health" name="health" required>
             <option value="Healthy">Healthy</option>
