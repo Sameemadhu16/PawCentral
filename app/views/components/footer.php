@@ -28,13 +28,14 @@
       <div class="footer-column social-media">
         <h3>Follow Us</h3>
         <ul>
-          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i>   Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank"><i class="fab fa-instagram"></i>   Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fab fa-twitter"></i>   Instagram</a></li>
         </ul>
+</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Your Company. All rights reserved.</p>
+      <p>&copy; 2024 PawCentral. All rights reserved.</p>
     </div>
   </footer>

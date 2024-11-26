@@ -4,17 +4,119 @@ body, html {
     box-sizing: border-box;
 }
 
+/* Dropdown Container */
+.dropdown {
+    position: relative; /* Position relative for absolute positioning of submenu */
+}
+
+/* Dropdown Toggle Link */
+.dropdown-toggle {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect for Dropdown Toggle */
+.dropdown-toggle:hover {
+    color: #FFB246; /* Highlight on hover */
+}
+
+/* Dropdown Menu */
+/* Dropdown Menu */
+.dropdown-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    position: absolute; /* Positioned relative to the parent (.dropdown) */
+    top: 100%; /* Aligns the top of the dropdown with the bottom of the parent */
+    left: 0; /* Aligns the left edge of the dropdown with the left edge of the parent */
+    background-color: #6A0DAD; /* Background color */
+    border-radius: 5px;
+    display: none; /* Hidden by default */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensures it appears above other elements */
+    min-width: 150px; /* Adjust width as needed */
+    left: 50%; /* Aligns the center of the dropdown with the center of the parent */
+    transform: translateX(-50%); /* Offsets to perfectly center-align */
+    overflow: hidden; /* For smooth height animation */
+}
+/* Dropdown Animation for Normal View */
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown when parent is hovered */
+    animation: slideDown 0.3s ease-out;
+}
+/* Expand Dropdown on Active */
+.navbar-links.active .dropdown-menu.active {
+    max-height: 300px; /* Adjust height based on content */
+}
+
+/* Links inside Dropdown */
+.dropdown-menu li {
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li:hover {
+    background-color: #FFB246;
+}
+
+/* Dropdown Slide Animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* Optional: Add some padding/margin to center align the text better */
+.dropdown-menu li {
+    margin: 0;
+    padding: 5px 15px;
+}
+
+/* Dropdown Links */
+.dropdown-menu li {
+    margin: 0;
+    padding: 5px 15px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect for Links in Dropdown */
+.dropdown-menu li a:hover {
+    color: #FFB246;
+}
+
+/* Show Dropdown Menu on Hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 .navbar {
     background-color: #6b0dad;
     /* background:linear-gradient(135deg, #6A0DAD,#8119c2); */
     color: white;
-    padding: 10px 168.5px;
+    /* padding: 10px 168.5px; */
+
     display: flex;
     justify-content: space-between; /* Distributes space between left and right sections */
     align-items: center; /* Centers content vertically */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin:0;
+
+    /* Aligning to center */
+    padding: 10px 10%;
 }
 
 .navbar-logo {
@@ -63,7 +165,7 @@ body, html {
     display: flex;
     margin: 0;
     padding: 0;
-    margin: 0 60px;
+    margin: 0 0px;
     /* margin: auto; Pushes links to the right */
     align-items: center; /* Aligns links vertically */
     gap: 4px;
@@ -76,12 +178,14 @@ body, html {
     list-style: none;
     /* display: inline-block; */
     position: relative;
-    padding: 8px 8px;
+    padding: 3px 8px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+.navbar-link {
+    text-decoration: none;
+}
 .navbar-links li a {
     color: white;
     text-decoration: none;
@@ -119,7 +223,8 @@ body, html {
 }
 
 .user-profile {
-    margin-left: 20px; /* Adds spacing between links and profile picture */
+    margin-left: 10px; /* Adds spacing between links and profile picture */
+    z-index: 1006;
 }
 
 .user-profile img {
@@ -157,6 +262,10 @@ body, html {
     transition: all 0.3s ease;
 }
 
+.navbar-toggle:hover .hamburger {
+    background-color: #FFB246;
+}
+
 
 
 /* Responsive Styles */
@@ -175,21 +284,17 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    /* position: absolute;
     top: 15px;
-    right: 15px;
+    right: 15px; */
     background-color: #6A0DAD;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     z-index: 1000;
     transition: background-color 0.3s ease;
-}
-
-.navbar-toggle:hover {
-    background-color: #9e83e1;
 }
 
 /* Navbar links container */
@@ -197,25 +302,34 @@ body, html {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px; /* Adjust as per your navbar height */
+    top: 70px; /* Adjust as per your navbar height */
     right: 0;
     background-color: #6A0DAD;
     overflow: hidden; /* Prevent overflow during animation */
     width: 100%; /* Full width of the screen */
     max-height: 0; /* Start with no height */
-    border-radius: 10px;
-    transition: max-height .7s ease; /* Smooth background reveal */
+    border-radius: 0px 0px 10px 10px;
+    transition: max-height 1s ease; /* Smooth background reveal */
+
+    /* aligning to center */
+    max-width: 300px;
+    z-index: 1005;
+    min-width: 40%;
+    background: linear-gradient(180deg, #6a0dad, #8049fe);
 }
 
 /* When active, expand the height */
 .navbar-links.active {
     max-height: 600px; /* Adjust height based on the number of links */
+
+    /* aligning to center */
+    max-width: 300px;
 }
 
 /* Link items inside the navbar */
 .navbar-links li {
     list-style: none;
-    margin: 5px 0;
+    margin:1px 0;
     opacity: 0; /* Hidden initially */
     transform: translateY(-20px); /* Slightly above */
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -243,7 +357,7 @@ body, html {
     transition-delay: 0.6s;
 }.navbar-links li:nth-child(7) {
     transition-delay: 0.7s;
-}.navbar-links li:nth-child() {
+}.navbar-links li:nth-child(8) {
     transition-delay: 0.8s;
 }
 
@@ -251,11 +365,11 @@ body, html {
 .navbar-links li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     font-family: Arial, sans-serif;
     display: block;
-    padding: 10px 0;
+    padding: 4px 0;
     transition: color 0.3s ease;
 }
 
@@ -268,12 +382,16 @@ body, html {
     .navbar-links li a {
         font-size: 14px; /* Smaller font for small screens */
     }
+    .navbar-links {
+        min-width: 100%;
+        background: linear-gradient(180deg, #6a0dad, #8049fe);
+    }
 }
 
     
 }
 
-@media (max-width: 385px) {
+@media (max-width: 395px) {
     
     .navbar h1 {
         font-size: 33px;

@@ -15,10 +15,12 @@ class LostAndFoundModel
     return $result;
     }
 
-    public function getPetById($petid)
+    public function updateStatus($id,$updatestatus)
     {
-        $query = "SELECT * FROM $this->table WHERE id = :petid";
-        $data = ['petid' => $petid];
-        return $this->get_row($query, $data);  // Assuming get_row fetches one record
+        $data[$id] = $id;
+        $data[$updatestatus] = $updatestatus;
+        $query = "UPDATE $this->table SET postStatus = :updatestatus WHERE petid=:id";
+
+        return $this->query($query, $data) !== false;
     }
 }

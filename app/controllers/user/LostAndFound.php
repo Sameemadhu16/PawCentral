@@ -34,23 +34,50 @@ class LostAndFound
     }
 
 
-    // Method to show the detailed view of a pet
-    public function show($petid)
+
+    public function show($id)
     {
-        // Initialize the model
-        $model = new LostAndFoundModel();
-
-        // Retrieve the pet data by petid
-        $data['pet'] = $model->getPetById($petid);
-
-        // Check if pet data was found
-        if (!$data['pet']) {
-            // Handle error if pet not found (optional)
-            echo "Pet not found.";
-            exit;
+        if (!$id) {
+            // Redirect if no ID is provided
+            redirect('lostandfound');
         }
 
-        // Pass data to the view
-        $this->view('lost-pet', $data);
+        $lostnfoundModel = new LostAndFoundModel();
+
+        // Fetch the announcement using the ID
+        $pet = $lostnfoundModel->first(['petid' => $id['id']]);
+
+        if (!$pet) {
+            // Redirect if no matching pet post is found
+            redirect('lostandfound');
+        }
+
+        // foreach (['img1', 'img2', 'img3'] as $imgColumn) {
+        //     if (isset($pet->$imgColumn)) {
+        //         $pet->$imgColumn = "data:image/jpeg;base64," . base64_encode($pet->$imgColumn);
+        //     }
+        // }
+        
+        
+        // Pass the announcement to the view
+        $this->view('lost-pet', ['pet' => $pet]);
     }
+
+    // Mark as complete (delete)
+    public function markAsComplete($id)
+{
+    $model = new LostAndFoundModel();
+    $data = ['postStatus' => 0]; // Set postStatus to completed
+
+    $success=$model->update($id['id'], $data, 'petid');
+
+    if ($success) {
+        header("Location: " . ROOT . "/userprofile/lost_and_found?success=Marked as complete");
+    } else {
+        header("Location: " . ROOT . "/userprofile/lost_and_found?error=Failed to mark as complete");
+    }
+}
+
+
+    
 }

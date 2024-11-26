@@ -44,7 +44,7 @@ route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
 route('eventsandcampaigns/event_id','EventInfo');
 route('lostandfound/report-found','ReportFound');
-route('lostandfound/idoflost','LostPet');
+// route('lostandfound/idoflost','LostPet');
 
 // userprofile
 route('userprofile','user/Profile@index');
@@ -52,7 +52,9 @@ route('userprofile/profile','user/Profile@index');
 route('userprofile/notifications','user/Notification@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/lost_and_found','user/LostAndFound@index');
-route('lostandfound/{postid}','user/LostAndFound@show');
+
+route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
+route('lostandfound/postdetails','user/LostAndFound@show');
 
 // merchanted pets
 route('findapet','PetPosts');

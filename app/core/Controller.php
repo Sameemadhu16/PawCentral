@@ -10,7 +10,7 @@ trait Controller {
         if(file_exists($fileName)){
             require $fileName;
         }else{
-            $fileName = "../app/views/404.view.php";
+            $fileName = "../app/views/home.view.php";
             require $fileName;
         }
     }

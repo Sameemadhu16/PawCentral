@@ -29,9 +29,9 @@
 
     <?php if (!empty($pets)): ?>
         <?php foreach ($pets as $pet): ?>
-            <div class="pet-card" id=<?= htmlspecialchars($pet->id); ?>>
+            <div class="pet-card" id=<?= htmlspecialchars($pet->petid); ?>>
                 <img src=<?=htmlspecialchars($pet->img1)?> alt="nikkhy" class="pet-photo">
-                <a class="pet-details" href="<?=ROOT?>/home">
+                <a class="pet-details" href="<?=ROOT?>/lostandfound/postdetails?id=<?= $pet->petid ?>">
                     <div class="details">
                         <h3><?= htmlspecialchars($pet->petName); ?> - <?= htmlspecialchars($pet->breed); ?></h3>
                         <p><?= htmlspecialchars($pet->status); ?></p>
@@ -41,6 +41,10 @@
                 </a>
                 <div class="buttons">
                     <button class="action-button">Update info</button>
+                    <form action="<?= ROOT ?>/lostandfound/marklostnfound?id=<?= htmlspecialchars($pet->petid) ?>" method="POST" style="display: inline;">
+                        <button type="submit" class="action-button">Mark Complete</button>
+                    </form>
+
                     <button class="action-button">Mark complete</button>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 <?php
 $GLOBALS['router'] = array();
+
 function route($url, $classData){
 
    $classDataArray = explode('@', $classData);

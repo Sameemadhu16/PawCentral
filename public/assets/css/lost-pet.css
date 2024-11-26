@@ -11,7 +11,7 @@ body{
     font-family: Arial, sans-serif;
     /* BACKGROUND contrast ADDED */
     background-color: white;
-    padding: 15px;
+    padding: 25px;
     border-radius: 10px;
 }
 /* Title styling */
@@ -148,6 +148,7 @@ body{
 }
 /* Description section */
 .description-section {
+    margin: 4%;
     margin-top: 10px;
 }
 .description-section h3 {
