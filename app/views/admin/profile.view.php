@@ -23,16 +23,13 @@
                 <h1>Profile</h1>
                 <div class="profile-container">
                     <div class="profile-pic">
-                    <img src="<?php echo isset($_SESSION['user']->profile_pic) && !empty($_SESSION['user']->profile_pic)
-                            ? htmlspecialchars($_SESSION['user']->profile_pic)
-                            : ROOT . '/assets/images/unreg_user.png'; ?>"
-                class="profileimg">
+                    <img src="<?php echo ROOT;?>/<?php echo $profile->profile_pic ?>">    
                     </div>
                     <div class="profile-details">
-                        <p><span>Name : </span><?php echo esc($_SESSION['user']->first_name)." ".esc($_SESSION['user']->last_name)?></p>
-                        <p><span>Role : </span><?php echo esc($_SESSION['user']->role)?></p>
-                        <p><span>Email : </span><?php echo esc($_SESSION['user']->email)?></p>
-                        <p><span>Mobile No : </span><?php echo esc($_SESSION['user']->mobile_no)?></p>
+                        <p><span>Name : </span><?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?></p>
+                        <p><span>Role : </span><?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->role) : 'N/A' ?></p>
+                        <p><span>Email : </span><?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->email) : 'N/A' ?></p>
+                        <p><span>Mobile No : </span><?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->mobile_no) : 'N/A' ?></p>
                     </div>
 
                     <div class="button-section">
@@ -53,3 +50,4 @@
 </body>
 
 </html>
+

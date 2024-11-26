@@ -6,6 +6,7 @@ class AdminProfileView{
     public function index(){
         
 
+
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin'])){
         $this->updateProfile();
         }
@@ -96,7 +97,7 @@ class AdminProfileView{
                     $updateUser = $updateAdmin->first($arr);
                     $_SESSION['user'] = $updateUser;
 
-                    show($data);
+                    show($updateUser);
 
                     // Redirect to profile
                     redirect('/admin/profile');
@@ -108,18 +109,11 @@ class AdminProfileView{
                 $this->view('admin/profile_view', $data);
             }
         }
-        // else {
-        //     // Init data
-        //     $data = [
-        //         'name' => '',
-        //         'email' => '',
-        //         'mobile' => '',
-        //         'name_err' => '',
-        //         'email_err' => '',
-        //         'mobile_err' => ''
-        //     ];
 
-        //     // Load view
-        //     $this->view('admin/profile_view', $data);
+        // public function getProfile(){
+        //     $user = new User();
+        //     $arr['id']=$_SESSION['user']->id;
+        //     $profile = $user->first($arr);
+        //     return $profile;
         // }
     }
