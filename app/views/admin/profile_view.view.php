@@ -19,17 +19,22 @@
         </div>
 
         <div class="container">
+            <div class="back-icon">
+                <a href="<?= ROOT ?>/admin/profile">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
             <div class="profile-section">
                 <h1>Profile</h1>
                 <div class="profile-container">
-                    
 
-                    <form method="POST"  enctype="multipart/form-data">
+
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="profile-div">
                             <div class="profile-pic">
                                 <input type="file" id="file" style="display: none;" name="profile_pic" accept="images/*">
-        
-                                <img src="<?php echo ROOT;?>/<?php echo $profile->profile_pic ?>" class="profileimg" id="profileImage"
+
+                                <img src="<?php echo ROOT; ?>/<?php echo $profile->profile_pic ?>" class="profileimg" id="profileImage"
                                     alt="Profile" style="cursor: pointer;">
                                 <!-- <i class="fas fa-user-circle overlay-icon"></i> -->
                             </div>
@@ -38,7 +43,7 @@
                         <div class="profile-details">
                             <p>
                                 <label for="name"><span>Name: </span></label>
-                                <input type="text" id="name" name="name" value="<?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?>">
+                                <input type="text" id="name" name="name" value="<?= isset($profile) && is_object($profile) ? htmlspecialchars($profile->first_name) . " " . htmlspecialchars($profile->last_name) : 'N/A' ?>">
                             </p>
                             <p>
                                 <label for="userid"><span>Role: </span></label>

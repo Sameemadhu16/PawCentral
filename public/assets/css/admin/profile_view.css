@@ -68,7 +68,7 @@
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     border: 3px solid #3498db;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds depth */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -125,6 +125,30 @@
     border-color: #3498db; /* Matches button and other accents */
 }
 
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back-icon a:hover {
+    color: #005fa3;
+}
+
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
+}
 /* Buttons */
 .button-section {
     display: flex;
