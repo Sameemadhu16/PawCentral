@@ -43,7 +43,8 @@
     <!-- User profile -->
     <div class="user-profile">
         <a class="user-profile" href="signup">
-            <img src="<?= ROOT ?>/assets/images/unreg_user.png" alt="User Profile">
+        <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>" >
+
         </a>
     </div>
 

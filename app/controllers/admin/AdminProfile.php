@@ -19,7 +19,8 @@ class AdminProfile{
         if($id){
             $user = new User();
             $userUpdate = $user->first(['id'=>$id]);
-            // show($userUpdate);
+            // $_SESSION['user']['profile_pic'] = $userUpdate->profile_pic;
+            //  show($_SESSION['user']['profile_pic']);
             return $userUpdate;
         }
     }
