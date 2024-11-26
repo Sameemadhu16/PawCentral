@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadPage('profile');
+    loadPage('profile', profileAction);
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -7,12 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const page = this.dataset.page;
             document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
             this.classList.add('active');
-            loadPage(page);
+            loadPage(page, window[page + 'Action']);
         });
     });
 });
 
-function loadPage(page) {
+function loadPage(page, callback) {
     const pageWindow = document.querySelector('.page-window');
     if (!pageWindow) {
         console.error('Page window element not found');
@@ -36,15 +36,18 @@ function loadPage(page) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // Get the container content
             const containerContent = doc.querySelector('.container');
             if (containerContent) {
-                // Remove the sidebar if it exists in the loaded content
-                const sidebar = containerContent.querySelector('.sidebar');
-                if (sidebar) {
-                    sidebar.remove();
-                }
+                // const sidebar = containerContent.querySelector('.sidebar');
+                // if (sidebar) {
+                //     sidebar.remove();
+                // }
                 pageWindow.innerHTML = containerContent.innerHTML;
+                
+                // Execute panel-specific actions if provided
+                if (callback) {
+                    callback();
+                }
             } else {
                 pageWindow.innerHTML = '<p>Content not found</p>';
             }
@@ -55,29 +58,41 @@ function loadPage(page) {
         });
 }
 
-// function loadPanel(panleName, callback) {
-//     // load panel html
-//     fetch(URL).then(res => res.text()).then(() => {
-//           // set inner html
-//           callback();
-//     })
-//   }
-  
-  
-//   // usage example 
-  
-//   function userPanelActions() {
-//     // what ever you wanna do after loading panel html
-//   }
-  
-  
-//   function productPanelActions() {
-//     // what ever you wanna do after loading panel html
-//   }
-  
-  
-//   // switch to panel user 
-//   loadPanel('user', userPanelActions);
-  
-//   // switch to panel product
-//   loadPanel('product', productPanelActions);
+// Panel-specific action functions
+function profileAction() {
+
+    console.log('Profile panel loaded');
+}
+
+function appointmentsAction() {
+
+    console.log('Appointments panel loaded');
+}
+
+function veterinariansAction() {
+    console.log('vet panel loaded');
+    const addVetBtn = document.getElementById('add-vet-btn');
+    const popup = document.querySelector('.popup-overlay');
+    const closeBtn = document.querySelector('.close-btn');
+    const form = document.getElementById('add-vet-form');
+
+    if (addVetBtn && popup && closeBtn && form) {
+        addVetBtn.addEventListener('click', function() {
+            console.log('clicked add vet');
+            popup.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+        });
+
+        
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your form submission logic here
+            popup.style.display = 'none';
+        });
+    }
+}
+

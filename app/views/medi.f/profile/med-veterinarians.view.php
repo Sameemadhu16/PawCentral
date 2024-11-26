@@ -12,55 +12,34 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
     <div class="container">
         <div class="add-button-div">
-            <button class="add-vet-btn">Add Veterinarian</button>
+            <button class="add-vet-btn" id="add-vet-btn">Add Veterinarians</button>
         </div>
+        <?php include("../app/views/medi.f/profile/popup/add-veterinarian.view.php"); ?>
         <div class="vet-cards">
-        <div class="vet-card">
-                <div class="vet-details">
-                    <h3>Dr. John Doe</h3>
-                    <p>Specialty: Surgery</p>
-                    <p>Experience: 10 years</p>
-                    <div class="buttons-div">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </div>
-                </div>
-                <div class="vet-image">
-                    <img src="<?= ROOT ?>/assets/images/sample.jpg" alt="Dr. John Doe">
-                </div>
-            </div>
-            <div class="vet-card">
-                <div class="vet-details">
-                    <h3>Dr. Jane Smith</h3>
-                    <p>Specialty: Dermatology</p>
-                    <p>Experience: 8 years</p>
-                    <div class="buttons-div">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </div>
-                </div>
-                <div class="vet-image">
-                    <img src="<?= ROOT ?>/assets/images/sample.jpg" alt="Dr. John Doe">
-                </div>
-            </div>
-
-            <div class="vet-card">
-                <div class="vet-details">
-                    <h3>Dr. Jane Smith</h3>
-                    <p>Specialty: Dermatology</p>
-                    <p>Experience: 8 years</p>
-                    <div class="buttons-div">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </div>
-                </div>
-                <div class="vet-image">
-                    <img src="<?= ROOT ?>/assets/images/sample.jpg" alt="Dr. John Doe">
-                </div>
-            </div>
+        <?php 
+            if(!empty($veterinarians)) {
+                foreach($veterinarians as $vet) {
+                    echo "
+                    <div class='vet-card'>
+                        <div class='vet-details'>
+                            <h3>{$vet->name}</h3>
+                            <p>Experience: </br>{$vet->experience} years</p>
+                            <p>Availability: </br>{$vet->availability}</p>
+                            <div class='buttons-div'>
+                                <button class='edit-btn'>Edit</button>
+                                <button class='delete-btn'>Delete</button>
+                            </div>
+                        </div>
+                        <div class='vet-image'>
+                            <img src='{$vet->image_url}' alt='{$vet->name}'>
+                        </div>
+                    </div>";
+                }
+            } else {
+                echo "<p>No veterinarians found.</p>";
+            }
+        ?>
         </div>
     </div>
-
-    <script src="<?= ROOT ?>/assets/js/medical/profile/med-veterinarians.js"></script>
 </body>
 </html>

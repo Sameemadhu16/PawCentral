@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-profile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-appointments.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-veterinarians.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/add-veterinarian.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -18,7 +19,7 @@
         <div class="dashboard">
             <?php include("../app/views/components/medical-sidebar/medicalSidebar.php"); ?>
             <div class="page-window">
-                <!-- Remove individual page divs and let the loadPage function handle content -->
+                <!-- load page -->
             </div>
         </div>
     </div>
