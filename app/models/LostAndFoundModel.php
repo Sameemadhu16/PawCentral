@@ -23,4 +23,9 @@ class LostAndFoundModel
 
         return $this->query($query, $data) !== false;
     }
+
+    public function create($data) {
+        return $this->insert($data) ? true : false;
+    }
+
 }

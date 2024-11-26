@@ -21,7 +21,8 @@
             
         <div class="user-accounts-section">
     <div class="topicnbuttons">
-        <button class="action-button fixedsize">Add another post</button>
+        <!-- <button class="action-button fixedsize">Add another post</button> -->
+        <button class="action-button fixedsize" onclick="window.location.href='<?=ROOT?>/lostandfound/report-animal';">Add another post</button>
     </div>
     <div class="topicnbuttons">
         <h2>Your lost and found posts</h2> 
@@ -45,7 +46,7 @@
                         <button type="submit" class="action-button">Mark Complete</button>
                     </form>
 
-                    <button class="action-button">Mark complete</button>
+                    <!-- <button class="action-button">Mark complete</button> -->
                 </div>
             </div>
         <?php endforeach; ?>

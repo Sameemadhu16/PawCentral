@@ -40,12 +40,12 @@
     <script>
         // Event listener for the "Report Lost" button
         document.getElementById('reportLost').addEventListener('click', function() {
-            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-found'; // Replace with the actual 'lost' form URL
+            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-animal'; // Replace with the actual 'lost' form URL
         });
 
         // Event listener for the "Report Found" button
         document.getElementById('reportFound').addEventListener('click', function() {
-            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-found'; // This will redirect to your 'found' form
+            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-animal'; // This will redirect to your 'found' form
         });
     </script>
 
