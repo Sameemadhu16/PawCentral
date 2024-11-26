@@ -41,11 +41,12 @@
                     </div>
                 </a>
                 <div class="buttons">
-                    <button class="action-button">Update info</button>
+                    <form action="<?= ROOT ?>/lostandfound/edit?id=<?= htmlspecialchars($pet->petid) ?>" method="POST" style="display: inline;">
+                        <button class="action-button">Update info</button>
+                    </form>
                     <form action="<?= ROOT ?>/lostandfound/marklostnfound?id=<?= htmlspecialchars($pet->petid) ?>" method="POST" style="display: inline;">
                         <button type="submit" class="action-button">Mark Complete</button>
                     </form>
-
                     <!-- <button class="action-button">Mark complete</button> -->
                 </div>
             </div>

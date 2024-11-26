@@ -137,5 +137,127 @@ class LostAndFound
             }
         }
     }
+
+    public function edit($id)
+    {
+        if (!$id) {
+            // Redirect if no ID is provided
+            redirect('lostandfound');
+        }
+
+        $lostnfoundModel = new LostAndFoundModel();
+
+        // Fetch the announcement using the ID
+        $post = $lostnfoundModel->first(['petid' => $id['id']]);
+        
+
+        if (!$post) {
+            die("Post not found!");
+        }
+
+        // Pass post data to the view
+        $this->view('user/lost_and_found_update', ['post' => $post]);
+    }
+
+    public function updatew($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $lostnfoundModel = new LostAndFoundModel();
+
+            // Collect form data
+            $data = [
+                'id' => 1,
+                'petName' => $_POST['petName'],
+                'breed' => $_POST['breed'],
+                'type' => $_POST['type'],
+                'address' => $_POST['address'],
+                'location' => $_POST['location'],
+                'status' => $_POST['status'],
+                'height' => $_POST['height'],
+                'sex' => $_POST['sex'],
+                'age' => $_POST['age'],
+                'health' => $_POST['health'],
+                'color' => $_POST['color'],
+                'contactNo' => $_POST['contact'],
+                'description' => $_POST['description'],
+                'img1' => null,
+                'img2' => null,
+                'img3' => null,
+            ];
+
+            // Handle image uploads
+            // Process uploaded images
+            if (isset($_FILES['photos'])) {
+                $images = [];
+                foreach ($_FILES['photos']['tmp_name'] as $key => $tmpName) {
+                    if (!empty($tmpName) && $_FILES['photos']['error'][$key] === UPLOAD_ERR_OK) {
+                        $images[] = file_get_contents($tmpName); // Read binary data
+                    }
+                }
+                // Assign images to data array (up to 3 images)
+                $data['img1'] = $images[0] ?? null;
+                $data['img2'] = $images[1] ?? null;
+                $data['img3'] = $images[2] ?? null;
+            }
+            $aid=$id['id'];
+            // Update the post
+            $success=$lostnfoundModel->update($id['id'], $data, 'petid');
+
+            if ($success) {
+                echo "Post updated successfully!";
+                echo "$aid";
+                // redirect('home');
+            } else {
+                echo "Failed to update post.";
+            }
+        }
+    }public function update($postId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Prepare the LostAndFoundModel for update
+            $lostnfoundModel = new LostAndFoundModel;
     
+            // Process form data
+            $data = [
+                'id'=>1,
+                'petName' => $_POST['petName'],
+                'breed' => $_POST['breed'],
+                'type' => $_POST['type'],
+                'address' => $_POST['address'],
+                'location' => $_POST['location'],
+                'status' => $_POST['status'],
+                'height' => $_POST['height'],
+                'sex' => $_POST['sex'],
+                'age' => $_POST['age'],
+                'health' => $_POST['health'],
+                'color' => $_POST['color'],
+                'contactNo' => $_POST['contact'],
+                'description' => $_POST['description'],
+                'img1' => isset($_FILES['img1']) && $_FILES['img1']['tmp_name'] 
+        ? file_get_contents($_FILES['img1']['tmp_name']) 
+        : (isset($_POST['old_img1']) ? base64_decode($_POST['old_img1']) : null),
+    'img2' => isset($_FILES['img2']) && $_FILES['img2']['tmp_name'] 
+        ? file_get_contents($_FILES['img2']['tmp_name']) 
+        : (isset($_POST['old_img2']) ? base64_decode($_POST['old_img2']) : null),
+    'img3' => isset($_FILES['img3']) && $_FILES['img3']['tmp_name'] 
+        ? file_get_contents($_FILES['img3']['tmp_name']) 
+        : (isset($_POST['old_img3']) ? base64_decode($_POST['old_img3']) : null)
+            ];
+    
+            // Perform the update operation
+            $result = $lostnfoundModel->update($postId['id'], $data,'petid');
+    
+            // Redirect or provide feedback
+            if ($result) {
+                redirect('home');
+                echo 'asdsad';
+            } else {
+                echo "Failed to update the post.";
+            }
+        }
+    }
+    
+
+
 }

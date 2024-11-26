@@ -55,6 +55,9 @@ route('userprofile/lost_and_found','user/LostAndFound@index');
 route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
 route('lostandfound/postdetails','user/LostAndFound@show');
 route('lostandfound/post-report-animal','user/LostAndFound@createReport');
+route('lostandfound/edit', 'user/LostAndFound@edit'); //updating pet post
+route('lostandfound/update', 'user/LostAndFound@update');
+
 
 // merchanted pets
 route('findapet','PetPosts');
