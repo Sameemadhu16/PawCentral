@@ -23,19 +23,23 @@
                 <h1>Profile</h1>
                 <div class="profile-container">
                     <div class="profile-pic">
-                        <img src="<?= ROOT ?>/assets/images/user.jpg" alt="Profile Picture">
-                        <i class="fas fa-user-circle overlay-icon"></i>
+                    <img src="<?php echo isset($_SESSION['user']->profile_pic) && !empty($_SESSION['user']->profile_pic)
+                            ? htmlspecialchars($_SESSION['user']->profile_pic)
+                            : ROOT . '/assets/images/unreg_user.png'; ?>"
+                class="profileimg">
                     </div>
                     <div class="profile-details">
-                        <p><span>Name : </span>Sameera Madhuranga</p>
-                        <p><span>UserId : </span>231243543255</p>
-                        <p><span>Email : </span>sameeramadhu@gmail.com</p>
-                        <p><span>Mobile No : </span>0712345678</p>
+                        <p><span>Name : </span><?php echo esc($_SESSION['user']->first_name)." ".esc($_SESSION['user']->last_name)?></p>
+                        <p><span>Role : </span><?php echo esc($_SESSION['user']->role)?></p>
+                        <p><span>Email : </span><?php echo esc($_SESSION['user']->email)?></p>
+                        <p><span>Mobile No : </span><?php echo esc($_SESSION['user']->mobile_no)?></p>
                     </div>
 
                     <div class="button-section">
                         <!-- <button class="logout-button">Log Out</button> -->
-                        <button class="update-button">Update</button>
+                        <form action="<?= ROOT ?>/admin/profile_view" method="post">
+                            <button class="update-button" type="submit">Update</button>
+                        </form>
                     </div>
 
                 </div>
