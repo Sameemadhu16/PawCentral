@@ -2,20 +2,22 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
 
     <div class="navbar-logo">
-    <a href="home" class="navbar-link">
-    <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
-    </a>
+        <a href="home" class="navbar-link">
+            <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
+        </a>
         <!-- <img src="/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo"> -->
-        <a href="<?=ROOT?>/home" class="navbar-link navbar-text"><h1>PawCentral</h1></a>
+        <a href="<?= ROOT ?>/home" class="navbar-link navbar-text">
+            <h1>PawCentral</h1>
+        </a>
     </div>
 
 
     <script>
         // To mark the currently selected tab
-    function toggleNavbar() {
-        const navbarLinks = document.querySelector('.navbar-links');
-        navbarLinks.classList.toggle('active');
-    }
+        function toggleNavbar() {
+            const navbarLinks = document.querySelector('.navbar-links');
+            navbarLinks.classList.toggle('active');
+        }
     </script>
 
 
@@ -42,10 +44,14 @@
 
     <!-- User profile -->
     <div class="user-profile">
-        <a class="user-profile" href="signup">
-        <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>" >
 
-        </a>
+        <?php if (isset($_SESSION['user'])): ?>
+            <a class="user-profile" href="signup">
+                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
+            </a>
+        <?php else: ?>
+            <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
+             <?php endif; ?>
     </div>
 
 </header>
