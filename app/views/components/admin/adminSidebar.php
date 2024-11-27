@@ -39,6 +39,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </li>
 
         <li>
+            <a href="../admin/notification" class="nav-link">
+                <i class="fas fa-bell icon"></i>
+                Notifications
+            </a>
+        </li>
+
+
+        <li>
             <a href="../admin/medical_registration" class="nav-link">
                 <i class="fas fa-medkit icon">
                 </i>Medical Registrations
@@ -77,7 +85,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </li>
     </ul>
 
-    <div class="logout-tab" >
+    <div class="logout-tab">
         <a href="?action=logout" class="nav-link" action="">
             <i class="fas fa-sign-out-alt icon"></i>
             <span>Logout</span>

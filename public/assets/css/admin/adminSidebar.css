@@ -29,7 +29,7 @@
 
 /* Link styling */
 .sidebar ul li a {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     padding: 15px 20px;
@@ -63,7 +63,7 @@
 
 /* Logout tab */
 .logout-tab {
-    margin-bottom: 20px; /* Add margin at the bottom */
+    margin-bottom: 50px; /*Add margin at the bottom
     /* padding: 10px 20px; */
     width: 80%;
     height: 20px;
