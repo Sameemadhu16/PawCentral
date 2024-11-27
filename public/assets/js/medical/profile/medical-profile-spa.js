@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//load pages
 function loadPage(page, callback) {
     const pageWindow = document.querySelector('.page-window');
     if (!pageWindow) {
@@ -38,10 +39,6 @@ function loadPage(page, callback) {
             
             const containerContent = doc.querySelector('.container');
             if (containerContent) {
-                // const sidebar = containerContent.querySelector('.sidebar');
-                // if (sidebar) {
-                //     sidebar.remove();
-                // }
                 pageWindow.innerHTML = containerContent.innerHTML;
                 
                 // Execute panel-specific actions if provided
@@ -77,21 +74,40 @@ function veterinariansAction() {
     const form = document.getElementById('add-vet-form');
 
     if (addVetBtn && popup && closeBtn && form) {
-        addVetBtn.addEventListener('click', function() {
-            console.log('clicked add vet');
-            popup.style.display = 'flex';
-        });
-
-        closeBtn.addEventListener('click', function() {
-            popup.style.display = 'none';
-        });
-
-        
+        addVetBtn.addEventListener('click', () => popup.style.display = 'flex');
+        closeBtn.addEventListener('click', () => popup.style.display = 'none');
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add your form submission logic here
-            popup.style.display = 'none';
+            const formData = new FormData(this);
+            
+            fetch('http://localhost/PawCentral/public/medical-center/dashboard/veterinarians', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error('Invalid JSON response:', text);
+                    throw new Error('Server returned invalid response. Check server logs for details.');
+                }
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    popup.style.display = 'none';
+                    form.reset();
+                    loadPage('veterinarians', veterinariansAction);
+                } else {
+                    throw new Error(data.message || 'Unknown error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Failed to submit form. Please try again.');
+            });
         });
     }
 }

@@ -1,71 +1,76 @@
 <?php
 
-class Med_Dashboard_Veterinarians{
+class Med_Dashboard_Veterinarians {
     use Controller;
 
     public function index() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('Content-Type: application/json');
+            $veterinarianModel = new Veterinarians;
+            $this->submit($veterinarianModel);
+            return;
+        }
+
         $veterinarianModel = new Veterinarians;
         $veterinarians = $veterinarianModel->get([], [
             'order_column' => 'name',
             'order_type' => 'desc'
         ]);
         $this->view("medi.f/profile/med-veterinarians",['veterinarians' => $veterinarians]);
-    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add-vet-submit-btn'])) {
-            $this->submit($veterinarianModel);
-            return;
-        }
     }
 
-    private function submit($veterinarianModel)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Handle file upload
-            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                $imageTmpPath = $_FILES['image']['tmp_name'];
-                $imageName = $_FILES['image']['name'];
-                $uploadDir = '<?=ROOT?>/assets/uploads/vet-images/';
-                $imagePath = $uploadDir . $imageName;
+    private function submit($veterinarianModel) {
+        try {
+            // Base paths for images
+            $rootUrl='http://localhost/PawCentral/public/assets/';
+            $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/vet-images/';
+            $baseUploadUrl = $rootUrl . 'uploads/vet-images/';
+            $defaultImageUrl = $rootUrl . 'images/sample.jpg';
 
-                // Ensure the upload directory exists
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
-                }
-
-                // Move the uploaded file to the desired directory
-                if (move_uploaded_file($imageTmpPath, $imagePath)) {
-                    $imageUrl = $imagePath;
-                } else {
-                    $data['error'] = 'Failed to upload image. Please try again.';
-                    $this->view('medi.f/profile/popup/add-veterinarian', $data);
-                    return;
-                }
+            // Handle image upload
+            if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
+                $imageUrl = $defaultImageUrl;
             } else {
-                $data['error'] = 'No image uploaded or upload error.';
-                $this->view('medi.f/profile/popup/add-veterinarian', $data);
-                return;
+                $imageName = time() . '_' . $_FILES['image']['name'];
+                $uploadPath = $baseUploadPath . $imageName;
+                $imageUrl = $baseUploadUrl . $imageName;
+
+                if (!is_dir($baseUploadPath)) {
+                    mkdir($baseUploadPath, 0777, true);
+                }
+
+                if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+                    throw new Exception('Failed to move uploaded file');
+                }
             }
 
-            //catch data
             $data = [
-                'name' => $_POST['name'],
+                'name' => $_POST['name'] ?? '',
                 'image_url' => $imageUrl,
-                'experience' => $_POST['experience'],
-                'availability' => $_SESSION['availability']
+                'experience' => $_POST['experience'] ?? '',
+                'availability' => $_POST['availability'] ?? ''
             ];
 
-            $result = $veterinarianModel->create($data);
-            echo $result;
-            if ($result) {
-                $data['success_message'] = 'Veterinarian added successfully.';
-                $this->view('medi.f/profile/med-veterinarians', $data);
-                return;
-            } else {
-                $data['error'] = 'Failed to add veterinarian. Please try again.';
-                $this->view('medi.f/profile/popup/add-veterinarian', $data);
+            // Validate data
+            foreach ($data as $key => $value) {
+                if (empty($value)) {
+                    throw new Exception("Missing required field: {$key}");
+                }
             }
-        } else {
-            redirect('medical-center/dashboard');
+
+            $result = $veterinarianModel->create($data);
+            
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Veterinarian added successfully']);
+            } else {
+                throw new Exception('Database insert failed');
+            }
+
+        } catch (Exception $e) {
+            error_log("Error in submit: " . $e->getMessage());
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            exit; // Ensure no other output
         }
     }
 }

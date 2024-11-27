@@ -14,7 +14,46 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="add-button-div">
             <button class="add-vet-btn" id="add-vet-btn">Add Veterinarians</button>
         </div>
+        
+    <!-- <div class="popup-overlay">
+        <div class="popup-content">
+            <div class="title">
+                <h2>Add New Veterinarian</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="add-vet-form" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="vet-name">Name:</label>
+                    <input type="text" id="vet-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="vet-experience">Experience (years):</label>
+                    <input type="number" id="vet-experience" name="experience" required>
+                </div>
+                <div class="form-group">
+                    <label for="vet-availability">Availability:</label>
+                    <input type="text" id="vet-availability" name="availability" required>
+                </div>
+                <div class="form-group">
+                    <label for="vet-image">Image URL:</label>
+                    <input type="file" id="vet-image" name="image" accept="image/*" required>
+                </div>
+                <button type="submit" class="submit-btn" name="add-vet-submit-btn">Add Veterinarian</button>
+            </form>
+        </div>
+    </div> -->
+    
         <?php include("../app/views/medi.f/profile/popup/add-veterinarian.view.php"); ?>
+        <?php if (isset($success_message)): ?>
+                <div class="success-message">
+                    <?= $success_message ?>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($error)): ?>
+                <div class="error-message">
+                    <?= $error ?>
+                </div>
+            <?php endif; ?>
         <div class="vet-cards">
         <?php 
             if(!empty($veterinarians)) {
