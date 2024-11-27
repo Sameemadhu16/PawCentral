@@ -19,35 +19,43 @@ class App
         $existsRoutes = $GLOBALS['router'];
         $URL = $this->splitURL();
         $routeValue = implode("/", $URL);
-
-        if (isset($existsRoutes[$routeValue])) {
-            $routeData = $existsRoutes[$routeValue];
-            // Get controller and method from routing configuration
-            $filename = "../app/controllers/" . trim($routeData['class'], '/') . ".php";
-            $className = basename($filename, ".php");
-            $functionName = trim($routeData['function']);
-            if (file_exists($filename)) {
-                require $filename;
-                $this->method = $functionName;
-                $this->controller = ucfirst($className);
+        
+        // Check for dynamic routes with parameters
+        foreach($existsRoutes as $route => $handler) {
+            $pattern = preg_replace('/\{[^}]+\}/', '([^/]+)', $route);
+            $pattern = str_replace('/', '\/', $pattern);
+            if(preg_match('/^' . $pattern . '$/', $routeValue, $matches)) {
+                array_shift($matches); // Remove the full match
+                $params = [];
+                
+                // Extract parameter names from route
+                preg_match_all('/\{([^}]+)\}/', $route, $paramNames);
+                
+                // Combine parameter names with values
+                foreach($paramNames[1] as $index => $name) {
+                    $params[$name] = $matches[$index] ?? null;
+                }
+                
+                // Load the controller
+                $routeData = $handler;
+                $filename = "../app/controllers/" . trim($routeData['class'], '/') . ".php";
+                $className = basename($filename, ".php");
+                $functionName = trim($routeData['function']);
+                
+                if (file_exists($filename)) {
+                    require $filename;
+                    $controller = new $className();
+                    call_user_func([$controller, $functionName], $params);
+                    return;
+                }
             }
-        } else {
-            $filename = "../app/controllers/_404.php";
-            require $filename;
-            $this->controller = "_404";
         }
-
-        // Instantiate the controller
-        $controller = new $this->controller;
-
-        // Extract parameters from the query string
-        $this->params = $_GET;
-
-        // Call the method with parameters
-        if (method_exists($controller, $this->method)) {
-            call_user_func_array([$controller, $this->method], [$this->params]);
-        } else {
-            echo "Method '{$this->method}' not found in controller '{$this->controller}'.";
-        }
+        
+        // 404 handling
+        $filename = "../app/controllers/_404.php";
+        require $filename;
+        $this->controller = "_404";
+        $controller = new $this->controller();
+        call_user_func([$controller, 'index']);
     }
 }

@@ -31,28 +31,48 @@ function loadPage(page, callback) {
     // Add the new page-specific class
     pageWindow.classList.add(`page-style-${page}`);
 
-    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/${page}`)
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            const containerContent = doc.querySelector('.container');
-            if (containerContent) {
-                pageWindow.innerHTML = containerContent.innerHTML;
-                
-                // Execute panel-specific actions if provided
-                if (callback) {
-                    callback();
-                }
-            } else {
-                pageWindow.innerHTML = '<p>Content not found</p>';
+    // Get the base URL from the current window location
+    const baseUrl = window.location.origin + '/PawCentral/public';
+
+    fetch(`${baseUrl}/medical-center/dashboard/${page}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Accept': 'text/html'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(html => {
+        if (!html.trim()) {
+            throw new Error('Empty response received');
+        }
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Try to find container content, with fallback options
+        const containerContent = doc.querySelector('.container .content-wrapper') || 
+                               doc.querySelector('.container') ||
+                               doc.querySelector('body > *');
+                               
+        if (containerContent) {
+            pageWindow.innerHTML = containerContent.innerHTML;
+            if (callback) {
+                callback();
             }
-        })
-        .catch(error => {
-            console.error("Error loading page:", error);
-            pageWindow.innerHTML = 'Error loading content';
-        });
+        } else {
+            throw new Error('No suitable content found in response');
+        }
+    })
+    .catch(error => {
+        console.error("Error loading page:", error);
+        pageWindow.innerHTML = `<div class="error-message">Error loading content: ${error.message}</div>`;
+    });
 }
 
 // Panel-specific action functions
@@ -69,15 +89,17 @@ function appointmentsAction() {
 function veterinariansAction() {
     console.log('vet panel loaded');
     const addVetBtn = document.getElementById('add-vet-btn');
-    const popup = document.querySelector('.popup-overlay');
-    const closeBtn = document.querySelector('.close-btn');
-    const form = document.getElementById('add-vet-form');
+    const popup = document.getElementById('add-popup-overlay');
+    const closeBtn = document.getElementById('add-close-btn');
 
-    if (addVetBtn && popup && closeBtn && form) {
+    //create functionality
+    const add_form = document.getElementById('add-vet-form');
+
+    if (addVetBtn && popup && closeBtn && add_form) {
         addVetBtn.addEventListener('click', () => popup.style.display = 'flex');
         closeBtn.addEventListener('click', () => popup.style.display = 'none');
 
-        form.addEventListener('submit', function(e) {
+        add_form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
             
@@ -98,7 +120,7 @@ function veterinariansAction() {
             .then(data => {
                 if (data.status === 'success') {
                     popup.style.display = 'none';
-                    form.reset();
+                    add_form.reset();
                     loadPage('veterinarians', veterinariansAction);
                 } else {
                     throw new Error(data.message || 'Unknown error occurred');
@@ -110,5 +132,123 @@ function veterinariansAction() {
             });
         });
     }
-}
 
+    // Delete functionality
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    const deleteModal = document.getElementById('deleteModal');
+    const confirmDeleteBtn = document.getElementById('confirmDelete');
+    const cancelDeleteBtn = document.getElementById('cancelDelete');
+    let currentVetId = null;
+
+    deleteBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentVetId = btn.dataset.id;
+            deleteModal.style.display = 'flex';
+        });
+    });
+
+    cancelDeleteBtn.addEventListener('click', () => {
+        deleteModal.style.display = 'none';
+    });
+
+    confirmDeleteBtn.addEventListener('click', async () => {
+        if (!currentVetId) return;
+
+        try {
+            const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians?id=${currentVetId}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            
+            const data = await response.json();
+            deleteModal.style.display = 'none';
+            loadPage('veterinarians', veterinariansAction);
+        } catch (error) {
+            console.error('Delete failed:', error);
+        }
+    });
+
+    //edit functionality
+    const editBtns = document.querySelectorAll('.edit-btn');
+    const editPopup = document.getElementById('edit-popup-overlay');
+    const editForm = document.getElementById('edit-vet-form');
+    const editCloseBtn = document.querySelector('#edit-popup-overlay .close-btn');
+    let currentEditVetId = null;
+
+    editBtns.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            console.log(btn.dataset.id);
+            currentEditVetId = btn.dataset.id; // Get ID from button's data attribute
+            editPopup.style.display = 'flex';
+
+            try {
+                // Update this URL to match the route
+                const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians/edit/${currentEditVetId}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('Received data:', data);
+
+                if (data.status === 'success' && data.vet) {
+                    editForm.querySelector('#edit_id').value = currentEditVetId;
+                    editForm.querySelector('#vet-name').value = data.vet.name;
+                    editForm.querySelector('#vet-experience').value = data.vet.experience;
+                    editForm.querySelector('#vet-availability').value = data.vet.availability;
+                } else {
+                    throw new Error(data.message || 'Failed to load veterinarian data');
+                }
+            } catch (error) {
+                console.error('Error fetching vet data:', error);
+                alert('Failed to load veterinarian data. Please try again.');
+            }
+        });
+    });
+
+    if (editCloseBtn) {
+        editCloseBtn.addEventListener('click', () => editPopup.style.display = 'none');
+    }
+
+    if (editForm) {
+        editForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch('http://localhost/PawCentral/public/medical-center/dashboard/veterinarians', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error('Invalid JSON response:', text);
+                    throw new Error('Server returned invalid response. Check server logs for details.');
+                }
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    editPopup.style.display = 'none';
+                    editForm.reset();
+                    loadPage('veterinarians', veterinariansAction);
+                } else {
+                    throw new Error(data.message || 'Unknown error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Failed to update veterinarian. Please try again.');
+            });
+        });
+    }
+}

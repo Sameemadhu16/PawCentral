@@ -2,11 +2,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="popup-overlay">
+    <div class="popup-overlay" id="add-popup-overlay">
         <div class="popup-content">
             <div class="title">
                 <h2>Add New Veterinarian</h2>
-                <span class="close-btn">&times;</span>
+                <span class="close-btn" id="add-close-btn">&times;</span>
             </div>
             <form id="add-vet-form" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
