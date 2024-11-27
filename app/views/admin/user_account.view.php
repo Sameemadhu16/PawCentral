@@ -152,15 +152,22 @@
 <script>
     function markAsBanned(button) {
         // Change the button text to "Banned"
-        button.textContent = "Banned";
+        if(button.textContent === "Ban"){
+            button.textContent = "Banned";
+            // Optional: Change the button's style to indicate it's banned
+        button.style.backgroundColor = "#e53935"; 
+        button.style.color = "#ffffff"; // White text
+        button.style.cursor = "pointer"; 
+        button.disabled = false;
+
+        } else {
+            button.textContent = "Ban";
+            button.disabled = false;
+        }
+        // button.textContent = "Banned";
 
         // Disable the button to prevent further clicks
-        button.disabled = true;
-
-        // Optional: Change the button's style to indicate it's banned
-        button.style.backgroundColor = "#b0bec5"; // Greyed-out background
-        button.style.color = "#ffffff"; // White text
-        button.style.cursor = "not-allowed"; // Change cursor to not-allowed
+        
     }
 </script>
 

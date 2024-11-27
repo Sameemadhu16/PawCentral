@@ -30,11 +30,17 @@ class SignUp {
             'terms' => $_POST['terms'] ?? ''
         ];
 
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        
+
+
         // Validate data using the User model
         if ($user->validate($data)) {
+            unset($data['terms']);
             if ($data['is_service'] === 'no') {
                 // If "No" is selected, create the user directly
-                $user->createUser($data);
+                $user->insert($data);
 
                 // Clear session data and redirect to login
                 unset($_SESSION['signup_data']);

@@ -25,13 +25,22 @@ class SignUpNext {
         $data['service_name'] = $_POST['service_name'] ?? '';
         $data['location'] = $_POST['location'] ?? '';
         $data['proof'] = $_FILES['proof'] ?? null;
+        $data['terms'] = $_POST['terms'] ?? '';
 
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        if (isset($data['proof']) && !empty($data['proof']['name'])) {
+            $data['proof_of_service'] = $user->uploadFile($data['proof']);
+        }
+        
+        // print_r($data['proof']);
         // Validate the data for the second step
         if ($user->validateSecondStep($data)) {
             // echo "Validation passed.<br>"; // Debug message
-
+            unset($data['terms']);
+            unset($data['proof']);
             // Attempt to create the user in the database
-            $user->createUser($data);
+            $user->insert($data);
             // echo "User created.<br>"; // Debug message
 
             // Clear session data
