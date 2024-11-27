@@ -32,7 +32,14 @@ class SignUp {
 
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        
+        $data1 = [
+            'first_name' => $_POST['first_name'] ?? '',
+            'last_name' => $_POST['last_name'] ?? '',
+            'email' => $_POST['email'] ?? '',
+            'password' => $_POST['password'] ?? '',
+            'is_service' => $_POST['is_service'] ?? 'no',
+            'terms' => $_POST['terms'] ?? ''
+        ];
 
 
         // Validate data using the User model
@@ -47,7 +54,7 @@ class SignUp {
                 redirect('login');
             } else {
                 // If "Yes" is selected, store data in session and redirect to step 2
-                $_SESSION['signup_data'] = $data;
+                $_SESSION['signup_data'] = $data1;
                 redirect('signup/signupnext');
             }
             $this->view("signupLogin.f/signup");

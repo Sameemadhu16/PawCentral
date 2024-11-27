@@ -6,7 +6,7 @@ body, html {
 
 
 .navbar {
-    background-color: #000000;
+    background-color: #6b0dad;
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -21,7 +21,7 @@ body, html {
     height: 45px;
     margin-right: 10px;
     border-radius: 50%;
-    background-color: #000000; /* Aligns the logo and website name vertically */
+    background-color: #6b0dad; /* Aligns the logo and website name vertically */
 }
 
 .navbar-logo-set{

@@ -23,7 +23,7 @@
                 <h1>Shelter Profile</h1>
                 <div class="profile-container">
                     <div class="profile-pic">
-                        <img src="<?= ROOT ?>/assets/images/user.jpg" alt="Profile Picture">
+                    <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg"  alt="Profile Picture">
                         <i class="fas fa-user-circle overlay-icon"></i>
                     </div>
                     <div class="profile-details">

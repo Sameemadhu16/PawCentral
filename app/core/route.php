@@ -67,6 +67,7 @@ route('shelter/notification','shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
 // route('shelter/lost_and_found','shelter/LostAndFound@index');
 route('shelter/event','shelter/Events@index');
+route('shelter/eventInfo','shelter/EventInfo@index');
 route('shelter/adoption_requests','shelter/AdoptionRequests@index');
 route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
 route('shelter/post','shelter/Post@index');

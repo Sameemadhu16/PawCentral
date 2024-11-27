@@ -11,7 +11,7 @@
     <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </head>
 
-<body>
+<body class="body">
     <?php
     include("../app/views/components/header3.php");
     $nextURL = "";
