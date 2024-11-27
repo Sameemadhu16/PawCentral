@@ -43,20 +43,20 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="first_name">First name</label>
-                            <input type="text" id="first_name" name="first_name" required>
+                            <input type="text" id="first_name" name="first_name" >
                         </div>
                         <div class="form-group">
                             <label for="last_name">Last name</label>
-                            <input type="text" id="last_name" name="last_name" required>
+                            <input type="text" id="last_name" name="last_name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" >
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" >
                     </div>
                     <p class="password-hint">Use 8 or more characters with a mix of letters, numbers & symbols</p>
                     <div class="form-group">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="terms" name="terms" required>
+                        <input type="checkbox" id="terms" name="terms" value="on">
                         <label for="terms">By creating an account, I agree to the Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">

@@ -9,16 +9,23 @@
                 <span>Profile</span>
             </a>
         </li>
+        <!-- <li>
+            <a href="../shelter/adoption_requests" class="nav-link">
+                <i class="fas fa-list icon"></i>
+                <span>Adoption requests</span>
+            </a>
+        </li> -->
         <li>
             <a href="../shelter/notification" class="nav-link">
-                <i class="fas fa-list icon"></i>
-                <span>Notifications</span>
+                <i class="fas fa-bell icon"></i>
+                Notifications
             </a>
         </li>
+
         <li>
-            <a href="../shelter/my_pet" class="nav-link">
-                <i class="fas fa-image icon"></i>
-                <span>My Pets</span>
+            <a href="../shelter/requests_to_adopt" class="nav-link">
+                <i class="fas fa-tasks icon"></i>
+                <span>Requests to adopt</span>
             </a>
         </li>
         <li>
@@ -39,12 +46,12 @@
                 <span>Donations</span>
             </a>
         </li>
-        <li>
-            <a href="../shelter/lost_and_found" class="nav-link">
-                <i class="fas fa-tags icon"></i>
-                <span>Lost & Found</span>
+        <!-- <li>
+            <a href="../shelter/sell_pets" class="nav-link">
+                <i class="fas fa-store icon"></i>
+                <span>SELL Pets?</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 
     <div class="logout-tab">
@@ -56,7 +63,7 @@
 </div>
 
 <script>
-    document.getElementById("toggleSidebar").addEventListener("click", function () {
+    document.getElementById("toggleSidebar").addEventListener("click", function() {
         var sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("collapsed");
     });

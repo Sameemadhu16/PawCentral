@@ -13,23 +13,33 @@ class User
     {
         $this->errors = [];
 
-        //check if first name and last is empty
-        if (empty($data['first_name']) || empty($data['last_name'])){
+        // Check if first name and last name are empty
+        if (empty($data['first_name']) || empty($data['last_name'])) {
             $this->errors[] = 'First and Last names are required';
         }
 
-        //check input email is a valid email
-        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
+        // Validate if email is a proper email format
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $this->errors[] = 'A valid email is required';
         }
-
-        //check the password character length
-        if (strlen($data['password']) < 8){
-            $this->errors[] = 'Password must be at least 8 characters';
-
+        $row = $this->getUserByEmail($data['email']);
+        if($row){
+            $this->errors[] = 'This email is already registered';
         }
+
+        // Check the password character length
+        if (strlen($data['password']) < 8) {
+            $this->errors[] = 'Password must be at least 8 characters';
+        }
+
+        // Validate the terms checkbox
+        if ($data['terms'] != 'on') {
+            $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
+        }
+
         return empty($this->errors);
     }
+
 
     //validate second step of the sign up (signupNext)
     public function validateSecondStep($data)
@@ -37,36 +47,51 @@ class User
         $this->errors = [];
 
         //Check if service details are empty
-        if ($data['is_service'] === 'yes'){
-            if (empty($data['service_type']) || empty($data['service_name']) || empty($data['location'])){
+        if ($data['is_service'] === 'yes') {
+            if (empty($data['service_type']) || empty($data['service_name']) || empty($data['location'])) {
                 $this->errors[] = "Service details are required";
             }
+            if (empty($data['location'])) {
+                $this->errors[] = "Location is required";
+            }
         }
-        if (empty($data['proof']['name'])){
+        $service_type = $data['service_type'] ?? [];
+        // print_r($service_type);
+
+        if ($service_type=='medical-provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
+        }
+        elseif($service_type=='medical-provider' && $data['proof']['type'] !== 'application/pdf'){
+            $this->errors[] = 'Proof of service must be a PDF file';
+        }
+        elseif($service_type!='medical-provider' && !empty($data['proof']['name'])){
+            $this->errors[] = 'Proof of service is only required for medical providers';
+        }
+
+        // Validate the terms checkbox
+        if (!isset($data['terms']) || $data['terms'] !== 'on') {
+            $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
         }
         return empty($this->errors);
     }
 
-    public function createUser($data) {
-        try {
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+    // public function createUser($data)
+    // {
+    //     try {
+    //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            if (isset($data['proof']) && !empty($data['proof']['name'])) {
-                $data['proof_of_service'] = $this->uploadFile($data['proof']);
-            }
-            unset($data['proof']);
+            
 
-            $this->insert($data);
-        } catch (Exception $e) {
-            $this->errors[] = "Error saving user: " . $e->getMessage();
-            return false;
-        }
-        return true;
-    }
+    //         $this->insert($data);
+    //     } catch (Exception $e) {
+    //         $this->errors[] = "Error saving user: " . $e->getMessage();
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
 
-    private function uploadFile($file)
+    public function uploadFile($file)
     {
         $targetDir = "uploads/proofs/";
         $filePath = $targetDir . basename($file['name']);
@@ -75,7 +100,8 @@ class User
     }
 
     // Validate user login
-    public function validateLogin($email, $password) {
+    public function validateLogin($email, $password)
+    {
         // Retrieve the user by email
         $user = $this->getUserByEmail($email);
 
@@ -90,10 +116,8 @@ class User
     }
 
     // Get user by email
-    public function getUserByEmail($email) {
+    public function getUserByEmail($email)
+    {
         return $this->first(['email' => $email]);
     }
-
-
-
 }

@@ -18,6 +18,16 @@
             <h2>Notifications</h2>
             <div class="notifications-section">
                 <!-- Notification Card -->
+                <div class="notification-card highlighted">
+                    <h3>Notification Title 2</h3>
+                    <p class="date-time">Date: 2024/07/20<br>Time: 10:20 PM</p>
+                    <p class="notification-message">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+                        a type specimen book.
+                    </p>
+                </div>
+                
                 <div class="notification-card">
                     <h3>Adoption req has been accepted</h3>
                     <p class="date-time">Date: 2024/07/20<br>Time: 10:20 PM</p>
@@ -28,15 +38,6 @@
                     </p>
                 </div>
 
-                <div class="notification-card highlighted">
-                    <h3>Notification Title 2</h3>
-                    <p class="date-time">Date: 2024/07/20<br>Time: 10:20 PM</p>
-                    <p class="notification-message">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                        a type specimen book.
-                    </p>
-                </div>
 
                 <div class="notification-card">
                     <h3>Notification Title 3</h3>

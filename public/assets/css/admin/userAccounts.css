@@ -15,8 +15,9 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
-    margin-left: 100px;
-    overflow: auto;
+    margin-left: 1%;
+    margin-right: 1%;
+    overflow: scroll;
     border-radius: 8px;
 }
 
@@ -119,7 +120,7 @@
 
 /* User List Section */
 .user-list {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     display: grid;
     gap: 15px;
     max-height: 390px;
@@ -131,7 +132,31 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Make the card a positioned element */
 }
+
+/* Ban Button Styling */
+.ban-button {
+    position: absolute; /* Position the button relative to the card */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+    background-color: #e53935; /* Red background for ban */
+    color: #fff; /* White text */
+    border: none;
+    width: 80px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10; /* Ensure the button stays on top */
+}
+
+.ban-button:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+
 
 .user-card:hover {
     background-color: #f0f8ff;
@@ -143,6 +168,22 @@
     font-size: 15px;
     color: #333;
 }
+/* .ban-button {
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.ban-button:hover {
+    background-color: #c62828;
+} */
+
 
 @media (max-width: 768px) {
     .cards-container {

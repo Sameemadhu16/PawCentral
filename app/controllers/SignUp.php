@@ -12,7 +12,8 @@ class SignUp {
             $this->handleFirstStep($user);
         }
 
-        $this->view("signupLogin.f/signup");
+        $this->view("signupLogin.f/signup" , $_SESSION['signup_data1'] ?? []);
+        unset($_SESSION['signup_data1']);
     }
 
     // Handle form submission for the first step
@@ -25,27 +26,44 @@ class SignUp {
             'last_name' => $_POST['last_name'] ?? '',
             'email' => $_POST['email'] ?? '',
             'password' => $_POST['password'] ?? '',
-            'is_service' => $_POST['is_service'] ?? 'no'
+            'is_service' => $_POST['is_service'] ?? 'no',
+            'terms' => $_POST['terms'] ?? ''
         ];
+
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $data1 = [
+            'first_name' => $_POST['first_name'] ?? '',
+            'last_name' => $_POST['last_name'] ?? '',
+            'email' => $_POST['email'] ?? '',
+            'password' => $_POST['password'] ?? '',
+            'is_service' => $_POST['is_service'] ?? 'no',
+            'terms' => $_POST['terms'] ?? ''
+        ];
+
 
         // Validate data using the User model
         if ($user->validate($data)) {
+            unset($data['terms']);
             if ($data['is_service'] === 'no') {
                 // If "No" is selected, create the user directly
-                $user->createUser($data);
+                $user->insert($data);
 
                 // Clear session data and redirect to login
                 unset($_SESSION['signup_data']);
                 redirect('login');
             } else {
                 // If "Yes" is selected, store data in session and redirect to step 2
-                $_SESSION['signup_data'] = $data;
+                $_SESSION['signup_data'] = $data1;
                 redirect('signup/signupnext');
             }
+            $this->view("signupLogin.f/signup");
         } else {
             // Pass validation errors to the view if validation fails
             $data['errors'] = $user->errors;
-            $this->view('signupLogin.f/signup', $data);
+            $_SESSION['signup_data1'] = $data;
+            // $this->view('signupLogin.f/signup', $data);
+
         }
     }
 }

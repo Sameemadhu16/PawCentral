@@ -11,7 +11,8 @@ class SignUpNext {
             $this->handleSecondStep($user);
         }
 
-        $this->view("signupLogin.f/signupNext");
+        $this->view("signupLogin.f/signupNext" , $_SESSION['signup_data2'] ?? []);
+        unset($_SESSION['signup_data2']);
     }
 
     // Handle the second step form submission
@@ -24,27 +25,37 @@ class SignUpNext {
         $data['service_name'] = $_POST['service_name'] ?? '';
         $data['location'] = $_POST['location'] ?? '';
         $data['proof'] = $_FILES['proof'] ?? null;
+        $data['terms'] = $_POST['terms'] ?? '';
 
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        if (isset($data['proof']) && !empty($data['proof']['name'])) {
+            $data['proof_of_service'] = $user->uploadFile($data['proof']);
+        }
+        
+        // print_r($data['proof']);
         // Validate the data for the second step
         if ($user->validateSecondStep($data)) {
-            echo "Validation passed.<br>"; // Debug message
-
+            // echo "Validation passed.<br>"; // Debug message
+            unset($data['terms']);
+            unset($data['proof']);
             // Attempt to create the user in the database
-            $user->createUser($data);
-            echo "User created.<br>"; // Debug message
+            $user->insert($data);
+            // echo "User created.<br>"; // Debug message
 
             // Clear session data
             unset($_SESSION['signup_data']);
-            echo "Session cleared.<br>"; // Debug message
+            // echo "Session cleared.<br>"; // Debug message
 
             // Redirect to login
             redirect('login');
-            echo "Redirecting to login.<br>"; // Debug message (should not display if redirect works)
+            // echo "Redirecting to login.<br>"; // Debug message (should not display if redirect works)
 
         } else {
             // Pass errors to the view if validation fails
             $data['errors'] = $user->errors;
-            $this->view('signupLogin.f/signupNext', $data);
+            $_SESSION['signup_data2'] = $data;
+            // $this->view('signupLogin.f/signupNext', $data);
         }
     }
 }

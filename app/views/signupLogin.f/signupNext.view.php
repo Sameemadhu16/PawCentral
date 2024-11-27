@@ -57,20 +57,20 @@
                         </div>
                         <div class="form-group">
                             <label for="service_name">Name of the service</label>
-                            <input type="text" id="service_name" name="service_name" required>
+                            <input type="text" id="service_name" name="service_name" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location" required>
+                        <input type="text" id="location" name="location" >
                     </div>
                     <div class="form-group">
-                        <label for="fileUpload">Proof of service</label>
-                        <input type="file" id="fileUpload" name="proof" required>
+                        <label for="fileUpload">Proof of service(for only medical provider)</label>
+                        <input type="file" id="fileUpload" name="proof" >
                     </div>
 
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="terms" name="terms" required>
+                        <input type="checkbox" id="terms" name="terms">
                         <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">

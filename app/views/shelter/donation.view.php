@@ -19,7 +19,7 @@
         <div class="content">
             <div class="header-section">
                 <h2>Donation requests</h2>
-                <button class="ask-support-button">Ask for support</button>
+                <!-- <button class="ask-support-button">Ask for support</button> -->
             </div>
 
             <div class="donation-section">
