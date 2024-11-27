@@ -16,7 +16,7 @@
         <h2>Selling</h2>
         <hr/>
     </div>
-    <form class="form1" action="<?=ROOT?>/service/postpet/postpetnext/selling/submit" method="POST">
+    <form class="form1" action="<?=ROOT?>/service/editpost/editpostnext/edit/submit" method="POST">
         <label class="pricel">Price:</label>
         <input type="text" name="price" placeholder="0.00" class="price"><br><br><br>
         <label class="fee">Fee is negotiable</label>

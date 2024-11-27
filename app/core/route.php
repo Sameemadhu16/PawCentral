@@ -10,7 +10,7 @@ route('service/postpet/postpetnext/submit','Postpetnext@submit');
 route('service/postpet/postpetnext/selling','Selling@index');
 route('service/postpet/postpetnext/selling/submit','Selling@submit');
 route('service/manage','Manage@index');
-route('service/manage/edit/{id}','Manage@edit');
+route('service/manage/edit','Manage@edit');
 route('service/manage/delete','Manage@delete');
 route('service/manage/details','Manage@details');
 

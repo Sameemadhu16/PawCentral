@@ -29,7 +29,7 @@
             </div>
 
             <!-- Image Upload Form -->
-            <form action="<?=ROOT?>/service/postpet/postpetnext/submit" method="POST" enctype="multipart/form-data">
+            <form action="<?=ROOT?>/service/manage/editpost/editpostnext/submit/<?=htmlspecialchars($post->id)?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="images"><h4>Select Images to Upload:</h4></label>
                     <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>

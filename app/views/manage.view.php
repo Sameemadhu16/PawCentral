@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </a>
-            <a href="<?=ROOT?>/service/manage/edit<?=htmlspecialchars($post->id)?>" class="btn">Edit</a>
+            <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($post->id)?>" class="btn">Edit<?=htmlspecialchars($post->id)?></a>
             <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($post->id)?>" 
                class="btn" 
                onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>

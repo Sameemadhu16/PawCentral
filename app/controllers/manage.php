@@ -10,30 +10,38 @@ class Manage{
     public function edit($id)
     {
         $managePost = new AddPostpet();
-    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Process form submission
+            // Handle form submission
             $data = $_POST;
     
             try {
-                $managePost->update($id, $data);
-                header("Location: " . ROOT . "/manage");
+                // Store the submitted data in the session
+                $_SESSION['edit_post_data'] = $data;
+    
+                // Redirect to the next view
+                header("Location: " . ROOT . "/service/manage/editpost/editpostnext");
                 exit;
             } catch (Exception $e) {
+                // Handle errors
                 $error = $e->getMessage();
             }
         }
+       
     
         // Fetch the current post data
-        $post = $managePost->first(['id' => $id]);
+        $post = $managePost->first(['id' => $id['id']]);
         if (!$post) {
             header("Location: " . ROOT . "/manage");
             exit;
         }
-    
+       
         // Pass the post data and any errors to the view
         $this->view("editpost", ['post' => $post, 'error' => $error ?? null]);
     }
+
+
+
+    
 public function delete() 
 {
     $id = $_GET['id'] ?? null; // Get the `id` from the query parameter
