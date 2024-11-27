@@ -34,6 +34,7 @@ route('admin/donation', 'admin/AdminDonation@index');
 route('admin/profile', 'admin/AdminProfile@index');
 route('admin/profile_view','admin/AdminProfileView@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
+route('admin/notification', 'admin/AdminNotification@index');
 
 
 // Medical routing
@@ -62,7 +63,7 @@ route('donationsnsupport','DonationsAndSupport');
 
 //pet shelter routings
 route('shelter/profile','shelter/Profile@index');
-// route('shelter/notification','shelter/Notification@index');
+route('shelter/notification','shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
 // route('shelter/lost_and_found','shelter/LostAndFound@index');
 route('shelter/event','shelter/Events@index');
