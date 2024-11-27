@@ -8,9 +8,9 @@
 
 /* Container settings */
 .container {
-    max-width: 100%;
+    max-width: auto;
     margin: 0 auto;
-    padding: 90px 50px;
+    padding: 20px 165px;
 }
 
 /* Title Styling */

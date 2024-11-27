@@ -36,6 +36,8 @@ class Selling{
                     'address'      => $address,
                     'termsAccepted'=> $termsAccepted,
                     'image_path'       => isset($petData['images']) ? $petData['images'] : null, // Pass the BLOB data here(',', $petData['images']) : null,
+                    // 'image_path' => isset($petData['images']) ? "http://localhost/PawCentral/public/uploads/" . $petData['images'][0] : null,
+
                 ];
     
                 $postPetModel = new AddPostpet();

@@ -6,6 +6,7 @@ class AddPostpet
     protected $table = 'post_pet';
 
     protected $allowedColumns = [
+        'id',
         'tradeType',
         'petName',
         'species',

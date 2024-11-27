@@ -3,103 +3,145 @@ body {
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .container {
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Title Section */
 .title {
     text-align: center;
     margin-bottom: 30px;
 }
 
 .title h2 {
-    font-size: 32px;
-    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    color: #444;
 }
 
 .title hr {
-    width: 50px;
-    height: 2px;
-    background-color: #333;
+    width: 60px;
+    height: 3px;
+    background-color: #b720fe;
     border: none;
     margin: 10px auto;
 }
 
-.form1 {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* Form Styles */
+form {
+    margin: 20px 0;
 }
 
-label {
+form label {
+    font-size: 16px;
     font-weight: 500;
-    margin-bottom: 5px;
+    color: #444;
 }
 
-input[type="text"] {
-    width: 100%;
+form input[type="text"] {
+    width: calc(100% - 20px);
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
-input[type="checkbox"] {
-    margin-left: -800px;
+form input[type="text"]:focus {
+    outline: none;
+    border-color: #b720fe;
+    box-shadow: 0 0 5px rgba(183, 32, 254, 0.5);
 }
 
-h3 {
-    font-size: 20px;
+form input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+h3.location {
     margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
 }
 
-a {
-    color: #007BFF;
-    text-decoration: none;
+/* Terms and Conditions */
+.terms {
     font-size: 14px;
+    margin-bottom: 20px;
 }
 
-a:hover {
+form a {
+    display: inline-block;
+    margin: 10px 0 20px;
+    font-size: 14px;
+    color: #b720fe;
+    text-decoration: none;
+}
+
+form a:hover {
     text-decoration: underline;
 }
 
-.text {
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
-}
-
-.conclusion {
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #b720fe;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #7d0eb1;
-}
-
+/* Submit Button */
 button.submit {
     background-color: #b720fe;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
 }
 
 button.submit:hover {
-    background-color:#7d0eb1;
+    background-color: #8e18c9;
+}
+
+/* Confirmation Text */
+.text {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title h2 {
+        font-size: 24px;
+    }
+
+    form label {
+        font-size: 14px;
+    }
+
+    form input[type="text"] {
+        font-size: 14px;
+    }
+
+    button.submit {
+        width: 100%;
+    }
+
+    h3.location {
+        font-size: 16px;
+    }
 }

@@ -15,34 +15,29 @@
         <div class="managepost-title">Review,edit or delete your active<br>posts here.</div>
     </div>
     <div class="post-container">
-        <?php if(!empty($posts)):?>
-            <?php foreach($posts as $post):?>
-
+    <?php if(!empty($posts)): ?>
+        <?php foreach($posts as $post): ?>
+            <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link">
                 <div class="card-container">
-                     
-                            <div class="card">
-                 <img src="<?=htmlspecialchars($post->image_path)?>">
+                    <div class="card">
+                        <img src="<?=htmlspecialchars($post->image_path)?>" alt="Post Image">
                         <div class="card-content">
                             <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
                             <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>
                             <strong>Price:</strong> <?=htmlspecialchars($post->price)?><br>
-            </div>
-        </div>
-    </a>
-
-    <!-- Edit Button -->
-    <a href="<?=ROOT?>/manage/edit?id=<?=htmlspecialchars($post->id)?>" class="btn">Edit</a>
-
-    <!-- Delete Button -->
-    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($post->id)?>" 
-       class="btn" 
-       onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="<?=ROOT?>/service/manage/edit<?=htmlspecialchars($post->id)?>" class="btn">Edit</a>
+            <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($post->id)?>" 
+               class="btn" 
+               onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No posts Available</p>
+    <?php endif; ?>
 </div>
-        <?php endforeach;?>
-        <?php else:?>
-            <p>No posts Available</p>
-            <?php endif;?>
-    </div>
 
 </body>
 </html>

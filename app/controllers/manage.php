@@ -8,32 +8,33 @@ class Manage{
         $this->view("Manage",['posts'=>$posts]);
     }
     public function edit($id)
-{
-    $managePost = new AddPostpet();
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Process form submission
-        $data = $_POST;
-
-        try {
-            $managePost->update($id, $data);
+    {
+        $managePost = new AddPostpet();
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Process form submission
+            $data = $_POST;
+    
+            try {
+                $managePost->update($id, $data);
+                header("Location: " . ROOT . "/manage");
+                exit;
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
+    
+        // Fetch the current post data
+        $post = $managePost->first(['id' => $id]);
+        if (!$post) {
             header("Location: " . ROOT . "/manage");
             exit;
-        } catch (Exception $e) {
-            $error = $e->getMessage();
         }
+    
+        // Pass the post data and any errors to the view
+        $this->view("editpost", ['post' => $post, 'error' => $error ?? null]);
     }
-
-    // Fetch the current post data
-    $post = $managePost->first(['id' => $id]);
-    if (!$post) {
-        header("Location: " . ROOT . "/manage");
-        exit;
-    }
-
-    $this->view('EditPost', ['post' => $post, 'error' => $error ?? null]);
-}
-public function delete()
+public function delete() 
 {
     $id = $_GET['id'] ?? null; // Get the `id` from the query parameter
 
@@ -52,4 +53,19 @@ public function delete()
         echo "Error: Unable to delete the post.";
     }
 }
+public function details($id) {
+    $managePost = new AddPostpet();
+
+    // Fetch the post details by ID
+    $post = $managePost->first(['id' => $id]);
+
+    if (!$post) {
+        header("Location: " . ROOT . "/manage");
+        exit;
+    }
+
+    // Display the details page
+    $this->view('PostDetails', ['post' => $post]);
+}
+
 }

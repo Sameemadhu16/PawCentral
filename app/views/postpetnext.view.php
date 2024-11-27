@@ -22,7 +22,7 @@
                 <ul>
                     <li><h4>Accepted Formats:</h4><p>JPG, PNG</p></li>
                     <li><h4>File Size Limit:</h4><p>10MB per Image</p></li>
-                    <li><h4>Upload up to 5 photos</h4></li>
+                    <li><h4>Upload a 1 photo</h4></li>
                     <li><h4>Ensure your images are well-lit and focused</h4></li>
                     <li><h4>Recommended Resolution:</h4><p>1080px x 1080px or higher for best results</p></li>
                 </ul>
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="images"><h4>Select Images to Upload:</h4></label>
                     <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>
-                    <p>You can select up to 5 images.</p>
+                    
                 </div>
                 <div class="upload-div">
                     <button type="submit" class="upload">Upload</button>
