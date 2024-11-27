@@ -22,8 +22,9 @@
             <div class="events-section">
                 <!-- <h2>Events</h2> -->
                 <div class="button">
-                    <button class="publish-button">Publish Event</button>
-
+                    <form action="<?= ROOT ?>/shelter/eventInfo" method="post">
+                        <button type="submit" class="publish-button">Publish Event</button>
+                    </form>
                 </div>
     
                 <div class="event-card">
