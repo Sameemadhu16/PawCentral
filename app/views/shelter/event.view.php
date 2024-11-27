@@ -20,7 +20,7 @@
         <div class="content">
             <!-- Events Section -->
             <div class="events-section">
-                <h2>Events</h2>
+                <!-- <h2>Events</h2> -->
                 <div class="button">
                     <button class="publish-button">Publish Event</button>
 
@@ -28,7 +28,7 @@
     
                 <div class="event-card">
                     <div class="event-image">
-                        <img src="<?= ROOT ?>/assets/images/events/event1.jpg" alt="Event Image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
                     </div>
                     <div class="event-details">
                         <h3>Animal sterilization camp</h3>
@@ -39,7 +39,115 @@
                         <span class="participants">102 participants enrolled</span>
                     </div>
                     <div class="event-actions">
-                        <button class="remove-button">Remove</button>
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
+                        <button class="close-button">Close Event</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-details">
+                        <h3>Animal sterilization camp</h3>
+                        <p>Sun, 5th September, 4.00 PM</p>
+                        <p>@youth club</p>
+                        <p>36/2 Sri lankarama rd -panadura</p>
+                        <p class="publish-date">Published on: 2024/05/16</p>
+                        <span class="participants">102 participants enrolled</span>
+                    </div>
+                    <div class="event-actions">
+                        <!-- <button class="remove-button">Remove</button> -->
                         <button class="close-button">Close Event</button>
                     </div>
                 </div>

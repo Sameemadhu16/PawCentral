@@ -26,6 +26,8 @@
     flex: 1;
     padding: 20px;
     margin-left: 20px;
+    overflow-y: scroll;
+    max-height: 600px;
 }
 
 .events-section h2 {
@@ -69,6 +71,9 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .event-image img {
@@ -81,6 +86,7 @@
 
 .event-details {
     flex: 1;
+    margin-left: 10%;
     
 }
 
@@ -120,9 +126,18 @@
     gap: 10px;
 }
 
-.remove-button,
-.close-button {
+.remove-button{
     background-color: #d6eaff;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.close-button {
+    background-color: #dc3545;
     color: #333;
     border: none;
     border-radius: 5px;
@@ -133,12 +148,12 @@
 }
 
 .remove-button:hover {
-    background-color: #ff9191;
+    background-color: #c82333;
     color: #fff;
 }
 
 .close-button:hover {
-    background-color: #91caff;
+    background-color: #c82333;
     color: #fff;
 }
 
