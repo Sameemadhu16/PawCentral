@@ -29,10 +29,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -46,10 +46,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -63,10 +63,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -80,10 +80,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -97,10 +97,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -114,10 +114,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
                 <div class="request-card">
@@ -131,10 +131,10 @@
                             
                         </div>
                     </div>
-                    <!-- <div class="actions">
-                        <button class="approve-button">Approve</button>
-                        <button class="reject-button">Reject</button>
-                    </div> -->
+                    <div class="actions">
+                        <button class="approve-button">Edit</button>
+                        <button class="reject-button">Remove</button>
+                    </div>
                 </div>
 
             </div>
