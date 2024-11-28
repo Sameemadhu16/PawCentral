@@ -18,7 +18,8 @@ if (session_status() == PHP_SESSION_NONE) {
                     <p><span>Name : </span>Center Name</p>
                     <p><span>Email : </span>vetcenter@gmail.com</p>
                     <p><span>Mobile No : </span>0712345678</p>
-                    <p><span>About us : </span>lorem ipsem</p>
+                    <p><span>Location : </span>112/4 Mahara, Kadawatha</p>
+                    <p><span>About us : </span><span class="about_us">We provide a wide variety of services including Vaccination, Consultation, Surgeries, Dental scaling, Microchipping and much more.</span></p>
                 </div>
 
                 <div class="button-section">

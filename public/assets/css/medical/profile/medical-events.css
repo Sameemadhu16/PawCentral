@@ -1,0 +1,174 @@
+.page-style-events body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f3e8fd;
+}
+
+.page-style-events .events-sec{
+    min-height: 80vh;
+}
+
+.page-style-events .events-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-style-events h1 {
+    text-align: center;
+}
+
+.page-style-events .sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #3700b3;
+
+}
+
+.page-style-events .btn-primary {
+    background-color: #8450e4;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 6px rgba(132, 80, 228, 0.2);
+}
+.page-style-events .btn-primary:hover{
+    background-color: #6A0DAD;
+}
+
+.page-style-events .event-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 0 10px; /* Padding to prevent cards from touching the edges */
+}
+
+.page-style-events .event-card {
+    flex: 1; /* Allow cards to take equal space */
+    min-width: 500px; /* Minimum width for the cards */
+    max-width: 60%;
+    margin: 10px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(132, 80, 228, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.page-style-events .event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(132, 80, 228, 0.15);
+}
+
+.page-style-events .event-card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.page-style-events .event-image {
+    width: 180px; /* Set fixed width */
+    height: 200px; /* Set fixed height */
+    object-fit: cover; /* Make the image fill the container, cropping if needed */
+    margin-right: 10px;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-style-events .event-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 10px;
+}
+
+.page-style-events .find-more-btn, .enroll-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+  
+ .page-style-events  .event-details {
+    flex-grow: 1;
+  }
+  
+  .page-style-events .event-details h2 {
+    font-size: 22px;
+    margin: 0;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #3700b3;
+  }
+  
+  .page-style-events .event-details p {
+    margin: 8px 0;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  
+  .page-style-events .published-date {
+    font-size: 13px;
+    color: #888;
+    font-style: italic;
+    margin-top: 10px;
+  }
+  
+  
+  .page-style-events .event-actions .find-more-btn,
+  .page-style-events .event-actions .enroll-btn {
+    background-color: #8450e4;
+    /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
+    border: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 6px rgba(132, 80, 228, 0.2);
+  }
+  
+  .event-actions .find-more-btn:hover,
+  .event-actions .enroll-btn:hover {
+    background-color: #6A0DAD;
+    box-shadow: 0 4px 8px rgba(132, 80, 228, 0.3);
+  }
+  
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+
+#currentPage {
+    margin: 0 10px;
+    font-size: 18px;
+} */
+
