@@ -28,6 +28,9 @@
             <button id="nextPage">next</button>
         </div>
     </div>
+    
+    <!-- FOOTER -->
+    <?php include("../app/views/components/footer.php")?>
     <script src="./assets/js/events.js"></script>
 
 </body>

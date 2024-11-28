@@ -127,7 +127,8 @@ button:hover {
     color: inherit; /* Keeps text color consistent */
 }
 .pet-card-link:hover {
-    background-color: #cff4ff;
+    /* background-color: #cff4ff; */
+    background-color:rgba(131, 174, 255, 0.4);
     transform: scale(1.008); 
     /* font-size: 1.2em; */
     /* Slightly enlarge the card */
@@ -142,4 +143,5 @@ button:hover {
     font-size: 1em; /* Adjust other text size if desired */
     transition: font-size 0.2s ease; /* Smooth transition for font size */
     color: #2951c9;
+    color: #153aa8;
 }

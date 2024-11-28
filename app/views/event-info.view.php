@@ -78,6 +78,9 @@
     </form>
 </div>
   </div>
+  
+    <!-- FOOTER -->
+    <?php include("../app/views/components/footer.php")?>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

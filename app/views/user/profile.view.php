@@ -21,7 +21,7 @@
 
         <div class="container">
             <div class="profile-section">
-                <h1>Shelter Profile</h1>
+                <h1>My Profile</h1>
                 <div class="profile-container">
                     <div class="profile-pic">
                         <img src="<?= ROOT ?>/assets/images/user.jpg" alt="Profile Picture">

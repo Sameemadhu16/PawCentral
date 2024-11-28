@@ -1,10 +1,10 @@
 const events = [
-    { title: 'Animal sterilization camp', date: 'Sun, 5th September, 4:00 PM', location: '@youth club', address: '36/2 Sri lankarama rd -panadura', publishedDate: '2024/05/16', image: './assets/images/pets/found_1.png',id:"event_id" },
+    { title: 'Animal sterilization camp', date: 'Sun, 5th September, 4:00 PM', location: '@youth club', address: '36/2 Sri lankarama rd -panadura', publishedDate: '2024/05/16', image: './assets/images/pets/sell2.webp',id:"event_id" },
     { title: 'Pet adoption day', date: 'Sat, 11th September, 10:00 AM', location: '@city park', address: '45 Park Avenue, Colombo', publishedDate: '2024/05/18', image: './assets/images/pets/found_1.png',id:"event_id" },
     { title: 'Veterinary check-up camp', date: 'Sun, 19th September, 9:00 AM', location: '@community center', address: '22 Main Street, Kandy', publishedDate: '2024/05/20', image: './assets/images/pets/petres_2.png', id:"event_id" },
     { title: 'Pet grooming workshop', date: 'Sat, 25th September, 2:00 PM', location: '@pet store', address: '15 Beach Road, Galle', publishedDate: '2024/05/22', image: './assets/images/pets/petres_3.png', id:"event_id" },
     { title: 'Animal welfare seminar', date: 'Sun, 3rd October, 11:00 AM', location: '@university hall', address: '100 University Drive, Peradeniya', publishedDate: '2024/05/24', image: './assets/images/pets/found_1.png', id:"event_id" },
-    { title: 'Fundraising gala for animal shelter', date: 'Sat, 9th October, 7:00 PM', location: '@grand hotel', address: '55 Galle Face, Colombo', publishedDate: '2024/05/26', image: './assets/images/pets/found_1.png', id:"event_id" },
+    { title: 'Fundraising gala for animal shelter', date: 'Sat, 9th October, 7:00 PM', location: '@grand hotel', address: '55 Galle Face, Colombo', publishedDate: '2024/05/26', image: './assets/images/pets/petres1.jpg', id:"event_id" },
     { title: 'Veterinary check-up camp', date: 'Sun, 19th September, 9:00 AM', location: '@community center', address: '22 Main Street, Kandy', publishedDate: '2024/05/20', image: './assets/images/pets/petres_2.png', id:"event_id" },
     { title: 'Pet grooming workshop', date: 'Sat, 25th September, 2:00 PM', location: '@pet store', address: '15 Beach Road, Galle', publishedDate: '2024/05/22', image: './assets/images/pets/petres_3.png', id:"event_id" },
 ];

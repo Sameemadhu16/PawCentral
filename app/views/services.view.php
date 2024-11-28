@@ -151,6 +151,9 @@
         <a href="#">4</a>
         <a href="#">&gt;</a>
     </div>
+    
+    <!-- FOOTER -->
+    <?php include("../app/views/components/footer.php")?>
 
 </body>
 </html>
