@@ -53,6 +53,7 @@ route('userprofile/notifications','user/Notification@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/lost_and_found','user/LostAndFound@index');
 route('userprofile/mypets','user/Mypets@index');
+route('userprofile/mypets/selectedPet','user/Mypets@index2');
 route('userprofile/event','user/Events@index');
 route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
 route('lostandfound/postdetails','user/LostAndFound@show');
