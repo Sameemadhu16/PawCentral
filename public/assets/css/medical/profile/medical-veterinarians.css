@@ -5,7 +5,7 @@
     --text-color: #000000;
     --light-gray: #F0F0F0;
     --dark-gray: #333333;
-    --container-padding: 5%;
+    --container-padding: 7%;
 }
 
 .page-style-veterinarians {
@@ -53,6 +53,8 @@
     gap: 20px;
     width: 100%;
     padding: 20px 0;
+    justify-content: center;
+    place-items: center;
 }
 
 .vet-card {
@@ -62,8 +64,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 10px;
+    align-content: center;
+    /* Optional: add max-width if needed */
+    max-width: 500px;
+    width: 100%;
 }
 
 .page-style-veterinarians .vet-details {
