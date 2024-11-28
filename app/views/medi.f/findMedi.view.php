@@ -18,7 +18,7 @@
         <div class="search-container">
             <form action="#" method="POST">
                 <div class="search-field">
-                    <label for="namesearch">Vet center name</label>
+                    <label for="namesearch">Center name</label>
                     <input type="text" name="name_search" placeholder="">
                 </div>
                 <div class="search-field">
@@ -35,76 +35,66 @@
         <div id="cardGrid" class="grid-container">
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/shop.png" alt="Center name" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
-                    <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">Center name</h2></a>
+                    <p class="card-subtitle">Location</p>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
+
+
+
+
         </div>
         
         
 
-        <!-- remove this -->
-        <div class="results-container">
-            <?php if (isset($data['medicines'])): ?>
-                <?php foreach ($data['medicines'] as $medicine): ?>
-                    <div class="result">
-                        <h3><?= $medicine['name'] ?></h3>
-                        <p><?= $medicine['description'] ?></p>
-                        <p><?= $medicine['price'] ?></p>
-                        <p><?= $medicine['quantity'] ?></p>
-                        <p><?= $medicine['expiry_date'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
 
     </div>
 </body>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </head>
 
 <body class="body">
@@ -89,6 +88,7 @@
 
         </main>
     </div>
+    <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </body>
 
 </html>

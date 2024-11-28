@@ -1,0 +1,88 @@
+/* Define color variables */
+:root {
+    --primary-color: #6A0DAD;
+    --secondary-color: #882FC8;
+    --accent-color: #FFFFFF;
+    --text-color: #000000;
+    --light-gray: #F0F0F0;
+    --dark-gray: #333333;
+  }
+  
+  /* Example usage */
+  /* body {
+    color: var(--text-color);
+    background-color: var(--accent-color);
+  } */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ecececee;
+}
+
+.container {
+    max-width: auto;
+    margin: 0 auto;
+    padding: 22px 165px;
+}
+
+.dashboard{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 15px;
+}
+
+.dashboard .page-window{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #882FC8;
+    border-radius: 15px;
+}
+
+.page-window {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 500px;
+}
+
+.page {
+    display: none;
+    width: 100%;
+}
+
+.page.active {
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 22px 15px;
+    }
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .dashboard .page-window {
+        margin-top: 15px;
+    }
+    
+}
+
+@media screen and (min-width: 1445px) {
+    .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 20px 0px;
+    }
+    
+}
