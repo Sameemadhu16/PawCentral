@@ -69,6 +69,7 @@ route('medical-appointment-reason','Medical/Appointment_Reason@index');
 route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
 route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
 route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+route('medical-center/dashboard/notification','Medical/profile/Med_Dashboard_Notification@index');
 route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
 route('medical-center/dashboard/veterinarians/edit/{id}','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
 route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');

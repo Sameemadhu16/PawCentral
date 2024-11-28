@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-appointments.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-veterinarians.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/add-veterinarian.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-notification.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>

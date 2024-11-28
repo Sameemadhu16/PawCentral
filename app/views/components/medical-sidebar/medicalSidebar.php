@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link" data-page="notifications">
+                <a href="#" class="nav-link" data-page="notification">
                     <i class="fas fa-medkit icon"></i>Notifications
                 </a>
             </li>
