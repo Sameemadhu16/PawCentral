@@ -20,7 +20,7 @@
             <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link">
                 <div class="card-container">
                     <div class="card">
-                        <img src="<?=htmlspecialchars($post->image_path)?>" alt="Post Image">
+                        <img src="<?=$post->image_path[0]?>" alt="<?=$post->image_path[0]?>">
                         <div class="card-content">
                             <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
                             <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>

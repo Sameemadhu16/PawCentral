@@ -8,35 +8,39 @@ class Postpetnext{
         $this->view("postpetnext");
     }
 
-   
         public function submit() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Check if files were uploaded
                 if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
                     $imageData = [];
                     $totalFiles = count($_FILES['images']['name']);
-    
+                    // Base paths for images
+                    $rootUrl='http://localhost/PawCentral/public/assets/';
+                    $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
+                    $baseUploadUrl = $rootUrl . 'uploads/';
+                    $defaultImageUrl = $rootUrl . 'images/sample.jpg';
+
+
                     // Loop through all files
                     for ($i = 0; $i < $totalFiles; $i++) {
-                        $fileTmpName = $_FILES['images']['tmp_name'][$i];
-                        $fileSize = $_FILES['images']['size'][$i];
-                        $fileError = $_FILES['images']['error'][$i];
-    
-                        // Validate file size (limit to 10MB)
-                        if ($fileSize > 10485760) {
-                            echo "File size too large. Maximum size allowed is 10MB.";
-                            exit;
-                        }
-    
-                        // Read the file content and convert it to binary data
-                        $fileContent = file_get_contents($fileTmpName);
-                        if ($fileContent === false) {
-                            echo "Error reading file: " . $_FILES['images']['name'][$i];
-                            exit;
-                        }
+                        // $fileTmpName = $_FILES['images']['tmp_name'][$i];
+                        // $fileSize = $_FILES['images']['size'][$i];
+                        // $fileError = $_FILES['images']['error'][$i];
+                        $imageName = time() . '_' . $_FILES['images']['name'][$i];
+                        $uploadPath = $baseUploadPath . $imageName;
+                        $imageUrl = $baseUploadUrl . $imageName;
     
                         // Add binary data to imageData array
-                        $imageData[] = $fileContent;
+                        $imageData[] = $imageUrl;
+                        echo json_encode($imageData);
+
+                        if (!is_dir($baseUploadPath)) {
+                            mkdir($baseUploadPath, 0777, true);
+                        }
+        
+                        if (!move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploadPath)) {
+                            throw new Exception('Failed to move uploaded file');
+                        }
                     }
     
                     // Store the image data in session
