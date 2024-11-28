@@ -47,6 +47,7 @@
     <script>
         // Optional interactivity for hover effects or menu interactions (if needed)
     </script>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 
 </html>
