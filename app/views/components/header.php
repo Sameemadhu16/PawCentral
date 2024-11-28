@@ -12,6 +12,7 @@
     </div>
 
 
+
     <script>
         // To mark the currently selected tab
         function toggleNavbar() {
@@ -30,16 +31,14 @@
 
     <!-- FILTER THE TABS BASED ON THE USER ROLE ACCESSES -->
     <ul class="navbar-links">
-
         <li><a href="<?= ROOT ?>/findapet">Find a Pet</a></li>
         <li><a href="<?= ROOT ?>/announcements">Awareness</a></li>
-        <li><a href="#">Medical Care</a></li>
+        <li><a href="<?=ROOT?>/medical-centers">Medical Care</a></li>
         <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
         <li><a href="<?= ROOT ?>/services">Services</a></li>
         <li><a href="<?= ROOT ?>/shelters">home for a pet</a></li>
         <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
         <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
-
     </ul>
 
     <!-- User profile -->
