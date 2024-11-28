@@ -58,165 +58,95 @@
                 <section class="interactive-sections">
 
                     <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                    <img src="<?= ROOT ?>/assets/images/pets/2.jpg" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
+                            <h3>Pet Adoption Day</h3>
                             <p>Type: Adoption Post</p>
                             <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
                         </div>
                     </div>
 
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
+                    <img src="<?= ROOT ?>/assets/images/pets/3.jpg" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Volunteer Recruitment</h3>
+                            <p>Type: Announcement</p>
+                            <p>Author: John Smith</p>
                         </div>
                     </div>
 
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
+                        <img src="<?= ROOT ?>/assets/images/pets/1.jpg" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>New Shelter Opening</h3>
+                            <p>Type: News</p>
+                            <p>Author: Sarah Johnson</p>
                         </div>
                     </div>
 
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
+                    <img src="<?= ROOT ?>/assets/images/pets/6.jpg" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
-                        <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
-                        <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Lost Pet Found</h3>
+                            <p>Type: Alert</p>
+                            <p>Author: Michael Brown</p>
                         </div>
                     </div>
 
-                    <div class="interactive-card">
-                        <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
+                    <img src="<?= ROOT ?>/assets/images/pets/5.jpg" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Adoption Success Story</h3>
+                            <p>Type: Story</p>
+                            <p>Author: Emma Davis</p>
                         </div>
                     </div>
-                    <div class="interactive-card">
+
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Fundraising Event</h3>
+                            <p>Type: Event</p>
+                            <p>Author: Olivia Martinez</p>
                         </div>
                     </div>
-                    <div class="interactive-card">
+
+                    <!-- <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Pet Care Tips</h3>
+                            <p>Type: Blog Post</p>
+                            <p>Author: Lucas Anderson</p>
                         </div>
                     </div>
-                    <div class="interactive-card">
+
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Urgent Adoption Needed</h3>
+                            <p>Type: Emergency</p>
+                            <p>Author: Mia Thompson</p>
                         </div>
-                    </div>
-                    <div class="interactive-card">
+                    </div> -->
+
+                    <!-- <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
-                            <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <h3>Free Vaccination Drive</h3>
+                            <p>Type: Announcement</p>
+                            <p>Author: Ethan White</p>
                         </div>
                     </div>
-                    <div class="interactive-card">
+
+                    <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
                         <img src="<?= ROOT ?>/assets/images/products_bg.png" alt="Post Image">
                         <div class="card-content">
-                            <h3>Post Title: Pet Adoption Day</h3>
+                            <h3>Meet Our New Arrivals</h3>
                             <p>Type: Adoption Post</p>
-                            <p>Author: Jane Doe</p>
-                            <!-- <div class="post-actions">
-                                <button class="approve-button" onclick="approvePost()">Approve</button>
-                                <button class="edit-button" onclick="editPost()">Edit</button>
-                                <button class="delete-button" onclick="deletePost()">Delete</button>
-                            </div> -->
+                            <p>Author: Ava Garcia</p>
                         </div>
-                    </div>
+                    </div> -->
+
                     <!-- Add more interactive-card divs as needed -->
                 </section>
             </div>
@@ -227,4 +157,5 @@
 
         </div>
     </div>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
