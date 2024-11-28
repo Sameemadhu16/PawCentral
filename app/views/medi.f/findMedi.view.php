@@ -97,7 +97,6 @@
 
 
     </div>
-    <?php include("../app/views/components/footer.php"); ?>
     
     <!-- FOOTER -->
     <?php include("../app/views/components/footer.php")?>
