@@ -12,8 +12,9 @@ route('service/postpet/postpetnext/selling/submit','Selling@submit');
 route('service/manage','Manage@index');
 route('service/manage/edit','Manage@edit');
 route('service/manage/delete','Manage@delete');
-route('service/manage/details','Manage@details');
 
+route('service/profile','service/Profile@index');
+route('service/manage/editpost/update','Manage@update');
 // Home route
 route('home', 'Home@index');
 

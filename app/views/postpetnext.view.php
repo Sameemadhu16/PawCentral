@@ -30,15 +30,14 @@
 
             <!-- Image Upload Form -->
             <form action="<?=ROOT?>/service/postpet/postpetnext/submit" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="images"><h4>Select Images to Upload:</h4></label>
-                    <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>
-                    
-                </div>
-                <div class="upload-div">
-                    <button type="submit" class="upload">Upload</button>
-                </div>
-            </form>
+    <div class="form-group">
+        <label for="images"><h4>Select Images to Upload:</h4></label>
+        <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>
+    </div>
+    <div class="upload-div">
+        <button type="submit" class="upload">Upload</button>
+    </div>
+</form>
         </div>
         
         <div class="summary">

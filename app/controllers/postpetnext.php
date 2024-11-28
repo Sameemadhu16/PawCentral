@@ -8,50 +8,45 @@ class Postpetnext{
         $this->view("postpetnext");
     }
 
-        public function submit() {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Check if files were uploaded
-                if (isset($_FILES['image'])) {
-                    $totalFiles = count($_FILES['image']['name']);
-                    // Base paths for image
-                    $rootUrl='http://localhost/PawCentral/public/assets/';
-                    $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
-                    $baseUploadUrl = $rootUrl . 'uploads/';
-                    $defaultImageUrl = $rootUrl . 'image/sample.jpg';
-
-                        // $fileTmpName = $_FILES['image']['tmp_name'];
-                        // $fileSize = $_FILES['image']['size'];
-                        // $fileError = $_FILES['image']['error'];
-                        $imageName = time() . '_' . $_FILES['image']['name'];
-                        $uploadPath = $baseUploadPath . $imageName;
-                        $imageUrl = $baseUploadUrl . $imageName;
-    
-                        // Add binary data to imageData array
-                        $imageUrl;
-                        echo json_encode($imageUrl);
-
-                        if (!is_dir($baseUploadPath)) {
-                            mkdir($baseUploadPath, 0777, true);
-                        }
+    public function submit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Check if a file was uploaded
+            if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK) {
+                $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
+                $baseUploadUrl = ROOT . '/assets/uploads/';
+                
+                // Ensure the directory exists
+                if (!is_dir($baseUploadPath)) {
+                    mkdir($baseUploadPath, 0777, true);
+                }
         
-                        if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-                            throw new Exception('Failed to move uploaded file');
-                        }
-                    
-    
-                    // Store the image data in session
-                    if (isset($_SESSION['postpet_data'])) {
-                        $data1 = $_SESSION['postpet_data'];
-                        $data1['image'] = $imageUrl;  // Add the uploaded binary image data to session
-    
-                        // Save the updated data back to session
-                        $_SESSION['postpet_data'] = $data1;
+                $uploadedImages = [];
+                foreach ($_FILES['images']['name'] as $index => $name) {
+                    $fileTmpName = $_FILES['images']['tmp_name'][$index];
+                    $fileName = time() . '_' . $name;
+                    $uploadPath = $baseUploadPath . $fileName;
+                    $imageUrl = $baseUploadUrl . $fileName;
+        
+                    // Move the uploaded file to the specified directory
+                    if (move_uploaded_file($fileTmpName, $uploadPath)) {
+                        $uploadedImages[] = $imageUrl; // Store relative URL
+                    } else {
+                        echo "Failed to upload: $name";
                     }
                 }
-    
-                // Redirect to the confirmation or next page
-                header("Location: " . ROOT . "/service/postpet/postpetnext/selling");
-                exit();
+        
+                // Save to session
+                if (!empty($uploadedImages)) {
+                    $_SESSION['postpet_data']['images'] = $uploadedImages;
+                }
             }
         }
+        
+    
+            // Redirect
+            header("Location: " . ROOT . "/service/postpet/postpetnext/selling");
+            exit();
+        }
     }
+    // }
