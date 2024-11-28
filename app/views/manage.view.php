@@ -21,6 +21,7 @@
                 <div class="card-container">
                     <div class="card">
                         <img src="<?=$post->image_path[0]?>" alt="<?=$post->image_path[0]?>">
+                        <?=$post->image_path[0]?>
                         <div class="card-content">
                             <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
                             <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>

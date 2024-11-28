@@ -11,42 +11,38 @@ class Postpetnext{
         public function submit() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Check if files were uploaded
-                if (isset($_FILES['images']) && !empty($_FILES['images']['name'][0])) {
-                    $imageData = [];
-                    $totalFiles = count($_FILES['images']['name']);
-                    // Base paths for images
+                if (isset($_FILES['image'])) {
+                    $totalFiles = count($_FILES['image']['name']);
+                    // Base paths for image
                     $rootUrl='http://localhost/PawCentral/public/assets/';
                     $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
                     $baseUploadUrl = $rootUrl . 'uploads/';
-                    $defaultImageUrl = $rootUrl . 'images/sample.jpg';
+                    $defaultImageUrl = $rootUrl . 'image/sample.jpg';
 
-
-                    // Loop through all files
-                    for ($i = 0; $i < $totalFiles; $i++) {
-                        // $fileTmpName = $_FILES['images']['tmp_name'][$i];
-                        // $fileSize = $_FILES['images']['size'][$i];
-                        // $fileError = $_FILES['images']['error'][$i];
-                        $imageName = time() . '_' . $_FILES['images']['name'][$i];
+                        // $fileTmpName = $_FILES['image']['tmp_name'];
+                        // $fileSize = $_FILES['image']['size'];
+                        // $fileError = $_FILES['image']['error'];
+                        $imageName = time() . '_' . $_FILES['image']['name'];
                         $uploadPath = $baseUploadPath . $imageName;
                         $imageUrl = $baseUploadUrl . $imageName;
     
                         // Add binary data to imageData array
-                        $imageData[] = $imageUrl;
-                        echo json_encode($imageData);
+                        $imageUrl;
+                        echo json_encode($imageUrl);
 
                         if (!is_dir($baseUploadPath)) {
                             mkdir($baseUploadPath, 0777, true);
                         }
         
-                        if (!move_uploaded_file($_FILES['images']['tmp_name'][$i], $uploadPath)) {
+                        if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
                             throw new Exception('Failed to move uploaded file');
                         }
-                    }
+                    
     
                     // Store the image data in session
                     if (isset($_SESSION['postpet_data'])) {
                         $data1 = $_SESSION['postpet_data'];
-                        $data1['images'] = $imageData;  // Add the uploaded binary image data to session
+                        $data1['image'] = $imageUrl;  // Add the uploaded binary image data to session
     
                         // Save the updated data back to session
                         $_SESSION['postpet_data'] = $data1;

@@ -35,7 +35,7 @@ class Selling{
                     'city'         => $city,
                     'address'      => $address,
                     'termsAccepted'=> $termsAccepted,
-                    'image_path'       => isset($petData['images']) ? $petData['images'] : null, // array of image URLs
+                    'image_path'   => isset($petData['image']) ? $petData['image'] : null
 
                 ];
     
