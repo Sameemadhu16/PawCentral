@@ -8,6 +8,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('DBNAME','pawcentral');
     define('DBHOST','localhost');
     define('DBUSER','root');
+    //comment the passwords that is not yours and uncomment yours
     // define('DBPASS','');
     define('DBPASS','root');
     define('DBDRIVER','');

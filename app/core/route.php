@@ -36,10 +36,6 @@ route('admin/profile_view','admin/AdminProfileView@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
 route('admin/notification', 'admin/AdminNotification@index');
 
-
-// Medical routing
-route('medical', 'Medical/FindMedi@index');
-
 // User routings
 route('announcements','announcements');
 route('lostandfound','lostandfound');
@@ -83,5 +79,16 @@ route('service/manage','Manage@index');
 
 
 
-
-
+//medical routing
+route('medical-centers','Medical/FindMedi@index');
+route('medical-center','Medical/MediCenter@index');
+route('medical-appointment-date','Medical/Appointment_Date@index');
+route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
+route('medical-appointment-reason','Medical/Appointment_Reason@index');
+//medical profile
+route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
+route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
+route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
+route('medical-center/dashboard/veterinarians/edit/{id}','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
+route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');

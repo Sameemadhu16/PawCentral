@@ -1,0 +1,147 @@
+:root {
+    --primary-color: #6A0DAD;
+    --secondary-color: #882FC8;
+    --accent-color: #FFFFFF;
+    --text-color: #000000;
+    --light-gray: #F0F0F0;
+    --dark-gray: #333333;
+    --container-padding: 5%;
+}
+
+.page-style-veterinarians {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.page-style-veterinarians .body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.add-button-div {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1.25rem;
+    width: 100%;
+}
+
+.page-style-veterinarians .add-vet-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    margin-bottom: 1.25rem;
+    border-radius: 0.625rem;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+.page-style-veterinarians .vet-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    justify-items: center;
+}
+
+.page-style-veterinarians .vet-card {
+    background-color: var(--accent-color);
+    border-radius: 20px;
+    padding: 20px;
+    width:100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-style-veterinarians .vet-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.page-style-veterinarians .vet-image {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.page-style-veterinarians .vet-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-style-veterinarians .vet-card h3 {
+    color: var(--primary-color);
+}
+
+.page-style-veterinarians .edit-btn, .delete-btn {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 85px;
+}
+
+.page-style-veterinarians .buttons-div {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.delete-btn {
+    background-color: var(--dark-gray);
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+    }
+    
+    .page-style-veterinarians {
+        padding: 0 var(--container-padding);
+    }
+    
+    .add-button-div {
+        justify-content: center;
+        margin: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-style-veterinarians .add-vet-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .page-style-veterinarians .vet-cards {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+    
+    .page-style-veterinarians .vet-card {
+        max-width: 350px;
+    }
+}
