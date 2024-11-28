@@ -82,7 +82,7 @@ class LostAndFound
 
             // Collect form data
             $data = [
-                'id' => 1,
+                'id' => $_SESSION['user_id'],
                 'petName' => $_POST['petName'],
                 'breed' => $_POST['breed'],
                 'type' => $_POST['type'],

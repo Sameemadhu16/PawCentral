@@ -143,7 +143,7 @@
           <div class="imgs-cont">
               <div class="image-slot" data-slot="img1">
                   <div id="imagePreviewContainer" class="image-preview-container">
-                      <img src="<?= $post->img1 ? 'data:image/jpeg;base64,' . base64_encode($post->img1) : ROOT.'\assets\images\pets\merchant\nopic.jpg'; ?>" 
+                      <img src="<?= $post->img1 ? 'data:image/jpeg;base64,' . base64_encode($post->img1) : ROOT.'\assets\images\logos\nopicct.png'; ?>" 
                           alt="Image 1" />
                   </div>
                   <input type="file" name="img1" accept="image/*" />
@@ -152,7 +152,7 @@
 
               <div class="image-slot" data-slot="img2">
                   <div id="imagePreviewContainer" class="image-preview-container">
-                      <img src="<?= $post->img2 ? 'data:image/jpeg;base64,' . base64_encode($post->img2) : ROOT.'\assets\images\pets\merchant\nopic.jpg'; ?>" 
+                      <img src="<?= $post->img2 ? 'data:image/jpeg;base64,' . base64_encode($post->img2) : ROOT.'\assets\images\logos\nopicct.png'; ?>" 
                           alt="Image 2" />
                   </div>
                   <input type="file" name="img2" accept="image/*" />

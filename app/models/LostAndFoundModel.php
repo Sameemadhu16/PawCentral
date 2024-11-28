@@ -9,9 +9,21 @@ class LostAndFoundModel
     public function getAllPets()
     {
         // Fetch all rows from the `lostandfound` table
-        $query = "SELECT * FROM " . $this->table;
+        // $query = "SELECT * FROM " . $this->table;
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `postStatus` = 0"; //get only the unmarked pets
         $result = $this->query($query);
 
+
+        $userId = $_SESSION['user_id']; // Retrieve userId from session
+        
+
+        // $userId =2;
+    // Fetch rows from the table where status = 0 and userid matches
+    $query = "SELECT * FROM `" . $this->table . "` WHERE `postStatus` = 0 AND `id` = :userid";
+
+    $result = $this->query($query, [':userid' => $userId]);
+        //$print=$_SESSION['user_id'];
+        // echo "$print";
     return $result;
     }
 
