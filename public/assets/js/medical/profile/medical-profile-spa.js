@@ -183,7 +183,7 @@ function veterinariansAction() {
 
             try {
                 // Update this URL to match the route
-                const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians/edit/${currentEditVetId}`, {
+                const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians/edit-vet?id=${currentEditVetId}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
