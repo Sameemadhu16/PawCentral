@@ -16,6 +16,10 @@ class LostAndFound
 
     public function index()
     {
+        if(!($_SESSION['user_id']&&$_SESSION['user']->role=='assd')){
+            
+            redirect('home');
+        }
         // Initialize the model
         $model = new LostAndFoundModel();
 
@@ -220,7 +224,7 @@ class LostAndFound
     
             // Process form data
             $data = [
-                'id'=>1,
+                'id' => $_SESSION['user_id'],
                 'petName' => $_POST['petName'],
                 'breed' => $_POST['breed'],
                 'type' => $_POST['type'],
@@ -250,7 +254,7 @@ class LostAndFound
     
             // Redirect or provide feedback
             if ($result) {
-                redirect('home');
+                redirect('userprofile/lost_and_found');
                 echo 'asdsad';
             } else {
                 echo "Failed to update the post.";
