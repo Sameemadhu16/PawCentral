@@ -45,26 +45,26 @@
         
         <div class="card">           
             <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Puppy">
-            <p class="name">Healthy Life Clinic</p>
+            <p class="name">Salon</p>
             <p>pet sitter service</p>
             <div class="centre-info">
                 <span class="rating">★★★★☆</span>
                 <p>Kalutara</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="medicalcare/id" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">    
             <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_2.png" alt="Dog">
-            <p class="name">Treat - veterinary Clinic</p>
+            <p class="name">Toy shop</p>
             <p>pet sitter service</p>
             <div class="centre-info">
                 <span class="rating">★★★☆☆</span>
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
@@ -76,7 +76,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href'<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
@@ -88,7 +88,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+           <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
@@ -100,7 +100,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
@@ -112,7 +112,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservices'">See More</button>
         </div>
 
         <div class="card">
@@ -124,7 +124,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a> 
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
@@ -136,7 +136,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
     </div>

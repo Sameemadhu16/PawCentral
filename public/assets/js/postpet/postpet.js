@@ -2,70 +2,67 @@ function validateForm(event) {
     let isValid = true;
 
     // Get form inputs
-    const tradeType = document.querySelector('input[name="tradeType"]');
-    const petName = document.querySelector('input[name="petName"]');
-    const species = document.querySelector('input[name="species"]');
-    const breed = document.querySelector('input[name="breed"]');
-    const genderNeeds = document.querySelector('input[name="genderNeeds"]');
-    const contactName = document.querySelector('input[name="contactName"]');
-    const contactNumber = document.querySelector('input[name="contactNumber"]');
-    const email = document.querySelector('input[name="email"]');
-    
+    const form = document.getElementById('postpetform');
+    const tradeType = form.querySelector('input[name="tradeType"]');
+    const petName = form.querySelector('input[name="petName"]');
+    const species = form.querySelector('input[name="species"]');
+    const breed = form.querySelector('input[name="breed"]');
+    const genderNeeds = form.querySelector('input[name="genderNeeds"]');
+    const contactName = form.querySelector('input[name="contactName"]');
+    const contactNumber = form.querySelector('input[name="contactNumber"]');
+    const email = form.querySelector('input[name="email"]');
+
     // Clear previous error messages
-    const errorMessages = document.querySelectorAll('.error');
-    errorMessages.forEach(error => error.remove());
+    form.querySelectorAll('.error').forEach(error => error.remove());
 
-    // Check if fields are empty
-    if (!tradeType.value.trim()) {
-        showError(tradeType, 'Trade type is required.');
-        isValid = false;
-    }
+    // Validation logic
+    isValid = validateField(tradeType, 'Trade type is required.') && isValid;
+    isValid = validateField(petName, 'Pet name is required.') && isValid;
+    isValid = validateField(species, 'Species is required.') && isValid;
+    isValid = validateField(breed, 'Breed is required.') && isValid;
+    isValid = validateField(genderNeeds, 'Gender/Special needs are required.') && isValid;
 
-    if (!petName.value.trim()) {
-        showError(petName, 'Pet name is required.');
-        isValid = false;
-    }
+    isValid = validateField(
+        contactName,
+        'Contact name is required.'
+    ) && isValid;
 
-    if (!species.value.trim()) {
-        showError(species, 'Species is required.');
-        isValid = false;
-    }
+    isValid = validateField(
+        contactNumber,
+        'Please enter a valid contact number.',
+        /^\+?[0-9]{10,14}$/
+    ) && isValid;
 
-    if (!breed.value.trim()) {
-        showError(breed, 'Breed is required.');
-        isValid = false;
-    }
+    isValid = validateField(
+        email,
+        'Please enter a valid email address.',
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    ) && isValid;
 
-    if (!genderNeeds.value.trim()) {
-        showError(genderNeeds, 'Gender/Special needs are required.');
-        isValid = false;
-    }
-
-    if (!contactName.value.trim()) {
-        showError(contactName, 'Contact name is required.');
-        isValid = false;
-    }
-
-    if (!contactNumber.value.trim() || !/^\+?[0-9]{10,14}$/.test(contactNumber.value.trim())) {
-        showError(contactNumber, 'Please enter a valid contact number.');
-        isValid = false;
-    }
-
-    if (!email.value.trim() || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value.trim())) {
-        showError(email, 'Please enter a valid email address.');
-        isValid = false;
-    }
-
-    // If form is invalid, prevent form submission
+    // Prevent form submission if invalid
     if (!isValid) {
         event.preventDefault();
     }
 }
 
+// Helper function to validate a single field
+function validateField(input, errorMessage, regex = null) {
+    const value = input.value.trim();
+    const isValid = regex ? regex.test(value) : value !== '';
+
+    if (!isValid) {
+        showError(input, errorMessage);
+    }
+
+    return isValid;
+}
+
 // Function to show error message
 function showError(input, message) {
     const errorElement = document.createElement('p');
-    errorElement.classList.add('error');
+    errorElement.className = 'error';
     errorElement.textContent = message;
-    input.insertAdjacentElement('afterend', errorElement);
+
+    // Position the error message after the input field
+    input.parentNode.insertBefore(errorElement, input.nextSibling);
 }

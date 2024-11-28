@@ -25,9 +25,9 @@
             <input type="text" name="petName" placeholder="Enter the pet's name:">
             <h3>Species</h3>
             <input type="text" name="species" placeholder="ex:Germen shepard">
-            <h3>Breed</h3>
+            <h3>Age</h3>
             <input type="text" name="breed" placeholder="Enter age:">
-            <h3>Gender/Special Needs</h3>
+            <h3>Special Needs</h3>
             <input  type="text" name="genderNeeds" placeholder="ex:Rent" class="box">
             <h3>Contact Name:</h3>
             <input type="text" name="contactName" placeholder="Enter your name:">

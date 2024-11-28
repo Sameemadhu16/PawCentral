@@ -21,6 +21,7 @@ route('service/manage','Manage@index');
 route('service/manage/edit','Manage@edit');
 route('service/manage/delete','Manage@delete');
 
+
 route('service/profile','service/Profile@index');
 route('service/manage/editpost/update','Manage@update');
 // Home route
@@ -79,6 +80,7 @@ route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
 // medical centres
 route('services','Services');
+route('services/careservice','Careservice');
 // Pet shelters
 route('shelters','PetShelters');
 // Donation requests

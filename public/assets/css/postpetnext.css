@@ -32,7 +32,7 @@ hr {
 .div1and2 {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 30px;
 }
 
