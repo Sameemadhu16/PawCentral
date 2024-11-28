@@ -51,7 +51,7 @@
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/service">
+            <a class="user-profile" href="<?= ROOT ?>/service/profile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider'): ?>
