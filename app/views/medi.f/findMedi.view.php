@@ -35,58 +35,62 @@
         <div id="cardGrid" class="grid-container">
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
             <!-- example card -->
             <div class="card">
-                <img src="<?= ROOT ?>/assets/images/shop.jpg" alt="${center.name}" class="card-image">
+                <a href="<?=ROOT?>/medical-center" class="link-medi"><img src="<?= ROOT ?>/assets/images/sample.jpg" alt="${center.name}" class="card-image"></a>
                 <div class="card-content">
-                    <h2 class="card-title">${center.name}</h2>
+                    <a href="<?=ROOT?>/medical-center" class="link-medi"><h2 class="card-title">${center.name}</h2></a>
                     <p class="card-subtitle">${center.location}</p>
-                    <button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="card-button" onclick="bookAppointment('${center.id}')">Book appointment</button></a>
                 </div>
             </div>
+
+
+
+
         </div>
         
         

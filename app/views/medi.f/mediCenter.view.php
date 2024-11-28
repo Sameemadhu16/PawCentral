@@ -24,7 +24,9 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
                 <div class="appointment_btn">
-                    <button>Book Appointment</button>
+                    <a href="<?=ROOT?>/medical-appointment-date">
+                        <button>Book Appointment</button>
+                    </a>
                 </div>
             </div>
         </div>

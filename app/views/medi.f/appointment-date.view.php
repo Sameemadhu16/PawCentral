@@ -61,8 +61,8 @@
             </div>
         </div>
         <div class="buttons">
-            <button class="cancel">Cancel</button>
-            <button class="next">Next</button>
+            <a href="<?=ROOT?>/medical-center" class="link-medi"><button class="cancel">Cancel</button></a>
+            <a href="<?=ROOT?>/medical-appointment-selectpet" class="link-medi"><button class="next">Next</button></a>
         </div>  
     </div>
     <script src="<?= ROOT ?>/assets/js/medical/appointment-date.js"></script>

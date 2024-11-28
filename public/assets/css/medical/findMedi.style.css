@@ -123,6 +123,10 @@ button:hover {
     cursor: pointer;
 }
 
+.link-medi{
+    text-decoration: none;
+}
+
 /* Add these media queries at the end of the file */
 @media screen and (max-width: 1200px) {
     .grid-container {

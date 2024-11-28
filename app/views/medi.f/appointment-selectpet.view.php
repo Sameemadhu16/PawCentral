@@ -37,8 +37,8 @@
             </div>
         </div>
         <div class="buttons">
-            <button class="back">Back</button>
-            <button class="next">Next</button>
+            <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="back">Back</button></a>
+            <a href="<?=ROOT?>/medical-appointment-reason" class="link-medi"><button class="next">Next</button></a>
         </div>  
     </div>
     <script src="<?= ROOT ?>/assets/js/medical/appointment-selectpet.js"></script>
