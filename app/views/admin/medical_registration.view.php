@@ -19,9 +19,9 @@
     <div class="main-container">
         <div>
             <?php include("../app/views/components/admin/adminSidebar.php"); ?>
-        
+
         </div>
-       
+
         <div class="container">
             <h2>Medical Registrations</h2>
             <div class="content">
@@ -45,128 +45,128 @@
                     </thead>
                     <tbody>
                         <div class="">
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
+                            <!-- <tr class="mr_row">
+                                <td>Sameera Madhuranga</td>
+                                <td>DVM</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr> -->
+                            <tr class="mr_row">
+                                <td>Nishan Perera</td>
+                                <td>VMD</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Chamari Senanayake</td>
+                                <td>BVM&S</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Isuru Wijesinghe</td>
+                                <td>MVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Ruwan Kumara</td>
+                                <td>DVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Sanduni Rathnayake</td>
+                                <td>BVS</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Tharindu Jayawardana</td>
+                                <td>BVMS</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Anjali Herath</td>
+                                <td>MVetSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Praveen Silva</td>
+                                <td>MVDr</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="view-btn">Send</button></td>
+                            </tr>
                         </div>
-                        
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
-                        <tr class="mr_row">
-                            <td>Sameera Madhuranga</td>
-                            <td>DVM</td>
-                            <td><button class="view-btn">View </button></td>
-                            <td>
-                                <select class="action-select">
-                                    <option value="approve">Approve</option>
-                                    <option value="reject">Reject</option>
-                                </select>
-                            </td>
-                            <td><button class="view-btn">Send</button></td>
-                        </tr>
+
 
 
 

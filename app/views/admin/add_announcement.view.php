@@ -40,7 +40,7 @@
                     <label for="description">Description</label>
                     <textarea class="textarea_class" id="description" name="description" placeholder="Add Description" required></textarea>
 
-                    <button type="submit" name="submitAnnouncement" class="done-button">Done</button>
+                    <button type="submit" name="submitAnnouncement" class="done-button">Submit</button>
                 </form>
             </section>
         </div>
