@@ -47,6 +47,7 @@ form input[type="email"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 input::placeholder {
@@ -54,18 +55,16 @@ input::placeholder {
 }
 
 .button {
-    display: block;
-    width: auto;
-    padding: 12px;
+    display: inline-block;
+    padding: 12px 20px;
     font-size: 16px;
     background-color: #b720fe;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
     text-align: center;
-    margin-left:900px;
+    margin: 20px auto;
 }
 
 .button:hover {
@@ -92,4 +91,31 @@ input::placeholder {
 
 .arrow-button:hover {
     background-color: #7b0eb1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    form h3 {
+        font-size: 18px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .arrow-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .arrow-button img {
+        width: 16px;
+        height: 16px;
+    }
 }

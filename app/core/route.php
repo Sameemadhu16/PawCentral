@@ -8,6 +8,21 @@
 //         redirect('login'); // Redirect to login if not admin
 //     }
 // }
+
+
+route('service','Service@index');
+route('service/postpet','Postpet@index');
+route('service/postpet/submit','Postpet@submit');
+route('service/postpet/postpetnext','Postpetnext@index');
+route('service/postpet/postpetnext/submit','Postpetnext@submit');
+route('service/postpet/postpetnext/selling','Selling@index');
+route('service/postpet/postpetnext/selling/submit','Selling@submit');
+route('service/manage','Manage@index');
+route('service/manage/edit','Manage@edit');
+route('service/manage/delete','Manage@delete');
+
+route('service/profile','service/Profile@index');
+route('service/manage/editpost/update','Manage@update');
 // Home route
 route('home', 'Home@index');
 
