@@ -18,6 +18,8 @@
 
         <div class="user-accounts-section">
             <h2>User Accounts</h2>
+
+            <!-- Overview Cards Section -->
             <div class="cards-container">
                 <div class="card">
                     <div class="card-number">100.1k</div>
@@ -48,7 +50,126 @@
                     <div class="card-number">25</div>
                     <div class="card-title">Banned Users</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
+                </div> -->
+            </div>
+
+            <!-- Search and Filter Section -->
+            <div class="search-filter-container">
+                <input type="text" class="search-bar" placeholder="Search users..."> <i class="fas fa-search"></i>
+                <select class="filter-dropdown">
+                    <option value="">Filter by User Type</option>
+                    <option value="regular">Regular User</option>
+                    <option value="seller">Seller</option>
+                    <option value="adoption-shelter">Adoption Shelters</option>
+                    <option value="care-provider">Care Service Providers</option>
+                    <option value="medical-provider">Medical Providers</option>
+                    <option value="banned-user">Banned Users</option>
+                </select>
+            </div>
+
+            <!-- User List -->
+            <div class="user-list">
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
                 </div>
+
+
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Sameera Madhuranga</p>
+                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>User Type:</strong> Regular User</p>
+                </div>
+
+                <!-- Repeat user cards as needed with dummy data -->
             </div>
         </div>
     </div>
+</body>
+<script>
+    function markAsBanned(button) {
+        // Change the button text to "Banned"
+        if(button.textContent === "Ban"){
+            button.textContent = "Banned";
+            // Optional: Change the button's style to indicate it's banned
+        button.style.backgroundColor = "#e53935"; 
+        button.style.color = "#ffffff"; // White text
+        button.style.cursor = "pointer"; 
+        button.disabled = false;
+
+        } else {
+            button.textContent = "Ban";
+            button.disabled = false;
+        }
+        // button.textContent = "Banned";
+
+        // Disable the button to prevent further clicks
+        
+    }
+</script>
+
+</html>

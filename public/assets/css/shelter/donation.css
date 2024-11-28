@@ -16,7 +16,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 20px;
-    margin-left: 100px; /* To align with fixed sidebar */
+    margin-left: 1%;
+    margin-right: 1%; /* To align with fixed sidebar */
     overflow: auto;
     border-radius: 8px;
 }
@@ -71,7 +72,9 @@ h2 {
     background-color: #8FC7FF;
     border-radius: 12px;
     padding: 20px;
-    width: 90%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;

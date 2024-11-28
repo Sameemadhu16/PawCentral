@@ -1,0 +1,115 @@
+/* General Styles */
+.body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    overflow-y: scroll;
+}
+
+.main-container {
+    display: flex;
+    /* overflow-y: scroll; */
+}
+.form-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input,
+textarea,
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+textarea {
+    resize: none;
+}
+
+/* Button Styling */
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back-icon a:hover {
+    color: #005fa3;
+}
+
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
+}

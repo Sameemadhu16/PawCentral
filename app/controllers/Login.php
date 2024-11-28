@@ -38,6 +38,16 @@ class Login{
             elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'adoption-shelter') {
                 redirect('shelter/profile');
             }
+            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider') {
+                redirect('medical-center/dashboard/profile');
+            }
+            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller') {
+                redirect('service');
+            }
+            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider') {
+                redirect('provider/profile');
+            }
+        
             redirect('home');
             // show($_SESSION['user']);
         } else {

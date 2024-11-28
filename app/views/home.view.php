@@ -97,6 +97,9 @@
 </section>
 </section>
 
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
+
 <script>
     // Function to count up from 0 to the target value
 function countUp(element) {

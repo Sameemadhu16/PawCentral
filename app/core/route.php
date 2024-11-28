@@ -28,12 +28,14 @@ route('admin/medical_registration', 'admin/AdminMedicalRegistration@index');
 route('admin/report', 'admin/AdminReport@index');
 route('admin/user_account', 'admin/AdminUserAccount@index');
 route('admin/event', 'admin/AdminEvent@index');
+route('admin/event_view', 'admin/AdminEventView@index');
 route('admin/post', 'admin/AdminPost@index');
+route('admin/post_info', 'admin/AdminPostInfo@index');
 route('admin/donation', 'admin/AdminDonation@index');
 route('admin/profile', 'admin/AdminProfile@index');
+route('admin/profile_view','admin/AdminProfileView@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
-
-
+route('admin/notification', 'admin/AdminNotification@index');
 
 // User routings
 route('announcements','announcements');
@@ -42,6 +44,10 @@ route('eventsandcampaigns','events');
 route('eventsandcampaigns/event_id','EventInfo');
 route('lostandfound/report-found','ReportFound');
 route('lostandfound/idoflost','LostPet');
+
+// userprofile
+route('userprofile','user/UserProfile@index');
+
 // merchanted pets
 route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
@@ -60,8 +66,13 @@ route('medical','Medical/FindMedi@index');
 route('shelter/profile','shelter/Profile@index');
 route('shelter/notification','shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
-route('shelter/lost_and_found','shelter/LostAndFound@index');
+// route('shelter/lost_and_found','shelter/LostAndFound@index');
 route('shelter/event','shelter/Events@index');
+route('shelter/eventInfo','shelter/EventInfo@index');
+route('shelter/adoption_requests','shelter/AdoptionRequests@index');
+route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
+route('shelter/post','shelter/Post@index');
+
 
 
 //service routings
@@ -73,6 +84,16 @@ route('service/manage','Manage@index');
 
 
 
-
-
-
+//medical routing
+route('medical-centers','Medical/FindMedi@index');
+route('medical-center','Medical/MediCenter@index');
+route('medical-appointment-date','Medical/Appointment_Date@index');
+route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
+route('medical-appointment-reason','Medical/Appointment_Reason@index');
+//medical profile
+route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
+route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
+route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
+route('medical-center/dashboard/veterinarians/edit/{id}','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
+route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');

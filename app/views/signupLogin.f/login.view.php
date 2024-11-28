@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="./assets/css/signUpPage.css">
     <link rel="stylesheet" href="./assets/css/fonts.css">
 </head>
-<body>
-    <?php 
-        include("../app/views/components/header2.php");
-        $nextURL="";
+
+<body class="body">
+    <?php
+    include("../app/views/components/header3.php");
+    $nextURL = "";
     ?>
     <div class="container">
         <main>

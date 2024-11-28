@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawCentral - Find a Pet</title>
-    <link rel="stylesheet" href="./assets/css/signUpPage.css">
-    <link rel="stylesheet" href="./assets/css/fonts.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPage.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <?php 
@@ -26,21 +28,21 @@
                 <form class="signup-form" method="POST ">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="first-name">First name</label>
-                            <input type="text" id="first-name" name="first-name" required>
+                            <label for="first_name">First name</label>
+                            <input type="text" id="first_name" name="first_name" >
                         </div>
                         <div class="form-group">
-                            <label for="last-name">Last name</label>
-                            <input type="text" id="last-name" name="last-name" required>
+                            <label for="last_name">Last name</label>
+                            <input type="text" id="last_name" name="last_name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" >
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" >
                     </div>
                     <p class="password-hint">Use 8 or more characters with a mix of letters, numbers & symbols</p>
                     <div class="form-group">
@@ -57,8 +59,8 @@
                         </div>
                     </div>
                     <div class="form-group checkbox">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">By creating an account, I agree to our Terms of use and Privacy Policy</label>
+                        <input type="checkbox" id="terms" name="terms" value="on">
+                        <label for="terms">By creating an account, I agree to the Terms of use and Privacy Policy</label>
                     </div>
                     <div class="button-login-section">
                         <button type="submit" class="button" id="signup-button">Sign up</button>
@@ -69,6 +71,6 @@
             </section>
         </main>
     </div>
-    <!-- <script src="./assets/js/"></script> -->
+    <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </body>
 </html>
