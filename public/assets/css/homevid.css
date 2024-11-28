@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Protest+Revolution&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+.fontreg {
+    font-family: "Sour Gummy", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  }
+.extra {
+    font-weight: 700 !important;
+}
+  
 .herov {
     position: relative;
     overflow: hidden;
@@ -16,7 +30,7 @@
 }
 .herov-content {
     position: relative;
-    z-index: 1;
+    z-index: -1;
     padding: 100px 20px;
     padding-top: 50px;
     padding-bottom:50px ;
@@ -60,23 +74,42 @@
 
 .stat-item {
     text-align: center;
-    color: #6A0DAD;
+    /* color: #6A0DAD; */    
     font-size: 23px;
 }
 
 .stat-item i {
     font-size: 80px;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(106, 13, 173, 0.6); /* Purple shadow */
+    background: linear-gradient(270deg, #6a0dad, #8049fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-bgcolor {    
+    /* background: linear-gradient(90deg, #6A0DAD,#8049fe, #9d34df); */
+    /* CHECK FOR THE COLOR CONTRasT */
+    /* background: linear-gradient(135deg, #6A0DAD, #8049fe ) ;
+    -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+     /* Makes the gradient visible */
+     
 }
 
 .stat-item h4 {
     font-size: 52px;
     margin:10px;
+    margin-bottom: 2px;
+    padding: 0px;
 }
 
 .stat-item p {
     margin-bottom: 20px ;
     margin-top: 0px;
+    padding: 0px;
+    font-size: .8em;
+    font-weight: 550;
 }
 
 .stat-item a {
@@ -181,8 +214,9 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    background-color: #8FC7FF;
-    /* padding: 20px; */
+    /* background-color: #8FC7FF; */
+    background: linear-gradient(90deg, #8049fe,#9d34df);
+    /* padding: 20px; */color: white;
 }
 .donate-section h1 {
     /* font-weight: bold; */
@@ -197,11 +231,15 @@
     font-size: 2rem;
     line-height: 1.2;
     margin-top: 0px;
-    font-family: "Stylish", serif;
+    /* font-family: "Stylish", serif; */
+    font-family: "Sour Gummy", serif;
     font-weight: 400;
     font-style: normal;
 }
-/* donate card */
+.highlight {
+    color: #ffd700; /* Tomato color */
+}
+/* donate card */F
 .community-help-section {
     position: relative;
     width: 100%;
@@ -280,8 +318,11 @@
 
 .donation-overlay:hover .donate-icon {
     transform: scale(1.5);
-    box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.8), /* Tighter glow */
-                0 0 10px 10px rgba(255, 215, 0, 0.6);   
+    /* box-shadow: 0 0 5px 5px rgba(255, 215, 0, 0.8), 
+                0 0 10px 10px rgba(255, 215, 0, 0.6);    */
+                
+    box-shadow: 0 0 5px 5px rgba(128, 73, 254, 0.8), 
+    0 0 10px 10px rgba(128, 73, 254, 0.6);
     animation: glow-pulse 2s infinite alternate;
 }
 
@@ -291,12 +332,12 @@
 /* Glow Pulse Animation */
 @keyframes glow-pulse {
     0% {
-        box-shadow: 0 0 5px 3px rgba(255, 215, 0, 0.8),
-                    0 0 10px 5px rgba(255, 215, 0, 0.6);
+        box-shadow: 0 0 5px 3px rgba(128, 73, 254, 0.8),
+                    0 0 10px 5px rgba(128, 73, 254, 0.6);
     }
     100% {
-        box-shadow: 0 0 8px 6px rgba(255, 215, 0, 0.8),
-                    0 0 12px 10px rgba(255, 215, 0, 0.6);
+        box-shadow: 0 0 8px 6px rgba(128, 73, 254, 0.8),
+                    0 0 12px 10px rgba(128, 73, 254, 0.6);
     }
 }
 
@@ -308,11 +349,10 @@
         font-size: 60px;
     }
     .stat-item h4 {
-        font-size: 32px;
-        margin:10px;
+        font-size: 42px;
     }
     .stat-item p {
-        font-size: 20px;
+        font-size: .7em;
         /* max-width:50% ;
         justify-self: center; */
     }
@@ -430,8 +470,7 @@
         font-size: 35px;
     }
     .stat-item h4 {
-        font-size: 25px;
-        margin:10px;
+        font-size: 30px;
     }
     .stat-item p {
         max-width:50% ;
@@ -553,8 +592,9 @@
     .community-help-section {
         max-height: 200px;
     }
-    .donate-icon img {
-        width: 40%;
+    .donate-icon {
+        width: 40px;
+        height: 40px;
     }
 
 }

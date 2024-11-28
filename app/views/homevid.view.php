@@ -21,9 +21,9 @@
           <!-- <source src="path/to/your/video.webm" type="video/webm"> -->
         </video>
         <div class="herov-content">
-          <h2>CATS & DOGS</h2>
+          <h2 >CATS & DOGS</h2>
           <h3>CENTRALIZED CARE</h3>
-          <p>Health, Wellness and Pet-Welfare. Find just the right amount of care for your pets.</p>
+          <p class="fontreg">Health, Wellness and Pet-Welfare. Find just the right amount of care for your pets.</p>
           <div class="hero-imgs">
             <!-- Include images of pets here -->
           </div>
@@ -33,20 +33,20 @@
     <!-- Stats Section -->
     <section class="stats"> 
     <div class="stat-item" id="adopt-stat"> 
-        <i class="fas fa-paw"></i> 
-        <h4 class="count" data-target="100">0</h4> 
+        <i class="fas fa-paw gradient-bgcolor"></i> 
+        <h4 class="count fontreg extra gradient-bgcolor" data-target="100">0</h4> 
         <p>Waiting to be Adopted</p> 
         <a href="<?=ROOT?>/findapet">See pets</a> 
     </div> 
     <div class="stat-item" id="vets-stat"> 
         <i class="fas fa-user-md"></i> 
-        <h4 class="count" data-target="50">0</h4>
+        <h4 class="count fontreg extra" data-target="50">0</h4>
         <p>Medical Professionals</p> 
         <a href="<?=ROOT?>/#">Visit Vets</a> 
     </div> 
     <div class="stat-item" id="shop-stat"> 
         <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
-        <h4 class="count" data-target="200">0</h4> 
+        <h4 class="count fontreg extra" data-target="200">0</h4> 
         <p>Available for Buying</p> 
         <a href="<?=ROOT?>/findapet">See pets</a> 
     </div> 
@@ -89,10 +89,14 @@
         Make a difference for animal lives
     </h1>
     <p>
-        Around 6 million dogs and 3 million stray dogs <br>
-        Equally large population of cats that needs human attention <br>
-        Most of which suffers in malnutrition, no proper care and needs rehoming <br>
-        Contribute to a greater society where animals live as good a life as you are.
+        <span class="highlight"> Around 6 million dogs</span> <br> and <br> <span class="highlight">3 million stray dogs</span> <br>
+        Equally large population of cats <br>
+        Most of which <span class="highlight">suffers in malnutrition</span>, no proper care and <span class="highlight">needs rehoming.</span> <br>
+    </p>
+    <p>
+        <span class="highlight">
+            Contribute to a greater society where animals live as good a life as you are.
+        </span>
     </p>
 <section class="community-help-section">
     <div class="donation-overlay">

@@ -45,11 +45,23 @@ route('announcements','announcements');
 route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
 route('eventsandcampaigns/event_id','EventInfo');
-route('lostandfound/report-found','ReportFound');
-route('lostandfound/idoflost','LostPet');
+route('lostandfound/report-animal','ReportFound');
+// route('lostandfound/idoflost','LostPet');
 
 // userprofile
-route('userprofile','user/UserProfile@index');
+route('userprofile','user/Profile@index');
+route('userprofile/profile','user/Profile@index');
+route('userprofile/notifications','user/Notification@index');
+route('userprofile/donations','user/Donation@index');
+route('userprofile/lost_and_found','user/LostAndFound@index');
+route('userprofile/mypets','user/Mypets@index');
+route('userprofile/event','user/Events@index');
+route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
+route('lostandfound/postdetails','user/LostAndFound@show');
+route('lostandfound/post-report-animal','user/LostAndFound@createReport');
+route('lostandfound/edit', 'user/LostAndFound@edit'); //updating pet post
+route('lostandfound/update', 'user/LostAndFound@update');
+
 
 // merchanted pets
 route('findapet','PetPosts');

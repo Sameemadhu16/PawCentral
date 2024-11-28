@@ -8,6 +8,9 @@ trait Database {
         $string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
         $con = new PDO($string,DBUSER,DBPASS);
         
+        // Set max_allowed_packet for the session (32MB in this case)
+        $con->exec("SET GLOBAL max_allowed_packet=33554432");
+
         return $con;
 
 
@@ -17,6 +20,11 @@ trait Database {
     public function query($query, $data = []) {
         $con = $this->connect();
         $stmt = $con->prepare($query);
+    
+        // Debugging: Print the query and data for inspection
+    // echo "Query: $query\n";
+    // echo "Data: ";
+    // print_r($data);
     
         $check = $stmt->execute($data);
     

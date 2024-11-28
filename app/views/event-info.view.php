@@ -62,18 +62,6 @@
     <div class="register_form" id="register_form">
     <h3>Get enrolled in the event</h3>
     <form action="#" method="post" >
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-      <label for="age">Age</label>
-      <input type="number" id="age" name="age" placeholder="Enter your age" required>
-
-      <label for="option1">Option 1</label>
-      <input type="text" id="option1" name="option1">
-
-      <label for="option2">Option 2</label>
-      <input type="text" id="option2" name="option2">
-
       <label for="comment">Comment</label>
       <textarea id="comment" name="comment" rows="4" placeholder="Enter any comments..."></textarea>
 
