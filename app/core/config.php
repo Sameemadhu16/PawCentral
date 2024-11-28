@@ -8,8 +8,8 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('DBNAME','pawcentral');
     define('DBHOST','localhost');
     define('DBUSER','root');
-    define('DBPASS','');
-    // define('DBPASS','root');
+    // define('DBPASS','');
+    define('DBPASS','root');
     define('DBDRIVER','');
 }else{
      define('ROOT', 'https://www.pawcentral.com');  //put the website name here if hosted 
