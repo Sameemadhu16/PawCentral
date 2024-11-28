@@ -141,6 +141,7 @@
 
         </div>
     </div>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 
 </html>

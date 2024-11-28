@@ -5,6 +5,6 @@ class Notification{
     use Controller;
 
     function index(){
-        $this->view('user/notification');
+        $this->view('shelter/notification');
     }
 }
