@@ -5,6 +5,11 @@ class Donation{
     use Controller;
 
     function index(){
-        $this->view('user/donation');
+        if($_SESSION['user_id']&&$_SESSION['user']->role=='assd'){
+            $this->view('user/donation');
+        }else{
+            $this->view('home');
+        }
+
     }
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Requests</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shelter/donation.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -16,7 +17,7 @@
     <div class="main-container">
         <?php include("../app/views/components/user/sidebar.php"); ?>
 
-        <div class="content">
+        <div class="user-accounts-section">
             <div class="header-section">
                 <h2>Donation requests</h2>
                 <button class="ask-support-button">Ask for support</button>
