@@ -7,7 +7,7 @@ body, html {
 .navbar {
     background-color: #6A0DAD;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 100px;
     display: flex;
     justify-content: space-between; /* Distributes space between left and right sections */
     align-items: center; /* Centers content vertically */
@@ -42,12 +42,12 @@ body, html {
 }
 
 .navbar h1 {
+    color: #fff;
     font-size: 35px;
     margin: 0;
     padding: 0;
     font-weight: bold;
     font-family: sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 /*     letter-spacing: 1px; */
     transition: transform 0.3s ease;
 }
@@ -82,7 +82,7 @@ body, html {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
-    padding: 15px 20px;
+    padding: 10px 10px;
     transition: color 0.3s ease, transform 0.3s ease;
     position: relative;
     

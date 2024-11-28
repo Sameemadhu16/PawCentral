@@ -12,7 +12,7 @@
     <div class="container">
         <div class="hero">
             <div class="medimage">
-                <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Medical Image">
+                <img src="<?= ROOT ?>/assets/images/shop.png" alt="Medical Image">
             </div>
             <div class="medi_info">
                 <div class="medi_name">
@@ -34,12 +34,12 @@
             <h2>Our Services</h2>
             <div class="service_cards_collection">
                 <div class="service_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Service">
+                    <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
                     <h3>Service 1</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
                 <div class="service_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Service">
+                    <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
                     <h3>Service 2</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
@@ -49,12 +49,12 @@
             <h2>Our Veterinarians</h2>
             <div class="vet_cards_collection">  
                 <div class="vet_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Veterinarian 1">
+                    <img src="<?= ROOT ?>/assets/images/vet.png" alt="Veterinarian 1">
                     <h3>Veterinarian 1</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
                 <div class="vet_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Veterinarian 2">
+                    <img src="<?= ROOT ?>/assets/images/vet.png" alt="Veterinarian 2">
                     <h3>Veterinarian 2</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
