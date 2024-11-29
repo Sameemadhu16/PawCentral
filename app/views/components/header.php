@@ -65,7 +65,7 @@
 
 
         <?php else : ?>
-            <a class="sign-in-button" href="login" style="text-decoration: none; padding: 10px 15px; font-size: 16px; color: #fff; background-color: orange; border-radius: 5px; border: none; display: inline-block; text-align: center; transition: background-color 0.3s ease;">
+            <a class="sign-in-button" href="<?=ROOT?>/login" style="text-decoration: none; padding: 10px 15px; font-size: 16px; color: #fff; background-color: orange; border-radius: 5px; border: none; display: inline-block; text-align: center; transition: background-color 0.3s ease;">
                 Sign In
             </a>
         <?php endif; ?>
