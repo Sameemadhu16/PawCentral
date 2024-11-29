@@ -28,7 +28,7 @@
             <h3>Age</h3>
             <input type="text" name="breed" placeholder="Enter age:">
             <h3>Special Needs</h3>
-            <input  type="text" name="genderNeeds" placeholder="ex:Rent" class="box">
+            <input  type="text" name="genderNeeds" placeholder="ex:medications" class="box">
             <h3>Contact Name:</h3>
             <input type="text" name="contactName" placeholder="Enter your name:">
             <h3>Contact Number</h3>

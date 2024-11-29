@@ -19,7 +19,7 @@
         <div class="content">
 
         <div class="welcomeMessage">
-            <h1>WELCOME BACK,NAME</h1>
+            <h1>WELCOME BACK</h1>
             <hr/>
         </div>
         <div class="createAndManageBox">

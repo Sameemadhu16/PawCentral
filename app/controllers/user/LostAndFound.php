@@ -16,10 +16,10 @@ class LostAndFound
 
     public function index()
     {
-        // if(!($_SESSION['user_id']&&$_SESSION['user']->role=='assd')){
+        if(!($_SESSION['user_id'])){
             
-        //     redirect('home');
-        // }
+            redirect('home');
+        }
         // Initialize the model
         $model = new LostAndFoundModel();
 

@@ -27,6 +27,7 @@
                         <strong>Price:</strong> <?=htmlspecialchars($post->price)?><br>
                         <strong>Age:</strong> <?=htmlspecialchars($post->breed)?><br>
                         <strong>Species:</strong><?=htmlspecialchars($post->species)?><br>
+                        <strong>For:</strong><?=htmlspecialchars($post->tradeType)?><br>
                     </div>
                 </a>
                 <div class="post-actions">

@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <style>
-       
+       body{
+        justify-self: center;
+            justify-content: center;
+            align-self: center;
+            align-content: center;
+       }
 
         .cards-container {
             display: grid;
@@ -13,7 +18,7 @@
             gap: 20px;
             padding: 10px;
             max-width: 1200px;
-            justify-self: center;
+            margin-left: 18%;
         }
 
         .donation-card {
@@ -197,5 +202,6 @@
     </div>
   
 
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 </html>
