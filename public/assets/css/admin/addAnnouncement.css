@@ -148,7 +148,7 @@
     margin-left: 250px;
     /* margin-right: auto; */
     padding: 14px 24px;
-    background-color: #0077cc;
+    background-color:  #720eb1;
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -161,7 +161,7 @@
 }
 
 .done-button:hover {
-    background-color: #005fa3;
+    background-color:  #5f009a;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }

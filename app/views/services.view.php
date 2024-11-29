@@ -76,7 +76,7 @@
                 <p>Nalluruwa</p>
                 <p class="hours">Mon-Fri: 8am - 6pm</p>
             </div>
-            <button class="btn-appointment" onclick="location.href'<?=ROOT?> /services/careservice'">See More</button>
+            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
         </div>
 
         <div class="card">
