@@ -30,7 +30,7 @@
         <li><a href="<?=ROOT?>/medical-centers">Medical Care</a></li>
         <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
         <li><a href="<?= ROOT ?>/services">Services</a></li>
-        <li><a href="<?= ROOT ?>/shelters">home for a pet</a></li>
+        <li><a href="<?= ROOT ?>/shelters">Home for a pet</a></li>
         <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
         <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
     </ul>
