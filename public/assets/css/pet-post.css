@@ -65,32 +65,32 @@
     transform: translateY(-50%);
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 44px;
     cursor: pointer;
     height: 100%;
     width: 15%;
     transition: background 0.3s ease;  /* Smooth transition for the hover effect */
 }
 .slider-arrow:hover{
-    font-size: 60px;
+    font-size: 80px;
     /* color: #2951c9; */
     color: #6a0dad;
     transition: font-size .3s ease;
 }
-.slider-arrow.right:hover {
+/* .slider-arrow.right:hover {
     background: linear-gradient(
         to left, 
         rgba(102, 102, 102, .5), 
         rgba(102, 102, 102, 0) 80%
     );
-}
-.slider-arrow.left:hover {
+} */
+/* .slider-arrow.left:hover {
     background: linear-gradient(
         to right, 
         rgba(102, 102, 102, .5), 
         rgba(102, 102, 102, 0) 80%
     );
-}
+} */
 .slider-arrow.left {
     left: 0;
 }

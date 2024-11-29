@@ -83,6 +83,8 @@
             </p>
         </div>
 
+        
+
 
     
     <script>
@@ -111,9 +113,9 @@
             postedOn: "Sun, 5th September, 4:02 PM",
             location: "36/2 Sri lankarama rd - Panadura",
             images: [
-                '<?= ROOT?>/assets/images/pets/bambi_1.jpg',
-                '<?= ROOT?>/assets/images/pets/bambi_2.jpg',
-                '<?= ROOT?>/assets/images/pets/bambi_3.jpeg'
+                '<?= ROOT?>/assets/images/pets/catfound.jpg',
+                '<?= ROOT?>/assets/images/pets/cat1.jpg',
+                '<?= ROOT?>/assets/images/pets/cat4.jpg'
             ],
             contact: "071 542 4452",
             contactName: "Shehan",

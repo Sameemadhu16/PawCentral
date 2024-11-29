@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="request-card">
+                <!-- <div class="request-card">
                     <div class="card-content">
                     <img src="<?= ROOT ?>/assets/images/pets/found_1.png" alt="Pet Image" class="pet-image">
                         <div class="details">
@@ -135,12 +135,13 @@
                         <button class="approve-button">Edit</button>
                         <button class="reject-button">Remove</button>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
         </div>
     </div>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 
 </html>

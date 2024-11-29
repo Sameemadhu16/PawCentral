@@ -15,9 +15,7 @@
     padding: 1.5rem;
     background: #882FC8;
     border-radius: 12px;
-    overflow-y: auto; /* Enable scrolling if content overflows */
     height: 100%;
-    max-height: calc(100vh - 85px); /* Adjust based on your layout */
 }
 
 .page-style-profile .profile-section h1 {
@@ -74,11 +72,24 @@
     color: #4a1b6d;
 }
 
+.about_us{
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #4a1b6d;
+    white-space: pre-wrap;
+}
+
+.page-style-profile .profile-details p {
+    white-space: pre-wrap;
+    padding-left: 2rem;
+}
+
 .page-style-profile .profile-details span {
     font-weight: 600;
     color: #6b2299;
     min-width: 100px;
     display: inline-block;
+    
 }
 
 .page-style-profile .button-section {

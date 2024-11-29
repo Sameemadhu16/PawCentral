@@ -23,66 +23,72 @@
             </div>
 
             <div class="donation-section">
+                <!-- Donation Card 1 -->
                 <div class="donation-card">
                     <div class="icon-section">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
+                        <h3>For Max’s surgery</h3>
+                        <div class="progress-bar">
+                            <span class="progress" style="width: 25%; background-color: #F4A261;"></span>
+                        </div>
+                        <p>Rs. 5000 collected / Rs. 20000</p>
+                    </div>
+                    <button class="remove-request-button">Remove request</button>
+                </div>
+
+                <!-- Donation Card 2 -->
+                <div class="donation-card">
+                    <div class="icon-section">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="details-section">
+                        <h3>For Bella’s vaccination</h3>
+                        <div class="progress-bar">
+                            <span class="progress" style="width: 50%; background-color: #F4A261;"></span>
+                        </div>
+                        <p>Rs. 2500 collected / Rs. 5000</p>
+                    </div>
+                    <button class="remove-request-button">Remove request</button>
+                </div>
+
+                <!-- Donation Card 3 -->
+                <div class="donation-card">
+                    <div class="icon-section">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="details-section">
+                        <h3>For Charlie’s food supplies</h3>
                         <div class="progress-bar">
                             <span class="progress" style="width: 10%; background-color: #F4A261;"></span>
                         </div>
-                        <p>Rs. 2500 collected / Rs. 25000</p>
+                        <p>Rs. 1000 collected / Rs. 10000</p>
                     </div>
                     <button class="remove-request-button">Remove request</button>
                 </div>
 
+                <!-- Donation Card 4 -->
                 <div class="donation-card">
                     <div class="icon-section">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
                     <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
+                        <h3>For Luna’s rehabilitation</h3>
                         <div class="progress-bar">
-                            <span class="progress" style="width: 5%; background-color: #F4A261;"></span>
+                            <span class="progress" style="width: 75%; background-color: #F4A261;"></span>
                         </div>
-                        <p>Rs. 1250 collected / Rs. 25000</p>
-                    </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 20%; background-color: #F4A261;"></span>
-                        </div>
-                        <p>Rs. 5000 collected / Rs. 25000</p>
-                    </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 5%; background-color: #F4A261;"></span>
-                        </div>
-                        <p>Rs. 1250 collected / Rs. 25000</p>
+                        <p>Rs. 15000 collected / Rs. 20000</p>
                     </div>
                     <button class="remove-request-button">Remove request</button>
                 </div>
             </div>
 
+
         </div>
 
     </div>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 
 </html>

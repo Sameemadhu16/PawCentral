@@ -68,7 +68,7 @@
 
             <!-- User List -->
             <div class="user-list">
-                <div class="user-card">
+                <!-- <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
@@ -81,84 +81,88 @@
                     <p><strong>Name:</strong> Sameera Madhuranga</p>
                     <p><strong>Email:</strong> sameera@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
-                </div>
+                </div> -->
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
+                    <p><strong>Name:</strong> Nishan Perera</p>
+                    <p><strong>Email:</strong> nishan@gmail.com</p>
+                    <p><strong>User Type:</strong> Admin</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>Name:</strong> Chamari Senanayake</p>
+                    <p><strong>Email:</strong> chamari@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
 
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
+                    <p><strong>Name:</strong> Kasun Fernando</p>
+                    <p><strong>Email:</strong> kasun@gmail.com</p>
+                    <p><strong>User Type:</strong> Moderator</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>Name:</strong> Isuru Wijesinghe</p>
+                    <p><strong>Email:</strong> isuru@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
+                    <p><strong>Name:</strong> Ruwan Kumara</p>
+                    <p><strong>Email:</strong> ruwan@gmail.com</p>
+                    <p><strong>User Type:</strong> Admin</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>Name:</strong> Sanduni Rathnayake</p>
+                    <p><strong>Email:</strong> sanduni@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
+                    <p><strong>Name:</strong> Tharindu Jayawardana</p>
+                    <p><strong>Email:</strong> tharindu@gmail.com</p>
+                    <p><strong>User Type:</strong> Moderator</p>
                 </div>
+
                 <div class="user-card">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
+                    <p><strong>Name:</strong> Anjali Herath</p>
+                    <p><strong>Email:</strong> anjali@gmail.com</p>
                     <p><strong>User Type:</strong> Regular User</p>
                 </div>
+
+                <div class="user-card">
+                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
+                    <p><strong>Name:</strong> Praveen Silva</p>
+                    <p><strong>Email:</strong> praveen@gmail.com</p>
+                    <p><strong>User Type:</strong> Admin</p>
+                </div>
+
 
                 <!-- Repeat user cards as needed with dummy data -->
             </div>
         </div>
     </div>
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 <script>
     function markAsBanned(button) {
         // Change the button text to "Banned"
-        if(button.textContent === "Ban"){
+        if (button.textContent === "Ban") {
             button.textContent = "Banned";
             // Optional: Change the button's style to indicate it's banned
-        button.style.backgroundColor = "#e53935"; 
-        button.style.color = "#ffffff"; // White text
-        button.style.cursor = "pointer"; 
-        button.disabled = false;
+            button.style.backgroundColor = "#e53935";
+            button.style.color = "#ffffff"; // White text
+            button.style.cursor = "pointer";
+            button.disabled = false;
 
         } else {
             button.textContent = "Ban";
@@ -167,7 +171,7 @@
         // button.textContent = "Banned";
 
         // Disable the button to prevent further clicks
-        
+
     }
 </script>
 

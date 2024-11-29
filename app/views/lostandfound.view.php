@@ -35,6 +35,10 @@
             <button id="nextPage">next</button>
         </div>
     </div>
+    
+    <!-- FOOTER -->
+    <?php include("../app/views/components/footer.php")?>
+    
     <script src="<?= ROOT?>/assets/js/lostandfound.js"></script>
     
     <script>

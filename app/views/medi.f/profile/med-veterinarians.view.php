@@ -29,17 +29,17 @@ if (session_status() == PHP_SESSION_NONE) {
                     foreach($veterinarians as $vet) {
                         echo "
                         <div class='vet-card'>
+                            <div class='vet-image'>
+                                <img src='{$vet->image_url}' alt='{$vet->name}'>
+                            </div>
                             <div class='vet-details'>
                                 <h3>{$vet->name}</h3>
-                                <p>Experience: </br>{$vet->experience} years</p>
-                                <p>Availability: </br>{$vet->availability}</p>
+                                <p>Experience: {$vet->experience} years</p>
+                                <p>Availability: {$vet->availability}</p>
                                 <div class='buttons-div'>
                                     <button class='edit-btn' data-id='{$vet->id}'>Edit</button>
                                     <button class='delete-btn' data-id='{$vet->id}'>Delete</button>
                                 </div>
-                            </div>
-                            <div class='vet-image'>
-                                <img src='{$vet->image_url}' alt='{$vet->name}'>
                             </div>
                         </div>";
                     }
