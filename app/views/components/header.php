@@ -47,11 +47,11 @@
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard/profile">
+            <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/service/profile">
+            <a class="user-profile" href="<?= ROOT ?>/service">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider'): ?>

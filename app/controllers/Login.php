@@ -38,7 +38,7 @@ class Login{
                 redirect('shelter/profile');
             }
             elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider') {
-                redirect('medical-center/dashboard/profile');
+                redirect('medical-center/dashboard');
             }
             elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller') {
                 redirect('service');
