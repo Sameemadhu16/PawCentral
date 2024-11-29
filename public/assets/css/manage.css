@@ -2,150 +2,104 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
+    background-color: #f9f9f9;
 }
 
-/* Manage Posts header section */
 .managepost {
     text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #ffffff, #ffffff);
-    color: rgb(0, 0, 0);
-    border-bottom: 5px solid #ffffff;
+    margin: 20px 0;
 }
 
 .managepost h1 {
-    margin: 0;
-    font-size: 2.8em;
-    font-weight: 700;
+    font-size: 2rem; /* Slightly smaller title font size */
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .managepost-title {
-    font-size: 1.2em;
-    margin-top: 10px;
-    color: #000000;
+    color: #555;
+    font-size: 1rem;
 }
 
-/* Post container and cards */
 .post-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 40px 20px;
-    gap: 20px;
-}
-
-.card-container {
-    width: 320px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-container:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted grid for smaller cards */
+    gap: 15px; /* Reduced gap between cards */
+    padding: 15px; /* Compact padding */
+    max-width: 1000px; /* Adjusted container width */
+    margin: 0 auto;
 }
 
 .card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 250px; /* Reduced card width */
+    margin: 0 auto; /* Centers the card in its grid cell */
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 150px; /* Reduced image height */
     object-fit: cover;
-    border-bottom: 1px solid #ddd;
 }
 
 .card-content {
-    padding: 20px;
+    padding: 10px; /* Reduced padding */
+    color: #333;
 }
 
 .card-content strong {
-    display: inline-block;
+    display: block;
     margin-bottom: 5px;
     color: #555;
 }
 
-.card-content strong:first-of-type {
-    color: #007bff;
-}
-
-/* Action buttons */
 .post-actions {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background: #f8f8f8;
 }
 
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 0.9em;
-    font-weight: 500;
     text-decoration: none;
+    padding: 6px 12px; /* Reduced button padding */
+    border-radius: 4px;
+    font-size: 0.85rem; /* Smaller button text */
+    font-weight: 500;
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .edit-btn {
-    background-color: #28a745;
-    color: white;
+    background-color: #720eb1;
+    color: #fff;
 }
 
 .edit-btn:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
+    background-color: #5a0c91;
 }
 
 .delete-btn {
-    background-color: #dc3545;
-    color: white;
+    background-color: #720eb1;
+    color: #fff;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
+    background-color: #5a0c91;
 }
 
-/* No posts message */
-.post-container p {
-    font-size: 1.2em;
-    color: #666;
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .post-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card-container {
-        width: 90%;
-    }
-
-    .post-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
+.card-link {
+    text-decoration: none;
+    color: inherit;
 }

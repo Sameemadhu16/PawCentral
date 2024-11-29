@@ -1,4 +1,24 @@
-<body data-page="profile">
+<?php
+// Start the session to enable session management
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Logout functionality
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    // Unset all of the session variables
+    $_SESSION = array();
+    unset($_SESSION['user']);
+
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page or homepage
+    // redirect('');
+    exit; // Ensure no further code is executed after redirect
+}
+?>
+<!-- <body data-page="profile"> -->
     <div class="sidebar" id="sidebar">
         <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medicalSidebar.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -42,6 +62,13 @@
                     <i class="fas fa-heart icon"></i>Donations 
                 </a>
             </li>
+            <li class="logout-tab">
+                <a class="nav-link" action="">
+                    <i class="fas fa-sign-out-alt icon"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
         </ul>
     </div>
-</body>
+    
+<!-- </body> -->

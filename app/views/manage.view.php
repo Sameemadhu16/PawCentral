@@ -18,25 +18,26 @@
     <div class="post-container">
     <?php if(!empty($posts)): ?>
         <?php foreach($posts as $post): ?>
-            <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link">
-                <div class="card-container">
-                    <div class="card">
-                        <img src="<?=htmlspecialchars($post->image_path)?>" alt="Post Image">
-                        <div class="card-content">
-                            <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
-                            <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>
-                            <strong>Price:</strong> <?=htmlspecialchars($post->price)?><br>
-                        </div>
-                    </a>
-                    <div class="post-actions">
-                        <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($post->id)?>" class="btn edit-btn">Edit</a>
-                        <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($post->id)?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+            <div class="card">
+                <!-- <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link"> -->
+                    <img src="<?=htmlspecialchars($post->image_path)?>" alt="Post Image">
+                    <div class="card-content">
+                        <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
+                        <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>
+                        <strong>Price:</strong> <?=htmlspecialchars($post->price)?><br>
+                        <strong>Age:</strong> <?=htmlspecialchars($post->breed)?><br>
+                        <strong>Species:</strong><?=htmlspecialchars($post->species)?><br>
                     </div>
+                </a>
+                <div class="post-actions">
+                    <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($post->id)?>" class="btn edit-btn">Edit</a>
+                    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($post->id)?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p>No posts available</p>
-        <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No posts available</p>
+    <?php endif; ?>
     </div>
 </body>
 </html>

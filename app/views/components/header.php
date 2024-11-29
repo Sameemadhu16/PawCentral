@@ -30,7 +30,7 @@
         <li><a href="<?=ROOT?>/medical-centers">Medical Care</a></li>
         <li><a href="<?= ROOT ?>/eventsandcampaigns">Events</a></li>
         <li><a href="<?= ROOT ?>/services">Services</a></li>
-        <li><a href="<?= ROOT ?>/shelters">home for a pet</a></li>
+        <li><a href="<?= ROOT ?>/shelters">Home for a pet</a></li>
         <li><a href="<?= ROOT ?>/lostandfound">Lost & Found</a></li>
         <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
     </ul>
@@ -47,7 +47,7 @@
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard/profile">
+            <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller'): ?>
@@ -65,7 +65,7 @@
 
 
         <?php else : ?>
-            <a class="sign-in-button" href="login" style="text-decoration: none; padding: 10px 15px; font-size: 16px; color: #fff; background-color: orange; border-radius: 5px; border: none; display: inline-block; text-align: center; transition: background-color 0.3s ease;">
+            <a class="sign-in-button" href="<?=ROOT?>/login" style="text-decoration: none; padding: 10px 15px; font-size: 16px; color: #fff; background-color: orange; border-radius: 5px; border: none; display: inline-block; text-align: center; transition: background-color 0.3s ease;">
                 Sign In
             </a>
         <?php endif; ?>
