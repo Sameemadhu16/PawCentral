@@ -19,12 +19,14 @@
     <?php if(!empty($posts)): ?>
         <?php foreach($posts as $post): ?>
             <div class="card">
-                <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link">
+                <!-- <a href="<?=ROOT?>/manage/details?id=<?=htmlspecialchars($post->id)?>" class="card-link"> -->
                     <img src="<?=htmlspecialchars($post->image_path)?>" alt="Post Image">
                     <div class="card-content">
                         <strong>Location:</strong> <?=htmlspecialchars($post->city)?><br>
                         <strong>Posted On:</strong> <?=htmlspecialchars($post->created_at)?><br>
                         <strong>Price:</strong> <?=htmlspecialchars($post->price)?><br>
+                        <strong>Age:</strong> <?=htmlspecialchars($post->breed)?><br>
+                        <strong>Species:</strong><?=htmlspecialchars($post->species)?><br>
                     </div>
                 </a>
                 <div class="post-actions">
