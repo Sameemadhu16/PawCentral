@@ -63,7 +63,7 @@
             background: #eee;
             border-radius: 20px;
             overflow: hidden;
-            height: 10px;
+            height: 7px;
             margin-bottom: 8px;
         }
 
@@ -83,6 +83,10 @@
             margin-bottom: 10px;
             margin-top: 0;
           padding-top:0;
+        }
+
+        .collected {
+            font-size: .8rem;
         }
 
         .donate-button {
@@ -118,7 +122,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 70%;"></div>
                 </div>
-                <p class="amount">Raised: $7,000 / $10,000</p>
+                <p class="amount"><span class="collected">Raised: $7,000 / </span>$10,000</p>
                 <a href="#" class="donate-button">Donate Now</a>
             </div>
         </div>
@@ -132,7 +136,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 50%;"></div>
                 </div>
-                <p class="amount">Raised: $1,000 / $2,000</p>
+                <p class="amount"><span class="collected">Raised: $1,000 /</span> $2,000</p>
                 <a href="#" class="donate-button">Donate Now</a>
                 </div>
         </div>
@@ -147,7 +151,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 13%;"></div>
                 </div>
-                <p class="amount">Raised: $1,200 / $8,000</p>
+                <p class="amount"><span class="collected">Raised: $1,200 / </span>$8,000</p>
                 <a href="#" class="donate-button">Donate Now</a>
             </div>
         </div>
@@ -159,7 +163,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 85%;"></div>
                 </div>
-                <p class="amount">Raised: $2,450 / $3,000</p>
+                <p class="amount"><span class="collected">Raised: $2,450 / </span>$3,000</p>
                 <a href="#" class="donate-button">Donate Now</a>
             </div>
         </div>
@@ -174,7 +178,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 85%;"></div>
                 </div>
-                <p class="amount">Raised: $8,500 / $10,000</p>
+                <p class="amount"><span class="collected">Raised: $8,500 / </span>$10,000</p>
                 <a href="#" class="donate-button">Donate Now</a>
             </div>
         </div>
@@ -186,7 +190,7 @@
                 <div class="progress-bar-container">
                     <div class="progress-bar" style="width: 66%;"></div>
                 </div>
-                <p class="amount">Raised: $ 500 / $1,500</p>
+                <p class="amount"><span class="collected">Raised: $ 500 / </span>$1,500</p>
                 <a href="#" class="donate-button">Donate Now</a>
             </div>
         </div>
