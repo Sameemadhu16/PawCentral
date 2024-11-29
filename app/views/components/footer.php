@@ -21,7 +21,7 @@
       <div class="footer-column contact">
         <h3>Contact</h3>
         <ul>
-          <li><a href="mailto:info@example.com">info@example.com</a></li>
+          <li><a href="pawcentral@gmail.com">info@example.com</a></li>
           <li><a href="tel:+123456789">+123 456 789</a></li>
         </ul>
       </div>

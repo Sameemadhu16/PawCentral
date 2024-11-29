@@ -421,6 +421,6 @@ h1 {
  }
 
  .card:hover {
-    background-color:rgb(131, 174, 255,.4);
+    background-color:rgba(131, 174, 255, 0.4);
  }
  
