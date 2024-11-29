@@ -9,10 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <?php include '../app/views/components/header.php' ?>
+<body class="body">
+    <!-- Include the Header and Sidebar components -->
+    <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container">
+        <?php include("../app/views/components/merchant/sidebar.php"); ?>
+
+        <div class="content">
 
         <div class="welcomeMessage">
             <h1>WELCOME BACK,NAME</h1>
@@ -40,6 +44,7 @@
                 </ul>
                 <button onclick="location.href='<?=ROOT?> /service/manage'">View Post</button>
             </div>
+        </div>
         </div>
     </div>
     <?php include("../app/views/components/footer.php"); ?>

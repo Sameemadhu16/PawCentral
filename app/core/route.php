@@ -20,6 +20,8 @@ route('service/postpet/postpetnext/selling/submit','Selling@submit');
 route('service/manage','Manage@index');
 route('service/manage/edit','Manage@edit');
 route('service/manage/delete','Manage@delete');
+route('merchant/profile','merchant/Profile@index');
+route('merchant/notification','merchant/Notification@index');
 
 
 route('service/profile','Profile@index');
@@ -101,11 +103,11 @@ route('shelter/post','shelter/Post@index');
 
 
 //service routings
-route('service','Service@index');
-route('service/postpet','Postpet@index');
-route('service/postpet/postpetnext','Postpetnext@index');
-route('service/postpet/postpetnext/selling','Selling@index');
-route('service/manage','Manage@index');
+// route('service','Service@index');
+// route('service/postpet','Postpet@index');
+// route('service/postpet/postpetnext','Postpetnext@index');
+// route('service/postpet/postpetnext/selling','Selling@index');
+// route('service/manage','Manage@index');
 
 
 
