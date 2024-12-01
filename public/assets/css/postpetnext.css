@@ -1,0 +1,161 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Container settings */
+.container {
+    max-width: auto;
+    margin: 0 auto;
+    padding: 20px 165px;
+}
+
+/* Title Styling */
+.title h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-top: 2px solid #eee;
+}
+
+/* Flexbox Layout for Content */
+.div1and2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.list {
+    width: 50%;
+}
+
+.list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.list h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.list p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* File Upload Box */
+.drag-box {
+    width: 45%;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+.drag-box h1 {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* File Input and Submit Button */
+.upload-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.upload {
+    width: 50%;
+    padding: 12px 0;
+    background-color: #b720fe;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.upload:hover {
+    background-color: #7d0eb1;
+}
+
+/* Summary Text */
+.summary {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary h4 {
+    font-size: 14px;
+    color: #555;
+    font-weight: 400;
+}
+
+/* Next Button */
+.next {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next button {
+    width: 15%;
+    padding: 12px 0;
+    background-color: #b720fe;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.next button:hover {
+    background-color: #7d0eb1;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 20px;
+    }
+
+    .div1and2 {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .list, .drag-box {
+        width: 100%;
+    }
+
+    .upload {
+        width: 40%;
+    }
+
+    .next button {
+        width: 40%;
+    }
+}

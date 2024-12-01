@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header styling */
+.title h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.title hr {
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+/* Form container styling */
+.form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Input fields styling */
+input[type="text"], input[type="email"], input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input[type="text"], input[type="email"] {
+    display: block;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-top: 10px;
+}
+
+/* Label styling */
+label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+h3.location {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Styling for buttons */
+button.button, .submit {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button.button:hover, .submit:hover {
+    background-color: #218838;
+}
+
+/* Link styling */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Checkboxes styling */
+input.feebox, input.terms {
+    width: auto;
+    margin-top: 5px;
+}
+
+/* Adjusting specific spacing and alignment */
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Margin between fields */
+input[type="text"], input[type="email"], input[type="checkbox"] {
+    margin-bottom: 15px;
+}
+
+/* Adding some space between the sections */
+.pricel, .fee, .terms {
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form {
+        padding: 15px;
+        margin: 0 10px;
+    }
+
+    button.button, .submit {
+        width: 100%;
+    }
+}

@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.main-container {
+    width: 60%;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.post-details-container {
+    text-align: left;
+    min-height: 550px;
+}
+
+.post-details-container h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.post-info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.post-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-text-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.post-text-content p {
+    margin: 5px 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.post-actions {
+    text-align: center;
+    margin-top: 100px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    /* width: 100px; */
+}
+
+.approve-button, .edit-button, .delete-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+}
+
+.approve-button {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.approve-button:hover {
+    background-color: #218838;
+}
+
+.edit-button {
+    background-color: #ffc107;
+    color: #ffffff;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back-icon a:hover {
+    color: #005fa3;
+}
+
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
+}

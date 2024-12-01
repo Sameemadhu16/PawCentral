@@ -1,0 +1,85 @@
+
+
+.announcement-sec{
+    min-height: 75vh;
+    padding: 1% 10%;
+}
+.announcement {
+    background-color: #e6ceff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.announcement h2 {
+    margin-top: 0;
+    margin-bottom: 3px;
+    color: #3700b3;
+}
+.meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+.announcement p{
+
+    line-height: calc(0.85em + 5px);
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pagination button {
+    background-color: #bb86fc;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.pagination .current-page {
+    font-weight: bold;
+    color: #3700b3;
+}
+
+@media (max-width:1100px){
+    
+    .announcement h2 {
+        font-size: 23px;
+    }
+    .meta {
+        font-size: 0.8em;
+    }
+    
+}
+@media (max-width:780px){
+    .announcement-sec{
+        padding: 1% 5%;
+    }
+    .announcement p{
+        margin: 0px;
+        padding: 0px;
+        font-size: .9em;
+    }
+}
+@media (max-width:410px){
+    .announcement-sec{
+        padding: 1% 2%;
+    }
+    .announcement h2 {
+        font-size: 20px;
+    }
+    .meta {
+        font-size: 0.75em;
+
+    }
+    .announcement p{
+        font-size: .85em;
+    }
+}

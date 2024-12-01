@@ -1,0 +1,180 @@
+.body {
+    margin: 0;
+    overflow-y: hidden;
+    background-color: #f3f4f6;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.content {
+    width: 90%; /* Increased width for a wider layout */
+    max-width: 800px; /* Set a larger max-width */
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease;
+}
+
+/* .content:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+} */
+
+.announcement-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.announcement-form h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.announcement-form label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: 500;
+    color: #424242;
+    font-size: 16px;
+}
+
+.announcement-form input[type="text"],
+.announcement-form input[type="date"],
+.announcement-form textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.textarea_class {
+    min-height: 250px;
+}
+
+.announcement-form input[type="text"]:hover,
+.announcement-form input[type="date"]:hover,
+.announcement-form textarea:hover {
+    border-color: #6D2EFF;
+    background-color: #f9f9ff;
+}
+
+.announcement-form input[type="text"]:focus,
+.announcement-form input[type="date"]:focus,
+.announcement-form textarea:focus {
+    border-color: #6D2EFF;
+    outline: none;
+}
+
+.back-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.back-icon a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 18px; /* Increase font size for the text as well if desired */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.back-icon a:hover {
+    color: #005fa3;
+}
+
+.back-icon i {
+    margin-right: 8px;
+    font-size: 24px; /* Increase the icon size */
+}
+
+.error-message {
+    background-color: #ffdddd; /* Light red background */
+    color: #d8000c; /* Dark red text color */
+    border-left: 4px solid #d8000c; /* Red border to the left */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    max-width: 600px; /* Adjust width as needed */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    animation: bounce 0.6s ease-in-out;
+    position: relative;
+}
+
+.bounce-animation {
+    animation: bounce 0.6s ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Automatic Dismiss after 10 seconds */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.error-message {
+    animation: fadeOut 10s forwards;
+}
+
+
+.done-button {
+    padding: 14px 24px;
+    background-color: #0077cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    margin-left: 240px;
+}
+
+.done-button:hover {
+    background-color: #005fa3;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.done-button:active {
+    background-color: #00477d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 95%;
+        padding: 20px;
+    }
+    .announcement-form h1 {
+        font-size: 28px;
+    }
+}

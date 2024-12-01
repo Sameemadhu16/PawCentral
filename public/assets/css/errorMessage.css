@@ -1,0 +1,58 @@
+/* Bounce Animation */
+@keyframes bounceInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+    80% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out effect */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+/* Keyframes for the fade-out effect */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+/* Error Messages Container */
+.error-messages-container {
+    border: 1px solid #f44336; /* Red border for errors */
+    background-color: #ffe6e6; /* Light red background for errors */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #f44336; /* Text color for error messages */
+    font-family: Arial, sans-serif;
+}
+
+/* Individual Error Message Item */
+.error-message-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Error Icon */
+.error-message-item::before {
+    margin-right: 8px;
+    font-size: 16px;
+}

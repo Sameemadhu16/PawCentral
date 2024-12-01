@@ -1,0 +1,90 @@
+/* General Styles */
+.body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+.main-container {
+    display: flex;
+}
+
+/* Content section */
+.content {
+    flex: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 1%;
+    margin-right: 1%;/* To align with fixed sidebar */
+    overflow: auto;
+    border-radius: 8px;
+}
+
+/* Notification Section */
+.notifications-section {
+    flex: 1;
+    margin-left: 20px;
+    border-radius: 8px;
+    overflow-y: scroll;
+    max-height: 600px;
+}
+
+.notifications-section h2 {
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Notification Card */
+.notification-card {
+    background-color: #d9b3ff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: 90%;
+    max-height: 120px;
+    position: relative; /* Enable positioning for child elements */
+}
+
+.notification-card h3 {
+    color: #4a4a4a;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+/* Date and time styling */
+.notification-card .date-time {
+    font-size: 14px;
+    color: #4a4a4a;
+    font-weight: bold;
+    position: absolute; /* Absolute positioning for placement inside the card */
+    top: 10px; /* Space from the top */
+    right: 20px; /* Space from the right edge */
+}
+
+.notification-card .notification-message {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Hover Effect */
+.notification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlighted Notification */
+.notification-card.highlighted {
+    border: 2px solid #4fc3f7;
+    background-color: #f0f8ff;
+}
+

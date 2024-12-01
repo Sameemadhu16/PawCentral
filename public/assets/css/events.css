@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f3e8fd;
+}
+
+.events-sec{
+    min-height: 80vh;
+}
+
+.events-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #3700b3;
+
+}
+
+.btn-primary {
+    background-color: #8450e4;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-primary:hover{
+    background-color: #6A0DAD;
+}
+
+.event-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 0 10px; /* Padding to prevent cards from touching the edges */
+}
+
+.event-card {
+    flex: 1; /* Allow cards to take equal space */
+    min-width: 500px; /* Minimum width for the cards */
+    max-width: 60%;
+    margin: 5px;
+    /* padding: 10px; */
+    border-radius: 10px;
+    background-color: #f0f2f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-card-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.event-image {
+    width: 160px; /* Set fixed width */
+    height: 180px; /* Set fixed height */
+    object-fit: cover; /* Make the image fill the container, cropping if needed */
+    margin-right: 10px;
+    border-radius: 10px 1px 0px 10px;
+}
+
+.event-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0 10px;
+}
+
+.find-more-btn, .enroll-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+  
+  .event-details {
+    flex-grow: 1;
+  }
+  
+  .event-details h2 {
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .event-details p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .published-date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  
+  .event-actions .find-more-btn,
+  .event-actions .enroll-btn {
+    background-color: #589bf9;
+    /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
+    border: none;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .event-actions .find-more-btn:hover,
+  .event-actions .enroll-btn:hover {
+    background-color: #2578eb;
+  }
+  
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+
+#currentPage {
+    margin: 0 10px;
+    font-size: 18px;
+} */
+

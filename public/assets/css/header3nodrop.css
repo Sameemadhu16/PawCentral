@@ -1,0 +1,309 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.navbar {
+    background-color: #6b0dad;
+    /* background:linear-gradient(135deg, #6A0DAD,#8119c2); */
+    color: white;
+    /* padding: 10px 168.5px; */
+
+    display: flex;
+    justify-content: space-between; /* Distributes space between left and right sections */
+    align-items: center; /* Centers content vertically */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin:0;
+
+    /* Aligning to center */
+    padding: 10px 10%;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center; /* Aligns the logo and website name vertically */
+}
+
+.navbar-logo:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.navbar-logo {
+    width: 50px;
+    height: 45px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: rgba(156, 14, 199, 0.025); /* Aligns the logo and website name vertically */
+    
+}
+
+.navbar-logo-set{
+    display: flex;
+    /* flex:1;
+    justify-content: center;
+    align-items: center; */
+    text-decoration: none;
+}
+
+.navbar h1 {
+    font-size: 35px;
+    color: white;
+    margin: 0;
+    font-weight: bold;
+    /* font-family: sans-serif; */
+    /* text-shadow: 2px 2px 4px rgb(0, 0, 0); */
+    letter-spacing: 1px;
+    transition: transform 0.3s ease;
+}
+
+
+.navbar-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin: 0 0px;
+    /* margin: auto; Pushes links to the right */
+    align-items: center; /* Aligns links vertically */
+    gap: 4px;
+    justify-content: center;
+}
+
+.navbar-links li {
+    margin: 0px;
+    margin-bottom: 0px;
+    list-style: none;
+    /* display: inline-block; */
+    position: relative;
+    padding: 3px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-link {
+    text-decoration: none;
+}
+.navbar-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar-links li a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: orange;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-links li a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.navbar-links li a:hover {
+    color: #FFB246;
+    transform: translateY(-2px);
+}
+
+.user-profile {
+    margin-left: 10px; /* Adds spacing between links and profile picture */
+    z-index: 1006;
+}
+
+.user-profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-profile img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* Hamburger Menu Icon */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.navbar-toggle .hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle:hover .hamburger {
+    background-color: #FFB246;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 1270px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    /* Navbar toggle button styling */
+.navbar-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    top: 15px;
+    right: 15px; */
+    background-color: #6A0DAD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+/* Navbar links container */
+.navbar-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust as per your navbar height */
+    right: 0;
+    background-color: #6A0DAD;
+    overflow: hidden; /* Prevent overflow during animation */
+    width: 100%; /* Full width of the screen */
+    max-height: 0; /* Start with no height */
+    border-radius: 10px;
+    transition: max-height .7s ease; /* Smooth background reveal */
+
+    /* aligning to center */
+    max-width: 300px;
+    z-index: 1005;
+    min-width: 40%;
+    background: linear-gradient(180deg, #6a0dad, #8049fe);
+}
+
+/* When active, expand the height */
+.navbar-links.active {
+    max-height: 600px; /* Adjust height based on the number of links */
+
+    /* aligning to center */
+    max-width: 300px;
+}
+
+/* Link items inside the navbar */
+.navbar-links li {
+    list-style: none;
+    margin:1px 0;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(-20px); /* Slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+/* Links sequentially appear */
+.navbar-links.active li {
+    opacity: 1;
+    transform: translateY(0); /* Original position */
+}
+
+/* Staggered animation delays for links */
+.navbar-links li:nth-child(1) {
+    transition-delay: 0.1s;
+}.navbar-links li:nth-child(2) {
+    transition-delay: 0.2s;
+}.navbar-links li:nth-child(3) {
+    transition-delay: 0.3s;
+}.navbar-links li:nth-child(4) {
+    transition-delay: 0.4s;
+}.navbar-links li:nth-child(5) {
+    transition-delay: 0.5s;
+}.navbar-links li:nth-child(6) {
+    transition-delay: 0.6s;
+}.navbar-links li:nth-child(7) {
+    transition-delay: 0.7s;
+}.navbar-links li:nth-child() {
+    transition-delay: 0.8s;
+}
+
+/* Links styling */
+.navbar-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    display: block;
+    padding: 4px 0;
+    transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+    color: #FFB246;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 500px) {
+    .navbar-links li a {
+        font-size: 14px; /* Smaller font for small screens */
+    }
+    .navbar-links {
+        min-width: 100%;
+        background: linear-gradient(180deg, #6a0dad, #8049fe);
+    }
+}
+
+    
+}
+
+@media (max-width: 395px) {
+    
+    .navbar h1 {
+        font-size: 33px;
+        display: none;
+    }
+
+}
+
+
+
+
+
+

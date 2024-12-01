@@ -1,0 +1,130 @@
+<?php
+
+// Middleware-like function for admin-only routes
+// function adminRoute($path, $controllerAction) {
+//     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+//         route($path, $controllerAction);
+//     } else {
+//         redirect('login'); // Redirect to login if not admin
+//     }
+// }
+
+
+route('service','Service@index');
+route('service/postpet','Postpet@index');
+route('service/postpet/submit','Postpet@submit');
+route('service/postpet/postpetnext','Postpetnext@index');
+route('service/postpet/postpetnext/submit','Postpetnext@submit');
+route('service/postpet/postpetnext/selling','Selling@index');
+route('service/postpet/postpetnext/selling/submit','Selling@submit');
+route('service/manage','Manage@index');
+route('service/manage/edit','Manage@edit');
+route('service/manage/delete','Manage@delete');
+route('merchant/profile','merchant/Profile@index');
+route('merchant/notification','merchant/Notification@index');
+
+
+route('service/profile','Profile@index');
+route('service/manage/editpost/update','Manage@update');
+// Home route
+route('home', 'Home@index');
+
+// Signup and Login routing
+route('signup', 'SignUp@index');                 // Display signup page (first step)
+route('signup/signupnext', 'SignUpNext@index');  // Display signup second step
+route('login', 'Login@index');// Route for displaying the login page
+
+
+// Admin routing
+route('admin/overview', 'admin/AdminOverview@index');
+route('admin/announcement', 'admin/AdminAnnouncement@index');
+route('admin/add_announcement', 'admin/AdminAddAnnouncement@index');
+route('admin/view_announcement', 'admin/AdminViewAnnouncement@index');
+route('admin/edit_announcement', 'admin/AdminEditAnnouncement@index');
+route('admin/medical_registration', 'admin/AdminMedicalRegistration@index');
+route('admin/report', 'admin/AdminReport@index');
+route('admin/user_account', 'admin/AdminUserAccount@index');
+route('admin/event', 'admin/AdminEvent@index');
+route('admin/event_view', 'admin/AdminEventView@index');
+route('admin/post', 'admin/AdminPost@index');
+route('admin/post_info', 'admin/AdminPostInfo@index');
+route('admin/donation', 'admin/AdminDonation@index');
+route('admin/profile', 'admin/AdminProfile@index');
+route('admin/profile_view','admin/AdminProfileView@index');
+route('admin/donation_card', 'admin/AdminDonationCard@index');
+route('admin/notification', 'admin/AdminNotification@index');
+
+// User routings
+route('announcements','announcements');
+route('lostandfound','lostandfound');
+route('eventsandcampaigns','events');
+route('eventsandcampaigns/event_id','EventInfo');
+route('lostandfound/report-animal','ReportFound');
+// route('lostandfound/idoflost','LostPet');
+
+// userprofile
+route('userprofile','user/Profile@index');
+route('userprofile/profile','user/Profile@index');
+route('userprofile/notifications','user/Notification@index');
+route('userprofile/donations','user/Donation@index');
+route('userprofile/lost_and_found','user/LostAndFound@index');
+route('userprofile/mypets','user/Mypets@index');
+route('userprofile/mypets/selectedPet','user/Mypets@index2');
+route('userprofile/event','user/Events@index');
+route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
+route('lostandfound/postdetails','user/LostAndFound@show');
+route('lostandfound/post-report-animal','user/LostAndFound@createReport');
+route('lostandfound/edit', 'user/LostAndFound@edit'); //updating pet post
+route('lostandfound/update', 'user/LostAndFound@update');
+
+
+// merchanted pets
+route('findapet','PetPosts');
+route('findapet/post_id','PetPost_purchase');
+// medical centres
+route('services','Services');
+route('services/careservice','Careservice');
+// Pet shelters
+route('shelters','PetShelters');
+// Donation requests
+route('donationsnsupport','DonationsAndSupport');
+
+//pet shelter routings
+route('shelter/profile','shelter/Profile@index');
+route('shelter/notification','shelter/Notification@index');
+route('shelter/donation','shelter/Donation@index');
+// route('shelter/lost_and_found','shelter/LostAndFound@index');
+route('shelter/event','shelter/Events@index');
+route('shelter/eventInfo','shelter/EventInfo@index');
+route('shelter/adoption_requests','shelter/AdoptionRequests@index');
+route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
+route('shelter/post','shelter/Post@index');
+
+
+
+//service routings
+// route('service','Service@index');
+// route('service/postpet','Postpet@index');
+// route('service/postpet/postpetnext','Postpetnext@index');
+// route('service/postpet/postpetnext/selling','Selling@index');
+// route('service/manage','Manage@index');
+
+
+
+//medical routing
+route('medical-centers','Medical/FindMedi@index');
+route('medical-center','Medical/MediCenter@index');
+route('medical-appointment-date','Medical/Appointment_Date@index');
+route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
+route('medical-appointment-reason','Medical/Appointment_Reason@index');
+//medical profile
+route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
+route('medical-center/dashboard/profile','Medical/profile/Med_Dashboard_Profile@index');
+route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
+route('medical-center/dashboard/veterinarians/edit-vet','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
+route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');
+route('medical-center/dashboard/notification','Medical/profile/Med_Dashboard_Notification@index');
+route('medical-center/dashboard/services','Medical/profile/Med_Dashboard_Services@index');
+route('medical-center/dashboard/donations','Medical/profile/Med_Dashboard_Donations@index');
+route('medical-center/dashboard/events','Medical/profile/Med_Dashboard_Events@index');
