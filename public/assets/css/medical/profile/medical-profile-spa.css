@@ -1,27 +1,5 @@
-/* Define color variables */
-:root {
-    --primary-color: #6A0DAD;
-    --secondary-color: #882FC8;
-    --accent-color: #FFFFFF;
-    --text-color: #000000;
-    --light-gray: #F0F0F0;
-    --dark-gray: #333333;
-  }
-  
-  /* Example usage */
-  /* body {
-    color: var(--text-color);
-    background-color: var(--accent-color);
-  } */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    background-color: #ecececee;
+    background-color: var(--background-container);
 }
 
 .container {
@@ -32,7 +10,6 @@ body {
 
 .dashboard{
     display: flex;
-    /* justify-content: space-between; */
     gap: 15px;
 }
 
@@ -42,13 +19,13 @@ body {
     align-items: center;
     padding: 20px;
     width: 100%;
-    background-color: #882FC8;
+    background-color: var(--secondary);
     border-radius: 15px;
 }
 
 .page-window {
     flex: 1;
-    background-color: #fff;
+    background-color: var(--secondary);
     border-radius: 15px;
     padding: 20px;
     min-height: 500px;

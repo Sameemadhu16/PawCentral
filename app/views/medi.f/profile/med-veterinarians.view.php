@@ -11,9 +11,11 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
     <div class="container">
-        <div class="content-wrapper">  <!-- Added wrapper div -->
+        <div class="content-wrapper">
             <div class="add-button-div">
-                <button class="add-vet-btn" id="add-vet-btn">Add Veterinarians</button>
+                <button class="add-vet-btn btn btn-primary" id="add-vet-btn">
+                    Add Veterinarian
+                </button>
             </div>
             <?php include("../app/views/medi.f/profile/popup/add-veterinarian.view.php"); ?>
             <!-- responds -->
@@ -28,17 +30,17 @@ if (session_status() == PHP_SESSION_NONE) {
                 if(!empty($veterinarians)) {
                     foreach($veterinarians as $vet) {
                         echo "
-                        <div class='vet-card'>
+                        <div class='vet-card card'>
                             <div class='vet-image'>
                                 <img src='{$vet->image_url}' alt='{$vet->name}'>
                             </div>
                             <div class='vet-details'>
                                 <h3>{$vet->name}</h3>
-                                <p>Experience: {$vet->experience} years</p>
-                                <p>Availability: {$vet->availability}</p>
+                                <p><strong>Experience:</strong> {$vet->experience}</p>
+                                <p><strong>Availability:</strong> {$vet->availability}</p>
                                 <div class='buttons-div'>
-                                    <button class='edit-btn' data-id='{$vet->id}'>Edit</button>
-                                    <button class='delete-btn' data-id='{$vet->id}'>Delete</button>
+                                    <button class='edit-btn btn btn-primary' data-id='{$vet->id}'>Edit</button>
+                                    <button class='delete-btn btn btn-danger' data-id='{$vet->id}'>Delete</button>
                                 </div>
                             </div>
                         </div>";

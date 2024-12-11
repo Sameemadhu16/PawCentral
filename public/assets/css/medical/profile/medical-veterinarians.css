@@ -1,10 +1,4 @@
 :root {
-    --primary-color: #6A0DAD;
-    --secondary-color: #882FC8;
-    --accent-color: #FFFFFF;
-    --text-color: #000000;
-    --light-gray: #F0F0F0;
-    --dark-gray: #333333;
     --container-padding: 7%;
 }
 
@@ -18,10 +12,19 @@
     padding: 0 var(--container-padding);
 }
 
+.content-wrapper {
+    background-color: var(--secondary);
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    box-shadow: 0 4px 12px var(--shadow-md);
+    margin-top: 1rem;
+}
+
 .page-style-veterinarians .body {
     font-family: Arial, sans-serif;
-    background-color: var(--light-gray);
-    color: var(--text-color);
+    background-color: var(--background-container);
+    color: var(--text-primary);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -36,15 +39,10 @@
 }
 
 .page-style-veterinarians .add-vet-btn {
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    border: none;
-    padding: 0.625rem 1.25rem;
-    cursor: pointer;
     margin-bottom: 1.25rem;
-    border-radius: 0.625rem;
     font-weight: 600;
     font-size: clamp(0.875rem, 1.5vw, 1rem);
+    padding: 0.625rem 1.25rem;
 }
 
 .vet-cards {
@@ -58,18 +56,15 @@
 }
 
 .vet-card {
-    background-color: var(--accent-color);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-content: center;
-    /* Optional: add max-width if needed */
     max-width: 500px;
-    width: 100%;
+    width: auto;
+    padding: 25px;
 }
+
 
 .page-style-veterinarians .vet-details {
     flex-grow: 1;
@@ -85,6 +80,7 @@
     overflow: hidden;
     flex-shrink: 0;
     margin: 0;
+    border: 2px solid var(--border-light);
 }
 
 .page-style-veterinarians .vet-image img {
@@ -94,27 +90,23 @@
 }
 
 .page-style-veterinarians .vet-card h3 {
-    color: var(--primary-color);
+    color: var(--primary);
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
 }
 
 .page-style-veterinarians .vet-card p {
-    color: var(--dark-gray);
+    color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
 }
 
-.page-style-veterinarians .edit-btn, .delete-btn {
-    background-color: var(--secondary-color);
-    color: var(--accent-color);
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+.page-style-veterinarians .edit-btn,
+.page-style-veterinarians .delete-btn {
     width: 85px;
+    padding: 5px 10px;
 }
 
 .page-style-veterinarians .buttons-div {
@@ -122,10 +114,6 @@
     gap: 10px;
     flex-direction: row;
     margin-top: 10px;
-}
-
-.delete-btn {
-    background-color: var(--dark-gray);
 }
 
 /* Responsive Breakpoints */

@@ -1,14 +1,46 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadPage('profile', profileAction);
+    // Get the current hash or default to 'profile'
+    const currentPage = window.location.hash.slice(1) || 'profile';
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.dataset.page === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // Load the current page
+    loadPage(currentPage, window[currentPage + 'Action']);
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const page = this.dataset.page;
+            
+            // Update URL hash without triggering a page reload
+            window.history.pushState(null, null, `#${page}`);
+            
             document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
             this.classList.add('active');
             loadPage(page, window[page + 'Action']);
         });
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+        const page = window.location.hash.slice(1) || 'profile';
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.dataset.page === page) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        loadPage(page, window[page + 'Action']);
     });
 });
 
