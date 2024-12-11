@@ -1,7 +1,7 @@
 /* Sidebar styling */
 .sidebar {
     width: 300px;
-    background-color: #6A0DAD;
+    background-color: var(--primary);
     padding-top: 40px;
     height: 85vh; /* Keeps the sidebar fixed to the left */
     margin-top: 15px;

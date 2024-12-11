@@ -8,9 +8,10 @@
 /* Container styling */
 .main-container {
     display: flex;
+    justify-content: flex-start;
 }
 
-.container {
+.title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;

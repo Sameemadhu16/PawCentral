@@ -11,7 +11,7 @@
     min-height: 100vh;
 }
 
-.container {
+.med-container {
     flex: 1;
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -22,7 +22,7 @@
     overflow: auto;
     border-radius: 8px;
 }
-.container h2{
+.med-container h2{
     font-family:  sans-serif;
     color: #000000;
 }
