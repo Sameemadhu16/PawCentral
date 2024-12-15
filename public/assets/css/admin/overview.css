@@ -1,7 +1,7 @@
 .body {
     margin: 0;
     overflow-y: hidden;
-    background-color: #f3f4f6;
+    background-color: var(--background-container);
     overflow-y: auto;
 }
 

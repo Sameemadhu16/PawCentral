@@ -12,7 +12,7 @@
 <body class="body">
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/shelter/sidebar.php"); ?>
 
         <div class="content">
@@ -25,6 +25,7 @@
                             <h3>Buddy</h3>
                             <p><strong>Breed:</strong> Labrador Retriever</p>
                             <p><strong>Age:</strong> 2 years</p>
+                            <hr>
                             <hr>
                             <p><strong>Adopter Name:</strong> Jane Doe</p>
                             <p><strong>Contact:</strong> 0712345678</p>

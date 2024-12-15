@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelter - Events</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shelter/events.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
@@ -13,7 +14,7 @@
     <!-- Header -->
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <!-- Sidebar -->
         <?php include("../app/views/components/shelter/sidebar.php"); ?>
 
@@ -23,7 +24,7 @@
                 <!-- <h2>Events</h2> -->
                 <div class="button">
                     <form action="<?= ROOT ?>/shelter/eventInfo" method="post">
-                        <button type="submit" class="publish-button">Publish Event</button>
+                        <button type="submit" class="btn btn-primary publish-button">Publish Event</button>
                     </form>
                 </div>
 
@@ -42,7 +43,7 @@
                         <span class="participants">78 participants enrolled</span>
                     </div>
                     <div class="event-actions">
-                        <button class="close-button">Close Event</button>
+                        <button class="btn-danger close-button">Close Event</button>
                     </div>
                 </div>
 

@@ -104,7 +104,7 @@ body {
 }
 
 .btn-danger {
-    background-color: var(--danger-black);
+    background-color: var(--danger);
     color: var(--text-light);
 }
 
