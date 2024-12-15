@@ -27,11 +27,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    /* margin-top: 0%; */
 }
 
 .back-icon a {
     text-decoration: none;
-    color: #0077cc;
+    color: #882FC8;
     font-weight: 600;
     font-size: 18px; /* Increase font size for the text as well if desired */
     display: flex;
@@ -40,7 +41,7 @@
 }
 
 .back-icon a:hover {
-    color: #005fa3;
+    color: #6b0dad;
 }
 
 .back-icon i {
@@ -57,7 +58,7 @@
 
 .announcement-details h2 {
     font-size: 28px; /* Larger font size for title */
-    color: #007bff; /* Blue color for the title */
+    color: #9c27b0; /* Blue color for the title */
     margin-bottom: 10px;
 }
 
@@ -92,7 +93,7 @@
 
 .edit-button, .delete-button {
     font-size: 20px;
-    width: 100%;
+    width: 60%;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -104,7 +105,7 @@
 }
 
 .edit-button {
-    background-color: #007bff; /* Blue color for edit button */
+    background-color: #28a745; /* Blue color for edit button */
 }
 
 .delete-button {
@@ -112,37 +113,14 @@
 }
 
 .edit-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #1e7e34; /* Darker blue on hover */
 }
 
 .delete-button:hover {
     background-color: #c82333; /* Darker red on hover */
 }
 
-.back-icon {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 
-.back-icon a {
-    text-decoration: none;
-    color: #0077cc;
-    font-weight: 600;
-    font-size: 18px; /* Increase font size for the text as well if desired */
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-.back-icon a:hover {
-    color: #005fa3;
-}
-
-.back-icon i {
-    margin-right: 8px;
-    font-size: 24px; /* Increase the icon size */
-}
 
 
 /* Centered modal styling */

@@ -68,7 +68,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Chamari Senanayake</td>
@@ -80,7 +80,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
@@ -92,7 +92,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Isuru Wijesinghe</td>
@@ -104,7 +104,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Ruwan Kumara</td>
@@ -116,7 +116,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Sanduni Rathnayake</td>
@@ -128,7 +128,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Tharindu Jayawardana</td>
@@ -140,7 +140,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Anjali Herath</td>
@@ -152,7 +152,7 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
                             <tr class="mr_row">
                                 <td>Praveen Silva</td>
@@ -164,8 +164,81 @@
                                         <option value="reject">Reject</option>
                                     </select>
                                 </td>
-                                <td><button class="view-btn">Send</button></td>
+                                <td><button class="send-btn">Send</button></td>
                             </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+                            <tr class="mr_row">
+                                <td>Kasun Fernando</td>
+                                <td>BVSc</td>
+                                <td><button class="view-btn">View</button></td>
+                                <td>
+                                    <select class="action-select">
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                    </select>
+                                </td>
+                                <td><button class="send-btn">Send</button></td>
+                            </tr>
+
                         </div>
 
 

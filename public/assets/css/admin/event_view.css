@@ -8,7 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
+    margin-top: 20px;
 }
 
 
@@ -83,7 +84,7 @@
 
 .back-icon a {
     text-decoration: none;
-    color: #0077cc;
+    color: #882FC8;
     font-weight: 600;
     font-size: 18px; /* Increase font size for the text as well if desired */
     display: flex;
@@ -92,7 +93,7 @@
 }
 
 .back-icon a:hover {
-    color: #005fa3;
+    color: #6b0dad;
 }
 
 .back-icon i {

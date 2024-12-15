@@ -3,8 +3,8 @@
     width: 300px;
     background-color: var(--primary);
     padding-top: 40px;
-    height: 85vh; /* Keeps the sidebar fixed to the left */
-    margin-top: 15px;
+    /* height: 85vh; Keeps the sidebar fixed to the left */
+    /* margin-top: 15px; */
     margin-left: 3px;
     display: flex;
     flex-direction: column;

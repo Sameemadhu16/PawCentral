@@ -16,7 +16,7 @@
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 1%;
     margin-right: 1%; 
     border-radius: 8px;
@@ -50,7 +50,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: calc(30% - 20px); /* Responsive 3 columns */
-    min-width: 280px;
+    min-width: 250px;
     position: relative;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
@@ -59,6 +59,7 @@
 .donation-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
 }
 
 /* Donation Information */
