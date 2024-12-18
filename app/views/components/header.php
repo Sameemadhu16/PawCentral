@@ -1,6 +1,6 @@
 <header class="navbar font-inter">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/header.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
 
     <a href="<?= ROOT?>" class="navbar-logo-set">

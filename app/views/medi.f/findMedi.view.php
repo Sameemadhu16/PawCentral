@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawCentral - Find a Pet</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/findMedi.style.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
 </head>
@@ -12,24 +13,10 @@
     <div class="container">
 
         <!-- header -->
-        <h1>Medical Care Centers</h1>
+        <h1 class="medical-care-header-text">Medical Care Centers</h1>
 
         <!-- search bar -->
-        <div class="search-container">
-            <form action="#" method="POST">
-                <div class="search-field">
-                    <label for="namesearch">Center name</label>
-                    <input type="text" name="name_search" placeholder="">
-                </div>
-                <div class="search-field">
-                    <label for="locationsearch">Location</label>
-                    <input type="text" name="location_search" placeholder="">
-                </div>
-                <div class="search-submit">
-                    <button type="submit">Search</button>
-                </div>
-            </form>
-        </div>
+        <?php include("../app/views/components/models/search_bar.php"); ?>
         
         <!-- card grid -->
         <div id="cardGrid" class="grid-container">

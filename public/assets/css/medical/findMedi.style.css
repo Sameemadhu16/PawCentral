@@ -14,59 +14,9 @@ body {
     padding: 20px 168px;
 }
 
-h1{
+.medical-care-header-text{
     text-align: center;
     margin-bottom: 20px;
-}
-
-
-.search-container{
-    margin: 0 auto;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 0 15px;
-    box-sizing: border-box;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: flex-end;
-    background-color: #000;
-    border-radius: 20px;
-    max-width: 780px;
-    width: 100%;
-    padding: 20px;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.search-field{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 200px;
-    max-width: 280px;
-}
-
-.search-field label{
-    margin-bottom: 5px;
-}
-
-.search-field input {
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-    max-width: 280px;
-    /* width: 100%; */
-}
-
-.search-submit {
-    display: flex;
-    align-items: flex-end;
 }
 
 button {

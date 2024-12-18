@@ -14,29 +14,7 @@
 
   <div class="containers">
       <!-- Search Container -->
-      <div class="search-container">
-        <div class="searchbox">
-            <label for="">Location</label>
-        <select>
-            <option>location</option>
-            <option>wadduwa</option>
-        </select>
-        </div>
-        
-        <div class="searchbox">
-            <label for="">Pet type</label>
-        <select>
-            <option>animal type</option>
-        </select>
-        </div>
-        <div class="searchbox">
-            <label for="">Looking to</label>
-            <select>
-                <option>any</option>
-            </select>
-        </div>
-        <button>Search</button>
-    </div>
+      <?php include("../app/views/components/models/search_bar.php"); ?>
 
         
     <!-- Results Container (Cards) -->

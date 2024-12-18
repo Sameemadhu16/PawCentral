@@ -126,6 +126,8 @@ body {
     box-shadow: 0 8px 16px var(--shadow-lg), 0 4px 8px var(--shadow-md);
 }
 
+@import url('/assets/css/components/search_bar.css');
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 22px 15px;
