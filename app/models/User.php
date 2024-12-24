@@ -120,4 +120,5 @@ class User
     {
         return $this->first(['email' => $email]);
     }
+
 }

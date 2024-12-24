@@ -11,9 +11,11 @@ class AdminOverview {
         // Pass an array of the user roles allowed 
         $this->isAuthorized($this->valid_roles);
         $this->getAnnouncementCount();
+        $this->getUserCount();
 
         $data = [
-            'announcementCount' => $this->getAnnouncementCount()
+            'announcementCount' => $this->getAnnouncementCount(),
+            'userCount' => $this->getUserCount()
             //add other data here
         ];
 
@@ -29,5 +31,15 @@ class AdminOverview {
         // show($announcementCount);
         return $announcementCount;
 
+    }
+
+    private function getUserCount(){
+        
+        $userModel = new User;
+
+        $userCount = $userModel->getCount();
+
+        // show($userCount);
+        return $userCount;
     }
 }

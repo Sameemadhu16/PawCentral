@@ -19,9 +19,9 @@
         <!-- Content Section -->
         <div class="content">
             <div class="overview" method="POST">
-                <div class="card">Announcements <span><?=esc($announcementCount)?></span></div>
+                <div class="card">Announcements <span><?= esc($announcementCount) ?></span></div>
                 <div class="card">Medical Registrations <span>15</span></div>
-                <div class="card">User Accounts <span>25</span></div>
+                <div class="card">User Accounts <span><?= esc($userCount) ?></span></div>
                 <div class="card">Events <span>15</span></div>
                 <div class="card">Donations <span>15</span></div>
                 <div class="card">Posts <span>15</span></div>
@@ -38,8 +38,8 @@
 </html>
 
 <script>
-        function generateReport() {
-            alert("Report generation in progress...");
-            // Add logic for generating the report
-        }
-    </script>
+    function generateReport() {
+        alert("Report generation in progress...");
+        // Add logic for generating the report
+    }
+</script>
