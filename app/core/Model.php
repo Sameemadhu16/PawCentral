@@ -139,4 +139,13 @@ trait Model
 
         return $this->query($query, $data) !== false;
     }
+
+    public function getCount($table = null)
+    {
+        $table = $table ?? $this->table;
+        $query = "SELECT COUNT(*) as count FROM $table";
+        $result = $this->query($query);
+        return $result ? $result[0]->count : 0;
+    }
+
 }

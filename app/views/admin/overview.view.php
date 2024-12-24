@@ -18,8 +18,8 @@
 
         <!-- Content Section -->
         <div class="content">
-            <div class="overview">
-                <div class="card">Announcements <span>15</span></div>
+            <div class="overview" method="POST">
+                <div class="card">Announcements <span><?=esc($announcementCount)?></span></div>
                 <div class="card">Medical Registrations <span>15</span></div>
                 <div class="card">User Accounts <span>25</span></div>
                 <div class="card">Events <span>15</span></div>
