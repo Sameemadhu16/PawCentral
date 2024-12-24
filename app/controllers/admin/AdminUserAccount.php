@@ -8,7 +8,7 @@ class AdminUserAccount{
     public function index(){
 
         $this->isAuthorized($this->valid_roles);
-        $this->getUsers();
+        // $this->getUsers();
         $data = [
             'regular' => $this->getUserCountByService('user'),
             'seller' => $this->getUserCountByService('seller'),
@@ -28,8 +28,8 @@ class AdminUserAccount{
             'order_column' => 'updated_at',
             'order_type' => 'desc'
         ]);
-        show($userDetails);
-        // return $userDetails;
+        // show($userDetails);
+        return $userDetails;
     }
 
     private function getUserCountByService($service){

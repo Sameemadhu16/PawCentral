@@ -68,73 +68,26 @@
             </div>
 
             <!-- User List -->
-            <div class="user-list">
-                <div class="user-card" method="POST">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Nishan Perera</p>
-                    <p><strong>Email:</strong> nishan@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Chamari Senanayake</p>
-                    <p><strong>Email:</strong> chamari@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Kasun Fernando</p>
-                    <p><strong>Email:</strong> kasun@gmail.com</p>
-                    <p><strong>User Type:</strong> Moderator</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Isuru Wijesinghe</p>
-                    <p><strong>Email:</strong> isuru@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Ruwan Kumara</p>
-                    <p><strong>Email:</strong> ruwan@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sanduni Rathnayake</p>
-                    <p><strong>Email:</strong> sanduni@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Tharindu Jayawardana</p>
-                    <p><strong>Email:</strong> tharindu@gmail.com</p>
-                    <p><strong>User Type:</strong> Moderator</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Anjali Herath</p>
-                    <p><strong>Email:</strong> anjali@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Praveen Silva</p>
-                    <p><strong>Email:</strong> praveen@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-
-                <!-- Repeat user cards as needed with dummy data -->
+            <div class="user-list" method
+                ="POST">
+                <?php if (!empty($users)): ?>
+                    <?php foreach ($users as $user): ?>
+                        <div class="user-card">
+                            <button class="ban-button"
+                                onclick="toggleBanUser(<?= $user->id ?>, this)"
+                                style="background-color: <?= $user->is_banned ? '#b0bec5' : '#dc3545' ?>;">
+                                <?= $user->is_banned ? 'Unban' : 'Ban' ?>
+                            </button>
+                            <p><strong>Name:</strong> <?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></p>
+                            <p><strong>Email:</strong> <?= htmlspecialchars($user->email) ?></p>
+                            <p><strong>User Type:</strong> <?= htmlspecialchars($user->service_type) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No users found.</p>
+                <?php endif; ?>
             </div>
+
         </div>
     </div>
     <?php include("../app/views/components/footer.php"); ?>
