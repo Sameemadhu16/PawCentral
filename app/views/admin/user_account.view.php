@@ -20,29 +20,29 @@
             <h2>User Accounts</h2>
 
             <!-- Overview Cards Section -->
-            <div class="cards-container">
+            <div class="cards-container" method="POST">
                 <div class="card">
-                    <div class="card-number">100.1k</div>
+                    <div class="card-number"><?= esc($regular) ?></div>
                     <div class="card-title">Regular User</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
                 <div class="card">
-                    <div class="card-number">100.1k</div>
+                    <div class="card-number"><?= esc($seller) ?></div>
                     <div class="card-title">Seller</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
                 <div class="card">
-                    <div class="card-number">100.1k</div>
+                    <div class="card-number"><?= esc($adoptionShelters) ?></div>
                     <div class="card-title">Adoption Shelters</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
                 <div class="card">
-                    <div class="card-number">100.1k</div>
+                    <div class="card-number"><?= esc($careServiceProviders) ?></div>
                     <div class="card-title">Care Service Providers</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
                 <div class="card">
-                    <div class="card-number">100.1k</div>
+                    <div class="card-number"><?= esc($medicalProviders) ?></div>
                     <div class="card-title">Medical Providers</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
@@ -69,22 +69,7 @@
 
             <!-- User List -->
             <div class="user-list">
-                <!-- <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div> -->
-
-                <div class="user-card">
+                <div class="user-card" method="POST">
                     <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
                     <p><strong>Name:</strong> Nishan Perera</p>
                     <p><strong>Email:</strong> nishan@gmail.com</p>
