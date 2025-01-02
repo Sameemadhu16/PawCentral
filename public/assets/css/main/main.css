@@ -34,6 +34,7 @@
   /* Border Colors */
   --border-light: rgba(0, 0, 0, 0.1);
   --border-medium: rgba(0, 0, 0, 0.2);
+  --border-primary: #882FC8;
   
   /* Shadow Colors */
   --shadow-sm: rgba(0, 0, 0, 0.05);
@@ -124,6 +125,12 @@ body {
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px var(--shadow-lg), 0 4px 8px var(--shadow-md);
+}
+
+.main-border {
+    border: 2px solid var(--border-medium);
+    box-shadow: 0 0 5px var(--border-medium);
+    transition: box-shadow 0.3s ease;
 }
 
 @import url('/assets/css/components/search_bar.css');
