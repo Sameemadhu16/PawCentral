@@ -16,7 +16,7 @@
 
     <div class="main-container">
         <div>
-            <!-- <?php include("../app/views/components/admin/adminSidebar.php"); ?> -->
+
         </div>
 
         <div class="container">

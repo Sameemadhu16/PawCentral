@@ -21,8 +21,8 @@ class SignUpNext {
 
         // Collect data from session and form submission
         $data = $_SESSION['signup_data'] ?? [];
-        $data['service_type'] = $_POST['service_type'] ?? '';
-        $data['service_name'] = $_POST['service_name'] ?? '';
+        $data['role'] = $_POST['role'] ?? '';
+        // $data['service_name'] = $_POST['service_name'] ?? '';
         $data['location'] = $_POST['location'] ?? '';
         $data['proof'] = $_FILES['proof'] ?? null;
         $data['terms'] = $_POST['terms'] ?? '';

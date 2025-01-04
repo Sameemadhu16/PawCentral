@@ -20,7 +20,7 @@
             <h2>User Accounts</h2>
 
             <!-- Overview Cards Section -->
-            <div class="cards-container" method="POST">
+            <div class="cards-container" >
                 <div class="card">
                     <div class="card-number"><?= esc($regular) ?></div>
                     <div class="card-title">Regular User</div>
@@ -67,32 +67,43 @@
                 </select>
             </div>
 
-            <!-- User List -->
-            <div class="user-list" method
-                ="POST">
-                <?php if (!empty($users)): ?>
-                    <?php foreach ($users as $user): ?>
-                        <div class="user-card">
-                            <button class="ban-button"
-                                onclick="toggleBanUser(<?= $user->id ?>, this)"
-                                style="background-color: <?= $user->is_banned ? '#b0bec5' : '#dc3545' ?>;">
-                                <?= $user->is_banned ? 'Unban' : 'Ban' ?>
-                            </button>
-                            <p><strong>Name:</strong> <?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></p>
-                            <p><strong>Email:</strong> <?= htmlspecialchars($user->email) ?></p>
-                            <p><strong>User Type:</strong> <?= htmlspecialchars($user->service_type) ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No users found.</p>
-                <?php endif; ?>
+            
+
+            <div class="user-list">
+    <?php if (!empty($users)): ?>
+        <?php foreach ($users as $user): ?>
+            <div class="user-card">
+                <div class="button-container">
+                    <form method="POST">
+                        <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                        <?php if ($user->status === 'active'): ?>
+                        <button class="ban-button1" name="status1" type="submit" value="block">Block</button>
+                        <?php else: ?>
+                        <button class="ban-button2" name="status1" type="submit" value="active">Active</button>
+                        <?php endif; ?>
+                    </form>
+                </div>
+                <div class="user-details">
+                    <p><strong>Name:</strong> <?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></p>
+                    <p><strong>Email:</strong> <?= htmlspecialchars($user->email) ?></p>
+                    <p><strong>User Type:</strong> <?= htmlspecialchars($user->role) ?></p>
+                </div>
+                
+                </div>
             </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No users found.</p>
+    <?php endif; ?>
+</div>
+
+
 
         </div>
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 </body>
-<script>
+<!-- <script>
     function markAsBanned(button) {
         // Change the button text to "Banned"
         if (button.textContent === "Ban") {
@@ -112,6 +123,6 @@
         // Disable the button to prevent further clicks
 
     }
-</script>
+</script> -->
 
 </html>

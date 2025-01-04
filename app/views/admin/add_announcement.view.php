@@ -14,7 +14,6 @@
     <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container">
-        <!-- <?php include("../app/views/components/admin/adminSidebar.php"); ?> -->
 
         <div class="content">
             <section class="announcement-form">

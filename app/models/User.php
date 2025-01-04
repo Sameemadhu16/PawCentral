@@ -48,23 +48,23 @@ class User
 
         //Check if service details are empty
         if ($data['is_service'] === 'yes') {
-            if (empty($data['service_type']) || empty($data['service_name']) || empty($data['location'])) {
+            if (empty($data['role']) || empty($data['location'])) {
                 $this->errors[] = "Service details are required";
             }
             if (empty($data['location'])) {
                 $this->errors[] = "Location is required";
             }
         }
-        $service_type = $data['service_type'] ?? [];
-        // print_r($service_type);
+        $role = $data['role'] ?? [];
+        // print_r($role);
 
-        if ($service_type=='medical-provider' && empty($data['proof']['name'])) {
+        if ($role=='medical-provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
         }
-        elseif($service_type=='medical-provider' && $data['proof']['type'] !== 'application/pdf'){
+        elseif($role=='medical-provider' && $data['proof']['type'] !== 'application/pdf'){
             $this->errors[] = 'Proof of service must be a PDF file';
         }
-        elseif($service_type!='medical-provider' && !empty($data['proof']['name'])){
+        elseif($role!='medical-provider' && !empty($data['proof']['name'])){
             $this->errors[] = 'Proof of service is only required for medical providers';
         }
 
@@ -120,5 +120,7 @@ class User
     {
         return $this->first(['email' => $email]);
     }
+
+    
 
 }

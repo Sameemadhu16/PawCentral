@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="service_type">What service do you provide?</label>
                             <div class="dropdown">
-                                <select id="service_type" name="service_type" required>
+                                <select id="role" name="role" required>
                                     <option value="" disabled selected>Select a service</option>
                                     <option value="medical-provider">Medical Provider</option>
                                     <option value="seller">Seller - Pet seller, Pet renter, Animal breeding and Pet importer</option>
@@ -55,10 +55,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="service_name">Name of the service</label>
                             <input type="text" id="service_name" name="service_name" >
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
