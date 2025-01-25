@@ -139,4 +139,7 @@ trait Model
 
         return $this->query($query, $data) !== false;
     }
+    
 }
+
+
