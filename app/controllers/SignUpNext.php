@@ -23,7 +23,6 @@ class SignUpNext {
     // Handle the second step form submission
     private function handleSecondStep($user,$medprov,$seller,$shelter,$serviceprov) {
 
-
         // Collect data from session and form submission
         $userData = $_SESSION['signup_data'] ?? []; //data to be inserted in the user table 
         $data['is_service'] = $userData['is_service']?? 'no'; //data to insert in the relevant service table
@@ -47,7 +46,8 @@ class SignUpNext {
             unset($data['is_service']);
             unset($userData['terms']);
             unset($userData['is_service']);
-            // Attempt to create the user in the database
+            $userData['role']=$data['service_type'];
+            // Attempt to create the user in the databaseS
             $user->insert($userData);
             // echo "User created.<br>"; // Debug message
 

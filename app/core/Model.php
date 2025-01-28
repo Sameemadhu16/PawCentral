@@ -140,6 +140,10 @@ trait Model
         return $this->query($query, $data) !== false;
     }
     
+    public function getRoleIdById($id)
+    {
+        return $this->first(['user_id' => $id]);
+    }
 }
 
 
