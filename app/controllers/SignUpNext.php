@@ -59,6 +59,8 @@ class SignUpNext {
             //IF ITS A MED PROV
             if($data['service_type']=='medical_provider'){
                 unset($data['service_type']);
+                $data['name'] = $data['service_name']; // Change service_name to name
+                unset($data['service_name']);
                 $medprov->insert($data);
             }   //IF SELLER
             else if($data['service_type']=='seller'){
