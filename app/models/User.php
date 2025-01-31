@@ -33,9 +33,9 @@ class User
         }
 
         // Validate the terms checkbox
-        if ($data['terms'] != 'on') {
-            $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
-        }
+        // if ($data['terms'] != 'on') {
+        //     $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
+        // }
 
         return empty($this->errors);
     }
@@ -58,13 +58,14 @@ class User
         $service_type = $data['service_type'] ?? [];
         // print_r($service_type);
 
-        if ($service_type=='medical-provider' && empty($data['proof']['name'])) {
+        if ($service_type=='medical_provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
         }
-        elseif($service_type=='medical-provider' && $data['proof']['type'] !== 'application/pdf'){
+        elseif($service_type=='medical_provider' && $data['proof']['type'] !== 'application/pdf'){
             $this->errors[] = 'Proof of service must be a PDF file';
         }
-        elseif($service_type!='medical-provider' && !empty($data['proof']['name'])){
+        // CAN JUST NEGLECT THE PROOF FILE IF NOT MEDICAL
+        elseif($service_type!='medical_provider' && !empty($data['proof']['name'])){
             $this->errors[] = 'Proof of service is only required for medical providers';
         }
 

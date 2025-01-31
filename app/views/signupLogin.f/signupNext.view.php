@@ -48,10 +48,10 @@
                             <div class="dropdown">
                                 <select id="service_type" name="service_type" required>
                                     <option value="" disabled selected>Select a service</option>
-                                    <option value="medical-provider">Medical Provider</option>
+                                    <option value="medical_provider">Medical Provider</option>
                                     <option value="seller">Seller - Pet seller, Pet renter, Animal breeding and Pet importer</option>
-                                    <option value="adoption-shelter">Adoption Shelter</option>
-                                    <option value="care-service-provider">Care Service Provider - Pet transporter and Pet sitter</option>
+                                    <option value="shelter">Adoption Shelter</option>
+                                    <option value="service-prov">Care Service Provider - Pet transporter and Pet sitter</option>
                                 </select>
                             </div>
                         </div>

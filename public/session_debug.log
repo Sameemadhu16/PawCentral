@@ -1,0 +1,53 @@
+Testing LOG for User Session Data
+Array
+(
+    [user] => stdClass Object
+        (
+            [id] => 7
+            [first_name] => check
+            [last_name] => userrole
+            [email] => dbtest_ser11@gmail.com
+            [password] => $2y$10$GLbZJK.vhWCmaM73FRw8We5MxZxTvdB6YWQf0JtSBauuzUXLU4QF.
+            [profile_pic] => 
+            [address] => 
+            [location] => 
+            [mobile_no] => 
+            [created_at] => 2025-01-28 21:00:57
+            [updated_at] => 2025-01-28 21:00:57
+            [role] => seller
+        )
+
+    [user_id] => 7
+    [user_role] => seller
+    [role_id] => stdClass Object
+        (
+            [merchant_id] => 4
+            [user_id] => 7
+            [merchant_name] => servicerole
+            [address] => 
+            [location] => panadura
+        )
+
+)
+Array
+(
+    [user] => stdClass Object
+        (
+            [id] => 7
+            [first_name] => check
+            [last_name] => userrole
+            [email] => dbtest_ser11@gmail.com
+            [password] => $2y$10$GLbZJK.vhWCmaM73FRw8We5MxZxTvdB6YWQf0JtSBauuzUXLU4QF.
+            [profile_pic] => 
+            [address] => 
+            [location] => 
+            [mobile_no] => 
+            [created_at] => 2025-01-28 21:00:57
+            [updated_at] => 2025-01-28 21:00:57
+            [role] => seller
+        )
+
+    [user_id] => 7
+    [user_role] => seller
+    [role_id] => 4
+)

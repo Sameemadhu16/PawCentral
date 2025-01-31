@@ -26,8 +26,8 @@ class SignUp {
             'last_name' => $_POST['last_name'] ?? '',
             'email' => $_POST['email'] ?? '',
             'password' => $_POST['password'] ?? '',
-            'is_service' => $_POST['is_service'] ?? 'no',
-            'terms' => $_POST['terms'] ?? ''
+            // 'is_service' => $_POST['is_service'] ?? 'no',
+            // 'terms' => $_POST['terms'] ?? ''
         ];
 
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -38,15 +38,17 @@ class SignUp {
             'email' => $_POST['email'] ?? '',
             'password' => $_POST['password'] ?? '',
             'is_service' => $_POST['is_service'] ?? 'no',
-            'terms' => $_POST['terms'] ?? ''
+            // 'terms' => $_POST['terms'] ?? ''
         ];
 
 
         // Validate data using the User model
         if ($user->validate($data)) {
             unset($data['terms']);
-            if ($data['is_service'] === 'no') {
+            if ($data1['is_service'] === 'no') {
                 // If "No" is selected, create the user directly
+                
+                $data['role'] = 'user'; //Adding User Role as regular user
                 $user->insert($data);
 
                 // Clear session data and redirect to login
