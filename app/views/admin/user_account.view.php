@@ -77,9 +77,9 @@
                                 <form method="POST">
                                     <input type="hidden" name="id" value="<?= esc($user->id) ?>">
                                     <?php if ($user->status === 'active'): ?>
-                                        <button class="ban-button1" name="status1" type="submit" value="block">Block</button>
+                                        <button class="ban-button2" name="status1" type="submit" value="block">Active</button>
                                     <?php else: ?>
-                                        <button class="ban-button2" name="status1" type="submit" value="active">Active</button>
+                                        <button class="ban-button1" name="status1" type="submit" value="active">Block</button>
                                     <?php endif; ?>
                                 </form>
                             </div>

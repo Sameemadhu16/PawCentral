@@ -148,4 +148,11 @@ trait Model
         return $result ? $result[0]->count : 0;
     }
 
+    
+    public function getRoleIdById($id)
+    {
+        return $this->first(['user_id' => $id]);
+    }
 }
+
+

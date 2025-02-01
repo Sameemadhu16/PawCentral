@@ -3,7 +3,7 @@
 class Veterinarians {
     use Model;
 
-    protected $table = 'veterinarian';
+    protected $table = 'veterinarians';
 
     protected $allowedColumns = [
         'name',

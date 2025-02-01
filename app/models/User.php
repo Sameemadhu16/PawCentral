@@ -33,9 +33,9 @@ class User
         }
 
         // Validate the terms checkbox
-        if ($data['terms'] != 'on') {
-            $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
-        }
+        // if ($data['terms'] != 'on') {
+        //     $this->errors[] = 'You must agree to the Terms of Use and Privacy Policy';
+        // }
 
         return empty($this->errors);
     }
