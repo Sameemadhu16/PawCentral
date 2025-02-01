@@ -23,7 +23,7 @@ class User
             $this->errors[] = 'A valid email is required';
         }
         $row = $this->getUserByEmail($data['email']);
-        if($row){
+        if ($row) {
             $this->errors[] = 'This email is already registered';
         }
 
@@ -48,23 +48,23 @@ class User
 
         //Check if service details are empty
         if ($data['is_service'] === 'yes') {
-            if (empty($data['role']) || empty($data['location'])) {
+            if (empty($data['service_type']) || empty($data['service_name']) || empty($data['location'])) {
                 $this->errors[] = "Service details are required";
             }
             if (empty($data['location'])) {
                 $this->errors[] = "Location is required";
             }
         }
-        $role = $data['role'] ?? [];
-        // print_r($role);
+        $service_type = $data['service_type'] ?? [];
+        // print_r($service_type);
 
-        if ($role=='medical-provider' && empty($data['proof']['name'])) {
+        if ($service_type == 'medical_provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
-        }
-        elseif($role=='medical-provider' && $data['proof']['type'] !== 'application/pdf'){
+        } elseif ($service_type == 'medical_provider' && $data['proof']['type'] !== 'application/pdf') {
             $this->errors[] = 'Proof of service must be a PDF file';
         }
-        elseif($role!='medical-provider' && !empty($data['proof']['name'])){
+        // CAN JUST NEGLECT THE PROOF FILE IF NOT MEDICAL
+        elseif ($service_type != 'medical_provider' && !empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is only required for medical providers';
         }
 
@@ -80,7 +80,7 @@ class User
     //     try {
     //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            
+
 
     //         $this->insert($data);
     //     } catch (Exception $e) {
@@ -120,7 +120,4 @@ class User
     {
         return $this->first(['email' => $email]);
     }
-
-    
-
 }

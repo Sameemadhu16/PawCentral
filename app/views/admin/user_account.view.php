@@ -63,9 +63,9 @@
                     <option value="">Filter by User Type</option>
                     <option value="user">Regular User</option>
                     <option value="seller">Seller</option>
-                    <option value="adoption-shelter">Adoption Shelters</option>
-                    <option value="care-provider">Care Service Providers</option>
-                    <option value="medical-provider">Medical Providers</option>
+                    <option value="shelter">Adoption Shelters</option>
+                    <option value="service_prov">Care Service Providers</option>
+                    <option value="medical_provider">Medical Providers</option>
                     <!-- <option value="banned-user">Banned Users</option> -->
                 </select>
             </div>

@@ -24,9 +24,9 @@ class AdminUserAccount{
         $data = [
             'regular' => $this->getUserCountByService('user'),
             'seller' => $this->getUserCountByService('seller'),
-            'adoptionShelters' => $this->getUserCountByService('adoption-shelter'),
-            'careServiceProviders' => $this->getUserCountByService('care-service-provider'),
-            'medicalProviders' => $this->getUserCountByService('medical-provider'),
+            'adoptionShelters' => $this->getUserCountByService('shelter'),
+            'careServiceProviders' => $this->getUserCountByService('service_prov'),
+            'medicalProviders' => $this->getUserCountByService('medical_provider'),
             'users' => $this->getUsers(),
            // 'status' => $this->UpdateUserStatus(1, 'block')
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
 </head>
+
 <body>
     <?php include("../app/views/components/header2.php"); ?>
 
@@ -41,12 +43,12 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="signup-form" method="POST"  enctype="multipart/form-data">
+                <form class="signup-form" method="POST" enctype="multipart/form-data">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="service_type">What service do you provide?</label>
                             <div class="dropdown">
-                                <select id="role" name="role" required>
+                                <select id="service_type" name="service_type" required>
                                     <option value="" disabled selected>Select a service</option>
                                     <option value="medical_provider">Medical Provider</option>
                                     <option value="seller">Seller - Pet seller, Pet renter, Animal breeding and Pet importer</option>
@@ -55,18 +57,18 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="service_name">Name of the service</label>
-                            <input type="text" id="service_name" name="service_name" >
-                        </div> -->
+                            <input type="text" id="service_name" name="service_name">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location" >
+                        <input type="text" id="location" name="location">
                     </div>
                     <div class="form-group">
                         <label for="fileUpload">Proof of service(for only medical provider)</label>
-                        <input type="file" id="fileUpload" name="proof" >
+                        <input type="file" id="fileUpload" name="proof">
                     </div>
 
                     <div class="form-group checkbox">
@@ -82,4 +84,5 @@
         </main>
     </div>
 </body>
+
 </html>
