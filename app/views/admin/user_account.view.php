@@ -55,9 +55,6 @@
 
             <div class="search-filter-container" id="filter_dropdown">
                 <input type="text" class="search-bar" placeholder="Search users..." id="searchInput">
-                <button>
-                    <i class="fas fa-search"></i>
-                </button>
 
                 <select name="role" class="filter-dropdown" id="roleFilter">
                     <option value="">Filter by User Type</option>
@@ -103,6 +100,7 @@
 <script>
     const roleFilter = document.getElementById('roleFilter');
     const userCards = document.querySelectorAll('.user-card');
+    const searchInput = document.getElementById('searchInput');
 
     // Listen for changes on the dropdown
     roleFilter.addEventListener('change', function() {
@@ -113,6 +111,22 @@
 
             // Show/Hide cards based on filter
             if (selectedRole === '' || userRole === selectedRole) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Listen for input on the search bar
+    searchInput.addEventListener('input', function() {
+        const searchText = searchInput.value.toLowerCase(); // Get search text
+
+        userCards.forEach(card => {
+            const userName = card.querySelector('.user-details p strong').nextSibling.textContent.toLowerCase(); // Get user name
+
+            // Show/Hide cards based on search text
+            if (userName.includes(searchText)) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
