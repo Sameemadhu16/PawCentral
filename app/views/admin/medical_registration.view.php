@@ -31,9 +31,9 @@
                         <th>
                             <h5>Vaterinarian Name</h5>
                         </th>
-                        <th>
+                        <!-- <th>
                             <h5>Vaterinarian Degree</h5>
-                        </th>
+                        </th> -->
                         <th>
                             <h5>Vaterinarian's CV</h5>
                         </th>
@@ -60,7 +60,7 @@
                             </tr> -->
                             <tr class="mr_row">
                                 <td>Nishan Perera</td>
-                                <td>VMD</td>
+                                <!-- <td>VMD</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -72,7 +72,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Chamari Senanayake</td>
-                                <td>BVM&S</td>
+                                <!-- <td>BVM&S</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -84,7 +84,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -96,7 +96,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Isuru Wijesinghe</td>
-                                <td>MVSc</td>
+                                <!-- <td>MVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -108,7 +108,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Ruwan Kumara</td>
-                                <td>DVSc</td>
+                                <!-- <td>DVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -120,7 +120,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Sanduni Rathnayake</td>
-                                <td>BVS</td>
+                                <!-- <td>BVS</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -132,7 +132,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Tharindu Jayawardana</td>
-                                <td>BVMS</td>
+                                <!-- <td>BVMS</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -144,7 +144,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Anjali Herath</td>
-                                <td>MVetSc</td>
+                                <!-- <td>MVetSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -156,7 +156,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Praveen Silva</td>
-                                <td>MVDr</td>
+                                <!-- <td>MVDr</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -168,7 +168,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -180,7 +180,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -192,7 +192,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -204,7 +204,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -216,7 +216,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
@@ -228,7 +228,7 @@
                             </tr>
                             <tr class="mr_row">
                                 <td>Kasun Fernando</td>
-                                <td>BVSc</td>
+                                <!-- <td>BVSc</td> -->
                                 <td><button class="view-btn">View</button></td>
                                 <td>
                                     <select class="action-select">
