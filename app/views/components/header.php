@@ -39,27 +39,27 @@
     <!-- User profile -->
     <div class="user-profile">
 
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin'): ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user_role']== 'admin'): ?>
             <a class="user-profile" href="<?= ROOT ?>/admin/overview">
                 <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'adoption-shelter'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'shelter'): ?>
             <a class="user-profile" href="<?= ROOT ?>/shelter/profile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider'): ?>
             <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller'): ?>
             <a class="user-profile" href="<?= ROOT ?>/service">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov'): ?>
             <a class="user-profile" href="<?= ROOT ?>/provider/profile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == ''): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role =='user'): ?>
             <a class="user-profile" href="<?= ROOT ?>/userprofile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
