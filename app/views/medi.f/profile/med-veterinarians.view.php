@@ -32,15 +32,15 @@ if (session_status() == PHP_SESSION_NONE) {
                         echo "
                         <div class='vet-card card'>
                             <div class='vet-image'>
-                                <img src='{$vet->image_url}' alt='{$vet->name}'>
+                                <img src='{$vet->img}' alt='{$vet->name}'>
                             </div>
                             <div class='vet-details'>
                                 <h3>{$vet->name}</h3>
                                 <p><strong>Experience:</strong> {$vet->experience}</p>
                                 <p><strong>Availability:</strong> {$vet->availability}</p>
                                 <div class='buttons-div'>
-                                    <button class='edit-btn btn btn-primary' data-id='{$vet->id}'>Edit</button>
-                                    <button class='delete-btn btn btn-danger' data-id='{$vet->id}'>Delete</button>
+                                    <button class='edit-btn btn btn-primary' data-id='{$vet->vet_id}'>Edit</button>
+                                    <button class='delete-btn btn btn-danger' data-id='{$vet->vet_id}'>Delete</button>
                                 </div>
                             </div>
                         </div>";
