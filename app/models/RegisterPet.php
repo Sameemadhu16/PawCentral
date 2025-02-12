@@ -19,4 +19,8 @@ class RegisterPet
         // echo "$print";
     return $result;
     }
+
+    public function registerPet($data) {
+        return $this->insert($data) ? true : false;
+    }
 }
