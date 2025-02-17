@@ -106,7 +106,7 @@
     border-color: red;
 }
 
-.view-btn {
+a.view-btn {
     width: 80%;
     padding: 8px;
     font-size: 14px;
