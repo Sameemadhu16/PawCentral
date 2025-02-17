@@ -18,13 +18,6 @@
     <?php include("../app/views/components/header.php");
     ?>
 
-    <?php
-    // Debug statement to check file path
-    echo '<pre>';
-    print_r($data->license_proof);
-    echo '</pre>';
-    ?>
-
     <div class="main-container container">
         <div>
             <?php include("../app/views/components/admin/adminSidebar.php");
@@ -60,7 +53,7 @@
                                 <td>
                                     <?= esc($user->name) ?>
                                 </td>
-                                <td><a href="<?= ROOT ?>/uploads/proofs/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
+                                <td><a href="<?= ROOT ?>/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
                                 <td>
                                     <select class="action-select">
                                         <option value="approve">
