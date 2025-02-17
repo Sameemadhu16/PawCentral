@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get the current hash or default to 'profile'
     const currentPage = window.location.hash.slice(1) || 'profile';
     
+    // Get the base URL from the current window location
+    const baseUrl = window.location.origin + '/PawCentral/public';
+
     // Update active nav link
     document.querySelectorAll('.nav-link').forEach(link => {
         if (link.dataset.page === currentPage) {
@@ -14,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load the current page
     loadPage(currentPage, window[currentPage + 'Action']);
 
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('.nav-link:not(#logout)').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const page = this.dataset.page;
@@ -42,6 +45,40 @@ document.addEventListener('DOMContentLoaded', function() {
         
         loadPage(page, window[page + 'Action']);
     });
+
+    // Add logout handler
+    const logoutLink = document.getElementById('logout');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            fetch(`${baseUrl}/logout`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = `${baseUrl}/login`;
+                } else {
+                    throw new Error(data.message || 'Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Logout failed:', error);
+                alert('Logout failed. Please try again.');
+            });
+        });
+    }
 });
 
 //load pages
