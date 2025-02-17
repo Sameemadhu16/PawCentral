@@ -8,4 +8,8 @@ class Events{
         $this->view('user/events');
     }
 
+    public function NewEvent(){
+        
+    }
+
 }
