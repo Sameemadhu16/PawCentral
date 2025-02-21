@@ -73,6 +73,7 @@ route('userprofile/mypets/selectedPet','user/Mypets@index2');
 route('userprofile/mypets/register_pet','user/Mypets@RegPet');
 route('userprofile/event','user/Events@index');
 route('userprofile/event/addevent','user/Events@NewEvent');
+route('userprofile/event/closeevent','user/Events@closeEvent');
 route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
 route('lostandfound/postdetails','user/LostAndFound@show');
 route('lostandfound/post-report-animal','user/LostAndFound@createReport');

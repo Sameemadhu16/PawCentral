@@ -1,6 +1,6 @@
 <?php
 
-class RegisterPet
+class EventsModel
 {
     use Model;
 

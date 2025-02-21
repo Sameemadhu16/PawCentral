@@ -39,31 +39,24 @@
                     <h2>Your Published Events</h2>
                 </div>
                 <div class="event-list">
-                    <?php 
-                        $events = [
-                            ["image" => "events_bg.jpg", "title" => "Pet Adoption Fair", "date" => "Sat, 12th August, 10.00 AM", "location" => "@Central Park", "address" => "125 Main Street, Colombo", "published" => "2024/03/22", "participants" => 78],
-                            ["image" => "pets/1.jpg", "title" => "Charity Dog Walk", "date" => "Sun, 20th November, 8.00 AM", "location" => "@City Square", "address" => "10 Union Avenue, Galle", "published" => "2024/08/12", "participants" => 64],
-                            ["image" => "pets/3.jpg", "title" => "Pet Training Workshop", "date" => "Mon, 7th December, 3.00 PM", "location" => "@Downtown Community Center", "address" => "88 Green Street, Jaffna", "published" => "2024/09/05", "participants" => 54]
-                        ];
-
-                        foreach ($events as $event) : ?>
-                            <div class="event-card">
-                                    <div class="event-card-content">
-                                    <img class="event-image" src="<?= ROOT ?>/assets/images/<?= $event['image'] ?>" alt="Event Image">
-                                    <div class="event-details">
-                                        <h3><?= $event['title'] ?></h3>
-                                        <p><?= $event['date'] ?></p>
-                                        <p><?= $event['location'] ?></p>
-                                        <p><?= $event['address'] ?></p>
-                                        <p class="published-date">Published on: <?= $event['published'] ?></p>
-                                        <span class="participants"><?= $event['participants'] ?> participants enrolled</span>
-                                    </div>
-                                    <div class="event-actions">
-                                        <button class="close-event" onClick="window.location.href='http://localhost/PawCentral/public/user/events/closeevent/${event.id}'">Close event</button>
-                                    </div>
-                                </div>
+                <?php foreach ($events as $event) : ?>
+                    <div class="event-card">
+                        <div class="event-card-content">
+                            <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                            <div class="event-details">
+                                <h3><?= htmlspecialchars($event->title) ?></h3>
+                                <p><?= htmlspecialchars($event->date) ?></p>
+                                <p><?= htmlspecialchars($event->location) ?></p>
+                                <p><?= htmlspecialchars($event->address) ?></p>
+                                <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                <span class="participants"><?= htmlspecialchars($event->enrolled) ?> participants enrolled</span>
                             </div>
-                        <?php endforeach; ?>
+                            <div class="event-actions">
+                            <button class="close-event" onclick="window.location.href='<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>'">Close event</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -75,7 +68,7 @@
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Enter Event Information</h2>
-            <form id="petForm" action="<?= ROOT ?>/userprofile/events/addevent" method="POST" enctype="multipart/form-data">
+            <form id="petForm" action="<?= ROOT ?>/userprofile/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
                 <input type="text" id="title" name="title" required>
 
@@ -150,7 +143,7 @@
                         });
                     </script>
 
-                <label for="health">Add a description for the event:</label>
+                <label for="eventdesc">Add a description for the event:</label>
           <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
 Prerequisits if there are any.
 or any other information that participants should be aware of."></textarea>
