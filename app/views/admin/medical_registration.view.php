@@ -34,9 +34,6 @@
                         <th>
                             <h5>Service Name</h5>
                         </th>
-                        <!-- <th>
-                            <h5>Vaterinarian Degree</h5>
-                        </th> -->
                         <th>
                             <h5>Vaterinarian's CV</h5>
                         </th>
@@ -44,7 +41,10 @@
                             <h5>Status</h5>
                         </th>
                         <th>
-                            <h5>Send Email</h5>
+                            <h5>Select</h5>
+                        </th>
+                        <th>
+                            <h5>Select</h5>
                         </th>
                     </thead>
                     <tbody>
@@ -55,60 +55,30 @@
                                 </td>
                                 <td><a href="<?= ROOT ?>/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
                                 <td>
-                                    <select class="action-select">
-                                        <option value="approve">
-                                            <?php if ($user->verifiedStatus) {
-                                                echo 'Approved';
-                                            } else {
-                                                echo 'Rejected';
-                                            } ?>
-                                        </option>
-                                    </select>
+                                    <?php if ($user->verifiedStatus == 'pending'): ?>
+                                        <span class="pending">Pending</span>
+                                    <?php elseif ($user->verifiedStatus == 'approved'): ?>
+                                        <span class="approved">Approved</span>
+                                    <?php elseif ($user->verifiedStatus == 'rejected'): ?>
+                                        <span class="rejected">Rejected</span>
+                                    <?php endif ?>
                                 </td>
-                                <td>
-                                    <button class="send-btn" onclick="window.location.href='<?= ROOT ?>/admin/send_email'">Send</button>
-                                </td>
+
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <td>
+                                        <button class="send-btn1" type="submit" name="approve" value="approved">Approve</button>
+                                    </td>
+                                </form>
+
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <td>
+                                        <button class="send-btn2" type="submit" name="reject">Reject</button>
+                                    </td>
+                                </form>
                             </tr>
                         <?php endforeach ?>
-                        <div class="">
-                            <!-- <tr class="mr_row">
-                                <td>Sameera Madhuranga</td>
-                                <td>DVM</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="view-btn">Send</button></td>
-                            </tr> -->
-                            <tr class="mr_row">
-                                <td>Nishan Perera</td>
-                                <!-- <td>VMD</td> -->
-                                <td><a href="<?= ROOT ?>/uploads/proofs/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <!-- <td>BVSc</td> -->
-                                <td><a href="<?= ROOT ?>/uploads/proofs/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-
-                        </div>
                     </tbody>
                 </table>
 
