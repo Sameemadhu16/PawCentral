@@ -55,6 +55,11 @@
   --accent-blue: #007bff;
   --accent-green: #00c853;
   --accent-purple: #9c27b0;
+
+  --button-normal: rgb(128, 73, 254, .9);
+  --button-normal-hover: rgb(128, 73, 254);
+  --warn-button: var(--danger);
+  --warn-button-hover: var(--danger-dark);
 }
 
 * {

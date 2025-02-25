@@ -21,33 +21,40 @@
 
         <div class="user-accounts-section">
             <div class="events-sec">
-                <div class="topicnbuttons">
-                    <button class="action-button fixedsize" style="background-color:#8049fe;" onclick="openPopup()">Add Event</button>
-                </div>
-                
-                <div class="topicnbuttons">
-                    <h2>Your Published Events</h2>
-                </div>
-                <div class="event-list">
-                <?php foreach ($events as $event) : ?>
-                    <div class="event-card">
-                        <div class="event-card-content">
-                            <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
-                            <div class="event-details">
-                                <h3><?= htmlspecialchars($event->title) ?></h3>
-                                <p><?= htmlspecialchars($event->date) ?></p>
-                                <p><?= htmlspecialchars($event->location) ?></p>
-                                <p><?= htmlspecialchars($event->address) ?></p>
-                                <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
-                                <span class="participants"><?= htmlspecialchars($event->enrolled) ?> participants enrolled</span>
-                            </div>
-                            <div class="event-actions">
-                            <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                <?php if (!empty($events)):?>
+                    <div class="topicnbuttons">
+                    <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
+                    </div>
+                    
+                    <div class="topicnbuttons">
+                        <h2>Your Published Events</h2>
+                    </div>
+                    <div class="event-list">
+                    <?php foreach ($events as $event) : ?>
+                        <div class="event-card">
+                            <div class="event-card-content">
+                                <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                <div class="event-details">
+                                    <h3><?= htmlspecialchars($event->title) ?></h3>
+                                    <p><?= htmlspecialchars($event->date) ?></p>
+                                    <p><?= htmlspecialchars($event->location) ?></p>
+                                    <p><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                </div>
+                                <div class="event-actions">
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                </div>
                             </div>
                         </div>
+                    <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                <?php else: ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                    <p style="text-align: center; font-size: 1.2rem; color: #555;">You have no added events yet.<br>
+                    <button class="add-event fixedsize"  onclick="openPopup()">Add New Event</button></p><br>
                 </div>
+                <?php endif;?>
             </div>
         </div>
     </div>
