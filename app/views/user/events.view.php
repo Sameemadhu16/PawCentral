@@ -8,19 +8,9 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">   
-    <script>
-        function openPopup() {
-            document.getElementById("popupForm").style.display = "flex";
-            document.body.style.overflow = "hidden"; // Disable scrolling
-        }
-
-        function closePopup() {
-            document.getElementById("popupForm").style.display = "none";
-            document.body.style.overflow = "auto"; // Enable scrolling
-        }
-
-    </script>
+    
 </head>
 
 <body class="body">
@@ -52,7 +42,7 @@
                                 <span class="participants"><?= htmlspecialchars($event->enrolled) ?> participants enrolled</span>
                             </div>
                             <div class="event-actions">
-                            <button class="close-event" onclick="window.location.href='<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>'">Close event</button>
+                            <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><?= htmlspecialchars($event->title) ?>')">Close event</button>
                             </div>
                         </div>
                     </div>
@@ -61,7 +51,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- ADD EVENT FORM -->
     <div id="popupForm" class="popup-container">
@@ -134,7 +124,7 @@
                         }
 
                         // Validate participant amount
-                        if (participants < 2 || height > 800) {
+                        if (participants < 2 || participants > 800) {
                             alert('Atleast 2 participants must be allowed to participate');
                             event.preventDefault(); // Prevent form submission
                             return;
@@ -153,6 +143,25 @@ or any other information that participants should be aware of."></textarea>
     </div>
 
     <?php include("../app/views/components/footer.php"); ?>
+                <!-- JS & component includes -->
+    <script>    
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ensure the popup is hidden when the page loads
+            document.getElementById("popupForm").style.display = "none"; 
+        });
+
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
+    <script src="<?= ROOT ?>/assets/js/popupform.js"></script>
 </body>
 
 </html>
