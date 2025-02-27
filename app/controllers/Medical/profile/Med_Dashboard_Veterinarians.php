@@ -64,7 +64,7 @@ class Med_Dashboard_Veterinarians {
                         'name' => $vet->name,
                         'experience' => $vet->experience,
                         'availability' => $vet->availability,
-                        'image_url' => $vet->image_url
+                        'img' => $vet->img
                     ]
                 ]);
             } else {
@@ -85,32 +85,32 @@ class Med_Dashboard_Veterinarians {
             $defaultImageUrl = $rootUrl . 'images/sample.jpg';
 
             // Handle image upload
-            if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-                $imageUrl = $defaultImageUrl;
-            } else {
+            $imageUrl = $defaultImageUrl; // Set default image URL first
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $imageName = time() . '_' . $_FILES['image']['name'];
                 $uploadPath = $baseUploadPath . $imageName;
-                $imageUrl = $baseUploadUrl . $imageName;
+                $tempImageUrl = $baseUploadUrl . $imageName;
 
                 if (!is_dir($baseUploadPath)) {
                     mkdir($baseUploadPath, 0777, true);
                 }
 
-                if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-                    throw new Exception('Failed to move uploaded file');
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+                    $imageUrl = $tempImageUrl;
                 }
             }
 
             $data = [
                 'name' => $_POST['name'] ?? '',
-                'image_url' => $imageUrl,
+                'img' => $imageUrl, // This will now always have a value
                 'experience' => $_POST['experience'] ?? '',
-                'availability' => $_POST['availability'] ?? ''
+                'availability' => $_POST['availability'] ?? '',
+                'med_id' => $_SESSION['role_id'] ?? null
             ];
 
             // Validate data
             foreach ($data as $key => $value) {
-                if (empty($value)) {
+                if (empty($value) && $key !== 'img') {
                     throw new Exception("Missing required field: {$key}");
                 }
             }
@@ -157,6 +157,11 @@ class Med_Dashboard_Veterinarians {
                 $data['availability'] = $_POST['availability'];
             }
 
+            // Add med_id from session if not already set
+            if (isset($_SESSION['role_id'])) {
+                $data['med_id'] = $_SESSION['role_id'];
+            }
+
             // Handle image upload if new image is provided
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $rootUrl = 'http://localhost/PawCentral/public/assets/';
@@ -172,7 +177,7 @@ class Med_Dashboard_Veterinarians {
                 }
 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-                    $data['image_url'] = $imageUrl;
+                    $data['img'] = $imageUrl;
                 }
             }
 
@@ -180,7 +185,7 @@ class Med_Dashboard_Veterinarians {
             if (!empty($data)) {
                 // Validate data
                 foreach ($data as $key => $value) {
-                    if (empty($value) && $key !== 'image_url') {
+                    if (empty($value)) {
                         throw new Exception("Missing required field: {$key}");
                     }
                 }

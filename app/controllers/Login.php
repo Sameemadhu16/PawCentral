@@ -41,7 +41,7 @@ class Login{
                 $_SESSION['role_id'] = $_SESSION['user']->id;
                 redirect('admin/overview');
             }
-            elseif ( $_SESSION['user']->role == 'shelter') {
+            elseif ($_SESSION['user']->role == 'shelter') {
                 $roleid=$shelter->getRoleIdById($_SESSION['user_id']);
                 $_SESSION['role_id'] = $roleid->id;
                 redirect('shelter/profile');
@@ -51,7 +51,7 @@ class Login{
                 $_SESSION['role_id'] = $roleid->med_id;
                 redirect('medical-center/dashboard');
             }
-            elseif ( $_SESSION['user']->role == 'seller') {
+            elseif ($_SESSION['user']->role == 'seller') {
                 $roleid= $seller->getRoleIdById($_SESSION['user_id']);
                 $_SESSION['role_id'] = $roleid->merchant_id;
               // Debug session data
@@ -65,7 +65,7 @@ class Login{
         
                 redirect('service');
             }
-            elseif ($_SESSION['user']->role == 'service-prov') {
+            elseif ($_SESSION['user']->role =='service_prov') {
                 $roleid= $serviceprov->getRoleIdById($_SESSION['user_id']);
                 $_SESSION['role_id'] = $roleid->merchant_id;
                 redirect('provider/profile');

@@ -7,9 +7,10 @@ class Veterinarians {
 
     protected $allowedColumns = [
         'name',
-        'image_url',
+        'img',
         'experience',
-        'availability'
+        'availability',
+        'med_id'
     ];
 
     public function create($data) {

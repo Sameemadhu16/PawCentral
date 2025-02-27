@@ -1,23 +1,3 @@
-<?php
-// Start the session to enable session management
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Logout functionality
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Unset all of the session variables
-    $_SESSION = array();
-    unset($_SESSION['user']);
-
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the login page or homepage
-    // redirect('');
-    exit; // Ensure no further code is executed after redirect
-}
-?>
 <!-- <body data-page="profile"> -->
     <div class="sidebar" id="sidebar">
         <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
@@ -64,7 +44,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 </a>
             </li>
             <li class="logout-tab">
-                <a class="nav-link" action="">
+                <a class="nav-link" id="logout">
                     <i class="fas fa-sign-out-alt icon"></i>
                     <span>Logout</span>
                 </a>
