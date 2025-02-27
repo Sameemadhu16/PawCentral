@@ -23,7 +23,7 @@ class User
             $this->errors[] = 'A valid email is required';
         }
         $row = $this->getUserByEmail($data['email']);
-        if($row){
+        if ($row) {
             $this->errors[] = 'This email is already registered';
         }
 
@@ -58,14 +58,13 @@ class User
         $service_type = $data['service_type'] ?? [];
         // print_r($service_type);
 
-        if ($service_type=='medical_provider' && empty($data['proof']['name'])) {
+        if ($service_type == 'medical_provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
-        }
-        elseif($service_type=='medical_provider' && $data['proof']['type'] !== 'application/pdf'){
+        } elseif ($service_type == 'medical_provider' && $data['proof']['type'] !== 'application/pdf') {
             $this->errors[] = 'Proof of service must be a PDF file';
         }
         // CAN JUST NEGLECT THE PROOF FILE IF NOT MEDICAL
-        elseif($service_type!='medical_provider' && !empty($data['proof']['name'])){
+        elseif ($service_type != 'medical_provider' && !empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is only required for medical providers';
         }
 
@@ -81,7 +80,7 @@ class User
     //     try {
     //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            
+
 
     //         $this->insert($data);
     //     } catch (Exception $e) {

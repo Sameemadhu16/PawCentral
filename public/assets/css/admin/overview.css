@@ -58,13 +58,13 @@
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    /* transform: translateY(-10px); */
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
     background-color: #f0f8ff; /* Subtle background color change on hover */
 }
 
 .card:hover::before {
-    width: 8px; /* Increase the width of the vertical line on hover */
+    width: 5px; /* Increase the width of the vertical line on hover */
 }
 
 /* Style for numbers inside cards */
@@ -79,7 +79,7 @@
     content: '';
     width: 5px;
     height: 100%;
-    background-color: #6A0DAD; /* Matches the sidebar color */
+    background-color: var(--primary);/* Matches the sidebar color */
     position: absolute;
     left: 0;
     top: 0;
@@ -88,8 +88,8 @@
     /* transition: width 0.3s ease; Smooth width transition on hover */
 }
 .generate-button {
-    background-color: #ffc107;
-    color: black;
+    background-color: var(--primary);
+    color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -100,8 +100,9 @@
 }
 
 .generate-button:hover {
-    background-color: #d39e00;
-    color: white;
+    background-color: var(--primary-dark);
+    
+    color: black;
 }
 
 /* Media query for mobile responsiveness */

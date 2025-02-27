@@ -15,11 +15,14 @@
 
 
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php");
+    ?>
 
     <div class="main-container container">
         <div>
-            <?php include("../app/views/components/admin/adminSidebar.php"); ?>
+            <?php include("../app/views/components/admin/adminSidebar.php");
+            // show($data);
+            ?>
 
         </div>
 
@@ -29,10 +32,7 @@
                 <table class="medical-registration-table">
                     <thead class="mr_table_t">
                         <th>
-                            <h5>Vaterinarian Name</h5>
-                        </th>
-                        <th>
-                            <h5>Vaterinarian Degree</h5>
+                            <h5>Service Name</h5>
                         </th>
                         <th>
                             <h5>Vaterinarian's CV</h5>
@@ -41,209 +41,44 @@
                             <h5>Status</h5>
                         </th>
                         <th>
-                            <h5>Send Email</h5>
+                            <h5>Select</h5>
+                        </th>
+                        <th>
+                            <h5>Select</h5>
                         </th>
                     </thead>
                     <tbody>
-                        <div class="">
-                            <!-- <tr class="mr_row">
-                                <td>Sameera Madhuranga</td>
-                                <td>DVM</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="view-btn">Send</button></td>
-                            </tr> -->
+                        <?php foreach ($data as $user): ?>
                             <tr class="mr_row">
-                                <td>Nishan Perera</td>
-                                <td>VMD</td>
-                                <td><button class="view-btn">View</button></td>
                                 <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
+                                    <?= esc($user->name) ?>
                                 </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Chamari Senanayake</td>
-                                <td>BVM&S</td>
-                                <td><button class="view-btn">View</button></td>
+                                <td><a href="<?= ROOT ?>/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
                                 <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
+                                    <?php if ($user->verifiedStatus == 'pending'): ?>
+                                        <span class="pending">Pending</span>
+                                    <?php elseif ($user->verifiedStatus == 'approved'): ?>
+                                        <span class="approved">Approved</span>
+                                    <?php elseif ($user->verifiedStatus == 'rejected'): ?>
+                                        <span class="rejected">Rejected</span>
+                                    <?php endif ?>
                                 </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Isuru Wijesinghe</td>
-                                <td>MVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Ruwan Kumara</td>
-                                <td>DVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Sanduni Rathnayake</td>
-                                <td>BVS</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Tharindu Jayawardana</td>
-                                <td>BVMS</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Anjali Herath</td>
-                                <td>MVetSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Praveen Silva</td>
-                                <td>MVDr</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
-                            <tr class="mr_row">
-                                <td>Kasun Fernando</td>
-                                <td>BVSc</td>
-                                <td><button class="view-btn">View</button></td>
-                                <td>
-                                    <select class="action-select">
-                                        <option value="approve">Approve</option>
-                                        <option value="reject">Reject</option>
-                                    </select>
-                                </td>
-                                <td><button class="send-btn">Send</button></td>
-                            </tr>
 
-                        </div>
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <td>
+                                        <button class="send-btn1" type="submit" name="approve" value="approved">Approve</button>
+                                    </td>
+                                </form>
 
-
-
-
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <td>
+                                        <button class="send-btn2" type="submit" name="reject">Reject</button>
+                                    </td>
+                                </form>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
 

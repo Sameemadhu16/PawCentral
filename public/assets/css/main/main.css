@@ -91,6 +91,7 @@ body {
 
 .btn-primary:hover {
     background-color: var(--primary-dark);
+    color: var(--text-primary);
 }
 
 .btn-secondary {

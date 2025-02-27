@@ -19,6 +19,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 }
 ?>
 
+<!-- Sidebar Toggle Button (Visible on Mobile) -->
+<div class="sidebar-toggle" onclick="toggleSidebar()">
+    ☰
+</div>
 
 <div class="sidebar" id="sidebar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
@@ -98,4 +102,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         var sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("collapsed");
     });
+
+    // Sidebar Toggle Function
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
 </script>

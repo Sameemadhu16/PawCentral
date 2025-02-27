@@ -122,70 +122,103 @@
 }
 
 /* User List Section */
-.user-list {
-    /* overflow-y: scroll; */
-    display: grid;
-    gap: 15px;
-    max-height: 390px;
-}
-
 .user-card {
-    background-color: #f9f9f9;
-    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Make the card a positioned element */
+    padding: 15px;
+    margin: 10px 0;
+    position: relative;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Ban Button Styling */
-.ban-button {
-    position: absolute; /* Position the button relative to the card */
-    top: 10px; /* Distance from the top */
-    right: 10px; /* Distance from the right */
-    background-color: #e53935; /* Red background for ban */
-    color: #fff; /* White text */
+.user-card .button-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.ban-button1 {
+    background-color: var(--danger);
+    color: white;
     border: none;
-    width: 80px;
+    border-radius: 4px;
     padding: 5px 10px;
+    cursor: pointer;
+}
+
+.ban-button1:hover{
+    background-color: var(--danger-dark);
+}
+
+.ban-button2 {
+    background-color: var(--success);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.ban-button2:hover{
+    background-color: var(--success-dark);
+}
+
+/* =============================
+    Status Tag in Card Middle
+============================= */
+
+/* =============================
+    Status Tag (Bottom-Right Corner)
+============================= */
+
+.status-tag {
+    position: absolute;
+    bottom: 10px;
+    /* Adjust distance from the bottom */
+    right: 10px;
+    /* Align to the right corner */
+    padding: 5px 12px;
+    border-radius: 15px;
     font-size: 12px;
     font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 10; /* Ensure the button stays on top */
+    text-transform: uppercase;
+    text-align: center;
+    width: fit-content;
+    color: #fff;
 }
 
-.ban-button:hover {
-    background-color: #c62828; /* Darker red on hover */
+/* Active Status - Blue */
+.status-active {
+    background-color: #3498db;
+    /* Blue */
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
 }
 
-
-.user-card:hover {
-    background-color: #f0f8ff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Blocked Status - Orange */
+.status-blocked {
+    background-color: #f39c12;
+    /* Orange */
+    box-shadow: 0 2px 4px rgba(243, 156, 18, 0.2);
 }
+
 
 .user-card p {
     margin: 5px 0;
-    font-size: 15px;
-    color: #333;
-}
-/* .ban-button {
-    background-color: #e53935;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
     font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
 }
 
-.ban-button:hover {
-    background-color: #c62828;
-} */
+.user-card strong {
+    font-weight: 600;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+}
 
 
 @media (max-width: 768px) {
