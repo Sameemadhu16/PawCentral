@@ -53,7 +53,7 @@
                                 <td>
                                     <?php echo esc($provider->name); ?>
                                 </td>
-                                <td><a href="<?= ROOT ?>/<?= esc($provider->license_proof) ?>" class="view-btn" download>View</a></td>
+                                <td><a href="<?= ROOT ?>/<?= esc($provider->license_proof) ?>" class="view-btn" download>View Proof</a></td>
                                 <td>
                                     <?php if ($provider->verifiedStatus == 'pending'): ?>
                                         <span class="pending">Pending</span>
