@@ -48,31 +48,31 @@
                         </th>
                     </thead>
                     <tbody>
-                        <?php foreach ($data as $user): ?>
+                        <?php foreach ($data as $provider): ?>
                             <tr class="mr_row">
                                 <td>
-                                    <?= esc($user->name) ?>
+                                    <?php echo esc($provider->name); ?>
                                 </td>
-                                <td><a href="<?= ROOT ?>/<?= esc($user->license_proof) ?>" class="view-btn" download>View</a></td>
+                                <td><a href="<?= ROOT ?>/<?= esc($provider->license_proof) ?>" class="view-btn" download>View Proof</a></td>
                                 <td>
-                                    <?php if ($user->verifiedStatus == 'pending'): ?>
+                                    <?php if ($provider->verifiedStatus == 'pending'): ?>
                                         <span class="pending">Pending</span>
-                                    <?php elseif ($user->verifiedStatus == 'approved'): ?>
+                                    <?php elseif ($provider->verifiedStatus == 'approved'): ?>
                                         <span class="approved">Approved</span>
-                                    <?php elseif ($user->verifiedStatus == 'rejected'): ?>
+                                    <?php elseif ($provider->verifiedStatus == 'rejected'): ?>
                                         <span class="rejected">Rejected</span>
                                     <?php endif ?>
                                 </td>
 
                                 <form method="POST">
-                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
                                     <td>
                                         <button class="send-btn1" type="submit" name="approve" value="approved">Approve</button>
                                     </td>
                                 </form>
 
                                 <form method="POST">
-                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                    <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
                                     <td>
                                         <button class="send-btn2" type="submit" name="reject">Reject</button>
                                     </td>

@@ -9,6 +9,7 @@ require __DIR__ . '/../../../vendor/autoload.php';
 // Import PHPMailer Classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\Models\UserModel;
 
 class AdminMedicalRegistration
 {
@@ -20,9 +21,10 @@ class AdminMedicalRegistration
     {
 
         $medicalProvider = new MedicalProvModel();
+        // show($_SESSION['user']);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-            $this->approveMedicalProvider($_POST['id'], $medicalProvider);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['med_id'])) {
+            $this->approveMedicalProvider($_POST['med_id'], $medicalProvider);
         }
 
         $data = $this->fetchMedicalProviderData($medicalProvider);
@@ -37,22 +39,41 @@ class AdminMedicalRegistration
 
     private function approveMedicalProvider($id, $medicalProvider)
     {
-        if (isset($_POST['approve'])) {
-            $medicalProvider->update($id, ['verifiedStatus' => 'approved']);
-            $this->sendEmail('ilakshitha7921@gmail.com', 'approved');
-        }
-        if (isset($_POST['reject'])) {
-            $medicalProvider->update($id, ['verifiedStatus' => 'rejected']);
-            $this->sendEmail('ilakshitha7921@gmail.com', 'rejected');
+        // Fetch the medical provider's data
+        $providerData = $medicalProvider->first(['med_id' => $id]);
+
+        if ($providerData) {
+            // Fetch the user's email using the user_id from the provider data
+            $userModel = new User();
+            $userData = $userModel->first(['id' => $providerData->user_id]);
+
+            if ($userData) {
+                $email = $userData->email; // Assuming the email column is named 'email'
+
+                if (isset($_POST['approve'])) {
+                    $medicalProvider->update($id, ['verifiedStatus' => 'approved'], 'med_id');
+                    $this->sendEmail($email, 'approved');
+                }
+                if (isset($_POST['reject'])) {
+                    $medicalProvider->update($id, ['verifiedStatus' => 'rejected'], 'med_id');
+                    $this->sendEmail($email, 'rejected');
+                }
+            } else {
+                echo "User not found.";
+            }
+        } else {
+            echo "Medical provider not found.";
         }
     }
 
-    private function sendEmail($email, $body)
+    private function sendEmail($recipientEmail, $body)
     {
-
         $mail = new PHPMailer(true);
 
         try {
+            // Retrieve the session user's email
+            $senderEmail = $_SESSION['user']->email; // Assuming the session key is 'user_email'
+
             // SMTP Configuration
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // SMTP server
@@ -63,11 +84,11 @@ class AdminMedicalRegistration
             $mail->Port = 587; // SMTP Port
 
             // Email Details
-            $mail->setFrom('sameemadhu2003@gmail.com', 'sameera'); // Sender
-            $mail->addAddress($email); // Use the function parameter for recipient
+            $mail->setFrom($senderEmail, 'sameera'); // Use session user's email as sender
+            $mail->addAddress($recipientEmail); // Use the function parameter for recipient
 
             $mail->Subject = "Medical Provider Registration Status";
-            $mail->Body = "Your registration status is: " . $body;
+            $mail->Body = "Your medical registration status in Pawcentral is: " . $body;
             $mail->isHTML(true);
 
             // Send Email

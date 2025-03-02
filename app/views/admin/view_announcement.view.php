@@ -25,7 +25,9 @@
                 </div>
                 <div class="announcement-content">
                     <h2><?= htmlspecialchars($announcement->title) ?></h2>
+                    <br>
                     <h5>Date: <?= htmlspecialchars(date("Y-m-d", strtotime($announcement->updated_at))) ?></h5>
+                    <br><br>
                     <p><?= htmlspecialchars($announcement->content) ?></p>
 
                 </div>
