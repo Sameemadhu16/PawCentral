@@ -1,0 +1,27 @@
+<?php
+
+class DonationsModel
+{
+    use Model;
+
+// Make sure to change $this->table when using tables 
+    protected $donation_req = 'donation_requests';
+    protected $donations = 'donations';
+    public $table;
+
+    public function getUserReq()
+    {
+        $userId = $_SESSION['user_id'];
+
+    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE `user_id` = :userid AND status=0";
+
+    $result = $this->query($query, [':userid' => $userId]);
+    return $result;
+    }
+
+    
+    public function addReq($data) {
+        $this->table = $this->donation_req;
+        return $this->insert($data) ? true : false;
+    }
+}

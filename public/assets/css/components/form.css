@@ -24,6 +24,8 @@
     max-height: 90vh; /* Limits height to 80% of the viewport */
     overflow-y: auto; /* Enables scrolling inside the popup */
     scrollbar-color:rgb(128, 73, 254,.4) #ffffff;
+    
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .form-container [type="text"], .form-container input[type="date"], .form-container input[type="file"], .form-container input[type="number"], .form-container select, .form-container input[type="tel"], .form-container textarea{
@@ -75,6 +77,36 @@
     gap: 10px;
     align-items: center;
     margin-top: 5px;
+}
+
+/* Fieldsets */
+fieldset {
+    border: 1px solid #bbb;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+fieldset label{
+    font-weight: bold;
+    display: block;
+    margin: 5px 0 3px;
+    color: #444;
+}
+
+fieldset input{
+    width: 100%;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+legend {
+    font-weight: bold;
+    color: #4a148c;
 }
 
 @media (max-width: 600px) {

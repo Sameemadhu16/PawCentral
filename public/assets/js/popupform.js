@@ -11,6 +11,7 @@ function showPopup(eventId, closeUrl, warnMessage) {
     // Create a popup container with a unique ID
     let popup = document.createElement("div");
     popup.classList.add("popup-container");
+    popup.style.display = "flex";
     popup.id = popupId; // Assign the unique ID
 
     // Popup content

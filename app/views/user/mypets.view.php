@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/mypets.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script>
         function openPopup() {
@@ -314,6 +315,18 @@ or any other information that the medical professionals should be aware of."></t
     </div>
 <!-- 
     <button class="open-btn" onclick="openPopup()">Register Your Pet</button> -->
+    <script>    
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
     
 </body>
 

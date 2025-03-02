@@ -51,9 +51,9 @@
                     </div>
                 <?php else: ?>
                     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-                    <p style="text-align: center; font-size: 1.2rem; color: #555;">You have no added events yet.<br>
-                    <button class="add-event fixedsize"  onclick="openPopup()">Add New Event</button></p><br>
-                </div>
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have no added events yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Add New Event</button></p><br>
+                    </div>
                 <?php endif;?>
             </div>
         </div>
@@ -152,11 +152,6 @@ or any other information that participants should be aware of."></textarea>
     <?php include("../app/views/components/footer.php"); ?>
                 <!-- JS & component includes -->
     <script>    
-        document.addEventListener("DOMContentLoaded", function () {
-            // Ensure the popup is hidden when the page loads
-            document.getElementById("popupForm").style.display = "none"; 
-        });
-
         function openPopup() {
             document.getElementById("popupForm").style.display = "flex";
             document.body.style.overflow = "hidden"; // Disable scrolling

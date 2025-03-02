@@ -66,14 +66,11 @@
             min-height: 75px;
             max-height: 75px;
             display: -webkit-box;
-            -webkit-line-clamp: 10; /* Limits text to 3 lines */
+            -webkit-line-clamp: 4; /* Limits text to 3 lines */
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
- 
-
 
         .progress-bar-container {
             background: #eee;
@@ -111,6 +108,18 @@
 
         
     </style>
+    <script>
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
 </head>
 
 <body class="body">
@@ -121,62 +130,168 @@
         <?php include("../app/views/components/user/sidebar.php"); ?>
 
         <div class="user-accounts-section">
-            <div class="header-section">
-                <h2>Donation requests</h2>
-                <button class="quick-action-button fixedsize">Ask for support</button>
-            </div>
-            <div class="cards-container">
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('<?=ROOT?>/assets/images/pets/merchant/sell21.webp');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to pets in need.Join us in providing meals to pets in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 13%;"></div>
-                </div>
-                <p class="amount">Raised: $1,200 / <span class="collected">$8,000</span></p>
-                <button class="don-but" >Edit Info</a><button class="don-but" >Close Request</button>
-    </div>
-        </div>
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('<?=ROOT?>/assets/images/pets/merchant/sell21.webp');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to pets in need.Join us in providing meals to pets in need.Join us in providing meals to pets in need.Join us in providing meals to pets in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 13%;"></div>
-                </div>
-                <p class="amount">Raised: $1,200 /<span class="collected"> $8,000</span></p>
-                <button class="don-but" >Edit Info</button><button class="don-but">Close Request</button>
-            </div>
-        </div>
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('<?=ROOT?>/assets/images/pets/merchant/sell21.webp');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to pets in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 13%;"></div>
-                </div>
-                <p class="amount">Raised: $1,200 /<span class="collected"> $8,000</span></p>
-                <button class="don-but" >Edit Info</button><button class="don-but" >Close Request</button>
-            </div>
-        </div>   
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('<?=ROOT?>/assets/images/pets/merchant/sell21.webp');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to pets in need.Join us in providing meals to pets in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 13%;"></div>
-                </div>
-                <p class="amount">Raised: $1,200 /<span class="collected"> $8,000</span></p>
-                <button class="don-but" >Edit Info</button><button class="don-but">Close Request</button>
-            </div>
-        </div>    
-            </div>
+            
+            
+                <?php if (!empty($requests)) : ?>
+                    <div class="header-section">
+                        <h2>Donation requests</h2>
+                        <button class="quick-action-button fixedsize" onclick="openPopup()">Ask for Support</button>
+                    </div>
+                    <div class="cards-container">
+                    <?php foreach ($requests as $req) : ?>
+                        <div class="donation-card">
+                            <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
+                            <div class="card-content">
+                                <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
+                                <p class="description"><?= htmlspecialchars($req->reason) ?></p>
+                                <div class="progress-bar-container">
+                                    <?php 
+                                        $progress = ($req->collected / $req->amount) * 100;
+                                        $progress = min(100, max(0, $progress)); // Ensure between 0-100
+                                    ?>
+                                    <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                                </div>
+                                <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
+                                <button class="don-but">Edit Info</button>
+                                <button class="don-but">Close Request</button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
+                    </div>
+                <?php endif; ?>
+            
+
         </div>
     </div>
+    <div id="popupForm" class="popup-container">
+        <div class="form-container">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Add your pet info</h2>
+            <form id="petForm" action="<?= ROOT ?>/userprofile/donations/req" method="POST" enctype="multipart/form-data">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="need">Need for Donation:</label>
+                    <select id="need" name="need" required>
+                        <option value="Other">Other</option>
+                        <option value="Bills">Medical Bills</option>
+                        <option value="CareSupport">Care Support</option>
+                        <option value="Food">Food</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Supplies">Supplies</option>
+                    </select>
+                    <label for="reason">Brief intro for the Request:</label>
+          <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason briefly." maxlength="100"></textarea>
+
+                <label for="info">Explain the reason for the Donation Request:</label>
+          <textarea id="info" name="info" rows="7" placeholder="Describe specifics about the need,
+regarding situation.
+or any other information that the donators should made aware of to donate to your request."></textarea>
+
+                <label for="donimg">Upload a Photo:</label>
+                <input type="file" id="donimg" name="photos[]" accept="image/*" required>
+          <div id="imagePreviewContainer"></div>
+          <script>
+              document.getElementById('donimg').addEventListener('change', function () {
+                const maxFiles = 1;
+                const fileInput = this;
+                
+                if (fileInput.files.length > maxFiles) {
+                  feedback.style.display = 'block';
+                  fileInput.value = ''; // Clear the input
+                } else {
+                  feedback.style.display = 'none';
+                }
+              });
+
+              document.getElementById('donimg').addEventListener('change', function () {
+                const previewContainer = document.getElementById('imagePreviewContainer');
+                previewContainer.innerHTML = ''; // Clear existing previews
+
+                Array.from(this.files).forEach(file => {
+                  if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    // img.style.width = '100px';
+                    // img.style.margin = '5px';
+                    previewContainer.appendChild(img);
+                  }
+                });
+              });
+          </script>
+                    <label for="amount">Required Amount:</label>
+                    <input type="number" id="amount" name="amount" min="0" max="100000" step="any" required>
+
+                    <label for="before_date">Before when do you need the support:</label>
+                    <input type="date" id="before_date" name="before_date" required>
+                    
+                    <script>
+                        document.querySelector('form').addEventListener('submit', function (event) {
+                        const amount = document.getElementById('amount').value;
+
+                        // Validate expire date of the req
+                        const before_date = new Date(document.getElementById('before_date').value);
+                        const today = new Date();
+                        if (before_date < today) {
+                            alert('request deadline date cannot be in the past.');
+                            event.preventDefault(); // Prevent form submission
+                        }
+
+                        // Validate height
+                        if (amount < 0 || amount > 100000) {
+                            alert('Height must be between 0 and 100 000 Rs.');
+                            event.preventDefault(); // Prevent form submission
+                            return;
+                        }
+
+                        // If all validations pass, the form will submit
+                        });
+                    </script>
+
+                <!-- Bank Details -->
+                <fieldset>
+                    <legend>Bank Details</legend>
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" name="bankName">
+                    <br>
+                    <label for="accountHolder">Account Holder Name:</label>
+                    <input type="text" id="accountHolder" name="accountHolder">
+                    <br>
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" name="accountNumber">
+                    <br>
+                    <label for="swiftCode">SWIFT Code / IBAN (if applicable):</label>
+                    <input type="text" id="swiftCode" name="swiftCode">
+                </fieldset>
+
+                <!-- Agreement -->
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    I agree to the terms and conditions for receiving and requesting for donations.
+                </label>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+<!-- hide pop up containers -->
+    <script>    
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
 </body>
 
 </html>
