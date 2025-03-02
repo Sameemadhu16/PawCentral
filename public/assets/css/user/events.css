@@ -40,6 +40,8 @@
 }
 
 .event-list {
+    border-radius: 10px;
+    background-color: rgb(128, 73, 254, .2);
     overflow-y: auto;
     max-height: 40vh;
     display: flex;

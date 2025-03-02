@@ -23,19 +23,45 @@
     border-radius: 8px;
 }
 
+.topicnbuttons {
+    display: flex;
+    /* flex-direction: row; */
+    /* background-color: greenyellow; */
+}
+.topicnbuttons button{
+    /* margin-left: auto; */
+    justify-self: flex-end;
+    margin-left: auto;
+}
+
+.quick-action-button {
+    padding: 10px 18px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: var(--button-normal);
+}
+.quick-action-button:hover{
+    background:var(--button-normal-hover);
+}
 
 
 button {
+    margin: 5px;
     margin-top: 15px;
-    padding: 10px;
+    padding: 10px 15px;
     background: #8049fe;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    }
+    transition: background 0.3s ease;
+}
     
-    button:hover {
+button:hover {
     background: #673ab7;
-    }
+}
     
