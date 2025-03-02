@@ -1,65 +1,54 @@
 <?php
 class Selling
 {
-    use controller;
+    use Controller;
 
     public function index()
     {
-        $this->view("selling");
+        $this->view('selling');
     }
 
     public function submit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $price = htmlspecialchars($_POST['price']);
-            $feebox = isset($_POST['feebox']) ? 1 : 0;
             $city = htmlspecialchars($_POST['city']);
             $address = htmlspecialchars($_POST['address']);
-            $termsAccepted = isset($_POST['checkbox']) ? 1 : 0;
-
+            $termsAccepted = isset($_POST['terms']) ? 1 : 0;
+    
             if (empty($price) || empty($city) || empty($address) || !$termsAccepted) {
                 echo "Please fill in all required fields and accept the terms.";
                 exit;
             }
-
-            $petData = isset($_SESSION['postpet_data']) ? $_SESSION['postpet_data'] : null;
-
-            if ($petData) {
-                $imagePaths = isset($petData['images']) ? $petData['images'] : [];
-
-                $data = [
-                    'tradeType' => $petData['tradeType'],
-                    'petName' => $petData['petName'],
-                    'species' => $petData['species'],
-                    'breed' => $petData['breed'],
-                    'sex' => $petData['sex'],
-                    'age' => $petData['age'],
-                    'height' => $petData['height'],
-                    'weight' => $petData['weight'],
-                    'neutered' => $petData['neutered'],
-                    'trained' => $petData['trained'],
-                    'pedigree' => $petData['pedigree'],
-                    'vaccinated' => $petData['vaccinated'],
-                    'price' => $price,
-                    'img1' => $imagePaths[0] ?? null,
-                    'img2' => $imagePaths[1] ?? null,
-                    'img3' => $imagePaths[2] ?? null,
-                    'City' => $city,
-                    'Exact_address' => $address,
-                    'agreed_terms' => $termsAccepted,
-                ];
-
-                $postPetModel = new AddPostpet();
-                if ($postPetModel->create($data)) {
-                    $_SESSION['success_message'] = "Post successfully created";
-                    header("Location: " . ROOT . "/service?success=1");
-                    exit();
-                } else {
-                    echo "Error saving data. Please try again.";
-                    exit();
-                }
+    
+            $petData = $_SESSION['postpet_data'];
+            $imagePaths = $petData['images'] ?? [];
+    
+            $data = [
+                'tradeType' => $petData['tradeType'],
+                'petName' => $petData['petName'],
+                'species' => $petData['species'],
+                'breed' => $petData['breed'],
+                'sex' => $petData['sex'],
+                'age' => $petData['age'],
+                'height' => $petData['height'],
+                'weight' => $petData['weight'],
+                'price' => $price,
+                'city' => $city,
+                'address' => $address,
+                'img1' => $imagePaths[0] ?? null,
+                'img2' => $imagePaths[1] ?? null,
+                'img3' => $imagePaths[2] ?? null,
+                'agreed_terms' => $termsAccepted,
+            ];
+    
+            $postPetModel = new AddPostpet();
+            if ($postPetModel->create($data)) {
+                $_SESSION['success_message'] = "Post successfully created";
+                header("Location: " . ROOT . "/service?success=1");
+                exit();
             } else {
-                echo "No pet data found. Please go back and fill out the previous steps.";
+                echo "Error saving data. Please try again.";
                 exit();
             }
         }

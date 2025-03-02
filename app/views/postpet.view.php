@@ -28,7 +28,12 @@
 
             <!-- Trade Type -->
             <h3>Trade Type</h3>
-            <input type="text" name="tradeType" placeholder="ex: Rent or Sale" required>
+<select name="tradeType" required>
+    <option value="">Select</option>
+    <option value="Selling">Selling</option>
+    <option value="Renting">Renting</option>
+    <option value="Importing">Importing</option>
+</select>
 
             <!-- Pet Name -->
             <h3>Pet's Name</h3>
