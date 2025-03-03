@@ -91,7 +91,38 @@
 
     </div>
 
+    <!-- Popup Notification -->
+    <div id="popupNotification" class="popup">
+        <span id="popupMessage"></span>
+    </div>
+
     <?php include("../app/views/components/footer.php"); ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('popupNotification');
+            const popupMessage = document.getElementById('popupMessage');
+
+            function showPopup(message) {
+                popupMessage.textContent = message;
+                popup.classList.add('show');
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 3000);
+            }
+
+            // Show popup notification based on URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'approved') {
+                    showPopup('Medical provider approved successfully!');
+                } else if (status === 'rejected') {
+                    showPopup('Medical provider rejected successfully!');
+                }
+            }
+        });
+    </script>
 
 </body>
 

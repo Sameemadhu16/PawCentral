@@ -53,10 +53,14 @@ class AdminMedicalRegistration
                 if (isset($_POST['approve'])) {
                     $medicalProvider->update($id, ['verifiedStatus' => 'approved'], 'med_id');
                     $this->sendEmail($email, 'approved');
+                    redirect('admin/medical_registration?status=approved');
+                    exit();
                 }
                 if (isset($_POST['reject'])) {
                     $medicalProvider->update($id, ['verifiedStatus' => 'rejected'], 'med_id');
                     $this->sendEmail($email, 'rejected');
+                    redirect('admin/medical_registration?status=rejected');
+                    exit();
                 }
             } else {
                 echo "User not found.";
@@ -93,7 +97,7 @@ class AdminMedicalRegistration
 
             // Send Email
             $mail->send();
-            echo 'Email sent successfully!';
+            // echo 'Email sent successfully!';
         } catch (Exception $e) {
             echo "Email could not be sent. Error: {$mail->ErrorInfo}";
         }
