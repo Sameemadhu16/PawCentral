@@ -20,7 +20,7 @@
         <div class="content">
             <div class="overview" method="POST">
                 <div class="card">Announcements <span><?= esc($announcementCount) ?></span></div>
-                <div class="card">Medical Registrations <span>15</span></div>
+                <div class="card">Medical Registrations <span><?= esc($mediRegCount) ?></span></div>
                 <div class="card">User Accounts <span><?= esc($userCount) ?></span></div>
                 <div class="card">Events <span>15</span></div>
                 <div class="card">Donations <span>15</span></div>

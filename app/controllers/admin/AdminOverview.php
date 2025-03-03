@@ -12,10 +12,12 @@ class AdminOverview {
         $this->isAuthorized($this->valid_roles);
         $this->getAnnouncementCount();
         $this->getUserCount();
+        $this->getMedicalRegistrationCount();
 
         $data = [
             'announcementCount' => $this->getAnnouncementCount(),
-            'userCount' => $this->getUserCount()
+            'userCount' => $this->getUserCount(),
+            'mediRegCount' => $this->getMedicalRegistrationCount()
             //add other data here
         ];
 
@@ -41,5 +43,14 @@ class AdminOverview {
 
         // show($userCount);
         return $userCount;
+    }
+
+    private function getMedicalRegistrationCount(){
+
+        $mediModel = new MedicalProvModel;
+
+        $mediRegCount = $mediModel->getCount();
+
+        return($mediRegCount);
     }
 }
