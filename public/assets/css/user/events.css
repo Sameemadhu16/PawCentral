@@ -41,7 +41,7 @@
 
 .event-list {
     border-radius: 10px;
-    background-color: rgb(128, 73, 254, .2);
+    background-color: rgb(128, 73, 254, .15);
     overflow-y: auto;
     max-height: 40vh;
     display: flex;
@@ -49,6 +49,7 @@
     gap: 5px;
     justify-content: center;
     padding: 0 10px; /* Padding to prevent cards from touching the edges */
+    scrollbar-color: var(--scrollbar-color);
 }
 
 .publish-button {
@@ -149,7 +150,7 @@
 .event-actions .close-event {
     /* background-color: #589bf9; */
     /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
-    background-color: #dc3545;
+    background-color: var(--danger);
     border: none;
     width: 100%;
     padding: 10px 15px;
@@ -164,7 +165,7 @@
   
 .close-event:hover {
     /* background-color: rgb(128, 73, 254); */
-    background-color: #c82333;
+    background-color: var(--danger-dark);
 }
 
 /* Action Buttons */

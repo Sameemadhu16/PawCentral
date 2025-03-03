@@ -24,4 +24,9 @@ class DonationsModel
         $this->table = $this->donation_req;
         return $this->insert($data) ? true : false;
     }
+
+    public function closeReq($id,$data,$where){
+        $this->table=$this->donation_req;
+        return $this->update($id, $data, 'id');
+    }
 }

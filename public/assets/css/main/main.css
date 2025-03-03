@@ -56,10 +56,14 @@
   --accent-green: #00c853;
   --accent-purple: #9c27b0;
 
+  /* BUTTON COLORS */
   --button-normal: rgb(128, 73, 254, .9);
   --button-normal-hover: rgb(128, 73, 254);
   --warn-button: var(--danger);
   --warn-button-hover: var(--danger-dark);
+  
+  /* Scroll bar color  */
+  --scrollbar-color:rgb(128, 73, 254,.4) #ffffff;
 }
 
 * {

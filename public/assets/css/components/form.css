@@ -23,8 +23,7 @@
     width: 90%;
     max-height: 90vh; /* Limits height to 80% of the viewport */
     overflow-y: auto; /* Enables scrolling inside the popup */
-    scrollbar-color:rgb(128, 73, 254,.4) #ffffff;
-    
+    scrollbar-color: var(--scrollbar-color);
     animation: fadeIn 0.3s ease-in-out;
 }
 

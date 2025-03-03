@@ -65,16 +65,30 @@ class Donation{
             if ($result) {
 
                 echo "Data inserted successfully. Redirecting...";
-                redirect('userprofile/event');
+                redirect('userprofile/donations');
                 exit; 
             } else {
 
                 echo "Data insertion failed.";
 
                 $data['error'] = 'Failed to register pet. Please try again.';
-                $this->view('userprofile/event', $data);
+                $this->view('userprofile/donations', $data);
             }
         }
 
+    }
+
+    public function CloseReq($id)
+    {
+        $model = new DonationsModel();
+        $data = ['status' => 1]; // Set status to closed
+
+        $success=$model->closeReq($id['id'], $data, 'id');
+
+        if ($success) {
+            header("Location: " . ROOT . "/userprofile/donations");
+        } else {
+            header("Location: " . ROOT . "/userprofile/donations");
+        }
     }
 }
