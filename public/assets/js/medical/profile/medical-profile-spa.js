@@ -46,48 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
         loadPage(page, window[page + 'Action']);
     });
 
-    // Add logout handler
-    const logoutLink = document.getElementById('logout');
-    if (logoutLink) {
-        logoutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            fetch(`${baseUrl}/logout`, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'success') {
-                    window.location.href = `${baseUrl}/login`;
-                } else {
-                    throw new Error(data.message || 'Logout failed');
-                }
-            })
-            .catch(error => {
-                console.error('Logout failed:', error);
-                alert('Logout failed. Please try again.');
-            });
-        });
-    }
+    //logout for sidebar
+    setupLogout();
 });
 
 //load pages
 function loadPage(page, callback) {
     const pageWindow = document.querySelector('.page-window');
-    if (!pageWindow) {
-        console.error('Page window element not found');
-        return;
-    }
 
     // Remove any existing page-specific classes
     const existingClasses = Array.from(pageWindow.classList);
@@ -146,8 +111,131 @@ function loadPage(page, callback) {
 
 // Panel-specific action functions
 function profileAction() {
+    console.log("Profile action function called");
+    
+        // Elements
+        const updateButton = document.getElementById('update-profile-btn');
+        const changePhotoBtn = document.getElementById('change-photo-btn');
+        const popup = document.getElementById('profile-update-popup');
+        const closeBtn = document.querySelector('.close-btn');
+        const updateForm = document.getElementById('update-profile-form');
+        const profilePicInput = document.getElementById('profile_pic');
+        const imagePreviewContainer = document.querySelector('.image-preview-container');
+        console.log(updateButton,);
+        
+        // Open popup when update button is clicked - with direct inline click handler
+        if (updateButton && popup) {            
+            // Remove any existing event listeners (to avoid duplication)
+            updateButton.removeEventListener('click', openUpdatePopup);
+            
+            // Define a named handler function
+            function openUpdatePopup() {
+                console.log('Update button clicked!');
+                window.debugLog?.('Update button clicked!');
+                popup.style.display = 'flex';
+                return false;
+            }
+            
+            // Add the event listener
+            updateButton.addEventListener('click', openUpdatePopup);
 
-    console.log('Profile panel loaded');
+        }
+        
+        // Auto-hide messages after 5 seconds
+        const messages = document.querySelectorAll('.message');
+        if (messages.length > 0) {
+            setTimeout(() => {
+                messages.forEach(msg => {
+                    msg.style.opacity = '0';
+                    setTimeout(() => msg.style.display = 'none', 500);
+                });
+            }, 5000);
+        }
+        
+        // Clicking on change photo also opens the popup with focus on profile pic input
+        if (changePhotoBtn && popup && profilePicInput) {
+            changePhotoBtn.addEventListener('click', () => {
+                console.log('Change photo clicked');
+                popup.style.display = 'flex';
+                // Scroll to profile pic input and focus it
+                profilePicInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => profilePicInput.focus(), 500);
+            });
+        }
+        
+        // Close popup when X is clicked
+        if (closeBtn && popup) {
+            closeBtn.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }
+        
+        // Close popup when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+        
+        // Preview uploaded image
+        if (profilePicInput && imagePreviewContainer) {
+            profilePicInput.addEventListener('change', function() {
+                imagePreviewContainer.innerHTML = ''; // Clear previous previews
+                
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = 'Profile Picture Preview';
+                        imagePreviewContainer.appendChild(img);
+                    };
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+        
+        // Handle form submission
+        if (updateForm) {
+            updateForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                
+                // Get the base URL from the current window location
+                const baseUrl = window.location.origin + '/PawCentral/public';
+                
+                fetch(`${baseUrl}/medical-center/dashboard/profile`, {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Reload the page to show updated information
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    
+                    // Create and show error message
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'message error';
+                    errorMsg.textContent = 'An error occurred while updating your profile. Please try again.';
+                    document.body.appendChild(errorMsg);
+                    
+                    // Auto remove after 5 seconds
+                    setTimeout(() => {
+                        errorMsg.style.opacity = '0';
+                        setTimeout(() => errorMsg.remove(), 500);
+                    }, 5000);
+                });
+            });
+        }
 }
 
 function appointmentsAction() {
@@ -317,6 +405,43 @@ function veterinariansAction() {
             .catch(error => {
                 console.error('Error:', error);
                 alert(error.message || 'Failed to update veterinarian. Please try again.');
+            });
+        });
+    }
+}
+
+// Add logout handler as a reusable function
+function setupLogout() {
+    const logoutNav = document.getElementById('logout');
+    if (logoutNav) {
+        logoutNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const baseUrl = window.location.origin + '/PawCentral/public';
+            fetch(`${baseUrl}/logout`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = `${baseUrl}/login`;
+                } else {
+                    throw new Error(data.message || 'Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Logout failed:', error);
+                alert('Logout failed. Please try again.');
             });
         });
     }

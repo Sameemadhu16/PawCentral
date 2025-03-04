@@ -6,18 +6,7 @@ class MedicalProvModel
 
     protected $table = 'medical_providers';
 
-    protected $allowedColumns = [
-        'med_id',
-        'user_id',
-        'name',
-        'location',
-        'license_proof',
-        'verifiedStatus',
-        'created_at',
-        'updated_at'
-    ];
+    protected $allowedColumns = ['user_id', 'med_id', 'location', 'about', 'service_name', 'status'];
 
-    protected $order_column = "med_id";
     public $errors = [];
-
 }
