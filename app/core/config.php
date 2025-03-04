@@ -2,6 +2,7 @@
 
 if($_SERVER['SERVER_NAME'] == 'localhost'){
     define('ROOT','http://localhost/PawCentral/public');
+    define('ROOT1','http://localhost/PawCentral');
     /**
      * database config
      */

@@ -14,6 +14,53 @@
     transition: transform 0.3s ease; /* Smooth transition for toggling */
 }
 
+/* Toggle Button */
+.sidebar-toggle {
+    display: none;
+    /* Hidden by default on larger screens */
+    position: fixed;
+    top: 80px;
+    left: 5px;
+    z-index: 1100;
+    background-color: var(--primary-light);
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    
+}
+
+/* Mobile Sidebar Styling */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        /* Hidden initially */
+        height: 100%;
+        z-index: 1000;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.active {
+        left: 0;
+        /* Slide in when active */
+    }
+
+    .sidebar-toggle {
+        display: block;
+        /* Show toggle button on mobile screens */
+    }
+
+    .content {
+        margin-left: 0;
+        /* Remove sidebar margin on smaller screens */
+        padding: 20px;
+    }
+}
 /* Sidebar list styling */
 .sidebar ul {
     text-decoration: none;
@@ -100,55 +147,3 @@
     margin: 0 auto;
 }
 
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 200px;
-        transform: translateX(-100%); /* Hide sidebar initially on mobile */
-        position: fixed; /* Sidebar fixed to the left on mobile */
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        transition: transform 0.3s ease;
-    }
-
-    .sidebar.active {
-        transform: translateX(0); /* Show sidebar when active */
-    }
-
-    .sidebar ul li a {
-        padding: 10px 15px;
-        font-size: 16px;
-        font-family: sans-serif;
-    }
-
-    .sidebar ul li a.nav-link.active {
-        background-color: #ffffff; /* Active background color */
-    }
-
-    /* Adjust content to full width when sidebar is hidden */
-    .content {
-        margin-left: 0; /* Remove margin to align content on small screens */
-        padding: 20px;
-    }
-}
-
-/* Sidebar toggle button for mobile */
-.sidebar-toggle {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background-color: #6A0DAD;
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-    .sidebar-toggle {
-        display: block; /* Show toggle button on mobile */
-    }
-}

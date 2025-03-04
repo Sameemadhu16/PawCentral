@@ -32,7 +32,7 @@ class User
             $this->errors[] = 'A valid email is required';
         }
         $row = $this->getUserByEmail($data['email']);
-        if($row){
+        if ($row) {
             $this->errors[] = 'This email is already registered';
         }
 
@@ -67,13 +67,15 @@ class User
         $service_type = $data['service_type'] ?? [];
 
         // Validate proof of service for medical providers
-        if ($service_type=='medical_provider' && empty($data['proof']['name'])) {
+        if ($service_type == 'medical_provider' && empty($data['proof']['name'])) {
             $this->errors[] = 'Proof of service is required';
-        }
-        elseif($service_type=='medical_provider' && $data['proof']['type'] !== 'application/pdf'){
+        } elseif ($service_type == 'medical_provider' && $data['proof']['type'] !== 'application/pdf') {
             $this->errors[] = 'Proof of service must be a PDF file';
         }
-        elseif($service_type!='medical_provider' && !empty($data['proof']['name'])){
+
+        // CAN JUST NEGLECT THE PROOF FILE IF NOT MEDICAL
+        elseif ($service_type != 'medical_provider' && !empty($data['proof']['name'])) {
+
             $this->errors[] = 'Proof of service is only required for medical providers';
         }
 
@@ -84,11 +86,30 @@ class User
         return empty($this->errors);
     }
 
+
     /**
      * Handles file upload for proof documents
      * @param array $file The uploaded file information
      * @return string The path where the file was saved
      */
+
+    // public function createUser($data)
+    // {
+    //     try {
+    //         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+
+
+    //         $this->insert($data);
+    //     } catch (Exception $e) {
+    //         $this->errors[] = "Error saving user: " . $e->getMessage();
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+
+
     public function uploadFile($file)
     {
         $targetDir = "uploads/proofs/";

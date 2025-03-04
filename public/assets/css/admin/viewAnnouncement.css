@@ -32,7 +32,7 @@
 
 .back-icon a {
     text-decoration: none;
-    color: #882FC8;
+    color: var(--primary);
     font-weight: 600;
     font-size: 18px; /* Increase font size for the text as well if desired */
     display: flex;
@@ -41,7 +41,7 @@
 }
 
 .back-icon a:hover {
-    color: #6b0dad;
+    color: var(--primary-dark);
 }
 
 .back-icon i {
@@ -58,7 +58,7 @@
 
 .announcement-details h2 {
     font-size: 28px; /* Larger font size for title */
-    color: #9c27b0; /* Blue color for the title */
+    color: black; /* Blue color for the title */
     margin-bottom: 10px;
 }
 
@@ -100,24 +100,26 @@
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    color: #fff;
+    color: black;
     transition: background-color 0.3s ease;
 }
 
 .edit-button {
-    background-color: #28a745; /* Blue color for edit button */
+    background-color: var(--success); /* Blue color for edit button */
 }
 
 .delete-button {
-    background-color: #dc3545; /* Red color for delete button */
+    background-color: var(--danger); /* Red color for delete button */
 }
 
 .edit-button:hover {
-    background-color: #1e7e34; /* Darker blue on hover */
+    background-color: var(--success-dark); /* Darker blue on hover */
+    color: white;
 }
 
 .delete-button:hover {
-    background-color: #c82333; /* Darker red on hover */
+    background-color: var(--danger-dark);
+    color: white; /* Darker red on hover */
 }
 
 

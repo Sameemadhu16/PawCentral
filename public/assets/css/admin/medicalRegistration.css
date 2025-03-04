@@ -83,7 +83,7 @@
     table-layout: fixed;
     cursor: pointer;
 }
-.action-select {
+/* .action-select {
     width: 80%;
     padding: 5px;
     font-size: 14px;
@@ -104,36 +104,105 @@
 .action-select.reject {
     margin: 5px;
     border-color: red;
-}
+} */
 
-.view-btn {
-    width: 80%;
+a.view-btn {
+    width: 250px;
+    /* Increased width */
     padding: 8px;
     font-size: 14px;
-    background-color: #ffc107;
+    background-color: var(--warning);
     color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .view-btn:hover {
-    background-color: #d39e00;
+    background-color: var(--warning-dark);
     color: white;
 }
 
-.send-btn {
-    width: 80%;
+.send-btn1 {
+    width: 60%;
     padding: 8px;
     font-size: 14px;
-    background-color: #17a2b8;
+    background-color: var(--success);
     color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.send-btn:hover {
-    background-color: #138496;
+.send-btn1:hover {
+    background-color: var(--success-dark);
     color: white;
+}
+
+.send-btn2 {
+    width: 60%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: var(--danger);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-btn2:hover {
+    background-color: var(--danger-dark);
+    color: white;
+}
+
+/* Status label styles */
+.pending {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #ffc107;
+    /* Yellow border for pending */
+    color: #ffc107;
+    /* Yellow text for pending */
+    border-radius: 5px;
+    /* font-weight: bold; */
+}
+
+.approved {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #28a745;
+    /* Green border for approved */
+    color: #28a745;
+    /* Green text for approved */
+    border-radius: 5px;
+    /* font-weight: bold; */
+}
+
+.rejected {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #dc3545;
+    /* Red border for rejected */
+    color: #dc3545;
+    /* Red text for rejected */
+    border-radius: 5px;
+    /* font-weight: bold; */
+}
+
+/* Popup Notification styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 200px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.popup.show {
+    display: block;
 }

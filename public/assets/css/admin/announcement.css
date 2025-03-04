@@ -42,7 +42,7 @@
 
 /* Button styling */
 .add-announcement {
-    background-color:#ffc107;
+    background-color:var(--accent-blue);
     color: black;
     border: none;
     padding: 10px 15px;
@@ -56,10 +56,10 @@
 }
 
 .add-announcement:hover {
-    background-color:  #d39e00;
+    background-color: var(--accent-blue);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+    /* transform: translateY(-2px); */
+    /* box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2); */
 }
 
 /* Card container */

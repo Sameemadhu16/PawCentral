@@ -18,7 +18,7 @@
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <div class="content">
-
+<!-- 
             <h2>Posts</h2>
             <div class="cards-container">
                 <div class="card">
@@ -36,7 +36,7 @@
                     <div class="card-title">Service Post</div>
                     <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="post-container">
                 <h2>Recent Posts</h2>
