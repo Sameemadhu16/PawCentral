@@ -3,96 +3,170 @@
 class Med_Dashboard_Profile {
     use Controller;
 
-    public function index(){
-        // Check if form was submitted
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['medical'])){
+    public function index() {
+        // Handle POST requests for profile updates
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('Content-Type: application/json');
             $this->updateProfile();
+            return;
         }
    
-        // Get current profile data
-        $status = $this->getProfile();
-        // Display the profile view form
-        $this->view('medi.f/profile/med-profile',['profile' => $status]);
+        // For GET requests, display the profile
+        $profile = $this->getProfile();
+        $this->view('medi.f/profile/med-profile', ['profile' => $profile]);
     }
 
-    private function updateProfile(){
-        $user = new User();
-       
-        // Process form data
-        $data = [
-            'first_name' => trim($_POST['first_name']),
-            'last_name' => trim($_POST['last_name']),
-            'email' => trim($_POST['email']),
-            'mobile_no' => trim($_POST['mobile_no'] ?? ''),
-            'location' => trim($_POST['location'] ?? ''),
-            'about' => trim($_POST['about'] ?? '')
-        ];
-
-        // Handle profile picture upload
-        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
-            // Set upload directory - use absolute path for reliability
-            $target_dir = "uploads/profile-images/";
+    // New method to handle dedicated update-profile route
+    public function updateProfile() {
+        try {
+            $user = new User();
             
-            // Create directory if doesn't exist
+            if (!isset($_SESSION['user']) || !$_SESSION['user']->id) {
+                throw new Exception("User not authenticated.");
+            }
+            
+            // Process form data
+            $data = [
+                'first_name' => trim($_POST['first_name'] ?? ''),
+                'last_name' => trim($_POST['last_name'] ?? ''),
+                'email' => trim($_POST['email'] ?? ''),
+                'mobile_no' => trim($_POST['mobile_no'] ?? ''),
+                'location' => trim($_POST['location'] ?? ''),
+                'about' => trim($_POST['about'] ?? '')
+            ];
+            
+            
+            // Validate required fields
+            if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email'])) {
+                throw new Exception("Missing required fields.");
+            }
+
+            // Handle profile picture upload
+            if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
+                $target_dir = "uploads/profile-images/";
+                
+                // Create directory if doesn't exist
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+
+                // Generate unique filename
+                $file_name = basename($_FILES['profile_pic']['name']);
+                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                $target_file = $target_dir . uniqid() . "." . $file_ext;
+
+                // Validate image file type
+                $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($file_ext, $allowed_types)) {
+                    throw new Exception("Only JPG, JPEG, PNG & GIF files are allowed.");
+                }
+
+                // Verify if file is actual image
+                $check = getimagesize($_FILES['profile_pic']['tmp_name']);
+                if ($check === false) {
+                    throw new Exception("File is not an image.");
+                }
+
+                // Upload the file
+                if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
+                    $data['profile_pic'] = $target_file;
+                } else {
+                    $error = error_get_last();
+                    throw new Exception("Failed to upload file: " . ($error ? $error['message'] : 'Unknown error'));
+                }
+            }
+
+            // Update user profile
+            if (!$user->update($_SESSION['user']->id, $data)) {
+                throw new Exception("Database update failed.");
+            }
+            
+            // Update session with new user data
+            $updatedUser = $user->first(['id' => $_SESSION['user']->id]);
+            $_SESSION['user'] = $updatedUser;
+            
+            // Update medical provider specific data
+            if (isset($_SESSION['role_id'])) {
+                $medprov = new MedicalProvModel();
+                $medData = [
+                    'location' => $data['location'],
+                    'about' => $data['about']
+                ];
+                $medprov->update($_SESSION['role_id'], $medData, 'med_id');
+            }
+
+            // Return success response
+            $_SESSION['success'] = "Profile updated successfully!";
+            
+            // Return JSON for AJAX requests
+            if ($this->isAjaxRequest()) {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Profile updated successfully'
+                ]);
+            } else {
+                // For form submissions, redirect back to profile
+                redirect('medical-center/dashboard#profile');
+            }
+
+        } catch (Exception $e) {
+            // Log the error
+            error_log("Profile update error: " . $e->getMessage());
+            
+            // Set session error for page loads
+            $_SESSION['error'] = $e->getMessage();
+            
+            // Return JSON error for AJAX requests
+            if ($this->isAjaxRequest()) {
+                http_response_code(400);
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+            } else {
+                // For form submissions, redirect back to profile
+                redirect('medical-center/dashboard#profile');
+            }
+        }
+    }
+
+    // Method to upload profile images directly
+    public function uploadImage() {
+        header('Content-Type: application/json');
+        
+        try {
+            if (!isset($_FILES['profile_pic']) || $_FILES['profile_pic']['error'] !== 0) {
+                throw new Exception("No image file uploaded or upload error.");
+            }
+            
+            $target_dir = "uploads/profile-images/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);
             }
-
-            // Generate unique filename
+            
             $file_name = basename($_FILES['profile_pic']['name']);
             $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
             $target_file = $target_dir . uniqid() . "." . $file_ext;
-
-            // Validate image file type
+            
             $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
             if (!in_array($file_ext, $allowed_types)) {
-                $_SESSION['error'] = "Only JPG, JPEG, PNG & GIF files are allowed.";
-                return false;
+                throw new Exception("Only JPG, JPEG, PNG & GIF files are allowed.");
             }
-
-            // Verify if file is actual image
-            if (getimagesize($_FILES['profile_pic']['tmp_name']) === false) {
-                $_SESSION['error'] = "The selected file is not a valid image.";
-                return false;
-            }
-
-            // Upload the file
+            
             if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
-                $data['profile_pic'] = $target_file;
+                echo json_encode([
+                    'status' => 'success',
+                    'file_path' => $target_file
+                ]);
             } else {
-                $_SESSION['error'] = "Failed to upload the profile picture: " . error_get_last()['message'];
-                return false;
+                throw new Exception("Failed to upload image.");
             }
-        }
-
-        // Update profile if user is authenticated
-        if (isset($_SESSION['user']) && $_SESSION['user']->id) {
-            if ($user->update($_SESSION['user']->id, $data)) {
-                // Update session with new user data
-                $updatedUser = $user->first(['id' => $_SESSION['user']->id]);
-                $_SESSION['user'] = $updatedUser;
-
-                // Set success message
-                $_SESSION['success'] = "Profile updated successfully!";
-                
-                // Update medical provider table if needed
-                if (isset($_SESSION['role_id'])) {
-                    $medprov = new MedicalProvModel();
-                    $medData = [
-                        'location' => $data['location'],
-                        'about' => $data['about']
-                    ];
-                    $medprov->update($_SESSION['role_id'], $medData, 'med_id');
-                }
-                
-                return true;
-            } else {
-                $_SESSION['error'] = "Failed to update profile.";
-                return false;
-            }
-        } else {
-            $_SESSION['error'] = "User not authenticated.";
-            return false;
+        } catch (Exception $e) {
+            http_response_code(400);
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -100,16 +174,16 @@ class Med_Dashboard_Profile {
      * Private method to fetch profile information
      * @return object|null Returns user data if found
      */
-    private function getProfile(){
+    private function getProfile() {
         if (!isset($_SESSION['user']) || !isset($_SESSION['user']->id)) {
             return null;
         }
         
         $id = $_SESSION['user']->id;
         
-        if($id){
+        if ($id) {
             $user = new User();
-            $userInfo = $user->first(['id'=>$id]);
+            $userInfo = $user->first(['id' => $id]);
             
             // Get additional details from medical provider table if available
             if (isset($_SESSION['role_id'])) {
@@ -132,5 +206,11 @@ class Med_Dashboard_Profile {
         }
         
         return null;
+    }
+    
+    // Helper method to check if request is AJAX
+    private function isAjaxRequest() {
+        return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
     }
 }

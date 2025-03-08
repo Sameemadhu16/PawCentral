@@ -121,7 +121,6 @@ function profileAction() {
         const updateForm = document.getElementById('update-profile-form');
         const profilePicInput = document.getElementById('profile_pic');
         const imagePreviewContainer = document.querySelector('.image-preview-container');
-        console.log(updateButton,);
         
         // Open popup when update button is clicked - with direct inline click handler
         if (updateButton && popup) {            
@@ -201,13 +200,18 @@ function profileAction() {
         if (updateForm) {
             updateForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
                 const formData = new FormData(this);
+                
+                // Log FormData entries to console
+                console.log('Form data contents:');
+                for (let [key, value] of formData.entries()) {
+                    console.log(`${key}: ${value}`);
+                }
                 
                 // Get the base URL from the current window location
                 const baseUrl = window.location.origin + '/PawCentral/public';
                 
-                fetch(`${baseUrl}/medical-center/dashboard/profile`, {
+                fetch(`${baseUrl}/medical-center/dashboard/profile/update-profile`, {
                     method: 'POST',
                     body: formData,
                     credentials: 'include'
@@ -217,22 +221,10 @@ function profileAction() {
                         throw new Error('Network response was not ok');
                     }
                     // Reload the page to show updated information
-                    window.location.reload();
+                    // window.location.reload();
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    
-                    // Create and show error message
-                    const errorMsg = document.createElement('div');
-                    errorMsg.className = 'message error';
-                    errorMsg.textContent = 'An error occurred while updating your profile. Please try again.';
-                    document.body.appendChild(errorMsg);
-                    
-                    // Auto remove after 5 seconds
-                    setTimeout(() => {
-                        errorMsg.style.opacity = '0';
-                        setTimeout(() => errorMsg.remove(), 500);
-                    }, 5000);
                 });
             });
         }

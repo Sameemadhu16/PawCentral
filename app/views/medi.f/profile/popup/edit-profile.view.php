@@ -1,4 +1,7 @@
 <!-- Update Profile Popup -->
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <div id="profile-update-popup" class="popup-overlay">
     <div class="popup-content">
         <span class="close-btn">&times;</span>
