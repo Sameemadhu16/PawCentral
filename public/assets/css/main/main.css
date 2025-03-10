@@ -55,6 +55,21 @@
   --accent-blue: #007bff;
   --accent-green: #00c853;
   --accent-purple: #9c27b0;
+
+  /* BUTTON COLORS */
+  --button-normal: rgb(128, 73, 254, .9);
+  --button-normal-hover: rgb(128, 73, 254);
+  --warn-button: var(--danger);
+  --warn-button-hover: var(--danger-dark);
+  
+  /* Scroll bar color  */
+  --scrollbar-color:rgb(128, 73, 254,.4) #ffffff;
+
+
+  /* Box Shadows */
+  --section-div-shadow:0 6px 8px rgba(0, 0, 0, 0.15);
+  --card-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover:0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 * {

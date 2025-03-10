@@ -63,11 +63,6 @@
           <label for="breed">Breed:</label>
           <select id="breed" name="breed" required>
             <option value="Other">Other</option>
-            <option value="Pomenarian">Pomenarian</option>
-            <option value="German Shapherd">German Shapherd</option>
-            <option value="Labrador">Labrador</option>
-            <option value="Bulldog">Bulldog</option>
-            <option value="Beagle">Beagle</option>
           </select>
 
 <script>
@@ -87,7 +82,7 @@
       { value: "Bengal", text: "Bengal" },
       { value: "Sphynx", text: "Sphynx" },
     ],
-    Other: [{ value: "Other", text: "Other" }],
+    Other: [],
   };
 
   function updateBreedOptions() {
