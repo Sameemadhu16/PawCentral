@@ -2,12 +2,27 @@
 <html lang="en">
 
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Requests</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shelter/donation.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script>
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
 </head>
 
 <body class="body">
@@ -18,72 +33,177 @@
         <?php include("../app/views/components/user/sidebar.php"); ?>
 
         <div class="user-accounts-section">
-            <div class="header-section">
-                <h2>Donation requests</h2>
-                <button class="ask-support-button">Ask for support</button>
-            </div>
-
-            <div class="donation-section">
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
+            
+            
+                <?php if (!empty($requests)) : ?>
+                    <div class="header-section">
+                        <h2>Donation requests</h2>
+                        <button class="quick-action-button fixedsize" onclick="openPopup()">Ask for Support</button>
                     </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 10%; background-color: #F4A261;"></span>
+                    <div class="cards-container">
+                    <?php foreach ($requests as $req) : ?>
+                        <div class="donation-card">
+                            <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
+                            <div class="card-content">
+                                <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
+                                <p class="description"><?= htmlspecialchars($req->reason) ?></p>
+                                <div class="progress-bar-container">
+                                    <?php 
+                                        $progress = ($req->collected / $req->amount) * 100;
+                                        $progress = min(100, max(0, $progress)); // Ensure between 0-100
+                                    ?>
+                                    <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                                </div>
+                                <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
+                                <button class="don-but">Edit Info</button>
+                                <button class="don-but close-but" 
+                                    onclick="showPopup(<?= htmlspecialchars($req->id) ?>, 
+                                    '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
+                                    'Are you sure want to close this donation request ?<br><?= htmlspecialchars(addslashes($req->title)) ?>')" >
+                                    Close Request
+                                </button>
+                            </div>
                         </div>
-                        <p>Rs. 2500 collected / Rs. 25000</p>
+                    <?php endforeach; ?>
                     </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
+                <?php else : ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
                     </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 5%; background-color: #F4A261;"></span>
-                        </div>
-                        <p>Rs. 1250 collected / Rs. 25000</p>
-                    </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 20%; background-color: #F4A261;"></span>
-                        </div>
-                        <p>Rs. 5000 collected / Rs. 25000</p>
-                    </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-
-                <div class="donation-card">
-                    <div class="icon-section">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <div class="details-section">
-                        <h3>For Tiny’s medical expenses</h3>
-                        <div class="progress-bar">
-                            <span class="progress" style="width: 5%; background-color: #F4A261;"></span>
-                        </div>
-                        <p>Rs. 1250 collected / Rs. 25000</p>
-                    </div>
-                    <button class="remove-request-button">Remove request</button>
-                </div>
-            </div>
+                <?php endif; ?>
+            
 
         </div>
-
     </div>
+    <div id="popupForm" class="popup-container">
+        <div class="form-container">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Add your pet info</h2>
+            <form id="petForm" action="<?= ROOT ?>/userprofile/donations/req" method="POST" enctype="multipart/form-data">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="need">Need for Donation:</label>
+                    <select id="need" name="need" required>
+                        <option value="Other">Other</option>
+                        <option value="Bills">Medical Bills</option>
+                        <option value="CareSupport">Care Support</option>
+                        <option value="Food">Food</option>
+                        <option value="Medicine">Medicine</option>
+                        <option value="Supplies">Supplies</option>
+                    </select>
+                    <label for="reason">Brief intro for the Request:</label>
+          <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason briefly." maxlength="100"></textarea>
+
+                <label for="info">Explain the reason for the Donation Request:</label>
+          <textarea id="info" name="info" rows="7" placeholder="Describe specifics about the need,
+regarding situation.
+or any other information that the donators should made aware of to donate to your request."></textarea>
+
+                <label for="donimg">Upload a Photo:</label>
+                <input type="file" id="donimg" name="photos[]" accept="image/*" required>
+          <div id="imagePreviewContainer"></div>
+          <script>
+              document.getElementById('donimg').addEventListener('change', function () {
+                const maxFiles = 1;
+                const fileInput = this;
+                
+                if (fileInput.files.length > maxFiles) {
+                  feedback.style.display = 'block';
+                  fileInput.value = ''; // Clear the input
+                } else {
+                  feedback.style.display = 'none';
+                }
+              });
+
+              document.getElementById('donimg').addEventListener('change', function () {
+                const previewContainer = document.getElementById('imagePreviewContainer');
+                previewContainer.innerHTML = ''; // Clear existing previews
+
+                Array.from(this.files).forEach(file => {
+                  if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    // img.style.width = '100px';
+                    // img.style.margin = '5px';
+                    previewContainer.appendChild(img);
+                  }
+                });
+              });
+          </script>
+                    <label for="amount">Required Amount:</label>
+                    <input type="number" id="amount" name="amount" min="0" max="100000" step="any" required>
+
+                    <label for="before_date">Before when do you need the support:</label>
+                    <input type="date" id="before_date" name="before_date" required>
+                    
+                    <script>
+                        document.querySelector('form').addEventListener('submit', function (event) {
+                        const amount = document.getElementById('amount').value;
+
+                        // Validate expire date of the req
+                        const before_date = new Date(document.getElementById('before_date').value);
+                        const today = new Date();
+                        if (before_date < today) {
+                            alert('request deadline date cannot be in the past.');
+                            event.preventDefault(); // Prevent form submission
+                        }
+
+                        // Validate height
+                        if (amount < 0 || amount > 100000) {
+                            alert('Height must be between 0 and 100 000 Rs.');
+                            event.preventDefault(); // Prevent form submission
+                            return;
+                        }
+
+                        // If all validations pass, the form will submit
+                        });
+                    </script>
+
+                <!-- Bank Details -->
+                <fieldset>
+                    <legend>Bank Details</legend>
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" name="bankName">
+                    <br>
+                    <label for="accountHolder">Account Holder Name:</label>
+                    <input type="text" id="accountHolder" name="accountHolder">
+                    <br>
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" name="accountNumber">
+                    <br>
+                    <label for="swiftCode">SWIFT Code / IBAN (if applicable):</label>
+                    <input type="text" id="swiftCode" name="swiftCode">
+                </fieldset>
+
+                <!-- Agreement -->
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    I agree to the terms and conditions for receiving and requesting for donations.
+                </label>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+<!-- hide pop up containers -->
+    <script>    
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+    </script>
+
+    
+<script src="<?= ROOT ?>/assets/js/popupform.js"></script>
+
 </body>
 
 </html>
