@@ -221,7 +221,7 @@ function profileAction() {
                         throw new Error('Network response was not ok');
                     }
                     // Reload the page to show updated information
-                    // window.location.reload();
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.error('Error:', error);

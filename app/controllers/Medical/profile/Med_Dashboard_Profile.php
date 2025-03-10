@@ -192,13 +192,13 @@ class Med_Dashboard_Profile {
                 
                 if ($medInfo) {
                     // Merge medical provider specific details
-                    if (!empty($medInfo->location) && empty($userInfo->location)) {
-                        $userInfo->location = $medInfo->location;
-                    }
-                    
-                    if (!empty($medInfo->about)) {
-                        $userInfo->about = $medInfo->about;
-                    }
+                    $userInfo->location = $medInfo->location;                  
+                    $userInfo->medical_name = $medInfo->name ?? null;
+                    $userInfo->img = $medInfo->img ?? null;
+                    $userInfo->license_proof = $medInfo->license_proof ?? null;
+                    $userInfo->contact_no = $medInfo->contact_no ?? null;
+                    $userInfo->about_us = $medInfo->about_us ?? null;
+                    $userInfo->verifiedStatus = $medInfo->verifiedStatus ?? 0;
                 }
             }
             
