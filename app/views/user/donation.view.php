@@ -56,7 +56,12 @@
                                 </div>
                                 <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
                                 <button class="don-but">Edit Info</button>
-                                <button class="don-but close-but" onclick="showPopup(<?= htmlspecialchars($req->id) ?>, '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>','Are you sure want to close this donation request ?<br><?= htmlspecialchars($req->title) ?>')" >Close Request</button>
+                                <button class="don-but close-but" 
+                                    onclick="showPopup(<?= htmlspecialchars($req->id) ?>, 
+                                    '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
+                                    'Are you sure want to close this donation request ?<br><?= htmlspecialchars(addslashes($req->title)) ?>')" >
+                                    Close Request
+                                </button>
                             </div>
                         </div>
                     <?php endforeach; ?>
