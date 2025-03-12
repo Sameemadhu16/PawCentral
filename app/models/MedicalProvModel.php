@@ -8,6 +8,7 @@ class MedicalProvModel
 
     protected $allowedColumns = [
         'user_id',
+        'med_id',
         'name',
         'img',
         'license_proof',
