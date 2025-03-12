@@ -8,5 +8,7 @@ class MedicalProvModel
 
     protected $allowedColumns = ['user_id', 'med_id', 'location', 'about', 'service_name', 'status'];
 
+    protected $order_column = 'created_at';
+
     public $errors = [];
 }

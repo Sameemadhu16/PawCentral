@@ -14,10 +14,14 @@
 </head>
 
 <body class="body">
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php"); 
+    
+    ?>
 
     <div class="main-container">
-        <?php include("../app/views/components/user/sidebar.php"); ?>
+        <?php include("../app/views/components/user/sidebar.php");
+        
+        ?>
 
         <div class="user-accounts-section">
             <div class="events-sec">

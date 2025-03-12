@@ -52,6 +52,15 @@
     border-radius: 10px;
     object-fit: cover;
 }
+.participants {
+    display: inline-block;
+    background-color: rgb(128, 73, 254, .5);
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+}
 
 /* Event Details */
 .event-details {
