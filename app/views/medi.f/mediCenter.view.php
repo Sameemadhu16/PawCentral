@@ -12,19 +12,19 @@
     <div class="container">
         <div class="hero">
             <div class="medimage">
-                <img src="<?= ROOT ?>/assets/images/shop.png" alt="Medical Image">
+                <img src="<?= $medical_center->img ?>" alt="Medical Image">
             </div>
             <div class="medi_info">
                 <div class="medi_name">
-                    <h1>Medical Center Name</h1>
-                    <p>Location</p>
+                    <h1><?= $medical_center->name ?></h1>
+                    <p><?= $medical_center->location ?></p>
                 </div>
                 <div class="about">
                     <h2>About Us:</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                    <p><?= $medical_center->about_us ?></p>
                 </div>
                 <div class="appointment_btn">
-                    <a href="<?=ROOT?>/medical-appointment-date">
+                    <a href="<?=ROOT?>/medical-appointment-date/<?= $medical_center->med_id ?>">
                         <button>Book Appointment</button>
                     </a>
                 </div>
@@ -66,11 +66,11 @@
             <div class="contact_details">
                 <div class="contact_card">
                     <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Contact">
-                    <p>Whatsapp: 081234567890</p>   
+                    <p>Whatsapp: <?= $medical_center->contact_no ?></p>   
                 </div>
                 <div class="contact_card">
                     <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Email">
-                    <p>Email: example@example.com</p>
+                    <p>Email: <?= $medical_center->email ?></p>
                 </div>
             </div>
         </div>
