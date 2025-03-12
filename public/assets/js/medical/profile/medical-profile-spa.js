@@ -113,121 +113,160 @@ function loadPage(page, callback) {
 function profileAction() {
     console.log("Profile action function called");
     
-        // Elements
-        const updateButton = document.getElementById('update-profile-btn');
-        const changePhotoBtn = document.getElementById('change-photo-btn');
-        const popup = document.getElementById('profile-update-popup');
-        const closeBtn = document.querySelector('.close-btn');
-        const updateForm = document.getElementById('update-profile-form');
-        const profilePicInput = document.getElementById('profile_pic');
-        const imagePreviewContainer = document.querySelector('.image-preview-container');
+    // Elements
+    const updatePopupBtn = document.getElementById('update-profile-btn');
+    const updateForm = document.getElementById('update-profile-form');
+    const changePhotoBtn = document.getElementById('change-photo-btn');
+    const popup = document.getElementById('profile-update-popup');
+    const closeBtn = document.querySelector('.close-btn');
+    const profilePicInput = document.getElementById('profile_pic');
+    const imagePreviewContainer = document.querySelector('.image-preview-container');
+
+    // Handle form submission - Set this up first to ensure it's registered
+    if (updateForm) {
+        console.log("Setting up form submission handler");
         
-        // Open popup when update button is clicked - with direct inline click handler
-        if (updateButton && popup) {            
-            // Remove any existing event listeners (to avoid duplication)
-            updateButton.removeEventListener('click', openUpdatePopup);
+        // Define a named handler function
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            console.log('Form submitted!');
             
-            // Define a named handler function
-            function openUpdatePopup() {
-                console.log('Update button clicked!');
-                window.debugLog?.('Update button clicked!');
-                popup.style.display = 'flex';
-                return false;
+            const formData = new FormData(updateForm);
+            
+            // Log FormData entries to console
+            console.log('Form data contents:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
             }
             
-            // Add the event listener
-            updateButton.addEventListener('click', openUpdatePopup);
-
-        }
-        
-        // Auto-hide messages after 5 seconds
-        const messages = document.querySelectorAll('.message');
-        if (messages.length > 0) {
-            setTimeout(() => {
-                messages.forEach(msg => {
-                    msg.style.opacity = '0';
-                    setTimeout(() => msg.style.display = 'none', 500);
+            // Get the base URL from the current window location
+            const baseUrl = window.location.origin + '/PawCentral/public';
+            const endpoint = `${baseUrl}/medical-center/dashboard/profile/update-profile`;
+            console.log('Submitting to:', endpoint);
+            
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(response => {
+                console.log('Response received:', response);
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+                
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        console.log('Error response text:', text);
+                        try {
+                            return JSON.parse(text);
+                        } catch (e) {
+                            throw new Error('Server error: ' + text);
+                        }
+                    }).then(err => {
+                        throw new Error(err.message || 'Network response was not ok');
+                    });
+                }
+                
+                return response.text().then(text => {
+                    console.log('Success response text:', text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.log('Response is not JSON, using text');
+                        return { status: 'success', message: 'Profile updated successfully' };
+                    }
                 });
-            }, 5000);
-        }
-        
-        // Clicking on change photo also opens the popup with focus on profile pic input
-        if (changePhotoBtn && popup && profilePicInput) {
-            changePhotoBtn.addEventListener('click', () => {
-                console.log('Change photo clicked');
-                popup.style.display = 'flex';
-                // Scroll to profile pic input and focus it
-                profilePicInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                setTimeout(() => profilePicInput.focus(), 500);
+            })
+            .then(data => {
+                console.log('Success:', data);
+                // Show success message
+                // alert(data.message || 'Profile updated successfully!');
+                // Close the popup
+                popup.style.display = 'none';
+                // Reload the page to show updated information
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Failed to update profile. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                if (saveButton) {
+                    saveButton.textContent = 'Save Changes';
+                    saveButton.disabled = false;
+                }
             });
         }
         
-        // Close popup when X is clicked
-        if (closeBtn && popup) {
-            closeBtn.addEventListener('click', () => {
-                popup.style.display = 'none';
-            });
+        // Remove any existing event listeners to avoid duplication
+        updateForm.removeEventListener('submit', handleFormSubmit);
+        
+        // Add the event listener to the form
+        updateForm.addEventListener('submit', handleFormSubmit);
+        console.log("Form submission handler attached");
+    } else {
+        console.error("Update form not found!");
+    }
+
+    // Open popup when update button is clicked
+    if (updatePopupBtn && popup) {            
+        updatePopupBtn.removeEventListener('click', openUpdatePopup);
+        
+        function openUpdatePopup() {
+            console.log('Update button clicked!');
+            window.debugLog?.('Update button clicked!');
+            popup.style.display = 'flex';
+            return false;
         }
         
-        // Close popup when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
+        updatePopupBtn.addEventListener('click', openUpdatePopup);
+    }
+    
+    // Clicking on change photo also opens the popup with focus on profile pic input
+    if (changePhotoBtn && popup && profilePicInput) {
+        changePhotoBtn.addEventListener('click', () => {
+            console.log('Change photo clicked');
+            popup.style.display = 'flex';
+            // Scroll to profile pic input and focus it
+            profilePicInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => profilePicInput.focus(), 500);
+        });
+    }
+    
+    // Close popup when X is clicked
+    if (closeBtn && popup) {
+        closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+    }
+    
+    // Close popup when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+    
+    // Preview uploaded image
+    if (profilePicInput && imagePreviewContainer) {
+        profilePicInput.addEventListener('change', function() {
+            imagePreviewContainer.innerHTML = ''; // Clear previous previews
+            
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Profile Picture Preview';
+                    imagePreviewContainer.appendChild(img);
+                };
+                
+                reader.readAsDataURL(this.files[0]);
             }
         });
-        
-        // Preview uploaded image
-        if (profilePicInput && imagePreviewContainer) {
-            profilePicInput.addEventListener('change', function() {
-                imagePreviewContainer.innerHTML = ''; // Clear previous previews
-                
-                if (this.files && this.files[0]) {
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.alt = 'Profile Picture Preview';
-                        imagePreviewContainer.appendChild(img);
-                    };
-                    
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-        }
-        
-        // Handle form submission
-        if (updateForm) {
-            updateForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                
-                // Log FormData entries to console
-                console.log('Form data contents:');
-                for (let [key, value] of formData.entries()) {
-                    console.log(`${key}: ${value}`);
-                }
-                
-                // Get the base URL from the current window location
-                const baseUrl = window.location.origin + '/PawCentral/public';
-                
-                fetch(`${baseUrl}/medical-center/dashboard/profile/update-profile`, {
-                    method: 'POST',
-                    body: formData,
-                    credentials: 'include'
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    // Reload the page to show updated information
-                    window.location.reload();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            });
-        }
+    }
 }
 
 function appointmentsAction() {

@@ -18,7 +18,14 @@ class Med_Dashboard_Profile {
 
     // New method to handle dedicated update-profile route
     public function updateProfile() {
+        // Always set the content type to JSON for consistency
+        header('Content-Type: application/json');
+        
         try {
+            // Log the request for debugging
+            error_log("Update profile request received: " . json_encode($_POST));
+            error_log("Files received: " . json_encode($_FILES));
+            
             $user = new User();
             
             if (!isset($_SESSION['user']) || !$_SESSION['user']->id) {
@@ -29,12 +36,24 @@ class Med_Dashboard_Profile {
             $data = [
                 'first_name' => trim($_POST['first_name'] ?? ''),
                 'last_name' => trim($_POST['last_name'] ?? ''),
-                'email' => trim($_POST['email'] ?? ''),
-                'mobile_no' => trim($_POST['mobile_no'] ?? ''),
-                'location' => trim($_POST['location'] ?? ''),
-                'about' => trim($_POST['about'] ?? '')
+                'email' => trim($_POST['email'] ?? '')
             ];
             
+            // Medical provider specific data
+            $medData = [
+                'name' => trim($_POST['medical_name'] ?? ''),
+                'contact_no' => trim($_POST['contact_no'] ?? ''),
+                'location' => trim($_POST['location'] ?? ''),
+                'about_us' => trim($_POST['about_us'] ?? '')
+            ];
+            
+            // Ensure contact_no is stored as a string
+            if (isset($medData['contact_no']) && strlen($medData['contact_no']) > 0) {
+                // Validate phone number format
+                if (!preg_match('/^[0-9+\-\s()]*$/', $medData['contact_no'])) {
+                    throw new Exception("Invalid phone number format. Please use 07xxxxxxxx format.");
+                }
+            }
             
             // Validate required fields
             if (empty($data['first_name']) || empty($data['last_name']) || empty($data['email'])) {
@@ -69,16 +88,45 @@ class Med_Dashboard_Profile {
 
                 // Upload the file
                 if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
-                    $data['profile_pic'] = $target_file;
+                    $medData['img'] = $target_file;
                 } else {
                     $error = error_get_last();
                     throw new Exception("Failed to upload file: " . ($error ? $error['message'] : 'Unknown error'));
                 }
             }
+            
+            // Handle license proof upload
+            if (isset($_FILES['license_proof']) && $_FILES['license_proof']['error'] == 0) {
+                $target_dir = "uploads/license-proofs/";
+                
+                // Create directory if doesn't exist
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
 
-            // Update user profile
+                // Generate unique filename
+                $file_name = basename($_FILES['license_proof']['name']);
+                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                $target_file = $target_dir . uniqid() . "." . $file_ext;
+
+                // Validate file type
+                $allowed_types = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
+                if (!in_array($file_ext, $allowed_types)) {
+                    throw new Exception("Only JPG, JPEG, PNG, GIF & PDF files are allowed for license proof.");
+                }
+
+                // Upload the file
+                if (move_uploaded_file($_FILES['license_proof']['tmp_name'], $target_file)) {
+                    $medData['license_proof'] = $target_file;
+                } else {
+                    $error = error_get_last();
+                    throw new Exception("Failed to upload license proof: " . ($error ? $error['message'] : 'Unknown error'));
+                }
+            }
+
+            // Update user profile in users table
             if (!$user->update($_SESSION['user']->id, $data)) {
-                throw new Exception("Database update failed.");
+                throw new Exception("User database update failed.");
             }
             
             // Update session with new user data
@@ -88,26 +136,27 @@ class Med_Dashboard_Profile {
             // Update medical provider specific data
             if (isset($_SESSION['role_id'])) {
                 $medprov = new MedicalProvModel();
-                $medData = [
-                    'location' => $data['location'],
-                    'about' => $data['about']
-                ];
-                $medprov->update($_SESSION['role_id'], $medData, 'med_id');
+                
+                // Log the data being sent to the medical provider update
+                error_log("Updating medical provider with data: " . json_encode($medData));
+                error_log("Medical provider ID: " . $_SESSION['role_id']);
+                
+                if (!$medprov->update($_SESSION['role_id'], $medData, 'med_id')) {
+                    throw new Exception("Medical provider database update failed.");
+                }
+            } else {
+                throw new Exception("Medical provider role not found.");
             }
 
             // Return success response
             $_SESSION['success'] = "Profile updated successfully!";
             
-            // Return JSON for AJAX requests
-            if ($this->isAjaxRequest()) {
-                echo json_encode([
-                    'status' => 'success',
-                    'message' => 'Profile updated successfully'
-                ]);
-            } else {
-                // For form submissions, redirect back to profile
-                redirect('medical-center/dashboard#profile');
-            }
+            // Always return JSON
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Profile updated successfully',
+                'redirect' => ROOT . '/medical-center/dashboard#profile'
+            ]);
 
         } catch (Exception $e) {
             // Log the error
@@ -116,17 +165,12 @@ class Med_Dashboard_Profile {
             // Set session error for page loads
             $_SESSION['error'] = $e->getMessage();
             
-            // Return JSON error for AJAX requests
-            if ($this->isAjaxRequest()) {
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => $e->getMessage()
-                ]);
-            } else {
-                // For form submissions, redirect back to profile
-                redirect('medical-center/dashboard#profile');
-            }
+            // Return JSON error
+            http_response_code(400);
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 

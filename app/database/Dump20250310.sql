@@ -253,7 +253,7 @@ CREATE TABLE `medical_providers` (
   `location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `open_hours` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `working_days` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `contact_no` int DEFAULT NULL,
+  `contact_no` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `services` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `about_us` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `verifiedStatus` tinyint(1) NOT NULL DEFAULT '0',
