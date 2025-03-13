@@ -55,10 +55,12 @@ if (session_status() == PHP_SESSION_NONE) {
                             <?php endif; ?>
                         </div>
                         <div class="verification-status">
-                            <?php if(isset($profile->verifiedStatus) && $profile->verifiedStatus == 1): ?>
-                                <span class="status-verified"><i class="fas fa-check-circle"></i><span>Verified</span></span>
-                            <?php else: ?>
+                            <?php if(isset($profile->verifiedStatus) && $profile->verifiedStatus == 'approved'): ?>
+                                <span class="status-verified"><i class="fas fa-check-circle"></i><span>Approved</span></span>
+                            <?php elseif($profile->verifiedStatus == 'pending'): ?>
                                 <span class="status-pending"><i class="fas fa-clock"></i><span>Pending</span></span>
+                            <?php elseif($profile->verifiedStatus == 'rejected'): ?>
+                                <span class="status-rejected"><i class="fas fa-times-circle"></i><span>Rejected</span></span>
                             <?php endif; ?>
                         </div>
                     </div>

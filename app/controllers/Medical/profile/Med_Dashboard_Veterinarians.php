@@ -54,13 +54,13 @@ class Med_Dashboard_Veterinarians {
 
         try {
             $veterinarianModel = new Veterinarians;
-            $vet = $veterinarianModel->first(['id' => $id]);
+            $vet = $veterinarianModel->first(['vet_id' => $id]);
             
             if ($vet) {
                 echo json_encode([
                     'status' => 'success',
                     'vet' => [
-                        'id' => $vet->id,
+                        'id' => $vet->vet_id,
                         'name' => $vet->name,
                         'experience' => $vet->experience,
                         'availability' => $vet->availability,
@@ -132,7 +132,7 @@ class Med_Dashboard_Veterinarians {
     }
 
     private function delete($veterinarianModel, $id) {
-        $result = $veterinarianModel->delete($id);
+        $result = $veterinarianModel->delete($id, 'vet_id');
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Veterinarian deleted successfully']);
         } else {
@@ -155,11 +155,6 @@ class Med_Dashboard_Veterinarians {
             
             if (!empty($_POST['availability'])) {
                 $data['availability'] = $_POST['availability'];
-            }
-
-            // Add med_id from session if not already set
-            if (isset($_SESSION['role_id'])) {
-                $data['med_id'] = $_SESSION['role_id'];
             }
 
             // Handle image upload if new image is provided
@@ -190,7 +185,7 @@ class Med_Dashboard_Veterinarians {
                     }
                 }
 
-                $result = $veterinarianModel->update($id, $data);
+                $result = $veterinarianModel->update($id, $data, 'vet_id');
                 
                 if ($result) {
                     echo json_encode(['status' => 'success', 'message' => 'Veterinarian updated successfully', 'vet' => $data]);

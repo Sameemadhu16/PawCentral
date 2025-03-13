@@ -3,9 +3,6 @@
 // Autoload PHPMailer and other dependencies
 require __DIR__ . '/../../../vendor/autoload.php';
 
-
-
-
 // Import PHPMailer Classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

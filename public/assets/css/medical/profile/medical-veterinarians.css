@@ -45,6 +45,7 @@
     padding: 0.625rem 1.25rem;
 }
 
+/* Card Collection Styles */
 .vet-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -55,16 +56,24 @@
     place-items: center;
 }
 
+/* Card Styles */
 .vet-card {
     display: flex;
     flex-direction: row;
-    gap: 10px;
-    align-content: center;
+    gap: 15px;
+    align-items: center;
     max-width: 500px;
-    width: auto;
-    padding: 25px;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--secondary);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--shadow-md);
+    transition: transform 0.3s ease;
 }
 
+.vet-card:hover {
+    transform: translateY(-5px);
+}
 
 .page-style-veterinarians .vet-details {
     flex-grow: 1;
@@ -129,6 +138,16 @@
     .add-button-div {
         justify-content: center;
         margin: 1rem;
+    }
+    
+    .vet-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .page-style-veterinarians .buttons-div {
+        justify-content: center;
     }
 }
 

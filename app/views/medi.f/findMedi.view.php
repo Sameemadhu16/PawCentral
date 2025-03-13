@@ -22,15 +22,17 @@
             <?php 
                 if(!empty($medical_centers)) {
                     foreach($medical_centers as $center) {
+                        if($center->verifiedStatus == 'approved') {
                         echo "
                         <div class='card'>
-                            <a href='medical-centers/medical-center/{$center->med_id}' class='link-medi'><img src='{$center->img}' alt='Center image' class='card-image'></a>
+                            <a href='medical-centers/medical-center?id={$center->med_id}' class='link-medi'><img src='{$center->img}' alt='Center image' class='card-image'></a>
                             <div class='card-content'>
-                                <a href='<?= ROOT ?>/medical-centers/medical-center/{$center->med_id}' class='link-medi'><h2 class='card-title'>{$center->name}</h2></a>
+                                <a href='medical-centers/medical-center?id={$center->med_id}' class='link-medi'><h2 class='card-title'>{$center->name}</h2></a>
                                 <p class='card-subtitle'>{$center->location}</p>
-                                <a href='<?= ROOT ?>/medical-appointment-date/{$center->med_id}' class='link-medi'><button class='card-button' onclick='bookAppointment('{$center->med_id}')'>Book appointment</button></a>
+                                <a href='medical-appointment-date?id={$center->med_id}' class='link-medi'><button class='card-button' onclick='bookAppointment('{$center->med_id}')'>Book appointment</button></a>
                             </div>
                         </div>";
+                        }
                     }
                 } else {
                     echo "<p>No medical centers found.</p>";

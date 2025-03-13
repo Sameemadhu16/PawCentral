@@ -118,7 +118,7 @@ route('shelter/post','shelter/Post@index');
 
 //medical routing
     route('medical-centers','Medical/FindMedi@index');
-    route('medical-centers/medical-center/:id','Medical/MediCenter@index');
+    route('medical-centers/medical-center','Medical/MediCenter@index');
     route('medical-appointment-date','Medical/Appointment_Date@index');
     route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
     route('medical-appointment-reason','Medical/Appointment_Reason@index');

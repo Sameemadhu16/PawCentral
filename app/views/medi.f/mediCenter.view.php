@@ -12,7 +12,7 @@
     <div class="container">
         <div class="hero">
             <div class="medimage">
-                <img src="<?= $medical_center->img ?>" alt="Medical Image">
+                <img src="<?= ROOT . '/' . $medical_center->img ?>" alt="Medical Image">
             </div>
             <div class="medi_info">
                 <div class="medi_name">
@@ -32,13 +32,13 @@
         </div>
         <div class="services">
             <h2>Our Services</h2>
-            <div class="service_cards_collection">
-                <div class="service_card">
+            <div class="service_cards_collection cards-collection">
+                <div class="service_card card">
                     <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
                     <h3>Service 1</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
                 </div>
-                <div class="service_card">
+                <div class="service_card card">
                     <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
                     <h3>Service 2</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
@@ -47,29 +47,38 @@
         </div>
         <div class="veterinarians">
             <h2>Our Veterinarians</h2>
-            <div class="vet_cards_collection">  
-                <div class="vet_card">
-                    <img src="<?= ROOT ?>/assets/images/vet.png" alt="Veterinarian 1">
-                    <h3>Veterinarian 1</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-                </div>
-                <div class="vet_card">
-                    <img src="<?= ROOT ?>/assets/images/vet.png" alt="Veterinarian 2">
-                    <h3>Veterinarian 2</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-                </div>
+            <div class="vet_cards_collection cards-collection">  
+            <?php 
+                if(!empty($veterinarians)) {
+                    foreach($veterinarians as $vet) {
+                        echo "
+                        <div class='vet_card card'>
+                            <div class='vet-image'>
+                                <img src='$vet->img' alt='{$vet->name}'>
+                            </div>
+                            <div class='vet-details'>
+                                <h3>{$vet->name}</h3>
+                                <p><strong>Experience:</strong> {$vet->experience}</p>
+                                <p><strong>Availability:</strong> {$vet->availability}</p>
+                            </div>
+                        </div>";
+                    }
+                } else {
+                    echo "<p>No veterinarians found.</p>";
+                }
+            ?>
             </div>
         </div>
         
-        <div class="contact">
+        <div class="contact-section">
             <h2>Contact Us</h2>
-            <div class="contact_details">
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Contact">
+            <div class="contact_details cards-collection">
+                <div class="contact_card card">
+                    <img src="<?= ROOT ?>/assets/images/logos/whatsapp_icon.png" alt="Contact">
                     <p>Whatsapp: <?= $medical_center->contact_no ?></p>   
                 </div>
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/medical/sample.jpg" alt="Email">
+                <div class="contact_card card">
+                    <img src="<?= ROOT ?>/assets/images/logos/gmail_icon.png" alt="Email">
                     <p>Email: <?= $medical_center->email ?></p>
                 </div>
             </div>

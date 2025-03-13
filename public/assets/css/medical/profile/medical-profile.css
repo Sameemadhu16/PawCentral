@@ -433,6 +433,15 @@
     gap: 5px;
 }
 
+.page-style-profile .status-rejected {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    border-radius: 20px;
+    gap: 5px;
+}
+
 .page-style-profile .status-verified span{
     color: #28a745;
     font-size: 14px;
@@ -441,6 +450,12 @@
 
 .page-style-profile .status-pending span {
     color: #ffc107;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.page-style-profile .status-rejected span {
+    color: #dc3545;
     font-size: 14px;
     display: inline-block;
 }
@@ -459,6 +474,12 @@
     color: #ffc107;
 }
 
+.page-style-profile .status-rejected i {
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 2px;
+    color: #dc3545;
+}
 /*--------------------------------------------------
 * 11. RESPONSIVE STYLES
 --------------------------------------------------*/
