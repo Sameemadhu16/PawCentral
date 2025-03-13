@@ -21,6 +21,36 @@ h2 {
 }
 
 .cards-container {
+        border-radius: 10px;
+    background-color: rgb(128, 73, 254, .15);
+    box-shadow:   var(--section-div-shadow);
+    overflow-y: auto;
+    max-height: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    padding: 0 10px; /* Padding to prevent cards from touching the edges */
+    scrollbar-color: var(--scrollbar-color);
+}
+
+.donation-card {
+    display: flex;
+    flex:1;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    border: 1px solid #ddd;
+    max-width: calc(50% - 20px);
+    min-width: 400px;
+    max-width: 470px;
+    max-height: 270px;
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
     gap: min(10px, 2vw);
@@ -44,7 +74,7 @@ h2 {
     max-height: 270px;
     margin: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+} */
 
 .donation-card:hover {
     transform: translateY(-5px);
