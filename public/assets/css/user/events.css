@@ -139,7 +139,7 @@
 
 .participants {
     display: inline-block;
-    background-color: rgb(128, 73, 254,.5);
+    background-color: rgb(128, 73, 254,.3); /* Add color so that it changes based on how many are enrolled in */
     color: #333;
     padding: 5px 10px;
     border-radius: 10px;

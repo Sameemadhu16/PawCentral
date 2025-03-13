@@ -14,19 +14,6 @@ body {
     margin: 0 auto;
 }
 
-h1 {
-    text-align: center;
-}
-
-.sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    color: #3700b3;
-
-}
-
 .btn-primary {
     background-color: #8450e4;
     color: white;
@@ -41,11 +28,11 @@ h1 {
     background-color: #6A0DAD;
 }
 
-.event-list {
+.event-list-view {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 10px; /* Padding to prevent cards from touching the edges */
 }
 
@@ -112,7 +99,7 @@ h1 {
   
   .event-actions .find-more-btn,
   .event-actions .enroll-btn {
-    background-color: #589bf9;
+    background-color: var(--button-normal);
     /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
     border: none;
     width: 100%;
@@ -127,7 +114,7 @@ h1 {
   
   .event-actions .find-more-btn:hover,
   .event-actions .enroll-btn:hover {
-    background-color: #2578eb;
+    background-color: var(--button-normal-hover);
   }
   
 
