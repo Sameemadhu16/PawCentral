@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Events</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
+
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/event.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -28,10 +29,10 @@
 
             </div>
             <div class="event-slider">
-                <div class="slide-buttons">
+                <!-- <div class="slide-buttons">
                     <button class="slide-button" id="slide-left"><i class="fas fa-chevron-left"></i></button>
                     <button class="slide-button" id="slide-right"><i class="fas fa-chevron-right"></i></button>
-                </div>
+                </div> -->
                 <div id="eventList" class="event-list">
                     <?php if (empty($events)) : ?>
                         <p>No events available.</p>
@@ -81,7 +82,7 @@
                                 <td><?= esc($event->title) ?></td>
                                 <td><?= esc($event->date) ?></td>
                                 <td><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?></td>
-                                <td><?= esc($event->status == 'pending' ? 'Pending' : ($event->status == 'approved' ? 'Approved' : ($event->status == 'rejected' ? 'Rejected' : $event->status))) ?></td>
+                                <td><?= esc($event->status == 0 ? 'Pending' : ($event->status == 1 ? 'Approved' : ($event->status != 0 || $event->status != 1 ? 'Rejected' : $event->status))) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

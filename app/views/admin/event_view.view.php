@@ -36,8 +36,14 @@
                     <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?>participants enrolled</span>
                 </div>
                 <div class="event-actions">
-                    <button class="approve-btn" onclick="approveEvent()">Approve</button>
-                    <button class="delete-btn" onclick="deleteEvent()">Delete</button>
+                    <form method="POST">
+                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                        <button class="approve-btn" name="approve" type="submit">Approve</button>
+                    </form>
+                    <form method="POST">
+                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                        <button class="delete-btn" name="reject" type="submit">Reject</button>
+                    </form>
                 </div>
             </div>
 
@@ -50,24 +56,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Function to handle event approval
-        function approveEvent() {
-            if (confirm("Are you sure you want to approve this event?")) {
-                alert("Event approved successfully!");
-                // Add backend API call logic here if needed
-            }
-        }
-
-        // Function to handle event deletion
-        function deleteEvent() {
-            if (confirm("Are you sure you want to delete this event?")) {
-                alert("Event deleted successfully!");
-                // Add backend API call logic here if needed
-            }
-        }
-    </script>
 </body>
 
 </html>
