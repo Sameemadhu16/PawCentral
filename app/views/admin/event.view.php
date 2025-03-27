@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($events as $event) : ?>
+                        <?php foreach ($allEvents as $event) : ?>
                             <tr onclick="window.location='<?= ROOT ?>/admin/event_view?id=<?= esc($event->event_id) ?>'">
                                 <td><?= esc($event->title) ?></td>
                                 <td><?= esc($event->date) ?></td>
