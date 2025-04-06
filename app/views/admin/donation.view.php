@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/donation.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="<?= ROOT ?>/assets/js/admin/donation.js" defer></script>
 </head>
 
 <body class="body">
@@ -18,131 +20,245 @@
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <div class="content">
-            <h2>Donations</h2>
-            <section class="donations-section">
+            <h2>Donations Management</h2>
 
-                <!-- Donation Card Example -->
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Max</h2>
-                        <p><strong>Reason:</strong> Emergency Surgery</p>
-                        <p><strong>Donation Amount:</strong> 20,000 LKR</p>
-                        <p><strong>Description :</strong> Max requires urgent surgery to treat a broken leg. With your support, we can save his life and give him a chance to walk again.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=2'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=2'">Reject</button>
+            <!-- Statistics Cards -->
+            <div class="donation-overview">
+                <div class="stat-card">
+                    <h3>Total Donations</h3>
+                    <div class="value">143,500 LKR</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Requests</h3>
+                    <div class="value">8</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Approved Requests</h3>
+                    <div class="value">23</div>
+                </div>
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <div class="value">45,200 LKR</div>
+                </div>
+            </div>
+
+            <!-- Pending Requests Section -->
+            <div class="section-title">
+                <h2>Pending Requests</h2>
+                <a href="<?= ROOT ?>/admin/donation/all" class="view-all">View All</a>
+            </div>
+
+            <div class="pending-requests">
+                <!-- Pending Request Card -->
+                <div class="request-card">
+                    <span class="badge">Urgent</span>
+                    <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/max.jpg');"></div>
+                    <div class="card-content">
+                        <h3>Max - Emergency Surgery</h3>
+                        <div class="info">
+                            <span>Requested: <strong>20,000 LKR</strong></span>
+                            <span>Collected: <strong>0 LKR</strong></span>
+                        </div>
+                        <p class="description">Max requires urgent surgery to treat a broken leg. With your support, we can save his life.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn approve" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=2'">Approve</button>
+                            <button class="btn reject" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=2'">Reject</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Buddy</h2>
-                        <p><strong>Reason:</strong> Food Supplies</p>
-                        <p><strong>Donation Amount:</strong> 5,000 LKR</p>
-                        <p><strong>Description :</strong> Buddy is a senior dog who needs daily special dietary food. Your donation will ensure he receives the care he deserves.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=3'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=3'">Reject</button>
-                    </div>
-                </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Luna</h2>
-                        <p><strong>Reason:</strong> Vaccination</p>
-                        <p><strong>Donation Amount:</strong> 8,000 LKR</p>
-                        <p><strong>Description :</strong> Luna is a stray cat that needs vaccinations to protect her from diseases. Help us keep her safe and healthy.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=4'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=4'">Reject</button>
+                <div class="request-card">
+                    <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/buddy.jpg');"></div>
+                    <div class="card-content">
+                        <h3>Buddy - Food Supplies</h3>
+                        <div class="info">
+                            <span>Requested: <strong>5,000 LKR</strong></span>
+                            <span>Collected: <strong>0 LKR</strong></span>
+                        </div>
+                        <p class="description">Buddy is a senior dog who needs daily special dietary food. Your donation will help.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn approve" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=3'">Approve</button>
+                            <button class="btn reject" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=3'">Reject</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Rocky</h2>
-                        <p><strong>Reason:</strong> Shelter Renovation</p>
-                        <p><strong>Donation Amount:</strong> 15,000 LKR</p>
-                        <p><strong>Description :</strong> Rocky and other animals are living in an old shelter that needs repairs. Your donation will help create a safe environment for them.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=5'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=5'">Reject</button>
-                    </div>
-                </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Bella</h2>
-                        <p><strong>Reason:</strong> Medical Treatment</p>
-                        <p><strong>Donation Amount:</strong> 12,000 LKR</p>
-                        <p><strong>Description :</strong> Bella was diagnosed with a respiratory infection. Your kind donation will ensure she receives proper treatment and recovers quickly.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=6'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=6'">Reject</button>
+                <div class="request-card">
+                    <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/luna.jpg');"></div>
+                    <div class="card-content">
+                        <h3>Luna - Vaccination</h3>
+                        <div class="info">
+                            <span>Requested: <strong>8,000 LKR</strong></span>
+                            <span>Collected: <strong>0 LKR</strong></span>
+                        </div>
+                        <p class="description">Luna is a stray cat that needs vaccinations to protect her from diseases.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn approve" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=4'">Approve</button>
+                            <button class="btn reject" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=4'">Reject</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Charlie</h2>
-                        <p><strong>Reason:</strong> Adoption Preparation</p>
-                        <p><strong>Donation Amount:</strong> 6,000 LKR</p>
-                        <p><strong>Description :</strong> Charlie needs grooming and basic supplies before he can be adopted. Your donation will make his transition to a loving home smoother.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=7'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=7'">Reject</button>
-                    </div>
-                </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Milo</h2>
-                        <p><strong>Reason:</strong> Emergency Care</p>
-                        <p><strong>Donation Amount:</strong> 18,000 LKR</p>
-                        <p><strong>Description :</strong> Milo was rescued after an accident and requires immediate care. Your help will ensure he gets the medical attention he needs.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=8'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=8'">Reject</button>
+                <div class="request-card">
+                    <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/rocky.jpg');"></div>
+                    <div class="card-content">
+                        <h3>Rocky - Shelter Renovation</h3>
+                        <div class="info">
+                            <span>Requested: <strong>15,000 LKR</strong></span>
+                            <span>Collected: <strong>0 LKR</strong></span>
+                        </div>
+                        <p class="description">Rocky and other animals are living in an old shelter that needs repairs.</p>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn approve" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=5'">Approve</button>
+                            <button class="btn reject" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=5'">Reject</button>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Daisy</h2>
-                        <p><strong>Reason:</strong> Spaying</p>
-                        <p><strong>Donation Amount:</strong> 7,000 LKR</p>
-                        <p><strong>Description :</strong> Daisy needs to be spayed to prevent unwanted litters. Your donation will help cover the cost of this important procedure.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=9'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=9'">Reject</button>
-                    </div>
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Donation Trends</h3>
+                    <canvas id="donationTrendChart"></canvas>
                 </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Oscar</h2>
-                        <p><strong>Reason:</strong> Transport to New Home</p>
-                        <p><strong>Donation Amount:</strong> 9,000 LKR</p>
-                        <p><strong>Description :</strong> Oscar has been adopted, but funds are needed to transport him to his new home. Your support can make this happen.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=10'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=10'">Reject</button>
-                    </div>
+                <div class="chart-card">
+                    <h3>Request Categories</h3>
+                    <canvas id="categoryChart"></canvas>
                 </div>
+            </div>
 
-                <!-- Add more donation cards as needed -->
-            </section>
+            <!-- All Donations List -->
+            <div class="section-title" style="margin-top: 30px;">
+                <h2>All Donation Requests</h2>
+                <div>
+                    <select id="statusFilter">
+                        <option value="all">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="donation-list">
+                <table class="donation-table">
+                    <thead>
+                        <tr>
+                            <th>Pet Name</th>
+                            <th>Reason</th>
+                            <th>Amount</th>
+                            <th>Collected</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Max</td>
+                            <td>Emergency Surgery</td>
+                            <td>20,000 LKR</td>
+                            <td>0 LKR</td>
+                            <td><span class="tag pending">Pending</span></td>
+                            <td>2025-04-01</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn approve-btn">Approve</button>
+                                    <button class="action-btn reject-btn">Reject</button>
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Buddy</td>
+                            <td>Food Supplies</td>
+                            <td>5,000 LKR</td>
+                            <td>0 LKR</td>
+                            <td><span class="tag pending">Pending</span></td>
+                            <td>2025-04-02</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn approve-btn">Approve</button>
+                                    <button class="action-btn reject-btn">Reject</button>
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Luna</td>
+                            <td>Vaccination</td>
+                            <td>8,000 LKR</td>
+                            <td>0 LKR</td>
+                            <td><span class="tag pending">Pending</span></td>
+                            <td>2025-04-03</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn approve-btn">Approve</button>
+                                    <button class="action-btn reject-btn">Reject</button>
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rocky</td>
+                            <td>Shelter Renovation</td>
+                            <td>15,000 LKR</td>
+                            <td>0 LKR</td>
+                            <td><span class="tag pending">Pending</span></td>
+                            <td>2025-04-03</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn approve-btn">Approve</button>
+                                    <button class="action-btn reject-btn">Reject</button>
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Charlie</td>
+                            <td>Adoption Preparation</td>
+                            <td>6,000 LKR</td>
+                            <td>6,000 LKR</td>
+                            <td><span class="tag approved">Approved</span></td>
+                            <td>2025-03-25</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Daisy</td>
+                            <td>Spaying</td>
+                            <td>7,000 LKR</td>
+                            <td>0 LKR</td>
+                            <td><span class="tag rejected">Rejected</span></td>
+                            <td>2025-03-20</td>
+                            <td>
+                                <div class="action-btns">
+                                    <button class="action-btn view-btn">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
     <?php include("../app/views/components/footer.php"); ?>
 </body>
 
