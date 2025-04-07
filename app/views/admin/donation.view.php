@@ -10,6 +10,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="<?= ROOT ?>/assets/js/admin/donation.js" defer></script>
+    <script>
+        const ROOT = "<?= ROOT ?>";
+    </script>
 </head>
 
 <body class="body">
@@ -45,7 +48,6 @@
             <!-- Pending Requests Section -->
             <div class="section-title">
                 <h2>Pending Requests</h2>
-                <a href="<?= ROOT ?>/admin/donation/all" class="view-all">View All</a>
             </div>
 
             <div class="pending-requests">

@@ -66,4 +66,68 @@
                 // This would typically trigger an AJAX call to refresh the table
             });
         });
-   
+
+        // Add this to your donation.js file
+        document.addEventListener('DOMContentLoaded', function() {
+          // Make request cards clickable
+          const requestCards = document.querySelectorAll('.request-card');
+          requestCards.forEach(card => {
+            // Extract the ID from the approve button's URL
+            const approveBtn = card.querySelector('.approve');
+            if (approveBtn) {
+              const href = approveBtn.getAttribute('onclick');
+              const idMatch = href.match(/id=(\d+)/);
+              const id = idMatch ? idMatch[1] : null;
+
+              if (id) {
+                // Make the whole card clickable, but avoid triggering when
+                // buttons are clicked
+                card.addEventListener('click', function(e) {
+                  // Check if the click was on a button
+                  if (!e.target.closest('.btn')) {
+                    window.location.href =
+                        ROOT + '/admin/donation_card?id=' + id;
+                  }
+                });
+              }
+            }
+          });
+
+          // Update view buttons to go to the donation card page
+          const viewButtons = document.querySelectorAll('.view-btn');
+          viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              // Get the donation ID from the row (you might need to add data
+              // attributes or extract from other elements)
+              const row = this.closest('tr');
+              const petName = row.querySelector('td:first-child').textContent;
+              // For demonstration, we're using index+1 as ID. In real
+              // application, you should use actual IDs
+              const index = Array.from(row.parentNode.children).indexOf(row);
+              window.location.href =
+                  ROOT + '/admin/donation_card?id=' + (index + 1);
+            });
+          });
+        });
+
+        // Donation card page functionality
+            // Tab functionality
+            document.querySelectorAll('.tab').forEach(tab => {
+              tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab').forEach(
+                    t => t.classList.remove('active'));
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                  content.style.display = 'none';
+                });
+
+                // Show the corresponding tab content
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).style.display = 'block';
+              });
+            });
