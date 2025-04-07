@@ -32,9 +32,9 @@ class AdminViewAnnouncement
 
     private function deleteAnnouncement($announcementModel, $id)
     {
-        $announcementModel->delete($id);
+        
+        $announcementModel->update($id, ['status' => 0]);
         redirect('admin/announcement');
     }
 
-    
 }
