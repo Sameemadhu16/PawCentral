@@ -5,20 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <style>
-       body{
-        justify-self: center;
-            justify-content: center;
-            align-self: center;
-            align-content: center;
-       }
-
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 10px;
             padding: 10px;
-            max-width: 1200px;
-            margin-left: 18%;
+            max-width: 1000px;
+            margin: 0 auto; /* <-- this centers it */
         }
 
         .donation-card {
@@ -31,6 +24,7 @@
             transition: transform 0.3s ease;
             max-width: 450px;
             max-height: 270px;
+            margin: 0px;
         }
 
         .donation-card:hover {
@@ -118,88 +112,35 @@
 
     <h1 class="heading">Donation Requests</h1>
     <div class="cards-container">
-        <!-- Card 1 -->
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/bambi_2.jpg');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the pets starving</h2>
-                <p class="description">We aim to provide food to 500 puppies in rural areas where they are suffering from starvation and malnutrition. These areas include mahapathana, helakanda.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 70%;"></div>
+    <?php if (!empty($requests)) : ?>
+        <?php foreach ($requests as $request) : ?>
+            <?php 
+                // Calculate progress percentage
+                $amount = (float) $request->amount;
+                $collected = (float) $request->collected;
+                $progress = $amount > 0 ? min(100, ($collected / $amount) * 100) : 0;
+                $imagePath = htmlspecialchars($request->img);
+            ?>
+            <div class="donation-card">
+                <div class="card-image" style="background-image: url('<?= $imagePath ?>');"></div>
+                <div class="card-content">
+                    <h2 class="title"><?= htmlspecialchars($request->title) ?></h2>
+                    <p class="description"><?= htmlspecialchars($request->reason) ?></p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                    </div>
+                    <p class="amount">
+                        <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
+                        $<?= number_format($amount, 2) ?>
+                    </p>
+                    <a href="<?= ROOT ?>/donations/view/<?= $request->id ?>" class="donate-button">Donate Now</a>
                 </div>
-                <p class="amount"><span class="collected">Raised: $7,000 / </span>$10,000</p>
-                <a href="#" class="donate-button">Donate Now</a>
             </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/found_1.png');"></div>
-            <div class="card-content">
-                <h2 class="title">Sterilization Camp</h2>
-                <p class="description">Support sterilizing stray dogs. Event is held by the LEO club of UCSC as a student project.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 50%;"></div>
-                </div>
-                <p class="amount"><span class="collected">Raised: $1,000 /</span> $2,000</p>
-                <a href="#" class="donate-button">Donate Now</a>
-                </div>
-        </div>
-        </div>
-        <div class="cards-container">
-        <!-- Card 3 -->
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/merchant/sell21.webp');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to pets in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 13%;"></div>
-                </div>
-                <p class="amount"><span class="collected">Raised: $1,200 / </span>$8,000</p>
-                <a href="#" class="donate-button">Donate Now</a>
-            </div>
-        </div>
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/bambi_1.jpg');"></div>
-            <div class="card-content">
-                <h2 class="title">Tiny's Leg Surgery</h2>
-                <p class="description">She got her leg broken by a road accident 5 months ago, and now is in extreme agony whenever she moves.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 85%;"></div>
-                </div>
-                <p class="amount"><span class="collected">Raised: $2,450 / </span>$3,000</p>
-                <a href="#" class="donate-button">Donate Now</a>
-            </div>
-        </div>
-    </div>
-    <div class="cards-container">
-        <!-- Card 3 -->
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/petres1.jpg');"></div>
-            <div class="card-content">
-                <h2 class="title">Funds in need for Happy Paws</h2>
-                <p class="description">Help raise funds to take care of the non-profit Happy Paws animal care centre.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 85%;"></div>
-                </div>
-                <p class="amount"><span class="collected">Raised: $8,500 / </span>$10,000</p>
-                <a href="#" class="donate-button">Donate Now</a>
-            </div>
-        </div>
-        <div class="donation-card">
-            <div class="card-image" style="background-image: url('assets/images/pets/found_1.png');"></div>
-            <div class="card-content">
-                <h2 class="title">Feed the Hungry</h2>
-                <p class="description">Join us in providing meals to families in need.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 66%;"></div>
-                </div>
-                <p class="amount"><span class="collected">Raised: $ 500 / </span>$1,500</p>
-                <a href="#" class="donate-button">Donate Now</a>
-            </div>
-        </div>
-    </div>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <p>No donation requests found.</p>
+    <?php endif; ?>
+</div>
   
 
     <?php include("../app/views/components/footer.php"); ?>

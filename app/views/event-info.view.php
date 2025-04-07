@@ -25,7 +25,7 @@
                         <img src="<?=ROOT?>/assets/images/pets/default_event.jpg" alt="Default Event Image">
                     <?php endif; ?>
                     <div class="event-details">
-                        <h2 id="event-name"><?= htmlspecialchars($event->title ?? '') ?></h2>
+                        <h1 id="event-name"><?= htmlspecialchars($event->title ?? '') ?></h2>
                         <p><strong>Date:</strong> <span id="event-date">
                             <?= date('D, jS F, Y', strtotime($event->date ?? '')) ?>, 
                             <?= htmlspecialchars($event->time ?? '') ?>
@@ -34,16 +34,14 @@
                             <?= htmlspecialchars($event->location ?? '') ?>, 
                             <?= htmlspecialchars($event->address ?? '') ?>
                         </span></p>
-                        <p><small>Published on: <span id="event-published-on">
-                            <?= date('Y-m-d', strtotime($event->created_at ?? '')) ?>
-                        </span></small></p>
+                        
                         <p><strong>Participants Enrolled:</strong> <span>
                             <?= htmlspecialchars($event->enrolled ?? 0) ?>/
                             <?= htmlspecialchars($event->max_participants ?? 0) ?>
                         </span></p>
-                        <p><strong>Status:</strong> <span>
-                            <?= htmlspecialchars($event->status ?? '') ?>
-                        </span></p>
+                        <p><small>Published on: <span id="event-published-on">
+                            <?= date('Y-m-d', strtotime($event->created_at ?? '')) ?>
+                        </span></small></p>
                     </div>
                 </div>
 

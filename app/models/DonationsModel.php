@@ -29,4 +29,14 @@ class DonationsModel
         $this->table=$this->donation_req;
         return $this->update($id, $data, 'id');
     }
+
+    // Public view donation requests
+    public function getViewReq()
+    {
+    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE status=0 AND approved = 1";
+
+    $result = $this->query($query);
+    return $result;
+    }
+
 }
