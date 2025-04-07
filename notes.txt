@@ -6,4 +6,5 @@ change style
 
 put a confirmation message for profile update
 
-add services to medical center crud
+add loading animation when loading pages
+

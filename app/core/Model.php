@@ -6,7 +6,6 @@ trait Model
     protected $limit = 10;
     protected $offset = 0;
     protected $order_type = "desc";
-    // protected $order_column = "id";
 
     // Generic get function for retrieving data with flexible options
     public function get($conditions = [], $options = [])

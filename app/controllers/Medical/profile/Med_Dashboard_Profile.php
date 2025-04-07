@@ -16,16 +16,11 @@ class Med_Dashboard_Profile {
         $this->view('medi.f/profile/med-profile', ['profile' => $profile]);
     }
 
-    // New method to handle dedicated update-profile route
     public function updateProfile() {
-        // Always set the content type to JSON for consistency
         header('Content-Type: application/json');
         
         try {
-            // Log the request for debugging
-            error_log("Update profile request received: " . json_encode($_POST));
-            error_log("Files received: " . json_encode($_FILES));
-            
+                  
             $user = new User();
             
             if (!isset($_SESSION['user']) || !$_SESSION['user']->id) {

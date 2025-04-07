@@ -4,6 +4,7 @@ class Veterinarians {
     use Model;
 
     protected $table = 'veterinarians';
+    protected $order_column = 'vet_id';
 
     protected $allowedColumns = [
         'name',

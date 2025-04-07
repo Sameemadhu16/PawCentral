@@ -5,6 +5,7 @@ class Med_Dashboard_Veterinarians {
 
     public function index($parms = null) {
         $id = $parms['id'] ?? null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Content-Type: application/json');
             $veterinarianModel = new Veterinarians;
@@ -31,14 +32,9 @@ class Med_Dashboard_Veterinarians {
             return;
         }
 
-        // Remove the PUT request handling since we're using POST for edits
-
+        //get the veterinarians
         $veterinarianModel = new Veterinarians;
-        $veterinarians = $veterinarianModel->get([], [
-            'order_column' => 'name',
-            'order_type' => 'desc'
-        ]);
-        echo json_encode($veterinarians);
+        $veterinarians = $veterinarianModel->where(['med_id' => $_SESSION['role_id']]);    
         $this->view("medi.f/profile/med-veterinarians",['veterinarians' => $veterinarians]);
     }
 
@@ -102,7 +98,7 @@ class Med_Dashboard_Veterinarians {
 
             $data = [
                 'name' => $_POST['name'] ?? '',
-                'img' => $imageUrl, // This will now always have a value
+                'img' => $imageUrl,
                 'experience' => $_POST['experience'] ?? '',
                 'availability' => $_POST['availability'] ?? '',
                 'med_id' => $_SESSION['role_id'] ?? null

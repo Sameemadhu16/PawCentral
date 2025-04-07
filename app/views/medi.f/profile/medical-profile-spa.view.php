@@ -24,6 +24,15 @@
         <div class="dashboard">
             <?php include("../app/views/components/medical-sidebar/medicalSidebar.php"); ?>
             <div class="page-window">
+                <!-- Loading animation -->
+                <div class="loading-animation">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <p>Loading...</p>
+                </div>
                 <!-- Dynamic content will be loaded here -->
             </div>
         </div>

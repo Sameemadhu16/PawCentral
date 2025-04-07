@@ -21,10 +21,7 @@ class MediCenter{
         $medical_center->email = $user->email;
 
         //get the veterinarians
-        $veterinarians = $veterinarianModel->get([], [
-            'order_column' => 'name',
-            'order_type' => 'desc'
-        ]);
+        $veterinarians = $veterinarianModel->where(['med_id' => $id]);
 
         if (!$medical_center) {
             echo "Medical center not found";
