@@ -35,10 +35,10 @@
                             <div class="event-card-content">
                                 <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
                                 <div class="event-details">
-                                    <h3><?= htmlspecialchars($event->title) ?></h3>
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
                                     <p><?= htmlspecialchars($event->date) ?></p>
                                     <p><?= htmlspecialchars($event->location) ?></p>
-                                    <p><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
                                     <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
                                     <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                 </div>

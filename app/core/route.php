@@ -58,7 +58,7 @@ route('admin/notification', 'admin/AdminNotification@index');
 route('announcements','announcements');
 route('lostandfound','lostandfound');
 route('eventsandcampaigns','events');
-route('eventsandcampaigns/event_id','EventInfo');
+route('eventsandcampaigns/event','events@EventInfo');
 route('lostandfound/report-animal','ReportFound');
 // route('lostandfound/idoflost','LostPet');
 

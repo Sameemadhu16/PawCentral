@@ -84,13 +84,13 @@
     <div id="popupForm" class="popup-container">
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Add your pet info</h2>
+            <h2>Enter Donation info</h2>
             <form id="petForm" action="<?= ROOT ?>/userprofile/donations/req" method="POST" enctype="multipart/form-data">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
                 
                 <label for="need">Need for Donation:</label>
-                    <select id="need" name="need" required>
+                    <select id="need_category" name="need_category" required>
                         <option value="Other">Other</option>
                         <option value="Bills">Medical Bills</option>
                         <option value="CareSupport">Care Support</option>

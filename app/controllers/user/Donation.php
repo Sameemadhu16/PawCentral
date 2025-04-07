@@ -37,7 +37,8 @@ class Donation{
             $data = [
                 'user_id' => $_SESSION['user_id'],
                 'title' => $_POST['title'],
-                'reason' => $_POST['reason'],  // Renamed from 'health' to 'need'
+                'reason' => $_POST['reason'],  
+                'need_category' => $_POST['need_category'],
                 'info' => $_POST['info'],  // Explanation for the donation request
                 'expire_date' => $_POST['before_date'],
                 'amount' => $_POST['amount'],

@@ -35,4 +35,11 @@ class EventsModel
         return $result;
     }
 
+    public function getEventById($id) {
+
+        $event = $this->first(['event_id' => $id['id']]);
+        return $event;
+
+    }
+
 }

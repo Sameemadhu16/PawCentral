@@ -108,23 +108,33 @@
     margin-right: 10px;
     border-radius: 10px 1px 0px 10px;
 }
-
 .event-card-content {
     display: flex;
     align-items: center;
     width: 100%;
+    overflow: hidden; /* Ensures contents do not overflow */
 }
 
 .event-details {
     flex-grow: 1;
-  }
-  
-  .event-details h3 {
+    min-width: 0; /* Prevents flexbox from expanding beyond card */
+    overflow: hidden;
+}
+
+.event-details h3 {
     font-size: 20px;
     margin: 0;
     margin-bottom: 15px;
     font-weight: bold;
-  }
+}
+
+.hide_overflow {
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis when text overflows */
+    display: block;
+    max-width: 100%; /* Ensures it doesn't exceed parent */
+}
   
   .event-details p {
     margin: 5px 0;
