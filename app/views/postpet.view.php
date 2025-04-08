@@ -28,12 +28,12 @@
 
             <!-- Trade Type -->
             <h3>Trade Type</h3>
-<select name="tradeType" required>
-    <option value="">Select</option>
-    <option value="Selling">Selling</option>
-    <option value="Renting">Renting</option>
-    <option value="Importing">Importing</option>
-</select>
+            <select name="tradeType" required>
+                <option value="">Select</option>
+                <option value="Selling">Selling</option>
+                <option value="Renting">Renting</option>
+                <option value="Importing">Importing</option>
+            </select>
 
             <!-- Pet Name -->
             <h3>Pet's Name</h3>
@@ -41,10 +41,10 @@
 
             <!-- Species & Breed -->
             <h3>Species</h3>
-            <input type="text" name="species" placeholder="ex: German Shepherd" required>
+            <input type="text" name="species" placeholder="ex: Dog, Cat" required>
 
             <h3>Breed</h3>
-            <input type="text" name="breed" placeholder="Enter breed" required>
+            <input type="text" name="breed" placeholder="ex: German Shepherd" required>
 
             <!-- Sex -->
             <h3>Sex</h3>
@@ -64,11 +64,39 @@
             <h3>Weight (kg)</h3>
             <input type="number" name="weight" placeholder="Enter weight in kg" min="0" required>
 
-            <!-- Special Needs -->
-            <h3>Special Needs</h3>
-            <input  type="text" name="genderNeeds" placeholder="ex:medications" class="box">
-            <h3>Contact Name:</h3>
-            <input type="text" name="contactName" placeholder="Enter your name:">
+            <!-- Health Information -->
+            <h3>Neutered/Spayed?</h3>
+            <select name="neutered" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <h3>Trained?</h3>
+            <select name="trained" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <h3>Pedigree?</h3>
+            <select name="pedigree" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <h3>Vaccinated?</h3>
+            <select name="vaccinated" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <!-- Contact Information -->
+            <h3>Contact Name</h3>
+            <input type="text" name="contactName" placeholder="Enter your name" required>
+
             <h3>Contact Number</h3>
             <input type="text" name="contactNumber" placeholder="ex: 077 34 353" required>
 

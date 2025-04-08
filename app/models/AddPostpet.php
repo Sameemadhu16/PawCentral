@@ -10,7 +10,6 @@ class AddPostpet
         'selling_posts' => [
             'pet_id',
             'merchant_id',
-            'merchant_ref_id',
             'petName',
             'tradeType',
             'species',
@@ -30,6 +29,9 @@ class AddPostpet
             'created_at',
             'City',
             'Exact_address',
+            'contactName',
+            'contactNumber',
+            'email',
         ],
         'import_posts' => [
             'pet_id',
