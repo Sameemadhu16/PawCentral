@@ -10,6 +10,8 @@ class AdminDonation{
             'total_donations' => $this->getTotalDonations(),
             'pending_count' => $this->getPendingRequestCount(),
             'approved_count' => $this->getApprovedCount(),
+            'pending_donations' => $this->getPendingRequests(),
+            'all_requests' => $this->getAllDonationRequests()
         ];
 
         $this->view('admin/donation', $data);
@@ -18,7 +20,7 @@ class AdminDonation{
     private function getTotalDonations()
     {
         $donationModel = new DonationsModel;
-        $query = "SELECT SUM(amount) as total FROM donation_requests";
+        $query = "SELECT SUM(amount) as total FROM donations";
         $result = $donationModel->query($query);
 
         // Return the numeric total, or 0 if no result
@@ -39,5 +41,21 @@ class AdminDonation{
         $result = $donationModel->query($query);
 
         return isset($result[0]->count) ? (int)$result[0]->count : 0;
+    }
+
+    private function getPendingRequests(){
+        $donationModel = new DonationsModel;
+        $query = "SELECT * FROM donation_requests WHERE status= 0";
+
+        $result = $donationModel->query($query);
+        return $result;
+
+    }
+
+    private function getAllDonationRequests(){
+        $donationModel = new DonationsModel;
+        $query = "SELECT * FROM donation_requests";
+        $result = $donationModel->query($query);
+        return $result;
     }
 }
