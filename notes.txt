@@ -1,10 +1,13 @@
-medical todo
+//medical todo
 
-change style
-    update btn 
-    save btn style
+    change style
+        update btn 
+        save btn style
 
-put a confirmation message for profile update
+    put a confirmation message for profile update
 
-add loading animation when loading pages
+    add loading animation when loading pages
 
+    make a default medical services table 
+    add default services to the add service popup
+    

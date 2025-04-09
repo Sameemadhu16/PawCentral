@@ -231,6 +231,94 @@ function profileAction() {
         }
 }
 
+function servicesAction() {
+
+    //add service
+    const addServiceBtn = document.getElementById('add-service-btn');
+    const addPopup = document.getElementById('add-popup-overlay');
+    const addCloseBtn = document.getElementById('add-close-btn');
+    const addForm = document.getElementById('add-service-form');
+
+    if (addServiceBtn && addPopup && addCloseBtn && addForm) {
+        addServiceBtn.addEventListener('click', () => addPopup.style.display='flex');
+        addCloseBtn.addEventListener('click', () => addPopup.style.display='none');
+        addForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('http://localhost/PawCentral/public/medical-center/dashboard/services', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error('Invalid JSON response:', text);
+                    throw new Error('Server returned invalid response. Check server logs for details.');
+                }
+            }
+            )
+            .then(data => {
+                if (data.status === 'success') {
+                    addPopup.style.display = 'none';
+                    addForm.reset();
+                    loadPage('services', servicesAction);
+                }
+                else {
+                    throw new Error(data.message || 'Unknown error occurred');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Failed to submit form. Please try again.');
+            }
+            );
+        });
+    }
+
+    //delete functionality
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    const deleteModal = document.getElementById('deleteModal');
+    const confirmDeleteBtn = document.getElementById('confirmDelete');
+    const cancelDeleteBtn = document.getElementById('cancelDelete');
+    
+    let currentServiceId = null;
+
+    deleteBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentServiceId = btn.dataset.id;
+            deleteModal.style.display = 'flex';
+        });
+    });
+
+    cancelDeleteBtn.addEventListener('click', () => {
+        deleteModal.style.display = 'none';
+    });
+
+    confirmDeleteBtn.addEventListener('click', async () => {
+        if (!currentServiceId) return;
+
+        try {
+            const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/services?id=${currentServiceId}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+            
+            const data = await response.json();
+            deleteModal.style.display = 'none';
+            loadPage('services', servicesAction);
+        } catch (error) {
+            console.error('Delete failed:', error);
+        }
+    });
+
+    console.log('Services panel loaded');
+
+}
+
 function appointmentsAction() {
 
     console.log('Appointments panel loaded');
@@ -288,11 +376,11 @@ function veterinariansAction() {
     const deleteModal = document.getElementById('deleteModal');
     const confirmDeleteBtn = document.getElementById('confirmDelete');
     const cancelDeleteBtn = document.getElementById('cancelDelete');
-    let currentVetId = null;
+    let currentServiceId = null;
 
     deleteBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            currentVetId = btn.dataset.id;
+            currentServiceId = btn.dataset.id;
             deleteModal.style.display = 'flex';
         });
     });
@@ -302,10 +390,10 @@ function veterinariansAction() {
     });
 
     confirmDeleteBtn.addEventListener('click', async () => {
-        if (!currentVetId) return;
+        if (!currentServiceId) return;
 
         try {
-            const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians?id=${currentVetId}`, {
+            const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/veterinarians?id=${currentServiceId}`, {
                 method: 'DELETE',
                 credentials: 'include'
             });
