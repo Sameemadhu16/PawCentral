@@ -4,8 +4,24 @@ class AdminDonation{
 
     use Controller;
 
-    public function index(){
+    public function index()
+    {
+        // Handle approve and reject before preparing data
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['id']) && isset($_POST['approve'])) {
+                $this->approveRequest($_POST['id']);
+                redirect('/admin/donation'); // Redirect to avoid resubmission
+                exit;
+            }
 
+            if (isset($_POST['id']) && isset($_POST['reject'])) {
+                $this->rejectRequest($_POST['id']);
+                redirect('/admin/donation');
+                exit;
+            }
+        }
+
+        // Now prepare the view data
         $data = [
             'total_donations' => $this->getTotalDonations(),
             'pending_count' => $this->getPendingRequestCount(),
@@ -16,6 +32,7 @@ class AdminDonation{
 
         $this->view('admin/donation', $data);
     }
+
 
     private function getTotalDonations()
     {
@@ -57,5 +74,19 @@ class AdminDonation{
         $query = "SELECT * FROM donation_requests";
         $result = $donationModel->query($query);
         return $result;
+    }
+
+    private function approveRequest($id)
+    {
+        $donationModel = new DonationsModel;
+        $query = "UPDATE donation_requests SET status = 1 WHERE id = $id";
+        return $donationModel->query($query);
+    }
+
+    private function rejectRequest($id)
+    {
+        $donationModel = new DonationsModel;
+        $query = "UPDATE donation_requests SET status = 2 WHERE id = $id";
+        return $donationModel->query($query);
     }
 }

@@ -77,8 +77,15 @@
                                 <div class="progress-bar" style="width: <?= $progress ?>%"></div>
                             </div>
                             <div class="card-actions">
-                                <button class="btn approve" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=<?= $request->id ?>'">Approve</button>
-                                <button class="btn reject" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=<?= $request->id ?>'">Reject</button>
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= $request->id ?>">
+                                    <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
+                                </form>
+                                <!-- Reject Button -->
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= $request->id ?>">
+                                    <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -130,7 +137,7 @@
                                 <td><?= esc($allRequests->amount); ?></td>
                                 <td><?= esc($allRequests->collected); ?></td>
                                 <td>
-                                    <span class="tag 
+                                    <span class="tag
                                         <?php
                                         if ($allRequests->status == 0) echo 'pending';
                                         elseif ($allRequests->status == 1) echo 'approved';
@@ -146,11 +153,20 @@
                                 <td>
                                     <div class="action-btns">
                                         <?php if ($allRequests->status == 0): ?>
-                                            <button class="action-btn approve-btn">Approve</button>
-                                            <button class="action-btn reject-btn">Reject</button>
-                                            <button class="action-btn view-btn">View</button>
+                                            <!-- Approve Button -->
+                                            <form method="POST">
+                                                <input type="hidden" name="id" value="<?= $allRequests->id ?>">
+                                                <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
+                                            </form>
+                                            <!-- Reject Button -->
+                                            <form method="POST">
+                                                <input type="hidden" name="id" value="<?= $allRequests->id ?>">
+                                                <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
+                                            </form>
+                                            <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
                                         <?php else: ?>
-                                            <button class="action-btn view-btn">View</button>
+                                            <!-- View Button -->
+                                            <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
                                         <?php endif; ?>
                                     </div>
                                 </td>
