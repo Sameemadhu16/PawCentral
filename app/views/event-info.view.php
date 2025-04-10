@@ -11,10 +11,10 @@
 <body>
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="container">
+    <div class="container" style="padding-bottom: 70px;margin:20px auto;padding: 20px;">
         <?php if (!empty($event)): ?>
             <div class="breadcrumb">
-                <h1><a href="<?=ROOT?>/eventsandcampaigns">Events & Campaigns</a> / Event Registration</h1>
+                <h1><a href="<?=ROOT?>/eventsandcampaigns">Events & Campaigns</a> / Event Info</h1>
             </div>
             
             <div class="description">
@@ -27,8 +27,10 @@
                     <div class="event-details">
                         <h1 id="event-name"><?= htmlspecialchars($event->title ?? '') ?></h2>
                         <p><strong>Date:</strong> <span id="event-date">
-                            <?= date('D, jS F, Y', strtotime($event->date ?? '')) ?>, 
-                            <?= htmlspecialchars($event->time ?? '') ?>
+                            <?= date('D, jS F, Y', strtotime($event->date ?? '')) ?>
+                        </span></p>
+                        <p><strong>Time:</strong> <span id="event-date">
+                            <?= htmlspecialchars($event->time ?? 'Uspecified') ?>
                         </span></p>
                         <p><strong>Location:</strong> <span id="event-location">
                             <?= htmlspecialchars($event->location ?? '') ?>, 
@@ -66,7 +68,7 @@
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-                    <button type="submit" class="btn">Enroll</button>
+                    <button type="submit" class="toggleformbtn">Enroll</button>
                 </form>
             </div>
         <?php else: ?>

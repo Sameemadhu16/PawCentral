@@ -93,6 +93,9 @@ route('services/careservice','Careservice');
 route('shelters','PetShelters');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
+route('donationsnsupport/req','DonationsAndSupport@showPost');
+route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
+
 
 //pet shelter routings
 route('shelter/profile','shelter/Profile@index');

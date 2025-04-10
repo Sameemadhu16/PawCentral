@@ -4,107 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
-    <style>
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 10px;
-            padding: 10px;
-            max-width: 1000px;
-            margin: 0 auto; /* <-- this centers it */
-        }
-
-        .donation-card {
-            display: flex;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            border: 1px solid #ddd;
-            transition: transform 0.3s ease;
-            max-width: 450px;
-            max-height: 270px;
-            margin: 0px;
-        }
-
-        .donation-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-image {
-            flex: 1;
-            min-width: 150px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .card-content {
-            flex: 2;
-            padding: 10px;
-        }
-
-        .title {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 10px;
-            margin-top: 7px;
-        }
-
-        .description {
-            font-size: .9rem;
-            color: #666;
-            margin-bottom: 20px;
-            min-height:70px ;
-            max-height:75px ;
-        }
-
-        .progress-bar-container {
-            background: #eee;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 7px;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            /* background: linear-gradient(90deg, #4caf50, #8bc34a); */
-            background: linear-gradient(90deg, #6a0dad, #8049fe);
-            width: 50%; /* Adjust this dynamically based on progress */
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .amount {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            margin-top: 0;
-          padding-top:0;
-        }
-
-        .collected {
-            font-size: .8rem;
-        }
-
-        .donate-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #8049fe;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            transition: background 0.3s ease;
-            margin: 0px 0 5px 10px ;
-            
-        }
-
-        .donate-button:hover {
-            background: #6a0dad;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/donation_req.css">
 </head>
 <body>
     
@@ -133,7 +33,7 @@
                         <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
                         $<?= number_format($amount, 2) ?>
                     </p>
-                    <a href="<?= ROOT ?>/donations/view/<?= $request->id ?>" class="donate-button">Donate Now</a>
+                    <a href="<?= ROOT ?>/donationsnsupport/req?id=<?= $request->id ?>" class="donate-button">Donate Now</a>
                 </div>
             </div>
         <?php endforeach; ?>

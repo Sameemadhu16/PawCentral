@@ -18,7 +18,8 @@
         <div class="events-sec">
             <h1 class="heading">Events & Campaigns</h1>
             <div class="sub-header">
-                <h2>To be held recently</h2>
+                <!-- <h2>To be held recently</h2> -->
+                 <h2></h2>
                 <button id="publishEvent" class="btn-primary">publish event</button>
             </div>
             <div id="eventList" class="event-list-view">
