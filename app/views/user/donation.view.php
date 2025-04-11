@@ -21,7 +21,6 @@
             document.getElementById("popupForm").style.display = "none";
             document.body.style.overflow = "auto"; // Enable scrolling
         }
-
     </script>
 </head>
 
@@ -40,6 +39,7 @@
                         <h2>Donation requests</h2>
                         <button class="quick-action-button fixedsize" onclick="openPopup()">Ask for Support</button>
                     </div>
+                    
                     <div class="cards-container">
                     <?php foreach ($requests as $req) : ?>
                         <div class="donation-card">

@@ -4,7 +4,19 @@ class LostAndFoundModel
 {
     use Model;
 
-    protected $table = 'lostandfound';
+    protected $table = 'lost_and_found_pets';
+
+    public function getViewPosts()
+    {
+        // Fetch all rows from the `lostandfound` table
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `postStatus` = 0"; //get only the unmarked pets
+        $result = $this->query($query);
+
+    $result = $this->query($query);
+        //$print=$_SESSION['user_id'];
+        // echo "$print";
+    return $result;
+    }
 
     public function getAllPets()
     {
