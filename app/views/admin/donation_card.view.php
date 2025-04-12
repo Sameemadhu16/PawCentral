@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="<?= ROOT ?>/assets/js/admin/donation.js" defer></script>
-    
+
 </head>
 
 <body class="body">
@@ -40,8 +40,8 @@
                     <div class="pet-image-large" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= esc($data['donation']->image) ?>');"></div>
                     <div class="pet-info">
                         <div class="info-grid">
-                            
-                            
+
+
                             <div class="info-item">
                                 <div class="info-label">Requested Amount</div>
                                 <div class="info-value"><?= number_format($data['donation']->amount, 2) ?> LKR</div>
@@ -86,13 +86,22 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn-action btn-primary" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=2'">
-                    <i class="fas fa-check"></i> Approve Request
-                </button>
-                <button class="btn-action btn-danger" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=2'">
-                    <i class="fas fa-times"></i> Reject Request
-                </button>
-                
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $donation->id ?>">
+                    <button class="btn-action btn-primary" type="submit" name="approve">
+                        <i class="fas fa-check"></i> Approve Request
+                    </button>
+                </form>
+
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $donation->id ?>">
+                    <button class="btn-action btn-danger" type="submit" name="reject">
+                        <i class="fas fa-times"></i> Reject Request
+                    </button>
+
+                </form>
+
+
             </div>
         </div>
     </div>

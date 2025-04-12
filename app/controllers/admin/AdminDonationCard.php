@@ -5,7 +5,25 @@ class AdminDonationCard{
     use Controller;
 
     public function index(){
-        $this->getDonationDetails();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['id']) && isset($_POST['approve'])) {
+                $this->approveRequest($_POST['id']);
+                redirect('/admin/donation'); // Redirect to avoid resubmission
+                exit;
+            }
+
+            if (isset($_POST['id']) && isset($_POST['reject'])) {
+                $this->rejectRequest($_POST['id']);
+                redirect('/admin/donation');
+                exit;
+            }
+        }
+        $data = [
+            'donation' => $this->getDonationDetails(),
+        ];
+
+        $this->view('admin/donation_card', $data);
     }
 
     private function getDonationDetails()
@@ -22,10 +40,20 @@ class AdminDonationCard{
             redirect('admin/donation'); // Redirect if no donation is found
         }
 
-        $data = [
-            'donation' => $donation[0], // Pass the first result as the donation details
-        ];
+        return $donation[0];
+    }
 
-        $this->view('admin/donation_card', $data);
+    private function approveRequest($id)
+    {
+        $donationModel = new DonationsModel;
+        $query = "UPDATE donation_requests SET status = 1 WHERE id = $id";
+        return $donationModel->query($query);
+    }
+
+    private function rejectRequest($id)
+    {
+        $donationModel = new DonationsModel;
+        $query = "UPDATE donation_requests SET status = 2 WHERE id = $id";
+        return $donationModel->query($query);
     }
 }
