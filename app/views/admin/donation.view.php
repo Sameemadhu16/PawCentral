@@ -61,7 +61,7 @@
 
             <div class="pending-requests">
                 <?php foreach ($data['pending_donations'] as $request): ?>
-                    <div class="request-card">
+                    <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
                         <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= $request->image ?>');"></div>
                         <div class="card-content">
                             <h3><?= $request->title ?></h3>
@@ -81,7 +81,6 @@
                                     <input type="hidden" name="id" value="<?= $request->id ?>">
                                     <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                 </form>
-                                <!-- Reject Button -->
                                 <form method="POST">
                                     <input type="hidden" name="id" value="<?= $request->id ?>">
                                     <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>

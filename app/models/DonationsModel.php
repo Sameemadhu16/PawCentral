@@ -29,4 +29,24 @@ class DonationsModel
         $this->table=$this->donation_req;
         return $this->update($id, $data, 'id');
     }
+
+    public function getDonations($conditions = []) {
+        $this->table = $this->donation_req;
+
+        $query = "SELECT * FROM `" . $this->table . "`";
+        $params = [];
+
+        if (!empty($conditions)) {
+            $query .= " WHERE ";
+            $clauses = [];
+            foreach ($conditions as $column => $value) {
+                $clauses[] = "`$column` = :$column";
+                $params[":$column"] = $value;
+            }
+            $query .= implode(" AND ", $clauses);
+        }
+
+        return $this->query($query, $params);
+    }
+    
 }
