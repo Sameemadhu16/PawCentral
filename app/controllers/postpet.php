@@ -16,10 +16,10 @@ class Postpet
                 'petName' => htmlspecialchars($_POST['petName']),
                 'species' => htmlspecialchars($_POST['species']),
                 'breed' => htmlspecialchars($_POST['breed']),
-                'sex' => htmlspecialchars($_POST['sex']),
-                'age' => htmlspecialchars($_POST['age']),
-                'height' => htmlspecialchars($_POST['height']),
-                'weight' => htmlspecialchars($_POST['weight']),
+                'sex' => $_POST['sex'],
+                'age' => $_POST['age'],
+                'height' => (float)$_POST['height'],
+                'weight' => (float)$_POST['weight'],
                 'neutered' => htmlspecialchars($_POST['neutered']),
                 'trained' => htmlspecialchars($_POST['trained']),
                 'pedigree' => htmlspecialchars($_POST['pedigree']),
@@ -30,7 +30,6 @@ class Postpet
             ];
             $_SESSION['postpet_data'] = $data;
     
-            // Redirect to the next step (image upload)
             header("Location: " . ROOT . "/service/postpet/postpetnext");
             exit();
         }

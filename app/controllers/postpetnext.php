@@ -11,7 +11,6 @@ class Postpetnext
     public function submit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Handle image uploads
             if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK) {
                 $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
                 $baseUploadUrl = ROOT . '/assets/uploads/';
@@ -43,22 +42,18 @@ class Postpetnext
                 exit;
             }
     
-            // Check tradeType and redirect accordingly
             if (!isset($_SESSION['postpet_data']['tradeType'])) {
                 echo "Trade type not found in session. Please go back and fill out the form.";
                 exit;
             }
     
-            $tradeType = strtolower($_SESSION['postpet_data']['tradeType']);
-            if ($tradeType === 'selling') {
+            $tradeType = $_SESSION['postpet_data']['tradeType'];
+            if ($tradeType === 'Selling') {
                 header("Location: " . ROOT . "/service/postpet/postpetnext/selling");
-            } elseif ($tradeType === 'renting') {
+            } elseif ($tradeType === 'Renting') {
                 header("Location: " . ROOT . "/service/postpet/postpetnext/rent");
-            } elseif ($tradeType === 'importing') {
+            } elseif ($tradeType === 'Importing') {
                 header("Location: " . ROOT . "/service/postpet/postpetnext/import");
-            } else {
-                // Default fallback
-                header("Location: " . ROOT . "/service/postpet/postpetnext");
             }
             exit;
         }

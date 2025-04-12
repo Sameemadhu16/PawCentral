@@ -3,90 +3,36 @@ class AddPostpet
 {
     use Model;
 
-    protected $table = 'selling_posts'; // Default table, can be overridden
-
-    // Define allowed columns for each table
+    protected $table = 'selling_posts';
+    
+    // Define allowed columns as a flat array (no multi-dimensional)
     protected $allowedColumns = [
-        'selling_posts' => [
-            'pet_id',
-            'merchant_id',
-            'petName',
-            'tradeType',
-            'species',
-            'breed',
-            'sex',
-            'age',
-            'height',
-            'weight',
-            'neutered',
-            'trained',
-            'pedigree',
-            'vaccinated',
-            'price',
-            'img1',
-            'img2',
-            'img3',
-            'created_at',
-            'City',
-            'Exact_address',
-            'contactName',
-            'contactNumber',
-            'email',
-        ],
-        'import_posts' => [
-            'pet_id',
-            'merchant_id',
-            'merchant_ref_id',
-            'petName',
-            'tradeType',
-            'species',
-            'breed',
-            'sex',
-            'age',
-            'height',
-            'weight',
-            'neutered',
-            'trained',
-            'pedigree',
-            'vaccinated',
-            'img1',
-            'img2',
-            'img3',
-            'created_at',
-            'country',
-            'import_fees',
-            'importing_owner',
-            'transport_method',
-            'importer_mobile',
-        ],
-        'rent_posts' => [
-            'pet_id',
-            'merchant_id',
-            'merchant_ref_id',
-            'petName',
-            'tradeType',
-            'species',
-            'breed',
-            'sex',
-            'age',
-            'height',
-            'weight',
-            'neutered',
-            'trained',
-            'pedigree',
-            'vaccinated',
-            'img1',
-            'img2',
-            'img3',
-            'created_at',
-            'rental_duration',
-            'rental_fee',
-            'renter_name',
-            'renter_contact',
-            'renter_address',
-            'rental_status',
-            'agreed_terms',
-        ],
+        'pet_id',
+        'merchant_id',
+        'petName',
+        'tradeType',
+        'species',
+        'breed',
+        'sex',
+        'age',
+        'height',
+        'weight',
+        'neutered',
+        'trained',
+        'pedigree',
+        'vaccinated',
+        'price',
+        'img1',
+        'img2',
+        'img3',
+        'created_at',
+        'City',
+        'Exact_address',
+        'contactName',
+        'contactNumber',
+        'email',
+        'fee_negotiable',
+        'agreed_terms'
     ];
 
     public function create($data)
@@ -105,35 +51,63 @@ class AddPostpet
         }
 
         // Set default values
-        $defaults = [
+        $data = array_merge([
             'img1' => null,
             'img2' => null,
             'img3' => null,
             'price' => 0,
-            'import_fees' => 0,
-            'rental_fee' => 0,
+            'fee_negotiable' => 0,
             'agreed_terms' => 0,
-            'created_at' => date('Y-m-d H:i:s'),
-        ];
-
-        $data = array_merge($defaults, $data);
-
-        // Determine the table based on tradeType
-        $tradeType = strtolower($data['tradeType']);
-        if ($tradeType === 'selling') {
-            $this->table = 'selling_posts';
-        } elseif ($tradeType === 'importing') {
-            $this->table = 'import_posts';
-        } elseif ($tradeType === 'renting') {
-            $this->table = 'rent_posts';
-        } else {
-            throw new Exception("Invalid trade type.");
-        }
-
-        // Filter data to match the allowed columns for the selected table
-        $filteredData = array_intersect_key($data, array_flip($this->allowedColumns[$this->table]));
+            'created_at' => date('Y-m-d H:i:s')
+        ], $data);
 
         // Insert data and return the result
-        return $this->insert($filteredData);
+        return $this->insert($data);
     }
+}
+class RentPost extends AddPostpet
+{
+    use Model;
+    protected $table = 'rent_posts';
+    protected $allowedColumns = [
+        'pet_id',
+        'merchant_id',
+        'petName',
+        'tradeType',
+        'species',
+        'breed',
+        'sex',
+        'age',
+        'height',
+        'weight',
+        'neutered',
+        'trained',
+        'pedigree',
+        'vaccinated',
+        'rental_fee',
+        'img1',
+        'img2',
+        'img3',
+        'created_at',
+        'renter_contact',
+        'renter_address',
+        'rental_duration',
+        'renter_name',
+        'email',
+        'agreed_terms'
+    ];
+
+    public function create($data){
+        $requiredFields = ['tradeType', 'petName', 'species', 'contactName', 'contactNumber', 'email'];
+        foreach ($requiredFields as $field) {
+            if (empty($data[$field])) {
+                throw new Exception("The field '$field' is required.");
+            }
+        }
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Invalid email address.");
+        }
+        return $this->insert($data);
+    }
+
 }

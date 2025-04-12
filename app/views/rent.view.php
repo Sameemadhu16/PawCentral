@@ -14,7 +14,7 @@
 <?php include '../app/views/components/header.php'?>
 
 <h1>Rent a Pet</h1>
-    <form action="<?=ROOT?>/service/postpet/postpetnext/renting/submit" method="POST">
+    <form action="<?=ROOT?>/service/postpet/postpetnext/rent/submit" method="POST">
         
         <label for="rentalDuration">Rental Duration (days):</label>
         <input type="number" id="rentalDuration" name="rentalDuration" required>
