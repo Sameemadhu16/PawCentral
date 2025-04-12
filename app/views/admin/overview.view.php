@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/overview.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 
 <body class="body">
@@ -161,11 +163,15 @@
         function generateReport() {
             alert("Report generation in progress...");
             // Add logic for generating the report
+
+
             const downloadBtn = document.createElement('button');
             downloadBtn.innerText = 'Download Report';
             downloadBtn.className = 'download-button';
             downloadBtn.onclick = function() {
-                alert("Report downloaded successfully!");
+
+                const element = document.getElementById('content');
+                html2pdf().from(element).save();
                 this.remove();
             };
 
