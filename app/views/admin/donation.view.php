@@ -89,7 +89,7 @@
             </div>
 
             <!-- Charts Section -->
-            <div class="charts-container">
+            <!-- <div class="charts-container">
                 <div class="chart-card">
                     <h3>Donation Trends</h3>
                     <canvas id="donationTrendChart"></canvas>
@@ -98,7 +98,7 @@
                     <h3>Request Categories</h3>
                     <canvas id="categoryChart"></canvas>
                 </div>
-            </div>
+            </div> -->
 
             <!-- All Donations List -->
             <div class="section-title" style="margin-top: 30px;">
@@ -118,7 +118,8 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Reason</th>
+                            <!-- <th>Reason</th> -->
+                            <th>Category</th>
                             <th>Amount</th>
                             <th>Collected</th>
                             <th>Status</th>
@@ -129,7 +130,8 @@
                         <?php foreach ($data['all_requests'] as $allRequests): ?>
                             <tr>
                                 <td><?= esc($allRequests->title); ?></td>
-                                <td><?= esc($allRequests->reason); ?></td>
+                                
+                                <td><?=esc($allRequests->need_category)?></td>
                                 <td><?= esc($allRequests->amount); ?></td>
                                 <td><?= esc($allRequests->collected); ?></td>
                                 <td>
