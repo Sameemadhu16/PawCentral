@@ -7,9 +7,8 @@ class Med_Services {
     protected $order_column = 'service_id';
 
     protected $allowedColumns = [
-        'med_id',
         'service_id',
-        'service_name'
+        'service_name',
     ];
 
     public function create($data) {

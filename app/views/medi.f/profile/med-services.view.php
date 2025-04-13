@@ -43,7 +43,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 }
             ?>
             <?php include("../app/views/components/deleteConfirmation.php"); ?>
+            </div>
         </div>
-    </div>
 </body>
 </html>

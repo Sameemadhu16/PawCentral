@@ -9,22 +9,23 @@
                 <span class="close-btn" id="add-close-btn">&times;</span>
             </div>
             <form id="add-service-form" method="POST" enctype="multipart/form-data">
-                <div class="service-form-group">
-                    <div></div>
-                </div>
-                <div class="service-form-group">
-                    <label for="vet-experience">Experience (years):</label>
-                    <input type="number" id="vet-experience" name="experience" required>
-                </div>
-                <div class="service-form-group">
-                    <label for="vet-availability">Availability:</label>
-                    <input type="text" id="vet-availability" name="availability" placeholder="Ex: Mon - Fri 8 to 5">
-                </div>
-                <div class="service-form-group">
-                    <label for="vet-image">Image URL:</label>
-                    <input type="file" id="vet-image" name="image" accept="image/*">
-                </div>
-                <button type="submit" class="submit-btn" name="add-vet-submit-btn">Add Veterinarian</button>
+            <?php 
+                if(!empty($all_services)) {
+                    foreach($all_services as $service) {
+                        echo "
+                        <div class='service-card card'>
+                            <div class='service-title'>
+                                <input type='checkbox' name='services[]' value='{$service->service_id}' id='service-{$service->service_id}'>
+                                <h4>{$service->service_name}</h3>
+                            </div>
+                        </div>";
+                    }
+                } else {
+                    echo "<p>No services found.</p>";
+                }
+            ?>
+                
+                <button type="submit" class="submit-btn" name="add-services-submit-btn">Submit</button>
             </form>
         </div>
     </div>

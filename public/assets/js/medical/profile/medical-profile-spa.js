@@ -277,6 +277,19 @@ function servicesAction() {
             }
             );
         });
+
+        // Handle service card selection
+        const serviceCheckboxes = document.querySelectorAll('input[name="services[]"]');
+        serviceCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const card = this.closest('.service-card');
+                if (this.checked) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+        });
     }
 
     //delete functionality

@@ -7,7 +7,7 @@ class Med_Dashboard_Services{
 
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             header('Content-Type: application/json');
-            $med_servicesModel = new Med_Services;
+            $med_servicesModel = new Med_Prov_Med_Serv;
             $id = $_GET['id'] ?? null;
             if (!$id) {
                 http_response_code(400);
@@ -18,9 +18,24 @@ class Med_Dashboard_Services{
             return;
         }
 
+        $med_prov_med_serv = new Med_Prov_Med_Serv;
         $med_servicesModel = new Med_Services;
-        $services = $med_servicesModel->where(['med_id' => $_SESSION['role_id']]);
-        $this->view("medi.f/profile/med-services",['services'=> $services]);
+        
+        $all_services = $med_servicesModel->findAll();
+        // Get service IDs
+        $service_ids = $med_prov_med_serv->where(['med_id' => $_SESSION['role_id']]);
+        // Get service names
+        $services = [];
+        if ($service_ids) {
+            foreach ($service_ids as $service) {
+                $service_details = $med_servicesModel->first(['service_id' => $service->service_id]);
+                // Combine the service ID with the service name
+                $service->service_name = $service_details->service_name;
+                $services[] = $service;
+            }
+        }
+        
+        $this->view("medi.f/profile/med-services", ['services' => $services, 'all_services' => $all_services]);
         
     }
 
