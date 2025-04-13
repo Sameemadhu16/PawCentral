@@ -12,118 +12,115 @@
 </head>
 
 <body class="body">
-
-
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php");
-    ?>
+    <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container container">
         <div>
-            <?php include("../app/views/components/admin/adminSidebar.php");
-            // show($data);
-            ?>
-
+            <?php include("../app/views/components/admin/adminSidebar.php"); ?>
         </div>
 
         <div class="med-container">
             <h2>Medical Registrations</h2>
+
+            <div class="filters-section">
+                <div class="search-filter">
+                    <input type="text" id="searchInput" placeholder="Search by service name..." class="search-input">
+                    <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="status-filters">
+                    <button class="filter-btn active" data-status="all">All</button>
+                    <button class="filter-btn" data-status="pending">Pending</button>
+                    <button class="filter-btn" data-status="approved">Approved</button>
+                    <button class="filter-btn" data-status="rejected">Rejected</button>
+                </div>
+            </div>
+
+            <div class="registration-stats">
+                <div class="stat-card">
+                    <span class="stat-label">Total</span>
+                    <span class="stat-value" id="totalCount">0</span>
+                </div>
+                <div class="stat-card pending-card">
+                    <span class="stat-label">Pending</span>
+                    <span class="stat-value" id="pendingCount">0</span>
+                </div>
+                <div class="stat-card approved-card">
+                    <span class="stat-label">Approved</span>
+                    <span class="stat-value" id="approvedCount">0</span>
+                </div>
+                <div class="stat-card rejected-card">
+                    <span class="stat-label">Rejected</span>
+                    <span class="stat-value" id="rejectedCount">0</span>
+                </div>
+            </div>
+
             <div class="content">
                 <table class="medical-registration-table">
                     <thead class="mr_table_t">
-                        <th>
-                            <h5>Service Name</h5>
-                        </th>
-                        <th>
-                            <h5>Vaterinarian's CV</h5>
-                        </th>
-                        <th>
-                            <h5>Status</h5>
-                        </th>
-                        <th>
-                            <h5>Select</h5>
-                        </th>
-                        <th>
-                            <h5>Select</h5>
-                        </th>
+                        <tr>
+                            <th>
+                                <h5>Service Name</h5>
+                            </th>
+                            <th>
+                                <h5>Veterinarian's CV</h5>
+                            </th>
+                            <th>
+                                <h5>Status</h5>
+                            </th>
+                            <th>
+                                <h5>Actions</h5>
+                            </th>
+                        </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="registrationTableBody">
                         <?php foreach ($data as $provider): ?>
-                            <tr class="mr_row">
-                                <td>
-                                    <?php echo esc($provider->name); ?>
-                                </td>
-                                <td><a href="<?= ROOT ?>/<?= esc($provider->license_proof) ?>" class="view-btn" download>View Proof</a></td>
+                            <tr class="mr_row" data-status="<?= esc($provider->verifiedStatus) ?>">
+                                <td><?php echo esc($provider->name); ?></td>
+                                <td><a href="<?= ROOT ?>/<?= esc($provider->license_proof) ?>" class="view-btn" target="_blank">View Proof</a></td>
                                 <td>
                                     <?php if ($provider->verifiedStatus == 'pending'): ?>
-                                        <span class="pending">Pending</span>
+                                        <span class="status-badge pending">Pending</span>
                                     <?php elseif ($provider->verifiedStatus == 'approved'): ?>
-                                        <span class="approved">Approved</span>
+                                        <span class="status-badge approved">Approved</span>
                                     <?php elseif ($provider->verifiedStatus == 'rejected'): ?>
-                                        <span class="rejected">Rejected</span>
+                                        <span class="status-badge rejected">Rejected</span>
                                     <?php endif ?>
                                 </td>
-
-                                <form method="POST">
-                                    <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
-                                    <td>
-                                        <button class="send-btn1" type="submit" name="approve" value="approved">Approve</button>
-                                    </td>
-                                </form>
-
-                                <form method="POST">
-                                    <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
-                                    <td>
-                                        <button class="send-btn2" type="submit" name="reject">Reject</button>
-                                    </td>
-                                </form>
+                                <td class="action-buttons">
+                                    <form method="POST" class="action-form">
+                                        <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
+                                        <button class="action-btn approve" type="submit" name="approve" value="approved" <?= $provider->verifiedStatus == 'approved' ? 'disabled' : '' ?>>
+                                             Approve
+                                        </button>
+                                        <button class="action-btn reject" type="submit" name="reject" <?= $provider->verifiedStatus == 'rejected' ? 'disabled' : '' ?>>
+                                             Reject
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
 
-
-
+                <div id="noResults" class="no-results hidden">
+                    <i class="fas fa-search"></i>
+                    <p>No registrations match your search criteria</p>
+                </div>
             </div>
-
-
         </div>
-
     </div>
 
     <!-- Popup Notification -->
     <div id="popupNotification" class="popup">
-        <span id="popupMessage"></span>
+        <div class="popup-content">
+            <i id="popupIcon" class="fas"></i>
+            <span id="popupMessage"></span>
+        </div>
     </div>
 
     <?php include("../app/views/components/footer.php"); ?>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const popup = document.getElementById('popupNotification');
-            const popupMessage = document.getElementById('popupMessage');
-
-            function showPopup(message) {
-                popupMessage.textContent = message;
-                popup.classList.add('show');
-                setTimeout(() => {
-                    popup.classList.remove('show');
-                }, 3000);
-            }
-
-            // Show popup notification based on URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('status')) {
-                const status = urlParams.get('status');
-                if (status === 'approved') {
-                    showPopup('Medical provider approved successfully!');
-                } else if (status === 'rejected') {
-                    showPopup('Medical provider rejected successfully!');
-                }
-            }
-        });
-    </script>
-
 </body>
 
 </html>
