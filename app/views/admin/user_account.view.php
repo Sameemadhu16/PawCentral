@@ -16,123 +16,144 @@
     <div class="main-container container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
-        <div class="user-accounts-section">
-            <h2>User Accounts</h2>
+        <div class="content">
+            <div class="user-accounts-section">
+                <div class="dashboard-header">
+                    <h2>User Accounts Management</h2>
+                    <p class="dashboard-subtitle">Monitor and manage all registered users in the system</p>
+                </div>
 
-            <!-- Overview Cards Section -->
-            <div class="cards-container">
-                <div class="card">
-                    <div class="card-number"><?= esc($regular) ?></div>
-                    <div class="card-title">Regular User</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <div class="card">
-                    <div class="card-number"><?= esc($seller) ?></div>
-                    <div class="card-title">Seller</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <div class="card">
-                    <div class="card-number"><?= esc($adoptionShelters) ?></div>
-                    <div class="card-title">Adoption Shelters</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <div class="card">
-                    <div class="card-number"><?= esc($careServiceProviders) ?></div>
-                    <div class="card-title">Care Service Providers</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <div class="card">
-                    <div class="card-number"><?= esc($medicalProviders) ?></div>
-                    <div class="card-title">Medical Providers</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <!-- <div class="card card-danger">
-                    <div class="card-number">25</div>
-                    <div class="card-title">Banned Users</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div> -->
-            </div>
-
-            <div class="search-filter-container" id="filter_dropdown">
-                <input type="text" class="search-bar" placeholder="Search users..." id="searchInput">
-
-                <select name="role" class="filter-dropdown" id="roleFilter">
-                    <option value="">Filter by User Type</option>
-                    <option value="user">Regular User</option>
-                    <option value="seller">Seller</option>
-                    <option value="shelter">Adoption Shelters</option>
-                    <option value="service_prov">Care Service Providers</option>
-                    <option value="medical_provider">Medical Providers</option>
-                    <!-- <option value="banned-user">Banned Users</option> -->
-                </select>
-            </div>
-            <div id="userList">
-                <?php if (!empty($users)): ?>
-                    <?php foreach ($users as $user): ?>
-                        <div class="user-card" data-role="<?= htmlspecialchars($user->role) ?>">
-                            <div class="button-container">
-                                <form method="POST">
-                                    <input type="hidden" name="id" value="<?= esc($user->id) ?>">
-                                    <?php if ($user->status === 'active'): ?>
-                                        <button class="ban-button2" name="status1" type="submit" value="block">Active</button>
-                                    <?php else: ?>
-                                        <button class="ban-button1" name="status1" type="submit" value="active">Block</button>
-                                    <?php endif; ?>
-                                </form>
-                            </div>
-                            <div class="user-details">
-                                <p><strong>Name:</strong> <?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></p>
-                                <p><strong>Email:</strong> <?= htmlspecialchars($user->email) ?></p>
-                                <p><strong>User Type:</strong> <?= htmlspecialchars($user->role) ?></p>
-                            </div>
+                <!-- Overview Cards Section -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($regular) ?></div>
+                            <div class="stat-label">Regular Users</div>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-store"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($seller) ?></div>
+                            <div class="stat-label">Sellers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-home"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($adoptionShelters) ?></div>
+                            <div class="stat-label">Adoption Shelters</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($careServiceProviders) ?></div>
+                            <div class="stat-label">Care Providers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-stethoscope"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($medicalProviders) ?></div>
+                            <div class="stat-label">Medical Providers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name, email...">
+                    </div>
+                    <div class="filter-box">
+                        <select id="roleFilter" class="role-filter">
+                            <option value="">All User Types</option>
+                            <option value="user">Regular User</option>
+                            <option value="seller">Seller</option>
+                            <option value="shelter">Adoption Shelter</option>
+                            <option value="service_prov">Care Provider</option>
+                            <option value="medical_provider">Medical Provider</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="users-table-container">
+                    <div class="users-table" id="userList">
+                        <?php if (!empty($users)): ?>
+                            <?php foreach ($users as $user): ?>
+                                <div class="user-row" data-role="<?= htmlspecialchars($user->role) ?>">
+                                    <div class="user-info">
+                                        <div class="user-name"><?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></div>
+                                        <div class="user-details">
+                                            <span class="user-email"><i class="fas fa-envelope"></i> <?= htmlspecialchars($user->email) ?></span>
+                                            <span class="user-type"><i class="fas fa-user-tag"></i> <?= htmlspecialchars($user->role) ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="user-actions">
+                                        <form method="POST">
+                                            <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                            <?php if ($user->status === 'active'): ?>
+                                                <button class="status-active" name="status1" type="submit" value="block">
+                                                    <i class="fas fa-check-circle"></i> Active
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="status-blocked" name="status1" type="submit" value="active">
+                                                    <i class="fas fa-ban"></i> Blocked
+                                                </button>
+                                            <?php endif; ?>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="no-users">No users found in the system.</div>
+                        <?php endif; ?>
+                    </div>
+                </div>
             </div>
-
-
-
 
         </div>
+
     </div>
     <?php include("../app/views/components/footer.php"); ?>
+
+    <script>
+        const roleFilter = document.getElementById('roleFilter');
+        const userRows = document.querySelectorAll('.user-row');
+        const searchInput = document.getElementById('searchInput');
+
+        // Filter by role
+        roleFilter.addEventListener('change', function() {
+            const selectedRole = roleFilter.value;
+
+            userRows.forEach(row => {
+                const userRole = row.getAttribute('data-role');
+
+                if (selectedRole === '' || userRole === selectedRole) {
+                    row.style.display = 'flex';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchText = searchInput.value.toLowerCase();
+
+            userRows.forEach(row => {
+                const userInfo = row.querySelector('.user-info').textContent.toLowerCase();
+
+                if (userInfo.includes(searchText)) {
+                    row.style.display = 'flex';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
-<script>
-    const roleFilter = document.getElementById('roleFilter');
-    const userCards = document.querySelectorAll('.user-card');
-    const searchInput = document.getElementById('searchInput');
-
-    // Listen for changes on the dropdown
-    roleFilter.addEventListener('change', function() {
-        const selectedRole = roleFilter.value; // Get selected value
-
-        userCards.forEach(card => {
-            const userRole = card.getAttribute('data-role'); // Get role from user card
-
-            // Show/Hide cards based on filter
-            if (selectedRole === '' || userRole === selectedRole) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-
-    // Listen for input on the search bar
-    searchInput.addEventListener('input', function() {
-        const searchText = searchInput.value.toLowerCase(); // Get search text
-
-        userCards.forEach(card => {
-            const userName = card.querySelector('.user-details p strong').nextSibling.textContent.toLowerCase(); // Get user name
-
-            // Show/Hide cards based on search text
-            if (userName.includes(searchText)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-</script>
 
 </html>
