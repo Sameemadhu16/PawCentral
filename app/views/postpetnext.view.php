@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,44 +7,47 @@
     <link rel="stylesheet" href="../../assets/css/postpetnext.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php include '../app/views/components/header.php'; ?>
+    
     <div class="container">
         <div class="title">
             <h2>Post Pet</h2>
             <hr />
         </div>
-        <div class="div1and2">
-            <div class="list">
+
+        <div class="content">
+            <!-- Left Column: Image Upload Guidelines -->
+            <div class="guidelines">
+                <h3>Image Upload Guidelines</h3>
                 <ul>
-                    <li><h4>Accepted Formats:</h4><p>JPG, PNG</p></li>
-                    <li><h4>File Size Limit:</h4><p>10MB per Image</p></li>
-                    <li><h4>Upload a 1 photo</h4></li>
-                    <li><h4>Ensure your images are well-lit and focused</h4></li>
-                    <li><h4>Recommended Resolution:</h4><p>1080px x 1080px or higher for best results</p></li>
+                    <li><strong>Accepted Formats:</strong> JPG, PNG</li>
+                    <li><strong>File Size Limit:</strong> 10MB per Image</li>
+                    <li><strong>Upload at least 1 photo</strong></li>
+                    <li><strong>Ensure well-lit and focused images</strong></li>
+                    <li><strong>Recommended Resolution:</strong> 1080px x 1080px or higher</li>
                 </ul>
             </div>
 
-            <!-- Image Upload Form -->
-            <form action="<?=ROOT?>/service/postpet/postpetnext/submit" method="POST" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="images"><h4>Select Images to Upload:</h4></label>
-        <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>
-    </div>
-    <div class="upload-div">
-        <button type="submit" class="upload">Upload</button>
-    </div>
-</form>
+            <!-- Right Column: Image Upload Form -->
+            <div class="upload-section">
+                <h3>Upload Pet Images</h3>
+                <form action="<?=ROOT?>/service/postpet/postpetnext/submit" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="images">Select Images to Upload:</label>
+                        <input type="file" name="images[]" id="images" multiple accept="image/jpeg, image/png" required>
+                    </div>
+                    <button type="submit" class="upload-btn">Upload</button>
+                </form>
+            </div>
         </div>
-        
+
+        <!-- Summary Section -->
         <div class="summary">
-            <ul>
-                <li><h4>High-quality pictures greatly increase your pet's chances of finding the perfect home. Take a moment to review your upload before submitting.</h4></li>
-            </ul>
+            <p><strong>High-quality pictures</strong> increase your pet's chances of finding the perfect home. Take a moment to review your upload before submitting.</p>
         </div>
-        
     </div>
 </body>
 </html>

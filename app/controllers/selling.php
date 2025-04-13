@@ -1,50 +1,62 @@
 <?php
-
-class Selling{
-    use controller;
-    public function index(){
-        $this->view("selling");
-    }
-    public function submit()
+class Selling
 {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $price = htmlspecialchars($_POST['price']);
-        $feebox = isset($_POST['feebox']) ? 1 : 0;
-        $city = htmlspecialchars($_POST['city']);
-        $address = htmlspecialchars($_POST['address']);
-        $termsAccepted = isset($_POST['checkbox']) ? 1 : 0;
+    use Controller;
 
-        if (empty($price) || empty($city) || empty($address) || !$termsAccepted) {
-            echo "Please fill in all required fields and accept the terms.";
-            exit;
-        }
+    public function index()
+    {
+        $this->view('selling');
+    }
 
-        $petData = isset($_SESSION['postpet_data']) ? $_SESSION['postpet_data'] : null;
-
-        if ($petData) {
-            // Ensure the correct session key is used
-            $imagePaths = isset($petData['images']) ? $petData['images'] : [];
-
-            // Database data array
+    public function submit()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $price = htmlspecialchars($_POST['price']);
+            $city = htmlspecialchars($_POST['City']);
+            $address = htmlspecialchars($_POST['Exact_address']);
+            $termsAccepted = isset($_POST['agreed_terms']) ? 1 : 0;
+            $feeNegotiable = isset($_POST['fee_negotiable']) ? 1 : 0;
+    
+            if (empty($price) || empty($city) || empty($address) || !$termsAccepted) {
+                echo "Please fill in all required fields and accept the terms.";
+                exit;
+            }
+    
+            $petData = $_SESSION['postpet_data'];
+            $imagePaths = $petData['images'] ?? [];
+    
             $data = [
-                'tradeType'    => $petData['tradeType'],
-                'petName'      => $petData['petName'],
-                'species'      => $petData['species'],
-                'breed'        => $petData['breed'],
-                'genderNeeds'  => $petData['genderNeeds'],
-                'contactName'  => $petData['contactName'],
-                'contactNumber'=> $petData['contactNumber'],
-                'email'        => $petData['email'],
-                'price'        => $price,
-                'feebox'       => $feebox,
-                'city'         => $city,
-                'address'      => $address,
-                'termsAccepted'=> $termsAccepted,
-                'image_path'   => !empty($imagePaths) ? $imagePaths[0] : null // Assuming you are storing the first image
+                'merchant_id' => $_SESSION['role_id'] ?? null,
+                'tradeType' => $petData['tradeType'],
+                'petName' => $petData['petName'],
+                'species' => $petData['species'],
+                'breed' => $petData['breed'],
+                'sex' => $petData['sex'],
+                'age' => (float)$petData['age'],
+                'height' => $petData['height'],
+                'weight' => $petData['weight'],
+                'neutered' => $petData['neutered'] === 'Yes' ? 1 : 0,
+                'trained' => $petData['trained'] === 'Yes' ? 1 : 0,
+                'pedigree' =>$petData['pedigree'] === 'Yes' ? 1 : 0,
+                'vaccinated' => $petData['vaccinated'] === 'Yes' ? 1 : 0,
+                'contactName' => $petData['contactName'],
+                'contactNumber' => $petData['contactNumber'],
+                'email' => $petData['email'],
+                'price' => $price,
+                'City' => $city,
+                'Exact_address' => $address,
+                'img1' => $imagePaths[0] ?? null,
+                'img2' => $imagePaths[1] ?? null,
+                'img3' => $imagePaths[2] ?? null,
+                'fee_negotiable' => isset($_POST['fee_negotiable']) ? 1 : 0,
+                'agreed_terms' => isset($_POST['agreed_terms']) ? 1 : 0,
+                'created_at'=>date('Y-m-d H:i:s')
             ];
-
+            echo "<pre>";
+            print_r($data);
+            echo "<pre>";
             $postPetModel = new AddPostpet();
-            if ($postPetModel->create($data)) {
+            if ($postPetModel->insert($data)) {
                 $_SESSION['success_message'] = "Post successfully created";
                 header("Location: " . ROOT . "/service?success=1");
                 exit();
@@ -52,11 +64,6 @@ class Selling{
                 echo "Error saving data. Please try again.";
                 exit();
             }
-        } else {
-            echo "No pet data found. Please go back and fill out the previous steps.";
-            exit();
         }
     }
-}
-
 }

@@ -20,14 +20,14 @@
         <label class="pricel">Price:</label>
         <input type="text" name="price" placeholder="0.00" class="price"><br><br><br>
         <label class="fee">Fee is negotiable</label>
-        <input class="feebox" name="feebox" type="checkbox"><br>
+        <input class="feebox" name="fee_negotiable" type="checkbox"><br>
         <h3 class="location">Location Details:</h3>
         <label class="cityl">City:</label>
-        <input type="text" name="city" class="city"><br><br>
+        <input type="text" name="City" class="city"><br><br>
         <label class="addressl">Exact<br>Address:</label>
-        <input type="text" name="address" class="address"><br><br><br>
+        <input type="text" name="Exact_address" class="address"><br><br><br>
         <label class="terms">I agree to terms and conditions</label>
-        <input class="terms" name="checkbox" type="checkbox"><br>
+        <input class="terms" name="agreed_terms" type="checkbox"><br>
         <a href="terms">Review Terms</a>
         <button class="submit">Submit</button><br>
     </form>

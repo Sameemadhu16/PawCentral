@@ -39,7 +39,7 @@
     <!-- User profile -->
     <div class="user-profile">
 
-        <?php if (isset($_SESSION['user']) && $_SESSION['user_role']== 'admin'): ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin'): ?>
             <a class="user-profile" href="<?= ROOT ?>/admin/overview">
                 <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
             </a>
