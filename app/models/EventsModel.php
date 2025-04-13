@@ -5,6 +5,7 @@ class EventsModel
     use Model;
 
     protected $table = 'events';
+    protected $order_column = 'created_at';
 
     public function getUserEvents()
     {

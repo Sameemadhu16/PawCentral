@@ -4,42 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Details</title>
+    <title>PawCentral Dashboard - Donation Details</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/donation_card.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="<?= ROOT ?>/assets/js/admin/donation.js" defer></script>
+
 </head>
 
 <body class="body">
-    <!-- Include only the header -->
+    <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container container">
+
         <div class="content">
-            <h2>Donation Details</h2>
-            <div class="donation-card-detail">
-                <div class="donor-info">
-                    <h3>Donor Information</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. This section provides an overview of the donor's personal details and their contribution.</p>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>Phone:</strong> +94 771234567</p>
+            <div class="section-title">
+                <h2>Donation Details</h2>
+                <a href="<?= ROOT ?>/admin/donation" class="btn-secondary btn-action">
+                    <i class="fas fa-arrow-left"></i> Back to Donations
+                </a>
+            </div>
+
+            <div class="donation-details">
+                <div class="donation-header">
+                    <h3 class="donation-title"><?= esc($data['donation']->title) ?></h3>
+                    <span class="donation-status
+                        <?= $data['donation']->status == 0 ? 'status-pending' : ($data['donation']->status == 1 ? 'status-approved' : 'status-rejected') ?>">
+                        <?= $data['donation']->status == 0 ? 'Pending' : ($data['donation']->status == 1 ? 'Approved' : 'Rejected') ?>
+                    </span>
                 </div>
 
-                <div class="donation-info">
-                    <h3>Donation Information</h3>
-                    <p><strong>Society:</strong> Animal Welfare Society</p>
-                    <p><strong>Donation Amount:</strong> 10,000 LKR</p>
-                    <p><strong>Date:</strong> 2024-11-16</p>
+                <div class="pet-details">
+                    <div class="pet-image-large" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= esc($data['donation']->image) ?>');"></div>
+                    <div class="pet-info">
+                        <div class="info-grid">
+
+
+                            <div class="info-item">
+                                <div class="info-label">Requested Amount</div>
+                                <div class="info-value"><?= number_format($data['donation']->amount, 2) ?> LKR</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Collected Amount</div>
+                                <div class="info-value"><?= number_format($data['donation']->collected, 2) ?> LKR</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Requested Date</div>
+                                <div class="info-value"><?= date('F j, Y', strtotime($data['donation']->requested_at)) ?></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Expired Date</div>
+                                <div class="info-value"><?= date('F j, Y', strtotime($data['donation']->expire_date)) ?></div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">Category</div>
+                                <div class="info-value">sameera</div>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">Description</div>
+                            <div class="description-box">
+                                <p><?= esc($data['donation']->info) ?></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="donation-actions">
-                    <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=1'">Approve</button>
-                    <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=1'">Reject</button>
+                <div class="fund-progress">
+                    <div class="progress-stats">
+                        <div>Raised: <strong><?= number_format($data['donation']->collected, 2) ?> LKR</strong></div>
+                        <div>Goal: <strong><?= number_format($data['donation']->amount, 2) ?> LKR</strong></div>
+                        <div>Progress: <strong><?= $data['donation']->amount > 0 ? round(($data['donation']->collected / $data['donation']->amount) * 100) : 0 ?>%</strong></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-fill" style="width: <?= $data['donation']->amount > 0 ? ($data['donation']->collected / $data['donation']->amount) * 100 : 0 ?>%"></div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="action-buttons">
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $donation->id ?>">
+                    <button class="btn-action btn-primary" type="submit" name="approve">
+                        <i class="fas fa-check"></i> Approve Request
+                    </button>
+                </form>
+
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?= $donation->id ?>">
+                    <button class="btn-action btn-danger" type="submit" name="reject">
+                        <i class="fas fa-times"></i> Reject Request
+                    </button>
+
+                </form>
+
+
             </div>
         </div>
     </div>
+
+    <?php include("../app/views/components/footer.php"); ?>
 </body>
 
 </html>

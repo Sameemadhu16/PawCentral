@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Manage Events</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
+
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/event.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
 </head>
 
 <body class="body">
@@ -22,139 +28,90 @@
                 <h2>Manage Events</h2>
 
             </div>
-            <div class="event-list">
-                <!-- Event Card 1 -->
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
+            <div class="event-slider">
+                <!-- <div class="slide-buttons">
+                    <button class="slide-button" id="slide-left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slide-button" id="slide-right"><i class="fas fa-chevron-right"></i></button>
+                </div> -->
+                <div id="eventList" class="event-list">
+                    <?php if (empty($events)) : ?>
+                        <p>No events available.</p>
+                    <?php else : ?>
+                        <?php foreach ($events as $event) : ?>
+
+                            <div class="event-card">
+                                <div class="event-card-content">
+                                    <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                    <div class="event-details">
+                                        <h3><?= esc($event->title) ?></h3>
+                                        <p><?= esc($event->date) ?></p>
+                                        <p><?= esc($event->location) ?></p>
+                                        <p><?= esc($event->address) ?></p>
+                                        <p class="published-date">Published on: <?= esc($event->created_at) ?></p>
+                                        <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?> participants enrolled</span>
+                                        <form method="GET" action="<?= ROOT ?>/admin/event_view">
+                                            <input type="hidden" name="id" value="<?= esc($event->event_id) ?>">
+                                            <div class="event-actions">
+                                                <button class="view-more-button">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
 
-                <!-- Event Card 2 -->
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>./assets/images/pets/petres_2.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Pet Adoption Day</h2>
-                        <p>Date: Sat, 11th September, 10:00 AM</p>
-                        <p>Location: @City Park</p>
-                        <p>Address: 45 Park Avenue, Colombo</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <!-- Event Card 3 -->
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/assets/images/events/event_3.jpg" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Veterinary Check-Up Camp</h2>
-                        <p>Date: Sun, 19th September, 9:00 AM</p>
-                        <p>Location: @Community Center</p>
-                        <p>Address: 22 Main Street, Kandy</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <!-- <img src="<?= ROOT ?>/./assets/images/pets/found_1.png" alt="Event Image" class="event-image"> -->
-                    <div class="event-details">
-                        <h2>Animal Sterilization Camp</h2>
-                        <p>Date: Sun, 5th September, 4:00 PM</p>
-                        <p>Location: @Youth Club</p>
-                        <p>Address: 36/2 Sri Lankarama Rd, Panadura</p>
-                    </div>
-                    <div class="event-actions">
-                        <button class="approve-btn" onclick="window.location.href='<?= ROOT ?>/admin/event_view'">View More</button>
-                        <!-- <button class="delete-btn">Delete</button> -->
-                    </div>
-                </div>
+            </div>
+            <div class="admin-event-details">
+                <h2>Event Details</h2>
+                <table class="event-details-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Enrolled Participants</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($allEvents as $event) : ?>
+                            <tr onclick="window.location='<?= ROOT ?>/admin/event_view?id=<?= esc($event->event_id) ?>'">
+                                <td><?= esc($event->title) ?></td>
+                                <td><?= esc($event->date) ?></td>
+                                <td><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?></td>
+                                <td><?= esc($event->status == 0 ? 'Pending' : ($event->status == 1 ? 'Approved' : ($event->status != 0 || $event->status != 1 ? 'Rejected' : $event->status))) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
     <?php include("../app/views/components/footer.php"); ?>
+
+    <script>
+        const eventList = document.getElementById('eventList');
+        const slideLeft = document.getElementById('slide-left');
+        const slideRight = document.getElementById('slide-right');
+
+        slideLeft.addEventListener('click', function() {
+            eventList.scrollBy({
+                left: -eventList.clientWidth / 2,
+                behavior: 'smooth'
+            });
+        });
+
+        slideRight.addEventListener('click', function() {
+            eventList.scrollBy({
+                left: eventList.clientWidth / 2,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
+
 
 </html>

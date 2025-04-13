@@ -30,7 +30,7 @@ class DonationsModel
         return $this->update($id, $data, 'id');
     }
 
-    // Public view donation requests
+    // Public view donation requests | edit this to get the results for just the page number
     public function getViewReq()
     {
     $this->table=$this->donation_req;
@@ -53,4 +53,23 @@ class DonationsModel
         return $this->insert($data) ? true : false;
     }
 
+    public function getDonations($conditions = []) {
+        $this->table = $this->donation_req;
+
+        $query = "SELECT * FROM `" . $this->table . "`";
+        $params = [];
+
+        if (!empty($conditions)) {
+            $query .= " WHERE ";
+            $clauses = [];
+            foreach ($conditions as $column => $value) {
+                $clauses[] = "`$column` = :$column";
+                $params[":$column"] = $value;
+            }
+            $query .= implode(" AND ", $clauses);
+        }
+
+        return $this->query($query, $params);
+    }
+    
 }
