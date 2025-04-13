@@ -108,23 +108,33 @@
     margin-right: 10px;
     border-radius: 10px 1px 0px 10px;
 }
-
 .event-card-content {
     display: flex;
     align-items: center;
     width: 100%;
+    overflow: hidden; /* Ensures contents do not overflow */
 }
 
 .event-details {
     flex-grow: 1;
-  }
-  
-  .event-details h3 {
+    min-width: 0; /* Prevents flexbox from expanding beyond card */
+    overflow: hidden;
+}
+
+.event-details h3 {
     font-size: 20px;
     margin: 0;
     margin-bottom: 15px;
     font-weight: bold;
-  }
+}
+
+.hide_overflow {
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis when text overflows */
+    display: block;
+    max-width: 80%; /* Ensures it doesn't exceed parent */
+}
   
   .event-details p {
     margin: 5px 0;
@@ -139,7 +149,7 @@
 
 .participants {
     display: inline-block;
-    background-color: rgb(128, 73, 254,.5);
+    background-color: rgb(128, 73, 254,.3); /* Add color so that it changes based on how many are enrolled in */
     color: #333;
     padding: 5px 10px;
     border-radius: 10px;

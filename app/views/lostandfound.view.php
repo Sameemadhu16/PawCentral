@@ -23,11 +23,29 @@
                 <button class="filter-btn" data-filter="found">Found</button>
             </div>
             <div class="report-lost-buttons">
-                <button id="reportLost">Report Lost</button>
-                <button id="reportFound">Report Found</button>
+                <button id="reportFound">Report a Pet</button>
             </div>
             </div>
-            <div id="petList" class="pet-list"></div>
+
+            <div id="petList" class="pet-list">
+                <?php if (!empty($posts)): ?>
+                    <?php foreach ($posts as $post): ?>
+                        <a href="<?= ROOT ?>/lostandfound/postdetails?id=<?= htmlspecialchars($post->petid) ?>" class="pet-card pet-card-link">
+                            <img src=<?= htmlspecialchars($post->img1) ?> alt="<?= htmlspecialchars($post->petName) ?>" class="pet-image">
+                            <div class="pet-info">
+                                <h2><?= htmlspecialchars($post->petName) ?> - <?= htmlspecialchars($post->breed) ?></h2>
+                                <p><?= htmlspecialchars($post->status) ?></p>
+                                <p><?= htmlspecialchars($post->address) ?></p>
+                                <p>Reported on: <?= htmlspecialchars(date('d M Y', strtotime($post->publishedOn))) ?></p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No pets found.</p>
+                <?php endif; ?>
+            </div>
+
+
         </div>
         <div class="pagination">
             <button id="prevPage">previous</button>
@@ -39,7 +57,7 @@
     <!-- FOOTER -->
     <?php include("../app/views/components/footer.php")?>
     
-    <script src="<?= ROOT?>/assets/js/lostandfound.js"></script>
+    <!-- <script src="<?= ROOT?>/assets/js/lostandfound.js"></script> -->
     
     <script>
         // Event listener for the "Report Lost" button

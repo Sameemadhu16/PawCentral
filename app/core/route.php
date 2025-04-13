@@ -56,9 +56,9 @@ route('admin/notification', 'admin/AdminNotification@index');
 
 // User routings
 route('announcements','announcements');
-route('lostandfound','lostandfound');
+route('lostandfound','LostAndFound@index');
 route('eventsandcampaigns','events');
-route('eventsandcampaigns/event_id','EventInfo');
+route('eventsandcampaigns/event','events@EventInfo');
 route('lostandfound/report-animal','ReportFound');
 // route('lostandfound/idoflost','LostPet');
 
@@ -93,6 +93,9 @@ route('services/careservice','Careservice');
 route('shelters','PetShelters');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
+route('donationsnsupport/req','DonationsAndSupport@showPost');
+route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
+
 
 //pet shelter routings
 route('shelter/profile','shelter/Profile@index');
