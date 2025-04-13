@@ -30,9 +30,10 @@
                 <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image" class="event-image">
                 <div class="event-details">
                     <h2><?= esc($event->title) ?></h2>
-                    <p><strong>Date:</strong> <?= esc($event->date) ?></p>
-                    <p><strong>Location:</strong> <?= esc($event->location) ?></p>
-                    <p><strong>Published on:</strong> <?= esc($event->created_at) ?></p>
+                    <p><i class="far fa-calendar-alt"></i> <?= esc($event->date) ?></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <?= esc($event->location) ?></p>
+                    <p><i class="fas fa-map"></i> <?= esc($event->address) ?></p>
+                    <p><i class="far fa-clock"></i> Published on: <?= date('Y-m-d', strtotime($event->created_at)) ?></p>
                     <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?>participants enrolled</span>
                 </div>
                 <div class="event-actions">
