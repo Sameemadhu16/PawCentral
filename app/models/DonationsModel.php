@@ -30,29 +30,6 @@ class DonationsModel
         return $this->update($id, $data, 'id');
     }
 
-    // Public view donation requests | edit this to get the results for just the page number
-    public function getViewReq()
-    {
-    $this->table=$this->donation_req;
-    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE status=0 AND approved = 1";
-
-    $result = $this->query($query);
-    return $result;
-    }
-
-    public function getDonReq($postid)
-    {
-    $this->table=$this->donation_req;
-    $post = $this->first(['id' => $postid]);
-        return $post;
-
-    }
-
-    public function insertDonation($data) {
-        $this->table = $this->donations;
-        return $this->insert($data) ? true : false;
-    }
-
     public function getDonations($conditions = []) {
         $this->table = $this->donation_req;
 

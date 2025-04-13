@@ -15,7 +15,7 @@ class AdminDonation{
             }
 
             if (isset($_POST['id']) && isset($_POST['reject'])) {
-                $this->rejectRequest($_POST['id']);
+                $this->rejectDonationModel($_POST['id'], $_POST['reason']);
                 redirect('/admin/donation');
                 exit;
             }
@@ -83,10 +83,14 @@ class AdminDonation{
         return $donationModel->query($query);
     }
 
-    private function rejectRequest($id)
+    private function rejectDonationModel($id, $reason)
     {
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 2 WHERE id = $id";
-        return $donationModel->query($query);
+        $query = "UPDATE donation_requests SET status = 2, rejection_reason = :reason WHERE id = :id";
+        $params = [
+            ':id' => $id,
+            ':reason' => $reason
+        ];
+        return $donationModel->query($query, $params);
     }
 }

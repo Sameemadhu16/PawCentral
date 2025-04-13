@@ -81,10 +81,7 @@
                                     <input type="hidden" name="id" value="<?= $request->id ?>">
                                     <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                 </form>
-                                <form method="POST">
-                                    <input type="hidden" name="id" value="<?= $request->id ?>">
-                                    <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
-                                </form>
+                                <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $request->id ?>)">Reject</button>
                             </div>
                         </div>
                     </div>
@@ -158,10 +155,7 @@
                                                 <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                             </form>
                                             <!-- Reject Button -->
-                                            <form method="POST">
-                                                <input type="hidden" name="id" value="<?= $allRequests->id ?>">
-                                                <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
-                                            </form>
+                                            <button type="button" class="action-btn reject-btn"  onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
                                             <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
                                         <?php else: ?>
                                             <!-- View Button -->
@@ -176,6 +170,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Reject Reason Modal -->
+    <div id="rejectModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRejectModal()">&times;</span>
+            <h3>Reject Request</h3>
+            <form method="POST" >
+                <input type="hidden" name="id" id="rejectRequestId">
+                <label for="reason">Reason for Rejection:</label>
+                <textarea name="reason" id="reason" rows="4" required></textarea>
+                <button type="submit" name="reject" class="action-btn reject-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(requestId) {
+            document.getElementById('rejectRequestId').value = requestId;
+            document.getElementById('rejectModal').style.display = 'block';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').style.display = 'none';
+        }
+    </script>
 
     <?php include("../app/views/components/footer.php"); ?>
 </body>
