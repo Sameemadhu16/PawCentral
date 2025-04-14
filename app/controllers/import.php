@@ -29,14 +29,15 @@ class Import
                 $imagePaths = isset($petData['images']) ? $petData['images'] : [];
 
                 $data = [
-                    'tradeType' => $petData['tradeType'],
-                    'petName' => $petData['petName'],
+                    'merchant_id'=>$_SESSION['role_id']?? null,
+                    'tradetype' => $petData['tradeType'],
+                    'pet_name' => $petData['petName'],
                     'species' => $petData['species'],
                     'breed' => $petData['breed'],
                     'sex' => $petData['sex'],
                     'age' => $petData['age'],
-                    'height' => $petData['height'],
-                    'weight' => $petData['weight'],
+                    'height' =>(float)$petData['height'],
+                    'weight' => (float)$petData['weight'],
                     'neutered' => $petData['neutered'],
                     'trained' => $petData['trained'],
                     'pedigree' => $petData['pedigree'],
@@ -50,10 +51,14 @@ class Import
                     'img2' => $imagePaths[1] ?? null,
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
+                    'email'=>$petData['email'],
                 ];
 
-                $postPetModel = new AddPostpet();
-                if ($postPetModel->create($data)) {
+                echo "<pre>";
+                print_r($data);
+                echo "<pre>";
+                $postPetModel = new ImportPet();
+                if ($postPetModel->insert($data)) {
                     $_SESSION['success_message'] = "Post successfully created";
                     header("Location: " . ROOT . "/service?success=1");
                     exit();

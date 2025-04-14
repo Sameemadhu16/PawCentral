@@ -8,7 +8,7 @@
 <body>
 <?php include '../app/views/components/header.php'?>
 <h1>Import a Pet</h1>
-    <form action="<?=ROOT?>/service/postpet/postpetnext/importing/submit" method="POST">
+    <form action="<?=ROOT?>/service/postpet/postpetnext/import/submit" method="POST">
         <label for="country">Country:</label>
         <input type="text" id="country" name="country" required>
         
