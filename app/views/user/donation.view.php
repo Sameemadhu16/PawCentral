@@ -21,7 +21,63 @@
             document.getElementById("popupForm").style.display = "none";
             document.body.style.overflow = "auto"; // Enable scrolling
         }
+
+        function toggleDiv(divId) {
+            const pending = document.getElementById("PendingDiv");
+            const completed = document.getElementById("CompletedDiv");
+            const target = document.getElementById(divId);
+            const pendingBtn = document.getElementById("PendingDivButton");
+            const completedBtn = document.getElementById("CompletedDivButton");
+
+            // Hide both first
+            pending.classList.remove("active");
+            completed.classList.remove("active");
+            pendingBtn.classList.remove("active-btn");
+            completedBtn.classList.remove("active-btn");
+
+            // Toggle the selected one if it wasn’t already active
+            if (target !== null && !target.classList.contains("active")) {
+                target.classList.add("active");
+            }
+
+            if (divId=="PendingDiv") {
+                pendingBtn.classList.add("active-btn");
+            }else if (divId=="CompletedDiv") {
+                completedBtn.classList.add("active-btn");
+            }
+        }
+
+        function openPendingDiv() {
+            toggleDiv("PendingDiv");
+        }
+
+        function openCompletedDiv() {
+            toggleDiv("CompletedDiv");
+        }
     </script>
+    <style>
+        /* #PendingDiv, #CompletedDiv {
+            display: none;
+        } */
+        .inv-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* When active */
+        .inv-container.active {
+            max-height: 1000px; /* Large enough to show the full content */
+        }
+
+        .active-btn {
+            background-color: var(--button-normal-hover) !important;
+        }
+        
+    </style>
 </head>
 
 <body class="body">
@@ -33,7 +89,6 @@
 
         <div class="user-accounts-section">
             
-            
                 <?php if (!empty($requests)) : ?>
                     <div class="header-section">
                         <h2>Donation requests</h2>
@@ -42,7 +97,8 @@
                     
                     <div class="cards-container">
                     <?php foreach ($requests as $req) : ?>
-                        <div class="donation-card">
+                        <?php if ($req->status ==0 & $req->approved==1) : ?>
+                            <div class="donation-card">
                             <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
                             <div class="card-content">
                                 <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
@@ -54,7 +110,10 @@
                                     ?>
                                     <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
                                 </div>
+                                <div class="overflow-hide">
                                 <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
+                                
+                                </div>
                                 <button class="don-but">Edit Info</button>
 
                                 <button class="don-but close-but" 
@@ -69,6 +128,7 @@
                                 
                             </div>
                         </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                     </div>
                 <?php else : ?>
@@ -77,8 +137,103 @@
                         <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
                     </div>
                 <?php endif; ?>
-            
 
+<br><br>
+
+                <?php if (!empty($requests)) : ?>
+                        <button id="PendingDivButton" class="quick-action-button fixedsize" onclick="openPendingDiv()">Pending Approval</button>
+                        
+                        <button id="CompletedDivButton" class="quick-action-button fixedsize" onclick="openCompletedDiv()">Completed</button>
+                    
+                        <div id="PendingDiv" class="cards-container inv-container">
+                        <?php 
+                            $hasPending = false;
+                            foreach ($requests as $req) :
+                                if ($req->status == 0 && $req->approved == 0) :
+                                    $hasPending = true;
+                        ?>
+                            <div class="donation-card">
+                                <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
+                                <div class="card-content">
+                                    <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
+                                    <p class="description"><?= htmlspecialchars($req->reason) ?></p>
+                                    <div class="progress-bar-container">
+                                        <?php 
+                                            $progress = ($req->collected / $req->amount) * 100;
+                                            $progress = min(100, max(0, $progress));
+                                        ?>
+                                        <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                                    </div>
+                                    <div class="overflow-hide">
+                                        <p class="amount">Requested Amount: <?= number_format($req->amount, 2) ?> Rs.</p>
+                                    </div>
+                                    <button class="don-but">Edit Info</button>
+                                    <button class="don-but close-but" 
+                                        onclick="showPopup(
+                                            <?= htmlspecialchars($req->id) ?>,
+                                            '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
+                                            'Are you sure want to close this donation request ?<br><br><?= htmlspecialchars(addslashes($req->title)) ?>',
+                                            ['Donations found', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say', 'Mistaken Entry']
+                                        )">
+                                        Close Request
+                                    </button>
+                                </div>
+                            </div>
+                        <?php 
+                                endif;
+                            endforeach;
+                            if (!$hasPending) :
+                        ?>
+                            <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no pending requests at the moment.
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                   <br>
+
+                    <div id="CompletedDiv" class="cards-container inv-container">
+                    <?php 
+                            $hasCompleted = false;
+                            foreach ($requests as $req) :
+                                if ($req->status == 1 && $req->approved == 1) :
+                                    $hasCompleted = true;
+                        ?>
+                            <div class="donation-card">
+                                <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
+                                <div class="card-content">
+                                    <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
+                                    <p class="description"><?= htmlspecialchars($req->reason) ?></p>
+                                    <div class="progress-bar-container">
+                                        <?php 
+                                            $progress = ($req->collected / $req->amount) * 100;
+                                            $progress = min(100, max(0, $progress));
+                                        ?>
+                                        <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                                    </div>
+                                    <div class="overflow-hide">
+                                        <p class="amount">Collected: <?= number_format($req->amount, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span> Rs.</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        <?php 
+                                endif;
+                            endforeach;
+                            if (!$hasCompleted) :
+                        ?>
+                            <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no Completed Donation requests at the moment.
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php else : ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
+                    </div>
+                <?php endif; ?>
+      
         </div>
     </div>
     <div id="popupForm" class="popup-container">

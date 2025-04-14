@@ -13,7 +13,7 @@ class DonationsModel
     {
         $userId = $_SESSION['user_id'];
 
-    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE `user_id` = :userid AND status=0";
+    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE `user_id` = :userid ";  // AND approved=1 to filter ?
 
     $result = $this->query($query, [':userid' => $userId]);
     return $result;

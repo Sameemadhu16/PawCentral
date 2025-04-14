@@ -119,6 +119,7 @@
     flex-grow: 1;
     min-width: 0; /* Prevents flexbox from expanding beyond card */
     overflow: hidden;
+    /* max-width: 50%; */
 }
 
 .event-details h3 {

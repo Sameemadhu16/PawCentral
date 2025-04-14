@@ -44,7 +44,6 @@
                                 </div>
                                 <div class="event-actions">
                                 <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
-                                
                             </div>
                             </div>
                         </div>
