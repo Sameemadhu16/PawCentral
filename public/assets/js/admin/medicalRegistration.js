@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Search functionality
-  function searchTable() {
+  searchInput.addEventListener('input', function() {
     const searchTerm = searchInput.value.toLowerCase().trim();
     const rows = registrationTableBody.querySelectorAll('tr');
     let visibleCount = 0;
 
     // Get active filter
     const activeFilter = document.querySelector('.filter-btn.active')
-                             .getAttribute('data-status');
+                             ?.getAttribute('data-status') || 'all';
 
     rows.forEach(row => {
       const serviceName = row.cells[0].textContent.toLowerCase();
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       noResults.classList.add('hidden');
     }
-  }
+  });
 
   // Update stats counters
   function updateStats() {
@@ -132,14 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Event Listeners
-  searchBtn.addEventListener('click', searchTable);
-
-  searchInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      searchTable();
-    }
-  });
-
   filterBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       // Remove active class from all buttons

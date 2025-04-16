@@ -26,7 +26,6 @@
             <div class="filters-section">
                 <div class="search-filter">
                     <input type="text" id="searchInput" placeholder="Search by service name..." class="search-input">
-                    <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
                 </div>
 
                 <div class="status-filters">

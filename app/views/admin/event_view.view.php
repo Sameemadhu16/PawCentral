@@ -19,7 +19,7 @@
         <div class="event-container">
             <div class="back-icon">
                 <a href="<?= ROOT ?>/admin/event">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="fas fa-arrow-left"> </i> <span>Back</span>
                 </a>
             </div>
             <h1>Event Info</h1>

@@ -23,6 +23,22 @@
                     <p class="dashboard-subtitle">Monitor and manage all registered users in the system</p>
                 </div>
 
+                <div class="control-panel">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name, email...">
+                    </div>
+                    <div class="filter-box">
+                        <select id="roleFilter" class="role-filter">
+                            <option value="">All User Types</option>
+                            <option value="user">Regular User</option>
+                            <option value="seller">Seller</option>
+                            <option value="shelter">Adoption Shelter</option>
+                            <option value="service_prov">Care Provider</option>
+                            <option value="medical_provider">Medical Provider</option>
+                        </select>
+                    </div>
+                </div>
                 <!-- Overview Cards Section -->
                 <div class="stats-overview">
                     <div class="stat-card">
@@ -62,22 +78,7 @@
                     </div>
                 </div>
 
-                <div class="control-panel">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search by name, email...">
-                    </div>
-                    <div class="filter-box">
-                        <select id="roleFilter" class="role-filter">
-                            <option value="">All User Types</option>
-                            <option value="user">Regular User</option>
-                            <option value="seller">Seller</option>
-                            <option value="shelter">Adoption Shelter</option>
-                            <option value="service_prov">Care Provider</option>
-                            <option value="medical_provider">Medical Provider</option>
-                        </select>
-                    </div>
-                </div>
+                
 
                 <div class="users-table-container">
                     <div class="users-table" id="userList">
