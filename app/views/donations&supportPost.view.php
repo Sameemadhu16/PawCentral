@@ -1,3 +1,8 @@
+
+<?php
+require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to the init.php file
+// C:\xampp\htdocs\PawCentral\
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,6 +97,13 @@
             </div>
             
             <hr class="styled-hr">
+
+            <!-- Stripe intergration -->
+            <form action="<?=ROOT?>/donationsnsupport/create-checkout-session" method="POST">
+  <button type="submit">Donate</button>
+</form>
+
+
 
             <!-- donation form -->
 

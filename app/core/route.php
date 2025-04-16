@@ -1,4 +1,5 @@
 <?php
+route('donationsnsupport/create-checkout-session', 'DonationsAndSupport@createCheckoutSession');
 
 // Middleware-like function for admin-only routes
 // function adminRoute($path, $controllerAction) {

@@ -91,5 +91,34 @@ class DonationsAndSupport {
     
     }
     
+    public function createCheckoutSession()
+    {
+        require_once(__DIR__ . '/../../public/stripe/init.php'); 
+    
+        \Stripe\Stripe::setApiKey('sk_test_51REdIxFTo4VHHbeOHSLcbBaXmJnCiM2rHqyrMVEwS9eksOVHTIXSfupIP8MTBn5KaEDQvdisKdF1nOHa1zwkbr3r00ZYAWN6PV'); // your secret test key
 
+        try {
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => ['name' => 'Donation'],
+                        'unit_amount' => 5000,
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => 'http://localhost/PawCentral/public/',
+                'cancel_url' => 'http://localhost/PawCentral/public/donationsnsupport',
+            ]);
+    
+            header("Location: " . $session->url);
+            exit;
+        } catch (Exception $e) {
+            echo 'Stripe error: ' . $e->getMessage();
+        }
+    }
+
+    
 }
