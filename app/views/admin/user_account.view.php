@@ -16,27 +16,20 @@
     <div class="main-container container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
-        <div class="content">
-            <div class="user-accounts-section">
-                <div class="dashboard-header">
-                    <h2>User Accounts Management</h2>
-                    <p class="dashboard-subtitle">Monitor and manage all registered users in the system</p>
-                </div>
+            <div class="med-container">
+                <h2>User Accounts Management</h2>
 
-                <div class="control-panel">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search by name, email...">
+                <div class="filters-section">
+                    <div class="search-filter">
+                        <input type="text" id="searchInput" placeholder="Search by name, email..." class="search-input">
                     </div>
-                    <div class="filter-box">
-                        <select id="roleFilter" class="role-filter">
-                            <option value="">All User Types</option>
-                            <option value="user">Regular User</option>
-                            <option value="seller">Seller</option>
-                            <option value="shelter">Adoption Shelter</option>
-                            <option value="service_prov">Care Provider</option>
-                            <option value="medical_provider">Medical Provider</option>
-                        </select>
+
+                    <div class="status-filters">
+                        <button class="filter-btn active" data-status="all">All</button>
+                        <button class="filter-btn" data-status="regular">Regular</button>
+                        <button class="filter-btn" data-status="shelter">Shelter</button>
+                        <button class="filter-btn" data-status="care_provider">Care Provider</button>
+                        <button class="filter-btn" data-status="medical_provider">Medical Provider</button>
                     </div>
                 </div>
                 <!-- Overview Cards Section -->
@@ -78,7 +71,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="users-table-container">
                     <div class="users-table" id="userList">
@@ -115,44 +108,80 @@
                 </div>
             </div>
 
-        </div>
+        
 
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 
     <script>
-        const roleFilter = document.getElementById('roleFilter');
+        const filterBtns = document.querySelectorAll('.filter-btn');
         const userRows = document.querySelectorAll('.user-row');
         const searchInput = document.getElementById('searchInput');
 
         // Filter by role
-        roleFilter.addEventListener('change', function() {
-            const selectedRole = roleFilter.value;
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
 
-            userRows.forEach(row => {
-                const userRole = row.getAttribute('data-role');
+                // Add active class to clicked button
+                this.classList.add('active');
 
-                if (selectedRole === '' || userRole === selectedRole) {
-                    row.style.display = 'flex';
+                // Filter rows
+                const selectedRole = this.getAttribute('data-status');
+                let visibleCount = 0;
+
+                userRows.forEach(row => {
+                    const userRole = row.getAttribute('data-role');
+                    if (selectedRole === 'all' || (selectedRole === 'regular' && userRole === 'user') || userRole === selectedRole) {
+                        row.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                const noResults = document.querySelector('.no-users');
+                if (visibleCount === 0) {
+                    noResults.style.display = 'block';
                 } else {
-                    row.style.display = 'none';
+                    noResults.style.display = 'none';
                 }
             });
         });
 
         // Search functionality
-        searchInput.addEventListener('input', function() {
-            const searchText = searchInput.value.toLowerCase();
+        searchInput.addEventListener('input', function () {
+            const searchText = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            // Get active filter
+            const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-status') || 'all';
 
             userRows.forEach(row => {
                 const userInfo = row.querySelector('.user-info').textContent.toLowerCase();
+                const userRole = row.getAttribute('data-role');
 
-                if (userInfo.includes(searchText)) {
+                // Check if row matches search term and active filter
+                const matchesSearch = userInfo.includes(searchText);
+                const matchesFilter = activeFilter === 'all' || (activeFilter === 'regular' && userRole === 'user') || activeFilter === userRole;
+
+                if (matchesSearch && matchesFilter) {
                     row.style.display = 'flex';
+                    visibleCount++;
                 } else {
                     row.style.display = 'none';
                 }
             });
+
+            // Show/hide no results message
+            const noResults = document.querySelector('.no-users');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
         });
     </script>
 </body>
