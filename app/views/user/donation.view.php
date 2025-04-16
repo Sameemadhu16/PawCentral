@@ -114,8 +114,9 @@
                                 <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
                                 
                                 </div>
-                                <button class="don-but">Edit Info</button>
-
+                                <!-- <form action="<?= ROOT ?>/userprofile/donations/update?id=<?= htmlspecialchars($req->id) ?>" method="POST" style="display: inline;">
+                                    <button class="don-but">Edit Info</button>
+                                </form> -->
                                 <button class="don-but close-but" 
                                     onclick="showPopup(
                                         <?= htmlspecialchars($req->id) ?>,
@@ -167,7 +168,7 @@
                                     <div class="overflow-hide">
                                         <p class="amount">Requested Amount: <?= number_format($req->amount, 2) ?> Rs.</p>
                                     </div>
-                                    <button class="don-but">Edit Info</button>
+                                    <!-- <button class="don-but">Edit Info</button> -->
                                     <button class="don-but close-but" 
                                         onclick="showPopup(
                                             <?= htmlspecialchars($req->id) ?>,

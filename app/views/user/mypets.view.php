@@ -31,12 +31,13 @@
             
         <div class="user-accounts-section">
             <?php if (!empty($pets)): ?>
-                <div class="topicnbuttons">
+                <!-- <div class="topicnbuttons">
                     <button class="action-button fixedsize" style="background-color:#8049fe;" onclick="openPopup()">Register Pet</button>
-                </div>
+                </div> -->
 
-                <div class="topicnbuttons">
+                <div class="header-section">
                     <h2>Your Pets</h2> 
+                    <button class="action-button fixedsize" style="background-color:#8049fe;" onclick="openPopup()">Register Pet</button>
                 </div>
 
                 <div class="pets-section">

@@ -69,6 +69,8 @@ route('userprofile/notifications','user/Notification@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/donations/req','user/Donation@AddReq');
 route('userprofile/donations/closeReq','user/Donation@CloseReq');
+route('userprofile/donations/update','user/Donation@UpdateView');
+// route('userprofile/donations/updateInfo','user/Donation@SubmitUpdate');
 route('userprofile/lost_and_found','user/LostAndFound@index');
 route('userprofile/mypets','user/Mypets@index');
 route('userprofile/mypets/selectedPet','user/Mypets@index2');

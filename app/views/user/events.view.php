@@ -11,6 +11,29 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">   
     
+    <style>
+        /* #PendingDiv, #CompletedDiv {
+            display: none;
+        } */
+        .inv-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* When active */
+        .inv-container.active {
+            max-height: 1000px; /* Large enough to show the full content */
+        }
+
+        .active-btn {
+            background-color: var(--button-normal-hover) !important;
+        }
+        
+    </style>
 </head>
 
 <body class="body">
@@ -22,16 +45,18 @@
         <div class="user-accounts-section">
             <div class="events-sec">
                 <?php if (!empty($events)):?>
-                    <div class="topicnbuttons">
+                    <!-- <div class="topicnbuttons">
                     <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
-                    </div>
+                    </div> -->
                     
-                    <div class="topicnbuttons">
+                    <div class="header-section">
                         <h2>Your Published Events</h2>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
                     </div>
                     <div class="event-list">
                     <?php foreach ($events as $event) : ?>
-                        <div class="event-card">
+                        <?php if($event->status==0 & $event->approved==1):?>
+                            <div class="event-card">
                             <div class="event-card-content">
                                 <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
                                 <div class="event-details">
@@ -47,6 +72,7 @@
                             </div>
                             </div>
                         </div>
+                        <?php endif;?>
                     <?php endforeach; ?>
                     </div>
                 <?php else: ?>
@@ -55,6 +81,87 @@
                         <button class="add-event fixedsize"  onclick="openPopup()">Add New Event</button></p><br>
                     </div>
                 <?php endif;?>
+
+
+                <br><br>
+
+                <?php if (!empty($events)):?>  
+                    <button id="PendingDivButton" class="quick-action-button fixedsize" onclick="openPendingDiv()">Pending Approval</button>
+                        
+                    <button id="CompletedDivButton" class="quick-action-button fixedsize" onclick="openCompletedDiv()">Completed</button>
+                      
+                    <div id="PendingDiv" class="event-list inv-container">
+                    <?php 
+                            $hasPending = false;
+                            foreach ($events as $event) :
+                                if ($event->status == 0 && $event->approved == 0) :
+                                    $hasPending = true;
+                    ?>
+                            <div class="event-card">
+                            <div class="event-card-content">
+                                <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                <div class="event-details">
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                    <p><?= htmlspecialchars($event->date) ?></p>
+                                    <p><?= htmlspecialchars($event->location) ?></p>
+                                    <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                </div>
+                                <div class="event-actions">
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                            </div>
+                            </div>
+                        </div>
+                        <?php endif;?>
+                    <?php endforeach; 
+                        if (!$hasPending) :
+                    ?>
+                    <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no pending events at the moment.
+                            </div>
+                    <?php endif; ?>
+                    </div>
+<br>
+                    <div id="CompletedDiv" class="event-list inv-container">
+                    <?php 
+                            $hasCompleted = false;
+                            foreach ($events as $event) :
+                                if ($event->status == 1 && $event->approved == 1) :
+                                    $hasCompleted = true;
+                    ?>
+                            <div class="event-card">
+                            <div class="event-card-content">
+                                <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                <div class="event-details">
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                    <p><?= htmlspecialchars($event->date) ?></p>
+                                    <p><?= htmlspecialchars($event->location) ?></p>
+                                    <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                </div>
+                                <div class="event-actions">
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                            </div>
+                            </div>
+                        </div>
+                        <?php endif;?>
+                    <?php endforeach; 
+                        if (!$hasCompleted) :
+                    ?>
+                    <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no completed events yet.
+                            </div>
+                    <?php endif; ?>
+                    </div>
+                    <?php else : ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
+                    </div>
+                <?php endif; ?>    
+                    
             </div>
         </div>
     </div>
@@ -67,10 +174,10 @@
             <h2>Enter Event Information</h2>
             <form id="petForm" action="<?= ROOT ?>/userprofile/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" eventuired>
 
                 <label for="eventimg">Upload a cover photo:</label>
-                <input type="file" id="eventimg" name="photos[]" accept="image/*" required>
+                <input type="file" id="eventimg" name="photos[]" accept="image/*" eventuired>
           <div id="imagePreviewContainer"></div>
           <script>
               document.getElementById('eventimg').addEventListener('change', function () {
@@ -103,19 +210,19 @@
           </script>
 
                     <label for="date">Event Date:</label>
-                    <input type="date" id="date" name="date" required>
+                    <input type="date" id="date" name="date" eventuired>
 
                     <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="City/Town" required>
+                    <input type="text" id="location" name="location" placeholder="City/Town" eventuired>
 
                     <label for="time">Event Time:</label>
                     <input type="time" id="time" name="time">
                     
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address" eventuired>
                     
                     <label for="participants">Max Participants allowed:</label>
-                    <input type="number" id="participants" name="participants" min="2" max="800" required>
+                    <input type="number" id="participants" name="participants" min="2" max="800" eventuired>
 
                     <script>
                         document.querySelector('form').addEventListener('submit', function (event) {
@@ -142,7 +249,7 @@
 
                 <label for="eventdesc">Add a description for the event:</label>
           <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
-Prerequisits if there are any.
+Preeventuisits if there are any.
 or any other information that participants should be aware of."></textarea>
                 <button type="submit">Submit</button>
             </form>
@@ -162,7 +269,40 @@ or any other information that participants should be aware of."></textarea>
             document.body.style.overflow = "auto"; // Enable scrolling
         }
 
+    function toggleDiv(divId) {
+            const pending = document.getElementById("PendingDiv");
+            const completed = document.getElementById("CompletedDiv");
+            const target = document.getElementById(divId);
+            const pendingBtn = document.getElementById("PendingDivButton");
+            const completedBtn = document.getElementById("CompletedDivButton");
+
+            // Hide both first
+            pending.classList.remove("active");
+            completed.classList.remove("active");
+            pendingBtn.classList.remove("active-btn");
+            completedBtn.classList.remove("active-btn");
+
+            // Toggle the selected one if it wasn’t already active
+            if (target !== null && !target.classList.contains("active")) {
+                target.classList.add("active");
+            }
+
+            if (divId=="PendingDiv") {
+                pendingBtn.classList.add("active-btn");
+            }else if (divId=="CompletedDiv") {
+                completedBtn.classList.add("active-btn");
+            }
+        }
+
+        function openPendingDiv() {
+            toggleDiv("PendingDiv");
+        }
+
+        function openCompletedDiv() {
+            toggleDiv("CompletedDiv");
+        }
     </script>
+    
     <script src="<?= ROOT ?>/assets/js/popupform.js"></script>
 </body>
 

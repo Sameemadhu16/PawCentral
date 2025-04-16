@@ -73,7 +73,7 @@ class Donation{
                 echo "Data insertion failed.";
 
                 $data['error'] = 'Failed to register pet. Please try again.';
-                $this->view('userprofile/donations', $data);
+                $this->view('user/donations', $data);
             }
         }
 
@@ -104,5 +104,29 @@ class Donation{
         } else {
             header("Location: " . ROOT . "/userprofile/donations");
         }
+    }
+
+    function UpdateView($id){
+        if(!($_SESSION['user_id']) OR $id == NULL){
+            redirect('home');
+        }
+
+        // Initialize the model
+        $model = new DonationsModel();
+        $post_id = $id['id']; //req id
+
+        // Retrieve all pets
+        $post['post'] = $model->getDonReq($post_id);
+        // print_r($post);
+        // exit();
+         // Process images: convert binary `img1` data to Base64-encoded string
+    
+         if (isset($post['post']->img)) {
+            $post['post']->img = "data:image/jpeg;base64," . base64_encode($post['post']->img); // Adjust MIME type if not JPEG
+        }else{
+            $post['post']->img = null;
+        }
+
+        $this->view('user/donation_req_update',$post);
     }
 }
