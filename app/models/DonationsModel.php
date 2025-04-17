@@ -53,4 +53,13 @@ class DonationsModel
         return $this->insert($data) ? true : false;
     }
 
+    public function updateReq_amount($amount,$req_id){
+        $query = "UPDATE donation_requests SET collected = collected + :amount WHERE id = :req_id";
+
+        $this->table=$this->donation_req ;
+        return $this->query($query, [':amount' => $amount, ':req_id' => $req_id]);
+        // return $result;
+
+    }
+
 }

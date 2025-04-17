@@ -98,11 +98,23 @@ require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to th
             
             <hr class="styled-hr">
 
-            <!-- Stripe intergration -->
-            <form action="<?=ROOT?>/donationsnsupport/create-checkout-session" method="POST">
-  
-<button class="toggleformbtn" type="submit">Support This Cause</button>
+<!-- <form action="<?= ROOT ?>/donationsnsupport/create-checkout-session" method="POST">
+  <label for="amount">Enter donation amount (LKR):</label>
+  <input type="number" name="amount" id="amount" min="200" step="1" required>
+  <button type="submit">Donate</button>
+</form> -->
+
+<div class="register_form collapsed" id="register_form">
+    <!-- <h3>Support this cause :</h3> -->
+    <form action="<?= ROOT ?>/donationsnsupport/create-checkout-session" method="post" class="donation-form">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($post->id ?? '') ?>">
+    <label for="amount">Donation Amount in Rupees (LKR)</label>
+    <input type="number" name="amount" id="amount" placeholder="E.g. 525.50" min="200" step="0.01" required>
+
+    <button type="submit" class="toggleformbtn">Donate</button>
 </form>
+</div>
+<button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button>
 
 
 
@@ -111,7 +123,7 @@ require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to th
 <div class="register_form collapsed" id="register_form">
     <h3>Support this cause :</h3>
     <form action="<?=ROOT?>/donationsnsupport/donate?id=<?=htmlspecialchars($post->id ?? '')?>" method="post" class="donation-form">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($post->id ?? '') ?>">
+    <input type="hidden" name="post_id" value="<?= htmlspecialchars($post->id ?? '') ?>">
 
     <label>Select Card Type</label>
     <div class="card-options">
