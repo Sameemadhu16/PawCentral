@@ -53,7 +53,7 @@
                                         <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                     </div>
                                     <div class="event-actions">
-                                        <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                        <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Enter Event Information</h2>
-            <form id="petForm" action="<?= ROOT ?>/userprofile/event/addevent" method="POST" enctype="multipart/form-data">
+            <form id="petForm" action="<?= ROOT ?>/shelter/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
                 <input type="text" id="title" name="title" required>
 
