@@ -77,14 +77,14 @@ class Events{
     public function closeEvent($id)
     {
         $model = new EventsModel();
-        $data = ['status' => 1]; // Set status to closed
+        $data = ['status' => 2]; // Set status to closed
 
         $success=$model->update($id['id'], $data, 'event_id');
 
         if ($success) {
-            header("Location: " . ROOT . "/userprofile/event?success=Marked as complete");
+            redirect('userprofile/event?success=Marked as complete');
         } else {
-            header("Location: " . ROOT . "/userprofile/event?error=Failed to mark as complete");
+            redirect('userprofile/event?error=Failed to mark as complete');
         }
     }
 
