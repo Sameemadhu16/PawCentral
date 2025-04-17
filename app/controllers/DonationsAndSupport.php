@@ -109,7 +109,7 @@ class DonationsAndSupport {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/PawCentral/public/',
+                'success_url' => 'http://localhost/PawCentral/public/donationsnsupport/paymentsuccess',
                 'cancel_url' => 'http://localhost/PawCentral/public/donationsnsupport',
             ]);
     
@@ -119,6 +119,11 @@ class DonationsAndSupport {
             echo 'Stripe error: ' . $e->getMessage();
         }
     }
+
+    public function paySuccess() {
+        $this->view('PaymentSuccessful');
+    }
+
 
     
 }

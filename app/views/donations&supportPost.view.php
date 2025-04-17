@@ -100,7 +100,8 @@ require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to th
 
             <!-- Stripe intergration -->
             <form action="<?=ROOT?>/donationsnsupport/create-checkout-session" method="POST">
-  <button type="submit">Donate</button>
+  
+<button class="toggleformbtn" type="submit">Support This Cause</button>
 </form>
 
 
@@ -143,7 +144,7 @@ require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to th
     <button type="submit" class="toggleformbtn">Donate Now</button>
 </form>
 </div>
-<button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button>
+<!-- <button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button> -->
 
 
     <?php else: ?>
