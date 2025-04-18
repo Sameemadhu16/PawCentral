@@ -8,6 +8,5 @@
 
     add loading animation when loading pages
 
-    make a default medical services table 
-    add default services to the add service popup
-    
+    //services
+        add other services input Field

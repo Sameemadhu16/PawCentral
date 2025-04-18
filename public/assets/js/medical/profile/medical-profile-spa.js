@@ -278,16 +278,19 @@ function servicesAction() {
             );
         });
 
-        // Handle service card selection
-        const serviceCheckboxes = document.querySelectorAll('input[name="services[]"]');
-        serviceCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const card = this.closest('.service-card');
-                if (this.checked) {
-                    card.classList.add('selected');
-                } else {
-                    card.classList.remove('selected');
-                }
+        // Handle service card click
+        const serviceCards = document.querySelectorAll('.service-select-card');
+            
+        serviceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service-id');
+                const checkbox = document.getElementById('service-' + serviceId);
+                
+                // Toggle selected class
+                this.classList.toggle('selected');
+                
+                // Toggle checkbox state
+                checkbox.checked = !checkbox.checked;
             });
         });
     }

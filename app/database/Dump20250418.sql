@@ -210,6 +210,23 @@ CREATE TABLE `lost_and_found_pets` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `med_prov_med_serv`
+--
+
+DROP TABLE IF EXISTS `med_prov_med_serv`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `med_prov_med_serv` (
+  `service_id` int NOT NULL,
+  `med_id` int NOT NULL,
+  PRIMARY KEY (`service_id`),
+  KEY `med_id_idx` (`med_id`),
+  CONSTRAINT `med_id` FOREIGN KEY (`med_id`) REFERENCES `medical_providers` (`med_id`),
+  CONSTRAINT `service_id` FOREIGN KEY (`service_id`) REFERENCES `medical_services` (`service_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `medical_appointments`
 --
 
@@ -256,12 +273,12 @@ CREATE TABLE `medical_providers` (
   `contact_no` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `services` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `about_us` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `verifiedStatus` tinyint(1) NOT NULL DEFAULT '0',
+  `verifiedStatus` enum('pending','approved','rejected','') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`med_id`),
   KEY `user_fk` (`user_id`),
   CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -286,6 +303,20 @@ CREATE TABLE `medical_records` (
   CONSTRAINT `appointment_id_fk` FOREIGN KEY (`appointment_id`) REFERENCES `medical_appointments` (`appointment_id`),
   CONSTRAINT `medical_prov_id_fk` FOREIGN KEY (`med_id`) REFERENCES `medical_providers` (`med_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `medical_services`
+--
+
+DROP TABLE IF EXISTS `medical_services`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `medical_services` (
+  `service_id` int NOT NULL,
+  `service_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`service_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -454,7 +485,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` enum('user','admin','medical_provider','seller','shelter','service_prov') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,9 +504,9 @@ CREATE TABLE `veterinarians` (
   `availability` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`vet_id`),
-  KEY `provider_fk` (`med_id`),
-  CONSTRAINT `provider_fk` FOREIGN KEY (`med_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `provider_fk_idx` (`med_id`),
+  CONSTRAINT `provider_fk` FOREIGN KEY (`med_id`) REFERENCES `medical_providers` (`med_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -487,4 +518,4 @@ CREATE TABLE `veterinarians` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-10  6:11:37
+-- Dump completed on 2025-04-18 10:48:32

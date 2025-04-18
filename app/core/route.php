@@ -142,5 +142,8 @@ route('shelter/post','shelter/Post@index');
     route('medical-center/dashboard/donations','Medical/profile/Med_Dashboard_Donations@index');
     route('medical-center/dashboard/events','Medical/profile/Med_Dashboard_Events@index');
 
+    //medical services
+    // route('medical-center/dashboard/services/add','Medical/profile/Med_Dashboard_Services@submit');
+
 // Add logout route for medical center
 route('logout', 'Medical/Auth@logout');

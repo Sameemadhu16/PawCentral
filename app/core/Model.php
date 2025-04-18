@@ -5,7 +5,7 @@ trait Model
     use Database;
     protected $limit = 10;
     protected $offset = 0;
-    protected $order_type = "desc";
+    protected $order_type = "asc";
 
     // Generic get function for retrieving data with flexible options
     public function get($conditions = [], $options = [])
