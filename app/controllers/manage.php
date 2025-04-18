@@ -22,10 +22,6 @@ class Manage{
     {
         $id = $_GET['id'] ?? null;
         $type = $_GET['type'] ?? null;
-        echo "<pre>";
-        print_r($type);
-        print_r($id);
-        echo "</pre>";
         if($type==='Selling'){
         $managePost=new AddPostpet();
         }elseif($type==='Renting'){
@@ -51,10 +47,6 @@ public function delete()
 {
     $id=$_GET['id'] ?? null;
     $tradeType=$_GET['tradeType'] ?? null;
-    echo "<pre>";
-    print_r($id);
-    print_r($tradeType);
-    echo "</pre>";
     if($tradeType==='Selling'){
         $deletePost=new AddPostpet();
     }elseif($tradeType=='Renting'){

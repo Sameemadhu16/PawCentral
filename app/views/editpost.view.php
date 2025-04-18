@@ -16,12 +16,6 @@
         <h2>Edit Post </h2>
         <hr/>
     </div>
-    <?php
-    echo "pre";
-    print_r($data);
-    print_r($data['post']->importing_owner);
-    echo "</pre>"
-    ?>
     <div class="form">
     <form id="postpetform" method="POST" action="<?=ROOT?>/service/manage/editpost/update" onsubmit="validateForm(event)">
    
