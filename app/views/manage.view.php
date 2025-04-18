@@ -31,13 +31,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
@@ -79,13 +79,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
@@ -126,13 +126,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/service/manage/details?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
