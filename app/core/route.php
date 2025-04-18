@@ -11,17 +11,35 @@
 
 
 route('service','Service@index');
-route('service/postpet','Postpet@index');
-route('service/postpet/submit','Postpet@submit');
-route('service/postpet/postpetnext','Postpetnext@index');
-route('service/postpet/postpetnext/submit','Postpetnext@submit');
-route('service/postpet/postpetnext/selling','Selling@index');
-route('service/postpet/postpetnext/selling/submit','Selling@submit');
-route('service/manage','Manage@index');
-route('service/manage/edit','Manage@edit');
-route('service/manage/delete','Manage@delete');
-route('merchant/profile','merchant/Profile@index');
-route('merchant/notification','merchant/Notification@index');
+// Postpet Routes
+route('service/postpet', 'Postpet@index');
+route('service/postpet/submit', 'Postpet@submit');
+
+// Postpetnext Routes
+route('service/postpet/postpetnext', 'Postpetnext@index');
+route('service/postpet/postpetnext/submit', 'Postpetnext@submit');
+
+// Selling Routes
+route('service/postpet/postpetnext/selling', 'Selling@index');
+route('service/postpet/postpetnext/selling/submit', 'Selling@submit');
+
+// Rent Routes
+route('service/postpet/postpetnext/rent', 'Rent@index'); // Use 'rent' instead of 'renting'
+route('service/postpet/postpetnext/rent/submit', 'Rent@submit'); // Use 'rent' instead of 'renting'
+
+// Import Routes
+route('service/postpet/postpetnext/import', 'Import@index'); // Use 'import' instead of 'importing'
+route('service/postpet/postpetnext/import/submit', 'Import@submit'); // Use 'import' instead of 'importing'
+
+// Manage Routes
+route('service/manage', 'Manage@index');
+route('service/manage/edit', 'Manage@edit');
+route('service/manage/delete', 'Manage@delete'); // Typo: 'manage' is misspelled as 'manage'
+
+// Merchant Routes
+route('merchant/profile', 'Merchant/Profile@index');
+route('merchant/notification', 'Merchant/Notification@index');
+
 
 
 route('service/profile','Profile@index');
@@ -56,9 +74,9 @@ route('admin/notification', 'admin/AdminNotification@index');
 
 // User routings
 route('announcements','announcements');
-route('lostandfound','lostandfound');
+route('lostandfound','LostAndFound@index');
 route('eventsandcampaigns','events');
-route('eventsandcampaigns/event_id','EventInfo');
+route('eventsandcampaigns/event','events@EventInfo');
 route('lostandfound/report-animal','ReportFound');
 // route('lostandfound/idoflost','LostPet');
 
@@ -93,6 +111,9 @@ route('services/careservice','Careservice');
 route('shelters','PetShelters');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
+route('donationsnsupport/req','DonationsAndSupport@showPost');
+route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
+
 
 //pet shelter routings
 route('shelter/profile','shelter/Profile@index');

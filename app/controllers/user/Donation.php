@@ -37,7 +37,8 @@ class Donation{
             $data = [
                 'user_id' => $_SESSION['user_id'],
                 'title' => $_POST['title'],
-                'reason' => $_POST['reason'],  // Renamed from 'health' to 'need'
+                'reason' => $_POST['reason'],  
+                'need_category' => $_POST['need_category'],
                 'info' => $_POST['info'],  // Explanation for the donation request
                 'expire_date' => $_POST['before_date'],
                 'amount' => $_POST['amount'],
@@ -78,12 +79,25 @@ class Donation{
 
     }
 
-    public function CloseReq($id)
+    public function CloseReq($req_data)
     {
-        $model = new DonationsModel();
-        $data = ['status' => 1]; // Set status to closed
 
-        $success=$model->closeReq($id['id'], $data, 'id');
+        $insert=explode("?",$req_data['id']);
+        $id=$insert[0];
+        parse_str($insert[1], $queryParams);
+        $reason = $queryParams['reason'] ?? 'No reason provided';
+
+// echo "<pre>";
+// print_r($reason);
+// print_r("adsd\n");
+// print_r($insert);
+// echo "</pre>";
+// exit();
+
+        $model = new DonationsModel();
+        $data = ['status' => 1, 'closing_reason'=>$reason]; // Set status to closed
+
+        $success=$model->closeReq($id, $data, 'id');
 
         if ($success) {
             header("Location: " . ROOT . "/userprofile/donations");

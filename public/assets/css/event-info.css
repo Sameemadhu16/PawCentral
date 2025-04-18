@@ -17,6 +17,7 @@
     .breadcrumb{
         font-size: 17px;
         color: black;
+        margin-left: 10px;
     }
     .breadcrumb a{
         text-decoration: none;
@@ -39,11 +40,11 @@
           max-width: 800px;
           /* margin: 20px auto; */
           justify-content: center;
-          margin: 15px auto;
+          margin: 20px auto;
           font-family: Arial, sans-serif;
           /* BACKGROUND contrast ADDED */
           background-color: white;
-          padding: 15px;
+          padding: 25px 20px;
           border-radius: 10px;
       }
   
@@ -105,9 +106,10 @@
         margin: 20px 0;
         padding: var(--padding);
         /* background-color:#d9b5fb; */
-        /* background-color:rgb(206, 206, 255); */
-        background-color: rgb(88, 155, 249, .4);
+        background-color:rgb(206, 206, 255);
+        /* background-color: rgb(88, 155, 249, .4); */
         border-radius: var(--border-radius);
+        max-width: 550px;
       }
   
       /* Form styling */
@@ -152,7 +154,40 @@
         border-color:#5896f9;
         box-shadow: 0 0 5px rgba(106, 27, 154, 0.2);
       }
-  
+      .register_form.collapsed {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+      }
+      
+      /* When active, expand the form */
+      .register_form.expanded {
+        max-height: 800px; /* large enough to show full content */
+        opacity: 1;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+      }
+      
+      .toggleformbtn {
+        all: unset; /* This removes all browser default styles */
+        display: block;
+        margin: 15px auto;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-align: center;
+        background-color: var(--button-normal);
+        cursor: pointer;
+        color: white; /* or your preferred text color */
+        font-size: 1rem;
+        font-family: inherit;
+        text-align: center;
+        transition: background-color .3s ease;
+      }
+      
+      .toggleformbtn:hover {
+        background-color: var(--button-normal-hover);
+      }
+      
       /* Button styling */
       .btn {
         padding: 12px;

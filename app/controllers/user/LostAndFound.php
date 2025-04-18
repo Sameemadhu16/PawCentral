@@ -1,15 +1,5 @@
 <?php
 
-// class LostAndFound{
-
-//     use Controller;
-
-//     function index(){
-//         $this->view('user/lost_and_found');
-//     }
-// }
-
-
 class LostAndFound
 {
     use Controller;

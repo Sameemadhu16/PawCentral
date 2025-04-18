@@ -11,7 +11,9 @@
 </head>
 
 <body class="body">
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php");
+    // show($data);
+    ?>
 
     <div class="main-container">
         <div class="event-container">
@@ -23,17 +25,25 @@
             <h1>Event Info</h1>
 
             <!-- Event Details Section -->
+            <?php $event = $data['event']['0']; ?>
             <div class="event-card">
                 <img src="<?= ROOT ?>/assets/images/events_bg.jpg" alt="Event Image" class="event-image">
                 <div class="event-details">
-                    <h2>Animal Sterilization Camp</h2>
-                    <p><strong>Date:</strong> Sun, 5th September, 4:00 PM</p>
-                    <p><strong>Location:</strong> Youth Club, 36/2 Sri Lankarama Rd - Panadura</p>
-                    <p><strong>Published on:</strong> 2024-09-05</p>
+                    <h2><?= esc($event->title) ?></h2>
+                    <p><strong>Date:</strong> <?= esc($event->date) ?></p>
+                    <p><strong>Location:</strong> <?= esc($event->location) ?></p>
+                    <p><strong>Published on:</strong> <?= esc($event->created_at) ?></p>
+                    <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?>participants enrolled</span>
                 </div>
                 <div class="event-actions">
-                    <button class="approve-btn" onclick="approveEvent()">Approve</button>
-                    <button class="delete-btn" onclick="deleteEvent()">Delete</button>
+                    <form method="POST">
+                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                        <button class="approve-btn" name="approve" type="submit">Approve</button>
+                    </form>
+                    <form method="POST">
+                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                        <button class="delete-btn" name="reject" type="submit">Reject</button>
+                    </form>
                 </div>
             </div>
 
@@ -41,29 +51,11 @@
             <div class="event-description">
                 <h3>Description</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet, urna at viverra facilisis, lorem nunc auctor odio, et feugiat lacus magna vitae libero. Integer porttitor dignissim est, non sollicitudin velit suscipit sed. Curabitur luctus volutpat metus, id accumsan lacus vehicula ut. Proin malesuada, purus vel fermentum interdum, justo sapien bibendum magna, ac pharetra arcu enim in mi.
+                    <?= esc($event->description) ?>
                 </p>
             </div>
         </div>
     </div>
-
-    <script>
-        // Function to handle event approval
-        function approveEvent() {
-            if (confirm("Are you sure you want to approve this event?")) {
-                alert("Event approved successfully!");
-                // Add backend API call logic here if needed
-            }
-        }
-
-        // Function to handle event deletion
-        function deleteEvent() {
-            if (confirm("Are you sure you want to delete this event?")) {
-                alert("Event deleted successfully!");
-                // Add backend API call logic here if needed
-            }
-        }
-    </script>
 </body>
 
 </html>

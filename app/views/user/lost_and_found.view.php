@@ -7,8 +7,8 @@
     <title>Shelter Lost_And-Found</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/lostFound.css">
     
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -18,17 +18,16 @@
     <div class="main-container">
         <?php include("../app/views/components/user/sidebar.php"); ?>
             
-            
-        <div class="user-accounts-section">
-    <div class="topicnbuttons">
-        <!-- <button class="action-button fixedsize">Add another post</button> -->
-        <button class="action-button fixedsize" onclick="window.location.href='<?=ROOT?>/lostandfound/report-animal';">Add another post</button>
-    </div>
-    <div class="topicnbuttons">
-        <h2>Your lost and found posts</h2> 
-    </div>
+    <div class="user-accounts-section">
 
     <?php if (!empty($pets)): ?>
+        <div class="header-section">
+            <h2>Your lost and found posts</h2>
+            <button class="quick-action-button fixedsize" onclick="window.location.href='<?=ROOT?>/lostandfound/report-animal';">Add post</button>
+        </div>
+        
+        <div class="cards-container">
+            <!-- <div style="block"></div> -->
         <?php foreach ($pets as $pet): ?>
             <div class="pet-card" id=<?= htmlspecialchars($pet->petid); ?>>
                 <img src=<?=htmlspecialchars($pet->img1)?> alt="nikkhy" class="pet-photo">
@@ -51,6 +50,7 @@
                 </div>
             </div>
         <?php endforeach; ?>
+        </div>
     <?php else: ?>
         <p>No pets found.</p>
     <?php endif; ?>

@@ -12,7 +12,8 @@ class Announcement {
         'date',
         'content',
         'user_id', // added 'user_id'
-        'updated_at'
+        'updated_at',
+        'status'
     ];
 
     // Insert announcement and return true on success, false on failure

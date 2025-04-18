@@ -1,52 +1,61 @@
-<?php 
+<?php
+class Postpetnext
+{
+    use Controller;
 
-
-class Postpetnext{
-    use controller;
-
-    public function index(){
-        $this->view("postpetnext");
+    public function index()
+    {
+        $this->view('postpetnext');
     }
 
     public function submit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Check if a file was uploaded
             if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK) {
                 $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
                 $baseUploadUrl = ROOT . '/assets/uploads/';
-                
-                // Ensure the directory exists
+    
                 if (!is_dir($baseUploadPath)) {
                     mkdir($baseUploadPath, 0777, true);
                 }
-        
+    
                 $uploadedImages = [];
                 foreach ($_FILES['images']['name'] as $index => $name) {
                     $fileTmpName = $_FILES['images']['tmp_name'][$index];
                     $fileName = time() . '_' . $name;
                     $uploadPath = $baseUploadPath . $fileName;
                     $imageUrl = $baseUploadUrl . $fileName;
-        
-                    // Move the uploaded file to the specified directory
+    
                     if (move_uploaded_file($fileTmpName, $uploadPath)) {
-                        $uploadedImages[] = $imageUrl; // Store relative URL
+                        $uploadedImages[] = $imageUrl;
                     } else {
                         echo "Failed to upload: $name";
+                        exit;
                     }
                 }
-        
-                // Save to session
+    
                 if (!empty($uploadedImages)) {
                     $_SESSION['postpet_data']['images'] = $uploadedImages;
                 }
+            } else {
+                echo "No images uploaded or an error occurred during upload.";
+                exit;
             }
-        }
-        
     
-            // Redirect
-            header("Location: " . ROOT . "/service/postpet/postpetnext/selling");
-            exit();
+            if (!isset($_SESSION['postpet_data']['tradeType'])) {
+                echo "Trade type not found in session. Please go back and fill out the form.";
+                exit;
+            }
+    
+            $tradeType = $_SESSION['postpet_data']['tradeType'];
+            if ($tradeType === 'Selling') {
+                header("Location: " . ROOT . "/service/postpet/postpetnext/selling");
+            } elseif ($tradeType === 'Renting') {
+                header("Location: " . ROOT . "/service/postpet/postpetnext/rent");
+            } elseif ($tradeType === 'Importing') {
+                header("Location: " . ROOT . "/service/postpet/postpetnext/import");
+            }
+            exit;
         }
     }
-    // }
+}

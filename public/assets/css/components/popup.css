@@ -22,6 +22,9 @@
     width: 320px;
     max-width: 90%;
     animation: fadeIn 0.3s ease-in-out;
+    align-items: center !important;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup-box p {
@@ -30,8 +33,13 @@
     font-weight: 600;
 }
 
+.form-container {
+    margin-left:auto ;
+    margin-right: auto;
+}
+
 .popup-actions {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     gap: 10px;

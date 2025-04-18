@@ -1,133 +1,190 @@
-/* viewAnnouncement.css */
+/* Base Styles */
 .body {
     margin: 0;
-    overflow-y: hidden;
     background-color: #f3f4f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
 .main-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
+    padding: 30px 20px;
 }
 
 .content {
-    width: 90%; /* Increased width for a wider layout */
-    max-width: 800px; /* Set a larger max-width */
+    width: 90%;
+    max-width: 800px;
     background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     padding: 40px;
     border-radius: 12px;
-    transition: box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     min-height: 590px;
 }
+
+.content:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 15px;
+}
+
 .back-icon {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    /* margin-top: 0%; */
 }
 
 .back-icon a {
     text-decoration: none;
     color: var(--primary);
     font-weight: 600;
-    font-size: 18px; /* Increase font size for the text as well if desired */
     display: flex;
     align-items: center;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
 }
 
 .back-icon a:hover {
+    background-color: rgba(var(--primary-rgb), 0.1);
     color: var(--primary-dark);
 }
 
 .back-icon i {
+    font-size: 20px;
     margin-right: 8px;
-    font-size: 24px; /* Increase the icon size */
 }
-/* Main container for the announcement details */
+
+.back-icon span {
+    font-size: 16px;
+}
+
+.announcement-meta {
+    color: #666;
+    font-size: 15px;
+}
+
+.announcement-date {
+    display: flex;
+    align-items: center;
+}
+
+.announcement-date i {
+    margin-right: 6px;
+    color: var(--primary);
+}
+
+/* Announcement Content */
 .announcement-details {
     background-color: #ffffff;
-    padding: 20px;
     border-radius: 10px;
     min-height: 600px;
-}
-
-.announcement-details h2 {
-    font-size: 28px; /* Larger font size for title */
-    color: black; /* Blue color for the title */
-    margin-bottom: 10px;
-}
-
-.announcement-details h5 {
-    font-size: 18px; /* Larger font size for date */
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.announcement-details p {
-    font-size: 18px; /* Larger font size for content */
-    line-height: 1.6;
-    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .announcement-content {
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 30px;
+    flex: 1;
     min-height: 400px;
-    
+    background-color: #fcfcfc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) inset;
 }
 
+.announcement-content h2 {
+    font-size: 28px;
+    color: #222;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.content-divider {
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), transparent);
+    margin: 15px 0 25px 0;
+    width: 100%;
+}
+
+.announcement-body {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.announcement-body p {
+    margin: 0;
+}
+
+/* Action Buttons */
 .actions {
     margin-top: 40px;
     display: flex;
-    gap: 100px;
     justify-content: center;
+    gap: 30px;
 }
 
-.edit-button, .delete-button {
-    font-size: 20px;
-    width: 60%;
-    padding: 10px 20px;
+.edit-button,
+.delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    width: 40%;
+    max-width: 180px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
-    text-align: center;
-    color: black;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .edit-button {
-    background-color: var(--success); /* Blue color for edit button */
+    background-color: var(--primary);
+    color: #fff;
 }
 
 .delete-button {
-    background-color: var(--danger); /* Red color for delete button */
+    background-color: var(--danger);
+    color: #fff;
 }
 
 .edit-button:hover {
-    background-color: var(--success-dark); /* Darker blue on hover */
-    color: white;
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
 }
 
 .delete-button:hover {
     background-color: var(--danger-dark);
-    color: white; /* Darker red on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
 }
 
+.edit-button:active,
+.delete-button:active {
+    transform: translateY(0);
+}
 
+.edit-button i,
+.delete-button i {
+    margin-right: 8px;
+}
 
-
-/* Centered modal styling */
-/* Hide modal initially */
-/* Modal styles */
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -135,52 +192,158 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .modal-content {
     background-color: #fff;
-    padding: 20px 40px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 90%;
+    animation: slideIn 0.3s ease;
+    overflow: hidden;
 }
 
-.modal-content p {
-    margin-bottom: 20px;
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.warning-icon {
+    font-size: 40px;
+    color: #ff9800;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.modal-body p {
+    margin: 0 0 10px 0;
     font-size: 18px;
     color: #333;
 }
 
-/* Button styles */
+.modal-subtitle {
+    color: #777;
+    font-size: 14px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer form {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
 .modal-content button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 16px;
+    font-size: 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
-.modal-content .confirm-button {
-    background-color: #dc3545; /* Red for "Yes" button */
-    color: #fff;
-    margin-right: 10px;
-}
-
-.modal-content .cancel-button {
-    background-color: #007bff; /* Green for "No" button */
+.confirm-button {
+    background-color: var(--danger);
     color: #fff;
 }
 
-.modal-content .confirm-button:hover {
-    background-color: #c82333;
+.cancel-button {
+    background-color: #6c757d;
+    color: #fff;
 }
 
-.modal-content .cancel-button:hover {
-    background-color: #0056b3;
+.confirm-button:hover {
+    background-color: var(--danger-dark);
 }
 
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+.modal-content button i {
+    margin-right: 6px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .content {
+        padding: 25px;
+        width: 95%;
+    }
+
+    .announcement-content {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .edit-button,
+    .delete-button {
+        width: 80%;
+        max-width: none;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .announcement-meta {
+        margin-top: 10px;
+    }
+}

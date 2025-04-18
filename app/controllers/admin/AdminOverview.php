@@ -17,7 +17,9 @@ class AdminOverview {
         $data = [
             'announcementCount' => $this->getAnnouncementCount(),
             'userCount' => $this->getUserCount(),
-            'mediRegCount' => $this->getMedicalRegistrationCount()
+            'mediRegCount' => $this->getMedicalRegistrationCount(),
+            'eventCount' => $this->getEventCount(),
+            'donationCount' => $this->getDonationCount(),
             //add other data here
         ];
 
@@ -53,4 +55,22 @@ class AdminOverview {
 
         return($mediRegCount);
     }
+
+    private function getEventCount(){
+        $eventModel = new Event;
+        $eventCount = $eventModel->getCount();
+        return $eventCount;
+    }
+
+    private function getDonationCount(){
+        $donationModel = new DonationsModel;
+        $donationCount = $donationModel->getCount($table = 'donations');
+        return $donationCount;
+    }
+
+    // private function getPostCount(){
+    //     $postModel = new AddPostpet;
+    //     $postCount = $postModel->getCount();
+    //     return $postCount;
+    // }
 }

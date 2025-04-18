@@ -21,7 +21,6 @@
             document.getElementById("popupForm").style.display = "none";
             document.body.style.overflow = "auto"; // Enable scrolling
         }
-
     </script>
 </head>
 
@@ -40,6 +39,7 @@
                         <h2>Donation requests</h2>
                         <button class="quick-action-button fixedsize" onclick="openPopup()">Ask for Support</button>
                     </div>
+                    
                     <div class="cards-container">
                     <?php foreach ($requests as $req) : ?>
                         <div class="donation-card">
@@ -56,12 +56,17 @@
                                 </div>
                                 <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
                                 <button class="don-but">Edit Info</button>
+
                                 <button class="don-but close-but" 
-                                    onclick="showPopup(<?= htmlspecialchars($req->id) ?>, 
-                                    '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
-                                    'Are you sure want to close this donation request ?<br><?= htmlspecialchars(addslashes($req->title)) ?>')" >
+                                    onclick="showPopup(
+                                        <?= htmlspecialchars($req->id) ?>,
+                                        '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
+                                        'Are you sure want to close this donation request ?<br><br><?= htmlspecialchars(addslashes($req->title)) ?>',
+                                        ['Donations found', 'Goal reached', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say','Mistaken Entry']
+                                    )">
                                     Close Request
                                 </button>
+                                
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -79,13 +84,13 @@
     <div id="popupForm" class="popup-container">
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Add your pet info</h2>
+            <h2>Enter Donation info</h2>
             <form id="petForm" action="<?= ROOT ?>/userprofile/donations/req" method="POST" enctype="multipart/form-data">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
                 
                 <label for="need">Need for Donation:</label>
-                    <select id="need" name="need" required>
+                    <select id="need_category" name="need_category" required>
                         <option value="Other">Other</option>
                         <option value="Bills">Medical Bills</option>
                         <option value="CareSupport">Care Support</option>

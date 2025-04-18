@@ -20,5 +20,7 @@ class MedicalProvModel
         'verifiedStatus'
     ];
 
+    protected $order_column = 'created_at';
+
     public $errors = [];
 }
