@@ -30,7 +30,7 @@ class Import
 
                 $data = [
                     'merchant_id'=>$_SESSION['role_id']?? null,
-                    'tradetype' => $petData['tradeType'],
+                    'tradeType' => $petData['tradeType'],
                     'pet_name' => $petData['petName'],
                     'species' => $petData['species'],
                     'breed' => $petData['breed'],
@@ -42,6 +42,8 @@ class Import
                     'trained' => $petData['trained'],
                     'pedigree' => $petData['pedigree'],
                     'vaccinated' => $petData['vaccinated'],
+                    'contactName' => $petData['contactName'],
+                    'contactNumber' => $petData['contactNumber'],
                     'country' => $country,
                     'import_fees' => $fees,
                     'importing_owner' => $owner,
@@ -52,6 +54,7 @@ class Import
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
+                    'delete_status'=>$_POST['1']
                 ];
 
                 echo "<pre>";

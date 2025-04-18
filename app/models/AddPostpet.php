@@ -4,7 +4,7 @@ class AddPostpet
     use Model;
 
     protected $table = 'selling_posts';
-    
+    protected $order_column='pet_id';
     // Define allowed columns as a flat array (no multi-dimensional)
     protected $allowedColumns = [
         'pet_id',
@@ -32,7 +32,8 @@ class AddPostpet
         'contactNumber',
         'email',
         'fee_negotiable',
-        'agreed_terms'
+        'agreed_terms',
+        'delete_status',
     ];
 
     public function create($data)

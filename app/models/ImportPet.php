@@ -3,11 +3,12 @@ class ImportPet
 {
     use Model;
     protected $table = 'import_posts';
+    protected $order_column='pet_id';
     protected $allowedColumns = [
         'pet_id',
         'merchant_id',
-        'petName',
-        'tradetype',
+        'pet_name',
+        'tradeType',
         'species',
         'breed',
         'sex',
@@ -18,6 +19,8 @@ class ImportPet
         'trained',
         'pedigree',
         'vaccinated',
+        'contactName',
+        'contactNumber',
         'import_fees',
         'img1',
         'img2',
@@ -28,7 +31,8 @@ class ImportPet
         'transport_method',
         'importer_mobile',
         'email',
-        'agreed_terms'
+        'agreed_terms',
+        'delete_status'
     ];
 
     public function create($data){

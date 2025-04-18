@@ -1,0 +1,72 @@
+/* Apply a smooth, modern purple theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f5ff;
+    color: #333;
+    padding: 2rem;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #720eb1;
+    margin-bottom: 1rem;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(114, 14, 177, 0.2);
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #720eb1;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+button {
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    background-color: #720eb1;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5e0a99;
+}
+
+button[type="submit"] {
+    background-color: #5e0a99;
+}
+
+button[type="submit"]:hover {
+    background-color: #48077a;
+}
