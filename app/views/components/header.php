@@ -36,8 +36,43 @@
         <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
     </ul>
 
+
+
+    <!-- Notification indicator -->
+    
+
     <!-- User profile -->
-    <div class="user-profile">
+    <div class="user-profile" style="flex-direction: row; display:flex;">
+
+        
+    <?php if (isset($_SESSION['user'])): ?>
+            <!-- Notification indicator -->
+            <div class="notification-icon" style="padding:0; margin:4px; margin-left:20px; font-size:large" onclick="window.location.href='<?=ROOT?>/userprofile/notifications'">
+                🔔 <span id="notif-count" class="badge">0</span>
+            </div>
+
+            <script>
+                function loadNotifications() {
+                    fetch("<?=ROOT?>/notifications/fetch")
+                        .then(response => response.json())
+                        .then(data => {
+                            const badge = document.getElementById('notif-count');
+                            if (data.length > 0) {
+                                badge.textContent = data.length;
+                            } else {
+                                badge.textContent = '0';
+                            }
+                        });
+                }
+
+                // Poll every 5 seconds
+                setInterval(loadNotifications, 5000);
+                window.onload = loadNotifications;
+
+            </script>
+        <?php endif ; ?>
+
+
 
         <?php if (isset($_SESSION['user']) && $_SESSION['user_role']== 'admin'): ?>
             <a class="user-profile" href="<?= ROOT ?>/admin/overview">
@@ -70,6 +105,7 @@
                 Sign In
             </a>
         <?php endif; ?>
+
     </div>
 
 </header>

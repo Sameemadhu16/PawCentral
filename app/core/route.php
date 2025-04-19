@@ -1,6 +1,10 @@
 <?php
 route('donationsnsupport/create-checkout-session', 'DonationsAndSupport@createCheckoutSession');
 route('donationsnsupport/paymentsuccess', 'DonationsAndSupport@paySuccess');
+// for notification sys
+route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications');
+route('notifications/mark-read', 'user/NotificationsController@markAllRead');
+route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
 
 // Middleware-like function for admin-only routes
 // function adminRoute($path, $controllerAction) {
@@ -67,7 +71,7 @@ route('lostandfound/report-animal','ReportFound');
 // userprofile
 route('userprofile','user/Profile@index');
 route('userprofile/profile','user/Profile@index');
-route('userprofile/notifications','user/Notification@index');
+route('userprofile/notifications','user/NotificationsController@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/donations/req','user/Donation@AddReq');
 route('userprofile/donations/closeReq','user/Donation@CloseReq');

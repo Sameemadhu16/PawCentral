@@ -51,7 +51,7 @@
                                     <option value="medical_provider">Medical Provider</option>
                                     <option value="seller">Seller - Pet seller, Pet renter, Animal breeding and Pet importer</option>
                                     <option value="shelter">Adoption Shelter</option>
-                                    <option value="service-prov">Care Service Provider - Pet transporter and Pet sitter</option>
+                                    <option value="service_prov">Care Service Provider</option>
                                 </select>
                             </div>
                         </div>
