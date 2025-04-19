@@ -11,6 +11,7 @@ body, html {
     position: relative;
     /* background: linear-gradient(135deg, #6a1b9a, #8e44ad); */
     background: linear-gradient(180deg, #6A0DAD,#9d34df); /* change the degree*/
+    background: linear-gradient(180deg, var(--button-normal),var(--button-normal-hover));
     color: #fff;
     padding: 40px 20px;
     overflow: hidden;

@@ -38,7 +38,13 @@
     justify-self: flex-end;
     margin-left: auto;
 }
-
+.header-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
 
 .publish-button {
@@ -106,9 +112,10 @@
     transform: translateY(-5px);
     box-shadow: var(--card-shadow-hover);
 }
+
 .event-image {
     width: 160px; /* Set fixed width */
-    height: 180px; /* Set fixed height */
+    height: 200px; /* Set fixed height */
     object-fit: cover; /* Make the image fill the container, cropping if needed */
     margin-right: 10px;
     border-radius: 10px 1px 0px 10px;
@@ -124,6 +131,7 @@
     flex-grow: 1;
     min-width: 0; /* Prevents flexbox from expanding beyond card */
     overflow: hidden;
+    /* max-width: 50%; */
 }
 
 .title-section{

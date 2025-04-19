@@ -33,8 +33,11 @@ h2 {
     flex: 1;
     margin-left: 20px;
     border-radius: 8px;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 600px;
+    justify-content: flex-start;
+    padding: 0 10px; /* Padding to prevent cards from touching the edges */
+    scrollbar-color: var(--scrollbar-color);
 }
 
 .notifications-section h2 {
@@ -55,7 +58,7 @@ h2 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     width: 90%;
-    max-height: 120px;
+    /* max-height: 120px; */
     position: relative; /* Enable positioning for child elements */
 }
 
@@ -93,4 +96,8 @@ h2 {
     border: 2px solid #4fc3f7;
     background-color: #f0f8ff;
 }
-
+.seen {
+    background-color: #999;
+    color: #444 !important;
+    font-weight:normal !important;
+}
