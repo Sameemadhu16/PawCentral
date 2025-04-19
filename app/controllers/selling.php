@@ -51,7 +51,7 @@ class Selling
                 'fee_negotiable' => isset($_POST['fee_negotiable']) ? 1 : 0,
                 'agreed_terms' => isset($_POST['agreed_terms']) ? 1 : 0,
                 'created_at'=>date('Y-m-d H:i:s'),
-                'delete_status'=>$_POST['1']
+                'delete_status'=>1
             ];
            
             echo "<pre>";

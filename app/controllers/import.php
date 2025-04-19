@@ -54,7 +54,7 @@ class Import
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
-                    'delete_status'=>$_POST['1']
+                    'delete_status'=>1;
                 ];
 
                 echo "<pre>";

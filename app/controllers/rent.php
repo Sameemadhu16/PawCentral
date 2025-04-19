@@ -52,7 +52,7 @@ class Rent
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
-                    'delete_status'=>1
+                    'delete_status'=>0
                 ];
                
                 $postPetModel = new RentPost();
