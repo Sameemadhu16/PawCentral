@@ -50,8 +50,10 @@ class Selling
                 'img3' => $imagePaths[2] ?? null,
                 'fee_negotiable' => isset($_POST['fee_negotiable']) ? 1 : 0,
                 'agreed_terms' => isset($_POST['agreed_terms']) ? 1 : 0,
-                'created_at'=>date('Y-m-d H:i:s')
+                'created_at'=>date('Y-m-d H:i:s'),
+                'delete_status'=>$_POST['1']
             ];
+           
             echo "<pre>";
             print_r($data);
             echo "<pre>";
@@ -64,6 +66,8 @@ class Selling
                 echo "Error saving data. Please try again.";
                 exit();
             }
+
+            $_SESSION['sellData']=$data;
         }
     }
 }

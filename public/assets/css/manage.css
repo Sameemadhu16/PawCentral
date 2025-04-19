@@ -1,105 +1,160 @@
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-.managepost {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.managepost h1 {
-    font-size: 2rem; /* Slightly smaller title font size */
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.managepost-title {
-    color: #555;
-    font-size: 1rem;
-}
-
-.post-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted grid for smaller cards */
-    gap: 15px; /* Reduced gap between cards */
-    padding: 15px; /* Compact padding */
-    max-width: 1000px; /* Adjusted container width */
-    margin: 0 auto;
-}
-
-.card {
-    background: #fff;
-    border-radius: 8px;
+/* manage.css */
+/* Image Slider Styles */
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 250px; /* Reduced card width */
-    margin: 0 auto; /* Centers the card in its grid cell */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-slider:hover .slider-arrow {
+    opacity: 1;
+}
+
+.prev-arrow {
+    left: 10px;
+}
+
+.next-arrow {
+    right: 10px;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Trade Type Label */
+.corner-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.corner-label.sell {
+    background-color: #4CAF50;
+}
+
+.corner-label.rent {
+    background-color: #2196F3;
+}
+
+.corner-label.import {
+    background-color: #9C27B0;
+}
+
+/* Card Styles */
+.card {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    background: white;
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
 }
 
-.card img {
-    width: 100%;
-    height: 150px; /* Reduced image height */
-    object-fit: cover;
+/* Layout Styles */
+.managepost {
+    padding: 20px;
+    text-align: center;
+}
+
+.post-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .card-content {
-    padding: 10px; /* Reduced padding */
-    color: #333;
+    padding: 15px;
 }
 
 .card-content strong {
     display: block;
     margin-bottom: 5px;
-    color: #555;
 }
 
 .post-actions {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 15px;
     border-top: 1px solid #eee;
-    background: #f8f8f8;
 }
 
 .btn {
-    text-decoration: none;
-    padding: 6px 12px; /* Reduced button padding */
+    padding: 8px 15px;
     border-radius: 4px;
-    font-size: 0.85rem; /* Smaller button text */
+    text-decoration: none;
     font-weight: 500;
-    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .edit-btn {
     background-color: #720eb1;
-    color: #fff;
+    color: #ffffff;
 }
 
 .edit-btn:hover {
-    background-color: #5a0c91;
+    background-color: #680da0;
 }
 
 .delete-btn {
     background-color: #720eb1;
-    color: #fff;
+    color: white;
 }
 
 .delete-btn:hover {
-    background-color: #5a0c91;
-}
-
-.card-link {
-    text-decoration: none;
-    color: inherit;
+    background-color: #680da0;
 }

@@ -35,6 +35,7 @@ route('service/postpet/postpetnext/import/submit', 'Import@submit'); // Use 'imp
 route('service/manage', 'Manage@index');
 route('service/manage/edit', 'Manage@edit');
 route('service/manage/delete', 'Manage@delete'); // Typo: 'manage' is misspelled as 'manage'
+route('service/manage/details','Manage@details');
 
 // Merchant Routes
 route('merchant/profile', 'Merchant/Profile@index');

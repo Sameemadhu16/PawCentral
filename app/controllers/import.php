@@ -29,18 +29,21 @@ class Import
                 $imagePaths = isset($petData['images']) ? $petData['images'] : [];
 
                 $data = [
+                    'merchant_id'=>$_SESSION['role_id']?? null,
                     'tradeType' => $petData['tradeType'],
-                    'petName' => $petData['petName'],
+                    'pet_name' => $petData['petName'],
                     'species' => $petData['species'],
                     'breed' => $petData['breed'],
                     'sex' => $petData['sex'],
                     'age' => $petData['age'],
-                    'height' => $petData['height'],
-                    'weight' => $petData['weight'],
+                    'height' =>(float)$petData['height'],
+                    'weight' => (float)$petData['weight'],
                     'neutered' => $petData['neutered'],
                     'trained' => $petData['trained'],
                     'pedigree' => $petData['pedigree'],
                     'vaccinated' => $petData['vaccinated'],
+                    'contactName' => $petData['contactName'],
+                    'contactNumber' => $petData['contactNumber'],
                     'country' => $country,
                     'import_fees' => $fees,
                     'importing_owner' => $owner,
@@ -50,10 +53,15 @@ class Import
                     'img2' => $imagePaths[1] ?? null,
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
+                    'email'=>$petData['email'],
+                    'delete_status'=>$_POST['1']
                 ];
 
-                $postPetModel = new AddPostpet();
-                if ($postPetModel->create($data)) {
+                echo "<pre>";
+                print_r($data);
+                echo "<pre>";
+                $postPetModel = new ImportPet();
+                if ($postPetModel->insert($data)) {
                     $_SESSION['success_message'] = "Post successfully created";
                     header("Location: " . ROOT . "/service?success=1");
                     exit();
