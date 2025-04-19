@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shelter - Events</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shelter/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
@@ -35,28 +35,59 @@
                     </div>
                     <div class="event-list">
                         <?php foreach ($events as $event) : ?>
-                            <div class="event-card">
-                                <div class="event-card-content">
-                                    <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
-                                    <div class="event-details">
-                                        <div class="title-status-row">
-                                            <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
-                                            <span class="event-status 
-                                                <?= $event->status === 0 ? 'status-pending' : ($event->status === 1 ? 'status-approved' : ($event->status === 2 ? 'status-rejected' : 'status-closed')) ?>">
-                                                <?= $event->status === 0 ? 'Pending' : ($event->status === 1 ? 'Approved' : ($event->status === 2 ? 'Rejected' : 'Closed')) ?>
-                                            </span>
+                            <?php if ($event->status === 1) : // Show only approved events ?>
+                                <div class="event-card">
+                                    <div class="event-card-content">
+                                        <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                        <div class="event-details">
+                                            <div class="title-status-row">
+                                                <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                                <span class="event-status status-approved">Approved</span>
+                                            </div>
+                                            <p><?= htmlspecialchars($event->date) ?></p>
+                                            <p><?= htmlspecialchars($event->location) ?></p>
+                                            <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                            <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                            <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                         </div>
-                                        <p><?= htmlspecialchars($event->date) ?></p>
-                                        <p><?= htmlspecialchars($event->location) ?></p>
-                                        <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
-                                        <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
-                                        <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
-                                    </div>
-                                    <div class="event-actions">
-                                        <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                        <div class="event-actions">
+                                            <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <div class="topicnbuttons">
+                        <h2>Pending or Rejected Events</h2>
+                    </div>
+                    <div class="event-list">
+                        <?php foreach ($events as $event) : ?>
+                            <?php if ($event->status === 0 || $event->status === 2) : // Show only pending or rejected events ?>
+                                <div class="event-card">
+                                    <div class="event-card-content">
+                                        <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                        <div class="event-details">
+                                            <div class="title-status-row">
+                                                <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                                <span class="event-status 
+                                                    <?= $event->status === 0 ? 'status-pending' : 'status-rejected' ?>">
+                                                    <?= $event->status === 0 ? 'Pending' : 'Rejected' ?>
+                                                </span>
+                                            </div>
+                                            <p><?= htmlspecialchars($event->date) ?></p>
+                                            <p><?= htmlspecialchars($event->location) ?></p>
+                                            <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                            <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                            <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                        </div>
+                                        <div class="event-actions">
+                                            <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>

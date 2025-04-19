@@ -1,6 +1,4 @@
-/* General Styles */
-@import url('/assets/css/main/main.css');
-
+/* Main Styles */
 .body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -8,57 +6,31 @@
     overflow-y: auto;
 }
 
-
 .main-container {
     display: flex;
 }
 
-.content {
+.user-accounts-section {
     flex: 1;
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    /* margin-top: 20px; */
-    /* margin-left: 1%; */
-    margin-right: 1%;
-    /* To align with fixed sidebar */
-    overflow: auto;
-    border-radius: 8px;
 }
 
-/* Events Section */
 .events-sec {
-    min-height: 80vh;
+    width: 100%;
 }
 
+/* Topic and Buttons */
 .topicnbuttons {
     display: flex;
-    /* flex-direction: row; */
-    /* background-color: greenyellow; */
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 20px; */
+    position: relative;
 }
 
-.topicnbuttons button {
-    /* margin-left: auto; */
-    justify-self: flex-end;
-    margin-left: auto;
-}
-
-
-
-.publish-button {
-    width: 200px;
-    height: 40px;
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
-    background-color: red;
-    /* align-items: center; */
+.topicnbuttons h2 {
+    margin: 0;
+    font-size: 1.5rem;
 }
 
 .add-event {
@@ -69,126 +41,131 @@
     font-weight: bold;
     border-radius: 6px;
     transition: all 0.3s ease;
-    background: var(--button-normal);
+    background: var(--button-normal, #5271ff);
+    color: white;
 }
 
 .add-event:hover {
-    background: var(--button-normal-hover);
+    background: var(--button-normal-hover, #3a5ce5);
 }
 
-.title-section {}
+.fixedsize {
+    min-width: 120px;
+}
 
+/* Event List - Horizontal Scrolling */
 .event-list {
-    border-radius: 10px;
-    background-color: rgb(128, 73, 254, .15);
-    box-shadow: var(--section-div-shadow);
-    overflow-y: auto;
-    max-height: 320px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: flex-start;
-    padding: 0 10px;
-    /* Padding to prevent cards from touching the edges */
-    scrollbar-color: var(--scrollbar-color);
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    overflow-y: hidden;
+    /* Prevent vertical scrolling */
+    white-space: nowrap;
+    padding: 15px 0;
+    gap: 20px;
+    scroll-behavior: smooth;
+    /* For smooth scrolling */
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    /* Firefox */
+    background: rgba(128, 73, 254, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
+    margin-bottom: 15px;
+}
+
+/* Styling scrollbar for Chrome, Safari, and newer Edge */
+.event-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.event-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.event-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+.event-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Event Card */
 .event-card {
-    flex: 1;
-    /* Allow cards to take equal space */
-    min-width: 500px;
-    /* Minimum width for the cards */
-    max-width: calc(50% - 15px);
-    margin: 5px;
-    /* padding: 10px; */
+    flex: 0 0 auto;
+    /* Don't grow or shrink */
+    width: 400px;
+    /* Fixed width for each card */
     border-radius: 10px;
-    background-color: #f0f2f5;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    /* Ensure the status can be positioned relative to the card */
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    /* Important for horizontal scrolling */
+    white-space: normal;
+    /* Reset white-space for card content */
+    margin: 5px 0;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--card-shadow-hover);
-}
-
-.event-image {
-    width: 160px;
-    /* Set fixed width */
-    height: 180px;
-    /* Set fixed height */
-    object-fit: cover;
-    /* Make the image fill the container, cropping if needed */
-    margin-right: 10px;
-    border-radius: 10px 1px 0px 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .event-card-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     overflow: hidden;
-    /* Ensures contents do not overflow */
+}
+
+.event-image {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 10px 0 0 10px;
 }
 
 .event-details {
     flex-grow: 1;
+    padding: 10px;
     min-width: 0;
-    /* Prevents flexbox from expanding beyond card */
-    overflow: hidden;
+    /* Allow proper text truncation */
 }
 
-.title-section {
-    display: block;
-    flex-direction: row;
-}
-
-.event-details h3 {
-    font-size: 20px;
-    margin: 0;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.event-details .title-status-row {
+.title-status-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.event-details .title-status-row h3 {
+.event-details h3 {
+    font-size: 18px;
     margin: 0;
-    font-size: 20px;
+    margin-bottom: 10px;
     font-weight: bold;
-    flex: 1;
-}
-
-.event-details .title-status-row .event-status {
-    font-weight: bold;
-    font-size: 14px;
-    text-align: right;
 }
 
 .hide_overflow {
     white-space: nowrap;
-    /* Prevent wrapping */
     overflow: hidden;
-    /* Hide overflow */
     text-overflow: ellipsis;
-    /* Add ellipsis when text overflows */
     display: block;
-    max-width: 80%;
-    /* Ensures it doesn't exceed parent */
+    max-width: 100%;
 }
 
 .event-details p {
     margin: 5px 0;
     color: #555;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .published-date {
@@ -198,8 +175,7 @@
 
 .participants {
     display: inline-block;
-    background-color: rgb(128, 73, 254, .3);
-    /* Add color so that it changes based on how many are enrolled in */
+    background-color: rgba(128, 73, 254, 0.3);
     color: #333;
     padding: 5px 10px;
     border-radius: 10px;
@@ -207,155 +183,139 @@
     margin-top: 10px;
 }
 
-.close-event {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
+.event-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
 }
 
-.event-actions .close-event {
-    /* background-color: #589bf9; */
-    /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
-    background-color: var(--danger);
+.close-event {
+    background-color: var(--danger, #dc3545);
     border: none;
-    width: 100%;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 7px;
-    margin-bottom: 10px;
     cursor: pointer;
     font-size: 14px;
     color: white;
     transition: background-color 0.3s;
 }
 
-
 .close-event:hover {
-    /* background-color: rgb(128, 73, 254); */
-    background-color: var(--danger-dark);
+    background-color: var(--danger-dark, #bd2130);
 }
 
-/* Action Buttons */
-.event-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 0 10px;
-}
-
-.remove-button {
-    background-color: #d6eaff;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Event Status */
+/* Event Status Styling */
 .event-status {
     font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 14px;
-}
-
-.status-open {
-    color: #28a745;
-    /* Green for open */
-}
-
-.status-closed {
-    color: #dc3545;
-    /* Red for closed */
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 12px;
 }
 
 .status-pending {
-    color: #ffc107;
-    /* Yellow for pending */
+    background-color: #ffeeba;
+    color: #856404;
 }
 
 .status-approved {
-    color: #28a745;
-    /* Green for approved */
+    background-color: #d4edda;
+    color: #155724;
 }
 
+.status-rejected,
 .status-closed {
-    color: #dc3545;
-    /* Red for rejected/closed */
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Popup Form Styling */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+#imagePreviewContainer img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* No Events Display */
+[style*="display: flex; justify-content: center; align-items: center; height: 50vh;"] {
+    margin: 20px 0;
+    background-color: rgba(128, 73, 254, 0.1);
+    border-radius: 10px;
+    padding: 30px;
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
-    .events-section {
-        padding: 10px;
-        margin-left: 0;
-    }
-
-    .publish-button {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-        padding: 10px;
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
     }
 
     .event-card {
-        flex: 1;
-        /* Allow cards to take equal space */
-        min-width: 500px;
-        /* Minimum width for the cards */
-        max-width: 60%;
-        margin: 5px;
-        /* padding: 10px; */
-        border-radius: 10px;
-        background-color: #f0f2f5;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        width: 300px;
     }
 
     .event-image {
-        width: 160px;
-        /* Set fixed width */
-        height: 180px;
-        /* Set fixed height */
-        object-fit: cover;
-        /* Make the image fill the container, cropping if needed */
-        margin-right: 10px;
-        border-radius: 10px 1px 0px 10px;
+        width: 100px;
+        height: 120px;
     }
 
-    .event-card-content {
-        display: flex;
-        align-items: center;
-        width: 100%;
+    .topicnbuttons {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .event-actions {
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 15px;
-    }
-
-    .remove-button,
-    .close-button {
-        flex: 1;
-        text-align: center;
-        padding: 10px;
-        margin: 5px;
+    .topicnbuttons button {
+        margin-top: 10px;
     }
 }
 
 @media (max-width: 480px) {
     .event-card {
-        padding: 10px;
+        width: 250px;
     }
 
-    .event-image img {
-        width: 60px;
-        height: 60px;
+    .event-image {
+        width: 80px;
+        height: 100px;
     }
 
     .event-details h3 {
@@ -366,13 +326,8 @@
         font-size: 12px;
     }
 
-    .publish-button {
-        font-size: 14px;
-    }
-
-    .remove-button,
-    .close-button {
+    .close-event {
         font-size: 12px;
-        padding: 8px;
+        padding: 6px 12px;
     }
 }
