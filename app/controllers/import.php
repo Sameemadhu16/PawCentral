@@ -31,7 +31,7 @@ class Import
                 $data = [
                     'merchant_id'=>$_SESSION['role_id']?? null,
                     'tradeType' => $petData['tradeType'],
-                    'pet_name' => $petData['petName'],
+                    'petName' => $petData['petName'],
                     'species' => $petData['species'],
                     'breed' => $petData['breed'],
                     'sex' => $petData['sex'],
@@ -54,7 +54,7 @@ class Import
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
-                    'delete_status'=>1;
+                    'delete_status'=>0
                 ];
 
                 echo "<pre>";

@@ -25,8 +25,10 @@
     <h2>Basic Info</h2>
     <?php if ($post->tradeType=== 'Importing'): ?>
         <p><strong>Name:</strong> <?= $post->pet_name ?></p>
-        <?php else :?>
-            <p><strong>Name:</strong> <?= $post->petName ?></p>
+        <?php elseif($post->tradeType==='Renting') :?>
+            <p><strong>Name:</strong> <?= $post->pet_name ?></p>
+            <?php else: ?>
+                <p><strong>Name:</strong> <?= $post->petName ?></p>
   <?php endif; ?>
     <p><strong>Species:</strong> <?= $post->species ?></p>
     <p><strong>Breed:</strong> <?= $post->breed ?></p>

@@ -23,7 +23,7 @@
     <input type="hidden" name="tradeType" value="<?=htmlspecialchars($data['post']->tradeType)?>">
    
             <h3>Pet's Name</h3>
-            <input type="text" name="petName" placeholder="Enter the pet's name" required value="<?=htmlspecialchars($data['post']->pet_name)?>">
+            <input type="text" name="petName" placeholder="Enter the pet's name" required >
 
             <!-- Species & Breed -->
             <h3>Species</h3>
