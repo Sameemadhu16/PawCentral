@@ -107,9 +107,10 @@
     transform: translateY(-5px);
     box-shadow: var(--card-shadow-hover);
 }
+
 .event-image {
     width: 160px; /* Set fixed width */
-    height: 180px; /* Set fixed height */
+    height: 200px; /* Set fixed height */
     object-fit: cover; /* Make the image fill the container, cropping if needed */
     margin-right: 10px;
     border-radius: 10px 1px 0px 10px;

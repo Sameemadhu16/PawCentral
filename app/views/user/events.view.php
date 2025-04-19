@@ -50,12 +50,16 @@
                     </div> -->
                     
                     <div class="header-section">
-                        <h2>Your Published Events</h2>
+                        <h2>Your Events</h2>
                         <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
                     </div>
                     <div class="event-list">
-                    <?php foreach ($events as $event) : ?>
-                        <?php if($event->status==0 & $event->approved==1):?>
+                    <?php   
+                        $hasOngoing=false;
+                        foreach ($events as $event) :
+                            if($event->status==0 & $event->approved==1):
+                                $hasOngoing=true;
+                            ?>
                             <div class="event-card">
                             <div class="event-card-content">
                                 <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
@@ -73,7 +77,13 @@
                             </div>
                         </div>
                         <?php endif;?>
-                    <?php endforeach; ?>
+                    <?php endforeach;
+                        if(!$hasOngoing):
+                        ?>
+                    <div style="text-align: center; padding: 2rem; color: #777;">
+                        You have no ongoing events at the moment.
+                    </div>
+                    <?php endif;?>
                     </div>
                 <?php else: ?>
                     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
@@ -109,7 +119,7 @@
                                     <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                 </div>
                                 <div class="event-actions">
-                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to abort this event request?<br><br><?= htmlspecialchars($event->title) ?>', reasons=['Mistaken Entry','Cancelled','No longer Valid','Filled up from other Sources'])">Abort event</button>
                             </div>
                             </div>
                         </div>
@@ -119,7 +129,7 @@
                     ?>
                     <div style="text-align: center; padding: 2rem; color: #777;">
                                 You have no pending events at the moment.
-                            </div>
+                    </div>
                     <?php endif; ?>
                     </div>
 <br>
@@ -139,10 +149,11 @@
                                     <p><?= htmlspecialchars($event->location) ?></p>
                                     <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
                                     <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
-                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled<p style="font-size: 0.7rem;">Closing Reason: <?= htmlspecialchars($event->closing_reason) ?></p></span>
                                 </div>
                                 <div class="event-actions">
-                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                    <!-- <p>closing reason: <?= htmlspecialchars($event->closing_reason) ?></p> -->
+                                <!-- <button class="close-event" ><?= htmlspecialchars($event->closing_reason) ?></button> -->
                             </div>
                             </div>
                         </div>
@@ -154,11 +165,6 @@
                                 You have no completed events yet.
                             </div>
                     <?php endif; ?>
-                    </div>
-                    <?php else : ?>
-                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
-                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
                     </div>
                 <?php endif; ?>    
                     

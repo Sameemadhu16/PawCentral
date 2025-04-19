@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Requests</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
@@ -134,7 +135,7 @@
                     </div>
                 <?php else : ?>
                     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no donations requests yet.<br>
                         <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
                     </div>
                 <?php endif; ?>
@@ -227,11 +228,6 @@
                                 You have no Completed Donation requests at the moment.
                             </div>
                         <?php endif; ?>
-                    </div>
-                <?php else : ?>
-                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no requests yet.<br>
-                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
                     </div>
                 <?php endif; ?>
       

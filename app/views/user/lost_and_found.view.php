@@ -9,6 +9,8 @@
     
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
+    
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
