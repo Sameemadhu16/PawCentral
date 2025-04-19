@@ -55,12 +55,17 @@ class LostAndFound
     }
 
     // Mark as complete (delete)
-    public function markAsComplete($id)
+    public function markAsComplete($mark_data)
     {
-        $model = new LostAndFoundModel();
-        $data = ['postStatus' => 1]; // Set postStatus to completed
+        // collect Data
+        $insert=explode("?",$mark_data['id']);
+        $id=$insert[0];
+        parse_str($insert[1], $queryParams);
 
-        $success=$model->update($id['id'], $data, 'petid');
+        $model = new LostAndFoundModel();
+        $data = ['postStatus' => 1, 'closing_reason' => $queryParams['reason'] ?? 'No reason provided']; // Set postStatus to completed
+
+        $success=$model->update($id, $data, 'petid');
 
         if ($success) {
             header("Location: " . ROOT . "/userprofile/lost_and_found?success=Marked as complete");

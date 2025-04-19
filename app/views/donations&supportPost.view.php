@@ -1,3 +1,7 @@
+<?php
+require_once(__DIR__ . '/../../public/stripe/init.php');  // Relative path to the init.php file
+// C:\xampp\htdocs\PawCentral\
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +52,36 @@
 .card-radio:has(input:checked) img {
   filter: none;
 }
+
+.warning-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 1px solid #ffeeba;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.warning-message svg {
+  flex-shrink: 0;
+  /* color: #ffc107; */
+  color: var(--warn-button);
+}
+
+.warning-message span {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   </style>
 </head>
 
@@ -93,12 +127,51 @@
             
             <hr class="styled-hr">
 
+<!-- <form action="<?= ROOT ?>/donationsnsupport/create-checkout-session" method="POST">
+  <label for="amount">Enter donation amount (LKR):</label>
+  <input type="number" name="amount" id="amount" min="200" step="1" required>
+  <button type="submit">Donate</button>
+</form> -->
+
+<div class="register_form collapsed" id="register_form">
+    <!-- <h3>Support this cause :</h3> -->
+    <form action="<?= ROOT ?>/donationsnsupport/create-checkout-session" method="post" class="donation-form">
+    <input type="hidden" name="id" value="<?= htmlspecialchars($post->id ?? '') ?>">
+    <label for="amount">Donation Amount in Rupees (LKR)</label>
+    <input type="number" name="amount" id="amount" placeholder="E.g. 525.50" min="200" step="0.01" required>
+    <div id="amountWarning" class="warning-message" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Note: Only <?= number_format($post->amount - $post->collected, 2) ?> LKR is needed to fulfill this request.</span>
+    </div>
+    <script>
+        document.getElementById('amount').addEventListener('input', function() {
+            const remaining = <?= $post->amount - $post->collected ?>;
+            const warning = document.getElementById('amountWarning');
+            if (this.value > remaining) {
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
+        });
+    </script>
+
+    <button type="submit" class="toggleformbtn">Donate</button>
+</form>
+</div>
+<button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button>
+
+
+
             <!-- donation form -->
 
 <div class="register_form collapsed" id="register_form">
     <h3>Support this cause :</h3>
     <form action="<?=ROOT?>/donationsnsupport/donate?id=<?=htmlspecialchars($post->id ?? '')?>" method="post" class="donation-form">
-    <input type="hidden" name="id" value="<?= htmlspecialchars($post->id ?? '') ?>">
+    <input type="hidden" name="post_id" value="<?= htmlspecialchars($post->id ?? '') ?>">
 
     <label>Select Card Type</label>
     <div class="card-options">
@@ -131,7 +204,7 @@
     <button type="submit" class="toggleformbtn">Donate Now</button>
 </form>
 </div>
-<button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button>
+<!-- <button id="toggleFormBtn" class="toggleformbtn">Support This Cause</button> -->
 
 
     <?php else: ?>

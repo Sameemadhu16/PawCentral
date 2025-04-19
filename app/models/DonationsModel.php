@@ -13,7 +13,7 @@ class DonationsModel
     {
         $userId = $_SESSION['user_id'];
 
-    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE `user_id` = :userid AND status=0";
+    $query = "SELECT * FROM `" . $this->donation_req . "` WHERE `user_id` = :userid ";  // AND approved=1 to filter ?
 
     $result = $this->query($query, [':userid' => $userId]);
     return $result;
@@ -72,4 +72,13 @@ class DonationsModel
         return $this->query($query, $params);
     }
     
+    public function updateReq_amount($amount,$req_id){
+        $query = "UPDATE donation_requests SET collected = collected + :amount WHERE id = :req_id";
+
+        $this->table=$this->donation_req ;
+        return $this->query($query, [':amount' => $amount, ':req_id' => $req_id]);
+        // return $result;
+
+    }
+
 }

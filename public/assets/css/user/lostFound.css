@@ -44,20 +44,30 @@
 /* Pet Card */
 .pet-card {
     display: flex;
-    flex-wrap: wrap;
+    flex:1;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 20px auto;
-    max-width: 600px;
-    transition: transform 0.3s ease;
+    margin: 10px;   
+    min-width: 420px;
+    max-width: 470px;
+    max-height: 270px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .pet-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
   }
   
+  .card-info {
+    flex-direction: row;
+    display: flex;
+  }
+
   /* Pet photo */
   .pet-photo {
     /* width: 100%; */
@@ -102,6 +112,7 @@
     width: 100%;
     /* background-color: red; */
     justify-content: right;
+    padding: 5px;
   }
   .action-button {
     background-color: #6a11cb;
@@ -183,8 +194,12 @@
       border-radius: 0px 0px 0 0;
     }
     .buttons {
-        flex-direction: column;
+      display: flex;
+      flex-direction: column;
+      align-items: center;     /* Horizontally center the items */
+      justify-content: center; /* Vertically center the items */
     }
+    
     .action-button {
         padding: 8px 16px;
         margin: 0px 10px;

@@ -13,7 +13,7 @@ class EventsModel
 
             // $userId =2;
         // Fetch rows from the table where status = 0 and userid matches
-        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid AND status=0"; //add approved filtering (maybe filter from frontend)
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid"; //add approved filtering (maybe filter from frontend)
 
         $result = $this->query($query, [':userid' => $userId]);
             //$print=$_SESSION['user_id'];

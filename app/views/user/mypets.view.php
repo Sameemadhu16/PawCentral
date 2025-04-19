@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <script>
         function openPopup() {
@@ -26,17 +27,18 @@
 
 <body class="body">
     <?php include("../app/views/components/header.php"); ?>
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/user/sidebar.php"); ?>
             
         <div class="user-accounts-section">
             <?php if (!empty($pets)): ?>
-                <div class="topicnbuttons">
+                <!-- <div class="topicnbuttons">
                     <button class="action-button fixedsize" style="background-color:#8049fe;" onclick="openPopup()">Register Pet</button>
-                </div>
+                </div> -->
 
-                <div class="topicnbuttons">
+                <div class="header-section">
                     <h2>Your Pets</h2> 
+                    <button class="add-event fixedsize" onclick="openPopup()">Register Pet</button> <!--style="background-color:#8049fe;" -->
                 </div>
 
                 <div class="pets-section">
@@ -82,7 +84,7 @@
             <?php else: ?>
                 <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
                     <p style="text-align: center; font-size: 1.2rem; color: #555;">No pets have been added yet.<br>
-                    <button class="action-button fixedsize" style="background-color:#8049fe;" onclick="openPopup()">Add your Pet</button></p><br>
+                    <button class="add-event fixedsize" onclick="openPopup()">Add your Pet</button></p><br>
                 </div>
             <?php endif; ?>
         </div>
