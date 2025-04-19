@@ -3,6 +3,7 @@ class RentPost
 {
     use Model;
     protected $table = 'rent_posts';
+    protected $order_column='pet_id';
     protected $allowedColumns = [
         'pet_id',
         'merchant_id',
@@ -23,12 +24,15 @@ class RentPost
         'img2',
         'img3',
         'created_at',
+        'contactName',
+        'contactNumber',
         'renter_contact',
         'renter_address',
         'rental_duration',
         'renter_name',
         'email',
-        'agreed_terms'
+        'agreed_terms',
+        'delete_status'
     ];
 
     public function create($data){

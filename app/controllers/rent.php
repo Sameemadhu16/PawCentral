@@ -51,11 +51,10 @@ class Rent
                     'img2' => $imagePaths[1] ?? null,
                     'img3' => $imagePaths[2] ?? null,
                     'agreed_terms' => $termsAccepted,
-                    'email'=>$petData['email']
+                    'email'=>$petData['email'],
+                    'delete_status'=>1
                 ];
-                echo "<pre>";
-                print_r($data);
-                echo "<pre>";
+               
                 $postPetModel = new RentPost();
                 if ($postPetModel->insert($data)) {
                     $_SESSION['success_message'] = "Post successfully created";

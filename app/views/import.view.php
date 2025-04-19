@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/import.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <?php include '../app/views/components/header.php'?>
 <h1>Import a Pet</h1>
-    <form action="<?=ROOT?>/service/postpet/postpetnext/importing/submit" method="POST">
+    <form action="<?=ROOT?>/service/postpet/postpetnext/import/submit" method="POST">
         <label for="country">Country:</label>
         <input type="text" id="country" name="country" required>
         

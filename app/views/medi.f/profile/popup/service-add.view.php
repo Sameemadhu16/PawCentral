@@ -13,10 +13,10 @@
                 if(!empty($all_services)) {
                     foreach($all_services as $service) {
                         echo "
-                        <div class='service-card card'>
+                        <div class='service-select-card card' data-service-id='{$service->service_id}'>
                             <div class='service-title'>
-                                <input type='checkbox' name='services[]' value='{$service->service_id}' id='service-{$service->service_id}'>
-                                <h4>{$service->service_name}</h3>
+                                <input type='checkbox' name='services[]' value='{$service->service_id}' id='service-{$service->service_id}' class='hidden-checkbox'>
+                                <h4>{$service->service_name}</h4>
                             </div>
                         </div>";
                     }

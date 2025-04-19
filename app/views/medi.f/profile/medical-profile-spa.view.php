@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-donations.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/med-profile.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/service-add.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>

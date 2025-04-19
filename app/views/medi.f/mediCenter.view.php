@@ -33,16 +33,19 @@
         <div class="services">
             <h2>Our Services</h2>
             <div class="service_cards_collection cards-collection">
-                <div class="service_card card">
-                    <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
-                    <h3>Service 1</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-                </div>
-                <div class="service_card card">
-                    <img src="<?= ROOT ?>/assets/images/shop.png" alt="Service">
-                    <h3>Service 2</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-                </div>
+                <?php
+                if(!empty($services)){
+                    foreach($services as $service){
+                        echo "
+                            <div class='service_card card'>
+                                <h3>$service->service_name</h3>
+                            </div>
+                        ";
+                    }
+                }else{
+                    echo "<p>No services found.</p>";
+                }
+                ?>
             </div>
         </div>
         <div class="veterinarians">

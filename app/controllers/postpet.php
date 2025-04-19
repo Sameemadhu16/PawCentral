@@ -29,7 +29,7 @@ class Postpet
                 'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
             ];
             $_SESSION['postpet_data'] = $data;
-    
+            $_SESSION['common_data']=$data;
             header("Location: " . ROOT . "/service/postpet/postpetnext");
             exit();
         }

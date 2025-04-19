@@ -35,6 +35,7 @@ route('service/postpet/postpetnext/import/submit', 'Import@submit'); // Use 'imp
 route('service/manage', 'Manage@index');
 route('service/manage/edit', 'Manage@edit');
 route('service/manage/delete', 'Manage@delete'); // Typo: 'manage' is misspelled as 'manage'
+route('service/manage/details','Manage@details');
 
 // Merchant Routes
 route('merchant/profile', 'Merchant/Profile@index');
@@ -163,6 +164,9 @@ route('shelter/post','shelter/Post@index');
     route('medical-center/dashboard/services','Medical/profile/Med_Dashboard_Services@index');
     route('medical-center/dashboard/donations','Medical/profile/Med_Dashboard_Donations@index');
     route('medical-center/dashboard/events','Medical/profile/Med_Dashboard_Events@index');
+
+    //medical services
+    // route('medical-center/dashboard/services/add','Medical/profile/Med_Dashboard_Services@submit');
 
 // Add logout route for medical center
 route('logout', 'Medical/Auth@logout');
