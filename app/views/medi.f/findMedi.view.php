@@ -29,7 +29,7 @@
                             <div class='card-content'>
                                 <a href='medical-centers/medical-center?id={$center->med_id}' class='link-medi'><h2 class='card-title'>{$center->name}</h2></a>
                                 <p class='card-subtitle'>{$center->location}</p>
-                                <a href='medical-appointment-date?id={$center->med_id}' class='link-medi'><button class='card-button' onclick='bookAppointment('{$center->med_id}')'>Book appointment</button></a>
+                                <a href='appointment/date?id={$center->med_id}' class='link-medi'><button class='card-button' onclick='bookAppointment('{$center->med_id}')'>Book appointment</button></a>
                             </div>
                         </div>";
                         }

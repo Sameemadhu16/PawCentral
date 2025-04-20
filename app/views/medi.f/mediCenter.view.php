@@ -24,7 +24,7 @@
                     <p><?= $medical_center->about_us ?></p>
                 </div>
                 <div class="appointment_btn">
-                    <a href="<?=ROOT?>/medical-appointment-date/<?= $medical_center->med_id ?>">
+                    <a href="<?=ROOT?>/appointment/date?id=<?= $medical_center->med_id ?>">
                         <button>Book Appointment</button>
                     </a>
                 </div>
