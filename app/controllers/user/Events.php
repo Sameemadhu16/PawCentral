@@ -56,7 +56,7 @@ class Events{
                     }
                 }
                 $data['eventimg'] = $images[0] ?? null;
-            }            
+            }
             $result = $eventmodel->addEvent($data);
             if ($result) {
 
