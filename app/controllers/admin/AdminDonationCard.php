@@ -19,9 +19,20 @@ class AdminDonationCard{
                 exit;
             }
         }
+        $donationDetails = $this->getDonationDetails();
+
+        // Process the image for the single donation object
+        if (isset($donationDetails->img) && !empty($donationDetails->img)) {
+            $donationDetails->img = "data:image/jpeg;base64," . base64_encode($donationDetails->img); // Adjust MIME type if not JPEG
+        } else {
+            $donationDetails->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+        }
+
         $data = [
-            'donation' => $this->getDonationDetails(),
+            'donation' => $donationDetails,
         ];
+
+        // show($data);
 
         $this->view('admin/donation_card', $data);
     }

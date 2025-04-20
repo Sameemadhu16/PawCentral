@@ -21,12 +21,24 @@ class AdminDonation{
             }
         }
 
-        // Now prepare the view data
+        // Retrieve pending donations
+        $pendingDonations = $this->getPendingRequests();
+
+        // Process images: convert binary `img` data to Base64-encoded string
+        foreach ($pendingDonations as $donation) {
+            if (isset($donation->img) && !empty($donation->img)) {
+                $donation->img = "data:image/jpeg;base64," . base64_encode($donation->img); // Adjust MIME type if not JPEG
+            } else {
+                $donation->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            }
+        }
+
+        // Prepare the view data
         $data = [
             'total_donations' => $this->getTotalDonations(),
             'pending_count' => $this->getPendingRequestCount(),
             'approved_count' => $this->getApprovedCount(),
-            'pending_donations' => $this->getPendingRequests(),
+            'pending_donations' => $pendingDonations,
             'all_requests' => $this->getAllDonationRequests()
         ];
 

@@ -15,7 +15,9 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php"); 
+    // show($data['donation']->img)
+    ?>
 
     <div class="main-container container">
 
@@ -37,7 +39,7 @@
                 </div>
 
                 <div class="pet-details">
-                    <div class="pet-image-large" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= esc($data['donation']->image) ?>');"></div>
+                    <div class="pet-image-large" style="background-image: url('<?= esc($data['donation']->img) ?>');"></div>
                     <div class="pet-info">
                         <div class="info-grid">
 

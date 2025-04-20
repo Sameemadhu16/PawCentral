@@ -33,6 +33,7 @@
             $totalDonations = $data['total_donations'];
             $pendingCount = $data['pending_count'];
             $approveCount = $data['approved_count'];
+            // show($data['pending_donations']);
             ?>
 
             <div class="donation-overview">
@@ -62,27 +63,28 @@
             <div class="pending-requests">
                 <?php foreach ($data['pending_donations'] as $request): ?>
                     <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
-                        <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= $request->image ?>');"></div>
+                        
+                        <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>
                         <div class="card-content">
-                            <h3><?= $request->title ?></h3>
+                            <h3><?= htmlspecialchars($request->title) ?></h3>
                             <div class="info">
                                 <span>Requested: <strong><?= number_format($request->amount, 2) ?> LKR</strong></span>
                                 <span>Collected: <strong><?= number_format($request->collected, 2) ?> LKR</strong></span>
                             </div>
-                            <p class="description"><?= $request->info ?></p>
+                            <p class="description"><?= htmlspecialchars($request->info) ?></p>
                             <div class="progress-container">
                                 <?php
                                 $progress = ($request->amount > 0) ? ($request->collected / $request->amount) * 100 : 0;
                                 ?>
                                 <div class="progress-bar" style="width: <?= $progress ?>%"></div>
                             </div>
-                            <div class="card-actions">
+                            <!-- <div class="card-actions">
                                 <form method="POST">
                                     <input type="hidden" name="id" value="<?= $request->id ?>">
                                     <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                 </form>
                                 <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $request->id ?>)">Reject</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 <?php endforeach; ?>
