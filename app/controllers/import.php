@@ -57,9 +57,7 @@ class Import
                     'delete_status'=>0
                 ];
 
-                echo "<pre>";
-                print_r($data);
-                echo "<pre>";
+               
                 $postPetModel = new ImportPet();
                 if ($postPetModel->insert($data)) {
                     $_SESSION['success_message'] = "Post successfully created";
