@@ -63,7 +63,7 @@ class LostAndFound
         parse_str($insert[1], $queryParams);
 
         $model = new LostAndFoundModel();
-        $data = ['postStatus' => 1, 'closing_reason' => $queryParams['reason'] ?? 'No reason provided']; // Set postStatus to completed
+        $data = ['postStatus' => 1, 'closing_reason' => $queryParams['reason'] ?? 'No Reason Provided']; // Set postStatus to completed
 
         $success=$model->update($id, $data, 'petid');
 

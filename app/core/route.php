@@ -84,7 +84,9 @@ route('announcements','announcements');
 route('lostandfound','LostAndFound@index');
 route('eventsandcampaigns','events');
 route('eventsandcampaigns/event','events@EventInfo');
+route('eventsandcampaigns/event/enroll','events@Enroll');
 route('lostandfound/report-animal','ReportFound');
+
 // route('lostandfound/idoflost','LostPet');
 
 // userprofile
@@ -103,6 +105,7 @@ route('userprofile/mypets/register_pet','user/Mypets@RegPet');
 route('userprofile/event','user/Events@index');
 route('userprofile/event/addevent','user/Events@NewEvent');
 route('userprofile/event/closeevent','user/Events@closeEvent');
+route('userprofile/enrolled_events','user/Events@showEnrolledEvents');
 route('lostandfound/marklostnfound', 'user/LostAndFound@markAsComplete');
 route('lostandfound/postdetails','user/LostAndFound@show');
 route('lostandfound/post-report-animal','user/LostAndFound@createReport');

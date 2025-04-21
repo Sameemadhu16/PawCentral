@@ -31,7 +31,7 @@ class LostAndFoundModel
 
         // $userId =2;
     // Fetch rows from the table where status = 0 and userid matches
-    $query = "SELECT * FROM `" . $this->table . "` WHERE `postStatus` = 0 AND `id` = :userid";
+    $query = "SELECT * FROM `" . $this->table . "` WHERE `id` = :userid";
 
     $result = $this->query($query, [':userid' => $userId]);
         //$print=$_SESSION['user_id'];

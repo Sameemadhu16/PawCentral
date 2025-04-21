@@ -41,10 +41,8 @@
     
     ?>
 
-    <div class="main-container">
-        <?php include("../app/views/components/user/sidebar.php");
-        
-        ?>
+    <div class="main-container container">
+        <?php include("../app/views/components/user/sidebar.php"); ?>
 
         <div class="user-accounts-section">
             <div class="events-sec">
@@ -55,7 +53,8 @@
                     
                     <div class="header-section">
                         <h2>Your Events</h2>
-                        <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
+                        <button class="add-event fixedsize" onclick="window.location.href='<?=ROOT?>/userprofile/enrolled_events'">See Enrolled Events</button>
+                        <button class="add-event fixedsize" onclick="openPopup()">Add Event</button>
                     </div>
                     <div class="event-list">
                     <?php   
@@ -85,15 +84,21 @@
                         if(!$hasOngoing):
                         ?>
                     <div style="text-align: center; padding: 2rem; color: #777;">
-                        You have no ongoing events at the moment.
+                        You have no ongoing events published at the moment.
                     </div>
                     <?php endif;?>
                     </div>
                 <?php else: ?>
+                    
+                    <div style="display: flex; justify-content: center; align-items: center; padding: 2rem;">
+                        <button class="add-event fixedsize" onclick="window.location.href='<?=ROOT?>/userprofile/enrolled_events'">See Events You Are Enrolled In</button>
+                    </div>
+                    <hr style="border: none; height: 1.1px; background-color: #6200ef; margin: 1rem 0;">
                     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
                         <p style="text-align: center; font-size: 1.2rem; color: #555;">You have no added events yet.<br>
                         <button class="add-event fixedsize"  onclick="openPopup()">Add New Event</button></p><br>
                     </div>
+                    
                 <?php endif;?>
 
 
@@ -292,7 +297,7 @@ or any other information that participants should be aware of."></textarea>
             pendingBtn.classList.remove("active-btn");
             completedBtn.classList.remove("active-btn");
 
-            // Toggle the selected one if it wasn’t already active
+            // Toggle the selected one if it wasn't already active
             if (target !== null && !target.classList.contains("active")) {
                 target.classList.add("active");
             }

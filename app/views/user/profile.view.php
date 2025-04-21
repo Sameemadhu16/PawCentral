@@ -16,7 +16,7 @@
     <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <div>
             <?php include("../app/views/components/user/sidebar.php"); ?>
         </div>
@@ -45,6 +45,8 @@
             </div>
         </div>
     </div>
+    
+    <?php include("../app/views/components/footer.php"); ?>
 
     <script>
         // Optional interactivity for hover effects or menu interactions (if needed)

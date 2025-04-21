@@ -7,6 +7,7 @@ class DonationsModel
 // Make sure to change $this->table when using tables 
     protected $donation_req = 'donation_requests';
     protected $donations = 'donations';
+    protected $notificationtable = 'notifications_t';
     public $table;
 
     public function getUserReq()
@@ -44,7 +45,7 @@ class DonationsModel
     {
     $this->table=$this->donation_req;
     $post = $this->first(['id' => $postid]);
-        return $post;
+    return $post;
 
     }
 
@@ -76,9 +77,40 @@ class DonationsModel
         $query = "UPDATE donation_requests SET collected = collected + :amount WHERE id = :req_id";
 
         $this->table=$this->donation_req ;
-        return $this->query($query, [':amount' => $amount, ':req_id' => $req_id]);
-        // return $result;
+        $result=$this->query($query, [':amount' => $amount, ':req_id' => $req_id]);
+
+        // $this->table=$this->donation_req ;
+        $checkAmount = $this->first(['id' => $req_id]);
+
+        if ($checkAmount->collected >= $checkAmount->amount) {
+
+            $this->closeReqCompleted($req_id);
+        }
+
+        return $result;
 
     }
+ 
+
+    public function closeReqCompleted($req_id) {
+        $this->table = $this->donation_req;
+        $query = "UPDATE `" . $this->table . "` SET `status` = 1 WHERE `id` = :req_id";
+        $result = $this->query($query, [':req_id' => $req_id]);
+
+        $req = $this->getDonReq($req_id);
+        
+        // prepare data for notification    
+        $noti['title'] = $req->title . ' :Donation Request Completed';
+        $noti['user_id'] = $req_id;  
+        $noti['message'] = 'Good News! your donation request has collected ' . $req->collected .'Rs and completed. It is now closed.';
+        $this->addNotification($noti);
+        return $result;
+    }
+
+    public function addNotification($data) {
+        $this->table = $this->notificationtable;
+        return $this->insert($data) ? true : false;
+    }
+    
 
 }

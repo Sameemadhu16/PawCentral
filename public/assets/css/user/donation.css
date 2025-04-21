@@ -43,10 +43,10 @@ h2 {
     overflow: hidden;
     border: 1px solid #ddd;
     max-width: calc(50% - 20px);
-    min-width: 400px;
-    max-width: 470px;
+    min-width: 410px;
+    max-width: 550px;
     max-height: 270px;
-    margin: 10px;
+    margin: 3px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -59,7 +59,7 @@ h2 {
     overflow-y: auto;
     max-height: 350px;
     justify-content: center; 
-    scrollbar-color: var(--scrollbar-color);
+    scrollbar-color: var(--scrollbar-color);url(http://localhost/PawCentral/public/userprofile/donations)
 }
 
 .donation-card {
@@ -94,7 +94,7 @@ h2 {
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #333;
   margin-bottom: 10px;
   margin-top: 7px;
@@ -140,13 +140,14 @@ h2 {
     overflow: hidden;
     height: 7px;
     margin-bottom: 8px;
+    width: 95%;
 }
 
 .progress-bar {
     height: 100%;
     /* background: linear-gradient(90deg, #4caf50, #8bc34a); */
     background: linear-gradient(90deg, #6a0dad, #8049fe);
-    width: 50%; /* Adjust this dynamically based on progress */
+    /* width: 50%; Adjust this dynamically based on progress */
     margin-bottom: 0;
     padding-bottom: 0;
 }

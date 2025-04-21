@@ -6,7 +6,7 @@ class NotificationsModel
 
     public function getUnreadNotifications($user_id)
     {
-        $query = "SELECT * FROM $this->table WHERE user_id = :user_id AND is_read = 0 ORDER BY created_at DESC";
+        $query = "SELECT * FROM $this->table WHERE user_id = :user_id AND is_read = 0 ORDER BY created_at DESC LIMIT 15";
         return $this->query($query, ['user_id' => $user_id]);
     }
 
