@@ -66,7 +66,6 @@ class DonationsAndSupport {
             $card_type = $_POST['card_type'] ?? '';
             $name = $_POST['holder'] ?? '';
             $account_no = $_POST['account'] ?? '';
-            // $vcc = $_POST['vcc'] ?? '';
             $donateAmount = $_POST['donateAmount'] ?? '';
     
             // Save donation
@@ -86,6 +85,7 @@ class DonationsAndSupport {
             //     exit();
             // }
             // Redirect or show success message
+            
             redirect("donationsnsupport/req?id=" . $post_id);
         }
     
@@ -195,5 +195,6 @@ class DonationsAndSupport {
         //     redirect("donationsnsupport/req?id=" . $post_id);
         // }
     }
-    
+
+   
 }
