@@ -61,7 +61,7 @@
             </div>
 
             <div class="pending-requests">
-                <?php foreach ($data['pending_donations'] as $request): ?>
+                <?php foreach ($data['pending_donations'] as $request): show($request->id); ?>
                     <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
                         
                         <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>
@@ -129,7 +129,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data['all_requests'] as $allRequests): ?>
+                        <?php foreach ($data['all_requests'] as $allRequests):
+                             ?>
                             <tr>
                                 <td><?= esc($allRequests->title); ?></td>
                                 
@@ -147,12 +148,13 @@
                                         if ($allRequests->status == 0 && $allRequests->approved == 0) echo 'Pending';
                                         elseif ($allRequests->status == 0 && $allRequests->approved == 1) echo 'Approved';
                                         elseif ($allRequests->status == 0 && $allRequests->approved == 2) echo 'Rejected';
+                                        // 
                                         ?>
                                     </span>
                                 </td>
                                 <td>
                                     <div class="action-btns">
-                                        <?php if ($allRequests->status == 0 && $allRequests->approved == 0): ?>
+                                        <?php if ($allRequests->status == 0 && $allRequests->approved == 0):  ?>
                                             <!-- Approve Button -->
                                             <form method="POST">
                                                 <input type="hidden" name="id" value="<?= $allRequests->id ?>">
@@ -160,10 +162,11 @@
                                             </form>
                                             <!-- Reject Button -->
                                             <button type="button" class="action-btn reject-btn"  onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
-                                            <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
-                                        <?php else: ?>
+                                           
+                                            <button class="action-btn view-btn1" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $allRequests->id ?>'">View</button>
+                                        <?php else:  ?>
                                             <!-- View Button -->
-                                            <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
+                                            <button class="action-btn view-btn1" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $allRequests->id ?>'">View</button>
                                         <?php endif; ?>
                                     </div>
                                 </td>
