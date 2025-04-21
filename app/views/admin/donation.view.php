@@ -139,20 +139,20 @@
                                 <td>
                                     <span class="tag
                                         <?php
-                                        if ($allRequests->status == 0) echo 'pending';
-                                        elseif ($allRequests->status == 1) echo 'approved';
-                                        else echo 'rejected';
+                                        if ($allRequests->status == 0 && $allRequests->approved == 0) echo 'pending';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 1) echo 'approved';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 2) echo 'rejected';
                                         ?>">
                                         <?php
-                                        if ($allRequests->status == 0) echo 'Pending';
-                                        elseif ($allRequests->status == 1) echo 'Approved';
-                                        else echo 'Rejected';
+                                        if ($allRequests->status == 0 && $allRequests->approved == 0) echo 'Pending';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 1) echo 'Approved';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 2) echo 'Rejected';
                                         ?>
                                     </span>
                                 </td>
                                 <td>
                                     <div class="action-btns">
-                                        <?php if ($allRequests->status == 0): ?>
+                                        <?php if ($allRequests->status == 0 && $allRequests->approved == 0): ?>
                                             <!-- Approve Button -->
                                             <form method="POST">
                                                 <input type="hidden" name="id" value="<?= $allRequests->id ?>">

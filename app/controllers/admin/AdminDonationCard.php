@@ -57,13 +57,13 @@ class AdminDonationCard{
     private function approveRequest($id)
     {
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 1 WHERE id = $id";
+        $query = "UPDATE donation_requests SET approved = 1 WHERE id = $id";
         return $donationModel->query($query);
     }
 
     private function rejectDonationModel($id, $reason){
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 2, rejection_reason = :reason WHERE id =:id";
+        $query = "UPDATE donation_requests SET approved = 2, rejection_reason = :reason WHERE id =:id";
         $params = [
             ':id' => $id,
             ':reason' => $reason
