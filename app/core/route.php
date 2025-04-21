@@ -133,10 +133,12 @@ route('shelter/notification','shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
 // route('shelter/lost_and_found','shelter/LostAndFound@index');
 route('shelter/event','shelter/Events@index');
-route('shelter/eventInfo','shelter/EventInfo@index');
+route('shelter/event/closeevent', 'shelter/Events@closeEvent');
+route('shelter/event/addevent', 'shelter/Events@NewEvent');
 route('shelter/adoption_requests','shelter/AdoptionRequests@index');
 route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
 route('shelter/post','shelter/Post@index');
+route('shelter/post/addpost', 'shelter/Post@NewPost');
 
 
 

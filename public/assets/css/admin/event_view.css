@@ -1,6 +1,6 @@
 .body {
     margin: 0;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     background-color: #f3f4f6;
 }
 
@@ -18,12 +18,14 @@
 .event-container {
     width: 90%;
     max-width: 800px;
-    min-height: 550px;
+    min-height: 650px;
     background-color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 40px;
     border-radius: 12px;
     transition: box-shadow 0.3s ease;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .event-container h1 {
     font-size: 24px;
@@ -42,6 +44,7 @@
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    margin-top: 50px;
     min-height: 250px;
 }
 
@@ -86,28 +89,33 @@
     justify-content: flex-start;
 }
 .back-icon {
-    display: flex;
-    align-items: center;
+    display: inline-block;
     margin-bottom: 10px;
 }
 
 .back-icon a {
     text-decoration: none;
     color: var(--primary);
-    font-weight: 600;
-    font-size: 18px; /* Increase font size for the text as well if desired */
+    font-weight: 500;
+    font-size: 16px;
     display: flex;
     align-items: center;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 6px;
 }
 
 .back-icon a:hover {
     color: var(--primary-dark);
+    background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.back-icon a span {
+    margin-left: 8px;
 }
 
 .back-icon i {
-    margin-right: 8px;
-    font-size: 24px; /* Increase the icon size */
+    font-size: 20px;
 }
 .approve-btn,
 .delete-btn {

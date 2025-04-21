@@ -10,17 +10,17 @@ class EventsModel
     protected $enrolltable = 'event_enrollments';
     protected $notificationtable = 'notifications_t';
 
+    // protect
+
     public function getUserEvents()
     {
         $userId = $_SESSION['user_id']; // Retrieve userId from session
-        $this->table = $this->eventtable;
-            // $userId =2;
-        // Fetch rows from the table where status = 0 and userid matches
-        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid"; //add approved filtering (maybe filter from frontend)
+
+        // Fetch rows from the table where user_id matches the session user and status is not 3
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid AND `status` != 3";
 
         $result = $this->query($query, [':userid' => $userId]);
-            //$print=$_SESSION['user_id'];
-            // echo "$print";
+
         return $result;
     }
 
@@ -33,8 +33,7 @@ class EventsModel
 
     public function getPageEvents() //Add page limit to events
     {
-        $this->table = $this->eventtable;
-        $query = "SELECT * FROM `" . $this->table . "` WHERE status=0 AND approved = 1";
+        $query = "SELECT * FROM `" . $this->table . "` WHERE status=1 ";
 
         $result = $this->query($query);
 

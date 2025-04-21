@@ -5,6 +5,7 @@ class MedicalProvModel
     use Model;
 
     protected $table = 'medical_providers';
+   
 
     protected $allowedColumns = [
         'user_id',

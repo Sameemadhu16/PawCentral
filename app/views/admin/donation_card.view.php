@@ -15,7 +15,9 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php"); 
+    // show($data['donation']->img)
+    ?>
 
     <div class="main-container container">
 
@@ -37,7 +39,7 @@
                 </div>
 
                 <div class="pet-details">
-                    <div class="pet-image-large" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= esc($data['donation']->image) ?>');"></div>
+                    <div class="pet-image-large" style="background-image: url('<?= esc($data['donation']->img) ?>');"></div>
                     <div class="pet-info">
                         <div class="info-grid">
 
@@ -92,19 +94,41 @@
                         <i class="fas fa-check"></i> Approve Request
                     </button>
                 </form>
-
-                <form method="POST">
-                    <input type="hidden" name="id" value="<?= $donation->id ?>">
-                    <button class="btn-action btn-danger" type="submit" name="reject">
+                
+                    <button class="btn-action btn-danger" onclick="openRejectModal(<?= $donation->id ?>)">
                         <i class="fas fa-times"></i> Reject Request
                     </button>
 
-                </form>
+               
 
 
             </div>
         </div>
     </div>
+    <!-- Reject Reason Modal -->
+    <div id="rejectModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRejectModal()">&times;</span>
+            <h3>Reject Request</h3>
+            <form method="POST">
+                <input type="hidden" name="id" id="rejectRequestId">
+                <label for="reason">Reason for Rejection:</label>
+                <textarea name="reason" id="reason" rows="4" required></textarea>
+                <button type="submit" name="reject" class="action-btn reject-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(requestId) {
+            document.getElementById('rejectRequestId').value = requestId;
+            document.getElementById('rejectModal').style.display = 'block';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').style.display = 'none';
+        }
+    </script>
 
     <?php include("../app/views/components/footer.php"); ?>
 </body>

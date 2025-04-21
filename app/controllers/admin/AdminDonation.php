@@ -15,18 +15,30 @@ class AdminDonation{
             }
 
             if (isset($_POST['id']) && isset($_POST['reject'])) {
-                $this->rejectRequest($_POST['id']);
+                $this->rejectDonationModel($_POST['id'], $_POST['reason']);
                 redirect('/admin/donation');
                 exit;
             }
         }
 
-        // Now prepare the view data
+        // Retrieve pending donations
+        $pendingDonations = $this->getPendingRequests();
+
+        // Process images: convert binary `img` data to Base64-encoded string
+        foreach ($pendingDonations as $donation) {
+            if (isset($donation->img) && !empty($donation->img)) {
+                $donation->img = "data:image/jpeg;base64," . base64_encode($donation->img); // Adjust MIME type if not JPEG
+            } else {
+                $donation->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            }
+        }
+
+        // Prepare the view data
         $data = [
             'total_donations' => $this->getTotalDonations(),
             'pending_count' => $this->getPendingRequestCount(),
             'approved_count' => $this->getApprovedCount(),
-            'pending_donations' => $this->getPendingRequests(),
+            'pending_donations' => $pendingDonations,
             'all_requests' => $this->getAllDonationRequests()
         ];
 
@@ -83,10 +95,14 @@ class AdminDonation{
         return $donationModel->query($query);
     }
 
-    private function rejectRequest($id)
+    private function rejectDonationModel($id, $reason)
     {
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 2 WHERE id = $id";
-        return $donationModel->query($query);
+        $query = "UPDATE donation_requests SET status = 2, rejection_reason = :reason WHERE id = :id";
+        $params = [
+            ':id' => $id,
+            ':reason' => $reason
+        ];
+        return $donationModel->query($query, $params);
     }
 }

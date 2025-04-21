@@ -56,7 +56,7 @@ class Events{
                     }
                 }
                 $data['eventimg'] = $images[0] ?? null;
-            }            
+            }
             $result = $eventmodel->addEvent($data);
             if ($result) {
 
@@ -76,22 +76,20 @@ class Events{
     
     public function closeEvent($req_data)
     {
-
+        $model = new EventsModel();
         $insert=explode("?",$req_data['id']);
         $id=$insert[0];
         parse_str($insert[1], $queryParams);
         $reason = $queryParams['reason'] ?? 'No reason provided';
 
-
-        $model = new EventsModel();
-        $data = ['status' => 1, 'closing_reason'=>$reason]; // Set status to closed
+        $data = ['status' => 3, 'closing_reason'=>$reason]; // Set status to closed
 
         $success=$model->update($id, $data, 'event_id');
 
         if ($success) {
-            header("Location: " . ROOT . "/userprofile/event?success=Marked as complete");
+            redirect('userprofile/event?success=Marked as complete');
         } else {
-            header("Location: " . ROOT . "/userprofile/event?error=Failed to mark as complete");
+            redirect('userprofile/event?error=Failed to mark as complete');
         }
     }
 

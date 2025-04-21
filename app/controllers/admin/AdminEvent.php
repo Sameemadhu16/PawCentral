@@ -5,8 +5,19 @@ class AdminEvent{
     use Controller;
 
     public function index(){
+
+        $pendingEvents = $this->getEvents();
+
+        foreach ($pendingEvents as $event) {
+            if (isset($event->eventimg) && !empty($event->eventimg)) {
+                $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
+            } else {
+                $event->eventimg = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            }
+        }
+
         $data = [
-            'events' => $this->getEvents(),
+            'events' => $pendingEvents,
             'allEvents' => $this->getALLEvents()
         ];
         // show($data);

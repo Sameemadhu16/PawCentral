@@ -164,14 +164,12 @@
             alert("Report generation in progress...");
             // Add logic for generating the report
 
-
             const downloadBtn = document.createElement('button');
             downloadBtn.innerText = 'Download Report';
             downloadBtn.className = 'download-button';
             downloadBtn.onclick = function() {
-
-                const element = document.getElementById('content');
-                html2pdf().from(element).save();
+                const element = document.querySelector('.content'); // Ensure the correct element is targeted
+                html2pdf().from(element).save('dashboard-report.pdf'); // Specify a filename for the PDF
                 this.remove();
             };
 
@@ -179,10 +177,13 @@
         }
 
         // Time range selector logic
-        document.getElementById('timeRange').addEventListener('change', function() {
-            alert("Data range changed to: " + this.value);
-            // Add logic to refresh data based on selected time range
-        });
+        const timeRange = document.getElementById('timeRange');
+        if (timeRange) {
+            timeRange.addEventListener('change', function() {
+                alert("Data range changed to: " + this.value);
+                // Add logic to refresh data based on selected time range
+            });
+        }
     </script>
 </body>
 

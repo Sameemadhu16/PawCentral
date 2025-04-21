@@ -20,6 +20,8 @@ class AdminOverview {
             'mediRegCount' => $this->getMedicalRegistrationCount(),
             'eventCount' => $this->getEventCount(),
             'donationCount' => $this->getDonationCount(),
+            'lastMonthDonations' => $this->getLastMonthDonations(),
+            'thisMonthDonations' => $this->getThisMonthDonations(),
             //add other data here
         ];
 
@@ -66,6 +68,20 @@ class AdminOverview {
         $donationModel = new DonationsModel;
         $donationCount = $donationModel->getCount($table = 'donations');
         return $donationCount;
+    }
+
+    private function getLastMonthDonations() {
+        $donationModel = new DonationsModel;
+        $query = "SELECT SUM(amount) as total FROM donations WHERE MONTH(donated_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)";
+        $result = $donationModel->query($query);
+        return isset($result[0]->total) ? (float)$result[0]->total : 0;
+    }
+
+    private function getThisMonthDonations() {
+        $donationModel = new DonationsModel;
+        $query = "SELECT SUM(amount) as total FROM donations WHERE MONTH(donated_at) = MONTH(CURRENT_DATE)";
+        $result = $donationModel->query($query);
+        return isset($result[0]->total) ? (float)$result[0]->total : 0;
     }
 
     // private function getPostCount(){

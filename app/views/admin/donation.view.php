@@ -33,6 +33,7 @@
             $totalDonations = $data['total_donations'];
             $pendingCount = $data['pending_count'];
             $approveCount = $data['approved_count'];
+            // show($data['pending_donations']);
             ?>
 
             <div class="donation-overview">
@@ -62,37 +63,35 @@
             <div class="pending-requests">
                 <?php foreach ($data['pending_donations'] as $request): ?>
                     <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
-                        <div class="pet-image" style="background-image: url('<?= ROOT ?>/assets/images/pets/<?= $request->image ?>');"></div>
+                        
+                        <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>
                         <div class="card-content">
-                            <h3><?= $request->title ?></h3>
+                            <h3><?= htmlspecialchars($request->title) ?></h3>
                             <div class="info">
                                 <span>Requested: <strong><?= number_format($request->amount, 2) ?> LKR</strong></span>
                                 <span>Collected: <strong><?= number_format($request->collected, 2) ?> LKR</strong></span>
                             </div>
-                            <p class="description"><?= $request->info ?></p>
+                            <p class="description"><?= htmlspecialchars($request->info) ?></p>
                             <div class="progress-container">
                                 <?php
                                 $progress = ($request->amount > 0) ? ($request->collected / $request->amount) * 100 : 0;
                                 ?>
                                 <div class="progress-bar" style="width: <?= $progress ?>%"></div>
                             </div>
-                            <div class="card-actions">
+                            <!-- <div class="card-actions">
                                 <form method="POST">
                                     <input type="hidden" name="id" value="<?= $request->id ?>">
                                     <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                 </form>
-                                <form method="POST">
-                                    <input type="hidden" name="id" value="<?= $request->id ?>">
-                                    <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
-                                </form>
-                            </div>
+                                <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $request->id ?>)">Reject</button>
+                            </div> -->
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
 
             <!-- Charts Section -->
-            <div class="charts-container">
+            <!-- <div class="charts-container">
                 <div class="chart-card">
                     <h3>Donation Trends</h3>
                     <canvas id="donationTrendChart"></canvas>
@@ -101,7 +100,7 @@
                     <h3>Request Categories</h3>
                     <canvas id="categoryChart"></canvas>
                 </div>
-            </div>
+            </div> -->
 
             <!-- All Donations List -->
             <div class="section-title" style="margin-top: 30px;">
@@ -121,7 +120,8 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Reason</th>
+                            <!-- <th>Reason</th> -->
+                            <th>Category</th>
                             <th>Amount</th>
                             <th>Collected</th>
                             <th>Status</th>
@@ -132,7 +132,8 @@
                         <?php foreach ($data['all_requests'] as $allRequests): ?>
                             <tr>
                                 <td><?= esc($allRequests->title); ?></td>
-                                <td><?= esc($allRequests->reason); ?></td>
+                                
+                                <td><?=esc($allRequests->need_category)?></td>
                                 <td><?= esc($allRequests->amount); ?></td>
                                 <td><?= esc($allRequests->collected); ?></td>
                                 <td>
@@ -158,10 +159,7 @@
                                                 <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                             </form>
                                             <!-- Reject Button -->
-                                            <form method="POST">
-                                                <input type="hidden" name="id" value="<?= $allRequests->id ?>">
-                                                <button type="submit" name="reject" class="action-btn reject-btn">Reject</button>
-                                            </form>
+                                            <button type="button" class="action-btn reject-btn"  onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
                                             <button class="action-btn view-btn" onclick="window.location.href='<?= ROOT ?>/admin/donation/view?id=<?= $allRequests->id ?>'">View</button>
                                         <?php else: ?>
                                             <!-- View Button -->
@@ -176,6 +174,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Reject Reason Modal -->
+    <div id="rejectModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRejectModal()">&times;</span>
+            <h3>Reject Request</h3>
+            <form method="POST" >
+                <input type="hidden" name="id" id="rejectRequestId">
+                <label for="reason">Reason for Rejection:</label>
+                <textarea name="reason" id="reason" rows="4" required></textarea>
+                <button type="submit" name="reject" class="action-btn reject-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(requestId) {
+            document.getElementById('rejectRequestId').value = requestId;
+            document.getElementById('rejectModal').style.display = 'block';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').style.display = 'none';
+        }
+    </script>
 
     <?php include("../app/views/components/footer.php"); ?>
 </body>
