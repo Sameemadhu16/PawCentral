@@ -106,6 +106,74 @@ class Donation{
         }
     }
 
+    //update Donation Requests: make approve = 0 for re review
+    function EditReq($id){
+        if(!($_SESSION['user_id']) OR $id == NULL){
+            redirect('uderprofile/donations');
+        }
+
+        // Initialize the model
+        $model = new DonationsModel();
+        $post_id = $id['id']; //req id
+
+        // Retrieve all pets
+        $post['post'] = $model->getDonReq($post_id);
+        // print_r($post);
+        // exit();
+         // Process images: convert binary `img1` data to Base64-encoded string
+    
+         if (isset($post['post']->img)) {
+            $post['post']->img = "data:image/jpeg;base64," . base64_encode($post['post']->img); // Adjust MIME type if not JPEG
+        }else{
+            $post['post']->img = null;
+        }
+
+        $this->view('user/updatepending_req',$post);
+    }
+
+    function UpdateReq(){
+        //get data from the form and update the donation request in the table using updateInfo function in donationModel
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $donations = new DonationsModel();
+
+            // Collect form data
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'title' => $_POST['title'],
+                'reason' => $_POST['reason'],  
+                'need_category' => $_POST['need_category'],
+                'info' => $_POST['info'],  // Explanation for the donation request
+                'expire_date' => $_POST['before_date'],
+                'amount' => $_POST['amount'],
+                'approved' => 0,
+            ];
+
+            // Handle image upload
+            if (isset($_FILES['newimg']) && $_FILES['newimg']['tmp_name']) {
+                // New image was uploaded
+                $data['img'] = file_get_contents($_FILES['newimg']['tmp_name']);
+            } elseif (isset($_POST['old_img']) && !empty($_POST['old_img'])) {
+                // No new image, but old image exists - convert from base64 data URL back to binary
+                $base64_string = str_replace('data:image/jpeg;base64,', '', $_POST['old_img']);
+                $data['img'] = base64_decode($base64_string);
+            } else {
+                // No image at all
+                $data['img'] = null;
+            }
+
+            $result = $donations->UpdateReq($_POST['id'],$data,'id');
+            if ($result) {
+                print_r('suxes');
+                header("Location: " . ROOT . "/userprofile/donations");
+                exit; 
+            } else {
+                echo "Failed to update donation request";
+                $data['error'] = 'Failed to update donation request. Please try again.';
+                header("Location: " . ROOT . "/404");
+            }
+        }
+    }
+
     function UpdateView($id){
         if(!($_SESSION['user_id']) OR $id == NULL){
             redirect('home');

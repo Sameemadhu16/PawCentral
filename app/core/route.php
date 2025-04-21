@@ -97,6 +97,8 @@ route('userprofile/donations','user/Donation@index');
 route('userprofile/donations/req','user/Donation@AddReq');
 route('userprofile/donations/closeReq','user/Donation@CloseReq');
 route('userprofile/donations/update','user/Donation@UpdateView');
+route('userprofile/donations/edit','user/Donation@EditReq');
+route('userprofile/donations/updatereq','user/Donation@UpdateReq');
 // route('userprofile/donations/updateInfo','user/Donation@SubmitUpdate');
 route('userprofile/lost_and_found','user/LostAndFound@index');
 route('userprofile/mypets','user/Mypets@index');

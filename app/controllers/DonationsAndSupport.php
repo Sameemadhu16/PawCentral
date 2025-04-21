@@ -119,12 +119,12 @@ class DonationsAndSupport {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/PawCentral/public/donationsnsupport/paymentsuccess?post_id='.$post_id.'&amount='.$amount,
+                'success_url' => 'http://localhost/PawCentral/public/donationsnsupport/paymentsuccess?post_id='.$post_id.'&amount='.$amount, //add donator name too
                 'cancel_url' => 'http://localhost/PawCentral/public/donationsnsupport',
             ]);
     
             header("Location: " . $session->url);
-            exit;
+            
         } catch (Exception $e) {
             echo 'Stripe error: ' . $e->getMessage();
         }

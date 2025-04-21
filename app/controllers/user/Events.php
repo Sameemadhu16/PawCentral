@@ -108,4 +108,6 @@ class Events{
         $this->view('user/enrolled_events', $events);
     }
 
+    
+
 }

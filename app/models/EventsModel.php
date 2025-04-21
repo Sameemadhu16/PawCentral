@@ -102,4 +102,15 @@ class EventsModel
         $this->table = $this->notificationtable;
         return $this->insert($data) ? true : false;
     }
+
+    //to download all the users enrolled in an event
+    public function getEventEnrollments($event_id) {
+        $query = "SELECT e.*, u.firstname, u.lastname, u.email, u.phone 
+                 FROM $this->enrolltable e 
+                 JOIN users u ON e.user_id = u.id 
+                 WHERE e.event_id = :event_id";
+        
+        $data = ['event_id' => $event_id];
+        return $this->query($query, $data);
+    }
 }

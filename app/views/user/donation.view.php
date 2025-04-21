@@ -71,7 +71,8 @@
 
         /* When active */
         .inv-container.active {
-            max-height: 1000px; /* Large enough to show the full content */
+            max-height: 280px; /* Large enough to show the full content */
+            overflow: auto;
         }
 
         .active-btn {
@@ -127,6 +128,9 @@
                                     )">
                                     Close Request
                                 </button>
+                                <button class="don-but " onclick="window.location.href='<?=ROOT?>/userprofile/donations/edit?id=<?=htmlspecialchars($req->id)?>'" >
+                                        Edit Request
+                                    </button>
                                 
                             </div>
                         </div>
@@ -178,6 +182,9 @@
                                             ['Donations found', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say', 'Mistaken Entry']
                                         )">
                                         Abort Request
+                                    </button>
+                                    <button class="don-but " onclick="window.location.href='<?=ROOT?>/userprofile/donations/edit?id=<?=htmlspecialchars($req->id)?>'" >
+                                        Edit Request
                                     </button>
                                 </div>
                             </div>

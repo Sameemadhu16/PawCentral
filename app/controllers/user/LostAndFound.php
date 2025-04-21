@@ -211,7 +211,9 @@ class LostAndFound
                 echo "Failed to update post.";
             }
         }
-    }public function update($postId)
+    }
+    
+    public function update($postId)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Prepare the LostAndFoundModel for update
@@ -234,15 +236,15 @@ class LostAndFound
                 'contactNo' => $_POST['contact'],
                 'description' => $_POST['description'],
                 'img1' => isset($_FILES['img1']) && $_FILES['img1']['tmp_name'] 
-        ? file_get_contents($_FILES['img1']['tmp_name']) 
-        : (isset($_POST['old_img1']) ? base64_decode($_POST['old_img1']) : null),
-    'img2' => isset($_FILES['img2']) && $_FILES['img2']['tmp_name'] 
-        ? file_get_contents($_FILES['img2']['tmp_name']) 
-        : (isset($_POST['old_img2']) ? base64_decode($_POST['old_img2']) : null),
-    'img3' => isset($_FILES['img3']) && $_FILES['img3']['tmp_name'] 
-        ? file_get_contents($_FILES['img3']['tmp_name']) 
-        : (isset($_POST['old_img3']) ? base64_decode($_POST['old_img3']) : null)
-            ];
+                    ? file_get_contents($_FILES['img1']['tmp_name']) 
+                    : (isset($_POST['old_img1']) ? base64_decode($_POST['old_img1']) : null),
+                'img2' => isset($_FILES['img2']) && $_FILES['img2']['tmp_name'] 
+                    ? file_get_contents($_FILES['img2']['tmp_name']) 
+                    : (isset($_POST['old_img2']) ? base64_decode($_POST['old_img2']) : null),
+                'img3' => isset($_FILES['img3']) && $_FILES['img3']['tmp_name'] 
+                    ? file_get_contents($_FILES['img3']['tmp_name']) 
+                    : (isset($_POST['old_img3']) ? base64_decode($_POST['old_img3']) : null)
+                        ];
     
             // Perform the update operation
             $result = $lostnfoundModel->update($postId['id'], $data,'petid');
