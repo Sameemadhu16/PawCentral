@@ -9,7 +9,10 @@ class MediCenter{
             redirect('medical-centers');
             return;
         }
-        
+
+        // Store the selected medical center ID in session
+        $_SESSION['selected_med_id']= $id;
+
         $medicalCenterModel = new MedicalProvModel;
         $userModel = new User;
         $veterinarianModel = new Veterinarians;
