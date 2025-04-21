@@ -1,8 +1,9 @@
 class Calendar {
     constructor() {
         this.currentDate = new Date();
+        // Initialize startIndex to today's date (0-based)
+        this.startIndex = this.currentDate.getDate() - 1;
         this.visibleDates = 7; // Number of dates visible at once
-        this.startIndex = 0;
         this.monthElement = document.querySelector('.current-month');
         this.datesContainer = document.getElementById('datesContainer');
         this.prevButton = document.getElementById('prevMonth');
@@ -114,7 +115,7 @@ class Calendar {
             const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
             const isAvailable = this.availableDays.includes(dayOfWeek);
             
-            // Check if this date is in the past
+            // Check if this date is in the past (before today)
             const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
             
             const dateElement = document.createElement('div');
