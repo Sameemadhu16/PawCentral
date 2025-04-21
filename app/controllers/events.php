@@ -51,5 +51,63 @@ class Events {
         $this->view('event-info',$event);
     }
 
-    
+    public function Enroll() {
+
+        if(!isset($_SESSION['user_id'])){
+            $user_id = -1; //Non registered user id
+            // redirect('announcements');
+            $email = $_POST['email'] ?? '';
+        }else{
+            $user_id = $_SESSION['user_id'];
+            $email = $_SESSION['user']->email;
+        }
+
+        // Get POST data
+        $data = [
+            'event_id' => $_POST['event_id'] ?? '',
+            // 'name' => $_POST['name'] ?? '',
+            'contact_no' => $_POST['contact'] ?? '',
+            'email' => $email,
+            'notes' => $_POST['comment'] ?? '',
+            'user_id' => $user_id
+        ];
+
+        // Validate required fields
+        if(empty($data['event_id']) || empty($data['contact_no']) ) {
+            redirect('eventsandcampaigns'); 
+            return;
+        }
+
+        // print_r($data);
+        $model = new EventsModel();
+        // $result = $model->enrollUser($data);    
+
+        try {
+            $model->enrollUser($data);
+            $event_id['id'] = $data['event_id'];
+            $event['event'] = $model->getEventById($event_id);
+            // $msg['msg'] = (object)['msg' => "You're already enrolled!"];
+
+            $model->incrementUserEnroll($data);
+
+            $this->view('eventsandcampaigns/enrollacknow',$event);
+        
+        } catch (PDOException $e) {
+            $errorMsg = $e->getMessage();
+        
+            // Check if it's a duplicate entry for the same event+email
+            if (strpos($errorMsg, 'Duplicate entry') !== false && strpos($errorMsg, 'unique_event_email') !== false) {
+                // Already enrolled — show confirmation anyway
+                $event_id['id'] = $data['event_id'];
+                $event['event'] = $model->getEventById($event_id);
+                // $msg['msg'] = (object)['msg' => "You're already enrolled!"];
+                $this->view('eventsandcampaigns/enrollment_confirmation',$event); //,$msg can only pass 1 variable to frontend
+            } else {
+                // For all other errors
+                // echo "ERROR: " . $errorMsg;
+                $this->view('404');
+            }
+        }
+    }   
+
 }

@@ -85,7 +85,7 @@
     <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/user/sidebar.php"); ?>
 
         <div class="user-accounts-section">
@@ -107,7 +107,7 @@
                                 <div class="progress-bar-container">
                                     <?php 
                                         $progress = ($req->collected / $req->amount) * 100;
-                                        $progress = min(100, max(0, $progress)); // Ensure between 0-100
+                                        $progress = min(100, max(0, $progress-5)); // Ensure between 0-100
                                     ?>
                                     <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
                                 </div>
@@ -177,7 +177,7 @@
                                             'Are you sure want to close this donation request ?<br><br><?= htmlspecialchars(addslashes($req->title)) ?>',
                                             ['Donations found', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say', 'Mistaken Entry']
                                         )">
-                                        Close Request
+                                        Abort Request
                                     </button>
                                 </div>
                             </div>
@@ -216,6 +216,7 @@
                                     <div class="overflow-hide">
                                         <p class="amount">Collected: <?= number_format($req->amount, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span> Rs.</p>
                                     </div>
+                                    <p style="font-size: 0.7rem; color: #555; margin:0px; padding:0px;">Closing Reason: <?= htmlspecialchars($req->closing_reason) ?></p>
                                     
                                 </div>
                             </div>
@@ -359,6 +360,7 @@ or any other information that the donators should made aware of to donate to you
     </script>
 
     
+<?php include("../app/views/components/footer.php"); ?>
 <script src="<?= ROOT ?>/assets/js/popupform.js"></script>
 
 </body>

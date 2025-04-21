@@ -50,26 +50,9 @@
             <div class="notification-icon" style="padding:0; margin:4px; margin-left:20px; font-size:large" onclick="window.location.href='<?=ROOT?>/userprofile/notifications'">
                 🔔 <span id="notif-count" class="badge">0</span>
             </div>
-
-            <script>
-                function loadNotifications() {
-                    fetch("<?=ROOT?>/notifications/fetch")
-                        .then(response => response.json())
-                        .then(data => {
-                            const badge = document.getElementById('notif-count');
-                            if (data.length > 0) {
-                                badge.textContent = data.length;
-                            } else {
-                                badge.textContent = '0';
-                            }
-                        });
-                }
-
-                // Poll every 5 seconds
-                setInterval(loadNotifications, 5000);
-                window.onload = loadNotifications;
-
-            </script>
+            <?php if (!isset($_GET['action']) || $_GET['action'] !== 'logout'): ?>
+                <?php require_once 'notification_script.php'; ?>
+            <?php endif; ?>
         <?php endif ; ?>
 
 

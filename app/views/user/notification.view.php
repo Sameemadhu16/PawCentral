@@ -14,7 +14,7 @@
 <body class="body">
     <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/user/sidebar.php"); ?>
         <div class="user-accounts-section">
         <div class="header-section">
@@ -36,7 +36,7 @@
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>No notifications yet.</p>
+                    <p>You have no notifications yet.</p>
                 <?php endif; ?>
             </div>
         </div>

@@ -95,4 +95,17 @@ class Events{
         }
     }
 
+    public function showEnrolledEvents(){
+        $model = new EventsModel();
+        $events['enrolled_events'] = $model->getEnrolledEvents($_SESSION['user_id']);
+        foreach ($events['enrolled_events'] as $event) {
+            if (isset($event->eventimg)) {
+                $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
+            }else{
+                $event->eventimg = null;
+            }
+        }
+        $this->view('user/enrolled_events', $events);
+    }
+
 }
