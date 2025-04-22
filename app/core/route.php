@@ -104,6 +104,7 @@ route('userprofile/donations/updatereq','user/Donation@UpdateReq');
 route('userprofile/lost_and_found','user/LostAndFound@index');
 route('userprofile/mypets','user/Mypets@index');
 route('userprofile/mypets/Pet','user/Mypets@ShowPetProfile');
+route('userprofile/mypets/Pet_medrecords','user/Mypets@ShowPetRecords');
 route('userprofile/mypets/register_pet','user/Mypets@RegPet');
 route('userprofile/event','user/Events@index');
 route('userprofile/event/addevent','user/Events@NewEvent');

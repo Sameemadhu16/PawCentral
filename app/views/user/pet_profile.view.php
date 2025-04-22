@@ -20,7 +20,7 @@
         
         <div class="user-accounts-section">
             <div class="profile-section">
-                <h1>Pet Profile</h1>
+                <h1><?= strtoupper(htmlspecialchars($pet->name)) ?></h1>
                 <div class="profile-container">
                     <!-- Pet Image Section -->
                     <div class="profile-pic-container">
@@ -99,7 +99,7 @@
                         <button id="update-profile-btn" class="update-button" onclick="openPopup()">Update Pet Profile</button>
                     </div> -->
                     <div class="button-section">
-                        <button id="update-profile-btn" class="update-button" onclick="openPopup()">Show Medical Records</button>
+                        <button id="update-profile-btn" class="update-button" onclick="window.location.href='<?=ROOT?>/userprofile/mypets/Pet_medrecords?id=<?=esc($pet->pet_id)?>'">See Medical Records</button>
                     </div>
                 </div>
             </div>
