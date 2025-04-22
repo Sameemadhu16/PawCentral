@@ -123,7 +123,10 @@
             <div class="form-container">
                 <span class="close-btn" onclick="closePopup()">&times;</span>
                 <h2>Enter Adoption Request Information </h2>
-                <form id="petForm" action="<?= ROOT ?>/findapet/adoptionpost/adoptionrequest?id=<?=$post->pet_id?>" method="POST" enctype="multipart/form-data">
+                <form id="petForm" action="<?= ROOT ?>/findapet/adoptionpost/adoptionrequest?id=<?= $post->pet_id ?>" method="POST" enctype="multipart/form-data">
+
+                    <label for="name">Adoptor Name:</label>
+                    <input type="text" id="name" name="name" required>
 
                     <label for="contact_no">Contact Number:</label>
                     <input type="text" id="contact_no" name="contact_no" required>

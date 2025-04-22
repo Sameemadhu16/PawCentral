@@ -43,6 +43,7 @@ class AdoptionPost
         $id = $_GET['id'];
 
         $data =[
+            'adoptor_name' => $_POST['name'],
             'adoptor_id' => $_SESSION['user_id'],
             'contact_no' => $_POST['contact_no'],
             'residence' => $_POST['residence'],

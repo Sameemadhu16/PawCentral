@@ -41,7 +41,7 @@
 
                     <div class="post-list">
                         <?php foreach ($posts as $post) : 
-                            show($post->pet_id)
+                            // show($post->pet_id)
                             ?>
                             <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?=$post->pet_id?>'">
                                 <div class=" post-card-content">
@@ -50,7 +50,7 @@
                                 <div class="post-images">
                                     <div class="carousel">
                                         <div class="carousel-inner">
-                                            <?php foreach ([$post->postimg1, $post->postimg2, $post->postimg3] as $index => $image): ?>
+                                            <?php foreach ([$post->postimg1] as $index => $image): ?>
                                                 <?php if ($image): ?>
                                                     <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                                                         <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
@@ -58,8 +58,7 @@
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
-                                        <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-                                        <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+                                        
                                     </div>
                                 </div>
 
@@ -120,7 +119,7 @@
                 <select id="sex" name="sex" required>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <!-- <option value="other">Other</option> -->
                 </select>
 
                 <label for="age">Age:</label>
