@@ -222,28 +222,53 @@ class Calendar {
 document.addEventListener('DOMContentLoaded', () => {
     new Calendar();
     
-    // Add event listener to the next button to validate selection
-    const nextButton = document.querySelector('.next-form');
-    if (nextButton) {
+    // Add event listener to the next button to validate selection and submit the form
+    const nextButton = document.getElementById('next-button');
+    const appointmentForm = document.getElementById('appointment-date-form');
+    const appointmentDateInput = document.getElementById('appointment_date');
+    const appointmentTimeInput = document.getElementById('appointment_time');
+    
+    if (nextButton && appointmentForm) {
         nextButton.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent the default behavior
+            
             const selectedDate = document.querySelector('.one-date.selected');
             const selectedTimeSlots = document.querySelectorAll('.one-time.selected');
             
             if (!selectedDate) {
-                e.preventDefault();
                 alert('Please select a date for your appointment');
                 return;
             }
             
             if (selectedTimeSlots.length === 0) {
-                e.preventDefault();
                 alert('Please select a time slot');
                 return;
             }
             
-            // Use the getSelectedTimeSlots function to get selected time slots
-            const selectedTimes = getSelectedTimeSlots();
-            sessionStorage.setItem('selectedAppointmentTimes', JSON.stringify(selectedTimes));
+            // Get the selected date value (day number)
+            const selectedDay = selectedDate.querySelector('.date').textContent.trim();
+            
+            // Get the current month and year from the calendar
+            const monthYearText = document.querySelector('.current-month').textContent;
+            const [month, year] = monthYearText.split(' ');
+            
+            // Convert month name to month number (0-based)
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                           'July', 'August', 'September', 'October', 'November', 'December'];
+            const monthIndex = months.indexOf(month);
+            
+            // Create a date string in YYYY-MM-DD format
+            const formattedDate = `${year}-${String(monthIndex + 1).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}`;
+            
+            // Get the selected time
+            const selectedTime = getSelectedTimeSlots()[0];
+            
+            // Set values to hidden input fields
+            appointmentDateInput.value = formattedDate;
+            appointmentTimeInput.value = selectedTime;
+            
+            // Submit the form
+            appointmentForm.submit();
         });
     }
 });

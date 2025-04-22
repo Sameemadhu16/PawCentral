@@ -50,6 +50,10 @@ class VeterinarianAvailability {
                 }
             }
             
+            // Adjust END time for 24-hour format
+            if($startTime>$endTime){
+                $endTime += 12;
+            }
             // Add time range
             $result['times'] = ['start' => $startTime, 'end' => $endTime];
         }
@@ -57,15 +61,14 @@ class VeterinarianAvailability {
         return $result;
     }
     
-    /**
-     * Check if a specific day of the week is available based on the parsed availability
-     * 
-     * @param array $parsedAvailability The parsed availability data
-     * @param int $dayOfWeek The day of week (0 = Sunday, 1 = Monday, etc.)
-     * @return bool True if the day is available, false otherwise
-     */
+
     public function isDayAvailable($parsedAvailability, $dayOfWeek) {
         return in_array($dayOfWeek, $parsedAvailability['days']);
+    }
+
+    public function isTimeAvailable($parsedAvailability, $time) {
+        echo json_encode($parsedAvailability['times']);
+        return ($time >= $parsedAvailability['times']['start'] && $time <= $parsedAvailability['times']['end']);
     }
     
     /**
@@ -103,14 +106,17 @@ class VeterinarianAvailability {
      * @param int $dayOfWeek The day of week (0-6)
      * @return array Array of available veterinarians
      */
-    public function getAvailableVeterinariansForDay($medId, $dayOfWeek) {
+    public function getAvailableVeterinariansForDay($medId, $dayOfWeek, $time) {
         $veterinarianModel = new Veterinarians();
-        $vets = $veterinarianModel->where('med_id', $medId);
-        
+        $vets = $veterinarianModel->where(['med_id' => $medId]);
+
         $availableVets = [];
         foreach($vets as $vet) {
             $parsedAvailability = $this->parseAvailability($vet->availability);
-            if($this->isDayAvailable($parsedAvailability, $dayOfWeek)) {
+            $isAvailable = $this->isDayAvailable($parsedAvailability, $dayOfWeek) && $this->isTimeAvailable($parsedAvailability, $time);
+            echo json_encode($this->isTimeAvailable($parsedAvailability, $time));
+            if($isAvailable) {
+                // Add the veterinarian to the available list
                 $availableVets[] = $vet;
             }
         }

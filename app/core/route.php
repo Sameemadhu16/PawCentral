@@ -140,10 +140,13 @@ route('shelter/post','shelter/Post@index');
 //medical routing
     route('medical-centers','Medical/FindMedi@index');
     route('medical-centers/medical-center','Medical/MediCenter@index');
-    //appointments
-    route('appointment/date','Medical/Appointment/Appointment_Date@index');
-    route('appointment/selectpet','Medical/Appointment/Appointment_Pet@index');
-    route('appointment/reason','Medical/Appointment/Appointment_Reason@index');
+
+//appointments
+    route('medical-appointment-date','Medical/appointment/Appointment_Date@index');
+    route('medical-appointment-vet','Medical/Appointment/Appointment_Vet@index');
+    route('medical-appointment-pet','Medical/Appointment/Appointment_Pet@index');
+    route('medical-appointment-reason','Medical/Appointment/Appointment_Reason@index');
+    route('medical-appointment-confirmation','Medical/Appointment/Appointment_Confirmation@index');
 
 //medical dashboard
     route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');

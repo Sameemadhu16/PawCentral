@@ -5,6 +5,19 @@ class Appointment_Date{
     private $valid_roles = ['user'];   // Only regular users can access this page
     
     public function index() {
+        
+        //save the appointment date and time in session
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->save_appointment_datetime();
+            // Ensure date and time are set in session before proceeding
+            // if (!isset($_SESSION['appointment_date']) || !isset($_SESSION['appointment_time'])) {
+            //     $_SESSION['error'] = "Please select appointment date and time first.";
+            //     redirect('medical-appointment-date');
+            //     return;
+            // }
+        }
+
+
         $veterinarianModel = new Veterinarians();
         $availabilityModel = new VeterinarianAvailability();
         
@@ -54,4 +67,25 @@ class Appointment_Date{
             redirect('403');
         }
     }
+    
+    public function save_appointment_datetime() {
+
+        $appointment_date = $_POST['appointment_date'] ?? '';
+        $appointment_time = $_POST['appointment_time'] ?? '';
+
+        if(empty($appointment_date) || empty($appointment_time)) {
+            $_SESSION['error'] = "Please select both date and time for your appointment.";
+            redirect('medical-appointment-date');
+            exit();
+        }
+
+        // Store appointment details in session
+        $_SESSION['appointment_date'] = $appointment_date;
+        $_SESSION['appointment_time'] = $appointment_time;
+
+        error_log("Appointment Date: " . $_SESSION['appointment_date']);
+        error_log("Appointment Time: " . $_SESSION['appointment_time']);
+        redirect('medical-appointment-vet');
+    }
+
 }

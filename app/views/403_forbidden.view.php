@@ -51,13 +51,8 @@
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⠀⢠⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣧⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⠿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</pre>
     </div>
-    <?php
-        $previous = isset($_SESSION['http_referer']) ? $_SESSION['http_referer'] : $_SERVER['HTTP_REFERER'] ?? '';
-        if(empty($previous)) {
-            $previous = '/'; // Default to home page if no referrer is set
-        }
-    ?>
-    <a href="<?= $previous ?>" class="previous-btn">Go Back</a>
+    
+    <a href="<?=ROOT?>/" class="previous-btn">Go to Homepage</a>
   </div>
 </body>
 </html>
