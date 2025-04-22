@@ -189,6 +189,7 @@
     box-shadow: var(--card-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    cursor: pointer;
     /* Ensure the status can be positioned relative to the card */
 }
 

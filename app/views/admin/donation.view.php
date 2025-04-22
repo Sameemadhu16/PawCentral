@@ -61,7 +61,7 @@
             </div>
 
             <div class="pending-requests">
-                <?php foreach ($data['pending_donations'] as $request): show($request->id); ?>
+                <?php foreach ($data['pending_donations'] as $request):  ?>
                     <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
                         
                         <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>

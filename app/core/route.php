@@ -139,6 +139,8 @@ route('shelter/adoption_requests','shelter/AdoptionRequests@index');
 route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
 route('shelter/post','shelter/Post@index');
 route('shelter/post/addpost', 'shelter/Post@NewPost');
+route('shelter/postinfo','shelter/Postinfo@index');
+route('shelter/postinfo/edit','shelter/Postinfo@update');
 
 
 

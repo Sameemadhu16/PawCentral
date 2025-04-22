@@ -28,6 +28,26 @@ class AdoptionPostModel{
         return $this->insert($data) ? true : false;
     }
 
+    public function getPostDetailsById($conditions = [])
+    {
+        // $this->table = $this->donation_req;
+
+        $query = "SELECT * FROM `" . $this->table . "`";
+        $params = [];
+
+        if (!empty($conditions)) {
+            $query .= " WHERE ";
+            $clauses = [];
+            foreach ($conditions as $column => $value) {
+                $clauses[] = "`$column` = :$column";
+                $params[":$column"] = $value;
+            }
+            $query .= implode(" AND ", $clauses);
+        }
+
+        return $this->query($query, $params);
+    }
+
 
 }
 
