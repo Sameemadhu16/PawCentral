@@ -11,7 +11,6 @@
     <?php include("../app/views/components/header.php"); ?>
 
     <h1 class="heading">Services</h1>
-
   <div class="containers">
       <!-- Search Container -->
       <div class="search-container">
@@ -42,104 +41,33 @@
 
     <!-- Results Container (Cards) -->
     <div class="results-container">
-        
-        <div class="card">           
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Puppy">
-            <p class="name">Salon</p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★★☆</span>
-                <p>Kalutara</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
+    <?php if (!empty($shopList)): ?>
+        <?php foreach ($shopList as $shop): ?>
+            <div class="card">
+                <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Service Image">
+                <p class="name"><?= htmlspecialchars($shop->name) ?></p>
+                <?php
+                echo "<pre>";
+print_r($shop->user_id);
+echo "</pre>";
+?>
+                <p><?= htmlspecialchars($shop->service_type ?? 'Service') ?></p>
+                <div class="centre-info">
+                    <span class="rating">★★★☆☆</span> <!-- Static rating placeholder -->
+                    <p><?= htmlspecialchars($shop->Areas) ?></p>
+                    <p class="hours">
+                        <?= ($shop->open_hour != "00:00:00" && $shop->closing_hour != "00:00:00") 
+                            ? date("gA", strtotime($shop->open_hour)) . " - " . date("gA", strtotime($shop->closing_hour)) 
+                            : "Mon-Fri: 8am - 6pm" ?>
+                    </p>
+                </div>
+                <button class="btn-appointment" onclick="location.href='<?= ROOT ?>/services/shop?id=<?=$shop->user_id?>'">See More</button>
             </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">    
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_2.png" alt="Dog">
-            <p class="name">Toy shop</p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_2.jpg" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_3.jpg" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-           <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_1.png" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_5.png" alt="Puppy">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservices'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_2.png" alt="Dog">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_3.png" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <p>pet sitter service</p>
-            <div class="centre-info">
-                <span class="rating">★★★☆☆</span>
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <button class="btn-appointment" onclick="location.href='<?=ROOT?> /services/careservice'">See More</button>
-        </div>
-
-    </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p style="text-align:center;">No services found.</p>
+    <?php endif; ?>
+</div>
 
   </div>
     <!-- Pagination -->

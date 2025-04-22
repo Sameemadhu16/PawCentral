@@ -17,8 +17,8 @@
             </div>
             <div class="info_section">
                 <div class="service_name">
-                    <h1>Shop</h1>
-                    <p>456 Avenue, Kalutara, Sri Lanka</p>
+                <h1><?=($shopsDetails->name)?></h1>
+                <p><?=($shopsDetails->Areas)?></p>
                 </div>
                 <div class="about">
                     <h2>About Us</h2>
@@ -57,7 +57,7 @@
                 <a href="<?=ROOT?>/shop/edit?id=<?=htmlspecialchars($product->product_id)?>" class="btn edit-btn">Edit</a>
                 <a href="<?=ROOT?>/shop/delete?id=<?=htmlspecialchars($product->product_id)?>"  onclick="return confirm('Are you sure you want to delete this item?')"  class="btn edit-btn">Delete</a>
                
-        ?>
+        
                 </div>
               
             </div>

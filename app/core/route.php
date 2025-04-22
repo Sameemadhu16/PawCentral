@@ -116,7 +116,12 @@ route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
 // medical centres
 route('services','Services');
-route('services/careservice','Careservice');
+route('services/shop','Services@ViewShop');
+route('services/inquire','Services@Inquiry');
+route('services/inquire/submit','Services@submit');
+route('provider/inquiries','provider/Shop@ShowInquiries');
+route('provider/send_reply','provider/Shop@Reply');
+route('provider/ignore','provider/Shop@Ignore');
 // Pet shelters
 route('shelters','PetShelters');
 // Donation requests

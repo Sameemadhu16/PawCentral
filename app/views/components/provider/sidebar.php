@@ -37,6 +37,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 <span>Profile</span>
             </a>
         </li>
+
+        <li>
+            <a href="<?= ROOT ?>/provider/inquiries" class="nav-link"> <!-- ✅ Added this -->
+                <i class="fas fa-envelope icon"></i>
+                <span>Inquiries</span>
+            </a>
+        </li>
         <!-- <li>
             <a href="../shelter/adoption_requests" class="nav-link">
                 <i class="fas fa-list icon"></i>
@@ -49,6 +56,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 Notifications
             </a>
         </li>
+        
 
         <!-- <li>
             <a href="../shelter/requests_to_adopt" class="nav-link">
