@@ -206,11 +206,21 @@
             // Run on page load to set initial state
             toggleReward();
           </script>
-
           <!-- Found location -->
-          <label for="address">Lost or Found area:</label>
-          <input type="text" id="location" name="location" placeholder="City or Town" required />
-          
+          <label for="location">Location:</label>
+          <select name="location" id="location" required>
+              <option value="" disabled selected>Select City or Town</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Galle">Galle</option>
+              <option value="Matara">Matara</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Negombo">Negombo</option>
+              <option value="Anuradhapura">Anuradhapura</option>
+              <option value="Trincomalee">Trincomalee</option>
+              <option value="Kurunegala">Kurunegala</option>
+              <option value="Ratnapura">Ratnapura</option>
+          </select>
           <!-- retrieve address -->
           <label for="address">Address:</label>
           <input type="text" id="address" name="address" placeholder="Address where the pet is kept at"/>

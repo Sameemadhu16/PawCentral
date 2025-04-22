@@ -206,7 +206,19 @@
                     <input type="date" id="date" name="date" required>
 
                     <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="City/Town" required>
+                    <select name="location" id="location" required>
+                        <option value="" disabled selected>Select Event Location</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Negombo">Negombo</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                    </select>
 
                     <label for="time">Event Time:</label>
                     <input type="time" id="time" name="time">

@@ -92,6 +92,7 @@ route('lostandfound/report-animal','ReportFound');
 // userprofile
 route('userprofile','user/Profile@index');
 route('userprofile/profile','user/Profile@index');
+route('userprofile/update','user/Profile@update');
 route('userprofile/notifications','user/NotificationsController@index');
 route('userprofile/donations','user/Donation@index');
 route('userprofile/donations/req','user/Donation@AddReq');

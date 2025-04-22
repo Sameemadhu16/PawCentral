@@ -227,9 +227,20 @@
           </script>
 
           <!-- Found location -->
-          <label for="address">Lost or Found area:</label>
-          <input type="text" id="location" name="location" placeholder="City or Town" value="<?= htmlspecialchars($post->location) ?>"required />
-          
+          <label for="location">Location:</label>
+          <select name="location" id="location" required>
+              <option value="" disabled <?= empty($post->location) ? 'selected' : '' ?>>Select your location</option>
+              <option value="Colombo" <?= $post->location === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
+              <option value="Kandy" <?= $post->location === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
+              <option value="Galle" <?= $post->location === 'Galle' ? 'selected' : '' ?>>Galle</option>
+              <option value="Matara" <?= $post->location === 'Matara' ? 'selected' : '' ?>>Matara</option>
+              <option value="Jaffna" <?= $post->location === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
+              <option value="Negombo" <?= $post->location === 'Negombo' ? 'selected' : '' ?>>Negombo</option>
+              <option value="Anuradhapura" <?= $post->location === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
+              <option value="Trincomalee" <?= $post->location === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
+              <option value="Kurunegala" <?= $post->location === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
+              <option value="Ratnapura" <?= $post->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
+          </select>
           <!-- retrieve address -->
           <label for="address">Address:</label>
           <input type="text" id="address" name="address" placeholder="Address where the pet is kept at" value="<?= htmlspecialchars($post->address) ?>"/>
