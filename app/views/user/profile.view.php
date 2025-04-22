@@ -85,7 +85,19 @@
                 <input type="text" id="mobile_no" name="mobile_no" value="<?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : '' ?>">
 
                 <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="<?= !empty($profile->location) ? htmlspecialchars($profile->location) : '' ?>">
+                <select name="location" id="location" required>
+                    <option value="" disabled <?= empty($profile->location) ? 'selected' : '' ?>>Select your location</option>
+                    <option value="Colombo" <?= $profile->location === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
+                    <option value="Kandy" <?= $profile->location === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
+                    <option value="Galle" <?= $profile->location === 'Galle' ? 'selected' : '' ?>>Galle</option>
+                    <option value="Matara" <?= $profile->location === 'Matara' ? 'selected' : '' ?>>Matara</option>
+                    <option value="Jaffna" <?= $profile->location === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
+                    <option value="Negombo" <?= $profile->location === 'Negombo' ? 'selected' : '' ?>>Negombo</option>
+                    <option value="Anuradhapura" <?= $profile->location === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
+                    <option value="Trincomalee" <?= $profile->location === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
+                    <option value="Kurunegala" <?= $profile->location === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
+                    <option value="Ratnapura" <?= $profile->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
+                </select>
 
                 <label for="address">Address:</label>
                 <textarea id="address" name="address" rows="3"><?= !empty($profile->address) ? htmlspecialchars($profile->address) : '' ?></textarea>
