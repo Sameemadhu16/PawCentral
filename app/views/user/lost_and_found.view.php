@@ -108,7 +108,7 @@
                                         'Are you sure want to close this post?<br><br><?= htmlspecialchars(addslashes($pet->petName != NULL ? $pet->petName : $pet->breed)) ?> - <?= htmlspecialchars(addslashes($pet->type)) ?>',
                                         ['Found the Owner', 'Give up', 'Found my Pet', 'Decided to Adopt', 'Passed away', 'Prefer not to say','Mistaken Entry']
                                     )">
-                                    Close Request
+                                    Close Post
                                 </button>
                     <!-- <button class="action-button">Mark complete</button> -->
                 </div>

@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/report-found.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/components/form.css">
     <style>
   /* Container for image previews */
   #imagePreviewContainer {
@@ -121,20 +122,22 @@
             <option value="Spotted">Patched</option>
           </select>
 
-          <label for="sex">Sex:</label>
-          <select name="sex" id="sex">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
+          <label>Sex:</label>
+          <div class="radio-group">
+            <input type="radio" id="male" name="sex" value="Male" checked>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="Female">
+            <label for="female">Female</label>
+          </div>
 
-          <label for="age">Age:</label>
-          <input type="text" id="age" name="age" placeholder="Enter approximate age in months (e.g., 12)">
+          <label for="age">Age <small>(in months)</small>:</label>
+          <input type="number" id="age" name="age" placeholder="Enter approximate age in months (e.g., 12)"  min="0" max="240" step="1">
 
           
-          <label for="height">Height:</label>
-          <input type="text" id="height" name="height" placeholder="Enter approximate height in feet (e.g., 1.5)">
+          <label for="height">Height <small>(in feet)</small>:</label>
+          <input type="number" id="height" name="height" placeholder="Enter approximate height in feet (e.g., 1.5)" min="0" max="6" step="0.1">
           
-          <!-- Photo Upload -->
+          <!-- Photo Upload --> 
           <label for="photo">Upload Pet's Photos (max 3):</label>
           <input 
               type="file" 
@@ -184,10 +187,25 @@
 
           <!-- LOST/FOUND status -->
           <label for="status">Lost/Found Status:</label>
-          <select id="status" name="status" required>
+          <select id="status" name="status" required onchange="toggleReward()">
             <option value="Lost">Lost</option>
             <option value="Found">Found</option>
           </select>
+
+          <div id="rewardField" style="display: none;">
+            <label for="reward">Reward Amount (RM):</label>
+            <input type="number" id="reward" name="reward" min="0" step="0.01" placeholder="Enter reward amount if you are willling to offer">
+          </div>
+
+          <script>
+            function toggleReward() {
+              const status = document.getElementById('status').value;
+              const rewardField = document.getElementById('rewardField');
+              rewardField.style.display = status === 'Lost' ? 'block' : 'none';
+            }
+            // Run on page load to set initial state
+            toggleReward();
+          </script>
 
           <!-- Found location -->
           <label for="address">Lost or Found area:</label>
@@ -246,7 +264,7 @@ How it was found,
 or any other information that the interested party should be aware of." required></textarea>
           
           <!-- Submit Button -->
-          <button type="submit" class="submit-report">Submit Report</button>
+          <button type="submit" class="submit-report">Report</button>
         </form>
       </div></div>
       

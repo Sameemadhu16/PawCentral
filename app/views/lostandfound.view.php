@@ -36,6 +36,9 @@
                                 <h2><?= htmlspecialchars($post->petName) ?> - <?= htmlspecialchars($post->breed) ?></h2>
                                 <p><?= htmlspecialchars($post->status) ?></p>
                                 <p><?= htmlspecialchars($post->address) ?></p>
+                                <?php if ($post->reward != 0 or $post->reward != null): ?>
+                                    <span class="glimmer-button">Reward</span>
+                                <?php endif; ?>
                                 <p>Reported on: <?= htmlspecialchars(date('d M Y', strtotime($post->publishedOn))) ?></p>
                             </div>
                         </a>

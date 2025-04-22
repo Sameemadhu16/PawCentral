@@ -118,6 +118,12 @@
                 <input type="checkbox" id="agreeTerms" required><small>
                 I agree to the terms and conditions for receiving and requesting for donations.</small>
             </label>
+            <label for="ack">
+            <input type="checkbox" id="agreeTerms" required>
+              <small>
+              Let admins re-review the donation request.
+              </small>
+            </label>
 
             <button type="submit">Update</button>
             </form>

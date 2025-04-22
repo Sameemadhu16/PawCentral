@@ -110,6 +110,9 @@
 .corner-label.rent {
     background-color: blue; /* Label background color */
 }
+.corner-label.reward {
+    background-color: orange; /* Label background color */
+}
 
 /* Pagination */
 .pagination {
