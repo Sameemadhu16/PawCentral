@@ -59,7 +59,7 @@
     margin-top: 10px;
 }
 
-.form-container input,.form-container select {
+.form-container input,.form-container select, .form-container textarea {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;

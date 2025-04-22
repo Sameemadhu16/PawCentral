@@ -71,8 +71,8 @@
 
         /* When active */
         .inv-container.active {
-            max-height: 1000px;
-            /* Large enough to show the full content */
+            max-height: 280px; /* Large enough to show the full content */
+            overflow: auto;
         }
 
         .active-btn {
@@ -98,7 +98,65 @@
 
                 <div class="cards-container">
                     <?php foreach ($requests as $req) : ?>
-                        <?php if ($req->status == 0 & $req->approved == 1) : ?>
+                        <?php if ($req->status ==0 & $req->approved==1) : ?>
+                            <div class="donation-card">
+                            <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
+                            <div class="card-content">
+                                <h2 class="title"><?= htmlspecialchars($req->title) ?></h2>
+                                <p class="description"><?= htmlspecialchars($req->reason) ?></p>
+                                <div class="progress-bar-container">
+                                    <?php 
+                                        $progress = ($req->collected / $req->amount) * 100;
+                                        $progress = min(100, max(0, $progress-5)); // Ensure between 0-100
+                                    ?>
+                                    <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
+                                </div>
+                                <div class="overflow-hide">
+                                <p class="amount">Raised: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
+                                
+                                </div>
+                                <!-- <form action="<?= ROOT ?>/userprofile/donations/update?id=<?= htmlspecialchars($req->id) ?>" method="POST" style="display: inline;">
+                                    <button class="don-but">Edit Info</button>
+                                </form> -->
+                                <button class="don-but close-but" 
+                                    onclick="showPopup(
+                                        <?= htmlspecialchars($req->id) ?>,
+                                        '<?= ROOT ?>/userprofile/donations/closeReq?id=<?= htmlspecialchars($req->id) ?>',
+                                        'Are you sure want to close this donation request ?<br><br><?= htmlspecialchars(addslashes($req->title)) ?>',
+                                        ['Donations found', 'Goal reached', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say','Mistaken Entry']
+                                    )">
+                                    Close Request
+                                </button>
+                                <button class="don-but " onclick="window.location.href='<?=ROOT?>/userprofile/donations/edit?id=<?=htmlspecialchars($req->id)?>'" >
+                                        Edit Request
+                                    </button>
+                                
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <p style="text-align: center; font-size: 1.2rem; color: #555;">You have made no donations requests yet.<br>
+                        <button class="add-event fixedsize"  onclick="openPopup()">Ask for Suppport</button></p><br>
+                    </div>
+                <?php endif; ?>
+
+<br><br>
+
+                <?php if (!empty($requests)) : ?>
+                        <button id="PendingDivButton" class="quick-action-button fixedsize" onclick="openPendingDiv()">Pending Approval</button>
+                        
+                        <button id="CompletedDivButton" class="quick-action-button fixedsize" onclick="openCompletedDiv()">Completed</button>
+                    
+                        <div id="PendingDiv" class="cards-container inv-container">
+                        <?php 
+                            $hasPending = false;
+                            foreach ($requests as $req) :
+                                if ($req->status == 0 && $req->approved == 0) :
+                                    $hasPending = true;
+                        ?>
                             <div class="donation-card">
                                 <div class="card-image" style="background-image: url('<?= !empty($req->img) ? $req->img : ROOT . "/assets/images/default-placeholder.png"; ?>');"></div>
                                 <div class="card-content">
@@ -179,6 +237,9 @@
                                             ['Donations found', 'No longer needed', 'Change of mind', 'Give up', 'Prefer not to say', 'Mistaken Entry']
                                         )">
                                         Abort Request
+                                    </button>
+                                    <button class="don-but " onclick="window.location.href='<?=ROOT?>/userprofile/donations/edit?id=<?=htmlspecialchars($req->id)?>'" >
+                                        Edit Request
                                     </button>
                                 </div>
                             </div>

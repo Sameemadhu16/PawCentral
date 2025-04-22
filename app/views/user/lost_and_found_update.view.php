@@ -205,7 +205,26 @@
 
             <!-- Personnal's info -->
           <hr class="sectiondiv">
+          <label for="status">Lost/Found Status:</label>
+          <select id="status" name="status" required onchange="toggleReward()">
+            <option value="Lost" <?= $post->status == "Lost" ? 'selected' : '' ?>>Lost</option>
+            <option value="Found" <?= $post->status == "Found" ? 'selected' : '' ?>>Found</option>
+          </select>
 
+          <div id="rewardField" style="display: none;">
+            <label for="reward">Reward Amount (LKR):</label>
+            <input type="number" id="reward" name="reward" min="0" step="0.01" placeholder="Enter reward amount if you are willling to offer" value="<?= htmlspecialchars($post->reward) ?>">
+          </div>
+
+          <script>
+            function toggleReward() {
+              const status = document.getElementById('status').value;
+              const rewardField = document.getElementById('rewardField');
+              rewardField.style.display = status === 'Lost' ? 'block' : 'none';
+            }
+            // Run on page load to set initial state
+            toggleReward();
+          </script>
 
           <!-- Found location -->
           <label for="address">Lost or Found area:</label>

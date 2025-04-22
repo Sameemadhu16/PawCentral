@@ -5,7 +5,7 @@ route('donationsnsupport/paymentsuccess', 'DonationsAndSupport@paySuccess');
 route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications');
 route('notifications/mark-read', 'user/NotificationsController@markAllRead');
 route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
-
+route('events/download_enrollments', 'user/Events@downloadEnrollments');
 // Middleware-like function for admin-only routes
 // function adminRoute($path, $controllerAction) {
 //     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
@@ -97,6 +97,8 @@ route('userprofile/donations','user/Donation@index');
 route('userprofile/donations/req','user/Donation@AddReq');
 route('userprofile/donations/closeReq','user/Donation@CloseReq');
 route('userprofile/donations/update','user/Donation@UpdateView');
+route('userprofile/donations/edit','user/Donation@EditReq');
+route('userprofile/donations/updatereq','user/Donation@UpdateReq');
 // route('userprofile/donations/updateInfo','user/Donation@SubmitUpdate');
 route('userprofile/lost_and_found','user/LostAndFound@index');
 route('userprofile/mypets','user/Mypets@index');

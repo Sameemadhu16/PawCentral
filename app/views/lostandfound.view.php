@@ -22,9 +22,9 @@
                 <button class="filter-btn" data-filter="lost">Lost</button>
                 <button class="filter-btn" data-filter="found">Found</button>
             </div>
-            <div class="report-lost-buttons">
+            <!-- <div class="report-lost-buttons">
                 <button id="reportFound">Report a Pet</button>
-            </div>
+            </div> -->
             </div>
 
             <div id="petList" class="pet-list">
@@ -36,6 +36,9 @@
                                 <h2><?= htmlspecialchars($post->petName) ?> - <?= htmlspecialchars($post->breed) ?></h2>
                                 <p><?= htmlspecialchars($post->status) ?></p>
                                 <p><?= htmlspecialchars($post->address) ?></p>
+                                <?php if ($post->reward != 0 or $post->reward != null): ?>
+                                    <span class="glimmer-button">Reward</span>
+                                <?php endif; ?>
                                 <p>Reported on: <?= htmlspecialchars(date('d M Y', strtotime($post->publishedOn))) ?></p>
                             </div>
                         </a>

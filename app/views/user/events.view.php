@@ -46,10 +46,16 @@
                                     <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
                                     <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                 </div>
+
                                 <div class="event-actions">
-                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
-                                
-                            </div>
+                                    <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                    
+                                    <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
+                                        <button type="submit" class="don-button fixedsize">User List</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -67,6 +73,89 @@
                     </div>
                     
                 <?php endif;?>
+
+
+                <br><br>
+
+                <?php if (!empty($events)):?>  
+                    <button id="PendingDivButton" class="quick-action-button fixedsize" onclick="openPendingDiv()">Pending Approval</button>
+                        
+                    <button id="CompletedDivButton" class="quick-action-button fixedsize" onclick="openCompletedDiv()">Completed</button>
+                      
+                    <div id="PendingDiv" class="event-list inv-container">
+                    <?php 
+                            $hasPending = false;
+                            foreach ($events as $event) :
+                                if ($event->status == 0 && $event->approved == 0) :
+                                    $hasPending = true;
+                    ?>
+                            <div class="event-card">
+                            <div class="event-card-content">
+                                <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                <div class="event-details">
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                    <p><?= htmlspecialchars($event->date) ?></p>
+                                    <p><?= htmlspecialchars($event->location) ?></p>
+                                    <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                </div>
+                                <div class="event-actions">
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to abort this event request?<br><br><?= htmlspecialchars($event->title) ?>', reasons=['Mistaken Entry','Cancelled','No longer Valid','Filled up from other Sources'])">Abort event</button>
+                            </div>
+                            </div>
+                        </div>
+                        <?php endif;?>
+                    <?php endforeach; 
+                        if (!$hasPending) :
+                    ?>
+                    <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no pending events at the moment.
+                    </div>
+                    <?php endif; ?>
+                    </div>
+<br>
+                    <div id="CompletedDiv" class="event-list inv-container">
+                    <?php 
+                            $hasCompleted = false;
+                            foreach ($events as $event) :
+                                if ($event->status == 1 && $event->approved == 1) :
+                                    $hasCompleted = true;
+                    ?>
+                            <div class="event-card">
+                            <div class="event-card-content">
+                                <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                <div class="event-details">
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                    <p><?= htmlspecialchars($event->date) ?></p>
+                                    <p><?= htmlspecialchars($event->location) ?></p>
+                                    <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                    <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                    <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled<p style="font-size: 0.7rem;">Closing Reason: <?= htmlspecialchars($event->closing_reason) ?></p></span>
+                                </div>
+                                <div class="event-actions">
+                                    <!-- <p>closing reason: <?= htmlspecialchars($event->closing_reason) ?></p> -->
+                                <!-- <button class="close-event" ><?= htmlspecialchars($event->closing_reason) ?></button> -->
+                                    
+                                    <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
+                                        <button type="submit" class="don-button fixedsize">User List</button>
+                                    </form>
+                            </div>
+                            </div>
+                        </div>
+                        <?php endif;?>
+                    <?php endforeach; 
+                        if (!$hasCompleted) :
+                    ?>
+                    <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no completed events yet.
+                            </div>
+                    <?php endif; ?>
+                    </div>
+                <?php endif; ?>    
+                    
             </div>
         </div>
     </div>

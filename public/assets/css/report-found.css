@@ -90,7 +90,7 @@ h2 {
 }
 
 
-.report-found-form input[type="text"], .report-found-form input[type="file"], .report-found-form input[type="tel"], .report-found-form textarea {
+.report-found-form input[type="text"], .report-found-form input[type="file"], .report-found-form input[type="number"], .report-found-form input[type="tel"], .report-found-form textarea {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
