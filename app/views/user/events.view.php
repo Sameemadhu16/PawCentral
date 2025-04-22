@@ -74,9 +74,16 @@
                                     <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
                                     <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                 </div>
+
                                 <div class="event-actions">
-                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
-                            </div>
+                                    <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                    
+                                    <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
+                                        <button type="submit" class="don-button fixedsize">User List</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <?php endif;?>
@@ -163,6 +170,12 @@
                                 <div class="event-actions">
                                     <!-- <p>closing reason: <?= htmlspecialchars($event->closing_reason) ?></p> -->
                                 <!-- <button class="close-event" ><?= htmlspecialchars($event->closing_reason) ?></button> -->
+                                    
+                                    <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
+                                        <button type="submit" class="don-button fixedsize">User List</button>
+                                    </form>
                             </div>
                             </div>
                         </div>

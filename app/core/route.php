@@ -5,7 +5,7 @@ route('donationsnsupport/paymentsuccess', 'DonationsAndSupport@paySuccess');
 route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications');
 route('notifications/mark-read', 'user/NotificationsController@markAllRead');
 route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
-
+route('events/download_enrollments', 'user/Events@downloadEnrollments');
 // Middleware-like function for admin-only routes
 // function adminRoute($path, $controllerAction) {
 //     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {

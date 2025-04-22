@@ -22,9 +22,9 @@
                 <button class="filter-btn" data-filter="lost">Lost</button>
                 <button class="filter-btn" data-filter="found">Found</button>
             </div>
-            <div class="report-lost-buttons">
+            <!-- <div class="report-lost-buttons">
                 <button id="reportFound">Report a Pet</button>
-            </div>
+            </div> -->
             </div>
 
             <div id="petList" class="pet-list">

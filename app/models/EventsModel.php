@@ -104,13 +104,14 @@ class EventsModel
     }
 
     //to download all the users enrolled in an event
-    public function getEventEnrollments($event_id) {
-        $query = "SELECT e.*, u.firstname, u.lastname, u.email, u.phone 
-                 FROM $this->enrolltable e 
-                 JOIN users u ON e.user_id = u.id 
-                 WHERE e.event_id = :event_id";
-        
-        $data = ['event_id' => $event_id];
-        return $this->query($query, $data);
-    }
+    public function getEnrollmentsByEventId($event_id)
+{
+    $query = "SELECT u.id, u.first_name,u.last_name, u.email, e.reg_at 
+              FROM event_enrollments e 
+              Left JOIN users u ON e.user_id = u.id 
+              WHERE e.event_id = :event_id";
+    
+    return $this->query($query, [':event_id' => $event_id]);
+}
+
 }
