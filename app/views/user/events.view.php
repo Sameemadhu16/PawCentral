@@ -81,7 +81,13 @@
                                     <form action="<?= ROOT ?>/events/download_enrollments" method="post">
                                         <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
                                         <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
-                                        <button type="submit" class="don-button fixedsize">User List</button>
+                                        <button type="submit" class="don-button fixedsize">Participants</button>
+                                    </form>
+
+                                    <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
+                                        <button type="submit" class="don-button fixedsize">Edit info</button>
                                     </form>
                                 </div>
                             </div>
@@ -136,6 +142,13 @@
                                 </div>
                                 <div class="event-actions">
                                 <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to abort this event request?<br><br><?= htmlspecialchars($event->title) ?>', reasons=['Mistaken Entry','Cancelled','No longer Valid','Filled up from other Sources'])">Abort event</button>
+                                    
+                                <form action="<?= ROOT ?>/events/download_enrollments" method="post">
+                                        <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
+                                        <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
+                                        <button type="submit" class="don-button fixedsize">Edit info</button>
+                                    </form>
+                                    
                             </div>
                             </div>
                         </div>
@@ -202,10 +215,10 @@
             <h2>Enter Event Information</h2>
             <form id="petForm" action="<?= ROOT ?>/userprofile/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
-                <input type="text" id="title" name="title" eventuired>
+                <input type="text" id="title" name="title" required>
 
                 <label for="eventimg">Upload a cover photo:</label>
-                <input type="file" id="eventimg" name="photos[]" accept="image/*" eventuired>
+                <input type="file" id="eventimg" name="photos[]" accept="image/*" required>
           <div id="imagePreviewContainer"></div>
           <script>
               document.getElementById('eventimg').addEventListener('change', function () {
@@ -238,7 +251,7 @@
           </script>
 
                     <label for="date">Event Date:</label>
-                    <input type="date" id="date" name="date" eventuired>
+                    <input type="date" id="date" name="date" required>
 
                     <label for="location">Location:</label>
                     <select name="location" id="location" required>
@@ -256,13 +269,13 @@
                     </select>
 
                     <label for="time">Event Time:</label>
-                    <input type="time" id="time" name="time">
+                    <input type="time" id="time" name="time" required>
                     
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" eventuired>
+                    <input type="text" id="address" name="address" required>
                     
                     <label for="participants">Max Participants allowed:</label>
-                    <input type="number" id="participants" name="participants" min="2" max="800" eventuired>
+                    <input type="number" id="participants" name="participants" min="2" max="800" required>
 
                     <script>
                         document.querySelector('form').addEventListener('submit', function (event) {
@@ -290,7 +303,7 @@
                 <label for="eventdesc">Add a description for the event:</label>
           <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
 Preeventuisits if there are any.
-or any other information that participants should be aware of."></textarea>
+or any other information that participants should be aware of." required></textarea>
                 <button type="submit">Submit</button>
             </form>
         </div>

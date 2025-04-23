@@ -25,16 +25,16 @@
 
         <div class="user-accounts-section">
             <div class="profile-section">
-            <h1>Profile</h1>
+            <h1>My Profile</h1>
             <div class="profile-container">
                 <div class="profile-pic-container">
                     <?php
-                    $profile_image = !empty($profile->img) 
-                                    ? ROOT . '/' . $profile->profile_pic 
+                    $profile_image = !empty($profile->profile_pic) 
+                                    ? ROOT . '/' .esc( $profile->profile_pic) 
                                     : ROOT . '/assets/images/user/default_user.jpg';
                     ?>
                     <div class="profile-pic">
-                        <img src="<?= $profile->profile_pic ?>" alt="Profile Picture">
+                        <img src="<?= $profile_image ?>" alt="Profile Picture">
                         <div class="edit-overlay" id="change-photo-btn">
                             <i class="fas fa-camera"></i>
                             <span>Change Photo</span>
@@ -101,24 +101,34 @@
 
                 <label for="address">Address:</label>
                 <textarea id="address" name="address" rows="3"><?= !empty($profile->address) ? htmlspecialchars($profile->address) : '' ?></textarea>
+<!-- NEW: Profile Picture Upload -->
+<label for="profile_pic">Profile Picture:</label>
+    <input type="file" name="profile_pic" id="profile_pic" accept="image/*">
 
+<!-- Preview -->
+<div id="imagePreviewContainer">
+        <?php if (!empty($profile->profile_pic)): ?>
+            <img src="<?= ROOT ?>/<?= htmlspecialchars($profile->profile_pic) ?>" alt="Current Profile Picture" style="max-width: 200px; margin-top: 10px;">
+        <?php endif; ?>
+    </div>
 
-                <script>
-                    document.getElementById('profile_pic').addEventListener('change', function () {
-                        const previewContainer = document.getElementById('imagePreviewContainer');
-                        previewContainer.innerHTML = ''; // Clear existing previews
+    <!-- Preview Script -->
+    <script>
+        document.getElementById('profile_pic').addEventListener('change', function () {
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            previewContainer.innerHTML = ''; // Clear existing previews
 
-                        Array.from(this.files).forEach(file => {
-                            if (file.type.startsWith('image/')) {
-                                const img = document.createElement('img');
-                                img.src = URL.createObjectURL(file);
-                                img.style.maxWidth = '200px';
-                                img.style.marginTop = '10px';
-                                previewContainer.appendChild(img);
-                            }
-                        });
-                    });
-                </script>
+            Array.from(this.files).forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.style.maxWidth = '200px';
+                    img.style.marginTop = '10px';
+                    previewContainer.appendChild(img);
+                }
+            });
+        });
+    </script>
 
                 <button type="submit">Save Changes</button>
             </form>

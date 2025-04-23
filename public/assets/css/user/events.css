@@ -81,7 +81,7 @@
     background-color: rgb(128, 73, 254, .15);
     box-shadow:   var(--section-div-shadow);
     overflow-y: auto;
-    max-height: 320px;
+    max-height: 270px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
@@ -94,7 +94,7 @@
 .event-card {
     flex: 1; /* Allow cards to take equal space */
     min-width: 500px; /* Minimum width for the cards */
-    max-width: calc(50% - 15px);
+    max-width: calc(75% - 15px);
     margin: 5px;
     /* padding: 10px; */
     border-radius: 10px;

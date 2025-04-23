@@ -54,7 +54,7 @@
     margin: 10px;
     margin-bottom: 3px;   
     min-width: 400px;
-    max-width: 470px;
+    max-width: 560px;
     max-height: 270px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
