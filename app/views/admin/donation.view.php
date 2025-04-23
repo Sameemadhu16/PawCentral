@@ -105,14 +105,14 @@
             <!-- All Donations List -->
             <div class="section-title" style="margin-top: 30px;">
                 <h2>All Donation Requests</h2>
-                <div>
+                <!-- <div>
                     <select id="statusFilter">
                         <option value="all">All Statuses</option>
                         <option value="pending">Pending</option>
                         <option value="approved">Approved</option>
                         <option value="rejected">Rejected</option>
                     </select>
-                </div>
+                </div> -->
             </div>
 
             <div class="donation-list">

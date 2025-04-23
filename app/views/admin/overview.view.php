@@ -61,8 +61,8 @@
                 <div class="stat-card total-revenue">
                     <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
-                        <h3>Total Revenue</h3>
-                        <p class="stat-value">$8,245</p>
+                        <h3>Donation Price</h3>
+                        <p class="stat-value">8,245 LKR</p>
                         <p class="stat-trend positive">+15% <span>vs last period</span></p>
                     </div>
                 </div>
