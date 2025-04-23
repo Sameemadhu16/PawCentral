@@ -1,10 +1,10 @@
 /* Pet cards grid */
 .results-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
     gap: 15px;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px; /* Increased max-width to accommodate 4 cards */
     margin: 0 auto;
 }
 .card {
@@ -136,8 +136,23 @@
 }
 
 /* Responsive design */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
+    .results-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
+@media (max-width: 900px) {
+    .results-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .results-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
     .search-container {
         flex-direction: column;
         align-items: stretch;
@@ -173,10 +188,6 @@
     .card span.price {
         background-color: #b085ff;
         color: black;
-    }
-
-    .results-container {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
 
     .pagination a {

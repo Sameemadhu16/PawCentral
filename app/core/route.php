@@ -125,7 +125,7 @@ route('findapet/post_id','PetPost_purchase');
 route('services','Services');
 route('services/careservice','Careservice');
 // Pet shelters
-route('shelters','PetShelters');
+route('shelters','PetShelters@indexWithpagination');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
 route('donationsnsupport','DonationsAndSupport@indexWithpagination');
