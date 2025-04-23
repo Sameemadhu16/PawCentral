@@ -44,7 +44,7 @@
         } */
         .inv-container {
             max-height: 0;
-            overflow: hidden;
+            overflow: auto;
             transition: max-height .5s ease;
             display: flex;
             flex-wrap: wrap;

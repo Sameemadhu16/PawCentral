@@ -10,7 +10,73 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">   
-    
+    <script>
+        function openPopup() {
+            document.getElementById("popupForm").style.display = "flex";
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        }
+
+        function closePopup() {
+            document.getElementById("popupForm").style.display = "none";
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+        function toggleDiv(divId) {
+            const pending = document.getElementById("PendingDiv");
+            const completed = document.getElementById("CompletedDiv");
+            const target = document.getElementById(divId);
+            const pendingBtn = document.getElementById("PendingDivButton");
+            const completedBtn = document.getElementById("CompletedDivButton");
+
+            // Hide both first
+            pending.classList.remove("active");
+            completed.classList.remove("active");
+            pendingBtn.classList.remove("active-btn");
+            completedBtn.classList.remove("active-btn");
+
+            // Toggle the selected one if it wasn’t already active
+            if (target !== null && !target.classList.contains("active")) {
+                target.classList.add("active");
+            }
+
+            if (divId == "PendingDiv") {
+                pendingBtn.classList.add("active-btn");
+            } else if (divId == "CompletedDiv") {
+                completedBtn.classList.add("active-btn");
+            }
+        }
+
+        function openPendingDiv() {
+            toggleDiv("PendingDiv");
+        }
+
+        function openCompletedDiv() {
+            toggleDiv("CompletedDiv");
+        }
+    </script>
+    <style>
+        /* #PendingDiv, #CompletedDiv {
+            display: none;
+        } */
+        .inv-container {
+            max-height: 0;
+            overflow: auto;
+            transition: max-height .5s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* When active */
+        .inv-container.active {
+            max-height: 1000px; /* Large enough to show the full content */
+        }
+
+        .active-btn {
+            background-color: var(--button-normal-hover) !important;
+        }
+        
+    </style>
 </head>
 
 <body class="body">
