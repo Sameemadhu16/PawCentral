@@ -129,7 +129,15 @@
                     <input type="text" id="name" name="name" required>
 
                     <label for="contact_no">Contact Number:</label>
-                    <input type="text" id="contact_no" name="contact_no" required>
+                    <input
+                        type="text"
+                        id="contact_no"
+                        name="contact_no"
+                        required
+                        pattern="^\d{10}$"
+                        maxlength="10"
+                        minlength="10"
+                        title="Please enter exactly 10 digits">
 
                     <label for="residence">Residence:</label>
                     <input type="text" id="residence" name="residence" required>
@@ -142,9 +150,16 @@
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
+                    <label for="garden_area">Garden Area (in perches):</label>
+                    <input
+                        type="number"
+                        id="garden_area"
+                        name="garden_area"
+                        min="1"
+                        step="1"
+                        required
+                        title="Please enter a positive whole number">
 
-                    <label for="garden_area">Garden Area:(IN perches)</label>
-                    <input type="text" id="garden_area" name="garden_area">
 
                     <button class="btn btn-primary" type="submit" name="formsubmit">Submit</button>
                 </form>
