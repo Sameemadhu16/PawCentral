@@ -127,6 +127,7 @@ route('services/careservice','Careservice');
 route('shelters','PetShelters');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
+route('donationsnsupport','DonationsAndSupport@indexWithpagination');
 route('donationsnsupport/req','DonationsAndSupport@showPost');
 route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
 

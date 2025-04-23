@@ -4,6 +4,45 @@ class DonationsAndSupport {
 
     use Controller;
 
+    function indexWithpagination(){
+        $model = new DonationsModel();
+        // print_r("sss");
+        // exit();
+        $page_no = $_GET['page'] ?? 1;
+        $page_size = 6; // Increased to show more items per page
+        $offset = ($page_no - 1) * $page_size;
+
+        // Get total count of requests
+        $total_requests = $model->getTotalRequestsCount();
+        
+        $total_requests=$total_requests[0]->total_requests;
+        // print_r($total_requests);
+        // exit();
+        $total_pages = ceil($total_requests / $page_size);
+
+        // Get paginated requests
+        $requests['requests'] = $model->getViewReqWithPagination($offset, $page_size);
+        
+        // Add pagination data to the view
+        $requests['pagination'] = [
+            'current_page' => $page_no,
+            'total_pages' => $total_pages,
+            'total_requests' => $total_requests
+        ];
+
+        // Process images
+        foreach ($requests['requests'] as $req) {
+            if (isset($req->img)) {
+                $req->img = "data:image/jpeg;base64," . base64_encode($req->img);
+            } else {
+                $req->img = null;
+            }
+        }
+
+        $this->view('donations&sup', $requests);
+    }
+
+
     function index(){
         // if(!($_SESSION['user_id'])){
         //     redirect('home');

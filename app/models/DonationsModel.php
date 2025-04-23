@@ -26,7 +26,7 @@ class DonationsModel
         return $this->insert($data) ? true : false;
     }
 
-    // Public view donation requests
+    // Public view donation requests - all requests
     public function getViewReq()
     {
         $this->table = $this->donation_req;
@@ -34,6 +34,21 @@ class DonationsModel
 
         $result = $this->query($query);
         return $result;
+    }
+//for pagination for page amount of requests
+    public function getTotalRequestsCount() {
+        $this->table = $this->donation_req;
+        $query = "SELECT COUNT(*) as total_requests FROM `" . $this->table . "` WHERE status=0 AND approved = 1";
+        return $this->query($query);
+    }
+//filter out needed for each page
+    public function getViewReqWithPagination($offset, $page_size) {
+        $this->table = $this->donation_req;
+        $offset = (int)$offset;
+        $page_size = (int)$page_size;
+
+        $query = "SELECT * FROM `" . $this->donation_req . "` WHERE status=0 AND approved = 1 ORDER BY requested_at DESC LIMIT $offset, $page_size";
+        return $this->query($query);
     }
 
     public function getDonReq($postid)
