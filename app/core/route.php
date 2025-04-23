@@ -82,7 +82,8 @@ route('admin/notification', 'admin/AdminNotification@index');
 // User routings
 route('announcements','announcements');
 route('lostandfound','LostAndFound@index');
-route('eventsandcampaigns','events');
+// route('eventsandcampaigns','events');
+route('eventsandcampaigns','events@indexWithpagination');
 route('eventsandcampaigns/event','events@EventInfo');
 route('eventsandcampaigns/event/enroll','events@Enroll');
 route('lostandfound/report-animal','ReportFound');

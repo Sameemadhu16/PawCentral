@@ -4,6 +4,45 @@ class Events {
 
     use Controller;
 
+    function indexWithpagination(){
+        $model = new EventsModel();
+        // print_r("sss");
+        // exit();
+        $page_no = $_GET['page'] ?? 1;
+        $page_size = 6; // Increased to show more items per page
+        $offset = ($page_no - 1) * $page_size;
+
+        // Get total count of requests
+        $total_requests = $model->getTotalRequestsCount();
+        
+        $total_requests=$total_requests[0]->total_requests;
+        // print_r($total_requests);
+        // exit();
+        $total_pages = ceil($total_requests / $page_size);
+
+        // Get paginated requests
+        $requests['events'] = $model->getViewReqWithPagination($offset, $page_size);
+        // print_r($requests['events']);
+        // Add pagination data to the view
+        $requests['pagination'] = [
+            'current_page' => $page_no,
+            'total_pages' => $total_pages,
+            'total_requests' => $total_requests
+        ];
+
+        // Process images
+        foreach ($requests['events'] as $req) {
+            if (isset($req->eventimg)) {
+                $req->eventimg = "data:image/jpeg;base64," . base64_encode($req->eventimg);
+            } else {
+                $req->eventimg = null;
+            }
+        }
+
+        $this->view('events', $requests);
+    }
+
+
     public function index() {
         $model = new EventsModel();
 
