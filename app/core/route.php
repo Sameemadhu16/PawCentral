@@ -157,6 +157,8 @@ route('shelter/post','shelter/Post@index');
     route('medical-center/dashboard/profile/upload-image','Medical/profile/Med_Dashboard_Profile@uploadImage');  // Add this route for direct image upload
 
     route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+    route('medical-center/dashboard/appointments/appointmentsByDate','Medical/profile/Med_Dashboard_Appointments@appointmentsByDate');
+    
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
     route('medical-center/dashboard/veterinarians/edit-vet','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');

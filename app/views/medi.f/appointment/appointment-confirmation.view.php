@@ -10,22 +10,35 @@
 <body>
     <?php include("../app/views/components/header.php"); ?>
     <div class="container">
-        <div class="success-icon"></div>
-        <h2>APPOINTMENT SUCCESS</h2>
+        <?php if(isset($_SESSION['appointment_success'])): ?>
+            <div class="success-icon"></div>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION['appointment_error'])): ?>
+            <div class="error-icon"></div>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION['appointment_success'])): ?>
+            <h2>APPOINTMENT SUCCESSFUl</h2>
+        <?php endif; ?>
+
+        <?php if(isset($_SESSION['appointment_error'])): ?>
+            <h2>APPOINTMENT UNSUCCESSFUL</h2>
+        <?php endif; ?>
 
         <!-- show success message -->
         <?php if(isset($_SESSION['appointment_success'])): ?>
             <div class="success-message">
                 <?= $_SESSION['appointment_success']; ?>
-                <?php unset($_SESSION['success']); ?>
+                <?php unset($_SESSION['appointment_success']); ?>
             </div>
         <?php endif; ?>
 
         <!-- show error message -->
-        <?php if(isset($_SESSION['error'])): ?>
+        <?php if(isset($_SESSION['appointment_error'])): ?>
             <div class="error-message">
-                <?= $_SESSION['error']; ?>
-                <?php unset($_SESSION['error']); ?>
+                <?= $_SESSION['appointment_error']; ?>
+                <?php unset($_SESSION['appointment_error']); ?>
             </div>
         <?php endif; ?>
 

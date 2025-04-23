@@ -38,7 +38,7 @@ class Appointment_Vet{
         $dayOfWeek = date('1', strtotime($_SESSION['appointment_date']));
         //get only the hour of the appointment time in 24 hour format
         $timeIn24 = (int)date('H', strtotime($_SESSION['appointment_time']));
-        echo json_encode(['status' => 'success', 'dayOfWeek' => $dayOfWeek, 'timeIn24' => $timeIn24]);
+        // echo json_encode(['status' => 'success', 'dayOfWeek' => $dayOfWeek, 'timeIn24' => $timeIn24]);
        
         $availableVets=$availabilityModel->getAvailableVeterinariansForDay($med_id, $dayOfWeek, $timeIn24);
         

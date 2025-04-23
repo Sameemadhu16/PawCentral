@@ -67,7 +67,7 @@ class VeterinarianAvailability {
     }
 
     public function isTimeAvailable($parsedAvailability, $time) {
-        echo json_encode($parsedAvailability['times']);
+        // echo json_encode($parsedAvailability['times']);
         return ($time >= $parsedAvailability['times']['start'] && $time <= $parsedAvailability['times']['end']);
     }
     
@@ -114,7 +114,7 @@ class VeterinarianAvailability {
         foreach($vets as $vet) {
             $parsedAvailability = $this->parseAvailability($vet->availability);
             $isAvailable = $this->isDayAvailable($parsedAvailability, $dayOfWeek) && $this->isTimeAvailable($parsedAvailability, $time);
-            echo json_encode($this->isTimeAvailable($parsedAvailability, $time));
+            // echo json_encode($this->isTimeAvailable($parsedAvailability, $time));
             if($isAvailable) {
                 // Add the veterinarian to the available list
                 $availableVets[] = $vet;

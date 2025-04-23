@@ -46,13 +46,11 @@ h2 {
 
 .error-message {
     background-color: rgba(220, 53, 69, 0.1);
-    border-left: 4px solid var(--danger);
     color: var(--danger-dark);
     padding: 15px 20px;
     margin-bottom: 30px;
     border-radius: 8px;
     font-size: 16px;
-    text-align: left;
 }
 
 .buttons {
@@ -111,7 +109,7 @@ h2 {
     border-radius: 50%;
     background-color: rgba(40, 167, 69, 0.1);
     position: relative;
-    animation: pulse 1.5s infinite;
+    animation: success-pulse 1.5s infinite;
 }
 
 .success-icon:before {
@@ -124,7 +122,29 @@ h2 {
     transform: translate(-50%, -50%);
 }
 
-@keyframes pulse {
+.error-icon{
+    display: block;
+    margin: 0 auto 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(220, 53, 69, 0.1);
+    position: relative;
+    animation: error-pulse 1.5s infinite;
+}
+
+.error-icon:before {
+    content: '✗';
+    font-size: 40px;
+    color: var(--danger);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Pulse animation for success and error icons */
+
+@keyframes success-pulse {
     0% {
         box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
     }
@@ -133,6 +153,18 @@ h2 {
     }
     100% {
         box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+@keyframes error-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
     }
 }
 

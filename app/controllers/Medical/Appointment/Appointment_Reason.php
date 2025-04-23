@@ -11,12 +11,12 @@ class Appointment_Reason{
             exit();
         }
 
-        echo json_encode([
-            'vet_id' => $_SESSION['appointment_vet_id'] ?? null,
-            'date' => $_SESSION['appointment_date'] ?? null,
-            'time' => $_SESSION['appointment_time'] ?? null,
-            'pet_id' => $_SESSION['appointment_pet_id'] ?? null
-        ]);
+        // echo json_encode([
+        //     'vet_id' => $_SESSION['appointment_vet_id'] ?? null,
+        //     'date' => $_SESSION['appointment_date'] ?? null,
+        //     'time' => $_SESSION['appointment_time'] ?? null,
+        //     'pet_id' => $_SESSION['appointment_pet_id'] ?? null
+        // ]);
 
         // Check if the form was submitted from the vet selection page
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,6 +44,24 @@ class Appointment_Reason{
         $date= $_SESSION['appointment_date'];
 
         $appointmentModel = new MedicalAppointment();
+        
+        // Check for existing appointment with the same pet_id, date, and timeslot
+        $existingAppointment = $appointmentModel->first([
+            'pet_id' => $pet_id,
+            'date' => $date,
+            'timeslot' => $timeslot
+        ]);
+        
+        if ($existingAppointment) {
+            $_SESSION['appointment_error'] = "An appointment for this pet at the same date and time already exists.";
+            unset($_SESSION['appointment_vet_id']);
+            unset($_SESSION['appointment_date']);
+            unset($_SESSION['appointment_time']);
+            unset($_SESSION['appointment_pet_id']);
+            redirect('medical-appointment-confirmation');
+            exit();
+        }
+        
         // Save the appointment details to the database
         $data = [
             'pet_id' => $pet_id,
@@ -61,7 +79,6 @@ class Appointment_Reason{
             unset($_SESSION['appointment_date']);
             unset($_SESSION['appointment_time']);
             unset($_SESSION['appointment_pet_id']);
-            unset($_SESSION['selected_med_id']);
 
             // Redirect
             $_SESSION['appointment_success'] = "Appointment booked successfully!";
@@ -69,7 +86,11 @@ class Appointment_Reason{
             exit();
         } else {
             // Handle insertion error
-            $_SESSION['error'] = "Failed to book appointment. Please try again.";
+            $_SESSION['appointment_error'] = "Failed to book appointment. Please try again.";
+            unset($_SESSION['appointment_vet_id']);
+            unset($_SESSION['appointment_date']);
+            unset($_SESSION['appointment_time']);
+            unset($_SESSION['appointment_pet_id']);
             // Optionally log the error: error_log(print_r($appointmentModel->errors, true));
             redirect('medical-appointment-confirmation');
             exit();

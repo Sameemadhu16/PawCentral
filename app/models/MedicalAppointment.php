@@ -6,7 +6,12 @@ class MedicalAppointment
 
     protected $table = 'medical_appointments';
 
-    protected $order_column = 'created_at';
+    protected $order_column = 'appointment_id';
 
     public $errors = [];
+
+    public function getAppointmentsByDate($date)
+    {
+        return $this->where(['med_id' => $_SESSION['role_id'], 'date' => $date]);
+    }
 }
