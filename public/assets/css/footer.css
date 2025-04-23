@@ -8,6 +8,7 @@ body, html {
   
   /* Footer styling */
   footer {
+    margin-top: 60px;
     position: relative;
     /* background: linear-gradient(135deg, #6a1b9a, #8e44ad); */
     background: linear-gradient(180deg, #6A0DAD,#9d34df); /* change the degree*/

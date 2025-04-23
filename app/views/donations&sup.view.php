@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/donation_req.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/pagination.css">
 </head>
 <body>
     
@@ -29,10 +30,12 @@
                     <div class="progress-bar-container">
                         <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
                     </div>
-                    <p class="amount">
-                        <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
-                        $<?= number_format($amount, 2) ?>
-                    </p>
+                    <div class="overflow-hide">
+                        <p class="amount">
+                            <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
+                            $<?= number_format($amount, 2) ?>
+                        </p>
+                    </div>
                     <a href="<?= ROOT ?>/donationsnsupport/req?id=<?= $request->id ?>" class="donate-button">Donate Now</a>
                 </div>
             </div>
@@ -42,6 +45,24 @@
     <?php endif; ?>
 </div>
   
+    <?php if (isset($pagination) && $pagination['total_pages'] > 1): ?>
+    <div class="pagination-container">
+        <?php if ($pagination['current_page'] > 1): ?>
+            <a href="<?= ROOT ?>/donationsnsupport?page=<?= $pagination['current_page'] - 1 ?>" class="pagination-button" >Previous</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $pagination['total_pages']; $i++): ?>
+            <a href="<?= ROOT ?>/donationsnsupport?page=<?= $i ?>" 
+               class="pagination-button <?= $i == $pagination['current_page'] ? 'active' : '' ?>">
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
+            <a href="<?= ROOT ?>/donationsnsupport?page=<?= $pagination['current_page'] + 1 ?>" class="pagination-button">Next</a>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
 
     <?php include("../app/views/components/footer.php"); ?>
 </body>

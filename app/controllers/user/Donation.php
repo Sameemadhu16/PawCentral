@@ -163,7 +163,7 @@ class Donation{
 
             $result = $donations->UpdateReq($_POST['id'],$data,'id');
             if ($result) {
-                print_r('suxes');
+                // print_r('suxes');
                 header("Location: " . ROOT . "/userprofile/donations");
                 exit; 
             } else {

@@ -15,9 +15,9 @@ class EventsModel
     public function getUserEvents()
     {
         $userId = $_SESSION['user_id']; // Retrieve userId from session
-
-        // Fetch rows from the table where user_id matches the session user and status is not 3
-        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid AND `status` != 3";
+        $this->table = $this->eventtable;
+        
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `user_id` = :userid ";
 
         $result = $this->query($query, [':userid' => $userId]);
 
@@ -33,11 +33,29 @@ class EventsModel
 
     public function getPageEvents() //Add page limit to events
     {
+        $this->table = $this->eventtable;
         $query = "SELECT * FROM `" . $this->table . "` WHERE status=1 ";
 
         $result = $this->query($query);
 
         return $result;
+    }
+
+    //for pagination for page amount of requests
+    public function getTotalRequestsCount() {
+        $this->table = $this->eventtable;
+        $query = "SELECT COUNT(*) as total_requests FROM `" . $this->table . "` WHERE status=0 AND approved = 1";
+        return $this->query($query);
+    }
+
+//filter out needed for each page
+    public function getViewReqWithPagination($offset, $page_size) {
+        $this->table = $this->eventtable;
+        $offset = (int)$offset;
+        $page_size = (int)$page_size;
+
+        $query = "SELECT * FROM `" . $this->eventtable . "` WHERE status=0 AND approved = 1 ORDER BY created_at DESC LIMIT $offset, $page_size";
+        return $this->query($query);
     }
 
     public function getEventById($id) {
@@ -55,7 +73,7 @@ class EventsModel
 
     public function getEnrolledEvents($userId) {
         $this->table = $this->enrolltable;
-        $query = "SELECT * FROM `" . $this->table . "` ee JOIN events e ON e.event_id = ee.event_id WHERE ee.user_id = :userid AND e.status = 0";
+        $query = "SELECT * FROM `" . $this->table . "` ee JOIN events e ON e.event_id = ee.event_id WHERE ee.user_id = :userid AND `e`.`date` > NOW()";
         $result = $this->query($query, [':userid' => $userId]);
         // print_r($result);
         return $result;

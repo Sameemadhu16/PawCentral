@@ -5,7 +5,8 @@ class Announcements {
     use Controller;
 
     public function index() {
-
-        $this->view('announcements');
+        $model=new Announcement();
+        $announcements['announcements'] = $model->getViewAnnouncements();
+        $this->view('announcements',$announcements);
     }
 }
