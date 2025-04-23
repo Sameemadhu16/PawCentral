@@ -131,6 +131,7 @@ route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
 //pet shelter routings
 route('shelter/profile', 'shelter/Profile@index');
 route('shelter/update', 'shelter/Profile@update');
+route('shelter/postupdate','shelter/PostUpdate@index');
 route('shelter/notification', 'shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
 route('shelter/donation/req', 'shelter/Donation@AddReq');

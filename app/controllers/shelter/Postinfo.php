@@ -23,7 +23,7 @@ class Postinfo{
 
 
         $id = $_GET['id'];
-        show($id);
+        // show($id);
         $postMoldel= new AdoptionPostModel();
         $post = $postMoldel->getPostDetailsById(['pet_id' => $id]);
         // show($post);
@@ -33,4 +33,6 @@ class Postinfo{
 
         return $post[0];
     }
+
+
 }

@@ -17,9 +17,12 @@
 
     <?php include("../app/views/components/header.php");
     // show($data->name);
+
     ?>
 
-    <?php $post = $data['post']; ?>
+    <?php $post = $data['post'];
+    // show($post);
+    ?>
     <div class="lost-pet-container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
@@ -92,119 +95,32 @@
         <div class="more-button" onclick="toggleExtraInfo()">
             <p id="more-less">More</p> <span>▼</span>
         </div>
+        
+                <!-- Description -->
+                <div class="description-section">
+                    <h3><?= esc($post->description) ?></h3>
+        
+                </div>
 
-        <br><br>
 
         <!-- Contact Info -->
         <div class="contact-section">
             <!-- <img class="contact-icon" src="<?= ROOT ?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
             <span>Contact : </span> -->
             <div class="contact-info">
-                <?php if (isset($_SESSION['role_id'])): ?>
-                    <!-- Show Edit and Delete buttons if role_id exists -->
-                    <button class="btn btn-primary" onclick="window.location.href='<?= ROOT ?>/shelter/edit_post?id=<?= $post->id ?>'">Edit</button>
-                    <button class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete this post?')) window.location.href='<?= ROOT ?>/shelter/delete_post?id=<?= $post->id ?>'">Delete</button>
-                <?php else: ?>
-                    <!-- Show Send Adoption Request button if role_id does not exist -->
-                    <button class="btn btn-primary" onclick="openPopup()">Send Adoption Request</button>
-                <?php endif; ?>
+
+                <!-- Show Edit and Delete buttons if role_id exists -->
+                <button class="btn btn-primary" onclick="window.location.href='<?= ROOT ?>/shelter/postupdate?id=<?= $post->pet_id ?>'">
+                    Edit
+                </button>
+
+                <button class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete this post?')) window.location.href='<?= ROOT ?>/shelter/delete_post?id=<?= $post->id ?>'">Delete</button>
+
+
             </div>
         </div>
 
-        <!-- Description -->
-        <div class="description-section">
-            <h3><?= esc($post->description) ?></h3>
 
-        </div>
-
-
-        <!-- ADD EVENT FORM -->
-        <div id="popupForm" class="popup-container">
-            <div class="form-container">
-                <span class="close-btn" onclick="closePopup()">&times;</span>
-                <h2>Enter Adoption Request Information </h2>
-                <form id="petForm" action="<?= ROOT ?>/adoptionrequest" method="POST" enctype="multipart/form-data">
-                    <label for="title">Event Title:</label>
-                    <input type="text" id="title" name="title" required>
-
-                    <label for="eventimg">Upload a cover photo:</label>
-                    <input type="file" id="eventimg" name="photos[]" accept="image/*" required>
-                    <div id="imagePreviewContainer"></div>
-                    <script>
-                        document.getElementById('eventimg').addEventListener('change', function() {
-                            const maxFiles = 1;
-                            const fileInput = this;
-
-                            if (fileInput.files.length > maxFiles) {
-                                feedback.style.display = 'block';
-                                fileInput.value = ''; // Clear the input
-                            } else {
-                                feedback.style.display = 'none';
-                            }
-                        });
-
-                        document.getElementById('eventimg').addEventListener('change', function() {
-                            const previewContainer = document.getElementById('imagePreviewContainer');
-                            previewContainer.innerHTML = ''; // Clear existing previews
-
-                            Array.from(this.files).forEach(file => {
-                                if (file.type.startsWith('image/')) {
-                                    const img = document.createElement('img');
-                                    img.src = URL.createObjectURL(file);
-                                    // img.style.width = '100px';
-                                    // img.style.margin = '5px';
-                                    previewContainer.appendChild(img);
-                                }
-                            });
-                        });
-                    </script>
-
-                    <label for="date">Event Date:</label>
-                    <input type="date" id="date" name="date" required>
-
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="City/Town" required>
-
-                    <label for="time">Event Time:</label>
-                    <input type="time" id="time" name="time">
-
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
-
-                    <label for="participants">Max Participants allowed:</label>
-                    <input type="number" id="participants" name="participants" min="2" max="800" required>
-
-                    <script>
-                        document.querySelector('form').addEventListener('submit', function(event) {
-                            const age = document.getElementById('date').value;
-                            const participants = document.getElementById('participants').value;
-
-                            // Validate date
-                            const Date = new Date(document.getElementById('date').value);
-                            const today = new Date();
-                            if (Date > today) {
-                                alert('Event date cannot be in the future.');
-                                event.preventDefault(); // Prevent form submission
-                            }
-
-                            // Validate participant amount
-                            if (participants < 2 || participants > 800) {
-                                alert('Atleast 2 participants must be allowed to participate');
-                                event.preventDefault(); // Prevent form submission
-                                return;
-                            }
-                            // Validate time
-                        });
-                    </script>
-
-                    <label for="eventdesc">Add a description for the event:</label>
-                    <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
-Prerequisits if there are any.
-or any other information that participants should be aware of."></textarea>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
 
 
         <!-- JS & component includes -->
