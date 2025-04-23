@@ -20,9 +20,11 @@
         <div class="content">
             <div class="requests-container">
                 <?php foreach ($data['adoptionRequests'] as $request): ?>
+                    <?php if($request->status == 0 && $request->approved == 0)  : ?>
+
                     <div class="request-card">
                         <div class="card-content">
-                            <img src="<?= ROOT ?>/assets/images/pets/<?= esc($request->postimg1) ?>" alt="Pet Image" class="pet-image">
+                            <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->postimg1) ?>');"></div>
                             <div class="details">
                                 <h3>Pet Name: <?= esc($request->name) ?></h3>
                                 <hr>
@@ -35,10 +37,20 @@
                             </div>
                         </div>
                         <div class="actions">
-                            <button class="btn btn-primary">Approve</button>
-                            <button class="btn btn-danger">Reject</button>
+                            <form method="POST">
+                                <input type="hidden" name="pet_id" value="<?= esc($request->pet_id) ?>">
+                                <input type="hidden" name="id" value="<?= esc($request->id) ?>">
+                                <button class="btn btn-primary" type="submit" name="approve">Approve</button>
+                            </form>
+
+                            <form method="POST">
+                                <input type="hidden" name="id" value="<?= esc($request->id) ?>">
+                                <button class="btn btn-danger" type="submit" name="reject">Reject</button>
+                            </form>
                         </div>
                     </div>
+
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>

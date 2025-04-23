@@ -6,7 +6,7 @@ class AdminNotification
     public function index()
     {
         if(!($_SESSION['user_id'])){
-            
+
             redirect('home');
         }
         // Initialize the model
@@ -14,11 +14,11 @@ class AdminNotification
 
         // Retrieve all pets
         $data['notifications'] = $model->getNotifications($_SESSION['user_id']);
-        
+
          // Process images: convert binary `img1` data to Base64-encoded string
         // print_r($data);
         // exit();
-        
+
         // Pass data to the view
         $this->view('admin/notification', $data);
     }
