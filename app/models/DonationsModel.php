@@ -57,6 +57,7 @@ class DonationsModel
     public function UpdateReq($id,$data,$id_colName){
         $this->table=$this->donation_req;
         $result=$this->update($id,$data,$id_colName);
+        return $result;
     }
 
     public function getDonations($conditions = []) {

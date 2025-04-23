@@ -27,7 +27,7 @@ class Events
             }
         }
 
-        $this->view('shelter/event', $events);
+        $this->view('shelter/events', $events);
     }
 
     public function NewEvent()
@@ -83,7 +83,7 @@ class Events
         parse_str($insert[1], $queryParams);
         $reason = $queryParams['reason'] ?? 'No reason provided';
 
-        $data = ['status' => 3, 'closing_reason' => $reason]; // Set status to closed
+        $data = ['status' => 1, 'closing_reason' => $reason]; // Set status to closed
 
         $success = $model->update($id, $data, 'event_id');
 
@@ -92,5 +92,54 @@ class Events
         } else {
             redirect('shelter/event?error=Failed to mark as complete');
         }
+    }
+
+    public function showEnrolledEvents()
+    {
+        $model = new EventsModel();
+        $events['enrolled_events'] = $model->getEnrolledEvents($_SESSION['user_id']);
+        foreach ($events['enrolled_events'] as $event) {
+            if (isset($event->eventimg)) {
+                $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
+            } else {
+                $event->eventimg = null;
+            }
+        }
+        $this->view('user/enrolled_events', $events);
+    }
+
+    public function downloadEnrollments()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
+            $event_id = $_POST['event_id'];
+            $event_name = $_POST['event_name'];
+
+            $model = new EventsModel();
+            $enrollments = $model->getEnrollmentsByEventId($event_id);
+
+            // Call download method
+            $this->exportToCSV($enrollments, $event_name . "_enrollments.csv");
+        }
+    }
+
+    private function exportToCSV($data, $filename = "enrollments.csv")
+    {
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+        $output = fopen('php://output', 'w');
+
+        if (!empty($data)) {
+            // Output headers
+            fputcsv($output, array_keys((array)$data[0]));
+
+            // Output each row
+            foreach ($data as $row) {
+                fputcsv($output, (array)$row);
+            }
+        }
+
+        fclose($output);
+        exit;
     }
 }
