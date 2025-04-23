@@ -7,7 +7,7 @@ class ImportPet
     protected $allowedColumns = [
         'pet_id',
         'merchant_id',
-        'pet_name',
+        'petName',
         'tradeType',
         'species',
         'breed',
@@ -25,6 +25,9 @@ class ImportPet
         'img1',
         'img2',
         'img3',
+        'img4',
+        'img5',
+        'description',
         'created_at',
         'country',
         'importing_owner',
