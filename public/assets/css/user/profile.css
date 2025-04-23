@@ -18,6 +18,87 @@
     height: 100%;
 }
 
+.med-record {
+    width: 100%;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.med-record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.med-record h2 {
+    color: #333;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f2f2f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.med-record .record-date {
+    font-size: 0.9rem;
+    color: #666;
+    background: #f8f9fa;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+.med-record .record-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.med-record .record-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.med-record .record-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.med-record .record-value {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.med-record .record-notes {
+    grid-column: 1 / -1;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.med-record .record-notes .record-label {
+    margin-bottom: 0.5rem;
+}
+
+.med-record .record-notes .record-value {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+}
+
 /*--------------------------------------------------
 * 2. PROFILE SECTION STYLES
 --------------------------------------------------*/
@@ -54,18 +135,18 @@
 * 3. PROFILE PICTURE STYLES
 --------------------------------------------------*/
 .profile-pic-container {
-    flex: 0 0 150px;
+    flex: 0 0 200px;
     margin-right: 30px;
     margin-bottom: 20px;
     position: relative;
 }
 .profile-pic {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     position: relative;
     overflow: hidden;
     border: none;
-    border-radius: 50%;
+    border-radius: 15px;
     margin-bottom: 1rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, border-color 0.3s ease;
@@ -128,11 +209,10 @@
 --------------------------------------------------*/
 .profile-details {
     flex: 1;
-    min-width: 350px;
-    max-width: 800px;
-    border-radius: 10px;
+    min-width: 300px;
     background: white;
-    padding: 20px;
+    padding: 1.5rem;
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -205,39 +285,35 @@
 * 5. BUTTON STYLES
 --------------------------------------------------*/
 .button-section {
+    width: 100%;
     display: flex;
     justify-content: flex-end;
-    width: 100%;
-    margin-top: 25px;
-    gap: 15px;
+    margin-top: 2rem;
 }
 
- .button-section button {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
- .update-button {
-    background-color: #8B3DFF;
+.update-button {
+    background: #8B3DFF;
     color: white;
-    padding: 10px 24px;
-    border-radius: 6px;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
     font-weight: 500;
-    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
- .logout-button {
+.update-button:hover {
+    background: #7B2FEF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 61, 255, 0.2);
+}
+
+.logout-button {
     background-color: #f44336;
     color: white;
 }
 
- .update-button:hover, .logout-button:hover {
+.logout-button:hover {
     background-color: #7B2FEF;
     transform: translateY(-2px);
 }
@@ -504,6 +580,7 @@
     margin-right: 2px;
     color: #dc3545;
 }
+
 /*--------------------------------------------------
 * 11. RESPONSIVE STYLES
 --------------------------------------------------*/
@@ -586,4 +663,122 @@
     .page-style-profile .button-section {
         flex-direction: column;
     }
+}
+
+/*--------------------------------------------------
+* HEALTH SECTION STYLES
+--------------------------------------------------*/
+.health-section {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.health-section h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f2f2f2;
+}
+
+.health-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.health-stat-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.health-stat-item:hover {
+    transform: translateY(-2px);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.stat-value i {
+    margin-right: 0.5rem;
+}
+
+/* Update profile container for better layout */
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+/* Update profile details section */
+.profile-details {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Update profile picture styles */
+.profile-pic-container {
+    flex: 0 0 200px;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Update button section */
+.button-section {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.update-button {
+    background: #8B3DFF;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.update-button:hover {
+    background: #7B2FEF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 61, 255, 0.2);
 }

@@ -27,7 +27,7 @@
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.form-container [type="text"], .form-container input[type="date"], .form-container input[type="file"], .form-container input[type="number"], .form-container select, .form-container input[type="tel"], .form-container textarea{
+.form-container [type="text"], .form-container input[type="date"], .form-container input[type="time"], .form-container input[type="file"], .form-container input[type="number"], .form-container select, .form-container input[type="tel"], .form-container textarea{
     background-color: rgb(255, 255, 255,0.35);
     color: #333;
 }

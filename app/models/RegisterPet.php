@@ -23,4 +23,10 @@ class RegisterPet
     public function registerPet($data) {
         return $this->insert($data) ? true : false;
     }
+
+    public function getPet($petid){
+        // $query = "SELECT * FROM `" . $this->table . "` WHERE `pet_id` = :petid";
+        $result = $this->first(['pet_id' => $petid]);
+        return $result;
+    }
 }

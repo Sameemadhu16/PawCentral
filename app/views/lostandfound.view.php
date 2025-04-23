@@ -34,11 +34,11 @@
                             <img src=<?= htmlspecialchars($post->img1) ?> alt="<?= htmlspecialchars($post->petName) ?>" class="pet-image">
                             <div class="pet-info">
                                 <h2><?= htmlspecialchars($post->petName) ?> - <?= htmlspecialchars($post->breed) ?></h2>
-                                <p><?= htmlspecialchars($post->status) ?></p>
-                                <p><?= htmlspecialchars($post->address) ?></p>
+                                <p><strong><?= htmlspecialchars($post->status) ?></strong></p>
                                 <?php if ($post->reward != 0 or $post->reward != null): ?>
                                     <span class="glimmer-button">Reward</span>
                                 <?php endif; ?>
+                                <p><?= htmlspecialchars($post->address) ?></p>
                                 <p>Reported on: <?= htmlspecialchars(date('d M Y', strtotime($post->publishedOn))) ?></p>
                             </div>
                         </a>

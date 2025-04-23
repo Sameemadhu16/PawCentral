@@ -25,7 +25,7 @@ h2 {
     background-color: rgb(128, 73, 254, .15);
     box-shadow:   var(--section-div-shadow);
     overflow-y: auto;
-    max-height: 320px;
+    max-height: 290px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;

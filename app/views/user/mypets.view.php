@@ -43,7 +43,9 @@
 
                 <div class="pets-section">
                     <?php foreach ($pets as $pet): ?>
-                        <div class="pet-container" onclick="selectPet('<?= htmlspecialchars($pet->pet_id); ?>')">
+                        <!-- <div class="pet-container" onclick="selectPet('<?= htmlspecialchars($pet->petid); ?>')"> -->
+                            
+                        <div class="pet-container" onclick="window.location.href='<?=ROOT?>/userprofile/mypets/Pet?id=<?= htmlspecialchars($pet->pet_id); ?>'">
                             <img src="<?= !empty($pet->petimg) ? htmlspecialchars($pet->petimg) : ROOT . '/assets/images/pets/catfound.jpg'; ?>" alt="<?= htmlspecialchars($pet->name); ?>" alt="pet image" class="pet-image">
                             <div class="pet-name"><?= htmlspecialchars($pet->name); ?></div>
                         </div>

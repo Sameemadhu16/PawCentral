@@ -28,6 +28,60 @@ class Mypets{
         $this->view('user/mypets',$pets);
     }
 
+    public function ShowPetProfile(){
+
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        
+        $petid = $_GET['id'];
+        // Initialize the model
+        $model = new RegisterPet();
+
+        // Retrieve all pets
+        $data['pet'] = $model->getPet($petid);
+        // print_r($data['pet']);
+        // exit();
+        //  Process images: convert binary `img1` data to Base64-encoded string
+        //  foreach ($data['pet'] as $pet) {
+            if (isset($data['pet']->petimg)) {
+                $data['pet']->petimg = "data:image/jpeg;base64," . base64_encode($data['pet']->petimg); // Adjust MIME type if not JPEG
+            }else{
+                $data['pet']->petimg = null;
+            // }
+        
+        }
+        $this->view('user/pet_profile',$data);
+    }
+
+    public function ShowPetRecords(){
+
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        
+        $petid = $_GET['id'];
+        // Initialize the model
+        $model = new RegisterPet();
+
+        // Retrieve all pets
+        $data['pet'] = $model->getPet($petid);
+        // print_r($data['pet']);
+        // exit();
+        //  Process images: convert binary `img1` data to Base64-encoded string
+        //  foreach ($data['pet'] as $pet) {
+            if (isset($data['pet']->petimg)) {
+                $data['pet']->petimg = "data:image/jpeg;base64," . base64_encode($data['pet']->petimg); // Adjust MIME type if not JPEG
+            }else{
+                $data['pet']->petimg = null;
+            // }
+        
+        }
+        $this->view('user/mypet_medicalrecords',$data);
+    }
+
     public function index2(){
         $this->view('user/selectedPet');
     }
