@@ -100,6 +100,8 @@
             <h3>Contact Number</h3>
             <input type="text" name="contactNumber" placeholder="ex: 077 34 353" required>
 
+            <h3>Description</h3>
+            <input type="text" name="description" placeholder="ex:medications" required>
             <h3>Email</h3>
             <input type="email" name="email" placeholder="Enter your email" required>
 

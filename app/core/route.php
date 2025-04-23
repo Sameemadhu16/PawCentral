@@ -114,6 +114,9 @@ route('lostandfound/update', 'user/LostAndFound@update');
 // merchanted pets
 route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
+route('findapet/sellingpost', 'Sellingpost@index');
+route('findapet/importingpost', 'Importingpost@index');
+route('findapet/rentingpost', 'Rentingpost@index');
 // medical centres
 route('services','Services');
 route('services/shop','Services@ViewShop');

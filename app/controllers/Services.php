@@ -25,7 +25,6 @@ class Services {
 
     }
     public function Inquiry($passed_id){
-        print_r($passed_id);
         $this->view('Inquire',['shop_id'=>$passed_id]);
     }
     public function submit($passed_id){

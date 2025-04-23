@@ -18,15 +18,17 @@
     <img src="<?= $post->img1 ?>" alt="Image 1">
     <img src="<?= $post->img2 ?>" alt="Image 2">
     <img src="<?= $post->img3 ?>" alt="Image 3">
+    <img src="<?= $post->img4 ?>" alt="Image 3">
+    <img src="<?= $post->img5 ?>" alt="Image 3">
   </div>
 
   <!-- Common Details -->
   <div class="section">
     <h2>Basic Info</h2>
     <?php if ($post->tradeType=== 'Importing'): ?>
-        <p><strong>Name:</strong> <?= $post->pet_name ?></p>
+        <p><strong>Name:</strong> <?= $post->petName ?></p>
         <?php elseif($post->tradeType==='Renting') :?>
-            <p><strong>Name:</strong> <?= $post->pet_name ?></p>
+            <p><strong>Name:</strong> <?= $post->petName ?></p>
             <?php else: ?>
                 <p><strong>Name:</strong> <?= $post->petName ?></p>
   <?php endif; ?>
@@ -36,10 +38,10 @@
     <p><strong>Age:</strong> <?= $post->age?></p>
     <p><strong>Height:</strong> <?= $post->height ?> cm</p>
     <p><strong>Weight:</strong> <?= $post->weight ?> kg</p>
-    <p><strong>Neutered:</strong> <?= $post->neutered ?></p>
-    <p><strong>Trained:</strong> <?= $post->trained?></p>
-    <p><strong>Pedigree:</strong> <?= $post->pedigree?></p>
-    <p><strong>Vaccinated:</strong> <?= $post->vaccinated ?></p>
+    <p><strong>Neutered:</strong> <?= $post->neutered ? 'Yes' : 'No' ?></p>
+<p><strong>Trained:</strong> <?= $post->trained ? 'Yes' : 'No' ?></p>
+<p><strong>Pedigree:</strong> <?= $post->pedigree ? 'Yes' : 'No' ?></p>
+<p><strong>Vaccinated:</strong> <?= $post->vaccinated ? 'Yes' : 'No' ?></p>
   </div>
 
   <!-- Contact Info -->

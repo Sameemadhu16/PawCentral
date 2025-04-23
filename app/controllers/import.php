@@ -49,9 +49,12 @@ class Import
                     'importing_owner' => $owner,
                     'transport_method' => $transport,
                     'importer_mobile' => $mobile,
+                    'description'=>$petData['description'],
                     'img1' => $imagePaths[0] ?? null,
                     'img2' => $imagePaths[1] ?? null,
                     'img3' => $imagePaths[2] ?? null,
+                    'img4' => $imagePaths[3] ?? null,
+                    'img5' => $imagePaths[4] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
                     'delete_status'=>0

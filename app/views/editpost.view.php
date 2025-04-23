@@ -13,7 +13,7 @@
 <body>
     <?php include '../app/views/components/header.php' ?>
     <div class="title">
-        <h2>Edit Post </h2>
+        <h2 class="editpost">Edit Post </h2>
         <hr/>
     </div>
     <div class="form">

@@ -41,6 +41,7 @@ class Selling
                 'vaccinated' => $petData['vaccinated'] === 'Yes' ? 1 : 0,
                 'contactName' => $petData['contactName'],
                 'contactNumber' => $petData['contactNumber'],
+                'description'=>$petData['description'],
                 'email' => $petData['email'],
                 'price' => $price,
                 'City' => $city,
@@ -48,15 +49,14 @@ class Selling
                 'img1' => $imagePaths[0] ?? null,
                 'img2' => $imagePaths[1] ?? null,
                 'img3' => $imagePaths[2] ?? null,
+                'img4'=>$imagePaths[3]?? null,
+                'img5'=>$imagePaths[4]?? null,
                 'fee_negotiable' => isset($_POST['fee_negotiable']) ? 1 : 0,
                 'agreed_terms' => isset($_POST['agreed_terms']) ? 1 : 0,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'delete_status'=>0
             ];
-           
-            echo "<pre>";
-            print_r($data);
-            echo "<pre>";
+          
             $postPetModel = new AddPostpet();
             if ($postPetModel->insert($data)) {
                 $_SESSION['success_message'] = "Post successfully created";

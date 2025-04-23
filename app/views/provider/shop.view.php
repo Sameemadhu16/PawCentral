@@ -68,7 +68,9 @@
 </div>
 
         </div>
-    <button onclick="location.href='<?=ROOT?> /shop/postForm'">Create Post</button>
+        <div class="create-post-section">
+    <button class="create-post-btn" onclick="location.href='<?=ROOT?>/shop/postForm'">Create Post</button>
+</div>
         <!-- Testimonials Section -->
         <div class="testimonials">
             <h2>What Our Customers Say</h2>

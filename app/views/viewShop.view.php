@@ -66,12 +66,14 @@
         <?php endforeach; ?>
     </div>
 </div>
-<?php
-    print_r($shop_id);
-?>
+
         </div>
-   
-        <button onclick="location.href='<?=ROOT?> /services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
+
+<?php if($_SESSION['user_id']!=$shop_id): ?>
+        <div class="inquiry-section">
+    <button class="inquiry-btn" onclick="location.href='<?=ROOT?>/services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
+</div>
+<?php endif ?>
         <!-- Testimonials Section -->
         <div class="testimonials">
             <h2>What Our Customers Say</h2>

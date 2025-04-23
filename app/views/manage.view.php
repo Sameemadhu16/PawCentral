@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Posts</title>
     <link rel="stylesheet" href="../assets/css/manage.css">
+    <link rel="stylesheet" href="./assets/css/main/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php include '../app/views/components/header.php' ?>
+    <div class="main-container">
+    <?php include("../app/views/components/merchant/sidebar.php"); ?>
+    <div class="contents">
     <div class="managepost">
         <h1>Manage Posts</h1>
         <p class="managepost-title">Review, edit, or delete your active posts here.</p>
     </div>
      
     <div class="post-container">
+        
         <?php if(!empty($sell_posts)): ?>
             <?php foreach($sell_posts as $posts): ?>
                 <?php if($posts->delete_status!=1): ?>
@@ -56,7 +61,7 @@
                     <div class="post-actions">
                     <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($posts->pet_id)?>&type=<?=htmlspecialchars($posts->tradeType)?>" class="btn edit-btn">Edit</a>
 
-                        <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                        <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn">Delete</a>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -103,7 +108,7 @@
                     <div class="post-actions">
                     <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($posts->pet_id)?>&type=<?=htmlspecialchars($posts->tradeType)?>" class="btn edit-btn">Edit</a>
 
-                    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn">Delete</a>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -149,7 +154,7 @@
                     
                     <div class="post-actions">
                     <a href="<?=ROOT?>/service/manage/edit?id=<?=htmlspecialchars($posts->pet_id)?>&type=<?=htmlspecialchars($posts->tradeType)?>" class="btn edit-btn">Edit</a>
-                    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
+                    <a href="<?=ROOT?>/service/manage/delete?id=<?=htmlspecialchars($posts->pet_id)?>&tradeType=<?=htmlspecialchars($posts->tradeType)?>" class="btn delete-btn">Delete</a>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -157,8 +162,21 @@
         <?php else: ?>
             <!-- <p>No import posts available</p> -->
         <?php endif; ?>
-    </div>
+        <div id="customConfirm" class="confirm-modal">
+            <div class="confirm-content">
+                <p>Are you sure you want to delete this post?</p>
+                    <div class="confirm-buttons">
+                        <button id="confirmYes">Yes</button>
+                        <button id="confirmNo">No</button>
+                    </div>
 
+            </div>
+
+        </div>
+    </div>
+        </div>
+ </div>
+ <?php include("../app/views/components/footer.php")?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize all sliders
@@ -208,6 +226,32 @@
            
         });
     });
+    document.querySelectorAll('.delete-btn').forEach(link=>{
+        link.addEventListener('click',function(e){
+            e.preventDefault();
+            const deleteUrl=this.href;
+            const modal=document.getElementById('customConfirm');
+            modal.style.display='flex';
+            document.getElementById('confirmYes').onclick=function(){
+                modal.style.display='none';
+                window.location.href=deleteUrl;
+            };
+
+            document.getElementById('confirmNo').onclick=function(){
+                modal.style.display='none';
+            };
+        });
+    });
+    
+    // function showCustomConfirm(actionUrlId){
+    //     const modal=document.getElementById('customConfirm');
+    //     modal.style.display='none';
+    //     window.location.href=actionUrl;
+    // };
+    // document.getElementById('confirmNo').onclick=function(){
+    //     modal.style.display='none';
+    // };
     </script>
+    
 </body>
 </html>

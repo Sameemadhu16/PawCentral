@@ -46,11 +46,7 @@
             <div class="card">
                 <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Service Image">
                 <p class="name"><?= htmlspecialchars($shop->name) ?></p>
-                <?php
-                echo "<pre>";
-print_r($shop->user_id);
-echo "</pre>";
-?>
+
                 <p><?= htmlspecialchars($shop->service_type ?? 'Service') ?></p>
                 <div class="centre-info">
                     <span class="rating">★★★☆☆</span> <!-- Static rating placeholder -->
