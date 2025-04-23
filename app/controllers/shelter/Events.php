@@ -105,7 +105,7 @@ class Events
                 $event->eventimg = null;
             }
         }
-        $this->view('user/enrolled_events', $events);
+        $this->view('shelter/enrolled_events', $events);
     }
 
     public function downloadEnrollments()

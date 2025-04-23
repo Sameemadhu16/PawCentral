@@ -11,65 +11,85 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
+    <style>
+        /* #PendingDiv, #CompletedDiv {
+            display: none;
+        } */
+        .inv-container {
+            max-height: 0;
+            overflow: auto;
+            transition: max-height .5s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* When active */
+        .inv-container.active {
+            max-height: 270px;
+            /* Large enough to show the full content */
+        }
+
+        .active-btn {
+            background-color: var(--button-normal-hover) !important;
+        }
+    </style>
 </head>
 
 <body class="body">
-    <?php include("../app/views/components/header.php");
-
-    ?>
+    <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container container">
-        <?php include("../app/views/components/shelter/sidebar.php");
-
-        ?>
+        <?php include("../app/views/components/shelter/sidebar.php"); ?>
 
         <div class="user-accounts-section">
             <div class="events-sec">
                 <?php if (!empty($events)): ?>
-                    <div class="topicnbuttons">
+                    <!-- <div class="topicnbuttons">
+                    <button class="add-event fixedsize"  onclick="openPopup()">Add Event</button>
+                    </div> -->
+
+                    <div class="header-section">
+                        <h2>Your Events</h2>
+                        <button class="add-event fixedsize" onclick="window.location.href='<?= ROOT ?>/shelter/enrolled_events'">See Enrolled Events</button>
                         <button class="add-event fixedsize" onclick="openPopup()">Add Event</button>
                     </div>
-
-                    <div class="topicnbuttons">
-                        <h2>Your Published Events</h2>
-                    </div>
                     <div class="event-list">
-                        <?php foreach ($events as $event) : ?>
-                            <div class="event-card">
-                                <div class="event-card-content">
-                                    <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
-                                    <div class="event-details">
-                                        <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
-                                        <p><?= htmlspecialchars($event->date) ?></p>
-                                        <p><?= htmlspecialchars($event->location) ?></p>
-                                        <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
-                                        <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
-                                        <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
-                                    </div>
-
-                                    <div class="event-actions">
-                                        <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
-
-                                        <form action="<?= ROOT ?>/events/download_enrollments" method="post">
-                                            <input type="hidden" name="event_id" value="<?= $event->event_id ?>">
-                                            <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
-                                            <button type="submit" class="don-button fixedsize">Participants</button>
-                                        </form>
-
-                                        <form action="<?= ROOT ?>/events/download_enrollments" method="post">
-                                            <input type="hidden" name="event_id" value="<?= $event->event_id ?>">
-                                            <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
-                                            <button type="submit" class="don-button fixedsize">Edit info</button>
-                                        </form>
+                        <?php
+                        $hasOngoing = false;
+                        foreach ($events as $event) :
+                            if ($event->status == 0 & $event->approved == 1):
+                                $hasOngoing = true;
+                        ?>
+                                <div class="event-card">
+                                    <div class="event-card-content">
+                                        <img class="event-image" src="<?= htmlspecialchars($event->eventimg) ?>" alt="Event Image">
+                                        <div class="event-details">
+                                            <h3 class="hide_overflow"><?= htmlspecialchars($event->title) ?></h3>
+                                            <p><?= htmlspecialchars($event->date) ?></p>
+                                            <p><?= htmlspecialchars($event->location) ?></p>
+                                            <p class="hide_overflow"><?= htmlspecialchars($event->address) ?></p>
+                                            <p class="published-date">Published on: <?= htmlspecialchars($event->created_at) ?></p>
+                                            <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
+                                        </div>
+                                        <div class="event-actions">
+                                            <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                        </div>
                                     </div>
                                 </div>
+                            <?php endif; ?>
+                        <?php endforeach;
+                        if (!$hasOngoing):
+                        ?>
+                            <div style="text-align: center; padding: 2rem; color: #777;">
+                                You have no ongoing events published at the moment.
                             </div>
-                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 <?php else: ?>
 
                     <div style="display: flex; justify-content: center; align-items: center; padding: 2rem;">
-                        <button class="add-event fixedsize" onclick="window.location.href='<?= ROOT ?>/shelter/enrolled_events'">See Events You Are Enrolled In</button>
+                        <button class="add-event fixedsize" onclick="window.location.href='<?= ROOT ?>/userprofile/enrolled_events'">See Events You Are Enrolled In</button>
                     </div>
                     <hr style="border: none; height: 1.1px; background-color: #6200ef; margin: 1rem 0;">
                     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
@@ -108,13 +128,6 @@
                                         </div>
                                         <div class="event-actions">
                                             <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/shelter/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to abort this event request?<br><br><?= htmlspecialchars($event->title) ?>', reasons=['Mistaken Entry','Cancelled','No longer Valid','Filled up from other Sources'])">Abort event</button>
-
-                                            <form action="<?= ROOT ?>/events/download_enrollments" method="post">
-                                                <input type="hidden" name="event_id" value="<?= $event->event_id ?>">
-                                                <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
-                                                <button type="submit" class="don-button fixedsize">Edit info</button>
-                                            </form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -149,12 +162,6 @@
                                         <div class="event-actions">
                                             <!-- <p>closing reason: <?= htmlspecialchars($event->closing_reason) ?></p> -->
                                             <!-- <button class="close-event" ><?= htmlspecialchars($event->closing_reason) ?></button> -->
-
-                                            <form action="<?= ROOT ?>/events/download_enrollments" method="post">
-                                                <input type="hidden" name="event_id" value="<?= $event->event_id ?>">
-                                                <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">
-                                                <button type="submit" class="don-button fixedsize">User List</button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -181,10 +188,10 @@
             <h2>Enter Event Information</h2>
             <form id="petForm" action="<?= ROOT ?>/shelter/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" eventuired>
 
                 <label for="eventimg">Upload a cover photo:</label>
-                <input type="file" id="eventimg" name="photos[]" accept="image/*" required>
+                <input type="file" id="eventimg" name="photos[]" accept="image/*" eventuired>
                 <div id="imagePreviewContainer"></div>
                 <script>
                     document.getElementById('eventimg').addEventListener('change', function() {
@@ -216,31 +223,19 @@
                 </script>
 
                 <label for="date">Event Date:</label>
-                <input type="date" id="date" name="date" required>
+                <input type="date" id="date" name="date" eventuired>
 
                 <label for="location">Location:</label>
-                <select name="location" id="location" required>
-                    <option value="" disabled selected>Select Event Location</option>
-                    <option value="Colombo">Colombo</option>
-                    <option value="Kandy">Kandy</option>
-                    <option value="Galle">Galle</option>
-                    <option value="Matara">Matara</option>
-                    <option value="Jaffna">Jaffna</option>
-                    <option value="Negombo">Negombo</option>
-                    <option value="Anuradhapura">Anuradhapura</option>
-                    <option value="Trincomalee">Trincomalee</option>
-                    <option value="Kurunegala">Kurunegala</option>
-                    <option value="Ratnapura">Ratnapura</option>
-                </select>
+                <input type="text" id="location" name="location" placeholder="City/Town" eventuired>
 
                 <label for="time">Event Time:</label>
-                <input type="time" id="time" name="time" required>
+                <input type="time" id="time" name="time">
 
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+                <input type="text" id="address" name="address" eventuired>
 
                 <label for="participants">Max Participants allowed:</label>
-                <input type="number" id="participants" name="participants" min="2" max="800" required>
+                <input type="number" id="participants" name="participants" min="2" max="800" eventuired>
 
                 <script>
                     document.querySelector('form').addEventListener('submit', function(event) {
@@ -267,7 +262,7 @@
 
                 <label for="eventdesc">Add a description for the event:</label>
                 <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
-Prerequisits if there are any.
+Preeventuisits if there are any.
 or any other information that participants should be aware of."></textarea>
                 <button type="submit">Submit</button>
             </form>
@@ -285,6 +280,39 @@ or any other information that participants should be aware of."></textarea>
         function closePopup() {
             document.getElementById("popupForm").style.display = "none";
             document.body.style.overflow = "auto"; // Enable scrolling
+        }
+
+        function toggleDiv(divId) {
+            const pending = document.getElementById("PendingDiv");
+            const completed = document.getElementById("CompletedDiv");
+            const target = document.getElementById(divId);
+            const pendingBtn = document.getElementById("PendingDivButton");
+            const completedBtn = document.getElementById("CompletedDivButton");
+
+            // Hide both first
+            pending.classList.remove("active");
+            completed.classList.remove("active");
+            pendingBtn.classList.remove("active-btn");
+            completedBtn.classList.remove("active-btn");
+
+            // Toggle the selected one if it wasn't already active
+            if (target !== null && !target.classList.contains("active")) {
+                target.classList.add("active");
+            }
+
+            if (divId == "PendingDiv") {
+                pendingBtn.classList.add("active-btn");
+            } else if (divId == "CompletedDiv") {
+                completedBtn.classList.add("active-btn");
+            }
+        }
+
+        function openPendingDiv() {
+            toggleDiv("PendingDiv");
+        }
+
+        function openCompletedDiv() {
+            toggleDiv("CompletedDiv");
         }
     </script>
 
