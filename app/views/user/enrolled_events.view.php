@@ -66,7 +66,7 @@
                                             <button class="close-event fixedsize" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/unenroll?id=<?= htmlspecialchars($event->event_id) ?>', 'Are you sure you want to unenroll from this event?<br><br><?= htmlspecialchars($event->title) ?>')">Unenroll</button>
                                             <button class="add-event fixedsize" onclick="window.location.href='<?=ROOT?>/eventsandcampaigns/event?id=<?=$event->event_id?>'">See Info</button>
                                         <?php else: ?>
-                                            <span class="event-status">Event Completed</span>
+                                            <span class="event-status">Reg. Closed</span>
                                         <?php endif; ?>
                                     </div>
                                 </div>

@@ -73,7 +73,7 @@ class EventsModel
 
     public function getEnrolledEvents($userId) {
         $this->table = $this->enrolltable;
-        $query = "SELECT * FROM `" . $this->table . "` ee JOIN events e ON e.event_id = ee.event_id WHERE ee.user_id = :userid AND e.status = 0";
+        $query = "SELECT * FROM `" . $this->table . "` ee JOIN events e ON e.event_id = ee.event_id WHERE ee.user_id = :userid AND `e`.`date` > NOW()";
         $result = $this->query($query, [':userid' => $userId]);
         // print_r($result);
         return $result;
