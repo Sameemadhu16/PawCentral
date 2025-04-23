@@ -6,6 +6,7 @@
     <title>Lost & Found Pets</title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/lost-pet.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
+    <!-- <link rel="stylesheet" href="<?=ROOT?>/assets/css/lostandfound.css"> -->
 </head>
 <body>
     <?php include("../app/views/components/header.php"); ?>
@@ -43,6 +44,7 @@
         <div class="specs"><p>Age :</p><span><?= htmlspecialchars($pet->age ?? 'Unknown') ?> months</span></div>
         <div class="specs"><p>Health Condition :</p><span><?= htmlspecialchars($pet->health ?? 'Unknown') ?></span></div>
         <div class="specs"><p>Color :</p><span><?= htmlspecialchars($pet->color ?? 'Unknown') ?></span></div>
+        
 
         <!-- Contact Info -->
         <div class="contact-section">
@@ -51,6 +53,12 @@
             <div class="contact-info">
                 <span id="phone" class="reveal-info" data-info="<?= htmlspecialchars($pet->contactNo ?? 'N/A') ?>">Click to show</span>
             </div>
+        </div>
+
+        <div class="contact-section">
+        <?php if ($pet->reward != 0 or $pet->reward != null): ?>
+            <div class="glimmer-button" style="width:block;"><span><?= htmlspecialchars($pet->reward ?? '0') ?></span> LKR Reward</div>
+        <?php endif; ?>
         </div>
 
         <!-- Description -->

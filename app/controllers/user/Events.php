@@ -106,4 +106,40 @@ class Events{
         $this->view('user/enrolled_events', $events);
     }
 
+    public function downloadEnrollments()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
+            $event_id = $_POST['event_id'];
+            $event_name = $_POST['event_name'];
+    
+            $model = new EventsModel();
+            $enrollments = $model->getEnrollmentsByEventId($event_id);
+    
+            // Call download method
+            $this->exportToCSV($enrollments, $event_name."_enrollments.csv");
+        }
+    }
+
+    private function exportToCSV($data, $filename = "enrollments.csv")
+    {
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+        $output = fopen('php://output', 'w');
+
+        if (!empty($data)) {
+            // Output headers
+            fputcsv($output, array_keys((array)$data[0]));
+
+            // Output each row
+            foreach ($data as $row) {
+                fputcsv($output, (array)$row);
+            }
+        }
+
+        fclose($output);
+        exit;
+    }
+    
+
 }

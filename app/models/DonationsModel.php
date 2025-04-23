@@ -54,6 +54,11 @@ class DonationsModel
         return $this->insert($data) ? true : false;
     }
 
+    public function UpdateReq($id,$data,$id_colName){
+        $this->table=$this->donation_req;
+        $result=$this->update($id,$data,$id_colName);
+    }
+
     public function getDonations($conditions = []) {
         $this->table = $this->donation_req;
 
@@ -101,7 +106,7 @@ class DonationsModel
         
         // prepare data for notification    
         $noti['title'] = $req->title . ' :Donation Request Completed';
-        $noti['user_id'] = $req_id;  
+        $noti['user_id'] = $req->user_id;  
         $noti['message'] = 'Good News! your donation request has collected ' . $req->collected .'Rs and completed. It is now closed.';
         $this->addNotification($noti);
         return $result;
