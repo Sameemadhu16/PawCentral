@@ -29,10 +29,12 @@
                     <div class="progress-bar-container">
                         <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
                     </div>
-                    <p class="amount">
-                        <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
-                        $<?= number_format($amount, 2) ?>
-                    </p>
+                    <div class="overflow-hide">
+                        <p class="amount">
+                            <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
+                            $<?= number_format($amount, 2) ?>
+                        </p>
+                    </div>
                     <a href="<?= ROOT ?>/donationsnsupport/req?id=<?= $request->id ?>" class="donate-button">Donate Now</a>
                 </div>
             </div>

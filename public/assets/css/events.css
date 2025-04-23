@@ -37,15 +37,18 @@ body {
 }
 
 .event-card {
-    flex: 1; /* Allow cards to take equal space */
-    min-width: 500px; /* Minimum width for the cards */
-    max-width: 60%;
-    margin: 5px;
-    /* padding: 10px; */
-    border-radius: 10px;
-    background-color: #f0f2f5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Allow cards to take equal space */
+  min-width: 500px; /* Minimum width for the cards */
+  max-width: calc(50% - 15px) !important; /* Adjusted to fit two cards per row with gap */
+  margin: 5px;
+  /* padding: 10px; */
+  border-radius: 10px;
+  background-color: #f0f2f5;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Ensure the status can be positioned relative to the card */
 }
+
 
 .event-card-content {
     display: flex;

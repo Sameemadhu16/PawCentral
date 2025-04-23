@@ -82,7 +82,7 @@ class Events{
         parse_str($insert[1], $queryParams);
         $reason = $queryParams['reason'] ?? 'No reason provided';
 
-        $data = ['status' => 3, 'closing_reason'=>$reason]; // Set status to closed
+        $data = ['status' => 1, 'closing_reason'=>$reason]; // Set status to closed
 
         $success=$model->update($id, $data, 'event_id');
 

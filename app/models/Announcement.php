@@ -25,4 +25,11 @@ class Announcement {
     // public function update($id, $data) {
     //     return parent::update($id, $data); // Call the update function from the Model trait
     // }
+
+    public function getViewAnnouncements() {
+        $query = "SELECT * FROM {$this->table} ORDER BY created_at DESC LIMIT 5";
+        // print_r($this->query($query));
+        // exit();
+        return $this->query($query);
+    }
 }

@@ -109,7 +109,7 @@ class Donation{
     //update Donation Requests: make approve = 0 for re review
     function EditReq($id){
         if(!($_SESSION['user_id']) OR $id == NULL){
-            redirect('uderprofile/donations');
+            redirect('userprofile/donations');
         }
 
         // Initialize the model
@@ -163,7 +163,7 @@ class Donation{
 
             $result = $donations->UpdateReq($_POST['id'],$data,'id');
             if ($result) {
-                print_r('suxes');
+                // print_r('suxes');
                 header("Location: " . ROOT . "/userprofile/donations");
                 exit; 
             } else {
