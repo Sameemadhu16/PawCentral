@@ -90,10 +90,14 @@ body {
     max-width: auto;
     /* margin: 0 auto; */
     padding: 30px 165px;
+    min-height: 55vh;
     
     /* display: flex; */
 }
 
+.containers {
+    min-height: 55vh;
+}
 /* Common Button Styles */
 .btn {
     padding: 0.5rem 1rem;
