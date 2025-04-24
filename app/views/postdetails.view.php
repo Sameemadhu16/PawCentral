@@ -18,8 +18,8 @@
     <img src="<?= $post->img1 ?>" alt="Image 1">
     <img src="<?= $post->img2 ?>" alt="Image 2">
     <img src="<?= $post->img3 ?>" alt="Image 3">
-    <img src="<?= $post->img4 ?>" alt="Image 3">
-    <img src="<?= $post->img5 ?>" alt="Image 3">
+    <img src="<?= $post->img4 ?>" alt="Image 4">
+    <img src="<?= $post->img5 ?>" alt="Image 5">
   </div>
 
   <!-- Common Details -->

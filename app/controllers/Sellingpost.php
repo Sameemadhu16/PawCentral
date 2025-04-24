@@ -5,6 +5,7 @@ class Sellingpost{
 
     public function index(){
 
+         $detailsPost=new AddPostpet();
         $this->view('sellingpost');
     }
     

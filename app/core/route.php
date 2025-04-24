@@ -47,8 +47,7 @@ route('service/manage/details','Manage@details');
 
 
 // Provider Routes
-route('provider/profile','provider/Profile@index');
-route('provider/notification','provider/Notification@index');
+
 
 route('shop','provider/Shop@index');
 route('shop/postForm','provider/postForm@index');
@@ -151,9 +150,29 @@ route('merchant/event','merchant/Events@index');
 route('merchant/event/addevent','merchant/Events@NewEvent');
 route('merchant/event/closeevent','merchant/Events@closeEvent');
 route('merchant/enrolled_events','merchant/Events@showEnrolledEvents');
+route('lostandfound/marklostnfound', 'merchant/LostAndFound@markAsComplete');
+route('lostandfound/postdetails','merchant/LostAndFound@show');
+route('lostandfound/post-report-animal','merchant/LostAndFound@createReport');
+route('lostandfound/edit', 'merchant/LostAndFound@edit'); //updating pet post
+route('lostandfound/update', 'merchant/LostAndFound@update');
 
+//provider profile
+route('provider','provider/Profile@index');
+route('provider/profile','provider/Profile@index');
+route('provider/update','provider/Profile@update');
+route('provider/notifications','provider/Notification@index');
+route('provider/donations','provider/Donation@index');
+route('provider/donations/req','provider/Donation@AddReq');
+route('provider/donations/closeReq','provider/Donation@CloseReq');
+route('provider/donations/update','provider/Donation@UpdateView');
+route('provider/donations/edit','provider/Donation@EditReq');
+route('provider/donations/updatereq','provider/Donation@UpdateReq');
+// route('userprofile/donations/updateInfo','user/Donation@SubmitUpdate');
 
-
+route('provider/event','provider/Events@index');
+route('provider/event/addevent','provider/Events@NewEvent');
+route('provider/event/closeevent','provider/Events@closeEvent');
+route('provider/enrolled_events','provider/Events@showEnrolledEvents');
 
 
 
