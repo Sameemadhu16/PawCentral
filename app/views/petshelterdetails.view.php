@@ -20,6 +20,9 @@
     // show($data);
     ?>
 
+    <?php $shelter = $data['shelter'];
+    $profile = $data['user'] ?>
+
     <div class="main-container container">
         <div class="user-accounts-section">
             <div class="profile-section">
@@ -39,7 +42,7 @@
                         </div>
                     </div>
 
-                    <?php $shelter = $data['shelter'] ?>
+
                     <!-- Profile Details -->
                     <div class="profile-details">
                         <!-- User Profile Details -->
@@ -47,6 +50,9 @@
                             <span class="profile-detail-item-label">Shelter Name: </span><?= !empty($shelter->name) ? htmlspecialchars($shelter->name) : 'N/A' ?>
                         </div>
                         <!-- Shelter Details -->
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Shelter Address : </span><?= !empty($profile->location) ? htmlspecialchars($profile->location) : 'N/A' ?>
+                        </div>
                         <div class="profile-detail-item">
                             <span class="profile-detail-item-label">Shelter Location: </span><?= !empty($shelter->location) ? htmlspecialchars($shelter->location) : 'N/A' ?>
                         </div>
@@ -69,7 +75,7 @@
 
 
 
-    
+
 
     <?php include("../app/views/components/footer.php"); ?>
 
