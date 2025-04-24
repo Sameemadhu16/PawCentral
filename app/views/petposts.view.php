@@ -57,7 +57,7 @@
     <div class="results-container">
         <?php if (!empty($posts)): ?>
             <?php foreach ($posts as $post): ?>
-                <a href="<?= ROOT ?>/findapet/<?= $post->pet_id ?>" class="card">
+                <a href="<?= ROOT ?>/findapet/<?= $post->post_type ?>?id=<?= $post->pet_id ?>" class="card">
                     <span class="corner-label <?= $post->post_type ?>">
                         <?= ucfirst($post->post_type === 'adoption' ? 'adopt' : $post->post_type) ?>
                     </span>
