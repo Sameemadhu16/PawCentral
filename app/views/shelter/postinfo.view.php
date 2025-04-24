@@ -4,13 +4,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost & Found Pets</title>
+    <title>Adoption Postinfo</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/pet-post.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            max-width: 90%;
+            animation: slideIn 0.3s ease;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .warning-icon {
+            font-size: 40px;
+            color: #ff9800;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .modal-body p {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .modal-subtitle {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .modal-footer form {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: flex-end;
+        }
+
+        .modal-content button {
+            padding: 10px 16px;
+            font-size: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .confirm-button {
+            background-color: var(--danger);
+            color: #fff;
+        }
+
+        .cancel-button {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .confirm-button:hover {
+            background-color: var(--danger-dark);
+        }
+
+        .cancel-button:hover {
+            background-color:var(--primary-dark);
+        }
+
+        .modal-content button i {
+            margin-right: 6px;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,12 +204,12 @@
         <div class="more-button" onclick="toggleExtraInfo()">
             <p id="more-less">More</p> <span>▼</span>
         </div>
-        
-                <!-- Description -->
-                <div class="description-section">
-                    <h3><?= esc($post->description) ?></h3>
-        
-                </div>
+
+        <!-- Description -->
+        <div class="description-section">
+            <h3><?= esc($post->description) ?></h3>
+
+        </div>
 
 
         <!-- Contact Info -->
@@ -114,9 +223,33 @@
                     Edit
                 </button>
 
-                <button class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete this post?')) window.location.href='<?= ROOT ?>/shelter/delete_post?id=<?= $post->id ?>'">Delete</button>
+                <button class="btn btn-danger" onclick="openDeleteModal(<?= $post->pet_id ?>)">Delete</button>
 
+            </div>
+        </div>
 
+        <!-- Delete confirmation modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Confirm Deletion</h3>
+                </div>
+                <div class="modal-body">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    <p>Are you sure you want to delete this post?</p>
+                    <p class="modal-subtitle">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST">
+                        <input type="hidden" name="pet_id" value="<?=$post->pet_id?>">
+                        <button type="button" onclick="closeDeleteModal()" class="cancel-button">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="confirm-button" name="deletepost">
+                            <i class="fas fa-check"></i> Yes, Delete
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -154,6 +287,21 @@
                     moreButton.classList.add('active');
                     more_less.innerHTML = 'Less';
                 }
+            }
+        </script>
+
+        <script>
+            function openDeleteModal() {
+                document.getElementById('deleteModal').style.display = 'flex';
+            }
+
+            function closeDeleteModal() {
+                document.getElementById('deleteModal').style.display = 'none';
+            }
+
+            function confirmDelete() {
+                alert("Delete action confirmed.");
+                closeDeleteModal();
             }
         </script>
 

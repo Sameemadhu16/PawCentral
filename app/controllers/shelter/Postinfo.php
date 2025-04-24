@@ -11,6 +11,11 @@ class Postinfo{
         $data = [
             'post' => $this->getPostDetails(),
         ];
+
+        if ($_SERVER['REQUEST_METHOD'] && isset($_POST['deletepost'])) {
+            $this->DeletePost();
+            redirect('shelter/post');
+        }
         // show($data);
         $this->view('shelter/postinfo', $data);
     }
@@ -32,6 +37,13 @@ class Postinfo{
         }
 
         return $post[0];
+    }
+
+    private function DeletePost(){
+
+        $postModel = new AdoptionPostModel;
+        $postModel->update($_POST['pet_id'], ['is_deleted' => 1],'pet_id');
+
     }
 
 

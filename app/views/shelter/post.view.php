@@ -43,6 +43,7 @@
                         <?php foreach ($posts as $post) : 
                             // show($post->pet_id)
                             ?>
+                            <?php if ($post->is_deleted != 1): ?>
                             <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?=$post->pet_id?>'">
                                 <div class=" post-card-content">
 
@@ -76,7 +77,10 @@
                                     <button class="delete-btn" onclick="deletePost(<?= $post->id ?>)">Delete</button>
                                 </div> -->
                             </div>
-                    </div>
+                    
+                        </div>
+                        <?php endif; ?>
+
                 <?php endforeach; ?>
             </div>
 
