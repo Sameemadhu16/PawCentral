@@ -58,7 +58,6 @@ class Mypets{
     public function ShowPetRecords(){
 
         if(!($_SESSION['user_id'])){
-
             redirect('home');
         }
         
@@ -68,7 +67,8 @@ class Mypets{
 
         // Retrieve all pets
         $data['pet'] = $model->getPet($petid);
-        // print_r($data['pet']);
+        $data['medical_records'] = $model->getMedicalRecords($petid,$_SESSION['user_id']);
+        // print_r($data['medical_records']);
         // exit();
         //  Process images: convert binary `img1` data to Base64-encoded string
         //  foreach ($data['pet'] as $pet) {

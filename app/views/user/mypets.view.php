@@ -75,6 +75,7 @@
                         <button class="cancel-button" onclick="cancelAppointment()">Cancel appointment</button>
                     </div>
                 </div>
+                
                 <script>
         function selectPet(petName) {
             alert(`You selected ${petName}`);

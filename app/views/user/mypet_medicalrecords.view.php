@@ -25,12 +25,14 @@
                 <?php if (!empty($medical_records)): ?>
                     <?php foreach ($medical_records as $record): ?>
                         <div class="med-record">
-                            <h2>
-                                <?= htmlspecialchars($record->visit_type) ?>
-                                <span class="record-date">
+                            <h2><span class="record-date">
                                     <i class="far fa-calendar-alt"></i>
-                                    <?= date('M d, Y', strtotime($record->visit_date)) ?>
+                                    <!-- <?= date('M d, Y h:i A', strtotime($record->app_date)) ?> -->
+                                    <?= date('M d Y', strtotime($record->app_date)) ?><br>
+                                    <?= date('h:i A', strtotime($record->app_date)) ?>
                                 </span>
+                                <?= htmlspecialchars($record->reason) ?>
+                                
                             </h2>
                             
                             <div class="record-details">
@@ -40,23 +42,18 @@
                                 </div>
                                 
                                 <div class="record-item">
+                                    <span class="record-label">Medical Provider</span>
+                                    <span class="record-value"><?= htmlspecialchars($record->vet_name) ?></span>
+                                </div>
+                                
+                                <div class="record-item">
                                     <span class="record-label">Diagnosis</span>
                                     <span class="record-value"><?= htmlspecialchars($record->diagnosis) ?></span>
                                 </div>
                                 
-                                <div class="record-item">
-                                    <span class="record-label">Treatment</span>
-                                    <span class="record-value"><?= htmlspecialchars($record->treatment) ?></span>
-                                </div>
-                                
-                                <div class="record-item">
-                                    <span class="record-label">Weight</span>
-                                    <span class="record-value"><?= htmlspecialchars($record->weight) ?> kg</span>
-                                </div>
-                                
                                 <div class="record-notes">
                                     <span class="record-label">Notes</span>
-                                    <span class="record-value"><?= htmlspecialchars($record->notes) ?></span>
+                                    <span class="record-value"><?= htmlspecialchars($record->vet_notes) ?></span>
                                 </div>
                             </div>
                         </div>

@@ -5,6 +5,8 @@ class RegisterPet
     use Model;
 
     protected $table = 'registered_pets';
+    protected $appointment_table = 'medical_appointments';
+    protected $medicalrec_table = 'medical_records';
 
     public function getRegPets()
     {
@@ -27,6 +29,17 @@ class RegisterPet
     public function getPet($petid){
         // $query = "SELECT * FROM `" . $this->table . "` WHERE `pet_id` = :petid";
         $result = $this->first(['pet_id' => $petid]);
+        return $result;
+    }
+
+    public function getMedicalRecords($petid, $owner_id) {
+        $query = "SELECT ap.appointment_id as app_id,ap.vet_id as vet_id, ap.med_id as med_id, mr.record_added_at as app_date, ap.reason as reason, 
+        mr.vet_name as vet_name, mr.diagnosis as diagnosis, mr.vet_notes as vet_notes
+        FROM $this->medicalrec_table mr LEFT JOIN $this->appointment_table ap ON mr.appointment_id=ap.appointment_id 
+        WHERE mr.pet_id = :petid AND ap.owner_id = :owner_id AND ap.completion_status=1 
+        ORDER BY mr.record_added_at DESC";
+
+        $result = $this->query($query, [':petid' => $petid,':owner_id' => $owner_id]);
         return $result;
     }
 }
