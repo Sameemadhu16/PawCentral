@@ -178,6 +178,10 @@ route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
 route('findapet/adoptionpost','AdoptionPost@index');
 route('findapet/adoptionpost/adoptionrequest','AdoptionPost@AddAdoptionRequest');
+route('findapet/rent','Rentingpost@index');
+route('findapet/selling','Sellingpost@index');
+route('findapet/import','Importingpost@index');
+
 
 route('findapet/sellingpost', 'Sellingpost@index');
 route('findapet/importingpost', 'Importingpost@index');

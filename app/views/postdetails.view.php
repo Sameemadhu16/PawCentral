@@ -58,6 +58,7 @@
       <h2>Selling Info</h2>
       <p><strong>Price:</strong> <?= $post->price ?> Rupees</p>
       <p><strong>Fee Negotiable:</strong> <?= $post->fee_negotiable ?></p>
+      <p><strong>Exact-Address:</strong> <?= $post->Exact_address ?></p>
     </div>
   <?php endif; ?>
 

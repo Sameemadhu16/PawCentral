@@ -14,7 +14,7 @@
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <h1><a href="<?=ROOT?>/lostandfound">find a pet</a> / <span class="tradeType"><?= $post->tradeType ?></span></h1>
+        <h1><a href="<?=ROOT?>/findapet">find a pet</a> / <span class="tradeType"><?= $post->tradeType ?></span></h1>
     </div>
 
     <!-- Post Title -->
@@ -34,8 +34,6 @@
         <button class="slider-arrow right" onclick="nextImage()">&#8250;</button>
     </div>
 
-    <!-- Price -->
-    <span class="price">Rs. <?= $post->price ?></span>
     <br><br>
 
     <!-- Pet specs -->
@@ -53,7 +51,6 @@
         <div class="specs"><p>Trained:</p><span class="trained"><?= $post->trained ? 'Yes' : 'No' ?></span></div>
         <div class="specs"><p>Pedigree:</p><span class="pedigree"><?= $post->pedigree ? 'Available' : 'Not Available' ?></span></div>
         <div class="specs"><p>Vaccinated:</p><span class="vaccinated"><?= $post->vaccinated ? 'Yes' : 'No' ?></span></div>
-        <div class="specs"><p>Price Negotiable:</p><span class="fee_negotiable"><?= $post->fee_negotiable ?></span></div>
     </div>
 
     <!-- More button to toggle visibility -->
@@ -61,9 +58,24 @@
 
     <br><br>
 
-    <!-- Seller Details -->
-    <div class="specs"><p>Location:</p><span class="City"><?= $post->City ?></span></div>
-    <div class="specs"><p>Address:</p><span class="Exact_address"><?= $post->Exact_address ?></span></div>
+    <!-- Seller or Rental Info -->
+    <?php if ($post->tradeType === 'Selling'): ?>
+        <div class="section sell-section">
+            <h2>Selling Info</h2>
+            <p><strong>Price:</strong> <?= $post->price ?> Rupees</p>
+            <p><strong>Fee Negotiable:</strong> <?= $post->fee_negotiable ? 'Yes' : 'No' ?></p>
+            <p><strong>Exact-Address:</strong> <?= $post->Exact_address ?></p>
+        </div>
+    <?php elseif ($post->tradeType === 'Renting'): ?>
+        <div class="rental-info-section">
+            <h2>Rental Info</h2>
+            <p><strong>Rental Fee:</strong> Rs. <?= $post->rental_fee ?></p>
+            <p><strong>Renter Name:</strong> <?= $post->renter_name ?></p>
+            <p><strong>Renter Contact:</strong> <?= $post->renter_contact ?></p>
+            <p><strong>Renter Address:</strong> <?= $post->renter_address ?></p>
+            <p><strong>Rental Duration:</strong> <?= $post->rental_duration ?></p>
+        </div>
+    <?php endif; ?>
 
     <!-- Contact Info -->
     <div class="contact-section">
@@ -85,6 +97,7 @@
             <?= $post->description ?: 'No description added' ?>
         </p>
     </div>
+
 </div>
 
 <script>

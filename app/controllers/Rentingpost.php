@@ -4,8 +4,15 @@ class Rentingpost{
     use Controller;
 
     public function index(){
-
-        $this->view('rentingpost');
+        $id=$_GET['id'];
+        $model=new RentPost();
+        $post=$model->first(['pet_id'=>$id]);
+        if (!$post) {
+            header("Location: " . ROOT . "/findapet");
+            exit;
+        }
+    
+        $this->view('rentingpost',['post'=>$post]);
     }
     
 }
