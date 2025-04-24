@@ -45,11 +45,7 @@
                 <!-- Profile Details -->
                 <div class="profile-details">
                     <div class="profile-detail-item">
-                        <?php
-                        echo "<pre>";
-                        print_r($providerDetails->name);
-                        echo "</pre>";
-                        ?>
+                        
                         <span class="profile-detail-item-label">Shop Name : </span><?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
