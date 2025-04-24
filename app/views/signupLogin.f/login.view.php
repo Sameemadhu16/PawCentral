@@ -64,6 +64,9 @@
             </section>
         </main>
     </div>
+    
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
     <script src="./assets/js/signup.js"></script>
 </body>
 

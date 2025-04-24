@@ -23,6 +23,7 @@
                 <span class="image-container">
                     <img src="<?= ROOT ?>/assets/images/signupdog.jpg" alt="Happy dog" class="pet-image">
                 </span>
+                
             </section>
             <section class="signup-form-section">
                 <h2>Sign up now</h2>
@@ -88,6 +89,9 @@
 
         </main>
     </div>
+    
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
     <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </body>
 

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPageNext.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
+    <!-- <link rel="stylesheet" href="./assets/css/signUpPage.css"> -->
 </head>
 
 <body>
@@ -83,6 +84,8 @@
             </section>
         </main>
     </div>
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
 </body>
 
 </html>
