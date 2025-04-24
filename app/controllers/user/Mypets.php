@@ -27,6 +27,7 @@ class Mypets{
         }
         $this->view('user/mypets',$pets);
     }
+   
 
     public function ShowPetProfile(){
 

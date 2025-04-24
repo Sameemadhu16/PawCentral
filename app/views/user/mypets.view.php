@@ -75,15 +75,6 @@
                         <button class="cancel-button" onclick="cancelAppointment()">Cancel appointment</button>
                     </div>
                 </div>
-                
-                <script>
-        function selectPet(petName) {
-            alert(`You selected ${petName}`);
-        }
-        function cancelAppointment() {
-            alert('Appointment canceled');
-        }
-    </script>
             <?php else: ?>
                 <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
                     <p style="text-align: center; font-size: 1.2rem; color: #555;">No pets have been added yet.<br>

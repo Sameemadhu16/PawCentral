@@ -42,4 +42,16 @@ class RegisterPet
         $result = $this->query($query, [':petid' => $petid,':owner_id' => $owner_id]);
         return $result;
     }
+
+    public function getUpcommingAppointments($petid, $owner_id) {
+        $query = "SELECT ap.appointment_id as app_id,ap.vet_id as vet_id, ap.med_id as med_id, p.record_added_at as app_date, ap.reason as reason, 
+        p.vet_name as vet_name, p.diagnosis as diagnosis, p.vet_notes as vet_notes
+        FROM $this->table p LEFT JOIN $this->appointment_table ap ON p.pet_id=ap.pet_id 
+        WHERE p.owner_id = :owner_id AND ap.completion_status=0 
+        ORDER BY ap.date ASC";
+
+        $result = $this->query($query, [':petid' => $petid,':owner_id' => $owner_id]);
+        return $result;
+    }
+
 }
