@@ -16,7 +16,7 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); 
+    <?php include("../app/views/components/header.php");
     // show($profile);
     // show( $shelter);
     ?>
@@ -54,9 +54,9 @@
                         <div class="profile-detail-item">
                             <span class="profile-detail-item-label">Email: </span><?= !empty($profile->email) ? htmlspecialchars($profile->email) : 'N/A' ?>
                         </div>
-                            <div class="profile-detail-item">
-                                <span class="profile-detail-item-label">Shelter Name: </span><?= !empty($shelter->name) ? htmlspecialchars($shelter->name) : 'N/A' ?>
-                            </div>
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Shelter Name: </span><?= !empty($shelter->name) ? htmlspecialchars($shelter->name) : 'N/A' ?>
+                        </div>
                         <div class="profile-detail-item">
                             <span class="profile-detail-item-label">Address: </span><?= !empty($profile->address) ? htmlspecialchars($profile->address) : 'N/A' ?>
                         </div>
@@ -71,15 +71,11 @@
                         <div class="profile-detail-item">
                             <span class="profile-detail-item-label">Capacity: </span><?= !empty($shelter->capacity) ? htmlspecialchars($shelter->capacity) : 'N/A' ?>
                         </div>
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Capacity Left: </span><?= !empty($shelter->capacity_left) ? htmlspecialchars($shelter->capacity_left) : 'N/A' ?>
-                        </div>
+                     
                         <div class="profile-detail-item">
                             <span class="profile-detail-item-label">Description: </span><?= !empty($shelter->description) ? htmlspecialchars($shelter->description) : 'N/A' ?>
                         </div>
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Created At: </span><?= !empty($shelter->created_at) ? htmlspecialchars($shelter->created_at) : 'N/A' ?>
-                        </div>
+                        
                     </div>
 
                     <div class="button-section">
@@ -95,15 +91,13 @@
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Edit Profile Information</h2>
             <form id="profileForm" action="<?= ROOT ?>/shelter/update" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="shelter_id" value="<?= $shelter->id?>">
                 <label for="first_name">First Name:</label>
                 <input type="text" id="first_name" name="first_name" value="<?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) : '' ?>" required>
 
                 <label for="last_name">Last Name:</label>
                 <input type="text" id="last_name" name="last_name" value="<?= !empty($profile->last_name) ? htmlspecialchars($profile->last_name) : '' ?>" required>
 
-
-                <label for="mobile_no">Mobile Number:</label>
-                <input type="text" id="mobile_no" name="mobile_no" value="<?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : '' ?>">
 
                 <label for="location">Location:</label>
                 <select name="location" id="location" required>
@@ -132,6 +126,18 @@
                         <img src="<?= ROOT ?>/<?= htmlspecialchars($profile->profile_pic) ?>" alt="Current Profile Picture" style="max-width: 200px; margin-top: 10px;">
                     <?php endif; ?>
                 </div>
+
+                <label for="shelter_name">Shelter Name:</label>
+                <input type="text" id="shelter_name" name="shelter_name" value="<?= htmlspecialchars($shelter->name ?? '') ?>" required>
+
+                <label for="contact_no">Contact Number:</label>
+                <input type="text" id="contact_no" name="contact_no" value="<?= htmlspecialchars($shelter->contact_no ?? '') ?>" minlength=10 maxlength=10>
+
+                <label for="capacity">Capacity:</label>
+                <input type="number" id="capacity" name="capacity" value="<?= htmlspecialchars($shelter->capacity ?? '') ?>" min="0">
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="3"><?= htmlspecialchars($shelter->description ?? '') ?></textarea>
 
                 <!-- Preview Script -->
                 <script>
