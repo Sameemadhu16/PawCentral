@@ -4,6 +4,44 @@ class Services {
 
     use Controller;
 
+    function indexWithpagination(){
+        $model = new Shops();
+        
+        // Get filters from query parameters
+        $location = $_GET['location'] ?? 'all';
+        $service_type = $_GET['service_type'] ?? 'all';
+        $page_no = $_GET['page'] ?? 1;
+        $page_size = 1; // Items per page
+        
+        // Calculate offset
+        $offset = ($page_no - 1) * $page_size;
+
+        // Get total count of shops based on filters
+        $total_shops = $model->getTotalShopsCount($location, $service_type);
+        $total_shops = $total_shops[0]->total_shops;
+        $total_pages = ceil($total_shops / $page_size);
+        // print_r($total_shops);
+        // Get paginated shops with filters
+        $data['shopList'] = $model->getShopsWithPagination($offset, $page_size, $location, $service_type);
+        
+        // print_r($data['shops']);
+        // exit();
+        // Get distinct locations and service types for the dropdowns
+        $data['locations'] = $model->getDistinctLocations();
+        $data['service_types'] = $model->getDistinctServiceTypes();
+        
+        // Add pagination data to the view
+        $data['pagination'] = [
+            'current_page' => $page_no,
+            'total_pages' => $total_pages,
+            'total_shops' => $total_shops,
+            'location' => $location,
+            'service_type' => $service_type
+        ];
+
+        $this->view('services', $data);
+    }
+
     public function index() {
         $list=new Shops();
         $shopList=$list->findAll();
@@ -18,15 +56,14 @@ class Services {
         $shops=new Shops();
         $shopsDetails=$shops->first(['user_id'=>$shop_id]);
 
-
-
         $this->view('viewShop',['ProductPosts'=>$ProductPosts,'shop_id'=>$shop_id,'shopsDetails'=>$shopsDetails]);
 
-
     }
+
     public function Inquiry($passed_id){
         $this->view('Inquire',['shop_id'=>$passed_id]);
     }
+
     public function submit($passed_id){
         
         if($_SERVER['REQUEST_METHOD']==='POST'){

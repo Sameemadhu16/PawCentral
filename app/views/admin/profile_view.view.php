@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="button-section">
-                            <button type="submit" class="update-button" name="admin">Save</button>
+                            <button type="submit" class="btn btn-primary" name="admin"><span>Save Profile</span></button>
                         </div>
                     </form>
                 </div>

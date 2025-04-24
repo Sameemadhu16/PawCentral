@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/signUpPageNext.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/errorMessage.css">
+    <!-- <link rel="stylesheet" href="./assets/css/signUpPage.css"> -->
 </head>
 
 <body>
@@ -16,15 +17,15 @@
     <div class="container">
         <main>
             <section class="signup-hero">
-                <h2>Find a pet</h2>
-                <p>Get access to all the pet-related services.</p>
+                <h2>Join The Community</h2>
+                <p style="margin: 10px;" >Get access to all the pet-related services.</p>
                 <span class="image-container">
                     <img src="<?= ROOT ?>/assets/images/signupdog.jpg" alt="Happy dog" class="pet-image">
                 </span>
             </section>
             <section class="signup-form-section">
                 <div class="signup-head">
-                    <h2>Sign up now</h2>
+                    <h2>Almost There!</h2>
                     <a href="<?= ROOT ?>/signup" class="back-button">
                         <span class="arrow">&#8592;</span>
                         <span class="text">Back</span>
@@ -83,6 +84,8 @@
             </section>
         </main>
     </div>
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
 </body>
 
 </html>

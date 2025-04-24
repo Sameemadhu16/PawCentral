@@ -6,14 +6,7 @@ route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications
 route('notifications/mark-read', 'user/NotificationsController@markAllRead');
 route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
 route('events/download_enrollments', 'user/Events@downloadEnrollments');
-// Middleware-like function for admin-only routes
-// function adminRoute($path, $controllerAction) {
-//     if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
-//         route($path, $controllerAction);
-//     } else {
-//         redirect('login'); // Redirect to login if not admin
-//     }
-// }
+route('petshelters/details', 'ShelterDetails@index');
 
 
 route('service','Service@index');
@@ -183,11 +176,14 @@ route('provider/enrolled_events','provider/Events@showEnrolledEvents');
 // merchanted pets
 route('findapet','PetPosts');
 route('findapet/post_id','PetPost_purchase');
+route('findapet/adoptionpost','AdoptionPost@index');
+route('findapet/adoptionpost/adoptionrequest','AdoptionPost@AddAdoptionRequest');
+
 route('findapet/sellingpost', 'Sellingpost@index');
 route('findapet/importingpost', 'Importingpost@index');
 route('findapet/rentingpost', 'Rentingpost@index');
 // medical centres
-route('services','Services');
+route('services','Services@indexWithpagination');
 route('services/shop','Services@ViewShop');
 route('services/inquire','Services@Inquiry');
 route('services/inquire/submit','Services@submit');
@@ -204,17 +200,27 @@ route('donationsnsupport/donate','DonationsAndSupport@AddDonation');
 
 
 //pet shelter routings
-route('shelter/profile','shelter/Profile@index');
-route('shelter/notification','shelter/Notification@index');
+route('shelter/profile', 'shelter/Profile@index');
+route('shelter/update', 'shelter/Profile@update');
+route('shelter/postupdate','shelter/PostUpdate@index');
+route('shelter/notification', 'shelter/Notification@index');
 route('shelter/donation','shelter/Donation@index');
+route('shelter/donation/req', 'shelter/Donation@AddReq');
+route('shelter/donation/closeReq', 'shelter/Donation@CloseReq');
+route('shelter/donation/update', 'shelter/Donation@UpdateView');
+route('shelter/donation/edit', 'shelter/Donation@EditReq');
+route('shelter/donation/updatereq', 'shelter/Donation@UpdateReq');
 // route('shelter/lost_and_found','shelter/LostAndFound@index');
-route('shelter/event','shelter/Events@index');
-route('shelter/event/closeevent', 'shelter/Events@closeEvent');
+route('shelter/event', 'shelter/Events@index');
 route('shelter/event/addevent', 'shelter/Events@NewEvent');
+route('shelter/event/closeevent', 'shelter/Events@closeEvent');
+route('shelter/enrolled_events', 'shelter/Events@showEnrolledEvents');
 route('shelter/adoption_requests','shelter/AdoptionRequests@index');
 route('shelter/requests_to_adopt','shelter/RequestToAdopt@index');
 route('shelter/post','shelter/Post@index');
 route('shelter/post/addpost', 'shelter/Post@NewPost');
+route('shelter/postinfo','shelter/Postinfo@index');
+route('shelter/postinfo/edit','shelter/Postinfo@update');
 
 
 
@@ -228,11 +234,16 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
 
 
 //medical routing
-    route('medical-centers','Medical/FindMedi@index');
+    // route('medical-centers','Medical/FindMedi@index');
+    route('medical-centers','Medical/FindMedi@indexWithpagination');
     route('medical-centers/medical-center','Medical/MediCenter@index');
-    route('medical-appointment-date','Medical/Appointment_Date@index');
-    route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
-    route('medical-appointment-reason','Medical/Appointment_Reason@index');
+
+//appointments
+    route('medical-appointment-date','Medical/appointment/Appointment_Date@index');
+    route('medical-appointment-vet','Medical/Appointment/Appointment_Vet@index');
+    route('medical-appointment-pet','Medical/Appointment/Appointment_Pet@index');
+    route('medical-appointment-reason','Medical/Appointment/Appointment_Reason@index');
+    route('medical-appointment-confirmation','Medical/Appointment/Appointment_Confirmation@index');
 
 //medical dashboard
     route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
@@ -243,6 +254,8 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
     route('medical-center/dashboard/profile/upload-image','Medical/profile/Med_Dashboard_Profile@uploadImage');  // Add this route for direct image upload
 
     route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+    route('medical-center/dashboard/appointments/appointmentsByDate','Medical/profile/Med_Dashboard_Appointments@appointmentsByDate');
+    
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
     route('medical-center/dashboard/veterinarians/edit-vet','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
@@ -258,3 +271,6 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
 
 // Add logout route for medical center
 route('logout', 'Medical/Auth@logout');
+
+//authentication error page
+route('403','Error_Authentication@index');

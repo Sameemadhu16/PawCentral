@@ -33,8 +33,8 @@
                 <div class="donation-header">
                     <h3 class="donation-title"><?= esc($data['donation']->title) ?></h3>
                     <span class="donation-status
-                        <?= $data['donation']->status == 0 ? 'status-pending' : ($data['donation']->status == 1 ? 'status-approved' : 'status-rejected') ?>">
-                        <?= $data['donation']->status == 0 ? 'Pending' : ($data['donation']->status == 1 ? 'Approved' : 'Rejected') ?>
+                        <?= $data['donation']->status == 0 && $data['donation']->approved == 0 ? 'status-pending' : ($data['donation']->status == 0 && $data['donation']->approved == 1 ? 'status-approved' : 'status-rejected') ?>">
+                        <?= $data['donation']->status == 0 && $data['donation']->approved == 0 ? 'Pending' : ($data['donation']->status == 0 && $data['donation']->approved == 1 ? 'Approved' : 'Rejected') ?>
                     </span>
                 </div>
 

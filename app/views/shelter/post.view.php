@@ -40,57 +40,62 @@
                     </div>
 
                     <div class="post-list">
-                        <?php foreach ($posts as $post) : ?>
-                            <div class="post-card">
-                                <div class="post-card-content">
+                        <?php foreach ($posts as $post) : 
+                            // show($post->pet_id)
+                            ?>
+                            <?php if ($post->is_deleted != 1): ?>
+                            <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?=$post->pet_id?>'">
+                                <div class=" post-card-content">
 
-                                    <!-- Post Images -->
-                                    <div class="post-images">
-                                        <div class="carousel">
-                                            <div class="carousel-inner">
-                                                <?php foreach ([$post->postimg1, $post->postimg2, $post->postimg3] as $index => $image): ?>
-                                                    <?php if ($image): ?>
-                                                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                            <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
-                                                        </div>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            </div>
-                                            <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-                                            <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+                                <!-- Post Images -->
+                                <div class="post-images">
+                                    <div class="carousel">
+                                        <div class="carousel-inner">
+                                            <?php foreach ([$post->postimg1] as $index => $image): ?>
+                                                <?php if ($image): ?>
+                                                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                        <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </div>
-                                    </div>
-
-                                    <!-- Post Details -->
-                                    <div class="post-details">
-                                        <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
-                                        <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
-                                        <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> years</p>
-                                        <p><strong>Breed:</strong><?= htmlspecialchars($post->breed)?></p>
-                                    </div>
-
-                                    <!-- Action Buttons -->
-                                    <div class="post-actions">
-                                        <button class="edit-btn" onclick="editPost(<?= $post->id ?>)">Edit</button>
-                                        <button class="delete-btn" onclick="deletePost(<?= $post->id ?>)">Delete</button>
+                                        
                                     </div>
                                 </div>
+
+                                <!-- Post Details -->
+                                <div class="post-details">
+                                    <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
+                                    <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
+                                    <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> years</p>
+                                    <p><strong>Breed:</strong><?= htmlspecialchars($post->breed) ?></p>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <!-- <div class="post-actions">
+                                    <button class="edit-btn" onclick="editPost(<?= $post->id ?>)">Edit</button>
+                                    <button class="delete-btn" onclick="deletePost(<?= $post->id ?>)">Delete</button>
+                                </div> -->
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                    
+                        </div>
+                        <?php endif; ?>
 
-                <?php else: ?>
-                    <!-- If no posts -->
-                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-                        <p style="text-align: center; font-size: 1.2rem; color: #555;">
-                            You have no added posts yet.<br>
-                            <button class="add-post fixedsize" onclick="openPopup()">Add New Post</button>
-                        </p>
-                    </div>
-                <?php endif; ?>
-
+                <?php endforeach; ?>
             </div>
+
+        <?php else: ?>
+            <!-- If no posts -->
+            <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                <p style="text-align: center; font-size: 1.2rem; color: #555;">
+                    You have no added posts yet.<br>
+                    <button class="add-post fixedsize" onclick="openPopup()">Add New Post</button>
+                </p>
+            </div>
+        <?php endif; ?>
+
         </div>
+    </div>
     </div>
 
     <!-- Popup Form -->
@@ -104,7 +109,7 @@
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="species">Species:</label>
+                <label for="species">Pet Type :</label>
                 <select id="species" name="species" required>
                     <option value="Cat">Cat</option>
                     <option value="Dog">Dog</option>
@@ -118,7 +123,7 @@
                 <select id="sex" name="sex" required>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <!-- <option value="other">Other</option> -->
                 </select>
 
                 <label for="age">Age:</label>
@@ -233,7 +238,7 @@
     </script>
 
     <style>
-        
+
     </style>
 
 </body>
