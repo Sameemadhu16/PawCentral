@@ -139,7 +139,7 @@ route('findapet/sellingpost', 'Sellingpost@index');
 route('findapet/importingpost', 'Importingpost@index');
 route('findapet/rentingpost', 'Rentingpost@index');
 // medical centres
-route('services','Services');
+route('services','Services@indexWithpagination');
 route('services/shop','Services@ViewShop');
 route('services/inquire','Services@Inquiry');
 route('services/inquire/submit','Services@submit');
