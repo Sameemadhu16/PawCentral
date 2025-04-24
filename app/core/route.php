@@ -182,9 +182,13 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
 //medical routing
     route('medical-centers','Medical/FindMedi@index');
     route('medical-centers/medical-center','Medical/MediCenter@index');
-    route('medical-appointment-date','Medical/Appointment_Date@index');
-    route('medical-appointment-selectpet','Medical/Appointment_Pet@index');
-    route('medical-appointment-reason','Medical/Appointment_Reason@index');
+
+//appointments
+    route('medical-appointment-date','Medical/appointment/Appointment_Date@index');
+    route('medical-appointment-vet','Medical/Appointment/Appointment_Vet@index');
+    route('medical-appointment-pet','Medical/Appointment/Appointment_Pet@index');
+    route('medical-appointment-reason','Medical/Appointment/Appointment_Reason@index');
+    route('medical-appointment-confirmation','Medical/Appointment/Appointment_Confirmation@index');
 
 //medical dashboard
     route('medical-center/dashboard','Medical/profile/Medical_Profile_SPA@index');
@@ -195,6 +199,8 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
     route('medical-center/dashboard/profile/upload-image','Medical/profile/Med_Dashboard_Profile@uploadImage');  // Add this route for direct image upload
 
     route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
+    route('medical-center/dashboard/appointments/appointmentsByDate','Medical/profile/Med_Dashboard_Appointments@appointmentsByDate');
+    
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
     route('medical-center/dashboard/veterinarians/edit-vet','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
@@ -210,3 +216,6 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
 
 // Add logout route for medical center
 route('logout', 'Medical/Auth@logout');
+
+//authentication error page
+route('403','Error_Authentication@index');

@@ -24,6 +24,9 @@ trait Controller {
         if (isset($_SESSION['user'])) {     // Check if the user is logged in and has a valid role
             if (in_array($_SESSION['user']->role, $valid_roles)) {      // Check if the user's role exists in the valid roles array
                 return true;
+            }else{
+                // shenal added this
+                return false;
             }
         }
         // return false;

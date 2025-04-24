@@ -336,10 +336,251 @@ function servicesAction() {
 }
 
 function appointmentsAction() {
-
     console.log('Appointments panel loaded');
+
+    // Set up date navigation
+    setupDateNavigation();
+
+    // Set up view medical record buttons
+    document.querySelectorAll('.btn-view').forEach(button => {
+        button.addEventListener('click', function() {
+            const petName = this.getAttribute('data-pet-name');
+            showMedicalRecord(petName);
+        });
+    });
+    
+    // Set up complete appointment buttons
+    document.querySelectorAll('.btn-complete').forEach(button => {
+        button.addEventListener('click', function() {
+            completeAppointment(this);
+        });
+    });
+    
+    // Set up cancel appointment buttons
+    document.querySelectorAll('.btn-cancel').forEach(button => {
+        button.addEventListener('click', function() {
+            cancelAppointment(this);
+        });
+    });
+    
+    // Define action functions in the outer scope so they're available for all event handlers
 }
 
+// Helper functions for appointments that need to be accessible globally
+function showMedicalRecord(petName) {
+    alert('Showing medical records for ' + petName);
+}
+
+function completeAppointment(button) {
+    const card = button.closest('.appointment-card');
+    card.classList.add('opacity-50');
+    card.querySelectorAll('button').forEach(btn => btn.disabled = true);
+    const status = document.createElement('span');
+    status.className = 'status completed';
+    status.innerText = '(Completed)';
+    card.querySelector('h2').appendChild(status);
+}
+
+function cancelAppointment(button) {
+    if (confirm('Are you sure you want to cancel this appointment?')) {
+        const card = button.closest('.appointment-card');
+        card.classList.add('opacity-50');
+        card.querySelectorAll('button').forEach(btn => btn.disabled = true);
+        const status = document.createElement('span');
+        status.className = 'status canceled';
+        status.innerText = '(Canceled)';
+        card.querySelector('h2').appendChild(status);
+    }
+}
+
+function setupDateNavigation() {
+    const dateButtonsContainer = document.getElementById('date-buttons-container');
+    const prevDateBtn = document.getElementById('prev-date');
+    const nextDateBtn = document.getElementById('next-date');
+    
+    if (!dateButtonsContainer || !prevDateBtn || !nextDateBtn) return;
+    
+    // Start with today's date
+    let currentBaseDate = new Date();
+    
+    // Generate and display date buttons
+    generateDateButtons(currentBaseDate);
+    
+    // Previous week button
+    prevDateBtn.addEventListener('click', () => {
+        currentBaseDate.setDate(currentBaseDate.getDate() - 7);
+        generateDateButtons(currentBaseDate);
+    });
+    
+    // Next week button
+    nextDateBtn.addEventListener('click', () => {
+        currentBaseDate.setDate(currentBaseDate.getDate() + 7);
+        generateDateButtons(currentBaseDate);
+    });
+    
+    // Function to generate date buttons for a week
+    function generateDateButtons(baseDate) {
+        dateButtonsContainer.innerHTML = '';
+        
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(baseDate);
+            date.setDate(baseDate.getDate() - baseDate.getDay() + i);
+            
+            const button = document.createElement('button');
+            
+            // Format date
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            
+            // Add day of week
+            const dayOfWeek = date.toLocaleString('default', { weekday: 'short' });
+            
+            button.innerHTML = `<span class="day-of-week">${dayOfWeek}</span><br>${month} ${day}`;
+            
+            // Check if this date is today
+            const isToday = date.getTime() === today.getTime();
+            if (isToday) {
+                button.classList.add('active');
+            }
+            
+            // Store date info as data attribute for easy access
+            button.dataset.date = date.toISOString().split('T')[0];
+            
+            // Add click event to filter appointments by date
+            button.addEventListener('click', () => {
+                document.querySelectorAll('#date-buttons-container button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Filter appointments by selected date
+                filterAppointmentsByDate(button.dataset.date);
+            });
+            
+            dateButtonsContainer.appendChild(button);
+        }
+    }
+    
+    // Function to filter appointments by selected date
+    function filterAppointmentsByDate(selectedDate) {
+        // Here you would typically fetch appointments for the selected date
+        // For now, we'll just simulate with a message
+        console.log(`Fetching appointments for: ${selectedDate}`);
+        
+        // In a real implementation, you would make an AJAX request to get appointments for this date        
+        fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/appointmentsByDate?date=${selectedDate}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                updateAppointmentsDisplay(data.appointments);
+            } else {
+                throw new Error(data.message || 'Failed to fetch appointments');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching appointments:', error);
+        });
+    }
+    
+    // Function to update appointments display with fetched data
+    function updateAppointmentsDisplay(appointments) {
+        const appointmentsContainer = document.querySelector('.container');
+        
+        // Remove existing appointment cards
+        const existingCards = document.querySelectorAll('.appointment-card');
+        existingCards.forEach(card => card.remove());
+        
+        // Get pagination element as reference for inserting cards before it
+        const pagination = document.querySelector('.pagination');
+        
+        if (appointments.length === 0) {
+            // No appointments for this date
+            const noAppointmentsMsg = document.createElement('div');
+            noAppointmentsMsg.className = 'appointment-card';
+            noAppointmentsMsg.innerHTML = '<h2>No appointments scheduled for this date</h2>';
+            appointmentsContainer.insertBefore(noAppointmentsMsg, pagination);
+            return;
+        }
+        
+        // Add new appointment cards
+        appointments.forEach(appointment => {
+            const card = document.createElement('div');
+            card.className = 'appointment-card';
+            
+            const time = new Date(appointment.datetime).toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit', 
+                hour12: true 
+            });
+            
+            card.innerHTML = `
+                <h2>${time} - ${appointment.pet_name} <span>(Owner: ${appointment.owner_name})</span></h2>
+                <p>Reason: ${appointment.reason || 'Not specified'}</p>
+                <p>Vet: ${appointment.vet_name}</p>
+                <div class="actions">
+                    <button class="btn-view" data-pet-name="${appointment.pet_name}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
+                    <button class="btn-complete" data-appointment-id="${appointment.id}">Complete</button>
+                    <button class="btn-cancel" data-appointment-id="${appointment.id}">Cancel</button>
+                </div>
+            `;
+            
+            // If appointment is already completed or cancelled, add appropriate styling
+            if (appointment.status === 'completed') {
+                card.classList.add('opacity-50');
+                const status = document.createElement('span');
+                status.className = 'status completed';
+                status.innerText = '(Completed)';
+                card.querySelector('h2').appendChild(status);
+                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
+            } else if (appointment.status === 'canceled') {
+                card.classList.add('opacity-50');
+                const status = document.createElement('span');
+                status.className = 'status canceled';
+                status.innerText = '(Canceled)';
+                card.querySelector('h2').appendChild(status);
+                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
+            }
+            
+            appointmentsContainer.insertBefore(card, pagination);
+        });
+        
+        // Re-attach event listeners to the newly created buttons
+        document.querySelectorAll('.btn-view').forEach(button => {
+            button.addEventListener('click', function() {
+                const petName = this.getAttribute('data-pet-name');
+                showMedicalRecord(petName);
+            });
+        });
+        
+        document.querySelectorAll('.btn-complete').forEach(button => {
+            button.addEventListener('click', function() {
+                completeAppointment(this);
+            });
+        });
+        
+        document.querySelectorAll('.btn-cancel').forEach(button => {
+            button.addEventListener('click', function() {
+                cancelAppointment(this);
+            });
+        });
+    }
+}
+
+//veterinarian dashboard 
 function veterinariansAction() {
     console.log('vet panel loaded');
     const addVetBtn = document.getElementById('add-vet-btn');

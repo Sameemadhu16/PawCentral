@@ -88,7 +88,7 @@ body {
 
 .container {
     max-width: auto;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 30px 165px;
     
     /* display: flex; */

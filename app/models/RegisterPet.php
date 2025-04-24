@@ -6,6 +6,8 @@ class RegisterPet
 
     protected $table = 'registered_pets';
 
+    protected $order_column = 'created_at';
+ 
     public function getRegPets()
     {
         $userId = $_SESSION['user_id']; // Retrieve userId from session
