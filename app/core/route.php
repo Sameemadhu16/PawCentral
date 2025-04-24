@@ -6,6 +6,7 @@ route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications
 route('notifications/mark-read', 'user/NotificationsController@markAllRead');
 route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
 route('events/download_enrollments', 'user/Events@downloadEnrollments');
+route('petshelters/details', 'ShelterDetails@index');
 
 
 route('service','Service@index');
