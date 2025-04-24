@@ -8,6 +8,8 @@ class RegisterPet
     protected $appointment_table = 'medical_appointments';
     protected $medicalrec_table = 'medical_records';
 
+    protected $order_column = 'created_at';
+ 
     public function getRegPets()
     {
         $userId = $_SESSION['user_id']; // Retrieve userId from session
