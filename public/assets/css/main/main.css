@@ -62,6 +62,8 @@
   --button-normal-hover: rgb(128, 73, 254);
   --warn-button: var(--danger);
   --warn-button-hover: var(--danger-dark);
+  --light-purple: rgb(128, 73, 254, .4);
+  --light-light-purple: rgb(128, 73, 254, .2);
 
   /* Search bar color */
   --search-bar-color:rgb(128, 73, 254,.9);
