@@ -1,4 +1,5 @@
 <header class="navbar">
+<link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header2.css">
 
     <a href="<?= ROOT ?>" class="navbar-logo-set">

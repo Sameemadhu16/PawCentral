@@ -60,6 +60,9 @@ main {
     
 
 }
+.signup-hero p{
+    margin: 10px;
+}
 
 .signup-hero .image-container .pet-image{
     width: 100%;

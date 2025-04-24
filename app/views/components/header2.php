@@ -1,5 +1,6 @@
 <header class="navbar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header2.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
 
     <a href="<?= ROOT ?>" class="navbar-logo-set">
         <img src="<?= ROOT ?>/assets/images/logo.svg" alt="PawCentral Logo" class="navbar-logo">
