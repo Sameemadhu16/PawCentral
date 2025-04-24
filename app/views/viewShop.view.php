@@ -55,7 +55,7 @@
             <div class="product-details">
                 <h3><?= htmlspecialchars($product->product_name) ?></h3>
                 <p class="description"><?= htmlspecialchars(substr($product->description, 0, 100)) ?><?= strlen($product->description) > 100 ? '...' : '' ?></p>
-                <p class="price">$<?= number_format($product->price, 2) ?></p>
+                <p class="price">Rs:<?= number_format($product->price, 2) ?></p>
                 <p class="stock">In Stock: <?= htmlspecialchars($product->stock_quantity) ?></p>
                 <div class='post-actions'>
                 </div>
@@ -69,10 +69,10 @@
 
         </div>
 
-<?php if($_SESSION['user_id']!=$shop_id): ?>
-        <div class="inquiry-section">
-    <button class="inquiry-btn" onclick="location.href='<?=ROOT?>/services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
-</div>
+        <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != $shop_id): ?>
+    <div class="inquiry-section">
+        <button class="inquiry-btn" onclick="location.href='<?=ROOT?>/services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
+    </div>
 <?php endif ?>
         <!-- Testimonials Section -->
         <div class="testimonials">

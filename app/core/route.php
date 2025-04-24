@@ -44,8 +44,7 @@ route('service/manage/delete', 'Manage@delete'); // Typo: 'manage' is misspelled
 route('service/manage/details','Manage@details');
 
 // Merchant Routes
-route('merchant/profile', 'Merchant/Profile@index');
-route('merchant/notification', 'Merchant/Notification@index');
+
 
 // Provider Routes
 route('provider/profile','provider/Profile@index');
@@ -130,6 +129,36 @@ route('lostandfound/postdetails','user/LostAndFound@show');
 route('lostandfound/post-report-animal','user/LostAndFound@createReport');
 route('lostandfound/edit', 'user/LostAndFound@edit'); //updating pet post
 route('lostandfound/update', 'user/LostAndFound@update');
+
+// merchant profile
+route('merchant','merchant/Profile@index');
+route('merchant/profile','merchant/Profile@index');
+route('merchant/update','merchant/Profile@update');
+route('merchant/notifications','merchant/Notification@index');
+route('merchant/donations','merchant/Donation@index');
+route('merchant/donations/req','merchant/Donation@AddReq');
+route('merchant/donations/closeReq','merchant/Donation@CloseReq');
+route('merchant/donations/update','merchant/Donation@UpdateView');
+route('merchant/donations/edit','merchant/Donation@EditReq');
+route('merchant/donations/updatereq','merchant/Donation@UpdateReq');
+// route('userprofile/donations/updateInfo','user/Donation@SubmitUpdate');
+route('merchant/lost_and_found','merchant/LostAndFound@index');
+route('merchant/mypets','merchant/Mypets@index');
+route('merchant/mypets/Pet','merchant/Mypets@ShowPetProfile');
+route('merchant/mypets/Pet_medrecords','merchant/Mypets@ShowPetRecords');
+route('merchant/mypets/register_pet','merchant/Mypets@RegPet');
+route('merchant/event','merchant/Events@index');
+route('merchant/event/addevent','merchant/Events@NewEvent');
+route('merchant/event/closeevent','merchant/Events@closeEvent');
+route('merchant/enrolled_events','merchant/Events@showEnrolledEvents');
+
+
+
+
+
+
+
+
 
 
 // merchanted pets

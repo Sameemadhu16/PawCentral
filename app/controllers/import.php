@@ -24,10 +24,14 @@ class Import
             }
 
             $petData = isset($_SESSION['postpet_data']) ? $_SESSION['postpet_data'] : null;
-
+            
             if ($petData) {
                 $imagePaths = isset($petData['images']) ? $petData['images'] : [];
-
+                
+                if (count($imagePaths) < 3 || empty($imagePaths[0]) || empty($imagePaths[1]) || empty($imagePaths[2])) {
+                    echo "Please upload at least 3 images (Image 1, Image 2, and Image 3 are required).";
+                    exit;
+                }
                 $data = [
                     'merchant_id'=>$_SESSION['role_id']?? null,
                     'tradeType' => $petData['tradeType'],
@@ -50,9 +54,9 @@ class Import
                     'transport_method' => $transport,
                     'importer_mobile' => $mobile,
                     'description'=>$petData['description'],
-                    'img1' => $imagePaths[0] ?? null,
-                    'img2' => $imagePaths[1] ?? null,
-                    'img3' => $imagePaths[2] ?? null,
+                    'img1' => $imagePaths[0] ,
+                    'img2' => $imagePaths[1] ,
+                    'img3' => $imagePaths[2] ,
                     'img4' => $imagePaths[3] ?? null,
                     'img5' => $imagePaths[4] ?? null,
                     'agreed_terms' => $termsAccepted,

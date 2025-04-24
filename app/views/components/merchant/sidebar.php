@@ -19,16 +19,39 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 }
 ?>
 
-
 <div class="sidebar" id="sidebar">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="<?= ROOT ?>/assets/js/admin/adminSidebar.js" defer></script>
     <ul>
         <li>
+            <a href="<?=ROOT?>/merchant/notifications" class="nav-link ">
+                <i class="fas fa-tasks icon"></i>
+                Notifications
+            </a>
+        </li>
+        <li>
             <a href="<?=ROOT?>/service" class="nav-link">
                 <i class="fas fa-blog icon"></i>
                 <span>Post Pet</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?=ROOT?>/merchant/event" class="nav-link">
+                <i class="fas fa-calendar-alt icon">
+                </i>Events
+            </a>
+        </li>
+        <li>
+            <a href="<?=ROOT?>/merchant/lost_and_found" class="nav-link">
+                <i class="fas fa-tags icon"></i>
+                <span>Lost & Found</span>
+            </a>
+        </li>
+        <li>
+            <a href="<?=ROOT?>/merchant/donations" class="nav-link">
+                <i class="fas fa-hand-holding-usd icon">
+                </i>Donations
             </a>
         </li>
         <li>
@@ -37,43 +60,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 <span>Profile</span>
             </a>
         </li>
-        <!-- <li>
-            <a href="../shelter/adoption_requests" class="nav-link">
-                <i class="fas fa-list icon"></i>
-                <span>Adoption requests</span>
-            </a>
-        </li> -->
-        <li>
-            <a href="<?=ROOT?>/merchant/notification" class="nav-link">
-                <i class="fas fa-bell icon"></i>
-                Notifications
-            </a>
-        </li>
-
-        <!-- <li>
-            <a href="../shelter/requests_to_adopt" class="nav-link">
-                <i class="fas fa-tasks icon"></i>
-                <span>Requests to adopt</span>
-            </a>
-        </li> -->
-        <!-- <li>
-            <a href="../shelter/event" class="nav-link">
-                <i class="fas fa-calendar-check icon"></i>
-                <span>Events</span>
-            </a>
-        </li> -->
-
-        
-        <!-- <li>
-            <a href="../shelter/sell_pets" class="nav-link">
-                <i class="fas fa-store icon"></i>
-                <span>SELL Pets?</span>
-            </a>
-        </li> -->
     </ul>
-
     <div class="logout-tab">
-        <a href="?action=logout" class="nav-link" action="">
+    <a href="?action=logout" class="nav-link" action="">
             <i class="fas fa-sign-out-alt icon"></i>
             <span>Logout</span>
         </a>
