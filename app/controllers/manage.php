@@ -22,10 +22,6 @@ class Manage{
     {
         $id = $_GET['id'] ?? null;
         $type = $_GET['type'] ?? null;
-        echo "<pre>";
-        print_r($type);
-        print_r($id);
-        echo "</pre>";
         if($type==='Selling'){
         $managePost=new AddPostpet();
         }elseif($type==='Renting'){
@@ -51,10 +47,6 @@ public function delete()
 {
     $id=$_GET['id'] ?? null;
     $tradeType=$_GET['tradeType'] ?? null;
-    echo "<pre>";
-    print_r($id);
-    print_r($tradeType);
-    echo "</pre>";
     if($tradeType==='Selling'){
         $deletePost=new AddPostpet();
     }elseif($tradeType=='Renting'){
@@ -71,7 +63,7 @@ public function delete()
         header("Location: " . ROOT . "/service/manage");
         exit;
     } else {
-        echo "Error: Unable to update the post.";
+        echo "Error: Unable to delete the post.";
     }
 
 
@@ -101,10 +93,6 @@ public function update()
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = $_POST['id'] ?? null;
         $tradeType = $_POST['tradeType'] ?? null;
-        echo "<pre>";
-        print_r($tradeType);
-        print_r($id);
-        echo "</pre>";
         if (!$id || !$tradeType) {
             echo "Error: Missing required data.";
             return;

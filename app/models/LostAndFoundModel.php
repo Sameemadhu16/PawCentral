@@ -52,4 +52,33 @@ class LostAndFoundModel
         return $this->insert($data) ? true : false;
     }
 
+    //for pagination for page amount of requests
+    public function getTotalRequestsCount($status = 'all') {
+        $query = "SELECT COUNT(*) as total_requests FROM `" . $this->table . "` WHERE postStatus = 0";
+        if ($status !== 'all') {
+            $query .= " AND status = :status";
+            return $this->query($query, [':status' => $status]);
+        }
+        return $this->query($query);
+    }
+
+    //filter out needed for each page
+    public function getViewReqWithPagination($offset, $page_size, $status = 'all') {
+        $offset = (int)$offset;
+        $page_size = (int)$page_size;
+        
+        $query = "SELECT * FROM `" . $this->table . "` WHERE postStatus = 0";
+        $params = [];
+        
+        if ($status !== 'all') {
+            $query .= " AND status = :status";
+            $params[':status'] = $status;
+        }
+        
+        $query .= " ORDER BY publishedOn DESC LIMIT $offset, $page_size";
+        // print_r($query);
+        // exit();
+        return $this->query($query, $params);
+    }
+
 }

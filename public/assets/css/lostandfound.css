@@ -16,7 +16,7 @@
 
 .filters{
     display: flex;
-    /* justify-content; */
+    justify-content: center;
     margin-bottom: 20px;
     height: 50%;
     margin-top: auto;
@@ -34,7 +34,7 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #8450e4;
+    background-color: rgb(128, 73, 254,.65);
     color: white;
     border: none;
     border-radius: 5px;
@@ -42,11 +42,15 @@
 }
 
 button:hover {
-    background-color: #6A0DAD;
+    background-color:var(--button-normal-hover);
 }
 
 .filter-btn.active {
-    background-color: #6A0DAD;
+    background-color: var(--button-normal-hover);
+    border-color: var(--button-normal);
+    box-shadow: var(--card-shadow-hover);
+    font-weight: 700;
+    color: white;
 }
 
 .pet-list {
@@ -91,6 +95,7 @@ button:hover {
     font-size: 20px;
     font-weight: bold;
     color: #000;
+    background-color: var(--scrollbar-color);
     /* color: #5b0399; */
 }
 

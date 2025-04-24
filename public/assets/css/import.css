@@ -1,72 +1,183 @@
-/* Apply a smooth, modern purple theme */
+/* Base Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f5ff;
-    color: #333;
-    padding: 2rem;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
+    padding: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
+.main-container {
+    display: flex;
+    max-width: 1400px;
+    width: 95%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    flex: 1;
+    height: 80vh;
+}
+
+/* Form Container (Left Side) */
+.form-container {
+    flex: 0 0 45%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header {
     text-align: center;
-    color: #720eb1;
-    margin-bottom: 1rem;
+    margin-bottom: 30px;
 }
 
-form {
+.form-header h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.import-form {
     max-width: 500px;
     margin: 0 auto;
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(114, 14, 177, 0.2);
-}
-
-label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-    color: #720eb1;
-}
-
-input[type="text"],
-input[type="tel"],
-input[type="number"],
-select {
     width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
     font-size: 1rem;
-    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
 }
 
-input[type="checkbox"] {
-    margin-right: 0.5rem;
+.select-wrapper {
+    position: relative;
 }
 
-button {
-    margin-top: 1rem;
-    margin-right: 0.5rem;
-    background-color: #720eb1;
-    color: #fff;
-    padding: 0.6rem 1.2rem;
+.select-wrapper::after {
+    content: "▼";
+    font-size: 0.8rem;
+    color: #666;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: #b720fe;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.terms-link {
+    color: #b720fe;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.submit-btn {
+    background-color: #b720fe;
+    color: white;
     border: none;
-    border-radius: 8px;
+    padding: 12px 30px;
     font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #5e0a99;
+.submit-btn:hover {
+    background-color: #8e18c9;
 }
 
-button[type="submit"] {
-    background-color: #5e0a99;
+/* Image Container (Right Side - Full Image) */
+.image-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
 }
 
-button[type="submit"]:hover {
-    background-color: #48077a;
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .form-container {
+        flex: 1;
+        padding: 30px;
+    }
+    
+    .image-container {
+        height: 400px;
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
 }

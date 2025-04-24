@@ -31,7 +31,7 @@ class Rent
                 $data = [
                     'merchant_id'=>$_SESSION['role_id']?? null,
                     'tradeType' => $petData['tradeType'],
-                    'pet_name' => $petData['petName'],
+                    'petName' => $petData['petName'],
                     'species' => $petData['species'],
                     'breed' => $petData['breed'],
                     'sex' => $petData['sex'],
@@ -47,12 +47,17 @@ class Rent
                     'renter_name' => $renterName,
                     'renter_contact' => $renterContact,
                     'renter_address' => $renterAddress,
+                    'description'=>$petData['description'],
+                    'contactName'=>$petData['contactName'],
+                    'contactNumber'=>$petData['contactNumber'],
                     'img1' => $imagePaths[0] ?? null,
                     'img2' => $imagePaths[1] ?? null,
                     'img3' => $imagePaths[2] ?? null,
+                    'img4' => $imagePaths[3] ?? null,
+                    'img5' => $imagePaths[4] ?? null,
                     'agreed_terms' => $termsAccepted,
                     'email'=>$petData['email'],
-                    'delete_status'=>1
+                    'delete_status'=>0
                 ];
                
                 $postPetModel = new RentPost();

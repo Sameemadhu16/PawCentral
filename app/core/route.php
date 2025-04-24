@@ -39,12 +39,26 @@ route('service/manage/details','Manage@details');
 route('merchant/profile', 'Merchant/Profile@index');
 route('merchant/notification', 'Merchant/Notification@index');
 
+// Provider Routes
+route('provider/profile','provider/Profile@index');
+route('provider/notification','provider/Notification@index');
 
+route('shop','provider/Shop@index');
+route('shop/postForm','provider/postForm@index');
+route('postForm/submit','provider/postForm@submit');
+route('shop/edit','provider/postForm@edit');
+route('editPostForm/update','provider/postForm@update');
+route('shop/delete','provider/postForm@delete');
 
 route('service/profile','Profile@index');
 route('service/manage/editpost/update','Manage@update');
 // Home route
 route('home', 'Home@index');
+
+
+
+
+
 
 // Signup and Login routing
 route('signup', 'SignUp@index');                 // Display signup page (first step)
@@ -73,7 +87,7 @@ route('admin/notification', 'admin/AdminNotification@index');
 
 // User routings
 route('announcements','announcements');
-route('lostandfound','LostAndFound@index');
+route('lostandfound','LostAndFound@indexWithPagination');
 // route('eventsandcampaigns','events');
 route('eventsandcampaigns','events@indexWithpagination');
 route('eventsandcampaigns/event','events@EventInfo');
@@ -116,11 +130,19 @@ route('findapet/post_id','PetPost_purchase');
 route('findapet/adoptionpost','AdoptionPost@index');
 route('findapet/adoptionpost/adoptionrequest','AdoptionPost@AddAdoptionRequest');
 
+route('findapet/sellingpost', 'Sellingpost@index');
+route('findapet/importingpost', 'Importingpost@index');
+route('findapet/rentingpost', 'Rentingpost@index');
 // medical centres
-route('services','Services');
-route('services/careservice','Careservice');
+route('services','Services@indexWithpagination');
+route('services/shop','Services@ViewShop');
+route('services/inquire','Services@Inquiry');
+route('services/inquire/submit','Services@submit');
+route('provider/inquiries','provider/Shop@ShowInquiries');
+route('provider/send_reply','provider/Shop@Reply');
+route('provider/ignore','provider/Shop@Ignore');
 // Pet shelters
-route('shelters','PetShelters');
+route('shelters','PetShelters@indexWithpagination');
 // Donation requests
 route('donationsnsupport','DonationsAndSupport');
 route('donationsnsupport','DonationsAndSupport@indexWithpagination');

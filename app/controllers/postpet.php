@@ -24,6 +24,7 @@ class Postpet
                 'trained' => htmlspecialchars($_POST['trained']),
                 'pedigree' => htmlspecialchars($_POST['pedigree']),
                 'vaccinated' => htmlspecialchars($_POST['vaccinated']),
+                'description'=>htmlspecialchars($_POST['description']),
                 'contactName' => htmlspecialchars($_POST['contactName']),
                 'contactNumber' => htmlspecialchars($_POST['contactNumber']),
                 'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),

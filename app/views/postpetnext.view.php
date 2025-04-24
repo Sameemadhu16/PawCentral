@@ -25,7 +25,7 @@
                 <ul>
                     <li><strong>Accepted Formats:</strong> JPG, PNG</li>
                     <li><strong>File Size Limit:</strong> 10MB per Image</li>
-                    <li><strong>Upload at least 1 photo</strong></li>
+                    <li><strong>Upload at least 3 photos</strong></li>
                     <li><strong>Ensure well-lit and focused images</strong></li>
                     <li><strong>Recommended Resolution:</strong> 1080px x 1080px or higher</li>
                 </ul>

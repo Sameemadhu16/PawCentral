@@ -1,147 +1,146 @@
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
     color: #333;
-}
-
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+  }
+  
+  .container {
+    display: flex;
+    max-width: 1300px;
+    margin: 2rem auto;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Title Section */
-.title {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.title h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #444;
-}
-
-.title hr {
-    width: 60px;
-    height: 3px;
-    background-color: #b720fe;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+  
+  /* Left: Form Section */
+  .left-container {
+    flex: 1;
+    padding: 3rem;
+    background-color: #fff;
+  }
+  
+  .form-content .title h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-content hr {
     border: none;
-    margin: 10px auto;
-}
-
-/* Form Styles */
-form {
-    margin: 20px 0;
-}
-
-form label {
-    font-size: 16px;
+    height: 2px;
+    background-color: #b720fe;
+    margin-bottom: 2rem;
+  }
+  
+  .form1 label {
+    display: block;
     font-weight: 500;
-    color: #444;
-}
-
-form input[type="text"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-}
-
-form input[type="text"]:focus {
-    outline: none;
-    border-color: #b720fe;
-    box-shadow: 0 0 5px rgba(183, 32, 254, 0.5);
-}
-
-form input[type="checkbox"] {
-    margin-right: 10px;
-    transform: scale(1.2);
-    vertical-align: middle;
-}
-
-h3.location {
-    margin-top: 30px;
-    font-size: 18px;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+  
+  .form1 input[type="text"],
+  .form1 input[type="checkbox"] {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .form1 input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.5rem;
+  }
+  
+  .location {
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #333;
-}
-
-/* Terms and Conditions */
-.terms {
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-form a {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  
+  .price, .city, .address {
+    width: 100%;
+  }
+  
+  .addressl {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  
+  .submit {
+    background-color: #b720fe;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .submit:hover {
+    background-color: #8e18c9;
+  }
+  
+  .form1 a {
     display: inline-block;
-    margin: 10px 0 20px;
-    font-size: 14px;
+    margin-top: 1rem;
     color: #b720fe;
     text-decoration: none;
-}
-
-form a:hover {
+    font-size: 0.95rem;
+  }
+  
+  .form1 a:hover {
     text-decoration: underline;
-}
-
-/* Submit Button */
-button.submit {
-    background-color: #b720fe;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-}
-
-button.submit:hover {
-    background-color: #8e18c9;
-}
-
-/* Confirmation Text */
-.text {
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
+  }
+  
+  .text {
+    font-size: 0.95rem;
+    color: #777;
+    margin-top: 2rem;
+  }
+  
+  /* Right: Image Section */
+  .right-container {
+    flex: 1.2;
+    background-color: #f5f5f5;
+  }
+  
+  .right-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
     .container {
-        padding: 15px;
+      flex-direction: column;
     }
-
-    .title h2 {
-        font-size: 24px;
+  
+    .right-container {
+      order: -1;
+      height: 250px;
     }
-
-    form label {
-        font-size: 14px;
+  
+    .left-container {
+      padding: 2rem;
     }
-
-    form input[type="text"] {
-        font-size: 14px;
+  
+    .submit {
+      width: 100%;
     }
-
-    button.submit {
-        width: 100%;
-    }
-
-    h3.location {
-        font-size: 16px;
-    }
-}
+  }
+  

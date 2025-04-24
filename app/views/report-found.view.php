@@ -193,7 +193,7 @@
           </select>
 
           <div id="rewardField" style="display: none;">
-            <label for="reward">Reward Amount (RM):</label>
+            <label for="reward">Reward Amount (LKR):</label>
             <input type="number" id="reward" name="reward" min="0" step="0.01" placeholder="Enter reward amount if you are willling to offer">
           </div>
 

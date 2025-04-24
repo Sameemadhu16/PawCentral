@@ -13,15 +13,9 @@
 <body>
     <?php include '../app/views/components/header.php' ?>
     <div class="title">
-        <h2>Edit Post </h2>
+        <h2 class="editpost">Edit Post </h2>
         <hr/>
     </div>
-    <?php
-    echo "pre";
-    print_r($data);
-    print_r($data['post']->importing_owner);
-    echo "</pre>"
-    ?>
     <div class="form">
     <form id="postpetform" method="POST" action="<?=ROOT?>/service/manage/editpost/update" onsubmit="validateForm(event)">
    
@@ -29,7 +23,7 @@
     <input type="hidden" name="tradeType" value="<?=htmlspecialchars($data['post']->tradeType)?>">
    
             <h3>Pet's Name</h3>
-            <input type="text" name="petName" placeholder="Enter the pet's name" required value="<?=htmlspecialchars($data['post']->pet_name)?>">
+            <input type="text" name="petName" placeholder="Enter the pet's name" required >
 
             <!-- Species & Breed -->
             <h3>Species</h3>
