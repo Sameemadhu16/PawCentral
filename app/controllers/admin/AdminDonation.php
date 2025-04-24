@@ -58,7 +58,7 @@ class AdminDonation{
 
     private function getPendingRequestCount(){
         $donationModel = new DonationsModel;
-        $query = "SELECT COUNT(*) as count FROM donation_requests WHERE status= 0";
+        $query = "SELECT COUNT(*) as count FROM donation_requests WHERE status= 0 AND approved = 0";
         $result = $donationModel->query($query);
 
         return isset($result[0]->count) ? (int)$result[0]->count : 0;
@@ -66,7 +66,7 @@ class AdminDonation{
 
     private function getApprovedCount(){
         $donationModel = new DonationsModel;
-        $query = "SELECT COUNT(*) as count FROM donation_requests WHERE status= 1";
+        $query = "SELECT COUNT(*) as count FROM donation_requests WHERE status= 0 AND approved = 1";
         $result = $donationModel->query($query);
 
         return isset($result[0]->count) ? (int)$result[0]->count : 0;
@@ -74,7 +74,7 @@ class AdminDonation{
 
     private function getPendingRequests(){
         $donationModel = new DonationsModel;
-        $query = "SELECT * FROM donation_requests WHERE status= 0";
+        $query = "SELECT * FROM donation_requests WHERE status= 0 AND approved = 0";
 
         $result = $donationModel->query($query);
         return $result;
@@ -83,7 +83,7 @@ class AdminDonation{
 
     private function getAllDonationRequests(){
         $donationModel = new DonationsModel;
-        $query = "SELECT * FROM donation_requests";
+        $query = "SELECT * FROM donation_requests WHERE status != 1";
         $result = $donationModel->query($query);
         return $result;
     }
@@ -91,14 +91,14 @@ class AdminDonation{
     private function approveRequest($id)
     {
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 1 WHERE id = $id";
+        $query = "UPDATE donation_requests SET approved = 1 WHERE id = $id";
         return $donationModel->query($query);
     }
 
     private function rejectDonationModel($id, $reason)
     {
         $donationModel = new DonationsModel;
-        $query = "UPDATE donation_requests SET status = 2, rejection_reason = :reason WHERE id = :id";
+        $query = "UPDATE donation_requests SET approved = 2, rejection_reason = :reason WHERE id = :id";
         $params = [
             ':id' => $id,
             ':reason' => $reason

@@ -10,7 +10,7 @@ class AdminAnnouncement
 
         // Retrieve all announcements, ordered by the most recent ones
         $announcements = $announcementModel->get([
-            'status' => 1
+            'status' => 0
         ], [
             'order_column' => 'updated_at',
             'order_type' => 'desc',

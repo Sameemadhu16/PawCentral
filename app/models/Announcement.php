@@ -27,7 +27,7 @@ class Announcement {
     // }
 
     public function getViewAnnouncements() {
-        $query = "SELECT * FROM {$this->table} ORDER BY created_at DESC LIMIT 5";
+        $query = "SELECT * FROM {$this->table} WHERE status=0 ORDER BY created_at DESC LIMIT 5";
         // print_r($this->query($query));
         // exit();
         return $this->query($query);

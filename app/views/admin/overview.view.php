@@ -39,7 +39,7 @@
                     <div class="stat-info">
                         <h3>Total Users</h3>
                         <p class="stat-value"><?= esc($userCount) ?></p>
-                        <p class="stat-trend positive">+5% <span>vs last period</span></p>
+                        <p class="stat-trend positive">+5% <span>vs last month</span></p>
                     </div>
                 </div>
                 <div class="stat-card total-pets">
@@ -61,8 +61,8 @@
                 <div class="stat-card total-revenue">
                     <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
-                        <h3>Total Revenue</h3>
-                        <p class="stat-value">$8,245</p>
+                        <h3>Donation Price</h3>
+                        <p class="stat-value">8,245 LKR</p>
                         <p class="stat-trend positive">+15% <span>vs last period</span></p>
                     </div>
                 </div>
