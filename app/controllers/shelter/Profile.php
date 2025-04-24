@@ -11,10 +11,14 @@ class Profile{
             redirect('home');
         }
 
-        $model = new UserProfilesModel();
+        $userModel = new UserProfilesModel();
+        $shelterModel = new ShelterModel();
 
-        $user['profile']= $model->getUserInf();
-        
+        $user['profile'] = $userModel->getUserInf();
+        $user['shelter'] = $shelterModel->getShelterById($_SESSION['user_id']);
+
+        // show($user['shelter']);
+
         $this->view('shelter/profile',$user);
     }
 

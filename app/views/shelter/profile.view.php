@@ -16,7 +16,10 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php"); 
+    // show($profile);
+    // show( $shelter);
+    ?>
 
     <div class="main-container container">
         <div>
@@ -44,20 +47,38 @@
 
                     <!-- Profile Details -->
                     <div class="profile-details">
+                        <!-- User Profile Details -->
                         <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Shelter Name : </span><?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) . " " . htmlspecialchars($profile->last_name) : 'N/A' ?>
+                            <span class="profile-detail-item-label">User Name: </span><?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) . " " . htmlspecialchars($profile->last_name) : 'N/A' ?>
                         </div>
                         <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Email : </span><?= !empty($profile->email) ? htmlspecialchars($profile->email) : 'N/A' ?>
+                            <span class="profile-detail-item-label">Email: </span><?= !empty($profile->email) ? htmlspecialchars($profile->email) : 'N/A' ?>
+                        </div>
+                            <div class="profile-detail-item">
+                                <span class="profile-detail-item-label">Shelter Name: </span><?= !empty($shelter->name) ? htmlspecialchars($shelter->name) : 'N/A' ?>
+                            </div>
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Address: </span><?= !empty($profile->address) ? htmlspecialchars($profile->address) : 'N/A' ?>
+                        </div>
+
+                        <!-- Shelter Details -->
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Shelter Location: </span><?= !empty($shelter->location) ? htmlspecialchars($shelter->location) : 'N/A' ?>
                         </div>
                         <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Mobile No : </span><?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : 'N/A' ?>
+                            <span class="profile-detail-item-label">Contact No: </span><?= !empty($shelter->contact_no) ? htmlspecialchars($shelter->contact_no) : 'N/A' ?>
                         </div>
                         <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Location : </span><?= !empty($profile->location) ? htmlspecialchars($profile->location) : 'N/A' ?>
+                            <span class="profile-detail-item-label">Capacity: </span><?= !empty($shelter->capacity) ? htmlspecialchars($shelter->capacity) : 'N/A' ?>
                         </div>
                         <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Address : </span><?= !empty($profile->address) ? htmlspecialchars($profile->address) : 'N/A' ?>
+                            <span class="profile-detail-item-label">Capacity Left: </span><?= !empty($shelter->capacity_left) ? htmlspecialchars($shelter->capacity_left) : 'N/A' ?>
+                        </div>
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Description: </span><?= !empty($shelter->description) ? htmlspecialchars($shelter->description) : 'N/A' ?>
+                        </div>
+                        <div class="profile-detail-item">
+                            <span class="profile-detail-item-label">Created At: </span><?= !empty($shelter->created_at) ? htmlspecialchars($shelter->created_at) : 'N/A' ?>
                         </div>
                     </div>
 
