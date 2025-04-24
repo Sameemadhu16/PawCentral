@@ -180,7 +180,8 @@ route('shelter/post/addpost', 'shelter/Post@NewPost');
 
 
 //medical routing
-    route('medical-centers','Medical/FindMedi@index');
+    // route('medical-centers','Medical/FindMedi@index');
+    route('medical-centers','Medical/FindMedi@indexWithpagination');
     route('medical-centers/medical-center','Medical/MediCenter@index');
 
 //appointments
