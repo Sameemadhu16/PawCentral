@@ -15,7 +15,7 @@
 <body class="body">
     <!-- Include the Header and Sidebar Components -->
     <?php include("../app/views/components/header.php");
-    show($data);    ?>
+    // show($data);    ?>
 
     <div class="container main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>

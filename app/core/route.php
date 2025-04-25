@@ -86,6 +86,9 @@ route('admin/profile_view','admin/AdminProfileView@index');
 route('admin/donation_card', 'admin/AdminDonationCard@index');
 route('admin/notification', 'admin/AdminNotification@index');
 route('admin/notification/mark-read-notification', 'admin/AdminNotification@markNotiRead');
+route('admin/notification/fetch', 'admin/AdminNotification@fetchNewNotifications');
+route('admin/notification/mark-read', 'admin/AdminNotification@markAllRead');
+route('admin/notification/mark-read-notification', 'admin/AdminNotification@markNotiRead');
 
 // User routings
 route('announcements','announcements');
@@ -157,6 +160,10 @@ route('shelter/profile', 'shelter/Profile@index');
 route('shelter/update', 'shelter/Profile@update');
 route('shelter/postupdate','shelter/PostUpdate@index');
 route('shelter/notification', 'shelter/Notification@index');
+route('shelter/notification/mark-read-notification', 'shelter/Notification@markNotiRead');
+route('shelter/notification/fetch', 'shelter/Notification@fetchNewNotifications');
+route('shelter/notification/mark-read', 'shelter/Notification@markAllRead');
+route('shelter/notification/mark-read-notification', 'shelter/Notification@markNotiRead');
 route('shelter/donation','shelter/Donation@index');
 route('shelter/donation/req', 'shelter/Donation@AddReq');
 route('shelter/donation/closeReq', 'shelter/Donation@CloseReq');

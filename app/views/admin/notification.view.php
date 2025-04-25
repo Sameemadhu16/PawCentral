@@ -24,7 +24,7 @@
             <div class="notifications-section">
                 <?php if (!empty($notifications)): ?>
                     <?php foreach ($notifications as $notif): ?>
-                        <div class="notification-card <?= $notif->is_read ? 'seen' : '' ?>" <?= $notif->is_read ? '' : 'onclick="window.location.href=\'' . ROOT . '/notifications/mark-read-notification?post_id=' . $notif->id . '\'"' ?>>
+                        <div class="notification-card <?= $notif->is_read ? 'seen' : '' ?>" <?= $notif->is_read ? '' : 'onclick="window.location.href=\'' . ROOT . '/admin/notification/mark-read-notification?post_id=' . $notif->id . '\'"' ?>>
                             <h3><?= htmlspecialchars($notif->title) ?></h3>
                             <p class="date-time <?= $notif->is_read ? 'seen' : '' ?>">
                                 Date: <?= date('Y/m/d', strtotime($notif->created_at)) ?><br>
