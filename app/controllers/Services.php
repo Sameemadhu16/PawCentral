@@ -55,8 +55,10 @@ class Services {
         $ProductPosts=$model->where(['shop_id'=>$shop_id]);
         $shops=new Shops();
         $shopsDetails=$shops->first(['user_id'=>$shop_id]);
+        $user=new User();
+        $usDetails=$user->first(['id'=>$shop_id]);
 
-        $this->view('viewShop',['ProductPosts'=>$ProductPosts,'shop_id'=>$shop_id,'shopsDetails'=>$shopsDetails]);
+        $this->view('viewShop',['ProductPosts'=>$ProductPosts,'shop_id'=>$shop_id,'shopsDetails'=>$shopsDetails,'usDetails'=>$usDetails]);
 
     }
 

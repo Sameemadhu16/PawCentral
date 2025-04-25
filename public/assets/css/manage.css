@@ -210,36 +210,3 @@
 #confirmNo {
     background-color: #cccccc;
 }
-@media (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
-    }
-
-    .contents {
-        padding: 10px;
-    }
-
-    .card {
-        width: 90%;
-    }
-
-    .post-actions {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .slider-arrow {
-        padding: 5px;
-        font-size: 18px;
-    }
-
-    .managepost h1,
-    .managepost-title {
-        text-align: center;
-    }
-
-    .post-container {
-        padding-bottom: 20px;
-    }
-}

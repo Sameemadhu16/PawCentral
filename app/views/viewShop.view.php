@@ -30,12 +30,16 @@
                     <h2>About Us</h2>
                     <!-- <p>Welcome to our Pet Toy Service! We specialize in crafting high-quality, engaging toys that bring joy and mental stimulation to pets of all sizes.</p> -->
                 </div>
+                <p class="hours">
+                                <?= ($shopsDetails->open_hour != "00:00:00" && $shopsDetails->closing_hour != "00:00:00") 
+                                    ? date("gA", strtotime($shopsDetails->open_hour)) . " - " . date("gA", strtotime($shopsDetails->closing_hour)) 
+                                    : "Mon-Fri: 8am - 6pm" ?>
+                            </p>
                 <p>★★★☆☆</p>
                 <div class="contact_button">
-                    <a href="<?= ROOT ?>/contact">
-                        <button>Contact Us</button>
-                    </a>
-                </div>
+    <button class="contact-btn">Contact Us</button>
+    <p id="contactNumber" class="contact-number" style="display: none;">0<?=htmlspecialchars($usDetails->mobile_no)?></p>
+</div>
             </div>
         </div>
 
@@ -82,5 +86,17 @@
        
     </div>
     <?php include("../app/views/components/footer.php")?>
+    <!-- JavaScript to toggle visibility of the contact number -->
+    <script>
+       document.querySelector('.contact-btn').addEventListener('click', function() {
+        const contactNumber = document.getElementById('contactNumber');
+        // Toggle the visibility of the contact number
+        if (contactNumber.style.display === 'none') {
+            contactNumber.style.display = 'block';
+        } else {
+            contactNumber.style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>

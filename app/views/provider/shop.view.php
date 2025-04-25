@@ -21,17 +21,20 @@
                 <h1><?=($shopsDetails->name)?></h1>
                 <p><?=($shopsDetails->Areas)?></p>
                 </div>
+                <p class="hours">
+                                <?= ($shopsDetails->open_hour != "00:00:00" && $shopsDetails->closing_hour != "00:00:00") 
+                                    ? date("gA", strtotime($shopsDetails->open_hour)) . " - " . date("gA", strtotime($shopsDetails->closing_hour)) 
+                                    : "Mon-Fri: 8am - 6pm" ?>
+                            </p>
                 <div class="about">
                     <h2>About Us</h2>
                     <!-- <p>Welcome to our Pet Toy Service! We specialize in crafting high-quality, engaging toys that bring joy and mental stimulation to pets of all sizes.</p> -->
                 </div>
                 <p>★★★☆☆</p>
                 <div class="contact_button">
-                    
-                        <p class="mobile_no">Contact Us</p>
-                        <p>0<?=htmlspecialchars($userDetails->mobile_no)?></p>
-                    
-                </div>
+    <button class="contact-btn">Contact Us</button>
+    <p id="contactNumber" class="contact-number" style="display: none;">0<?=htmlspecialchars($userDetails->mobile_no)?></p>
+</div>
             </div>
         </div>
 
@@ -57,7 +60,7 @@
                 <div class='post-actions'>
         
                 <a href="<?=ROOT?>/shop/edit?id=<?=htmlspecialchars($product->product_id)?>" class="btn edit-btn">Edit</a>
-                <a href="<?=ROOT?>/shop/delete?id=<?=htmlspecialchars($product->product_id)?>"  onclick="return confirm('Are you sure you want to delete this item?')"  class="btn edit-btn">Delete</a>
+                <a href="<?=ROOT?>/shop/delete?id=<?=htmlspecialchars($product->product_id)?>"   class="btn edit-btn">Delete</a>
                
         
                 </div>
@@ -78,5 +81,45 @@
         <!-- Contact Section -->
       
         <?php include("../app/views/components/footer.php")?>
+        <div id="customConfirm" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this item?</p>
+    <div class="modal-buttons">
+      <button id="confirmYes" class="btn confirm">Yes</button>
+      <button id="confirmNo" class="btn cancel">No</button>
+    </div>
+  </div>
+</div>
+<script>
+    document.querySelectorAll('.edit-btn[href*="delete"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const deleteUrl = this.href;
+            const modal = document.getElementById('customConfirm');
+            modal.style.display = 'flex';
+
+            document.getElementById('confirmYes').onclick = function () {
+                modal.style.display = 'none';
+                window.location.href = deleteUrl;
+            };
+
+            document.getElementById('confirmNo').onclick = function () {
+                modal.style.display = 'none';
+            };
+        });
+    });
+    
+    document.querySelector('.contact-btn').addEventListener('click', function() {
+        const contactNumber = document.getElementById('contactNumber');
+        // Toggle the visibility of the contact number
+        if (contactNumber.style.display === 'none') {
+            contactNumber.style.display = 'block';
+        } else {
+            contactNumber.style.display = 'none';
+        }
+    });
+
+</script>
 </body>
+
 </html>
