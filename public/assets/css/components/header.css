@@ -248,9 +248,22 @@ body, html {
     }
 }
 
-@media (max-width: 385px) {
+@media (max-width: 448px) {
     .navbar .navbar h1 {
         display: none;
+    }
+
+    .navbar  h1 {
+        display: none;
+    }
+    
+    .navbar .navbar-links li a {
+        margin: 5px 0;
+        width: 100%;
+        font-size: 14px;
+    }
+    .navbar .navbar-links li {
+        margin: 5px 0;
     }
 
     .navbar {
