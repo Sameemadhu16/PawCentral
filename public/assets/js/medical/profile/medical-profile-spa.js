@@ -341,56 +341,168 @@ function appointmentsAction() {
     // Set up date navigation
     setupDateNavigation();
 
-    // Set up view medical record buttons
-    document.querySelectorAll('.btn-view').forEach(button => {
-        button.addEventListener('click', function() {
-            const petName = this.getAttribute('data-pet-name');
-            showMedicalRecord(petName);
-        });
-    });
-    
-    // Set up complete appointment buttons
-    document.querySelectorAll('.btn-complete').forEach(button => {
-        button.addEventListener('click', function() {
-            completeAppointment(this);
-        });
-    });
-    
-    // Set up cancel appointment buttons
-    document.querySelectorAll('.btn-cancel').forEach(button => {
-        button.addEventListener('click', function() {
-            cancelAppointment(this);
-        });
-    });
-    
-    // Define action functions in the outer scope so they're available for all event handlers
+    // Set up view medical record buttons (initial setup, will be re-run after data load)
+    setupAppointmentButtons();
+
 }
 
-// Helper functions for appointments that need to be accessible globally
-function showMedicalRecord(petName) {
-    alert('Showing medical records for ' + petName);
+// set up buttons on appointment cards
+function setupAppointmentButtons() {
+    document.querySelectorAll('.btn-view').forEach(button => {
+        // Remove existing listener to prevent duplicates
+        button.removeEventListener('click', handleViewMedicalRecord); 
+        // Add named listener
+        button.addEventListener('click', handleViewMedicalRecord);
+    });
+    
+    document.querySelectorAll('.btn-complete').forEach(button => {
+        button.removeEventListener('click', handleCompleteAppointment);
+        button.addEventListener('click', handleCompleteAppointment);
+    });
+    
+    document.querySelectorAll('.btn-cancel').forEach(button => {
+        button.removeEventListener('click', handleCancelAppointment);
+        button.addEventListener('click', handleCancelAppointment);
+    });
+}
+
+// Named event handlers for appointment buttons
+function handleViewMedicalRecord() {
+    const petName = this.getAttribute('data-pet-name');
+    showMedicalRecord(petName);
+}
+
+function handleCompleteAppointment() {
+    completeAppointment(this);
+}
+
+function handleCancelAppointment() {
+    cancelAppointment(this);
+}
+
+
+// Function to remove any existing status span from the card header
+function clearStatusSpan(card) {
+    const existingStatus = card.querySelector('h2 span.status');
+    if (existingStatus) {
+        existingStatus.remove();
+    }
+}
+
+// Function to add a status span to the card header
+function addStatusSpan(card, statusText, statusClass) {
+    clearStatusSpan(card); // Ensure only one status is shown
+    const statusSpan = document.createElement('span');
+    statusSpan.className = `status ${statusClass}`;
+    statusSpan.innerText = `(${statusText})`;
+    card.querySelector('h2').appendChild(statusSpan);
+    
 }
 
 function completeAppointment(button) {
+    console.log('Complete button clicked');
     const card = button.closest('.appointment-card');
-    card.classList.add('opacity-50');
-    card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-    const status = document.createElement('span');
-    status.className = 'status completed';
-    status.innerText = '(Completed)';
-    card.querySelector('h2').appendChild(status);
+    const completeBtn = card.querySelector('.btn-complete');
+    const cancelBtn = card.querySelector('.btn-cancel');
+    const undoBtn = card.querySelector('.btn-undo');
+
+    addStatusSpan(card, 'Completed', 'completed');
+    completeBtn.disabled = true;
+    cancelBtn.disabled = true;
+    undoBtn.disabled = false;
+    undoBtn.style.display = 'block';
+
+    //update status of the appointment in db
+    const appointmentId = button.getAttribute('data-appointment-id');
+    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/completeStatus`, { // Removed ID from URL
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json' // Specify content type
+        },
+        body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Failed to update status to completed');
+            // Optionally revert UI changes here if the API call fails
+        }else{
+            console.log(response);
+        }
+    })
+    .catch(error => {
+        console.error('Error during complete appointment:', error);
+        // Optionally revert UI changes here
+    });
 }
 
 function cancelAppointment(button) {
     if (confirm('Are you sure you want to cancel this appointment?')) {
         const card = button.closest('.appointment-card');
-        card.classList.add('opacity-50');
-        card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-        const status = document.createElement('span');
-        status.className = 'status canceled';
-        status.innerText = '(Canceled)';
-        card.querySelector('h2').appendChild(status);
+        const completeBtn = card.querySelector('.btn-complete');
+        const cancelBtn = card.querySelector('.btn-cancel');
+        const undoBtn = card.querySelector('.btn-undo');
+
+        addStatusSpan(card, 'Canceled', 'canceled');
+        completeBtn.disabled = true;
+        cancelBtn.disabled = true;
+        undoBtn.disabled = false;
+        undoBtn.style.display = 'block';
+
+        const appointmentId = button.getAttribute('data-appointment-id');
+        fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/cancelStatus`, { // Removed ID from URL
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json' // Specify content type
+            },
+            body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error('Failed to update status to canceled');
+                // Optionally revert UI changes here if the API call fails
+            }
+        })
+        .catch(error => {
+            console.error('Error during cancel appointment:', error);
+            // Optionally revert UI changes here
+        });
     }
+}
+
+// Renamed from pendingAppointment for clarity
+function undoStatusUpdate(button) {
+    const card = button.closest('.appointment-card');
+    const completeBtn = card.querySelector('.btn-complete');
+    const cancelBtn = card.querySelector('.btn-cancel');
+    const undoBtn = card.querySelector('.btn-undo');
+
+    addStatusSpan(card, 'Pending', 'pending'); // Or clearStatusSpan(card) if pending has no text
+    completeBtn.disabled = false;
+    cancelBtn.disabled = false;
+    undoBtn.disabled = true;
+    undoBtn.style.display = 'none';
+
+    const appointmentId = button.getAttribute('data-appointment-id');
+    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/pendingStatus`, { // Removed ID from URL
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json' // Specify content type
+        },
+        body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Failed to update status to pending');
+            // Optionally revert UI changes here if the API call fails
+        }
+    })
+    .catch(error => {
+        console.error('Error during undo status update:', error);
+        // Optionally revert UI changes here
+    });
 }
 
 function setupDateNavigation() {
@@ -403,31 +515,46 @@ function setupDateNavigation() {
     // Start with today's date
     let currentBaseDate = new Date();
     
-    // Generate and display date buttons
+    // Generate and display date buttons for the current week
     generateDateButtons(currentBaseDate);
     
     // Previous week button
     prevDateBtn.addEventListener('click', () => {
         currentBaseDate.setDate(currentBaseDate.getDate() - 7);
         generateDateButtons(currentBaseDate);
+        // After generating new buttons, automatically select and filter the first day of that week
+        const firstButton = dateButtonsContainer.querySelector('button');
+        if (firstButton) {
+            firstButton.click();
+        }
     });
     
     // Next week button
     nextDateBtn.addEventListener('click', () => {
         currentBaseDate.setDate(currentBaseDate.getDate() + 7);
         generateDateButtons(currentBaseDate);
+        // After generating new buttons, automatically select and filter the first day of that week
+        const firstButton = dateButtonsContainer.querySelector('button');
+        if (firstButton) {
+            firstButton.click(); // Simulate click to select and filter
+        }
     });
     
     // Function to generate date buttons for a week
     function generateDateButtons(baseDate) {
-        dateButtonsContainer.innerHTML = '';
+        dateButtonsContainer.innerHTML = ''; // Clear existing buttons
         
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
         
+        // Calculate the start of the week (Sunday) for the given baseDate
+        const startOfWeek = new Date(baseDate);
+        startOfWeek.setDate(baseDate.getDate() - baseDate.getDay()); // Go back to Sunday
+
+        let todayButton = null; // To store reference to today's button if found
+
         for (let i = 0; i < 7; i++) {
-            const date = new Date(baseDate);
-            date.setDate(baseDate.getDate() - baseDate.getDay() + i);
+            const date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i); // Get the date for the current day in the loop
             
             const button = document.createElement('button');
             
@@ -443,7 +570,8 @@ function setupDateNavigation() {
             // Check if this date is today
             const isToday = date.getTime() === today.getTime();
             if (isToday) {
-                button.classList.add('active');
+                button.classList.add('active'); // Mark today as active initially
+                todayButton = button; // Store reference
             }
             
             // Store date info as data attribute for easy access
@@ -462,29 +590,66 @@ function setupDateNavigation() {
             
             dateButtonsContainer.appendChild(button);
         }
+
+        // Automatically trigger filter for today if it's in the current view
+        if (todayButton) {
+            filterAppointmentsByDate(todayButton.dataset.date);
+        } else {
+            // If today is not in the initially generated week, filter by the first day shown
+            const firstButton = dateButtonsContainer.querySelector('button');
+            if (firstButton) {
+                firstButton.classList.add('active'); // Mark the first button as active
+                filterAppointmentsByDate(firstButton.dataset.date);
+            }
+        }
     }
     
     // Function to filter appointments by selected date
     function filterAppointmentsByDate(selectedDate) {
-        // Here you would typically fetch appointments for the selected date
-        // For now, we'll just simulate with a message
         console.log(`Fetching appointments for: ${selectedDate}`);
         
-        // In a real implementation, you would make an AJAX request to get appointments for this date        
+        const appointmentsContainer = document.querySelector('.card-container');
+        
+        // Clear previous dynamic content (cards, errors, loading)
+        const existingContent = appointmentsContainer.querySelectorAll('.appointment-card, .error, .loading');
+        existingContent.forEach(el => el.remove());
+        
+        // Show loading indicator
+        const loadingMsg = document.createElement('div');
+        loadingMsg.className = 'appointment-card loading';
+        loadingMsg.innerHTML = '<h2>Loading appointments...</h2>';
+        // Append loading message
+        appointmentsContainer.appendChild(loadingMsg);
+        
+        // Make the AJAX request
         fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/appointmentsByDate?date=${selectedDate}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Cache-Control': 'no-cache'
             }
         })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            // First convert to text to debug if needed
+            const text = await response.text();
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.error('Invalid JSON response:', text);
+                throw new Error('Server returned invalid JSON response');
+            }
         })
         .then(data => {
+            // Remove loading message
+            const loadingElement = appointmentsContainer.querySelector('.appointment-card.loading');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+            
             if (data.status === 'success') {
                 updateAppointmentsDisplay(data.appointments);
             } else {
@@ -493,90 +658,99 @@ function setupDateNavigation() {
         })
         .catch(error => {
             console.error('Error fetching appointments:', error);
+            
+            // Remove loading message if it exists
+            const loadingElement = appointmentsContainer.querySelector('.appointment-card.loading');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+            
+            // Display error message
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'appointment-card error';
+            errorMsg.innerHTML = `
+                <h2>Error loading appointments</h2>
+                <p>${error.message || 'Please try again later'}</p>
+            `;
+            // Append error message
+            appointmentsContainer.appendChild(errorMsg);
         });
     }
     
     // Function to update appointments display with fetched data
     function updateAppointmentsDisplay(appointments) {
-        const appointmentsContainer = document.querySelector('.container');
+        const appointmentsContainer = document.querySelector('.card-container');
         
-        // Remove existing appointment cards
-        const existingCards = document.querySelectorAll('.appointment-card');
-        existingCards.forEach(card => card.remove());
-        
-        // Get pagination element as reference for inserting cards before it
-        const pagination = document.querySelector('.pagination');
+        // Remove existing appointment cards and error/loading messages
+        const existingContent = appointmentsContainer.querySelectorAll('.appointment-card, .error, .loading');
+        existingContent.forEach(el => el.remove());
         
         if (appointments.length === 0) {
             // No appointments for this date
             const noAppointmentsMsg = document.createElement('div');
             noAppointmentsMsg.className = 'appointment-card';
             noAppointmentsMsg.innerHTML = '<h2>No appointments scheduled for this date</h2>';
-            appointmentsContainer.insertBefore(noAppointmentsMsg, pagination);
-            return;
+            // Append the message
+            appointmentsContainer.appendChild(noAppointmentsMsg);
+        } else {
+            // Add new appointment cards
+            appointments.forEach(appointment => {
+                const card = document.createElement('div');
+                card.className = 'appointment-card';
+                
+                // Capitalize status for display
+                const displayStatus = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
+
+                card.innerHTML = `
+                    <h2>${appointment.timeslot} - ${appointment.pet_name} <span>(Owner: ${appointment.owner_name})</span> <span class="status ${appointment.status}" style="${appointment.status === 'pending' ? 'display:none;' : ''}">${appointment.status !== 'pending' ? '(' + displayStatus + ')' : ''}</span></h2>
+                    <p>Reason: ${appointment.reason || 'Not specified'}</p>
+                    <p>Vet: ${appointment.vet_name}</p>
+                    <div class="actions">
+                        <button class="btn-view" data-pet-name="${appointment.pet_name}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
+                        <button class="btn-complete" data-appointment-id="${appointment.appointment_id}">Complete</button>
+                        <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}">Cancel</button>
+                        <button class="btn-undo" data-appointment-id="${appointment.appointment_id}" style="display:none">Undo</button>
+                    </div>
+                `;
+
+                const completeBtn = card.querySelector('.btn-complete');
+                const cancelBtn = card.querySelector('.btn-cancel');
+                const undoBtn = card.querySelector('.btn-undo');
+                const medRecordBtn = card.querySelector('.btn-medRecord');
+
+                // Set initial button states based on appointment status
+                if (appointment.status === 'completed') {           
+                    addStatusSpan(card, 'Completed', 'completed');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                } else if(appointment.status === 'cancel') { // Assuming 'pending' is the other main state
+                    addStatusSpan(card, 'Canceled', 'canceled');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                }else{
+                    addStatusSpan(card, 'Pending', 'pending'); // Or clearStatusSpan(card) if pending has no text
+                    completeBtn.disabled = false;
+                    cancelBtn.disabled = false;
+                    undoBtn.disabled = true;
+                    undoBtn.style.display = 'none';
+                }
+
+                // Add event listeners using the updated functions
+                completeBtn.addEventListener('click', function() { completeAppointment(this); });
+                cancelBtn.addEventListener('click', function() { cancelAppointment(this); });
+                undoBtn.addEventListener('click', function() { undoStatusUpdate(this); });
+
+                medRecordBtn.addEventListener('click', function() {handleViewMedicalRecord(this);});
+
+
+                // Append the card
+                appointmentsContainer.appendChild(card);
+            });
         }
-        
-        // Add new appointment cards
-        appointments.forEach(appointment => {
-            const card = document.createElement('div');
-            card.className = 'appointment-card';
-            
-            const time = new Date(appointment.datetime).toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit', 
-                hour12: true 
-            });
-            
-            card.innerHTML = `
-                <h2>${time} - ${appointment.pet_name} <span>(Owner: ${appointment.owner_name})</span></h2>
-                <p>Reason: ${appointment.reason || 'Not specified'}</p>
-                <p>Vet: ${appointment.vet_name}</p>
-                <div class="actions">
-                    <button class="btn-view" data-pet-name="${appointment.pet_name}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
-                    <button class="btn-complete" data-appointment-id="${appointment.id}">Complete</button>
-                    <button class="btn-cancel" data-appointment-id="${appointment.id}">Cancel</button>
-                </div>
-            `;
-            
-            // If appointment is already completed or cancelled, add appropriate styling
-            if (appointment.status === 'completed') {
-                card.classList.add('opacity-50');
-                const status = document.createElement('span');
-                status.className = 'status completed';
-                status.innerText = '(Completed)';
-                card.querySelector('h2').appendChild(status);
-                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            } else if (appointment.status === 'canceled') {
-                card.classList.add('opacity-50');
-                const status = document.createElement('span');
-                status.className = 'status canceled';
-                status.innerText = '(Canceled)';
-                card.querySelector('h2').appendChild(status);
-                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            }
-            
-            appointmentsContainer.insertBefore(card, pagination);
-        });
-        
-        // Re-attach event listeners to the newly created buttons
-        document.querySelectorAll('.btn-view').forEach(button => {
-            button.addEventListener('click', function() {
-                const petName = this.getAttribute('data-pet-name');
-                showMedicalRecord(petName);
-            });
-        });
-        
-        document.querySelectorAll('.btn-complete').forEach(button => {
-            button.addEventListener('click', function() {
-                completeAppointment(this);
-            });
-        });
-        
-        document.querySelectorAll('.btn-cancel').forEach(button => {
-            button.addEventListener('click', function() {
-                cancelAppointment(this);
-            });
-        });
     }
 }
 

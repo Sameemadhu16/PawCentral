@@ -111,6 +111,11 @@ body {
     font-size: 14px;
     color: var(--text-secondary);
   }
+
+  .appointment-card .complete {
+    font-weight: bold;
+    color: var(--text-primary);
+  }
   .actions {
     display: flex;
     gap: 8px;
@@ -145,6 +150,13 @@ body {
   .btn-cancel:hover {
     background-color: var(--danger-dark);
   }
+  .btn-undo{
+    background-color: var(--warning);
+    color: var(--text-light);
+  }
+  .btn-undo:hover {
+    background-color: var(--warning-dark);
+  }
   .pagination {
     display: flex;
     justify-content: center;
@@ -176,3 +188,33 @@ body {
   }
   .status.completed { color: var(--success); }
   .status.canceled { color: var(--danger); }
+  .status.pending { color: var(--warning-dark, #A0522D); }
+
+
+
+/* Add styles for loading and error states */
+.appointment-card.loading {
+  background-color: var(--secondary);
+  opacity: 0.7;
+  text-align: center;
+  padding: 30px;
+}
+
+.appointment-card.loading h2 {
+  color: var(--text-muted);
+}
+
+.appointment-card.error {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 4px solid var(--danger);
+  padding: 20px;
+}
+
+.appointment-card.error h2 {
+  color: var(--danger-dark);
+  margin-bottom: 8px;
+}
+
+.appointment-card.error p {
+  color: var(--danger);
+}

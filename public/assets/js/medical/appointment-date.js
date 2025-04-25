@@ -38,6 +38,9 @@ class Calendar {
         this.calculateVisibleDates();
         this.renderTimeSlots();
         window.addEventListener('resize', () => this.calculateVisibleDates());
+
+        // Automatically select today's date if it's in the visible range and available
+        this.selectTodayIfAvailable();
     }
 
     initializeCalendar() {
@@ -131,6 +134,9 @@ class Calendar {
                 <p class="date">${i + 1}</p>
             `;
 
+            // Store the date info as a data attribute for easy reference
+            dateElement.dataset.date = date.toISOString().split('T')[0];
+
             // Only add click event to available dates
             if (isAvailable && !isPast) {
                 dateElement.addEventListener('click', () => {
@@ -216,6 +222,28 @@ class Calendar {
         const dateWidth = 100; // date width + gap
         this.visibleDates = Math.floor(containerWidth / dateWidth);
         this.renderDates();
+    }
+
+    // New method to select today's date if it's available
+    selectTodayIfAvailable() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const todayStr = today.toISOString().split('T')[0];
+        
+        // Look for today's date element by data attribute
+        const todayElement = document.querySelector(`.one-date[data-date="${todayStr}"]:not(.unavailable)`);
+        
+        if (todayElement) {
+            console.log("Found today's date, selecting it automatically");
+            // Use setTimeout to ensure this runs after rendering is complete
+            setTimeout(() => {
+                // Simulate a click on today's date
+                const date = new Date(todayStr);
+                this.selectDate(todayElement, date);
+            }, 100);
+        } else {
+            console.log("Today's date not found or not available");
+        }
     }
 }
 
