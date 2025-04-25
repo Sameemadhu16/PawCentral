@@ -4,9 +4,12 @@ class AdminDonation{
 
     use Controller;
 
+    private $valid_roles = ['admin'];
+
     public function index()
     {
-        // Handle approve and reject before preparing data
+        $this->isAuthorized($this->valid_roles);
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['id']) && isset($_POST['approve'])) {
                 $this->approveRequest($_POST['id']);

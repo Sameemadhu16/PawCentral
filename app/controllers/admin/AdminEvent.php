@@ -3,8 +3,11 @@
 class AdminEvent{
 
     use Controller;
+    private $valid_roles = ['admin'];
 
-    public function index(){
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
 
         $pendingEvents = $this->getEvents();
 

@@ -14,9 +14,11 @@ class AdminMedicalRegistration
 
     use Controller;
     use Model;
+    private $valid_roles = ['admin'];
 
     public function index()
     {
+        $this->isAuthorized($this->valid_roles);
 
         $medicalProvider = new MedicalProvModel();
         // show($_SESSION['user']);

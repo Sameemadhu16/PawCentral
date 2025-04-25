@@ -3,10 +3,11 @@
 class AdminEditAnnouncement
 {
     use Controller;
+    private $valid_roles = ['admin'];
 
     public function index()
     {
-
+        $this->isAuthorized($this->valid_roles);
         $status=$this->getAnnouncement();
 
         if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submitAnnouncement'])) {

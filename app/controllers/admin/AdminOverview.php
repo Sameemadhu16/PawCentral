@@ -7,6 +7,8 @@ class AdminOverview {
 
     public function index() {
 
+        $this->isAuthorized($this->valid_roles);
+
         // Calculate user growth
         $prevUsers = $this->getLastMonthUserCount();
         $currentUsers = $this->getThisMonthUserCount();

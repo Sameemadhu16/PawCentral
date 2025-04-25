@@ -3,9 +3,11 @@
 class AdminDonationCard{
 
     use Controller;
+    private $valid_roles = ['admin'];
 
-    public function index(){
-
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['id']) && isset($_POST['approve'])) {
                 $this->approveRequest($_POST['id']);
