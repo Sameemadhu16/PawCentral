@@ -14,7 +14,8 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar Components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php"); 
+    // show($data);    ?>
 
     <div class="container main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
@@ -39,14 +40,14 @@
                     <div class="stat-info">
                         <h3>Total Users</h3>
                         <p class="stat-value"><?= esc($userCount) ?></p>
-                        <p class="stat-trend positive">+5% <span>vs last month</span></p>
+                        <p class="stat-trend positive">+5% <span>vs last period</span></p>
                     </div>
                 </div>
                 <div class="stat-card total-pets">
                     <div class="stat-icon"><i class="fas fa-paw"></i></div>
                     <div class="stat-info">
                         <h3>Registered Pets</h3>
-                        <p class="stat-value">243</p>
+                        <p class="stat-value"><?=esc($regPetCount)?></p>
                         <p class="stat-trend positive">+12% <span>vs last period</span></p>
                     </div>
                 </div>
@@ -54,7 +55,7 @@
                     <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
                     <div class="stat-info">
                         <h3>Active Users</h3>
-                        <p class="stat-value">187</p>
+                        <p class="stat-value"><?=esc($activeUser)?></p>
                         <p class="stat-trend positive">+8% <span>vs last period</span></p>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                     <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
                         <h3>Donation Price</h3>
-                        <p class="stat-value">8,245 LKR</p>
+                        <p class="stat-value"><?=esc($donationPrice)?> LKR</p>
                         <p class="stat-trend positive">+15% <span>vs last period</span></p>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
                             <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
                             <div class="card-details">
                                 <h3>Posts</h3>
-                                <span>15</span>
+                                <span><?= $adoptionPosts + $sellingPosts + $importingPosts + $rentingPosts ?></span>
                             </div>
                         </div>
                         <div class="card reports-card">
