@@ -23,8 +23,8 @@
             ?>
             <div class="info_section">
                 <div class="service_name">
-                    <h1><?=($shopsDetails->name)?></h1>
-                    <p><?=($shopsDetails->Areas)?></p>
+                    <h1 class="nam"><?=($shopsDetails->name)?></h1>
+                    <p class='loc'><?=($shopsDetails->Areas)?></p>
                 </div>
                 <div class="about">
                     <h2>About Us</h2>
@@ -37,8 +37,7 @@
                             </p>
                 <p>★★★☆☆</p>
                 <div class="contact_button">
-    <button class="contact-btn">Contact Us</button>
-    <p id="contactNumber" class="contact-number" style="display: none;">0<?=htmlspecialchars($usDetails->mobile_no)?></p>
+                <button class="contact-btn" id="contactToggleBtn" data-number="0<?=htmlspecialchars($usDetails->mobile_no)?>">Contact Us</button>
 </div>
             </div>
         </div>
@@ -88,13 +87,15 @@
     <?php include("../app/views/components/footer.php")?>
     <!-- JavaScript to toggle visibility of the contact number -->
     <script>
-       document.querySelector('.contact-btn').addEventListener('click', function() {
-        const contactNumber = document.getElementById('contactNumber');
-        // Toggle the visibility of the contact number
-        if (contactNumber.style.display === 'none') {
-            contactNumber.style.display = 'block';
+    const contactBtn = document.getElementById('contactToggleBtn');
+    const originalText = 'Contact Us';
+    const contactNumber = contactBtn.getAttribute('data-number');
+
+    contactBtn.addEventListener('click', function () {
+        if (contactBtn.textContent === originalText) {
+            contactBtn.textContent = contactNumber;
         } else {
-            contactNumber.style.display = 'none';
+            contactBtn.textContent = originalText;
         }
     });
     </script>

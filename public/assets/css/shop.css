@@ -294,3 +294,18 @@ a:hover {
     border-radius: 5px;
     cursor: pointer;
 }
+.hours {
+    font-weight: bold;
+    font-size: 1.1rem; /* Adjust the size as needed */
+    color: #333; /* Optional: ensure it's readable */
+}
+.loc {
+    font-weight: bold;
+    font-size: 1.1rem; /* Adjust the size as needed */
+    color: #333; /* Optional: ensure it's readable */
+}
+.nam {
+    font-weight: bold;
+    font-size: 1.1rem; /* Adjust the size as needed */
+    color: #333; /* Optional: ensure it's readable */
+}
