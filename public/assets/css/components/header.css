@@ -154,7 +154,7 @@ body, html {
     transition: all 0.3s ease;
 }
 
-@media (max-width:1300px){
+@media (max-width:1450px){
     .navbar .navbar-links li a {
         font-size: 15px;
         padding: 15px 10px;
@@ -170,7 +170,7 @@ body, html {
         padding: 10px 20px;  */
 
 /* @media (max-width: 1140px)  */
-@media (max-width: 1275px) {
+@media (max-width: 1330px) {
 
     .navbar .navbar-logo {
         width: 50px;
@@ -203,7 +203,8 @@ body, html {
         position: fixed;
         top: 65px; 
         left: 0;
-        background-color: #6A0DAD;
+        /* background-color: #6A0DAD; */
+        background-color: var(--button-normal);
         padding: 20px;
         width: 100%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
