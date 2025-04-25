@@ -7,13 +7,26 @@ class AdminOverview {
 
     public function index() {
 
-        // CALL THE isAUthorized Function with the allowed roles that can access the route called page/controller function.
-        // Pass an array of the user roles allowed 
-        // $this->isAuthorized($this->valid_roles);
-        // $this->getAnnouncementCount();
-        // $this->getUserCount();
-        // $this->getMedicalRegistrationCount();
-        // $this->getRegisteredpetCount();
+        // Calculate user growth
+        $prevUsers = $this->getLastMonthUserCount();
+        $currentUsers = $this->getThisMonthUserCount();
+        $userGrowth = ($prevUsers === 0 && $currentUsers === 0) ? 0 : ($prevUsers > 0 ? round((($currentUsers - $prevUsers) / $prevUsers) * 100, 2) : 100);
+
+        // Registered pets growth
+        $prevPets = $this->getLastMonthRegisterPetCount();
+        $currentPets = $this->getThisMonthRegisterPetCount();
+        $petGrowth = ($prevPets === 0 && $currentPets === 0) ? 0 : ($prevPets > 0 ? round((($currentPets - $prevPets) / $prevPets) * 100, 2) : 100);
+
+        // Active users growth
+        $prevActive = $this->getLastMonthActiveUserCount();
+        $currentActive = $this->getThisMonthActiveUserCount();
+        $activeGrowth = ($prevActive === 0 && $currentActive === 0) ? 0 : ($prevActive > 0 ? round((($currentActive - $prevActive) / $prevActive) * 100, 2) : 100);
+
+        // Donation growth
+        $prevDonation = $this->getLastMonthDonations();
+        $currentDonation = $this->getThisMonthDonations();
+        $donationGrowth = ($prevDonation === 0 && $currentDonation === 0) ? 0 : ($prevDonation > 0 ? round((($currentDonation - $prevDonation) / $prevDonation) * 100, 2) : 100);
+
 
         $data = [
             'announcementCount' => $this->getAnnouncementCount(),
@@ -21,15 +34,18 @@ class AdminOverview {
             'activeUser' => $this->getActiveUserCount(),
             'mediRegCount' => $this->getMedicalRegistrationCount(),
             'eventCount' => $this->getEventCount(),
-            'donationCount' => $this->getDonationCount(),
-            'lastMonthDonations' => $this->getLastMonthDonations(),
-            'thisMonthDonations' => $this->getThisMonthDonations(),
+            'donationCount' => $this->getDonationCount(), 
             'regPetCount' => $this->getRegisteredpetCount(),
             'donationPrice' => $this->totalDonationPrice(),
             'adoptionPosts' => $this->getAdoptionPostCount(),
             'sellingPosts' => $this->getSellingPostCount(),
             'importingPosts' => $this->getImportPostCount(),
             'rentingPosts' => $this->getRentPostCount(),
+            'growthUsers' => $userGrowth,
+            'growthPets' => $petGrowth,
+            'growthActiveUsers' => $activeGrowth,
+            'growthDonations' => $donationGrowth,
+            
             //add other data here
         ];
 
@@ -57,11 +73,44 @@ class AdminOverview {
         return $userCount;
     }
 
+    private function getThisMonthUserCount()
+    {
+        $userModel = new User;
+        $query = "SELECT COUNT(*) as count FROM users WHERE MONTH(created_at) = MONTH(CURRENT_DATE)";
+        $result = $userModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0; // Use 'count' instead of 'total'
+    }
+
+    private function getLastMonthUserCount()
+    {
+        $userModel = new User;
+        $query = "SELECT COUNT(*) as count FROM users WHERE MONTH(created_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)";
+        $result = $userModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0;
+    }
+
     private function getActiveUserCount() {
         $userModel = new User;
         $activeUserCount = $userModel->getCount('Users', ['status' => 'active']); // Pass 'status' condition
         return $activeUserCount;
     }
+
+    private function getThisMonthActiveUserCount()
+    {
+        $userModel = new User;
+        $query = "SELECT COUNT(*) as count FROM users WHERE  status = 'active' && MONTH(created_at) = MONTH(CURRENT_DATE)";
+        $result = $userModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0; // Use 'count' instead of 'total'
+    }
+
+    private function getLastMonthActiveUserCount()
+    {
+        $userModel = new User;
+        $query = "SELECT COUNT(*) as count FROM users WHERE status = 'active' && MONTH(created_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)";
+        $result = $userModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0;
+    }
+    
 
     private function getMedicalRegistrationCount(){
 
@@ -79,9 +128,23 @@ class AdminOverview {
     }
 
     private function getRegisteredpetCount(){
-        $petModel = new RegisterPet;
+        $petModel = new RegisterPet();
         $petCount = $petModel->getCount();
         return $petCount;
+    }
+
+    private function getThisMonthRegisterPetCount(){
+        $petModel = new RegisterPet();
+        $query = "SELECT COUNT(*) as count FROM registered_pets WHERE MONTH(created_at) = MONTH(CURRENT_DATE)";
+        $result = $petModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0;
+    }
+    private function getLastMonthRegisterPetCount()
+    {
+        $petModel = new RegisterPet();
+        $query = "SELECT COUNT(*) as count FROM registered_pets WHERE MONTH(created_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)";
+        $result = $petModel->query($query);
+        return isset($result[0]->count) ? (int)$result[0]->count : 0;
     }
 
     private function getDonationCount(){

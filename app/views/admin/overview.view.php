@@ -14,8 +14,8 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar Components -->
-    <?php include("../app/views/components/header.php"); 
-    // show($data);    ?>
+    <?php include("../app/views/components/header.php");
+    show($data);    ?>
 
     <div class="container main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
@@ -40,34 +40,54 @@
                     <div class="stat-info">
                         <h3>Total Users</h3>
                         <p class="stat-value"><?= esc($userCount) ?></p>
-                        <p class="stat-trend positive">+5% <span>vs last period</span></p>
+                        <?php $class = $growthUsers >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthUsers >= 0 ? '+' : '' ?><?= esc($growthUsers) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card total-pets">
                     <div class="stat-icon"><i class="fas fa-paw"></i></div>
                     <div class="stat-info">
                         <h3>Registered Pets</h3>
-                        <p class="stat-value"><?=esc($regPetCount)?></p>
-                        <p class="stat-trend positive">+12% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($regPetCount) ?></p>
+                        <?php $class = $growthPets >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthPets >= 0 ? '+' : '' ?><?= esc($growthPets) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card active-users">
                     <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
                     <div class="stat-info">
                         <h3>Active Users</h3>
-                        <p class="stat-value"><?=esc($activeUser)?></p>
-                        <p class="stat-trend positive">+8% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($activeUser) ?></p>
+                        <?php $class = $growthActiveUsers >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthActiveUsers >= 0 ? '+' : '' ?><?= esc($growthActiveUsers) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card total-revenue">
                     <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
                         <h3>Donation Price</h3>
-                        <p class="stat-value"><?=esc($donationPrice)?> LKR</p>
-                        <p class="stat-trend positive">+15% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($donationPrice) ?> LKR</p>
+                        <?php $class = $growthDonations >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthDonations >= 0 ? '+' : '' ?><?= esc($growthDonations) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
             </div>
+
 
             <div class="dashboard-sections">
                 <div class="section activity-section">

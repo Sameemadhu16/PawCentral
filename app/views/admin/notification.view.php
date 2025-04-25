@@ -19,7 +19,7 @@
         <div class="user-accounts-section">
             <div class="header-section">
                 <h2>Notifications</h2>
-                <button class="quick-action-button fixedsize" onclick="window.location.href='<?= ROOT ?>/notifications/mark-read';">Mark All as Read</button>
+                <button class="quick-action-button fixedsize" onclick="window.location.href='<?= ROOT ?>/admin/notification/mark-read';">Mark All as Read</button>
             </div>
             <div class="notifications-section">
                 <?php if (!empty($notifications)): ?>
