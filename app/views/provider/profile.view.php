@@ -74,29 +74,50 @@
         </div>
         </div>
     </div>
-    
+    <?php 
+    echo "<pre>";
+    print_r($_SESSION['user_id']);
+    echo "</pre>";
+    ?>
     <div id="popupForm" class="popup-container">
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Edit Profile Information</h2>
             <form id="profileForm" action="<?= ROOT ?>/provider/update" method="POST" enctype="multipart/form-data">
+                <label for="shop_name">Shop Name:</label>
+                <input type="text" id="shop_name" name="shop_name" value="<?= !empty($providerDetails->name) ? htmlspecialchars($providerDetails->name) : '' ?>" required>
+
                 <label for="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" value="<?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) : '' ?>" required>
+                <input type="text" id="last_name" name="first_name" value="<?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) : '' ?>" required> 
 
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" value="<?= !empty($profile->last_name) ? htmlspecialchars($profile->last_name) : '' ?>" required>
 
+                 <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="<?= !empty($profile->last_name) ? htmlspecialchars($profile->last_name) : '' ?>" required> 
+                
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" value="<?= !empty($profile->location) ? htmlspecialchars($profile->location) : '' ?>" required> 
+                
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="<?= !empty($profile->address) ? htmlspecialchars($profile->address) : '' ?>" required> 
+                <label for="description">Description:</label>
+<textarea id="description" name="description"><?= htmlspecialchars($providerDetails->description ?? '') ?></textarea>
 
                 <label for="mobile_no">Mobile Number:</label>
                 <input type="text" id="mobile_no" name="mobile_no" value="<?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : '' ?>">
-
-                <label for="mobile_no">Service Type:</label>
-                <input type="text" id="service_type" name="service_type" value="<?= !empty($providerDetails->service_type) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
-
-                <label for="mobile_no">Opening Hour:</label>
-                <input type="time" id="service_type" name="service_type" value="<?= !empty($providerDetails->open_hour) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
-                <label for="mobile_no">Closing Hour:</label>
-                <input type="time" id="service_type" name="service_type" value="<?= !empty($providerDetails->closing_hour) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
+                <label for="service_type">Service Type:</label>
+<select id="service_type" name="service_type" required>
+    <option value="">Select Service Type</option>
+    <option value="Pet Sitter" <?= ($providerDetails->service_type ?? '') === 'Pet Sitter' ? 'selected' : '' ?>>Pet Sitter</option>
+    <option value="Food Supplements" <?= ($providerDetails->service_type ?? '') === 'Food Supplements' ? 'selected' : '' ?>>Food Supplements</option>
+    <option value="Day Care" <?= ($providerDetails->service_type ?? '') === 'Day Care' ? 'selected' : '' ?>>Day Care</option>
+    <option value="Equipments Seller" <?= ($providerDetails->service_type ?? '') === 'Equipments Seller' ? 'selected' : '' ?>>Equipments Seller</option>
+    <option value="Pet Groomer" <?= ($providerDetails->service_type ?? '') === 'Pet Groomer' ? 'selected' : '' ?>>Pet Groomer</option>
+    <option value="Clothing & Accessories" <?= ($providerDetails->service_type ?? '') === 'Clothing & Accessories' ? 'selected' : '' ?>>Clothing & Accessories</option>
+</select>
+                <label for="Opening_hour">Opening Hour:</label>
+                <input type="time" id="opening_hour" name="opening_hour" value="<?= !empty($providerDetails->open_hour) ? htmlspecialchars($providerDetails->open_hour) : '' ?>">
+                <label for="Closing_hour">Closing Hour:</label>
+                <input type="time" id="closing_hour" name="closing_hour" value="<?= !empty($providerDetails->closing_hour) ? htmlspecialchars($providerDetails->closing_hour) : '' ?>">
                 <!-- <label for="location">Location:</label>
                 <select name="location" id="location" required>
                     <option value="" disabled <?= empty($profile->location) ? 'selected' : '' ?>>Select your location</option>
@@ -112,7 +133,7 @@
                     <option value="Ratnapura" <?= $profile->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
                 </select> -->
 
-                <label for="mobile_no">Area:</label>
+                <label for="Area">Area:</label>
                 <input type="text" id="Area" name="Area" value="<?= !empty($providerDetails->Areas) ? htmlspecialchars($providerDetails->Areas) : '' ?>">
 
 <!-- NEW: Profile Picture Upload -->

@@ -44,7 +44,7 @@ class Profile{
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $model = new UserProfilesModel();
-            
+            $serviceModel=new ServiceProvModel();
             try {
                 // Handle file upload if present
                 if(isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0){
@@ -71,12 +71,20 @@ class Profile{
                     'location' => $_POST['location'] ?? '',
                     'address' => $_POST['address'] ?? ''
                 ];
+                $dataService = [
+                    'name' => $_POST['shop_name'] ?? '',
+                    'service_type' => $_POST['service_type'] ?? '',
+                    'Areas' => $_POST['Area'] ?? '',
+                    'open_hour' => $_POST['opening_hour'] ?? '',
+                    'closing_hour' => $_POST['closing_hour'] ?? '',
+                    'description'=>$_POST['description'] ?? '',
+                ];
 
                 if(isset($_POST['img'])){
                     $data['profile_pic'] = $_POST['img'];
                 }
-
-                if($model->update($_SESSION['user_id'], $data)){
+                
+                if($model->update($_SESSION['user_id'], $data) && $serviceModel->updateByUserId($_SESSION['user_id'],$dataService)){
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Profile updated successfully'
