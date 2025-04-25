@@ -39,7 +39,8 @@ class AdminDonation{
             'pending_count' => $this->getPendingRequestCount(),
             'approved_count' => $this->getApprovedCount(),
             'pending_donations' => $pendingDonations,
-            'all_requests' => $this->getAllDonationRequests()
+            'all_requests' => $this->getAllDonationRequests(),
+            'thisMonthDonations' => $this->getThisMonthDonations(),
         ];
 
         $this->view('admin/donation', $data);
@@ -104,5 +105,13 @@ class AdminDonation{
             ':reason' => $reason
         ];
         return $donationModel->query($query, $params);
+    }
+
+    private function getThisMonthDonations()
+    {
+        $donationModel = new DonationsModel;
+        $query = "SELECT SUM(amount) as total FROM donations WHERE MONTH(donated_at) = MONTH(CURRENT_DATE)";
+        $result = $donationModel->query($query);
+        return isset($result[0]->total) ? (float)$result[0]->total : 0;
     }
 }
