@@ -48,8 +48,8 @@ class PostUpdate{
             $updateData = [
 
                     'name' => $_POST['name'],
-                    'species' => $_POST['species'], // Ensure species is validated
-                    'breed' => $_POST['breed'],
+                    // 'species' => $_POST['species'], // Ensure species is validated
+                    // 'breed' => $_POST['breed'],
                     'sex' => $_POST['sex'],
                     'age' => $_POST['age'],
                     'height' => $_POST['height'],

@@ -12,6 +12,18 @@ class Postinfo{
             'post' => $this->getPostDetails(),
         ];
 
+        // foreach ($data['post'] as $post) {
+        //     if (isset($post->postimg1) || isset($post->postimg2) || isset($post->postimg3)) {
+        //         $post->postimg1 = "data:image/jpeg;base64," . base64_encode($post->postimg1);
+        //         $post->postimg2 = "data:image/jpeg;base64," . base64_encode($post->postimg2);
+        //         $post->postimg3 = "data:image/jpeg;base64," . base64_encode($post->postimg3);
+        //     } else {
+        //         $post->postimg1 = null;
+        //         $post->postimg2 = null;
+        //         $post->postimg3 = null;
+        //     }
+        // }
+
         if ($_SERVER['REQUEST_METHOD'] && isset($_POST['deletepost'])) {
             $this->DeletePost();
             redirect('shelter/post');
