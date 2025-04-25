@@ -59,6 +59,33 @@
     <br><br>
 
     <!-- Contact Info -->
+   
+    <?php if ($post->tradeType === 'Renting'): ?>
+        
+        <div class="section-rent-section">
+    <h2>Rental Info</h2>
+    <div class="specs">
+        <p>Rental Fee:</p>
+        <span class="rental-fee">Rs. <?= $post->rental_fee ?></span>
+    </div>
+    <div class="specs">
+        <p>Renter Name:</p>
+        <span class="renter-name"><?= $post->renter_name ?></span>
+    </div>
+    <div class="specs">
+        <p>Renter Contact:</p>
+        <span class="renter-contact"><?= $post->renter_contact ?></span>
+    </div>
+    <div class="specs">
+        <p>Renter Address:</p>
+        <span class="renter-address"><?= $post->renter_address ?></span>
+    </div>
+    <div class="specs">
+        <p>Rental Duration:</p>
+        <span class="rental-duration"><?= $post->rental_duration ?></span>
+    </div>
+</div>
+    <?php endif; ?>
     <div class="contact-section">
         <img class="contact-icon" src="<?=ROOT?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
         <span>Contact: </span>
@@ -80,14 +107,7 @@
     </div>
 
     <!-- Import Info Section -->
-    <?php if ($post->tradeType === 'Renting'): ?>
-        <h2>Rental Info</h2>
-            <p><strong>Rental Fee:</strong> Rs. <?= $post->rental_fee ?></p>
-            <p><strong>Renter Name:</strong> <?= $post->renter_name ?></p>
-            <p><strong>Renter Contact:</strong> <?= $post->renter_contact ?></p>
-            <p><strong>Renter Address:</strong> <?= $post->renter_address ?></p>
-            <p><strong>Rental Duration:</strong> <?= $post->rental_duration ?></p>
-    <?php endif; ?>
+   
 
 </div>
 

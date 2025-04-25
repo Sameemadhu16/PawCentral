@@ -59,29 +59,34 @@
     <br><br>
 
     <!-- Trade Info Section -->
-    <?php if ($post->tradeType === 'Selling'): ?>
-        <div class="section sell-section">
-            <h2>Selling Info</h2>
-            <p><strong>Price:</strong> <?= $post->price ?> Rupees</p>
-            <p><strong>Fee Negotiable:</strong> <?= $post->fee_negotiable ? 'Yes' : 'No' ?></p>
-        </div>
-    <?php elseif ($post->tradeType === 'Renting'): ?>
-        <div class="rental-info-section">
-            <h2>Rental Info</h2>
-            <p><strong>Rental Fee:</strong> Rs. <?= $post->rental_fee ?></p>
-            <p><strong>Renter Name:</strong> <?= $post->renter_name ?></p>
-            <p><strong>Renter Contact:</strong> <?= $post->renter_contact ?></p>
-            <p><strong>Renter Address:</strong> <?= $post->renter_address ?></p>
-            <p><strong>Rental Duration:</strong> <?= $post->rental_duration ?></p>
-        </div>
-    <?php elseif ($post->tradeType === 'Importing'): ?>
+   
+    <?php if ($post->tradeType === 'Importing'): ?>
         <div class="import-info-section">
-            <h2>Import Info</h2>
-            <p><strong>Country:</strong> <?= $post->country ?></p>
-            <p><strong>Importing Owner:</strong> <?= $post->importing_owner ?></p>
-            <p><strong>Import Fees:</strong> <?= $post->import_fees ?> Rupees</p>
-            <p><strong>Transport Method:</strong> <?= $post->transport_method ?></p>
-            <p><strong>Importer Mobile:</strong> <?= $post->importer_mobile ?></p>
+            
+            <div class="section-import-section">
+    <h2>Importing Info</h2>
+    <div class="specs">
+        <p>Country:</p>
+        <span class="country"><?= $post->country ?></span>
+    </div>
+    <div class="specs">
+        <p>Importing Owner:</p>
+        <span class="importing-owner"><?= $post->importing_owner ?></span>
+    </div>
+    <div class="specs">
+        <p>Import Fees:</p>
+        <span class="import-fees"><?= $post->import_fees ?> Rupees</span>
+    </div>
+    <div class="specs">
+        <p>Transport Method:</p>
+        <span class="transport-method"><?= $post->transport_method ?></span>
+    </div>
+    <div class="specs">
+        <p>Importer Mobile:</p>
+        <span class="importer-mobile"><?= $post->importer_mobile ?></span>
+    </div>
+</div>
+
         </div>
     <?php endif; ?>
 

@@ -60,22 +60,23 @@
 
     <!-- Seller or Rental Info -->
     <?php if ($post->tradeType === 'Selling'): ?>
-        <div class="section sell-section">
-            <h2>Selling Info</h2>
-            <p><strong>Price:</strong> <?= $post->price ?> Rupees</p>
-            <p><strong>Fee Negotiable:</strong> <?= $post->fee_negotiable ? 'Yes' : 'No' ?></p>
-            <p><strong>Exact-Address:</strong> <?= $post->Exact_address ?></p>
+    <div class="section-sell-section">
+        <h2>Selling Info</h2>
+        <div class="specs">
+            <p>Price:</p>
+            <span class="price"><?= $post->price ?> Rupees</span>
         </div>
-    <?php elseif ($post->tradeType === 'Renting'): ?>
-        <div class="rental-info-section">
-            <h2>Rental Info</h2>
-            <p><strong>Rental Fee:</strong> Rs. <?= $post->rental_fee ?></p>
-            <p><strong>Renter Name:</strong> <?= $post->renter_name ?></p>
-            <p><strong>Renter Contact:</strong> <?= $post->renter_contact ?></p>
-            <p><strong>Renter Address:</strong> <?= $post->renter_address ?></p>
-            <p><strong>Rental Duration:</strong> <?= $post->rental_duration ?></p>
+        <div class="specs">
+            <p>Fee Negotiable:</p>
+            <span class="fee-negotiable"><?= $post->fee_negotiable ? 'Yes' : 'No' ?></span>
         </div>
-    <?php endif; ?>
+        <div class="specs">
+            <p>Exact Address:</p>
+            <span class="exact-address"><?= $post->Exact_address ?></span>
+        </div>
+    </div>
+<?php endif; ?>
+
 
     <!-- Contact Info -->
     <div class="contact-section">
