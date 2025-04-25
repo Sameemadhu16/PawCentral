@@ -348,7 +348,7 @@ function appointmentsAction() {
 
 // set up buttons on appointment cards
 function setupAppointmentButtons() {
-    document.querySelectorAll('.btn-view').forEach(button => {
+    document.querySelectorAll('.btn-medRecord').forEach(button => {
         // Remove existing listener to prevent duplicates
         button.removeEventListener('click', handleViewMedicalRecord); 
         // Add named listener
@@ -367,9 +367,78 @@ function setupAppointmentButtons() {
 }
 
 // Named event handlers for appointment buttons
-function handleViewMedicalRecord() {
-    const petName = this.getAttribute('data-pet-name');
-    showMedicalRecord(petName);
+async function handleViewMedicalRecord(button) { // Changed argument name for clarity and made async
+    const pet_id = button.getAttribute('data-pet-id'); // Use the passed button argument
+    
+    //medical record popup elements
+    const popup = document.getElementById('popup-overlay');
+    const closeBtn = popup.querySelector('.close-btn'); // Scope querySelector to popup
+    const petNameSpan = popup.querySelector('.pet-name');
+    const recordsListDiv = popup.querySelector('#medical-records-list');
+    const noRecordsMessage = popup.querySelector('#no-records-message');
+
+    // Clear previous content and hide no-records message
+    recordsListDiv.innerHTML = '';
+    noRecordsMessage.style.display = 'none';
+    petNameSpan.textContent = 'Loading...'; // Indicate loading
+
+    popup.style.display='flex';
+    if (closeBtn) {
+        // Ensure listener is added only once or remove previous if necessary
+        const newCloseBtn = closeBtn.cloneNode(true); // Clone to remove old listeners
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+        newCloseBtn.addEventListener('click', () => popup.style.display = 'none');
+    }
+
+    try {
+        const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/showPetRecords?id=${pet_id}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Received data:', data);
+
+        if (data.status === 'success') {
+            // Update pet name
+            petNameSpan.textContent = data.pet ? data.pet.name : 'Unknown Pet';
+
+            // Populate medical records
+            if (data.medical_records && data.medical_records.length > 0) {
+                data.medical_records.forEach(record => {
+                    const recordDiv = document.createElement('div');
+                    recordDiv.className = 'med-record'; // Add a class for styling
+                    recordDiv.innerHTML = `
+                        <h2>Record Date: ${record.app_date || 'N/A'}</h2>
+                        <div class="record-details">
+                            <p><strong>Diagnosis:</strong> ${record.diagnosis || 'Not specified'}</p>
+                            <p><strong>Treatment:</strong> ${record.treatment || 'Not specified'}</p>
+                            <p><strong>Vet Name:</strong> ${record.vet_name || 'N/A'}</p>
+                            <p><strong>Notes:</strong> ${record.vet_notes || 'None'}</p>
+                        </div>
+                    `;
+                    recordsListDiv.appendChild(recordDiv);
+                });
+            } else {
+                // Show "No Records Found" message
+                noRecordsMessage.style.display = 'block';
+            }
+
+        } else {
+            throw new Error(data.message || 'Failed to load medical records');
+        }
+    } catch (error) {
+        console.error('Error fetching or processing record data:', error);
+        recordsListDiv.innerHTML = `<p class="error-message">Error loading records: ${error.message}</p>`; // Show error in the list area
+        petNameSpan.textContent = 'Error';
+    }
 }
 
 function handleCompleteAppointment() {
@@ -706,7 +775,7 @@ function setupDateNavigation() {
                     <p>Reason: ${appointment.reason || 'Not specified'}</p>
                     <p>Vet: ${appointment.vet_name}</p>
                     <div class="actions">
-                        <button class="btn-view" data-pet-name="${appointment.pet_name}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
+                        <button class="btn-medRecord" data-owner-id="${appointment.owner_id}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
                         <button class="btn-complete" data-appointment-id="${appointment.appointment_id}">Complete</button>
                         <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}">Cancel</button>
                         <button class="btn-undo" data-appointment-id="${appointment.appointment_id}" style="display:none">Undo</button>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-appointments.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-veterinarians.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/add-veterinarian.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/add-medicalRecord.css">    
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-notification.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-services.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/medical/profile/medical-events.css">

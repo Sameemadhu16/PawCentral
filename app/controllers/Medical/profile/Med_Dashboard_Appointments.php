@@ -4,6 +4,9 @@ class Med_Dashboard_Appointments{
     use Controller;
 
     public function index() {
+        if(!($_SESSION['role_id'])){
+            redirect('home');
+        }
         $appointmentModel = new MedicalAppointment();
         $med_id = $_SESSION['role_id'];
         $appointments = $appointmentModel->where(['med_id' => $med_id]);

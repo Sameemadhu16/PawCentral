@@ -210,7 +210,8 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
     route('medical-center/dashboard/appointments/completeStatus','Medical/profile/Med_Dashboard_Appointments@completeStatus');
     route('medical-center/dashboard/appointments/cancelStatus','Medical/profile/Med_Dashboard_Appointments@cancelStatus');
     route('medical-center/dashboard/appointments/pendingStatus','Medical/profile/Med_Dashboard_Appointments@pendingStatus');
-    
+    route('medical-center/dashboard/appointments/showPetRecords','Medical/profile/Med_Record@ShowPetRecords');
+
     
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
