@@ -129,7 +129,7 @@
 
     ?>
 
-    
+
 
     <?php $post = $data['post'];
     // show($post);
@@ -210,8 +210,9 @@
         <!-- Description -->
         <div class="description-section">
             <h3>Description</h3>
-            <div><?= esc($post->description) ?></div>
-
+            <p >
+                <?=$post->description ?>
+            </p>
         </div>
 
 
