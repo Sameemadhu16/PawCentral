@@ -9,9 +9,10 @@ class Shop{
         $ProductPosts=$model->where(['shop_id'=>$shop_id]);
         $shops=new Shops();
         $shopsDetails=$shops->first(['user_id'=>$shop_id]);
+        $user=new User();
+        $userDetails=$user->first(['id'=>$shop_id]);
 
-
-        $this->view('provider/shop',['ProductPosts'=>$ProductPosts,'shopsDetails'=>$shopsDetails]);
+        $this->view('provider/shop',['ProductPosts'=>$ProductPosts,'shopsDetails'=>$shopsDetails,'userDetails'=>$userDetails]);
 
 
     }
@@ -19,7 +20,7 @@ class Shop{
         
         $model=new Inquire();
         $id=$_SESSION['user_id'];
-        $list=$model->where(['shop_id'=>$id]);
+        $list=$model->where(['shop_id'=>$id,'reply'=>0]);
         $this->view('provider/inquiries',['inquiries'=>$list]);
     }
     public function Reply($inquiry){

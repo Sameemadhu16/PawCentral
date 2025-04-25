@@ -4,8 +4,15 @@ class Importingpost{
     use Controller;
 
     public function index(){
-
-        $this->view('importingpost');
+        $id=$_GET['id'];
+        $model=new ImportPet();
+        $post=$model->first(['pet_id'=>$id]);
+        if (!$post) {
+            header("Location: " . ROOT . "/findapet");
+            exit;
+        }
+    
+        $this->view('importingpost',['post'=>$post]);
     }
     
 }

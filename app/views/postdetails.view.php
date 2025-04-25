@@ -18,8 +18,8 @@
     <img src="<?= $post->img1 ?>" alt="Image 1">
     <img src="<?= $post->img2 ?>" alt="Image 2">
     <img src="<?= $post->img3 ?>" alt="Image 3">
-    <img src="<?= $post->img4 ?>" alt="Image 3">
-    <img src="<?= $post->img5 ?>" alt="Image 3">
+    <img src="<?= $post->img4 ?>" alt="Image 4">
+    <img src="<?= $post->img5 ?>" alt="Image 5">
   </div>
 
   <!-- Common Details -->
@@ -58,6 +58,7 @@
       <h2>Selling Info</h2>
       <p><strong>Price:</strong> <?= $post->price ?> Rupees</p>
       <p><strong>Fee Negotiable:</strong> <?= $post->fee_negotiable ?></p>
+      <p><strong>Exact-Address:</strong> <?= $post->Exact_address ?></p>
     </div>
   <?php endif; ?>
 

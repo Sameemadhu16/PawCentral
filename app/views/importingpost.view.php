@@ -2,168 +2,164 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost & Found Pets</title>
+    <title>Pet Post Details</title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/pet-post.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
 </head>
 <body>
-    
-    <?php include("../app/views/components/header.php");?>
 
-    <div class="lost-pet-container">
-        <!-- Breadcrumb -->
-        <div class="breadcrumb">
-            <h1><a href="<?=ROOT?>/lostandfound">find a pet</a> / for buying</h1>
-        </div>
+<?php include("../app/views/components/header.php");?>
 
-        <!-- Post Title -->
-        <div class="post-title">
-            <span id="pet-name">Tiny</span> - <span id="pet-breed">German Shepherd</span>
-        </div>
+<div class="lost-pet-container">
 
-        <!-- Post Info -->
-        <div class="post-info">
-            <p id="posted-on">Posted on Sun, 5th September, 4:00 PM</p>
-            
-        </div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <h1><a href="<?=ROOT?>/lostandfound">find a pet</a> / <span class="tradeType"><?= $post->tradeType ?></span></h1>
+    </div>
 
-        <!-- Pet Image and Slider -->
-        <div class="pet-image-container">
-            <button class="slider-arrow left" onclick="prevImage()">&#8249;</button>
-            <img id="pet-image" class="pet-image" src='image_to_load' alt="Lost Pet Image">
-            <button class="slider-arrow right" onclick="nextImage()">&#8250;</button>
-        </div>
+    <!-- Post Title -->
+    <div class="post-title">
+        <span class="petName"><?= $post->petName ?></span> - <span class="breed"><?= $post->breed ?></span>
+    </div>
 
-        <!-- Pet specs -->
-        <span class="price">Rs. 11 000</span>
-        <br><br>
-        <div class="specs"><p>Pet Type :</p><span>Dog</span></div>
-        <div class="specs"><p>Breed :</p><span>German Shepherd</span></div>
-        <div class="specs"><p>Sex :</p><span>Male</span></div>
-        <div class="specs"><p>Age :</p><span>3 months</span></div>
-        <div class="specs"><p>Color :</p><span>Brown</span></div>
-          <!-- Extra information initially hidden -->
-        <div class="extra-info">
-            <div class="specs"><p>Height :</p><span>1 ft</span></div>
-            <div class="specs"><p>Weight :</p><span>1.5 kg</span></div>
-            <div class="specs"><p>Health condition :</p><span>Healthy</span></div>
-            <div class="specs"><p>Pedigree :</p><span>Available</span></div>
-            <div class="specs"><p>Neutered status :</p><span>No</span></div>
-            <div class="specs"><p>Vaccinated :</p><span>Yes</span></div>
-            <div class="specs"><p>Rabies Vaccine :</p><span>Yes</span></div>
-            <div class="specs"><p>FVRCP Vaccine :</p><span>No</span></div>
-            <div class="specs"><p>Trained :</p><span>Yes</span></div>
-        </div>
+    <!-- Post Info -->
+    <div class="post-info">
+        <p class="created_at">Posted on <?= $post->created_at ?></p>
+    </div>
+
+    <!-- Pet Image and Slider -->
+    <div class="pet-image-container">
+        <button class="slider-arrow left" onclick="prevImage()">&#8249;</button>
+        <img id="pet-image" class="pet-image" src="<?= $post->img1 ?>" alt="Pet Image">
+        <button class="slider-arrow right" onclick="nextImage()">&#8250;</button>
+    </div>
+
+    <br><br>
+
+    <!-- Pet Specs -->
+    <div class="specs"><p>Trade Type:</p><span class="tradeType"><?= $post->tradeType ?></span></div>
+    <div class="specs"><p>Species:</p><span class="species"><?= $post->species ?></span></div>
+    <div class="specs"><p>Breed:</p><span class="breed"><?= $post->breed ?></span></div>
+    <div class="specs"><p>Sex:</p><span class="sex"><?= $post->sex ?></span></div>
+    <div class="specs"><p>Age:</p><span class="age"><?= $post->age ?></span></div>
+
+    <!-- Extra information -->
+    <div class="extra-info">
+        <div class="specs"><p>Height:</p><span class="height"><?= $post->height ?></span></div>
+        <div class="specs"><p>Weight:</p><span class="weight"><?= $post->weight ?></span></div>
+        <div class="specs"><p>Neutered:</p><span class="neutered"><?= $post->neutered ? 'Yes' : 'No' ?></span></div>
+        <div class="specs"><p>Trained:</p><span class="trained"><?= $post->trained ? 'Yes' : 'No' ?></span></div>
+        <div class="specs"><p>Pedigree:</p><span class="pedigree"><?= $post->pedigree ? 'Available' : 'Not Available' ?></span></div>
+        <div class="specs"><p>Vaccinated:</p><span class="vaccinated"><?= $post->vaccinated ? 'Yes' : 'No' ?></span></div>
+    </div>
 
     <!-- More button to toggle visibility -->
     <div class="more-button" onclick="toggleExtraInfo()"><p id="more-less">More</p> <span>▼</span></div>
 
     <br><br>
 
-        <!-- Seller Details -->
-        <div class="specs"><p>Sold by :</p><span>The PetShop</span></div>
-        <div class="specs"><p>Location :</p><span>Panadura</span></div>
+    <!-- Trade Info Section -->
+   
+    <?php if ($post->tradeType === 'Importing'): ?>
+        <div class="import-info-section">
+            
+            <div class="section-import-section">
+    <h2>Importing Info</h2>
+    <div class="specs">
+        <p>Country:</p>
+        <span class="country"><?= $post->country ?></span>
+    </div>
+    <div class="specs">
+        <p>Importing Owner:</p>
+        <span class="importing-owner"><?= $post->importing_owner ?></span>
+    </div>
+    <div class="specs">
+        <p>Import Fees:</p>
+        <span class="import-fees"><?= $post->import_fees ?> Rupees</span>
+    </div>
+    <div class="specs">
+        <p>Transport Method:</p>
+        <span class="transport-method"><?= $post->transport_method ?></span>
+    </div>
+    <div class="specs">
+        <p>Importer Mobile:</p>
+        <span class="importer-mobile"><?= $post->importer_mobile ?></span>
+    </div>
+</div>
 
-        <!-- Contact Info -->
-        <div class="contact-section">
-            <img class="contact-icon" src="<?=ROOT?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
-            <span>Contact : </span>
-            <div class="contact-info">
-                <!-- Contact Info placeholders -->
-                <span id="phone" class="reveal-info" data-info="+1-123-456-7890">0xx xxx xxxx<br><div class="info">Click to show</div></span>
-            </div>
         </div>
+    <?php endif; ?>
 
-        <!-- Description -->
-        <div class="description-section">
-            <h3>Description</h3>
-            <p id="pet-description">
-                No description added
-            </p>
+    <!-- Contact Info -->
+    <div class="contact-section">
+        <img class="contact-icon" src="<?=ROOT?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
+        <span>Contact: </span>
+        <div class="contact-info">
+            <span class="contactName"><?= $post->contactName ?></span><br>
+            <span class="contactNumber reveal-info" data-info="<?= $post->contactNumber ?>">
+                0xx xxx xxxx<br>
+                <div class="info">Click to show</div>
+            </span>
         </div>
+    </div>
 
-        
+    <!-- Description -->
+    <div class="description-section">
+        <h3>Description</h3>
+        <p class="description">
+            <?= $post->description ?: 'No description added' ?>
+        </p>
+    </div>
 
+</div>
 
-    
-    <script>
-        function toggleExtraInfo() {
-            const extraInfo = document.querySelector('.extra-info');
-            const moreButton = document.querySelector('.more-button');
-            const more_less = document.getElementById("more-less");
-            // Toggle between showing and hiding the .extra-info div with animation
-            if (extraInfo.classList.contains('open')) {
-                extraInfo.classList.remove('open');
-                moreButton.classList.remove('active');
-                more_less.innerHTML = 'More';
-            } else {
-                extraInfo.classList.add('open');
-                moreButton.classList.add('active');
-                more_less.innerHTML = 'Less';
-            }
+<script>
+    let currentImageIndex = 0;
+    const petImages = [
+        '<?= $post->img1 ?>',
+        '<?= $post->img2 ?>',
+        '<?= $post->img3 ?>',
+        '<?= $post->img4 ?>',
+        '<?= $post->img5 ?>'
+    ].filter(Boolean);
+
+    function prevImage() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            document.getElementById('pet-image').src = petImages[currentImageIndex];
         }
-    </script>
+    }
 
-    <script>
-        // Example data array to simulate pet posts
-        const petPost = {
-            name: "Tiny",
-            breed: "tinie tynie",
-            postedOn: "Sun, 5th September, 4:02 PM",
-            location: "36/2 Sri lankarama rd - Panadura",
-            images: [
-                '<?= ROOT?>/assets/images/pets/catfound.jpg',
-                '<?= ROOT?>/assets/images/pets/cat1.jpg',
-                '<?= ROOT?>/assets/images/pets/cat4.jpg'
-            ],
-            contact: "071 542 4452",
-            contactName: "Shehan",
-            description: `LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            orem ipsum dolor sLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            orem ipsum doloLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            orem ipsum doloLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            orem ipsum doloit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
-        };
-
-        let currentImageIndex = 0;
-
-        // Fill the page with data from the array
-        window.onload = function() {
-            document.getElementById('pet-name').textContent = petPost.name;
-            document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-            document.getElementById('pet-breed').textContent = petPost.breed;
-            document.getElementById('posted-on').textContent = `Posted on ${petPost.postedOn}`;
-            document.getElementById('pet-description').textContent = petPost.description;
-            document.getElementById('contact-number').textContent = petPost.contact;
-        };
-        // Function to slide to the previous image
-        function prevImage() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-            }
+    function nextImage() {
+        if (currentImageIndex < petImages.length - 1) {
+            currentImageIndex++;
+            document.getElementById('pet-image').src = petImages[currentImageIndex];
         }
+    }
 
-        // Function to slide to the next image
-        function nextImage() {
-            if (currentImageIndex < petPost.images.length - 1) {
-                currentImageIndex++;
-                document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-            }
+    function toggleExtraInfo() {
+        const extraInfo = document.querySelector('.extra-info');
+        const moreButton = document.querySelector('.more-button');
+        const more_less = document.getElementById("more-less");
+
+        if (extraInfo.classList.contains('open')) {
+            extraInfo.classList.remove('open');
+            moreButton.classList.remove('active');
+            more_less.innerHTML = 'More';
+        } else {
+            extraInfo.classList.add('open');
+            moreButton.classList.add('active');
+            more_less.innerHTML = 'Less';
         }
-    </script>
+    }
 
-    <script>
-            // Function to replace the "Click to view" text with actual contact info
-        document.querySelectorAll('.reveal-info').forEach(function(element) {
-            element.addEventListener('click', function() {
-                var info = this.getAttribute('data-info');
-                this.textContent = info;
-                // this.style.textDecoration = 'none';
-            });
+    document.querySelectorAll('.reveal-info').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var info = this.getAttribute('data-info');
+            this.innerHTML = info;
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>

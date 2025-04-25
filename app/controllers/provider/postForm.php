@@ -17,34 +17,8 @@ class PostForm {
             $price = trim(htmlspecialchars($_POST['price'] ?? ''));
             $stock_quantity = trim(htmlspecialchars($_POST['stock_quantity'] ?? ''));
             
-            // Validate product name
-            if (empty($product_name)) {
-                $errors['product_name'] = 'Product name is required';
-            } elseif (strlen($product_name) > 100) {
-                $errors['product_name'] = 'Product name must be less than 100 characters';
-            }
             
-            // Validate description
-            if (empty($description)) {
-                $errors['description'] = 'Description is required';
-            } elseif (strlen($description) > 500) {
-                $errors['description'] = 'Description must be less than 500 characters';
-            }
-            
-            // Validate price
-            if (empty($price)) {
-                $errors['price'] = 'Price is required';
-            } elseif (!is_numeric($price) || $price <= 0) {
-                $errors['price'] = 'Price must be a positive number';
-            }
-            
-            // Validate stock quantity
-            if (empty($stock_quantity)) {
-                $errors['stock_quantity'] = 'Stock quantity is required';
-            } elseif (!filter_var($stock_quantity, FILTER_VALIDATE_INT) || $stock_quantity < 0) {
-                $errors['stock_quantity'] = 'Stock quantity must be a positive integer';
-            }
-            
+           
             // Validate image
             $imageName = '';
             $publicPath = '';
@@ -120,13 +94,13 @@ class PostForm {
                 exit();
             } else {
                 $_SESSION['form_errors'] = ['database' => 'Error saving product. Please try again.'];
-                header("Location: " . ROOT . "/postForm");
+                header("Location: " . ROOT . "/shop");
                 exit();
             }
         }
         
         // If not POST request, redirect
-        header("Location: " . ROOT . "/postForm");
+        header("Location: " . ROOT . "/shop");
         exit();
     }
     public function edit(){
