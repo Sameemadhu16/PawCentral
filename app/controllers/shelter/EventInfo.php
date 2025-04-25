@@ -3,9 +3,11 @@
 class EventInfo{
 
     use Controller;
+    private $valid_roles = ['shelter'];
 
-    public function index(){
-
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
         $eventModel = new Event;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitEvent'])) {

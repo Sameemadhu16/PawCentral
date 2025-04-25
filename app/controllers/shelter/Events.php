@@ -4,9 +4,11 @@ class Events
 {
 
     use Controller;
+    private $valid_roles = ['shelter'];
 
     public function index()
     {
+        $this->isAuthorized($this->valid_roles);
 
         if (!($_SESSION['user_id'])) {
 
