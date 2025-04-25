@@ -4,7 +4,11 @@ route('donationsnsupport/paymentsuccess', 'DonationsAndSupport@paySuccess');
 // for notification sys
 route('notifications/fetch', 'user/NotificationsController@fetchNewNotifications');
 route('notifications/mark-read', 'user/NotificationsController@markAllRead');
+route('merchantNotification/mark-read', 'merchant/Notification@markAllRead');
+route('providerNotification/mark-read', 'provider/Notification@markAllRead');
 route('notifications/mark-read-notification', 'user/NotificationsController@markNotiRead');
+route('providerNotification/mark-read-notification', 'provider/NotificationsController@markNotiRead');
+route('merchantNotification/mark-read-notification', 'merchant/Notification@markNotiRead');
 route('events/download_enrollments', 'user/Events@downloadEnrollments');
 route('petshelters/details', 'ShelterDetails@index');
 

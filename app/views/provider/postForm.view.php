@@ -38,36 +38,54 @@
       <button type="submit" class="submit-btn">Submit Product</button>
     </form>
   </div>
-
   <script>
-    document.getElementById('productForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent immediate submission
-      
-      // Get form values
-      const productName = document.getElementById('product_name').value;
-      const description = document.getElementById('description').value;
-      const price = document.getElementById('price').value;
-      const stock = document.getElementById('stock_quantity').value;
-      const imageFile = document.getElementById('img').files[0];
-      
-      // Create confirmation message
-      let message = `Are you sure about these details?\n\n`;
-      message += `Product Name: ${productName}\n`;
-      message += `Description: ${description.substring(0, 50)}${description.length > 50 ? '...' : ''}\n`;
-      message += `Price: $${parseFloat(price).toFixed(2)}\n`;
-      message += `Stock Quantity: ${stock}\n`;
-      
-      if (imageFile) {
-        message += `Image: ${imageFile.name}\n`;
+  document.getElementById('productForm').addEventListener('submit', function (e) {
+    let errors = [];
+
+    const productName = document.getElementById('product_name').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const price = document.getElementById('price').value.trim();
+    const stock = document.getElementById('stock_quantity').value.trim();
+    const image = document.getElementById('img').files[0];
+
+    // Product name validation
+    if (productName === '' || productName.length > 100) {
+      errors.push('Product name is required and must be less than 100 characters.');
+    }
+
+    // Description validation
+    if (description === '' || description.length > 500) {
+      errors.push('Description is required and must be less than 500 characters.');
+    }
+
+    // Price validation
+    if (price === '' || isNaN(price) || parseFloat(price) <= 0) {
+      errors.push('Price must be a positive number.');
+    }
+
+    // Stock quantity validation
+    if (stock === '' || !Number.isInteger(Number(stock)) || Number(stock) < 0) {
+      errors.push('Stock quantity must be a positive integer.');
+    }
+
+    // Image validation
+    if (!image) {
+      errors.push('Product image is required.');
+    } else {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!allowedTypes.includes(image.type)) {
+        errors.push('Only JPG, PNG, and GIF files are allowed.');
       }
-      
-      // Show confirmation dialog
-      if (confirm(message)) {
-        // If user confirms, submit the form
-        this.submit();
+      if (image.size > 5 * 1024 * 1024) {
+        errors.push('Image size must be less than 5MB.');
       }
-      // If user cancels, do nothing (form won't submit)
-    });
-  </script>
+    }
+
+    if (errors.length > 0) {
+      e.preventDefault(); // Prevent form from submitting
+      alert(errors.join('\n')); // Show all errors in alert
+    }
+  });
+</script>
 </body>
 </html>

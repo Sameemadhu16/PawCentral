@@ -4,22 +4,34 @@ class Profile{
 
     use Controller;
 
-    function index(){
-        $userid=$_SESSION['user_id'];
-        if(!($_SESSION['user_id'])){
-            
+    function index() {
+        $userid = $_SESSION['user_id'];
+        if (!isset($_SESSION['user_id'])) {
             redirect('home');
         }
-        $providerModel=new ServiceProvModel();
-        $providerDetails=$providerModel->first(['user_id'=>$userid]);
+    
+        // Fetch provider details (assuming first() returns PDO object)
+        $providerModel = new ServiceProvModel();
+        $providerDetails = $providerModel->first(['user_id' => $userid]);
+    
+        // Convert the PDO result to a stdClass object (assuming the result is associative)
+        $providerDetails = json_decode(json_encode($providerDetails));
+    
+        // Fetch user profile data
         $model = new UserProfilesModel();
-
-        $user['profile']= $model->getUserInf();
+        $user['profile'] = $model->getUserInf();
+    
+        // Merge provider details into the user data array
         $data = array_merge($user, ['providerDetails' => $providerDetails]);
+    
+        // Print the merged data to check structure
+       
+        // exit();
+    
+        // Pass the merged data to the view
         $this->view('provider/profile', $data);
-        
-        
     }
+    
 
     function update(){
         if(!($_SESSION['user_id'])){

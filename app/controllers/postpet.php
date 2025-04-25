@@ -11,6 +11,13 @@ class Postpet
     public function submit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $contactNumber = $_POST['contactNumber'];
+
+        // Basic validation: allow only digits, length between 10 and 15
+        if (!preg_match('/^\d{10,15}$/', $contactNumber)) {
+            echo "<script>alert('Invalid contact number. Please enter a valid phone number with 10 to 15 digits.'); window.history.back();</script>";
+            exit();
+        }
             $data = [
                 'tradeType' => htmlspecialchars($_POST['tradeType']),
                 'petName' => htmlspecialchars($_POST['petName']),

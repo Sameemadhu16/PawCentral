@@ -61,20 +61,6 @@ body {
     margin-bottom: 10px;
 }
 
-.contact_button button {
-    background-color: #720eb1;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.contact_button button:hover {
-    background-color:#530981 ;
-}
 
 /* Product Section */
 h2 {
@@ -151,6 +137,9 @@ h2 {
     background-color: #720eb1;
     transition: background 0.3s ease;
 }
+.mobile_no {
+    color: #720eb1;
+}
 
 .btn:hover {
     background-color: #530981;
@@ -211,41 +200,6 @@ button:hover {
 }
 
 /* Contact Section */
-.contact {
-    margin-top: 60px;
-    padding: 20px;
-    background-color: #e1f5fe;
-    border-radius: 12px;
-}
-
-.contact h2 {
-    color: #720eb1;
-    margin-bottom: 20px;
-}
-
-.contact_details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.contact_card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    flex: 1;
-    min-width: 250px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-}
-
-.contact_card img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-}
 
 a {
     color: #720eb1;

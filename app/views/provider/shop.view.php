@@ -8,8 +8,9 @@
 </head>
 <body>
     <?php include("../app/views/components/header.php"); ?>
-
+   
     <div class="container">
+ 
         <!-- Hero Section -->
         <div class="hero">
             <div class="image_section">
@@ -26,9 +27,10 @@
                 </div>
                 <p>★★★☆☆</p>
                 <div class="contact_button">
-                    <a href="<?= ROOT ?>/contact">
-                        <button>Contact Us</button>
-                    </a>
+                    
+                        <p class="mobile_no">Contact Us</p>
+                        <p>0<?=htmlspecialchars($userDetails->mobile_no)?></p>
+                    
                 </div>
             </div>
         </div>
@@ -72,34 +74,9 @@
     <button class="create-post-btn" onclick="location.href='<?=ROOT?>/shop/postForm'">Create Post</button>
 </div>
         <!-- Testimonials Section -->
-        <div class="testimonials">
-            <h2>What Our Customers Say</h2>
-            <div class="testimonial_cards_collection">
-                <div class="testimonial_card">
-                    <p>"My dog absolutely loves the interactive puzzle toy. It's his favorite!"</p>
-                    <h4>- John Doe</h4>
-                </div>
-                <div class="testimonial_card">
-                    <p>"The chew-resistant toy lasted longer than any other I've bought."</p>
-                    <h4>- Jane Smith</h4>
-                </div>
-            </div>
-        </div>
-
+      
         <!-- Contact Section -->
-        <div class="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact_details">
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/contact/phone.png" alt="Phone">
-                    <p>Phone: +94 123 456 789</p>
-                </div>
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/contact/email.png" alt="Email">
-                    <p>Email: <a href="mailto:toys@petcareservice.com">toys@petcareservice.com</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
+      
+        <?php include("../app/views/components/footer.php")?>
 </body>
 </html>

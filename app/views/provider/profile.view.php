@@ -45,8 +45,7 @@
                 <!-- Profile Details -->
                 <div class="profile-details">
                     <div class="profile-detail-item">
-                        
-                        <span class="profile-detail-item-label">Shop Name : </span><?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?>
+                        <span class="profile-detail-item-label">Shop Name : </span><?= !empty($providerDetails->name) ? htmlspecialchars($providerDetails->name) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
                         <span class="profile-detail-item-label">Email : </span><?= !empty($profile->email) ? htmlspecialchars($profile->email) : 'N/A' ?>
@@ -55,10 +54,16 @@
                         <span class="profile-detail-item-label">Mobile No : </span><?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
-                        <span class="profile-detail-item-label">Location : </span><?= !empty($profile->location) ? htmlspecialchars($profile->location) : 'N/A' ?>
+                        <span class="profile-detail-item-label">Area : </span><?= !empty($providerDetails->Areas) ? htmlspecialchars($providerDetails->Areas) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
-                        <span class="profile-detail-item-label">Address : </span><?= !empty($profile->address) ? htmlspecialchars($profile->address) : 'N/A' ?>
+                        <span class="profile-detail-item-label">Service Type: </span><?= !empty($providerDetails->service_type) ? htmlspecialchars($providerDetails->service_type) : 'N/A' ?>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="profile-detail-item-label">Opening Hour: </span><?= !empty($providerDetails->open_hour) ? htmlspecialchars($providerDetails->open_hour) : 'N/A' ?>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="profile-detail-item-label">Closing Hour: </span><?= !empty($providerDetails->closing_hour) ? htmlspecialchars($providerDetails->closing_hour) : 'N/A' ?>
                     </div>
                 </div>
 
@@ -74,7 +79,7 @@
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Edit Profile Information</h2>
-            <form id="profileForm" action="<?= ROOT ?>/userprofile/update" method="POST" enctype="multipart/form-data">
+            <form id="profileForm" action="<?= ROOT ?>/provider/update" method="POST" enctype="multipart/form-data">
                 <label for="first_name">First Name:</label>
                 <input type="text" id="first_name" name="first_name" value="<?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) : '' ?>" required>
 
@@ -85,7 +90,14 @@
                 <label for="mobile_no">Mobile Number:</label>
                 <input type="text" id="mobile_no" name="mobile_no" value="<?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : '' ?>">
 
-                <label for="location">Location:</label>
+                <label for="mobile_no">Service Type:</label>
+                <input type="text" id="service_type" name="service_type" value="<?= !empty($providerDetails->service_type) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
+
+                <label for="mobile_no">Opening Hour:</label>
+                <input type="time" id="service_type" name="service_type" value="<?= !empty($providerDetails->open_hour) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
+                <label for="mobile_no">Closing Hour:</label>
+                <input type="time" id="service_type" name="service_type" value="<?= !empty($providerDetails->closing_hour) ? htmlspecialchars($providerDetails->service_type) : '' ?>">
+                <!-- <label for="location">Location:</label>
                 <select name="location" id="location" required>
                     <option value="" disabled <?= empty($profile->location) ? 'selected' : '' ?>>Select your location</option>
                     <option value="Colombo" <?= $profile->location === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
@@ -98,10 +110,11 @@
                     <option value="Trincomalee" <?= $profile->location === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
                     <option value="Kurunegala" <?= $profile->location === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
                     <option value="Ratnapura" <?= $profile->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
-                </select>
+                </select> -->
 
-                <label for="address">Address:</label>
-                <textarea id="address" name="address" rows="3"><?= !empty($profile->address) ? htmlspecialchars($profile->address) : '' ?></textarea>
+                <label for="mobile_no">Area:</label>
+                <input type="text" id="Area" name="Area" value="<?= !empty($providerDetails->Areas) ? htmlspecialchars($providerDetails->Areas) : '' ?>">
+
 <!-- NEW: Profile Picture Upload -->
 <label for="profile_pic">Profile Picture:</label>
     <input type="file" name="profile_pic" id="profile_pic" accept="image/*">

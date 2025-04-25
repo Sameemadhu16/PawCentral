@@ -12,6 +12,7 @@
     ?>
 
     <div class="container">
+  
         <!-- Hero Section -->
         <div class="hero">
             <div class="image_section">
@@ -40,6 +41,11 @@
 
         <!-- Services Section -->
         
+        <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != $shop_id): ?>
+    <div class="inquiry-section">
+        <button class="inquiry-btn" onclick="location.href='<?=ROOT?>/services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
+    </div>
+<?php endif ?>
     <h2>Our Products</h2>
     <div class="product-grid">
         <?php foreach ($ProductPosts as $product): ?>
@@ -69,40 +75,12 @@
 
         </div>
 
-        <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != $shop_id): ?>
-    <div class="inquiry-section">
-        <button class="inquiry-btn" onclick="location.href='<?=ROOT?>/services/inquire?id=<?=$shop_id?>'">Write an Inquiry</button>
-    </div>
-<?php endif ?>
         <!-- Testimonials Section -->
-        <div class="testimonials">
-            <h2>What Our Customers Say</h2>
-            <div class="testimonial_cards_collection">
-                <div class="testimonial_card">
-                    <p>"My dog absolutely loves the interactive puzzle toy. It's his favorite!"</p>
-                    <h4>- John Doe</h4>
-                </div>
-                <div class="testimonial_card">
-                    <p>"The chew-resistant toy lasted longer than any other I've bought."</p>
-                    <h4>- Jane Smith</h4>
-                </div>
-            </div>
-        </div>
+       
 
         <!-- Contact Section -->
-        <div class="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact_details">
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/contact/phone.png" alt="Phone">
-                    <p>Phone: +94 123 456 789</p>
-                </div>
-                <div class="contact_card">
-                    <img src="<?= ROOT ?>/assets/images/contact/email.png" alt="Email">
-                    <p>Email: <a href="mailto:toys@petcareservice.com">toys@petcareservice.com</a></p>
-                </div>
-            </div>
-        </div>
+       
     </div>
+    <?php include("../app/views/components/footer.php")?>
 </body>
 </html>
