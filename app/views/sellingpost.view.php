@@ -61,7 +61,7 @@
     <!-- Seller or Rental Info -->
     <?php if ($post->tradeType === 'Selling'): ?>
     <div class="section-sell-section">
-        <h2>Selling Info</h2>
+        <h4>Selling Info</h4>
         <div class="specs">
             <p>Price:</p>
             <span class="price"><?= $post->price ?> Rupees</span>
