@@ -44,6 +44,7 @@ body {
   }
   
   .form1 input[type="text"],
+  .form1 input[type="number"],
   .form1 input[type="checkbox"] {
     font-size: 1rem;
     padding: 0.6rem 1rem;
