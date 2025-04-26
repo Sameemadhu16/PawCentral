@@ -78,7 +78,7 @@ class Med_Dashboard_Veterinarians {
             $rootUrl='http://localhost/PawCentral/public/assets/';
             $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/vet-images/';
             $baseUploadUrl = $rootUrl . 'uploads/vet-images/';
-            $defaultImageUrl = $rootUrl . 'images/sample.jpg';
+            $defaultImageUrl = $rootUrl . 'images/user/default_user.jpg';
 
             // Handle image upload
             $imageUrl = $defaultImageUrl; // Set default image URL first

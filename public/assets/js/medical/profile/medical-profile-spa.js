@@ -341,56 +341,332 @@ function appointmentsAction() {
     // Set up date navigation
     setupDateNavigation();
 
-    // Set up view medical record buttons
-    document.querySelectorAll('.btn-view').forEach(button => {
-        button.addEventListener('click', function() {
-            const petName = this.getAttribute('data-pet-name');
-            showMedicalRecord(petName);
-        });
+    // Set up view medical record buttons (initial setup, will be re-run after data load)
+    setupAppointmentButtons();
+
+}
+
+// set up buttons on appointment cards
+function setupAppointmentButtons() {
+    document.querySelectorAll('.btn-medRecord').forEach(button => {
+        // Remove existing listener to prevent duplicates
+        button.removeEventListener('click', handleViewMedicalRecord); 
+        // Add named listener
+        button.addEventListener('click', handleViewMedicalRecord);
     });
     
-    // Set up complete appointment buttons
     document.querySelectorAll('.btn-complete').forEach(button => {
-        button.addEventListener('click', function() {
-            completeAppointment(this);
-        });
+        button.removeEventListener('click', handleCompleteAppointment);
+        button.addEventListener('click', handleCompleteAppointment);
     });
     
-    // Set up cancel appointment buttons
     document.querySelectorAll('.btn-cancel').forEach(button => {
-        button.addEventListener('click', function() {
-            cancelAppointment(this);
-        });
+        button.removeEventListener('click', handleCancelAppointment);
+        button.addEventListener('click', handleCancelAppointment);
     });
+}
+
+// Named event handlers for appointment buttons
+async function handleViewMedicalRecord(button) { // Changed argument name for clarity and made async
+    const pet_id = button.getAttribute('data-pet-id'); // Use the passed button argument
     
-    // Define action functions in the outer scope so they're available for all event handlers
+    //medical record popup elements
+    const popup = document.getElementById('popup-overlay');
+    const closeBtn = popup.querySelector('.close-btn'); // Scope querySelector to popup
+    const petNameSpan = popup.querySelector('.pet-name');
+    const recordsListDiv = popup.querySelector('#medical-records-list');
+    const noRecordsMessage = popup.querySelector('#no-records-message');
+
+    // Clear previous content and hide no-records message
+    recordsListDiv.innerHTML = '';
+    noRecordsMessage.style.display = 'none';
+    petNameSpan.textContent = 'Loading...'; // Indicate loading
+
+    popup.style.display='flex';
+    if (closeBtn) {
+        // Ensure listener is added only once or remove previous if necessary
+        const newCloseBtn = closeBtn.cloneNode(true); // Clone to remove old listeners
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+        newCloseBtn.addEventListener('click', () => popup.style.display = 'none');
+    }
+
+    try {
+        const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/showPetRecords?id=${pet_id}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Received data:', data);
+
+        if (data.status === 'success') {
+            // Update pet name
+            petNameSpan.textContent = data.pet ? data.pet.name : 'Unknown Pet';
+
+            // Populate medical records
+            if (data.medical_records && data.medical_records.length > 0) {
+                data.medical_records.forEach(record => {
+                    const recordDiv = document.createElement('div');
+                    recordDiv.className = 'med-record'; // Add a class for styling
+                    recordDiv.innerHTML = `
+                        <h2>Record Date: ${record.app_date || 'N/A'}</h2>
+                        <div class="record-details">
+                            <p><strong>Diagnosis:</strong> ${record.diagnosis || 'Not specified'}</p>
+                            <p><strong>Treatment:</strong> ${record.treatment || 'Not specified'}</p>
+                            <p><strong>Vet Name:</strong> ${record.vet_name || 'N/A'}</p>
+                            <p><strong>Notes:</strong> ${record.vet_notes || 'None'}</p>
+                        </div>
+                    `;
+                    recordsListDiv.appendChild(recordDiv);
+                });
+            } else {
+                // Show "No Records Found" message
+                noRecordsMessage.style.display = 'block';
+            }
+
+        } else {
+            throw new Error(data.message || 'Failed to load medical records');
+        }
+    } catch (error) {
+        console.error('Error fetching or processing record data:', error);
+        recordsListDiv.innerHTML = `<p class="error-message">Error loading records: ${error.message}</p>`; // Show error in the list area
+        petNameSpan.textContent = 'Error';
+    }
 }
 
-// Helper functions for appointments that need to be accessible globally
-function showMedicalRecord(petName) {
-    alert('Showing medical records for ' + petName);
+function handleCompleteAppointment() {
+    completeAppointment(this);
 }
 
-function completeAppointment(button) {
-    const card = button.closest('.appointment-card');
-    card.classList.add('opacity-50');
-    card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-    const status = document.createElement('span');
-    status.className = 'status completed';
-    status.innerText = '(Completed)';
-    card.querySelector('h2').appendChild(status);
+function handleCancelAppointment() {
+    cancelAppointment(this);
+}
+
+
+// Function to remove any existing status span from the card header
+function clearStatusSpan(card) {
+    const existingStatus = card.querySelector('h2 span.status');
+    if (existingStatus) {
+        existingStatus.remove();
+    }
+}
+
+// Function to add a status span to the card header
+function addStatusSpan(card, statusText, statusClass) {
+    clearStatusSpan(card); // Ensure only one status is shown
+    const statusSpan = document.createElement('span');
+    statusSpan.className = `status ${statusClass}`;
+    statusSpan.innerText = `(${statusText})`;
+    card.querySelector('h2').appendChild(statusSpan);
+    
+}
+
+async function completeAppointment(button) {
+    console.log('Complete button clicked');
+    //view add record form
+    const pet_id = button.getAttribute('data-pet-id');
+    const appointment_id = button.getAttribute('data-appointment-id');
+    
+    //add medical record popup elements
+    const popup = document.getElementById('add_record-popup-overlay');
+    const closeBtn = popup.querySelector('#add-record-close-btn'); // Scope querySelector to popup
+    const recordForm = document.getElementById('add-medical-record-form');
+    const formMessage = document.getElementById('form-message');
+
+    // Reset form and messages
+    if (recordForm) recordForm.reset();
+    if (formMessage) formMessage.innerHTML = '';
+
+    // Set hidden field values
+    document.getElementById('record-appointment-id').value = appointment_id;
+    document.getElementById('record-pet-id').value = pet_id;
+
+    popup.style.display='flex';
+    if (closeBtn) {
+        // Ensure listener is added only once or remove previous if necessary
+        const newCloseBtn = closeBtn.cloneNode(true); // Clone to remove old listeners
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+        newCloseBtn.addEventListener('click', () => popup.style.display = 'none');
+    }
+
+    try {
+        // Get appointment data to populate the form fields
+        const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/getAppointmentData?id=${appointment_id}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Appointment data received:', data);
+
+        if (data.status === 'success') {            
+            // Set hidden fields with retrieved data
+            document.getElementById('record-vet-name').value = data.vet_name || '';
+            document.getElementById('record-owner-id').value = data.owner_id || '';
+            document.getElementById('record-med-id').value = data.med_id || '';
+        } else {
+            throw new Error(data.message || 'Failed to load appointment data');
+        }
+    } catch (error) {
+        console.error('Error fetching appointment data:', error);
+        petNameSpan.textContent = 'Error';
+        formMessage.innerHTML = `<p class="error-message">Error loading appointment data: ${error.message}</p>`;
+    }
+
+    // Add submit event handler to the form (only once)
+    if (recordForm) {
+        // Remove existing listener to prevent duplicates
+        const newForm = recordForm.cloneNode(true);
+        recordForm.parentNode.replaceChild(newForm, recordForm);
+        
+        newForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            formMessage.innerHTML = '<p class="info-message">Submitting record...</p>';
+            
+            try {
+                const response = await fetch('http://localhost/PawCentral/public/medical-center/dashboard/appointments/addMedicalRecord', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Show success message
+                    formMessage.innerHTML = '<p class="success-message">Medical record added successfully!</p>';
+                    
+                    // Update card status
+                    const card = button.closest('.appointment-card');
+                    const completeBtn = card.querySelector('.btn-complete');
+                    const cancelBtn = card.querySelector('.btn-cancel');
+                    const undoBtn = card.querySelector('.btn-undo');
+                    
+                    addStatusSpan(card, 'Completed', 'completed');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                    
+                    // Close the popup after a short delay
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 200);
+                    
+                } else {
+                    throw new Error(result.message || 'Failed to add medical record');
+                }
+            } catch (error) {
+                console.error('Error adding medical record:', error);
+                formMessage.innerHTML = `<p class="error-message">Error: ${error.message}</p>`;
+            }
+        });
+    }
+
+    // Update the appointment status in the database
+    try {
+        const statusResponse = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/completeStatus`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: appointment_id })
+        });
+        
+        if (!statusResponse.ok) {
+            console.error('Failed to update status to completed');
+        }
+    } catch (error) {
+        console.error('Error during complete appointment:', error);
+    }
+
+    
 }
 
 function cancelAppointment(button) {
     if (confirm('Are you sure you want to cancel this appointment?')) {
         const card = button.closest('.appointment-card');
-        card.classList.add('opacity-50');
-        card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-        const status = document.createElement('span');
-        status.className = 'status canceled';
-        status.innerText = '(Canceled)';
-        card.querySelector('h2').appendChild(status);
+        const completeBtn = card.querySelector('.btn-complete');
+        const cancelBtn = card.querySelector('.btn-cancel');
+        const undoBtn = card.querySelector('.btn-undo');
+
+        addStatusSpan(card, 'Canceled', 'canceled');
+        completeBtn.disabled = true;
+        cancelBtn.disabled = true;
+        undoBtn.disabled = false;
+        undoBtn.style.display = 'block';
+
+        const appointmentId = button.getAttribute('data-appointment-id');
+        fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/cancelStatus`, { // Removed ID from URL
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json' // Specify content type
+            },
+            body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error('Failed to update status to canceled');
+                // Optionally revert UI changes here if the API call fails
+            }
+        })
+        .catch(error => {
+            console.error('Error during cancel appointment:', error);
+            // Optionally revert UI changes here
+        });
     }
+}
+
+// Renamed from pendingAppointment for clarity
+function undoStatusUpdate(button) {
+    const card = button.closest('.appointment-card');
+    const completeBtn = card.querySelector('.btn-complete');
+    const cancelBtn = card.querySelector('.btn-cancel');
+    const undoBtn = card.querySelector('.btn-undo');
+
+    addStatusSpan(card, 'Pending', 'pending'); // Or clearStatusSpan(card) if pending has no text
+    completeBtn.disabled = false;
+    cancelBtn.disabled = false;
+    undoBtn.disabled = true;
+    undoBtn.style.display = 'none';
+
+    const appointmentId = button.getAttribute('data-appointment-id');
+    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/pendingStatus`, { // Removed ID from URL
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json' // Specify content type
+        },
+        body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Failed to update status to pending');
+            // Optionally revert UI changes here if the API call fails
+        }
+    })
+    .catch(error => {
+        console.error('Error during undo status update:', error);
+        // Optionally revert UI changes here
+    });
 }
 
 function setupDateNavigation() {
@@ -403,31 +679,46 @@ function setupDateNavigation() {
     // Start with today's date
     let currentBaseDate = new Date();
     
-    // Generate and display date buttons
+    // Generate and display date buttons for the current week
     generateDateButtons(currentBaseDate);
     
     // Previous week button
     prevDateBtn.addEventListener('click', () => {
         currentBaseDate.setDate(currentBaseDate.getDate() - 7);
         generateDateButtons(currentBaseDate);
+        // After generating new buttons, automatically select and filter the first day of that week
+        const firstButton = dateButtonsContainer.querySelector('button');
+        if (firstButton) {
+            firstButton.click();
+        }
     });
     
     // Next week button
     nextDateBtn.addEventListener('click', () => {
         currentBaseDate.setDate(currentBaseDate.getDate() + 7);
         generateDateButtons(currentBaseDate);
+        // After generating new buttons, automatically select and filter the first day of that week
+        const firstButton = dateButtonsContainer.querySelector('button');
+        if (firstButton) {
+            firstButton.click(); // Simulate click to select and filter
+        }
     });
     
     // Function to generate date buttons for a week
     function generateDateButtons(baseDate) {
-        dateButtonsContainer.innerHTML = '';
+        dateButtonsContainer.innerHTML = ''; // Clear existing buttons
         
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
         
+        // Calculate the start of the week (Sunday) for the given baseDate
+        const startOfWeek = new Date(baseDate);
+        startOfWeek.setDate(baseDate.getDate() - baseDate.getDay()); // Go back to Sunday
+
+        let todayButton = null; // To store reference to today's button if found
+
         for (let i = 0; i < 7; i++) {
-            const date = new Date(baseDate);
-            date.setDate(baseDate.getDate() - baseDate.getDay() + i);
+            const date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i); // Get the date for the current day in the loop
             
             const button = document.createElement('button');
             
@@ -443,7 +734,8 @@ function setupDateNavigation() {
             // Check if this date is today
             const isToday = date.getTime() === today.getTime();
             if (isToday) {
-                button.classList.add('active');
+                button.classList.add('active'); // Mark today as active initially
+                todayButton = button; // Store reference
             }
             
             // Store date info as data attribute for easy access
@@ -462,29 +754,66 @@ function setupDateNavigation() {
             
             dateButtonsContainer.appendChild(button);
         }
+
+        // Automatically trigger filter for today if it's in the current view
+        if (todayButton) {
+            filterAppointmentsByDate(todayButton.dataset.date);
+        } else {
+            // If today is not in the initially generated week, filter by the first day shown
+            const firstButton = dateButtonsContainer.querySelector('button');
+            if (firstButton) {
+                firstButton.classList.add('active'); // Mark the first button as active
+                filterAppointmentsByDate(firstButton.dataset.date);
+            }
+        }
     }
     
     // Function to filter appointments by selected date
     function filterAppointmentsByDate(selectedDate) {
-        // Here you would typically fetch appointments for the selected date
-        // For now, we'll just simulate with a message
         console.log(`Fetching appointments for: ${selectedDate}`);
         
-        // In a real implementation, you would make an AJAX request to get appointments for this date        
+        const appointmentsContainer = document.querySelector('.card-container');
+        
+        // Clear previous dynamic content (cards, errors, loading)
+        const existingContent = appointmentsContainer.querySelectorAll('.appointment-card, .error, .loading');
+        existingContent.forEach(el => el.remove());
+        
+        // Show loading indicator
+        const loadingMsg = document.createElement('div');
+        loadingMsg.className = 'appointment-card loading';
+        loadingMsg.innerHTML = '<h2>Loading appointments...</h2>';
+        // Append loading message
+        appointmentsContainer.appendChild(loadingMsg);
+        
+        // Make the AJAX request
         fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/appointmentsByDate?date=${selectedDate}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Cache-Control': 'no-cache'
             }
         })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            // First convert to text to debug if needed
+            const text = await response.text();
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                console.error('Invalid JSON response:', text);
+                throw new Error('Server returned invalid JSON response');
+            }
         })
         .then(data => {
+            // Remove loading message
+            const loadingElement = appointmentsContainer.querySelector('.appointment-card.loading');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+            
             if (data.status === 'success') {
                 updateAppointmentsDisplay(data.appointments);
             } else {
@@ -493,90 +822,99 @@ function setupDateNavigation() {
         })
         .catch(error => {
             console.error('Error fetching appointments:', error);
+            
+            // Remove loading message if it exists
+            const loadingElement = appointmentsContainer.querySelector('.appointment-card.loading');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+            
+            // Display error message
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'appointment-card error';
+            errorMsg.innerHTML = `
+                <h2>Error loading appointments</h2>
+                <p>${error.message || 'Please try again later'}</p>
+            `;
+            // Append error message
+            appointmentsContainer.appendChild(errorMsg);
         });
     }
     
     // Function to update appointments display with fetched data
     function updateAppointmentsDisplay(appointments) {
-        const appointmentsContainer = document.querySelector('.container');
+        const appointmentsContainer = document.querySelector('.card-container');
         
-        // Remove existing appointment cards
-        const existingCards = document.querySelectorAll('.appointment-card');
-        existingCards.forEach(card => card.remove());
-        
-        // Get pagination element as reference for inserting cards before it
-        const pagination = document.querySelector('.pagination');
+        // Remove existing appointment cards and error/loading messages
+        const existingContent = appointmentsContainer.querySelectorAll('.appointment-card, .error, .loading');
+        existingContent.forEach(el => el.remove());
         
         if (appointments.length === 0) {
             // No appointments for this date
             const noAppointmentsMsg = document.createElement('div');
             noAppointmentsMsg.className = 'appointment-card';
             noAppointmentsMsg.innerHTML = '<h2>No appointments scheduled for this date</h2>';
-            appointmentsContainer.insertBefore(noAppointmentsMsg, pagination);
-            return;
+            // Append the message
+            appointmentsContainer.appendChild(noAppointmentsMsg);
+        } else {
+            // Add new appointment cards
+            appointments.forEach(appointment => {
+                const card = document.createElement('div');
+                card.className = 'appointment-card';
+                
+                // Capitalize status for display
+                const displayStatus = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
+
+                card.innerHTML = `
+                    <h2>${appointment.timeslot} - ${appointment.pet_name} <span>(Owner: ${appointment.owner_name})</span> <span class="status ${appointment.status}" style="${appointment.status === 'pending' ? 'display:none;' : ''}">${appointment.status !== 'pending' ? '(' + displayStatus + ')' : ''}</span></h2>
+                    <p>Reason: ${appointment.reason || 'Not specified'}</p>
+                    <p>Vet: ${appointment.vet_name}</p>
+                    <div class="actions">
+                        <button class="btn-medRecord" data-owner-id="${appointment.owner_id}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
+                        <button class="btn-complete" data-appointment-id="${appointment.appointment_id}" data-pet-id="${appointment.pet_id}">Complete</button>
+                        <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}">Cancel</button>
+                        <button class="btn-undo" data-appointment-id="${appointment.appointment_id}" style="display:none">Undo</button>
+                    </div>
+                `;
+
+                const completeBtn = card.querySelector('.btn-complete');
+                const cancelBtn = card.querySelector('.btn-cancel');
+                const undoBtn = card.querySelector('.btn-undo');
+                const medRecordBtn = card.querySelector('.btn-medRecord');
+
+                // Set initial button states based on appointment status
+                if (appointment.status === 'complete') {           
+                    addStatusSpan(card, 'Completed', 'completed');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                } else if(appointment.status === 'cancel') { // Assuming 'pending' is the other main state
+                    addStatusSpan(card, 'Canceled', 'canceled');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                }else{
+                    addStatusSpan(card, 'Pending', 'pending'); // Or clearStatusSpan(card) if pending has no text
+                    completeBtn.disabled = false;
+                    cancelBtn.disabled = false;
+                    undoBtn.disabled = true;
+                    undoBtn.style.display = 'none';
+                }
+
+                // Add event listeners using the updated functions
+                completeBtn.addEventListener('click', function() { completeAppointment(this); });
+                cancelBtn.addEventListener('click', function() { cancelAppointment(this); });
+                undoBtn.addEventListener('click', function() { undoStatusUpdate(this); });
+
+                medRecordBtn.addEventListener('click', function() {handleViewMedicalRecord(this);});
+
+
+                // Append the card
+                appointmentsContainer.appendChild(card);
+            });
         }
-        
-        // Add new appointment cards
-        appointments.forEach(appointment => {
-            const card = document.createElement('div');
-            card.className = 'appointment-card';
-            
-            const time = new Date(appointment.datetime).toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit', 
-                hour12: true 
-            });
-            
-            card.innerHTML = `
-                <h2>${time} - ${appointment.pet_name} <span>(Owner: ${appointment.owner_name})</span></h2>
-                <p>Reason: ${appointment.reason || 'Not specified'}</p>
-                <p>Vet: ${appointment.vet_name}</p>
-                <div class="actions">
-                    <button class="btn-view" data-pet-name="${appointment.pet_name}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
-                    <button class="btn-complete" data-appointment-id="${appointment.id}">Complete</button>
-                    <button class="btn-cancel" data-appointment-id="${appointment.id}">Cancel</button>
-                </div>
-            `;
-            
-            // If appointment is already completed or cancelled, add appropriate styling
-            if (appointment.status === 'completed') {
-                card.classList.add('opacity-50');
-                const status = document.createElement('span');
-                status.className = 'status completed';
-                status.innerText = '(Completed)';
-                card.querySelector('h2').appendChild(status);
-                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            } else if (appointment.status === 'canceled') {
-                card.classList.add('opacity-50');
-                const status = document.createElement('span');
-                status.className = 'status canceled';
-                status.innerText = '(Canceled)';
-                card.querySelector('h2').appendChild(status);
-                card.querySelectorAll('button').forEach(btn => btn.disabled = true);
-            }
-            
-            appointmentsContainer.insertBefore(card, pagination);
-        });
-        
-        // Re-attach event listeners to the newly created buttons
-        document.querySelectorAll('.btn-view').forEach(button => {
-            button.addEventListener('click', function() {
-                const petName = this.getAttribute('data-pet-name');
-                showMedicalRecord(petName);
-            });
-        });
-        
-        document.querySelectorAll('.btn-complete').forEach(button => {
-            button.addEventListener('click', function() {
-                completeAppointment(this);
-            });
-        });
-        
-        document.querySelectorAll('.btn-cancel').forEach(button => {
-            button.addEventListener('click', function() {
-                cancelAppointment(this);
-            });
-        });
     }
 }
 

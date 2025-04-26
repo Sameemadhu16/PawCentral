@@ -23,13 +23,7 @@ body {
     font-size: 14px;
     color: var(--text-muted);
   }
-  .search-input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border-medium);
-    border-radius: 6px;
-    margin-bottom: 16px;
-  }
+
   .date-nav {
     display: flex;
     gap: 8px;
@@ -111,6 +105,11 @@ body {
     font-size: 14px;
     color: var(--text-secondary);
   }
+
+  .appointment-card .complete {
+    font-weight: bold;
+    color: var(--text-primary);
+  }
   .actions {
     display: flex;
     gap: 8px;
@@ -124,11 +123,11 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  .btn-view {
+  .btn-medRecord {
     background-color: var(--primary);
     color: var(--text-light);
   }
-  .btn-view:hover {
+  .btn-medRecord:hover {
     background-color: var(--hover-primary);
   }
   .btn-complete {
@@ -145,27 +144,17 @@ body {
   .btn-cancel:hover {
     background-color: var(--danger-dark);
   }
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 24px;
-  }
-  .pagination button {
-    padding: 6px 12px;
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    background: var(--secondary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .pagination button:hover {
-    background-color: var(--secondary-dark);
-  }
-  .pagination .active {
-    background-color: var(--primary);
+  .btn-undo{
+    background-color: var(--warning);
     color: var(--text-light);
   }
+  .btn-undo:hover {
+    background-color: var(--warning-dark);
+  }
+  .appointment-card .actions .btn-complete:disabled,
+  .appointment-card .actions .btn-cancel:disabled {
+  display: none;    /* Example: Adjust border color */
+}
   .opacity-50 {
     opacity: 0.5;
   }
@@ -176,3 +165,33 @@ body {
   }
   .status.completed { color: var(--success); }
   .status.canceled { color: var(--danger); }
+  .status.pending { color: var(--warning-dark, #A0522D); }
+
+
+
+/* Add styles for loading and error states */
+.appointment-card.loading {
+  background-color: var(--secondary);
+  opacity: 0.7;
+  text-align: center;
+  padding: 30px;
+}
+
+.appointment-card.loading h2 {
+  color: var(--text-muted);
+}
+
+.appointment-card.error {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 4px solid var(--danger);
+  padding: 20px;
+}
+
+.appointment-card.error h2 {
+  color: var(--danger-dark);
+  margin-bottom: 8px;
+}
+
+.appointment-card.error p {
+  color: var(--danger);
+}

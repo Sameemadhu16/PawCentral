@@ -271,6 +271,15 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
 
     route('medical-center/dashboard/appointments','Medical/profile/Med_Dashboard_Appointments@index');
     route('medical-center/dashboard/appointments/appointmentsByDate','Medical/profile/Med_Dashboard_Appointments@appointmentsByDate');
+    route('medical-center/dashboard/appointments/completeStatus','Medical/profile/Med_Dashboard_Appointments@completeStatus');
+    route('medical-center/dashboard/appointments/cancelStatus','Medical/profile/Med_Dashboard_Appointments@cancelStatus');
+    route('medical-center/dashboard/appointments/pendingStatus','Medical/profile/Med_Dashboard_Appointments@pendingStatus');
+    route('medical-center/dashboard/appointments/showPetRecords','Medical/profile/Med_Record@ShowPetRecords');
+    // route('medical-center/dashboard/appointments/addPetRecords','Medical/profile/Med_Record@AddPetRecords');
+
+    // Medical record endpoints
+    route('medical-center/dashboard/appointments/addMedicalRecord', 'Medical/profile/Med_Dashboard_Appointments@addMedicalRecord');
+    route('medical-center/dashboard/appointments/getAppointmentData', 'Medical/profile/Med_Dashboard_Appointments@getAppointmentData');
     
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');
