@@ -26,7 +26,7 @@ class MedicalProvModel
 
     public function getTotalMedsCount($location = 'all', $medical_Name = 'all') {
         $query = "SELECT COUNT(*) as total_Meds FROM `" . $this->table . "` m 
-                LEFT JOIN users u ON m.user_id = u.id WHERE u.ban=0 AND m.verifiedStatus = 'approved'";
+                LEFT JOIN users u ON m.user_id = u.id WHERE u.status='active' AND m.verifiedStatus = 'approved'";
         
         $params = [];
         
@@ -49,7 +49,7 @@ class MedicalProvModel
         
           $query = "SELECT m.*, m.name as med_Name, m.img as image 
                  FROM `" . $this->table . "` m 
-                 LEFT JOIN users u ON m.user_id = u.id WHERE u.ban=0 AND m.verifiedStatus = 'approved'";
+                 LEFT JOIN users u ON m.user_id = u.id WHERE u.status='active' AND m.verifiedStatus = 'approved'";
         
         $params = [];
         
@@ -74,7 +74,7 @@ class MedicalProvModel
     }
 
     public function getDistinctNames() {
-        $query = "SELECT DISTINCT m.name FROM `" . $this->table . "` m LEFT JOIN users u ON m.user_id = u.id WHERE u.ban = 0 AND m.verifiedStatus = 'approved' ORDER BY m.name";
+        $query = "SELECT DISTINCT m.name FROM `" . $this->table . "` m LEFT JOIN users u ON m.user_id = u.id WHERE u.status='active' AND m.verifiedStatus = 'approved' ORDER BY m.name";
         return $this->query($query);
     }
 
