@@ -159,7 +159,7 @@
     <?php else: ?>
         <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
                         <p style="text-align: center; font-size: 1.2rem; color: #555;">You have not reported any pets yet.<br>
-                        <button class="add-event fixedsize"  onclick="openPopup()">Report a Pet</button></p><br>
+                        <button class="add-event fixedsize"  onclick="window.location.href='<?=ROOT?>/lostandfound/report-animal';">Report a Pet</button></p><br>
                     </div>
     <?php endif; ?>
 </div>

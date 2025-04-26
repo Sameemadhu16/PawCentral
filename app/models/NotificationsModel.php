@@ -4,6 +4,17 @@ class NotificationsModel
     use Model;
     protected $table = 'notifications_t';
 
+    public function sendNotification($to,$title,$message){
+        $notificationQuery = "INSERT INTO $this->table (user_id, title, message) 
+                                      VALUES (:receiver_id, :title, :message)";
+
+        $this->query($notificationQuery, [
+            'receiver_id' => $to,
+            'title' => $title,
+            'message' => $message
+        ]);
+    }
+
     public function getUnreadNotifications($user_id)
     {
         $query = "SELECT * FROM $this->table WHERE user_id = :user_id AND is_read = 0 ORDER BY created_at DESC LIMIT 15";
