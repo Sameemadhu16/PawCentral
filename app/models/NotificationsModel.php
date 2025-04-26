@@ -47,4 +47,14 @@ class NotificationsModel
             'message' => $message
         ]);
     }
+
+    // public function sendNotification($user_id, $title, $message)
+    // {
+    //     $query = "INSERT INTO $this->table (user_id, message,title) VALUES (:user_id, :message, :title)";
+    //     return $this->query($query, [
+    //         'user_id' => $user_id,
+    //         'message' => $message,
+    //         'title' => $title
+    //     ]);
+    // }
 }

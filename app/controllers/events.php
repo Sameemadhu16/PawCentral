@@ -133,18 +133,21 @@ class Events {
         
         } catch (PDOException $e) {
             $errorMsg = $e->getMessage();
-        
+            
             // Check if it's a duplicate entry for the same event+email
-            if (strpos($errorMsg, 'Duplicate entry') !== false && strpos($errorMsg, 'unique_event_email') !== false) {
+            if (strpos($errorMsg, 'Duplicate entry') !== false && strpos($errorMsg, 'event_id') !== false) {
+                
                 // Already enrolled — show confirmation anyway
                 $event_id['id'] = $data['event_id'];
                 $event['event'] = $model->getEventById($event_id);
-                // $msg['msg'] = (object)['msg' => "You're already enrolled!"];
-                $this->view('eventsandcampaigns/enrollment_confirmation',$event); //,$msg can only pass 1 variable to frontend
+                
+                $this->view('eventsandcampaigns/enrollment_confirmation', $event);
+                exit(); // Make sure to stop further execution
+                
             } else {
-                // For all other errors
-                // echo "ERROR: " . $errorMsg;
-                $this->view('404');
+                // For all other database errors
+                echo "ERROR: " . $errorMsg;
+                exit();
             }
         }
     }   

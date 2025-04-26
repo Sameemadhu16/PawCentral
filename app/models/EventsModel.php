@@ -101,15 +101,16 @@ class EventsModel
 
     public function closeEvent($data) {
         $this->table = $this->eventtable;
-        $query = "UPDATE `" . $this->table . "` SET `status` = 1 WHERE `event_id` = :eventid";
+        $query = "UPDATE `" . $this->table . "` SET `status` = 1, closing_reason = 'max participants' WHERE `event_id` = :eventid";
         $result = $this->query($query, [':eventid' => $data['event_id']]);
 
+        // $query ="SELECT * FROM events WHERE event_id = :event_id";
         $event_id=['id' => $data['event_id']];
         $event = $this->getEventById($event_id);
 
         // prepare data for notification    
         $noti['title'] = $event->title . ' :Participants Filled Completely';
-        $noti['user_id'] = $data['user_id'];  
+        $noti['user_id'] = $event->user_id;  
         $noti['message'] = 'Good News! your event has been automatically closed as it has reached the maximum number of participants.';
         $this->addNotification($noti);
         return $result;

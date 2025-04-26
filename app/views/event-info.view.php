@@ -66,8 +66,11 @@
                     <div class="error-message" id="contactError"></div>
 
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <?php if(isset($_SESSION)): ?>
+                        <small>(  your system registered email will be used for registration  )</small>
+                    <?php endif; ?>
                     <label for="comment">Comment</label>
                     <textarea id="comment" name="comment" rows="4" placeholder="Enter any comments..." maxlength="500"></textarea>
                     <small class="char-count">0/500 characters</small>
