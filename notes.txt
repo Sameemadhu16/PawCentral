@@ -1,0 +1,14 @@
+//medical todo
+
+    change style
+        update btn 
+        save btn style
+
+    put a confirmation message for profile update
+
+    add loading animation when loading pages
+
+    //services
+        add other services input Field
+
+        

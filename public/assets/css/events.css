@@ -14,19 +14,6 @@ body {
     margin: 0 auto;
 }
 
-h1 {
-    text-align: center;
-}
-
-.sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    color: #3700b3;
-
-}
-
 .btn-primary {
     background-color: #8450e4;
     color: white;
@@ -41,24 +28,27 @@ h1 {
     background-color: #6A0DAD;
 }
 
-.event-list {
+.event-list-view {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 10px; /* Padding to prevent cards from touching the edges */
 }
 
 .event-card {
-    flex: 1; /* Allow cards to take equal space */
-    min-width: 500px; /* Minimum width for the cards */
-    max-width: 60%;
-    margin: 5px;
-    /* padding: 10px; */
-    border-radius: 10px;
-    background-color: #f0f2f5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Allow cards to take equal space */
+  min-width: 500px; /* Minimum width for the cards */
+  max-width: calc(50% - 15px) !important; /* Adjusted to fit two cards per row with gap */
+  margin: 5px;
+  /* padding: 10px; */
+  border-radius: 10px;
+  background-color: #f0f2f5;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Ensure the status can be positioned relative to the card */
 }
+
 
 .event-card-content {
     display: flex;
@@ -74,7 +64,7 @@ h1 {
     border-radius: 10px 1px 0px 10px;
 }
 
-.event-actions {
+/* .event-actions {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -108,11 +98,11 @@ h1 {
     font-size: 12px;
     color: #999;
   }
-  
+   */
   
   .event-actions .find-more-btn,
   .event-actions .enroll-btn {
-    background-color: #589bf9;
+    background-color: var(--button-normal);
     /* #a278f0  #9268f5 #8450e4 purple shades #589bf9 blue shades*/
     border: none;
     width: 100%;
@@ -127,7 +117,7 @@ h1 {
   
   .event-actions .find-more-btn:hover,
   .event-actions .enroll-btn:hover {
-    background-color: #2578eb;
+    background-color: var(--button-normal-hover);
   }
   
 

@@ -5,8 +5,7 @@ trait Model
     use Database;
     protected $limit = 10;
     protected $offset = 0;
-    protected $order_type = "desc";
-    protected $order_column = "id";
+    protected $order_type = "asc";
 
     // Generic get function for retrieving data with flexible options
     public function get($conditions = [], $options = [])
@@ -139,4 +138,20 @@ trait Model
 
         return $this->query($query, $data) !== false;
     }
+
+    public function getCount($table = null)
+    {
+        $table = $table ?? $this->table;
+        $query = "SELECT COUNT(*) as count FROM $table";
+        $result = $this->query($query);
+        return $result ? $result[0]->count : 0;
+    }
+
+    
+    public function getRoleIdById($id)
+    {
+        return $this->first(['user_id' => $id]);
+    }
 }
+
+

@@ -1,0 +1,37 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.pagination-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    /* background-color: rgb(128, 73, 254,.1); */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #e0e0e0;
+    background-color: rgb(128, 73, 254,.2);
+}
+
+.pagination-button.active {
+    /* background-color: var(--warning); */
+    background-color: rgb(128, 73, 254,.8);
+    color: white;
+    /* border-color: var(--warning); */
+    font-weight: bold;
+    box-shadow: var(--card-shadow-hover);
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+} 

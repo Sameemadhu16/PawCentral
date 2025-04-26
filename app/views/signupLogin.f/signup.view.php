@@ -18,11 +18,12 @@
     <div class="container">
         <main>
             <section class="signup-hero">
-                <h2>Find a pet</h2>
-                <p>Get access to all the pet-related services.</p>
+                <h2>Join The Community</h2>
+                <p style="margin: 10px;">Get access to all the pet-related services.</p>
                 <span class="image-container">
                     <img src="<?= ROOT ?>/assets/images/signupdog.jpg" alt="Happy dog" class="pet-image">
                 </span>
+                
             </section>
             <section class="signup-form-section">
                 <h2>Sign up now</h2>
@@ -88,6 +89,9 @@
 
         </main>
     </div>
+    
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
     <script src="<?= ROOT ?>/assets/js/signupLogin/signup.js" defer></script>
 </body>
 

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #eeee;
-    overflow-y: hidden;
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 .container {
@@ -28,34 +28,37 @@ main {
     background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
-    padding:30px;
-    gap:20px;
+    padding: 30px;
+    gap: 20px;
     width: auto;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-
-
 .signup-hero {
     background-color: #ffffff;
     flex: 1;
-    color:#3f3f3f;
+    color: #3f3f3f;
 }
 
 .signup-hero .image-container {
     display: flex;
-    width: 480px;
-    height: 480px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    height: auto; /* Adjust height to fill available space */
+    /* min-height: 400px; Ensure a minimum height */
     border-radius: 5px;
-    overflow:hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
 }
 
-.signup-hero .image-container .pet-image{
+.signup-hero .image-container .pet-image {
     width: 100%;
-    object-fit: cover;
-    object-position:-80px;
+    height: auto; /* Make the image fill the container */
+    object-fit: cover; /* Ensure the image covers the container */
+    /* object-position: center; Center the image */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -64,20 +67,19 @@ main {
 }
 
 .signup-form-section {
-    /* flex: 1; */
+    flex: 1;
     border: 1px solid #666;
     border-radius: 8px;
     padding: 64px 60px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.signup-head{
+.signup-head {
     display: flex;
     justify-content: space-between;
-    
 }
 
-.signup-form-section h2{
+.signup-form-section h2 {
     font-size: 32px;
     font-weight: 600;
     margin-top: 0px;
@@ -90,29 +92,20 @@ main {
     font-weight: 800;
 }
 
-.signup-hero p{
+.signup-hero p {
     font-size: 21px;
 }
 
 .form-row {
     display: flex;
-    width: 588px;
-    flex:1;
+    flex-wrap: wrap;
     gap: 40px;
+    width: 100%;
 }
 
 .form-group {
     margin-bottom: 20px;
-    width: auto;
-}
-
-.form-row input[type="text"]{
-    width: 252px;
-    max-width: 252px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    width: 100%;
 }
 
 label {
@@ -122,19 +115,19 @@ label {
     color: #000000;
 }
 
-input[type="text"]{
-    width: 100% ;
-    max-width: 567px;
+input[type="text"],
+input[type="file"] {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
 }
 
-/* dropdown */
+/* Dropdown */
 .dropdown {
     position: relative;
-    width: 252px;
+    width: 100%;
 }
 .dropdown select {
     width: 100%;
@@ -157,20 +150,12 @@ input[type="text"]{
     pointer-events: none;
 }
 
-/* file */
-input[type="file"] {
-    width: 100% ;
-    max-width: 567px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
+/* Checkbox */
 .checkbox {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .checkbox input {
@@ -190,14 +175,17 @@ input[type="file"] {
     font-size: 18px;
     border-radius: 40px;
     cursor: pointer;
-    width: 164px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
 }
 
-.button:hover{
+.button:hover {
     background-color: black;
 }
 
-.back-button{
+.back-button {
     text-decoration: none;
     color: #000000;
 }
@@ -214,13 +202,14 @@ input[type="file"] {
     font-weight: bold;
 }
 
-.button-login-section{
+.button-login-section {
     display: flex;
-    gap: 26px;
+    flex-direction: column;
+    gap: 16px;
     align-items: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
     .container {
         padding: 10px;
     }
@@ -260,24 +249,8 @@ input[type="file"] {
         gap: 15px;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="password"] {
-        width: 100%;
-    }
-
-    .button-login-section {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
     .button {
         width: 100%;
-    }
-
-    .checkbox {
-        flex-wrap: wrap;
-        justify-content: flex-start;
     }
 
     .signup-hero h2 {

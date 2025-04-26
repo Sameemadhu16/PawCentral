@@ -3,13 +3,15 @@
 class Veterinarians {
     use Model;
 
-    protected $table = 'veterinarian';
+    protected $table = 'veterinarians';
+    protected $order_column = 'vet_id';
 
     protected $allowedColumns = [
         'name',
-        'image_url',
+        'img',
         'experience',
-        'availability'
+        'availability',
+        'med_id'
     ];
 
     public function create($data) {

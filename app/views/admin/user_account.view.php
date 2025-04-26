@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawCentral Dashboard - User Accounts</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/userAccounts.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
@@ -12,167 +13,177 @@
 <body class="body">
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
-        <div class="user-accounts-section">
-            <h2>User Accounts</h2>
+            <div class="med-container">
+                <h2>User Accounts Management</h2>
 
-            <!-- Overview Cards Section -->
-            <div class="cards-container">
-                <div class="card">
-                    <div class="card-number">100.1k</div>
-                    <div class="card-title">Regular User</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
+                <div class="filters-section">
+                    <div class="search-filter">
+                        <input type="text" id="searchInput" placeholder="Search by name, email..." class="search-input">
+                    </div>
+
+                    <div class="status-filters">
+                        <button class="filter-btn active" data-status="all">All</button>
+                        <button class="filter-btn" data-status="regular">Regular</button>
+                        <button class="filter-btn" data-status="shelter">Shelter</button>
+                        <button class="filter-btn" data-status="care_provider">Care Provider</button>
+                        <button class="filter-btn" data-status="medical_provider">Medical Provider</button>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-number">100.1k</div>
-                    <div class="card-title">Seller</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
+                <!-- Overview Cards Section -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($regular) ?></div>
+                            <div class="stat-label">Regular Users</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-store"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($seller) ?></div>
+                            <div class="stat-label">Sellers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-home"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($adoptionShelters) ?></div>
+                            <div class="stat-label">Adoption Shelters</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($careServiceProviders) ?></div>
+                            <div class="stat-label">Care Providers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-stethoscope"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-value"><?= esc($medicalProviders) ?></div>
+                            <div class="stat-label">Medical Providers</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-number">100.1k</div>
-                    <div class="card-title">Adoption Shelters</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
+
+
+
+                <div class="users-table-container">
+                    <div class="users-table" id="userList">
+                        <?php if (!empty($users)): ?>
+                            <?php foreach ($users as $user): ?>
+                                <div class="user-row" data-role="<?= htmlspecialchars($user->role) ?>">
+                                    <div class="user-info">
+                                        <div class="user-name"><?= htmlspecialchars($user->first_name . ' ' . $user->last_name) ?></div>
+                                        <div class="user-details">
+                                            <span class="user-email"><i class="fas fa-envelope"></i> <?= htmlspecialchars($user->email) ?></span>
+                                            <span class="user-type"><i class="fas fa-user-tag"></i> <?= htmlspecialchars($user->role) ?></span>
+                                        </div>
+                                    </div>
+                                    <div class="user-actions">
+                                        <form method="POST">
+                                            <input type="hidden" name="id" value="<?= esc($user->id) ?>">
+                                            <?php if ($user->status === 'active'): ?>
+                                                <button class="status-active" name="status1" type="submit" value="block">
+                                                    <i class="fas fa-check-circle"></i> Active
+                                                </button>
+                                            <?php else: ?>
+                                                <button class="status-blocked" name="status1" type="submit" value="active">
+                                                    <i class="fas fa-ban"></i> Blocked
+                                                </button>
+                                            <?php endif; ?>
+                                        </form>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="no-users">No users found in the system.</div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-number">100.1k</div>
-                    <div class="card-title">Care Service Providers</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <div class="card">
-                    <div class="card-number">100.1k</div>
-                    <div class="card-title">Medical Providers</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div>
-                <!-- <div class="card card-danger">
-                    <div class="card-number">25</div>
-                    <div class="card-title">Banned Users</div>
-                    <div class="card-subtitle"><i class="fas fa-clock"></i> from last month</div>
-                </div> -->
             </div>
 
-            <!-- Search and Filter Section -->
-            <div class="search-filter-container">
-                <input type="text" class="search-bar" placeholder="Search users..."> <i class="fas fa-search"></i>
-                <select class="filter-dropdown">
-                    <option value="">Filter by User Type</option>
-                    <option value="regular">Regular User</option>
-                    <option value="seller">Seller</option>
-                    <option value="adoption-shelter">Adoption Shelters</option>
-                    <option value="care-provider">Care Service Providers</option>
-                    <option value="medical-provider">Medical Providers</option>
-                    <option value="banned-user">Banned Users</option>
-                </select>
-            </div>
+        
 
-            <!-- User List -->
-            <div class="user-list">
-                <!-- <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sameera Madhuranga</p>
-                    <p><strong>Email:</strong> sameera@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div> -->
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Nishan Perera</p>
-                    <p><strong>Email:</strong> nishan@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Chamari Senanayake</p>
-                    <p><strong>Email:</strong> chamari@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Kasun Fernando</p>
-                    <p><strong>Email:</strong> kasun@gmail.com</p>
-                    <p><strong>User Type:</strong> Moderator</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Isuru Wijesinghe</p>
-                    <p><strong>Email:</strong> isuru@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Ruwan Kumara</p>
-                    <p><strong>Email:</strong> ruwan@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Sanduni Rathnayake</p>
-                    <p><strong>Email:</strong> sanduni@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Tharindu Jayawardana</p>
-                    <p><strong>Email:</strong> tharindu@gmail.com</p>
-                    <p><strong>User Type:</strong> Moderator</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Anjali Herath</p>
-                    <p><strong>Email:</strong> anjali@gmail.com</p>
-                    <p><strong>User Type:</strong> Regular User</p>
-                </div>
-
-                <div class="user-card">
-                    <button class="ban-button" onclick="markAsBanned(this)">Ban</button>
-                    <p><strong>Name:</strong> Praveen Silva</p>
-                    <p><strong>Email:</strong> praveen@gmail.com</p>
-                    <p><strong>User Type:</strong> Admin</p>
-                </div>
-
-
-                <!-- Repeat user cards as needed with dummy data -->
-            </div>
-        </div>
     </div>
     <?php include("../app/views/components/footer.php"); ?>
+
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const userRows = document.querySelectorAll('.user-row');
+        const searchInput = document.getElementById('searchInput');
+
+        // Filter by role
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Filter rows
+                const selectedRole = this.getAttribute('data-status');
+                let visibleCount = 0;
+
+                userRows.forEach(row => {
+                    const userRole = row.getAttribute('data-role');
+                    if (selectedRole === 'all' || (selectedRole === 'regular' && userRole === 'user') || userRole === selectedRole) {
+                        row.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                const noResults = document.querySelector('.no-users');
+                if (visibleCount === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function () {
+            const searchText = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            // Get active filter
+            const activeFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-status') || 'all';
+
+            userRows.forEach(row => {
+                const userInfo = row.querySelector('.user-info').textContent.toLowerCase();
+                const userRole = row.getAttribute('data-role');
+
+                // Check if row matches search term and active filter
+                const matchesSearch = userInfo.includes(searchText);
+                const matchesFilter = activeFilter === 'all' || (activeFilter === 'regular' && userRole === 'user') || activeFilter === userRole;
+
+                if (matchesSearch && matchesFilter) {
+                    row.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.querySelector('.no-users');
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
 </body>
-<script>
-    function markAsBanned(button) {
-        // Change the button text to "Banned"
-        if (button.textContent === "Ban") {
-            button.textContent = "Banned";
-            // Optional: Change the button's style to indicate it's banned
-            button.style.backgroundColor = "#e53935";
-            button.style.color = "#ffffff"; // White text
-            button.style.cursor = "pointer";
-            button.disabled = false;
-
-        } else {
-            button.textContent = "Ban";
-            button.disabled = false;
-        }
-        // button.textContent = "Banned";
-
-        // Disable the button to prevent further clicks
-
-    }
-</script>
 
 </html>

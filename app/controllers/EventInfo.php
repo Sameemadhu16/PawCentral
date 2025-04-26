@@ -6,6 +6,6 @@ class EventInfo {
 
     public function index() {
 
-        $this->view('event-info');
+        $this->view('event-infos');
     }
 }

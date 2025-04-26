@@ -9,9 +9,12 @@ class AdminAnnouncement
         $announcementModel = new Announcement();
 
         // Retrieve all announcements, ordered by the most recent ones
-        $announcements = $announcementModel->get([], [
+        $announcements = $announcementModel->get([
+            'status' => 0
+        ], [
             'order_column' => 'updated_at',
-            'order_type' => 'desc'
+            'order_type' => 'desc',
+            
         ]);
 
         // echo password_hash('lehan1234*', PASSWORD_DEFAULT);

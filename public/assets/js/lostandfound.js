@@ -36,14 +36,7 @@ function displayPets() {
         const petCard = document.createElement('a');
         // petCard.classList.add('pet-card');
         petCard.classList.add('pet-card', 'pet-card-link'); // Add both 'pet-card' and 'pet-card-link' classes
-        petCard.href = `lostandfound/idoflost`; // Set the link to the respective pet's page
-
-        // petCard.innerHTML = `
-        //     <h3>${pet.name} - ${pet.breed}</h3>
-        //     <p>Status: ${pet.status}</p>
-        //     <p>Address: ${pet.address}</p>
-        //     <p>Date: ${pet.date}</p>
-        // `;
+        petCard.href = `lostandfound/idoflost`; 
 
         petCard.innerHTML = `
         <img src='${pet.image}' alt="Nikkey" class="pet-image">

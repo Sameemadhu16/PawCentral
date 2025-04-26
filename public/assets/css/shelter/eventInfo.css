@@ -16,7 +16,7 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     padding: 30px;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -70,7 +70,7 @@ textarea {
 
 /* Button Styling */
 .submit-button {
-    background-color: #007bff;
+    background-color: var(--primary);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -78,11 +78,17 @@ textarea {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
+    width: 30%;
+    /* justify-items: center; */
+    /* align-items: center; */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.02);
+    background-color: var(--primary-dark);
+    color: var(text-primary);
+    /* transform: scale(1.02); */
 }
 
 .submit-button:active {
@@ -97,7 +103,7 @@ textarea {
 
 .back-icon a {
     text-decoration: none;
-    color: #0077cc;
+    color: var(--primary);
     font-weight: 600;
     font-size: 18px; /* Increase font size for the text as well if desired */
     display: flex;
@@ -106,7 +112,7 @@ textarea {
 }
 
 .back-icon a:hover {
-    color: #005fa3;
+    color: var(--primary-dark);
 }
 
 .back-icon i {

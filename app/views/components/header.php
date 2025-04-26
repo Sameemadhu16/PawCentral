@@ -1,5 +1,6 @@
 <header class="navbar font-inter">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/header.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/header.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/fonts.css">
 
     <a href="<?= ROOT?>" class="navbar-logo-set">
@@ -35,30 +36,65 @@
         <li><a href="<?= ROOT ?>/donationsnsupport">Support</a></li>
     </ul>
 
+
+
+    <!-- Notification indicator -->
+    
+
     <!-- User profile -->
-    <div class="user-profile">
+    <div class="user-profile" style="flex-direction: row; display:flex;">
+
+        
+    <?php if (isset($_SESSION['user'])): ?>
+            <!-- Notification indicator -->
+            <div class="notification-icon" style="padding:0; margin:4px; margin-left:20px; font-size:large" 
+                onclick="window.location.href='<?php 
+                    if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin') {
+                        echo ROOT . '/admin/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'shelter') {
+                        echo ROOT . '/shelter/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider') {
+                        echo ROOT . '/medical-center/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller') {
+                        echo ROOT . '/service/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov') {
+                        echo ROOT . '/provider/notification';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user') {
+                        echo ROOT . '/userprofile/notifications';
+                    } else {
+                        echo ROOT . '/login';
+                    }
+                ?>'">
+                🔔 <span id="notif-count" class="badge">0</span>
+            </div>
+            <?php if (!isset($_GET['action']) || $_GET['action'] !== 'logout'): ?>
+                <?php require_once 'notification_script.php'; ?>
+            <?php endif; ?>
+        <?php endif ; ?>
+
+
 
         <?php if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin'): ?>
             <a class="user-profile" href="<?= ROOT ?>/admin/overview">
                 <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'adoption-shelter'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'shelter'): ?>
             <a class="user-profile" href="<?= ROOT ?>/shelter/profile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider'): ?>
             <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller'): ?>
             <a class="user-profile" href="<?= ROOT ?>/service">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider'): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov'): ?>
             <a class="user-profile" href="<?= ROOT ?>/provider/profile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == ''): ?>
+        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role =='user'): ?>
             <a class="user-profile" href="<?= ROOT ?>/userprofile">
                 <img src="<?php echo ROOT; ?>/assets/images/user/default_user.jpg" class="loginlogo">
             </a>
@@ -69,6 +105,7 @@
                 Sign In
             </a>
         <?php endif; ?>
+
     </div>
 
 </header>
