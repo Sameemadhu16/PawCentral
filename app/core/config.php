@@ -7,7 +7,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost'){
      * database config
      */
     // define('DBNAME','pawcentral');
-    define('DBNAME', 'sam');
+    define('DBNAME', 'pawcentral');
     define('DBHOST','localhost');
     define('DBUSER','root');
     define('DBPASS','');

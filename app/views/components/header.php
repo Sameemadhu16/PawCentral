@@ -58,7 +58,7 @@
                     } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller') {
                         echo ROOT . '/service/notifications';
                     } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov') {
-                        echo ROOT . '/provider/notification';
+                        echo ROOT . '/provider/notifications';
                     } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user') {
                         echo ROOT . '/userprofile/notifications';
                     } else {
