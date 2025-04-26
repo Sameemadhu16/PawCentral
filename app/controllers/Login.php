@@ -27,7 +27,8 @@ class Login{
      * Authenticate user credentials and handle login process
      * Creates necessary session variables upon successful login
      */
-    private function authenticate() {
+    private function authenticate()
+    {
         // Initialize model instances for different user types
         $user = new User;
         $medprov = new MedicalProvModel;
@@ -47,13 +48,22 @@ class Login{
 
         // Attempt to validate user credentials
         if ($user->validateLogin($email, $password)) {
-            // Set up basic user session data
-            $_SESSION['user'] = $user->getUserByEmail($email);
+            // Get user data
+            $userData = $user->getUserByEmail($email);
+
+            // Check if user is blocked
+            if ($userData->status === 'block') {
+                $_SESSION['errors'] = ['Your account has been suspended. Please contact support for assistance.'];
+                redirect('login'); // Redirect to 403 Forbidden page
+            }
+
+            // Set up basic user session data (only if not blocked)
+            $_SESSION['user'] = $userData;
             $_SESSION['user_id'] = $_SESSION['user']->id;
             $_SESSION['user_role'] = $_SESSION['user']->role;
 
             // Route users to different pages based on their role
-            switch($_SESSION['user']->role) {
+            switch ($_SESSION['user']->role) {
                 case 'admin':
                     // For admin users
                     $_SESSION['role_id'] = $_SESSION['user']->id;
@@ -99,7 +109,6 @@ class Login{
             redirect('login');
         }
     }
-
     /**
      * Placeholder method for getting user role
      * Currently not implemented
