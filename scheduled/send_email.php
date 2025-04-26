@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-function sendTestEmail($toEmail,$vet_name,$med_name,$pet_name,$at,) {
+function sendTestEmail($toEmail) {
     $mail = new PHPMailer(true);
 
     try {
@@ -27,7 +27,7 @@ function sendTestEmail($toEmail,$vet_name,$med_name,$pet_name,$at,) {
         // Email content
         $mail->isHTML(true);
         $mail->Subject = 'Reminder from PawCentral: 24h Notice';
-        $mail->Body = '<h1>Hi!</h1><p>This is a test email from PawCentral:.</p>';
+        $mail->Body = '<h1>Hey there!</h1><p>This is a reminder email from PawCentral:.</p>';
 
         $mail->send();
         echo "Test email sent successfully to $toEmail";
@@ -37,4 +37,5 @@ function sendTestEmail($toEmail,$vet_name,$med_name,$pet_name,$at,) {
 }
 
 // Call the function with your test email
-sendTestEmail('lehanselaka@gmail.com'); // Change this to your real email
+sendTestEmail('lehanselaka@gmail.com');
+ // Change this to your real email

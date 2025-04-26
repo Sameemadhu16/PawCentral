@@ -1,4 +1,6 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class LogData {
     use Database;
@@ -149,8 +151,8 @@ class LogData {
     }
 
     
-    public function checkUpcommingApp(){
-        $query= "  SELECT 
+    public function checkUpcommingApp(){   
+        $query= "SELECT 
                 ap.appointment_id AS app_id,
                 ap.date AS date,
                 ap.timeslot AS time_slot,
@@ -172,17 +174,31 @@ class LogData {
                 AND ap.date < CURDATE() + INTERVAL 1 DAY
               ORDER BY 
                 ap.date ASC;";
-
         
         $upcoming_app = $this->query($query);
 
+//         $this->insertLog("HERE2  ");
 
-        if ($upcoming_app) {
+//         $this->insertLog("Result type: " . gettype($upcoming_app));
+
+// if ($upcoming_app) {
+//     $this->insertLog("IF branch entered.");
+// } else {
+//     $this->insertLog("ELSE branch entered.");
+// }
+
+        if (!empty($upcoming_app)) {
+
+            
+            $this->insertLog(count($upcoming_app) );
             foreach ($upcoming_app as $req) {
+                
+                $this->insertLog($req->app_id);
                 // Update notification flag
                 $updateQuery = "UPDATE medical_appointments SET noti_sent = 1 WHERE appointment_id = :id AND noti_sent = 0";
                 $this->query($updateQuery, ['id' => $req->app_id]);
-    
+                
+                $this->insertLog($req->app_id);
                 // Send notification to the pet owner
                 $title = $req->pet_name . " : Medical Appointment Reminder!";
                 $message = "Reminder: You have a medical appointment for " . $req->pet_name .
@@ -201,4 +217,37 @@ class LogData {
         }
     }
 
+    function sendTestEmail($toEmail,$vet_name,$med_name,$pet_name,$at,) {
+        $mail = new PHPMailer(true);
+    
+        try {
+            // SMTP Settings
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'sameemadhu2003@gmail.com'; // your Gmail
+            $mail->Password = 'bqbc wqrp okqx hwrn'; // app password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+    
+            // Enable debugging
+            $mail->SMTPDebug = 2; // Enable verbose debug output
+            $mail->Debugoutput = 'html'; // Output debug info in HTML format
+    
+            // Sender and recipient
+            $mail->setFrom('sameemadhu2003@gmail.com', 'PawCentral Reminder');
+            $mail->addAddress($toEmail);
+    
+            // Email content
+            $mail->isHTML(true);
+            $mail->Subject = 'Reminder from PawCentral: 24h Notice';
+            $mail->Body = '<h1>Hi!</h1><p>This is a test email from PawCentral:.</p>';
+    
+            $mail->send();
+            echo "Test email sent successfully to $toEmail";
+        } catch (Exception $e) {
+            echo "Failed to send email. Error: " . $mail->ErrorInfo;
+        }
+    }
+    
 }
