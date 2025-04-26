@@ -2,10 +2,11 @@
 
 class RequestToAdopt{
     use Controller;
+    private $valid_roles = ['shelter'];
 
-    public function index(){
-
-        // show($_SESSION['role_id'] );
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
 
         $A=$this->getAdoptionRequestsByShelter();
         $this->acceptAdoptionRequest();

@@ -34,15 +34,17 @@
                     </div>
                 <?php endif; ?>
 
-                <form method="POST">
+                <form method="POST" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" placeholder="Enter announcement title" required>
+                        <small class="error-message" id="title-error" style="display: none; color: red;"></small>
                     </div>
 
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea class="textarea_class" id="description" name="description" placeholder="Add detailed announcement description" required></textarea>
+                        <small class="error-message" id="description-error" style="display: none; color: red;"></small>
                     </div>
 
                     <div class="form-actions">
@@ -57,18 +59,41 @@
     <?php include("../app/views/components/footer.php"); ?>
 
     <script>
-        // Auto-hide error messages after 10 seconds
-        document.addEventListener('DOMContentLoaded', function() {
-            const errorMessages = document.querySelectorAll('.error-message');
-            errorMessages.forEach(message => {
+        function validateForm() {
+            let isValid = true;
+
+            // Clear previous error messages
+            const titleError = document.getElementById('title-error');
+            const descriptionError = document.getElementById('description-error');
+            titleError.style.display = 'none';
+            descriptionError.style.display = 'none';
+
+            // Validate title
+            const title = document.getElementById('title').value.trim();
+            if (title.length < 5 || title.length > 100) {
+                titleError.textContent = 'Title must be between 5 and 100 characters.';
+                titleError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate description
+            const description = document.getElementById('description').value.trim();
+            if (description.length < 10 || description.length > 1000) {
+                descriptionError.textContent = 'Description must be between 10 and 1000 characters.';
+                descriptionError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Automatically hide error messages after 5 seconds
+            if (!isValid) {
                 setTimeout(() => {
-                    message.style.opacity = '0';
-                    setTimeout(() => {
-                        message.style.display = 'none';
-                    }, 1000);
-                }, 10000);
-            });
-        });
+                    titleError.style.display = 'none';
+                    descriptionError.style.display = 'none';
+                }, 5000);
+            }
+
+            return isValid;
+        }
     </script>
 </body>
 

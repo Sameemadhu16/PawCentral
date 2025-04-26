@@ -14,7 +14,9 @@
 
 <body class="body">
     <!-- Include the Header and Sidebar Components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php");
+    // show($data);    
+    ?>
 
     <div class="container main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
@@ -39,34 +41,54 @@
                     <div class="stat-info">
                         <h3>Total Users</h3>
                         <p class="stat-value"><?= esc($userCount) ?></p>
-                        <p class="stat-trend positive">+5% <span>vs last month</span></p>
+                        <?php $class = $growthUsers >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthUsers >= 0 ? '+' : '' ?><?= esc($growthUsers) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card total-pets">
                     <div class="stat-icon"><i class="fas fa-paw"></i></div>
                     <div class="stat-info">
                         <h3>Registered Pets</h3>
-                        <p class="stat-value">243</p>
-                        <p class="stat-trend positive">+12% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($regPetCount) ?></p>
+                        <?php $class = $growthPets >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthPets >= 0 ? '+' : '' ?><?= esc($growthPets) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card active-users">
                     <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
                     <div class="stat-info">
                         <h3>Active Users</h3>
-                        <p class="stat-value">187</p>
-                        <p class="stat-trend positive">+8% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($activeUser) ?></p>
+                        <?php $class = $growthActiveUsers >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthActiveUsers >= 0 ? '+' : '' ?><?= esc($growthActiveUsers) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
+
                 <div class="stat-card total-revenue">
                     <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
                     <div class="stat-info">
                         <h3>Donation Price</h3>
-                        <p class="stat-value">8,245 LKR</p>
-                        <p class="stat-trend positive">+15% <span>vs last period</span></p>
+                        <p class="stat-value"><?= esc($donationPrice) ?> LKR</p>
+                        <?php $class = $growthDonations >= 0 ? 'positive' : 'negative'; ?>
+                        <p class="stat-trend <?= $class ?>">
+                            <?= $growthDonations >= 0 ? '+' : '' ?><?= esc($growthDonations) ?>%
+                            <span>vs last period</span>
+                        </p>
                     </div>
                 </div>
             </div>
+
 
             <div class="dashboard-sections">
                 <div class="section activity-section">
@@ -104,14 +126,14 @@
                             <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
                             <div class="card-details">
                                 <h3>Posts</h3>
-                                <span>15</span>
+                                <span><?= $adoptionPosts + $sellingPosts + $importingPosts + $rentingPosts ?></span>
                             </div>
                         </div>
                         <div class="card reports-card">
                             <div class="card-icon"><i class="fas fa-file-alt"></i></div>
                             <div class="card-details">
                                 <h3>Reports</h3>
-                                <button class="generate-button" onclick="generateReport()">Generate Report</button>
+                                <button class="generate-button" onclick="window.location.href='<?= ROOT ?>/admin/report'">Generate Report</button>
                             </div>
                         </div>
                     </div>
@@ -159,32 +181,7 @@
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 
-    <script>
-        function generateReport() {
-            alert("Report generation in progress...");
-            // Add logic for generating the report
-
-            const downloadBtn = document.createElement('button');
-            downloadBtn.innerText = 'Download Report';
-            downloadBtn.className = 'download-button';
-            downloadBtn.onclick = function() {
-                const element = document.querySelector('.content'); // Ensure the correct element is targeted
-                html2pdf().from(element).save('dashboard-report.pdf'); // Specify a filename for the PDF
-                this.remove();
-            };
-
-            document.querySelector('.reports-card .card-details').appendChild(downloadBtn);
-        }
-
-        // Time range selector logic
-        const timeRange = document.getElementById('timeRange');
-        if (timeRange) {
-            timeRange.addEventListener('change', function() {
-                alert("Data range changed to: " + this.value);
-                // Add logic to refresh data based on selected time range
-            });
-        }
-    </script>
+    
 </body>
 
 </html>

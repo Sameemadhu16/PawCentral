@@ -7,13 +7,11 @@
 class AdminProfileView{
     // Include Controller trait for common functionality
     use Controller;
+    private $valid_roles = ['admin'];
 
-    /**
-     * Main index method
-     * Handles both display and update of profile
-     */
-    public function index(){
-        // Check if form was submitted
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin'])){
             $this->updateProfile();
         }

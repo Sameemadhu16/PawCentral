@@ -100,21 +100,22 @@
             <!-- <img class="contact-icon" src="<?= ROOT ?>/assets/images/logos/call.png" alt="Contact Icon" width="30px">
             <span>Contact : </span> -->
             <div class="contact-info">
-                <?php if (isset($_SESSION['role_id'])): ?>
-                    <!-- Show Edit and Delete buttons if role_id exists -->
-                    <button class="btn btn-primary" onclick="window.location.href='<?= ROOT ?>/shelter/edit_post?id=<?= $post->id ?>'">Edit</button>
-                    <button class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete this post?')) window.location.href='<?= ROOT ?>/shelter/delete_post?id=<?= $post->id ?>'">Delete</button>
-                <?php elseif (isset($_SESSION['user_id'])): ?>
-                    <!-- Show Send Adoption Request button if role_id does not exist -->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <!-- Show Send Adoption Request button if the user is logged in -->
                     <button class="btn btn-primary" onclick="openPopup()">Send Adoption Request</button>
+                <?php else: ?>
+                    <!-- Show login prompt if the user is not logged in -->
+                    <p>Please <a class="btn btn-primary" href="<?= ROOT ?>/login" style="text-decoration: none;">log in</a> to request for the pet.</p>
                 <?php endif; ?>
             </div>
         </div>
 
         <!-- Description -->
         <div class="description-section">
-            <h3><?= esc($post->description) ?></h3>
-
+            <h3>Description</h3>
+            <p >
+                <?=$post->description?>
+            </p>
         </div>
 
 
@@ -123,8 +124,7 @@
             <div class="form-container">
                 <span class="close-btn" onclick="closePopup()">&times;</span>
                 <h2>Enter Adoption Request Information </h2>
-                <form id="petForm" action="<?= ROOT ?>/findapet/adoptionpost/adoptionrequest?id=<?= $post->pet_id ?>" method="POST" enctype="multipart/form-data">
-
+                <form id="petForm" action="<?= ROOT ?>/findapet/adoptionpost/adoptionrequest?id=<?= $post->pet_id ?>" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                     <label for="name">Adoptor Name:</label>
                     <input type="text" id="name" name="name" required>
 
@@ -150,6 +150,7 @@
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
+
                     <label for="garden_area">Garden Area (in perches):</label>
                     <input
                         type="number"
@@ -163,6 +164,49 @@
 
                     <button class="btn btn-primary" type="submit" name="formsubmit">Submit</button>
                 </form>
+                <script>
+                    function validateForm() {
+                        let isValid = true;
+
+                        // Validate Adoptor Name
+                        const name = document.getElementById('name').value.trim();
+                        if (name.length < 2) {
+                            alert("Adoptor Name must be at least 2 characters long.");
+                            isValid = false;
+                        }
+
+                        // Validate Contact Number
+                        const contactNo = document.getElementById('contact_no').value.trim();
+                        const contactNoPattern = /^\d{10}$/;
+                        if (!contactNoPattern.test(contactNo)) {
+                            alert("Contact Number must be exactly 10 digits.");
+                            isValid = false;
+                        }
+
+                        // Validate Residence
+                        const residence = document.getElementById('residence').value.trim();
+                        if (residence.length < 3) {
+                            alert("Residence must be at least 3 characters long.");
+                            isValid = false;
+                        }
+
+                        // Validate Owned Pets
+                        const ownedPets = document.getElementById('owned_pets').value;
+                        if (ownedPets < 0) {
+                            alert("Currently Owned Pets must be a non-negative number.");
+                            isValid = false;
+                        }
+
+                        // Validate Garden Area
+                        const gardenArea = document.getElementById('garden_area').value;
+                        if (gardenArea < 1) {
+                            alert("Garden Area must be at least 1 perch.");
+                            isValid = false;
+                        }
+
+                        return isValid;
+                    }
+                </script>
             </div>
         </div>
 

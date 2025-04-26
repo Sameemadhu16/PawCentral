@@ -107,6 +107,14 @@
     margin: 0;
 }
 
+.stat-trend.positive {
+    color: green;
+}
+
+.stat-trend.negative {
+    color: red;
+}
+
 .stat-trend span {
     font-weight: 400;
     color: var(--text-muted);

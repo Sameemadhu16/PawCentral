@@ -33,6 +33,8 @@
             $totalDonations = $data['total_donations'];
             $pendingCount = $data['pending_count'];
             $approveCount = $data['approved_count'];
+            $thisMonthDons = $data['thisMonthDonations'];
+            // show($thisMonthDons);
             // show($data['pending_donations']);
             ?>
 
@@ -51,7 +53,7 @@
                 </div>
                 <div class="stat-card">
                     <h3>This Month</h3>
-                    <div class="value">45,200 LKR</div>
+                    <div class="value"><?=$thisMonthDons?> LKR</div>
                 </div>
             </div>
 

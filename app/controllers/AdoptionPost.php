@@ -7,9 +7,9 @@ class AdoptionPost
 
     public function index()
     {
-        if (!($_SESSION['user_id'])) {
-            redirect('home');
-        }
+        // if (!($_SESSION['user_id'])) {
+        //     redirect('home');
+        // }
         $data = [
             'post' => $this->getPostDetails(),
         ];

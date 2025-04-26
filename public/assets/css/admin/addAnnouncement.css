@@ -167,8 +167,8 @@
 .done-button {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
+    justify-content: flex-end;
+    padding: 8px 24px;
     background-color: var(--primary);
     color: #ffffff;
     border: none;
@@ -178,7 +178,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0px 4px 10px rgba(var(--primary-rgb), 0.3);
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .done-button i {

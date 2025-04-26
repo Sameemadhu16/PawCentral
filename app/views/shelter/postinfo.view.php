@@ -113,7 +113,7 @@
         }
 
         .cancel-button:hover {
-            background-color:var(--primary-dark);
+            background-color: var(--primary-dark);
         }
 
         .modal-content button i {
@@ -128,6 +128,8 @@
     // show($data->name);
 
     ?>
+
+
 
     <?php $post = $data['post'];
     // show($post);
@@ -177,7 +179,7 @@
         <!-- Extra information initially hidden -->
         <div class="extra-info">
             <div class="specs">
-                <p>Height :</p><span><?= esc($post->height) ?> ft</span>
+                <p>Height :</p><span><?= esc($post->height) ?> cm</span>
             </div>
             <div class="specs">
                 <p>Weight :</p><span><?= esc($post->weight) ?> kg</span>
@@ -207,8 +209,10 @@
 
         <!-- Description -->
         <div class="description-section">
-            <h3><?= esc($post->description) ?></h3>
-
+            <h3>Description</h3>
+            <p >
+                <?=$post->description ?>
+            </p>
         </div>
 
 
@@ -241,7 +245,7 @@
                 </div>
                 <div class="modal-footer">
                     <form method="POST">
-                        <input type="hidden" name="pet_id" value="<?=$post->pet_id?>">
+                        <input type="hidden" name="pet_id" value="<?= $post->pet_id ?>">
                         <button type="button" onclick="closeDeleteModal()" class="cancel-button">
                             <i class="fas fa-times"></i> Cancel
                         </button>

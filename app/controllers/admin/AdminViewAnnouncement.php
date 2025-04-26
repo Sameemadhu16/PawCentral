@@ -3,9 +3,11 @@
 class AdminViewAnnouncement
 {
     use Controller;
+    private $valid_roles = ['admin'];
 
     public function index($id)
     {
+        $this->isAuthorized($this->valid_roles);
         if (!$id) {
             // Redirect if no ID is provided
             redirect('admin/announcement');

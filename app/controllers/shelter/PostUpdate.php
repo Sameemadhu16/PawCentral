@@ -3,8 +3,11 @@
 class PostUpdate{
 
     use Controller;
+    private $valid_roles = ['shelter'];
 
-    public function index(){
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
 
         if (!($_SESSION['user_id'])) {
             redirect('home');
@@ -48,8 +51,8 @@ class PostUpdate{
             $updateData = [
 
                     'name' => $_POST['name'],
-                    'species' => $_POST['species'], // Ensure species is validated
-                    'breed' => $_POST['breed'],
+                    // 'species' => $_POST['species'], // Ensure species is validated
+                    // 'breed' => $_POST['breed'],
                     'sex' => $_POST['sex'],
                     'age' => $_POST['age'],
                     'height' => $_POST['height'],

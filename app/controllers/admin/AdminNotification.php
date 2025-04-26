@@ -2,9 +2,11 @@
 class AdminNotification
 {
     use Controller;
+    private $valid_roles = ['admin'];
 
     public function index()
     {
+        $this->isAuthorized($this->valid_roles);
         if(!($_SESSION['user_id'])){
 
             redirect('home');

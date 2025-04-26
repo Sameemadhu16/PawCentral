@@ -4,8 +4,11 @@ class AdminAnnouncement
 {
     use Controller;
 
+    private $valid_roles = ['admin'];
+
     public function index()
     {
+        $this->isAuthorized($this->valid_roles);
         $announcementModel = new Announcement();
 
         // Retrieve all announcements, ordered by the most recent ones

@@ -2,8 +2,12 @@
 
 class AdminEventView {
     use Controller;
+    private $valid_roles = ['admin'];
 
-    public function index() {
+    public function index()
+    {
+        $this->isAuthorized($this->valid_roles);
+        
         $eventId = $_GET['id'] ?? null;
 
         if (!$eventId) {

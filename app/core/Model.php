@@ -139,11 +139,26 @@ trait Model
         return $this->query($query, $data) !== false;
     }
 
-    public function getCount($table = null)
+    public function getCount($table = null, $conditions = [])
     {
         $table = $table ?? $this->table;
         $query = "SELECT COUNT(*) as count FROM $table";
-        $result = $this->query($query);
+        $data = [];
+
+        // Add WHERE clause if conditions are specified
+        if (!empty($conditions)) {
+            $keys = array_keys($conditions);
+            $query .= " WHERE ";
+
+            foreach ($keys as $key) {
+                $query .= "$key = :$key AND ";
+            }
+
+            $query = rtrim($query, " AND ");
+            $data = $conditions;
+        }
+
+        $result = $this->query($query, $data);
         return $result ? $result[0]->count : 0;
     }
 
