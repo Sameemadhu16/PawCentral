@@ -40,7 +40,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             </a>
         </li> -->
         <li>
-            <a href="../shelter/notification" class="nav-link">
+            <a href="../shelter/notifications" class="nav-link">
                 <i class="fas fa-bell icon"></i>
                 Notifications
             </a>

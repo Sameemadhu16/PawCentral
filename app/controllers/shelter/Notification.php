@@ -53,7 +53,7 @@ class Notification
         $model = new NotificationsModel();
         $model->markAsRead($user_id);
 
-        redirect('shelter/notification');
+        redirect('shelter/notifications');
     }
 
     public function markNotiRead($get_data) //fetch the id from GET and update as read
@@ -67,6 +67,6 @@ class Notification
         $model->markNotiAsRead($user_id, $noti_id);
         // mark only the correct notification using new func in model
 
-        redirect('shelter/notification');
+        redirect('shelter/notifications');
     }
 }
