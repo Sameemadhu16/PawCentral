@@ -30,7 +30,7 @@
                     <h2>About Us</h2>
                     <!-- <p>Welcome to our Pet Toy Service! We specialize in crafting high-quality, engaging toys that bring joy and mental stimulation to pets of all sizes.</p> -->
                 </div>
-                <p>★★★☆☆</p>
+               
                 <div class="contact_button">
                 <button class="contact-btn" id="contactToggleBtn" data-number="0<?=htmlspecialchars($userDetails->mobile_no)?>">Contact Us</button>
 </div>

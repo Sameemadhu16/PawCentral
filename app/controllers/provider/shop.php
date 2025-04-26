@@ -20,7 +20,9 @@ class Shop{
         
         $model=new Inquire();
         $id=$_SESSION['user_id'];
-        $list=$model->where(['shop_id'=>$id,'reply'=>0]);
+        // $list=$model->where(['shop_id'=>$id,'reply'=>0]);
+        $query="SELECT * FROM inquire WHERE shop_id = :id AND reply=0 ORDER BY created_at DESC LIMIT 12";
+        $list = $model->query($query,['id'=>$id]);
         $this->view('provider/inquiries',['inquiries'=>$list]);
     }
     public function Reply($inquiry){
