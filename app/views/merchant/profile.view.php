@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter Profile</title>
+    <title>Merchant Profile</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/profile.css"> <!-- Link to external CSS -->
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
@@ -45,7 +45,7 @@
                 <!-- Profile Details -->
                 <div class="profile-details">
                     <div class="profile-detail-item">
-                        <span class="profile-detail-item-label">User Name : </span><?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?>
+                        <span class="profile-detail-item-label">Merchant Name : </span><?= !empty($merchantDetails->merchant_name) ? htmlspecialchars($profile->first_name)." ".htmlspecialchars($profile->last_name) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
                         <span class="profile-detail-item-label">Email : </span><?= !empty($profile->email) ? htmlspecialchars($profile->email) : 'N/A' ?>
@@ -54,11 +54,9 @@
                         <span class="profile-detail-item-label">Mobile No : </span><?= !empty($profile->mobile_no) ? htmlspecialchars($profile->mobile_no) : 'N/A' ?>
                     </div>
                     <div class="profile-detail-item">
-                        <span class="profile-detail-item-label">Location : </span><?= !empty($profile->location) ? htmlspecialchars($profile->location) : 'N/A' ?>
+                        <span class="profile-detail-item-label">Location : </span><?= !empty($merchantDetails->address) ? htmlspecialchars($profile->location) : 'N/A' ?>
                     </div>
-                    <div class="profile-detail-item">
-                        <span class="profile-detail-item-label">Address : </span><?= !empty($profile->address) ? htmlspecialchars($profile->address) : 'N/A' ?>
-                    </div>
+                    
                 </div>
 
                 <div class="button-section">
@@ -73,7 +71,7 @@
         <div class="form-container">
             <span class="close-btn" onclick="closePopup()">&times;</span>
             <h2>Edit Profile Information</h2>
-            <form id="profileForm" action="<?= ROOT ?>/userprofile/update" method="POST" enctype="multipart/form-data">
+            <form id="profileForm" action="<?= ROOT ?>/merchant/update" method="POST" enctype="multipart/form-data">
                 <label for="first_name">First Name:</label>
                 <input type="text" id="first_name" name="first_name" value="<?= !empty($profile->first_name) ? htmlspecialchars($profile->first_name) : '' ?>" required>
 
