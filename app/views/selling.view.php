@@ -21,26 +21,25 @@
           <hr />
         </div>
 
-        <form class="form1" action="<?=ROOT?>/service/postpet/postpetnext/selling/submit" method="POST">
-          <label class="pricel">Price:</label>
-          <input type="text" name="price" placeholder="0.00" class="price"><br><br><br>
+        <form class="form1" action="<?=ROOT?>/service/postpet/postpetnext/selling/submit" method="POST" onsubmit="return validateForm()">
+  <label class="pricel">Price:</label>
+  <input type="number" name="price" placeholder="0.00" class="price" id="price" min="0" max="100000" step="0.01" required><br><br><br>
+  <label class="fee">Fee is negotiable</label>
+  <input class="feebox" name="fee_negotiable" type="checkbox"><br>
 
-          <label class="fee">Fee is negotiable</label>
-          <input class="feebox" name="fee_negotiable" type="checkbox"><br>
+  <h3 class="location">Location Details:</h3>
+  <label class="cityl">City:</label>
+  <input type="text" name="City" class="city" required><br><br>
 
-          <h3 class="location">Location Details:</h3>
-          <label class="cityl">City:</label>
-          <input type="text" name="City" class="city"><br><br>
+  <label class="addressl">Exact<br>Address:</label>
+  <input type="text" name="Exact_address" class="address" required><br><br><br>
 
-          <label class="addressl">Exact<br>Address:</label>
-          <input type="text" name="Exact_address" class="address"><br><br><br>
+  <label class="terms">I agree to terms and conditions</label>
+  <input class="terms" name="agreed_terms" type="checkbox" id="termsCheckbox"><br>
 
-          <label class="terms">I agree to terms and conditions</label>
-          <input class="terms" name="agreed_terms" type="checkbox"><br>
-
-          <a href="terms">Review Terms</a>
-          <button class="submit">Submit</button><br>
-        </form>
+  <a href="terms">Review Terms</a>
+  <button class="submit" type="submit">Submit</button><br>
+</form>
 
         <p class="text">Confirm that all information is accurate and ready for submission</p>
         <div class="conclusion"></div>
@@ -53,5 +52,29 @@
     </div>
   </div>
   <?php include("../app/views/components/footer.php")?>
+  <script>
+  function validateForm() {
+    const termsCheckbox = document.getElementById("termsCheckbox");
+    const priceInput = document.getElementById("price");
+    const price = parseFloat(priceInput.value);
+
+    if (!termsCheckbox.checked) {
+      alert("You must agree to the terms and conditions.");
+      return false;
+    }
+
+    if (isNaN(price) || price < 0) {
+      alert("Price cannot be negative.");
+      return false;
+    }
+
+    if (price < 100) {
+      alert("Price must be at least 100.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
 </body>
 </html>

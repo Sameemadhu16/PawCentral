@@ -5,17 +5,20 @@ class Profile{
     use Controller;
 
     function index(){
-
+        $userid=$_SESSION['user_id'];
         if(!($_SESSION['user_id'])){
             
             redirect('home');
         }
 
         $model = new UserProfilesModel();
-
+        $merchantModel= new PetMerchant();
+        $merchantDetails=$merchantModel->first(['user_id'=>$userid]);
+        $merchantDetails = json_decode(json_encode($merchantDetails));
         $user['profile']= $model->getUserInf();
+        $data=array_merge($user,['merchantDetails'=>$merchantDetails]);
         
-        $this->view('merchant/profile',$user);
+        $this->view('merchant/profile',$data);
     }
 
     function update(){
@@ -29,7 +32,7 @@ class Profile{
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $model = new UserProfilesModel();
-            
+            $merchantModel=new PetMerchant();
             try {
                 // Handle file upload if present
                 if(isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0){
@@ -56,16 +59,24 @@ class Profile{
                     'location' => $_POST['location'] ?? '',
                     'address' => $_POST['address'] ?? ''
                 ];
+                $firstName = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
+                $lastName = isset($_POST['last_name']) ? trim($_POST['last_name']) : '';
+                $fullName = $firstName . ' ' . $lastName;
+                $dataMerchant=[
+                    'merchant_name'=>$_POST[$fullName] ?? '',
+                     'location' => $_POST['location'] ?? '',
+                    'address' => $_POST['address'] ?? ''
+                ];
 
                 if(isset($_POST['img'])){
                     $data['profile_pic'] = $_POST['img'];
                 }
-
-                if($model->update($_SESSION['user_id'], $data)){
+                if($model->update($_SESSION['user_id'], $data) && $merchantModel->updateByUserId($_SESSION['user_id'],$dataMerchant)){
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Profile updated successfully'
                     ]);
+               
                 } else {
                     throw new Exception("Failed to update profile in database");
                 }

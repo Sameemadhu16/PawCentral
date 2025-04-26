@@ -13,9 +13,9 @@
  
         <!-- Hero Section -->
         <div class="hero">
-            <div class="image_section">
-                <img src="<?= ROOT ?>/assets/images/istockphoto-612739772-612x612.jpg" alt="Pet Toy Service Image">
-            </div>
+        <div class="image_section">
+    <img src="<?= ROOT . '/' . $userDetails->profile_pic ?>" alt="Profile Picture">
+</div>
             <div class="info_section">
                 <div class="service_name">
                 <h1 class="nam"><?=($shopsDetails->name)?></h1>
@@ -30,7 +30,7 @@
                     <h2>About Us</h2>
                     <!-- <p>Welcome to our Pet Toy Service! We specialize in crafting high-quality, engaging toys that bring joy and mental stimulation to pets of all sizes.</p> -->
                 </div>
-                <p>★★★☆☆</p>
+               
                 <div class="contact_button">
                 <button class="contact-btn" id="contactToggleBtn" data-number="0<?=htmlspecialchars($userDetails->mobile_no)?>">Contact Us</button>
 </div>
