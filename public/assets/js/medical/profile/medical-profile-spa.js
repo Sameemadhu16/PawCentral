@@ -788,7 +788,7 @@ function setupDateNavigation() {
                 const medRecordBtn = card.querySelector('.btn-medRecord');
 
                 // Set initial button states based on appointment status
-                if (appointment.status === 'completed') {           
+                if (appointment.status === 'complete') {           
                     addStatusSpan(card, 'Completed', 'completed');
                     completeBtn.disabled = true;
                     cancelBtn.disabled = true;

@@ -180,7 +180,6 @@ class Med_Dashboard_Appointments{
                  http_response_code(500);
                  echo json_encode(['status' => 'error', 'message' => 'Failed to update appointment status']);
             }
-            // redirect('medical-center/dashboard/appointments'); // Consider removing redirect
             exit();
         }
         http_response_code(405);
