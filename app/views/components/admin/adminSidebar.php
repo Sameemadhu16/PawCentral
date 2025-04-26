@@ -69,12 +69,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 </i>Events
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a href="../admin/post" class="nav-link">
                 <i class="fas fa-pen-alt icon">
                 </i>Posts
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="../admin/donation" class="nav-link">
                 <i class="fas fa-hand-holding-usd icon">

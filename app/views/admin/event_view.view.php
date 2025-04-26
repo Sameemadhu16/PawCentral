@@ -37,6 +37,7 @@
                     <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?> participants enrolled</span>
                 </div>
                 <div class="event-actions">
+                    <?php if($event->status == 0 && $event->approved == 0): ?>
                     <form method="POST">
                         <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
                         <button class="approve-btn" name="approve" type="submit">Approve</button>
@@ -45,6 +46,7 @@
                         <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
                         <button class="delete-btn" name="reject" type="submit">Reject</button>
                     </form>
+                    <?php endif;?>
                 </div>
             </div>
 
