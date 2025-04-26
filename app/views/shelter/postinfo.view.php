@@ -309,55 +309,7 @@
             }
         </script>
 
-        <script>
-            // Example data array to simulate pet posts
-            // const petPost = {
-            //     name: "Tiny",
-            //     breed: "tinie tynie",
-            //     postedOn: "Sun, 5th September, 4:02 PM",
-            //     location: "36/2 Sri lankarama rd - Panadura",
-            //     images: [
-            //         '<?= ROOT ?>/assets/images/pets/catfound.jpg',
-            //         '<?= ROOT ?>/assets/images/pets/cat1.jpg',
-            //         '<?= ROOT ?>/assets/images/pets/cat4.jpg'
-            //     ],
-            //     contact: "071 542 4452",
-            //     contactName: "Shehan",
-            //     description: `LLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            // orem ipsum dolor sLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            // orem ipsum doloLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            // orem ipsum doloLLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
-            // orem ipsum doloit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
-            // };
-
-            let currentImageIndex = 0;
-
-            // Fill the page with data from the array
-            window.onload = function() {
-                document.getElementById('pet-name').textContent = petPost.name;
-                document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-                document.getElementById('pet-breed').textContent = petPost.breed;
-                document.getElementById('posted-on').textContent = `Posted on ${petPost.postedOn}`;
-                document.getElementById('pet-description').textContent = petPost.description;
-                document.getElementById('contact-number').textContent = petPost.contact;
-            };
-            // Function to slide to the previous image
-            function prevImage() {
-                if (currentImageIndex > 0) {
-                    currentImageIndex--;
-                    document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-                }
-            }
-
-            // Function to slide to the next image
-            function nextImage() {
-                if (currentImageIndex < petPost.images.length - 1) {
-                    currentImageIndex++;
-                    document.getElementById('pet-image').src = petPost.images[currentImageIndex];
-                }
-            }
-        </script>
-
+        
         <script>
             // Function to replace the "Click to view" text with actual contact info
             document.querySelectorAll('.reveal-info').forEach(function(element) {
@@ -368,6 +320,54 @@
                 });
             });
         </script>
+
+        
+<?php
+    // Prepare the base64 images in PHP
+    // print_r($post);
+    // exit();
+    $images = [];
+    if (!empty($post->postimg1)) {
+        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg1);
+    }
+    if (!empty($post->postimg2)) {
+        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg2);
+    }
+    if (!empty($post->postimg3)) {
+        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg3);
+    }
+    // If no images, use the default
+    if (empty($images)) {
+        $images[] = 'data:image/jpeg;base64,' . base64_encode(file_get_contents(ROOT . '/assets/images/pets/default.jpg'));
+    }
+    ?>
+
+     
+<script>
+        // Embed PHP array into JS array with base64 images
+        const images = <?= json_encode($images); ?>;
+        let currentImageIndex = 0;
+
+        // Load initial image
+        document.getElementById('pet-image').src = images[currentImageIndex];
+
+        // Function to slide to the previous image
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                document.getElementById('pet-image').src = images[currentImageIndex];
+            }
+        }
+
+        // Function to slide to the next image
+        function nextImage() {
+            if (currentImageIndex < images.length - 1) {
+                currentImageIndex++;
+                document.getElementById('pet-image').src = images[currentImageIndex];
+            }
+        }
+    </script>
+
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 

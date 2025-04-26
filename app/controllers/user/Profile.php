@@ -83,4 +83,14 @@ class Profile{
             ]);
         }
     }
+
+    function logout(){
+        // Destroy the session
+        $_SESSION = [];
+        session_destroy();
+        
+        // Redirect to home page
+        redirect(''); // Empty string typically redirects to home in MVC frameworks
+
+    }
 }
