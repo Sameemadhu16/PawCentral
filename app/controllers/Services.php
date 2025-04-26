@@ -57,6 +57,8 @@ class Services {
         $shopsDetails=$shops->first(['user_id'=>$shop_id]);
         $user=new User();
         $usDetails=$user->first(['id'=>$shop_id]);
+        // print_r($usDetails);
+        // exit();
 
         $this->view('viewShop',['ProductPosts'=>$ProductPosts,'shop_id'=>$shop_id,'shopsDetails'=>$shopsDetails,'usDetails'=>$usDetails]);
 
