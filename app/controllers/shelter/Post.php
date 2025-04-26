@@ -18,7 +18,7 @@ class Post
 
         // Very important: decode images correctly
         foreach ($posts['posts'] as $post) {
-            if (isset($post->postimg1) || isset($post->postimg2) || isset($post->postimg3)){
+            if (isset($post->postimg1)){
                 $post->postimg1 = "data:image/jpeg;base64," . base64_encode($post->postimg1);
                 $post->postimg2 = "data:image/jpeg;base64," . base64_encode($post->postimg2);
                 $post->postimg3 = "data:image/jpeg;base64," . base64_encode($post->postimg3);
@@ -54,7 +54,7 @@ class Post
                 'neutered' => $_POST['neutered'],
                 'trained' => $_POST['trained'],
                 'vaccinated' => $_POST['vaccinated'],
-                'postimg1' => nUll,
+                'postimg1' => null,
                 'postimg2' => null,
                 'postimg3' => null,
                 'description' => $_POST['postdesc'] ?? '',

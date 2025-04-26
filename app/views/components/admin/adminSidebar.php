@@ -43,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </li>
 
         <li>
-            <a href="../admin/notification" class="nav-link">
+            <a href="../admin/notifications" class="nav-link">
                 <i class="fas fa-bell icon"></i>
                 Notifications
             </a>
