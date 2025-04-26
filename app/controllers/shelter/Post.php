@@ -52,9 +52,9 @@ class Post
                 'neutered' => $_POST['neutered'],
                 'trained' => $_POST['trained'],
                 'vaccinated' => $_POST['vaccinated'],
-                'postimg1' => '',
-                'postimg2' => '',
-                'postimg3' => '',
+                'postimg1' => nUll,
+                'postimg2' => null,
+                'postimg3' => null,
                 'description' => $_POST['postdesc'] ?? '',
             ];
 
@@ -66,9 +66,9 @@ class Post
                         $images[] = file_get_contents($tmpName);
                     }
                 }
-                $data['postimg1'] = $images[0] ?? '';
-                $data['postimg2'] = $images[1] ?? '';
-                $data['postimg3'] = $images[2] ?? '';
+                $data['postimg1'] = $images[0] ?? null;
+                $data['postimg2'] = $images[1] ?? null;
+                $data['postimg3'] = $images[2] ?? null;
             }
             $result = $postModel->addPost($data);
             if ($result) {
