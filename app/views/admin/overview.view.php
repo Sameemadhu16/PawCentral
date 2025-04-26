@@ -15,7 +15,8 @@
 <body class="body">
     <!-- Include the Header and Sidebar Components -->
     <?php include("../app/views/components/header.php");
-    // show($data);    ?>
+    // show($data);    
+    ?>
 
     <div class="container main-container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
@@ -132,7 +133,7 @@
                             <div class="card-icon"><i class="fas fa-file-alt"></i></div>
                             <div class="card-details">
                                 <h3>Reports</h3>
-                                <button class="generate-button" onclick="generateReport()">Generate Report</button>
+                                <button class="generate-button" onclick="window.location.href='<?= ROOT ?>/admin/report'">Generate Report</button>
                             </div>
                         </div>
                     </div>
@@ -180,32 +181,7 @@
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 
-    <script>
-        function generateReport() {
-            alert("Report generation in progress...");
-            // Add logic for generating the report
-
-            const downloadBtn = document.createElement('button');
-            downloadBtn.innerText = 'Download Report';
-            downloadBtn.className = 'download-button';
-            downloadBtn.onclick = function() {
-                const element = document.querySelector('.content'); // Ensure the correct element is targeted
-                html2pdf().from(element).save('dashboard-report.pdf'); // Specify a filename for the PDF
-                this.remove();
-            };
-
-            document.querySelector('.reports-card .card-details').appendChild(downloadBtn);
-        }
-
-        // Time range selector logic
-        const timeRange = document.getElementById('timeRange');
-        if (timeRange) {
-            timeRange.addEventListener('change', function() {
-                alert("Data range changed to: " + this.value);
-                // Add logic to refresh data based on selected time range
-            });
-        }
-    </script>
+    
 </body>
 
 </html>
