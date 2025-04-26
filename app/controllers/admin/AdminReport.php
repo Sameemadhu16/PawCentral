@@ -34,7 +34,7 @@ class AdminReport
             'allRegisteredPets' => $this->getAllRegisteredPets(),
         ];
 
-        show($data);
+        // show($data);
         $this->view('admin/report', $data);
     }
 
