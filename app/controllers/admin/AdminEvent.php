@@ -30,7 +30,8 @@ class AdminEvent{
     private function getEvents(){
         $eventModel = new EventsModel;
         $eventDetails = $eventModel->get([
-            'status' => 0
+            'status' => 0,
+            'approved' => 0
         ],
         [
             'order_column' => 'created_at',
