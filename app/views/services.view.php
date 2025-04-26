@@ -58,7 +58,7 @@
             <?php if (!empty($shopList)): ?>
                 <?php foreach ($shopList as $shop): ?>
                     <div class="card">
-                        <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Service Image">
+                       <img src="<?= ROOT . '/' . ($shop->image ? $shop->image : 'assets/images/pets/services/service_1.jpg') ?>" alt="Service Image">
                         <p class="name"><?= htmlspecialchars($shop->Shop_name) ?></p>
                         <p><?= htmlspecialchars($shop->service_type ?? 'Service') ?></p>
                         <div class="centre-info">

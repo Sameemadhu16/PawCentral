@@ -13,9 +13,9 @@
  
         <!-- Hero Section -->
         <div class="hero">
-            <div class="image_section">
-                <img src="<?= ROOT ?>/assets/images/istockphoto-612739772-612x612.jpg" alt="Pet Toy Service Image">
-            </div>
+        <div class="image_section">
+    <img src="<?= ROOT . '/' . $userDetails->profile_pic ?>" alt="Profile Picture">
+</div>
             <div class="info_section">
                 <div class="service_name">
                 <h1 class="nam"><?=($shopsDetails->name)?></h1>

@@ -11,7 +11,8 @@ class Shop{
         $shopsDetails=$shops->first(['user_id'=>$shop_id]);
         $user=new User();
         $userDetails=$user->first(['id'=>$shop_id]);
-
+        // print_r($userDetails);
+        // exit();
         $this->view('provider/shop',['ProductPosts'=>$ProductPosts,'shopsDetails'=>$shopsDetails,'userDetails'=>$userDetails]);
 
 
