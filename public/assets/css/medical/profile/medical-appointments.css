@@ -23,13 +23,7 @@ body {
     font-size: 14px;
     color: var(--text-muted);
   }
-  .search-input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border-medium);
-    border-radius: 6px;
-    margin-bottom: 16px;
-  }
+
   .date-nav {
     display: flex;
     gap: 8px;
@@ -157,27 +151,10 @@ body {
   .btn-undo:hover {
     background-color: var(--warning-dark);
   }
-  .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 24px;
-  }
-  .pagination button {
-    padding: 6px 12px;
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    background: var(--secondary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .pagination button:hover {
-    background-color: var(--secondary-dark);
-  }
-  .pagination .active {
-    background-color: var(--primary);
-    color: var(--text-light);
-  }
+  .appointment-card .actions .btn-complete:disabled,
+  .appointment-card .actions .btn-cancel:disabled {
+  display: none;    /* Example: Adjust border color */
+}
   .opacity-50 {
     opacity: 0.5;
   }

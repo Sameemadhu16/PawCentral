@@ -21,4 +21,13 @@ class MedicalAppointment
         ]);
         return $appointments;
     }
+
+    public function getAppointmentById($id)
+    {
+        $appointment = $this->first(['appointment_id' => $id]);
+        if (!$appointment) {
+            error_log("No appointment found with ID: " . $id);
+        }
+        return $appointment;
+    }
 }

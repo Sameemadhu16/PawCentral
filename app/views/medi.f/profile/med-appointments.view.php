@@ -22,6 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="card-container">
             <!-- appointment cards will appear here -->
         </div>
+        <?php include("../app/views/medi.f/profile/popup/view-medicalRecord.view.php"); ?>
         <?php include("../app/views/medi.f/profile/popup/add-medicalRecord.view.php"); ?>
    </div>
 </body>

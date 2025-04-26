@@ -468,41 +468,136 @@ function addStatusSpan(card, statusText, statusClass) {
     
 }
 
-function completeAppointment(button) {
+async function completeAppointment(button) {
     console.log('Complete button clicked');
-    const card = button.closest('.appointment-card');
-    const completeBtn = card.querySelector('.btn-complete');
-    const cancelBtn = card.querySelector('.btn-cancel');
-    const undoBtn = card.querySelector('.btn-undo');
+    //view add record form
+    const pet_id = button.getAttribute('data-pet-id');
+    const appointment_id = button.getAttribute('data-appointment-id');
+    
+    //add medical record popup elements
+    const popup = document.getElementById('add_record-popup-overlay');
+    const closeBtn = popup.querySelector('#add-record-close-btn'); // Scope querySelector to popup
+    const recordForm = document.getElementById('add-medical-record-form');
+    const formMessage = document.getElementById('form-message');
 
-    addStatusSpan(card, 'Completed', 'completed');
-    completeBtn.disabled = true;
-    cancelBtn.disabled = true;
-    undoBtn.disabled = false;
-    undoBtn.style.display = 'block';
+    // Reset form and messages
+    if (recordForm) recordForm.reset();
+    if (formMessage) formMessage.innerHTML = '';
 
-    //update status of the appointment in db
-    const appointmentId = button.getAttribute('data-appointment-id');
-    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/completeStatus`, { // Removed ID from URL
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json' // Specify content type
-        },
-        body: JSON.stringify({ id: appointmentId }) // Send ID in the body
-    })
-    .then(response => {
+    // Set hidden field values
+    document.getElementById('record-appointment-id').value = appointment_id;
+    document.getElementById('record-pet-id').value = pet_id;
+
+    popup.style.display='flex';
+    if (closeBtn) {
+        // Ensure listener is added only once or remove previous if necessary
+        const newCloseBtn = closeBtn.cloneNode(true); // Clone to remove old listeners
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+        newCloseBtn.addEventListener('click', () => popup.style.display = 'none');
+    }
+
+    try {
+        // Get appointment data to populate the form fields
+        const response = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/getAppointmentData?id=${appointment_id}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
         if (!response.ok) {
-            console.error('Failed to update status to completed');
-            // Optionally revert UI changes here if the API call fails
-        }else{
-            console.log(response);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    })
-    .catch(error => {
+
+        const data = await response.json();
+        console.log('Appointment data received:', data);
+
+        if (data.status === 'success') {            
+            // Set hidden fields with retrieved data
+            document.getElementById('record-vet-name').value = data.vet_name || '';
+            document.getElementById('record-owner-id').value = data.owner_id || '';
+            document.getElementById('record-med-id').value = data.med_id || '';
+        } else {
+            throw new Error(data.message || 'Failed to load appointment data');
+        }
+    } catch (error) {
+        console.error('Error fetching appointment data:', error);
+        petNameSpan.textContent = 'Error';
+        formMessage.innerHTML = `<p class="error-message">Error loading appointment data: ${error.message}</p>`;
+    }
+
+    // Add submit event handler to the form (only once)
+    if (recordForm) {
+        // Remove existing listener to prevent duplicates
+        const newForm = recordForm.cloneNode(true);
+        recordForm.parentNode.replaceChild(newForm, recordForm);
+        
+        newForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            formMessage.innerHTML = '<p class="info-message">Submitting record...</p>';
+            
+            try {
+                const response = await fetch('http://localhost/PawCentral/public/medical-center/dashboard/appointments/addMedicalRecord', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Show success message
+                    formMessage.innerHTML = '<p class="success-message">Medical record added successfully!</p>';
+                    
+                    // Update card status
+                    const card = button.closest('.appointment-card');
+                    const completeBtn = card.querySelector('.btn-complete');
+                    const cancelBtn = card.querySelector('.btn-cancel');
+                    const undoBtn = card.querySelector('.btn-undo');
+                    
+                    addStatusSpan(card, 'Completed', 'completed');
+                    completeBtn.disabled = true;
+                    cancelBtn.disabled = true;
+                    undoBtn.disabled = false;
+                    undoBtn.style.display = 'block';
+                    
+                    // Close the popup after a short delay
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 200);
+                    
+                } else {
+                    throw new Error(result.message || 'Failed to add medical record');
+                }
+            } catch (error) {
+                console.error('Error adding medical record:', error);
+                formMessage.innerHTML = `<p class="error-message">Error: ${error.message}</p>`;
+            }
+        });
+    }
+
+    // Update the appointment status in the database
+    try {
+        const statusResponse = await fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/completeStatus`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: appointment_id })
+        });
+        
+        if (!statusResponse.ok) {
+            console.error('Failed to update status to completed');
+        }
+    } catch (error) {
         console.error('Error during complete appointment:', error);
-        // Optionally revert UI changes here
-    });
+    }
+
+    
 }
 
 function cancelAppointment(button) {
@@ -776,7 +871,7 @@ function setupDateNavigation() {
                     <p>Vet: ${appointment.vet_name}</p>
                     <div class="actions">
                         <button class="btn-medRecord" data-owner-id="${appointment.owner_id}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
-                        <button class="btn-complete" data-appointment-id="${appointment.appointment_id}">Complete</button>
+                        <button class="btn-complete" data-appointment-id="${appointment.appointment_id}" data-pet-id="${appointment.pet_id}">Complete</button>
                         <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}">Cancel</button>
                         <button class="btn-undo" data-appointment-id="${appointment.appointment_id}" style="display:none">Undo</button>
                     </div>

@@ -186,4 +186,86 @@ class Med_Dashboard_Appointments{
         echo json_encode(['status' => 'error', 'message' => 'Method Not Allowed']);
         exit();
     }
+
+    // Method to add a new medical record
+    public function addMedicalRecord() {
+        // Check if request is POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+            return;
+        }
+        
+        // Get form data
+        $appointmentId = $_POST['appointment_id'] ?? null;
+        $petId = $_POST['pet_id'] ?? null;
+        $vetName = $_POST['vet_name'] ?? null;
+        $medId = $_POST['med_id'] ?? null;
+        $diagnosis = $_POST['diagnosis'] ?? null;
+        $treatment = $_POST['treatment'] ?? null;
+        $vetNotes = $_POST['vet_notes'] ?? '';
+        
+        // Validate required fields
+        if (!$appointmentId || !$petId || !$diagnosis || !$treatment) {
+            echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
+            return;
+        }
+        
+        try {
+            // Create a new medical record
+            $medicalRecord = new MedicalRecord();
+            $result = $medicalRecord->addRecord([
+                'appointment_id' => $appointmentId,
+                'pet_id' => $petId,
+                'vet_name' => $vetName,
+                'med_id' => $medId,
+                'diagnosis' => $diagnosis,
+                'treatment' => $treatment,
+                'vet_notes' => $vetNotes
+            ]);
+            
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Medical record added successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Failed to add medical record']);
+            }
+        } catch (\Exception $e) {
+            echo json_encode(['status' => 'error', 'message' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+
+    // Method to get appointment data for the form
+    public function getAppointmentData() {
+        header('Content-Type: application/json');
+        
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            echo json_encode(['status' => 'error', 'message' => 'Appointment ID is required']);
+            return;
+        }
+        
+        $appointmentId = $_GET['id'];
+        $appointment = new MedicalAppointment();
+        $appointmentData = $appointment->getAppointmentById($appointmentId);
+        //get the vet name
+        $vetModel=new Veterinarians();
+        $vetData=$vetModel->first(['vet_id'=>$appointmentData->vet_id]);
+
+        if (!$appointmentData) {
+            echo json_encode(['status' => 'error', 'message' => 'Appointment not found']);
+            return;
+        }
+        if (!$vetData) {
+            echo json_encode(['status' => 'error', 'message' => 'Veterinarian not found']);
+            return;
+        }
+        
+        // Return appointment data as an object (not as array with [ ] notation)
+        echo json_encode([
+            'status' => 'success',
+            'pet_id' => $appointmentData->pet_id ?? null,
+            'vet_name' => $vetData->name ?? null,
+            'owner_id' => $appointmentData->owner_id ?? null,
+            'med_id' => $appointmentData->med_id ?? null,
+            'app_date' => $appointmentData->date ?? null
+        ]);
+    }
 }
