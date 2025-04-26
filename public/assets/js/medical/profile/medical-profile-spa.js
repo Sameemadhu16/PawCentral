@@ -642,30 +642,77 @@ function undoStatusUpdate(button) {
     const cancelBtn = card.querySelector('.btn-cancel');
     const undoBtn = card.querySelector('.btn-undo');
 
-    addStatusSpan(card, 'Pending', 'pending'); // Or clearStatusSpan(card) if pending has no text
+    addStatusSpan(card, 'Pending', 'pending');
     completeBtn.disabled = false;
     cancelBtn.disabled = false;
     undoBtn.disabled = true;
     undoBtn.style.display = 'none';
 
     const appointmentId = button.getAttribute('data-appointment-id');
-    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/pendingStatus`, { // Removed ID from URL
+    console.log('Undo pressed for appointment ID:', appointmentId);
+    
+    // First update status to pending
+    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/pendingStatus`, {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json' // Specify content type
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+        body: JSON.stringify({ id: appointmentId })
     })
     .then(response => {
         if (!response.ok) {
             console.error('Failed to update status to pending');
-            // Optionally revert UI changes here if the API call fails
+            return Promise.reject('Failed to update status to pending');
         }
+        return response.json();
     })
     .catch(error => {
         console.error('Error during undo status update:', error);
-        // Optionally revert UI changes here
+        // Revert UI changes on error
+        addStatusSpan(card, 'Completed', 'completed');
+        completeBtn.disabled = true;
+        cancelBtn.disabled = true;
+        undoBtn.disabled = false;
+        undoBtn.style.display = 'block';
+        alert('Failed to update status: ' + error);
+    });
+
+    // After status update, delete the medical record
+    console.log('Attempting to delete medical record for appointment ID:', appointmentId);
+    
+    fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/deleteMedicalRecord`, { 
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: appointmentId })
+    })
+    .then(response => {
+        console.log('Delete response status:', response.status);
+        // First get the text response
+        return response.text().then(text => {
+            // Try to parse as JSON, but catch parse errors
+            try {
+                return JSON.parse(text);
+            } catch (e) {
+                // If it's not valid JSON, log the raw response and throw an error
+                console.error('Invalid JSON response from server:', text);
+                throw new Error('Server returned invalid JSON. Check console for details.');
+            }
+        });
+    })
+    .then(data => {
+        console.log('Delete response data:', data);
+        if (data.status === 'success') {
+            console.log('Medical record deleted successfully');
+        } else {
+            console.warn('Server returned error:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error during medical record deletion:', error);
     });
 }
 
