@@ -39,13 +39,22 @@
             <h3>Pet's Name</h3>
             <input type="text" name="petName" placeholder="Enter the pet's name" required>
 
-            <!-- Species & Breed -->
+            
             <h3>Species</h3>
-            <input type="text" name="species" placeholder="ex: Dog, Cat" required>
+<select name="species" id="species" required>
+  <option value="" disabled selected>Select species</option>
+  <option value="Dog">Dog</option>
+  <option value="Cat">Cat</option>
+  <option value="Other">Other</option>
+</select>
 
-            <h3>Breed</h3>
-            <input type="text" name="breed" placeholder="ex: German Shepherd" required>
-
+<!-- Breed -->
+<h3>Breed</h3>
+<div id="breed-container">
+  <select name="breed" id="breed" required>
+    <option value="" disabled selected>Select breed</option>
+  </select>
+</div>
             <!-- Sex -->
             <h3>Sex</h3>
             <select name="sex" required>
@@ -54,15 +63,14 @@
                 <option value="Female">Female</option>
             </select>
 
-            <!-- Age, Height, Weight -->
             <h3>Age (in years)</h3>
-            <input type="number" name="age" placeholder="Enter age" min="0" required>
+<input type="number" name="age" placeholder="Enter age" min="0" max="25" step="1" required>
 
-            <h3>Height (cm)</h3>
-            <input type="number" name="height" placeholder="Enter height in cm" min="0" required>
+<h3>Height (cm)</h3>
+<input type="number" name="height" placeholder="Enter height in cm" min="10" max="300" required>
 
-            <h3>Weight (kg)</h3>
-            <input type="number" name="weight" placeholder="Enter weight in kg" min="0" required>
+<h3>Weight (kg)</h3>
+<input type="number" name="weight" placeholder="Enter weight in kg" min="0.5" max="200" step="0.1" required>
 
             <!-- Health Information -->
             <h3>Neutered/Spayed?</h3>
@@ -98,7 +106,8 @@
             <input type="text" name="contactName" placeholder="Enter your name" required>
 
             <h3>Contact Number</h3>
-            <input type="text" name="contactNumber" placeholder="ex: 077 34 353" required>
+<input type="text" name="contactNumber" placeholder="ex: 07734353XX" pattern="^0\d{2}\s?\d{6,7}$" required>
+<small>Format: 077 1234567 or 0771234567</small>
 
             <h3>Description</h3>
             <input type="text" name="description" placeholder="ex:medications" required>
@@ -110,4 +119,65 @@
         </form>
     </div>
 </body>
+<script>
+  const breedOptions = {
+    Dog: [
+      { value: "Pomeranian", text: "Pomeranian" },
+      { value: "German Shepherd", text: "German Shepherd" },
+      { value: "Labrador", text: "Labrador" },
+      { value: "Bulldog", text: "Bulldog" },
+      { value: "Beagle", text: "Beagle" },
+    ],
+    Cat: [
+      { value: "Persian", text: "Persian" },
+      { value: "Siamese", text: "Siamese" },
+      { value: "Maine Coon", text: "Maine Coon" },
+      { value: "Bengal", text: "Bengal" },
+      { value: "Sphynx", text: "Sphynx" },
+    ],
+    Other: []
+  };
+
+  const speciesSelect = document.getElementById('species');
+  const breedContainer = document.getElementById('breed-container');
+
+  speciesSelect.addEventListener('change', function () {
+    const selectedSpecies = this.value;
+
+    // Clear breed container
+    breedContainer.innerHTML = '';
+
+    if (selectedSpecies === 'Other') {
+      // Show a text input if species is Other
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'breed';
+      input.placeholder = 'Other';
+      input.required = true;
+      breedContainer.appendChild(input);
+    } else {
+      // Show dropdown for Dog or Cat
+      const select = document.createElement('select');
+      select.name = 'breed';
+      select.id = 'breed';
+      select.required = true;
+
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.text = 'Select breed';
+      defaultOption.disabled = true;
+      defaultOption.selected = true;
+      select.appendChild(defaultOption);
+
+      breedOptions[selectedSpecies].forEach(breed => {
+        const option = document.createElement('option');
+        option.value = breed.value;
+        option.text = breed.text;
+        select.appendChild(option);
+      });
+
+      breedContainer.appendChild(select);
+    }
+  });
+</script>
 </html>

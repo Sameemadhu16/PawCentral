@@ -11,6 +11,98 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+                .appointments-section {
+                    padding: 20px;
+                    background: #fff;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+
+                .section-title {
+                    color: #333;
+                    margin-bottom: 20px;
+                    font-size: 1.5rem;
+                }
+
+                .appointments-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 20px;
+                }
+
+                .appointment-card {
+                    background: #f8f9fa;
+                    border-radius: 8px;
+                    padding: 15px;
+                    transition: transform 0.2s;
+                }
+
+                .appointment-card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+
+                .appointment-header {
+                    margin-bottom: 15px;
+                }
+
+                .vet-name {
+                    color: #2c3e50;
+                    margin: 0;
+                    font-size: 1.2rem;
+                }
+
+                .for-name {
+                    color: #666;
+                    font-size: 0.9rem;
+                }
+
+                .appointment-body {
+                    display: grid;
+                    gap: 10px;
+                }
+
+                .datetime, .time, .location {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: #555;
+                }
+
+                .datetime i, .time i, .location i {
+                    color: #8049fe;
+                    width: 20px;
+                }
+
+                .cancel-btn {
+                    width: 100%;
+                    padding: 8px;
+                    margin-top: 15px;
+                    border: none;
+                    border-radius: 5px;
+                    background: #ff4757;
+                    color: white;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+                }
+
+                .cancel-btn:hover {
+                    background: #ff6b81;
+                }
+
+                .no-appointments {
+                    text-align: center;
+                    color: #666;
+                    font-style: italic;
+                    padding: 20px;
+                }
+                </style>
+                    
     <script>
         function openPopup() {
             document.getElementById("popupForm").style.display = "flex";
@@ -54,35 +146,41 @@
 
                 <!-- Include appointment info -->
                 <div class="appointments-section">
-                    <h2>Upcoming medical appointments: </h2>
-                    <div class="appointment">
-                        <div class="appointment-details">
-                            <strong>Vet. Indunil Rajapakse</strong><br>
-                            <span class="time"> Time: 4.00 pm</span><br>
-                            <span class="time">Date:  Sat, 24th August, 2024</span><br>
-                            @ Pet Hospital - Panadura
+                    <h2 class="section-title">Upcoming Medical Appointments</h2>
+                    <?php if(!empty($apps)): ?>
+                        <div class="appointments-grid">
+                            <?php foreach ($apps as $app):?>
+                                <div class="appointment-card">
+                                    <div class="appointment-header">
+                                        <h3 class="vet-name"><?= $app->vet_name ?></h3>
+                                        <span class="for-name">for <?=$app->pet_name?></span>
+                                    </div>
+                                    <div class="appointment-body">
+                                        <div class="datetime">
+                                            <i class="far fa-calendar-alt"></i>
+                                            <span><?=date('d, M Y',strtotime($app->date)) ?></span>
+                                        </div>
+                                        <div class="time">
+                                            <i class="far fa-clock"></i>
+                                            <span><?=$app->timeslot?></span>
+                                        </div>
+                                        <div class="location">
+                                            <i class="fas fa-clinic-medical"></i>
+                                            <span><?= $app->medi_name?></span>
+                                        </div>
+                                    </div>
+                                    <button class="cancel-btn" onclick="cancelAppointment(<?= $app->appointment_id ?>)">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </button>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                        <button class="cancel-button" onclick="cancelAppointment()">Cancel appointment</button>
-                    </div>
-                    <div class="appointment">
-                        <div class="appointment-details">
-                            <strong>Vet. Indunil Rajapakse</strong><br>
-                            
-                            <span class="time"> Time: 4.00 pm</span><br>
-                            <span class="time">Date:  Sat, 24th August, 2024</span><br>
-                            @ Pet Hospital - Panadura
-                        </div>
-                        <button class="cancel-button" onclick="cancelAppointment()">Cancel appointment</button>
-                    </div>
+                    <?php else: ?>
+                        <p class="no-appointments">No upcoming appointments</p>
+                    <?php endif; ?>
                 </div>
-                <script>
-        function selectPet(petName) {
-            alert(`You selected ${petName}`);
-        }
-        function cancelAppointment() {
-            alert('Appointment canceled');
-        }
-    </script>
+
+               
             <?php else: ?>
                 <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
                     <p style="text-align: center; font-size: 1.2rem; color: #555;">No pets have been added yet.<br>

@@ -8,13 +8,15 @@ class Mypets{
 
         if(!($_SESSION['user_id'])){
 
-            redirect('home');
+            redirect('/403');
         }
         // Initialize the model
         $model = new RegisterPet();
-
+        
         // Retrieve all pets
         $pets['pets'] = $model->getRegPets();
+        
+        $pets['apps']=$model->getUpcommingAppointments($_SESSION['user_id']);
         
          // Process images: convert binary `img1` data to Base64-encoded string
          foreach ($pets['pets'] as $pet) {
@@ -25,9 +27,13 @@ class Mypets{
             }
         
         }
+
+        // print_r($pets);
+        // exit();
         $this->view('user/mypets',$pets);
     }
-
+   
+    
     public function ShowPetProfile(){
 
         if(!($_SESSION['user_id'])){
@@ -58,7 +64,6 @@ class Mypets{
     public function ShowPetRecords(){
 
         if(!($_SESSION['user_id'])){
-
             redirect('home');
         }
         
@@ -68,7 +73,8 @@ class Mypets{
 
         // Retrieve all pets
         $data['pet'] = $model->getPet($petid);
-        // print_r($data['pet']);
+        $data['medical_records'] = $model->getMedicalRecords($petid,$_SESSION['user_id']);
+        // print_r($data['medical_records']);
         // exit();
         //  Process images: convert binary `img1` data to Base64-encoded string
         //  foreach ($data['pet'] as $pet) {

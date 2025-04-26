@@ -47,7 +47,24 @@
 
         <?php if (isset($_SESSION['user'])): ?>
             <!-- Notification indicator -->
-            <div class="notification-icon" style="padding:0; margin:4px; margin-left:20px; font-size:large" onclick="window.location.href='<?= ROOT ?>/userprofile/notifications'">
+            <div class="notification-icon" style="padding:0; margin:4px; margin-left:20px; font-size:large" 
+                onclick="window.location.href='<?php 
+                    if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin') {
+                        echo ROOT . '/admin/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'shelter') {
+                        echo ROOT . '/shelter/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider') {
+                        echo ROOT . '/medical-center/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller') {
+                        echo ROOT . '/service/notifications';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov') {
+                        echo ROOT . '/provider/notification';
+                    } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user') {
+                        echo ROOT . '/userprofile/notifications';
+                    } else {
+                        echo ROOT . '/login';
+                    }
+                ?>'">
                 🔔 <span id="notif-count" class="badge">0</span>
             </div>
             <?php if (!isset($_GET['action']) || $_GET['action'] !== 'logout'): ?>

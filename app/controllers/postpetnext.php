@@ -14,6 +14,12 @@ class Postpetnext
             if (isset($_FILES['images']) && $_FILES['images']['error'][0] === UPLOAD_ERR_OK) {
                 $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/';
                 $baseUploadUrl = ROOT . '/assets/uploads/';
+
+                $totalImages = count($_FILES['images']['name']);
+                if ($totalImages < 3) {
+                    echo "<script>alert('Please upload at least 3 images.'); window.history.back();</script>";
+                    exit;
+                }
     
                 if (!is_dir($baseUploadPath)) {
                     mkdir($baseUploadPath, 0777, true);

@@ -101,16 +101,16 @@
     padding-top: 30px; */
     
 }
-.corner-label.export {
+.corner-label.import {
     background-color:purple; /* Label background color */
 }
-.corner-label.sell {
+.corner-label.selling {
     background-color: green; /* Label background color */
 }
 .corner-label.rent {
     background-color: blue; /* Label background color */
 }
-.corner-label.reward {
+.corner-label.adoption {
     background-color: orange; /* Label background color */
 }
 

@@ -6,7 +6,8 @@ body, html {
 
 
 .navbar {
-    background-color: #6b0dad;
+    /* background-color: #6b0dad; */
+    background-color: var(--primary);
     color: white;
     padding: 10px 20px;
     display: flex;
@@ -21,7 +22,7 @@ body, html {
     height: 45px;
     margin-right: 10px;
     border-radius: 50%;
-    background-color: #6b0dad; /* Aligns the logo and website name vertically */
+    /* background-color: #6b0dad; Aligns the logo and website name vertically */
 }
 
 .navbar-logo-set{
@@ -40,13 +41,13 @@ body, html {
 }
  
 .navbar h1 {
+    color: #fff;
     font-size: 35px;
-    color: white;
     margin: 0;
+    padding: 0;
     font-weight: bold;
     font-family: sans-serif;
-    text-shadow: 2px 2px 4px rgb(0, 0, 0);
-    letter-spacing: 1px;
+/*     letter-spacing: 1px; */
     transition: transform 0.3s ease;
 }
 

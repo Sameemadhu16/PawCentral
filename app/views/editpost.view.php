@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post</title>
-    <link rel="stylesheet" href="../../assets/css/edit__post.css">
+    <link rel="stylesheet" href="../../assets/css/postpet.css">
     <script src="../assets/js/postpet/postpet.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
     <input type="hidden" name="tradeType" value="<?=htmlspecialchars($data['post']->tradeType)?>">
    
             <h3>Pet's Name</h3>
-            <input type="text" name="petName" placeholder="Enter the pet's name" required >
+            <input type="text" name="petName" placeholder="Enter the pet's name" required value="<?=htmlspecialchars($data['post']->petName)?>">
 
             <!-- Species & Breed -->
             <h3>Species</h3>
@@ -109,7 +109,7 @@
         <input type="text" name="price" value='<?=htmlspecialchars($data['post']->rental_fee)?>' placeholder="0.00" class="price"><br><br><br>
 
         <label class="rental_duration">Rental Duration:</label>
-        <input class="rental_duration" name="rental_duration" type="text" <?= $data['post']->rental_duration ?>><br>
+        <input class="rental_duration" name="rental_duration" type="text" value="<?= $data['post']->rental_duration ?>"><br>
 
         
         <label class="renter_contact">Renter Contact:</label>
