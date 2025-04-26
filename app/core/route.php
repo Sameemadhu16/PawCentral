@@ -279,6 +279,7 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
 
 // Add logout route for medical center
 route('logout', 'Medical/Auth@logout');
+route('userlogout', 'user/profile@logout');
 
 //authentication error page
 route('403','Error_Authentication@index');

@@ -62,7 +62,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </li>
     </ul>
     <div class="logout-tab">
-    <a href="?action=logout" class="nav-link" action="">
+        <a href="<?=ROOT?>/userlogout" class="nav-link">
             <i class="fas fa-sign-out-alt icon"></i>
             <span>Logout</span>
         </a>
