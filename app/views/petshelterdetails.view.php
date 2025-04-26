@@ -55,13 +55,13 @@
 
                     ?>
                         <?php if ($post->status == 0 && $post->is_deleted == 0):
-                        show($post->postimg1);
+                            // show($post->postimg1);
                         ?>
-           
-                            <div class="product-card">
+
+                            <a class="product-card" href="<?= ROOT ?>/findapet/adoption?id=<?= $post->pet_id ?>">
                                 <div class="product-image">
                                     <?php if (!empty($post->postimg1)): ?>
-                                        <img src="<?= ROOT ?>/<?= esc($post->postimg1) ?>" alt="Pet Image">
+                                        <img src="<?= esc($post->postimg1) ?>" alt="Pet Image">
                                     <?php else: ?>
                                         <div class="no-image">No Image Available</div>
                                     <?php endif; ?>
@@ -72,7 +72,7 @@
                                     <p><strong>Breed:</strong> <?= esc($post->breed) ?></p>
                                     <p><strong>Age:</strong> <?= esc($post->age) ?> years</p>
                                 </div>
-                            </div>
+                            </a>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php else: ?>
