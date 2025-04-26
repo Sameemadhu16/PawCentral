@@ -280,6 +280,7 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
     // Medical record endpoints
     route('medical-center/dashboard/appointments/addMedicalRecord', 'Medical/profile/Med_Dashboard_Appointments@addMedicalRecord');
     route('medical-center/dashboard/appointments/getAppointmentData', 'Medical/profile/Med_Dashboard_Appointments@getAppointmentData');
+    route('medical-center/dashboard/appointments/deleteMedicalRecord', 'Medical/profile/Med_Dashboard_Appointments@deleteMedicalRecord');
     
     //veterinarians
     route('medical-center/dashboard/veterinarians/edit','Medical/profile/Med_Dashboard_Veterinarians@edit');

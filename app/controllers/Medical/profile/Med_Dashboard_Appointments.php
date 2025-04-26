@@ -268,4 +268,34 @@ class Med_Dashboard_Appointments{
             'app_date' => $appointmentData->date ?? null
         ]);
     }
+
+    public function deleteMedicalRecord(){
+        // Check if request is POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+            return;
+        }
+
+        $medicalRecord = new MedicalRecord();
+        header('Content-Type: application/json');
+        // Read JSON input from request body or fallback to POST form data
+        $input = json_decode(file_get_contents('php://input'), true);
+        $appointmentId = $input['id'] ?? $_POST['id'] ?? null;
+        
+        // Check if the ID was passed and is not null
+        if ($appointmentId === null) {
+            http_response_code(400); // Bad Request
+            echo json_encode(['status' => 'error', 'message' => 'Appointment ID is required but was not provided.']);
+            exit(); // Stop execution if ID is missing
+        }
+
+        // Pass appointmentId directly, not as an array
+        $result = $medicalRecord->deleteRecord($appointmentId);
+        
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Medical record removed successfully']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to remove medical record']);
+        }
+    }
 }

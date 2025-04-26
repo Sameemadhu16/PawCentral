@@ -97,6 +97,7 @@ class MedicalRecord
      */
     public function deleteRecord($id) 
     {
-        return $this->delete($id);
+        $query = "DELETE FROM {$this->table} WHERE appointment_id = :appointment_id";
+        return $this->query($query, ['appointment_id' => $id]);
     }
 }
