@@ -17,7 +17,14 @@ class Calendar {
         
         // Get the available days from data attributes
         try {
-            this.availableDays = JSON.parse(calendarContainer.dataset.availableDays || '[0,1,2,3,4,5,6]');
+            let parsedDays = JSON.parse(calendarContainer.dataset.availableDays || '[0,1,2,3,4,5,6]');
+            // Ensure parsedDays is an array
+            if (!Array.isArray(parsedDays)) {
+                console.error('Parsed availableDays is not an array:', parsedDays);
+                parsedDays = [0, 1, 2, 3, 4, 5, 6]; // Fallback to default
+            }
+            this.availableDays = parsedDays;
+
             const timeRange = JSON.parse(calendarContainer.dataset.timeRange || '{"start": 8, "end": 17}');
             
             // Fix the time range if end is less than start (assuming 24-hour format)

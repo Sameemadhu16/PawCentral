@@ -4,26 +4,6 @@ class Med_Record{
 
     use Controller;
 
-    // public function index(){
-
-    //     if(!($_SESSION['user_id'])){
-
-    //         redirect('home');
-    //     }
-
-    //     $model = new RegisterPet();
-    //     $pets['pets'] = $model->getRegPets();
-        
-    //     // Process images: convert binary `img1` data to Base64-encoded string
-    //     foreach ($pets['pets'] as $pet) {
-    //         if (isset($pet->petimg)) {
-    //             $pet->petimg = "data:image/jpeg;base64," . base64_encode($pet->petimg); // Adjust MIME type if not JPEG
-    //         }else{
-    //             $pet->petimg = null;
-    //         }
-    //     }
-    // }
-
     public function ShowPetRecords(){
 
         if(!($_SESSION['user_id'])){
