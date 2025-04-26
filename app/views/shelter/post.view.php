@@ -315,8 +315,8 @@
                     <label for="female">Female</label>
                 </div>
 
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" min="0" required>
+                <label for="age">Age(In Month):</label>
+                <input type="number" id="age" name="age" min="1" max="240" required>
 
                 <label for="height">Height (cm):</label>
                 <input type="number" id="height" name="height" min="5" max="100" required>
@@ -326,17 +326,16 @@
 
                 <script>
                     document.querySelector('form').addEventListener('submit', function(event) {
-                        // const age = document.getElementById('age').value;
+                        const age = document.getElementById('age').value;
                         const height = document.getElementById('height').value;
                         const weight = document.getElementById('weight').value;
 
-                        // Validate age
-                        // const birthDate = new Date(document.getElementById('age').value);
-                        // const today = new Date();
-                        // if (birthDate > today) {
-                        //     alert('Birth date cannot be in the future.');
-                        //     event.preventDefault(); // Prevent form submission
-                        // }
+                        // Validate age in months
+                        if (age < 1 || age > 240) {
+                            alert('Age must be between 1 and 240 months.');
+                            event.preventDefault(); // Prevent form submission
+                            return;
+                        }
 
                         // Validate height
                         if (height < 5 || height > 100) {

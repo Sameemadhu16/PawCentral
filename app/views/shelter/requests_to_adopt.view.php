@@ -19,9 +19,12 @@
 
         <div class="content">
             <div class="requests-container">
-                <?php foreach ($data['adoptionRequests'] as $request): ?>
-                    <?php if($request->status == 0 && $request->approved == 0)  : ?>
-
+                <?php 
+                $hasRequests = false; 
+                foreach ($data['adoptionRequests'] as $request): 
+                    if ($request->status == 0 && $request->approved == 0): 
+                        $hasRequests = true;
+                ?>
                     <div class="request-card">
                         <div class="card-content">
                             <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->postimg1) ?>');"></div>
@@ -31,9 +34,9 @@
                                 <p><strong>Adopter Name:</strong> <?= esc($request->adoptor_name) ?></p>
                                 <p><strong>Contact:</strong> <?= esc($request->contact_no) ?></p>
                                 <p><strong>Residence:</strong> <?= esc($request->residence) ?></p>
-                                <p><strong>Garden Area:</strong> <?= esc($request->garden_area) ?><span>Perches</span></p>
+                                <p><strong>Garden Area:</strong> <?= esc($request->garden_area) ?><span> Perches</span></p>
                                 <p><strong>Owned Pets:</strong> <?= esc($request->owned_pets) ?></p>
-                                <p><strong>Have Past pets:</strong> <?= $request->past_pets == 1 ? "Yes" : "No" ?> </p>
+                                <p><strong>Have Past Pets:</strong> <?= $request->past_pets == 1 ? "Yes" : "No" ?></p>
                             </div>
                         </div>
                         <div class="actions">
@@ -49,9 +52,16 @@
                             </form>
                         </div>
                     </div>
+                <?php 
+                    endif; 
+                endforeach; 
+                ?>
 
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                <?php if (!$hasRequests): ?>
+                    <p style="text-align: center; font-size: 1.2rem; color: #555; margin-top: 20px;">
+                        No adoption requests available at the moment.
+                    </p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
