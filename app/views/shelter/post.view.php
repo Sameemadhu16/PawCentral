@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter Posts</title>
+    <title>Shelter Adoption Posts</title>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
@@ -13,6 +13,21 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/popup.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .accepted-banner {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+    </style>
 </head>
 
 <body class="body">
@@ -36,52 +51,107 @@
                     </div>
 
                     <div class="topicnbuttons">
-                        <h2>All Posts</h2>
+                        <h2>Adoption Posts</h2>
                     </div>
 
                     <div class="post-list">
-                        <?php foreach ($posts as $post) :
-                            // show($post->pet_id)
+                        <?php 
+                        $hasPosts = false;
+                        foreach ($posts as $post): 
+                            if ($post->is_deleted == 0 && $post->status == 0): 
+                                $hasPosts = true;
                         ?>
-                            <?php if ($post->is_deleted != 1): ?>
-                                <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?= $post->pet_id ?>'">
-                                    <div class=" post-card-content">
-
-                                        <!-- Post Images -->
-                                        <div class="post-images">
-                                            <div class="carousel">
-                                                <div class="carousel-inner">
-                                                    <?php foreach ([$post->postimg1] as $index => $image): ?>
-                                                        <?php if ($image): ?>
-                                                            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                                <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
-                                                            </div>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
-                                                </div>
-
+                            <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?= $post->pet_id ?>'">
+                                <div class="post-card-content">
+                                    <!-- Post Images -->
+                                    <div class="post-images">
+                                        <div class="carousel">
+                                            <div class="carousel-inner">
+                                                <?php foreach ([$post->postimg1] as $index => $image): ?>
+                                                    <?php if ($image): ?>
+                                                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                            <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
-
-                                        <!-- Post Details -->
-                                        <div class="post-details">
-                                            <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
-                                            <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
-                                            <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> years</p>
-                                            <p><strong>Breed:</strong><?= htmlspecialchars($post->breed) ?></p>
-                                        </div>
-
-                                        <!-- Action Buttons -->
-                                        <!-- <div class="post-actions">
-                                    <button class="edit-btn" onclick="editPost(<?= $post->id ?>)">Edit</button>
-                                    <button class="delete-btn" onclick="deletePost(<?= $post->id ?>)">Delete</button>
-                                </div> -->
                                     </div>
 
+                                    <!-- Post Details -->
+                                    <div class="post-details">
+                                        <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
+                                        <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
+                                        <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
+                                        <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
+                            </div>
+                        <?php 
+                            endif; 
+                        endforeach; 
+                        ?>
 
-                        <?php endforeach; ?>
+                        <?php if (!$hasPosts): ?>
+                            <p style="text-align: center; font-size: 1.2rem; color: #555; margin-top: 20px;">
+                                There are no posts here.
+                            </p>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- New Section for Accepted Posts -->
+                    <div class="topicnbuttons">
+                        <h2>Accepted Adoption Requests</h2>
+                    </div>
+
+                    <div class="post-list">
+                        <?php 
+                        $hasAcceptedPosts = false;
+                        foreach ($posts as $post): 
+                            if ($post->status == 1 && $post->is_deleted == 0): 
+                                $hasAcceptedPosts = true;
+                        ?>
+                            <div class="post-card">
+                                <div class="post-card-content">
+                                    <!-- Post Images -->
+                                    <div class="post-images">
+                                        <div class="carousel">
+                                            <div class="carousel-inner">
+                                                <?php foreach ([$post->postimg1] as $index => $image): ?>
+                                                    <?php if ($image): ?>
+                                                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                            <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Post Details -->
+                                    <div class="post-details">
+                                        <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
+                                        <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
+                                        <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
+                                        <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
+                                    </div>
+
+                                    <!-- Accepted Banner -->
+                                    <div class="accepted-banner">
+                                        <p>Adoption Request Accepted</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php 
+                            endif; 
+                        endforeach; 
+                        ?>
+
+                        <?php if (!$hasAcceptedPosts): ?>
+                            <p style="text-align: center; font-size: 1.2rem; color: #555; margin-top: 20px;">
+                                There are no accepted posts here.
+                            </p>
+                        <?php endif; ?>
                     </div>
 
                 <?php else: ?>
@@ -315,8 +385,8 @@
                     <label for="female">Female</label>
                 </div>
 
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" min="0" required>
+                <label for="age">Age(In Month):</label>
+                <input type="number" id="age" name="age" min="1" max="240" required>
 
                 <label for="height">Height (cm):</label>
                 <input type="number" id="height" name="height" min="5" max="100" required>
@@ -326,17 +396,16 @@
 
                 <script>
                     document.querySelector('form').addEventListener('submit', function(event) {
-                        // const age = document.getElementById('age').value;
+                        const age = document.getElementById('age').value;
                         const height = document.getElementById('height').value;
                         const weight = document.getElementById('weight').value;
 
-                        // Validate age
-                        // const birthDate = new Date(document.getElementById('age').value);
-                        // const today = new Date();
-                        // if (birthDate > today) {
-                        //     alert('Birth date cannot be in the future.');
-                        //     event.preventDefault(); // Prevent form submission
-                        // }
+                        // Validate age in months
+                        if (age < 1 || age > 240) {
+                            alert('Age must be between 1 and 240 months.');
+                            event.preventDefault(); // Prevent form submission
+                            return;
+                        }
 
                         // Validate height
                         if (height < 5 || height > 100) {

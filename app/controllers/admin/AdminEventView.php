@@ -56,13 +56,13 @@ class AdminEventView {
 
     private function approveEvent($eventId) {
         $eventModel = new EventsModel;
-        $eventModel->update($eventId, ['status' => 1], 'event_id');
+        $eventModel->update($eventId, ['approved' => 1], 'event_id');
         redirect('admin/event');
     }
 
     private function rejectEvent($eventId) {
         $eventModel = new EventsModel;
-        $eventModel->update($eventId, ['status' => 2], 'event_id');
+        $eventModel->update($eventId, ['approved' => 2], 'event_id');
         redirect('admin/event');
     }
 }

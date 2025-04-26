@@ -19,7 +19,9 @@
     <?php include("../app/views/components/header.php"); ?>
 
     <div class="main-container container">
-        <?php include("../app/views/components/admin/adminSidebar.php"); ?>
+        <?php include("../app/views/components/admin/adminSidebar.php");
+        // show($events);
+        ?>
 
         <div class="content">
             <div class="dashboard-header">
@@ -88,8 +90,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="status-badge status-<?= strtolower($event->status == 0 ? 'pending' : ($event->status == 1 ? 'approved' : 'rejected')) ?>">
-                                            <?= esc($event->status == 0 ? 'Pending' : ($event->status == 1 ? 'Approved' : 'Rejected')) ?>
+                                        <span class="status-badge status-<?= strtolower($event->status == 0 && $event->approved == 0 ? 'pending' : ($event->status == 0 && $event->approved == 1 ? 'approved' : 'rejected')) ?>">
+                                            <?= esc($event->status == 0 && $event->approved == 0 ? 'Pending' : ($event->status == 0 && $event->approved == 1 ? 'Approved' : ($event->status == 0 && $event->approved == 2 ? 'Rejected' : 'Closed' ))) ?>
                                         </span>
                                     </td>
                                     <td>

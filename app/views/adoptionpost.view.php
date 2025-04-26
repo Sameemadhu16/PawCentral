@@ -57,7 +57,7 @@
             <p>Sex :</p><span><?= esc($post->sex) ?></span>
         </div>
         <div class="specs">
-            <p>Age :</p><span><?= esc($post->age) ?> years</span>
+            <p>Age :</p><span><?= esc($post->age) ?> Months</span>
         </div>
         <!-- <div class="specs">
             <p>Color :</p><span>Brown</span>
