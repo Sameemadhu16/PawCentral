@@ -147,6 +147,58 @@ class LogData {
             $this->insertLog("No expired events found.");
         }
     }
+
     
+    public function checkUpcommingApp(){
+        $query= "  SELECT 
+                ap.appointment_id AS app_id,
+                ap.date AS date,
+                ap.timeslot AS time_slot,
+                vt.name AS vet_name,
+                rp.name AS pet_name,
+                mp.name AS medi_name,
+                ap.owner_id
+              FROM 
+                medical_appointments ap
+              JOIN 
+                veterinarians vt ON vt.vet_id = ap.vet_id
+              JOIN 
+                registered_pets rp ON rp.pet_id = ap.pet_id
+              JOIN 
+                medical_providers mp ON mp.med_id = ap.med_id
+              WHERE 
+                ap.completion_status = 0 
+                AND ap.noti_sent = 0
+                AND ap.date < CURDATE() + INTERVAL 1 DAY
+              ORDER BY 
+                ap.date ASC;";
+
+        
+        $upcoming_app = $this->query($query);
+
+
+        if ($upcoming_app) {
+            foreach ($upcoming_app as $req) {
+                // Update notification flag
+                $updateQuery = "UPDATE medical_appointments SET noti_sent = 1 WHERE appointment_id = :id AND noti_sent = 0";
+                $this->query($updateQuery, ['id' => $req->app_id]);
+    
+                // Send notification to the pet owner
+                $title = $req->pet_name . " : Medical Appointment Reminder!";
+                $message = "Reminder: You have a medical appointment for " . $req->pet_name .
+                           " with Dr. " . $req->vet_name . 
+                           " scheduled at " . $req->time_slot . " " . $req->date . ".";
+    
+                $this->sendNotification($req->owner_id, $title, $message);
+    
+                // Log each reminder
+                $this->insertLog("Reminder sent for appointment ID: " . $req->app_id);
+            }
+    
+            $this->insertLog(count($upcoming_app) . " medical appointment notifications sent.");
+        } else {
+            $this->insertLog("No upcoming appointments within 24 hrs.");
+        }
+    }
 
 }

@@ -17,7 +17,6 @@ class AdminMedicalRegistration
 
     public function index()
     {
-
         $medicalProvider = new MedicalProvModel();
         // show($_SESSION['user']);
 
