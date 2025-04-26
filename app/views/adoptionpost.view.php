@@ -104,8 +104,8 @@
                     <!-- Show Send Adoption Request button if the user is logged in -->
                     <button class="btn btn-primary" onclick="openPopup()">Send Adoption Request</button>
                 <?php else: ?>
-                    <!-- Show login prompt if the user is not logged in -->
-                    <p>Please <a class="btn btn-primary" href="<?= ROOT ?>/login" style="text-decoration: none;">log in</a> to request for the pet.</p>
+                    <!-- Show contact shelter statement if the user is not logged in -->
+                    <p>Please contact the shelter for more details. <a class="btn btn-primary" href="<?= ROOT ?>/petshelters/details?id=<?= $post->shelter_id ?>" style="text-decoration: none;">Visit Shelter</a></p>
                 <?php endif; ?>
             </div>
         </div>
@@ -113,8 +113,8 @@
         <!-- Description -->
         <div class="description-section">
             <h3>Description</h3>
-            <p >
-                <?=$post->description?>
+            <p>
+                <?= $post->description ?>
             </p>
         </div>
 

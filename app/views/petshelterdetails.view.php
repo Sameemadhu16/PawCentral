@@ -4,81 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter Profile</title>
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/profile.css"> <!-- Link to external CSS -->
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/profile.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title><?= esc($shelter->name) ?> - Shelter Profile</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shop.css">
 </head>
 
-<body class="body">
-    <!-- Include the Header and Sidebar components -->
+<body>
     <?php include("../app/views/components/header.php");
-    // show($data);
+    // show($data['postcards']);
     ?>
 
-    <?php $shelter = $data['shelter'];
-    $profile = $data['user'] ?>
-
-    <div class="main-container container">
-        <div class="user-accounts-section">
-            <div class="profile-section">
-                <div class="profile-container">
-                    <div class="profile-pic-container">
-                        <?php
-                        $profile_image = !empty($profile->profile_pic)
-                            ? ROOT . '/' . esc($profile->profile_pic)
-                            : ROOT . '/assets/images/user/default_user.jpg';
-                        ?>
-                        <div class="profile-pic">
-                            <img src="<?= $profile_image ?>" alt="Profile Picture">
-                            <div class="edit-overlay" id="change-photo-btn">
-                                <i class="fas fa-camera"></i>
-                                <span>Change Photo</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Profile Details -->
-                    <div class="profile-details">
-                        <!-- User Profile Details -->
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Shelter Name: </span><?= !empty($shelter->name) ? htmlspecialchars($shelter->name) : 'N/A' ?>
-                        </div>
-                        <!-- Shelter Details -->
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Shelter Address : </span><?= !empty($profile->location) ? htmlspecialchars($profile->location) : 'N/A' ?>
-                        </div>
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Shelter Location: </span><?= !empty($shelter->location) ? htmlspecialchars($shelter->location) : 'N/A' ?>
-                        </div>
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Contact No: </span><?= !empty($shelter->contact_no) ? htmlspecialchars($shelter->contact_no) : 'N/A' ?>
-                        </div>
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Capacity: </span><?= !empty($shelter->capacity) ? htmlspecialchars($shelter->capacity) : 'N/A' ?>
-                        </div>
-
-                        <div class="profile-detail-item">
-                            <span class="profile-detail-item-label">Description: </span><?= !empty($shelter->description) ? htmlspecialchars($shelter->description) : 'N/A' ?>
-                        </div>
-
-                    </div>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="image_section">
+                <?php if (!empty($user->profile_pic)): ?>
+                    <img src="<?= ROOT ?>/<?= esc($user->profile_pic) ?>" alt="Shelter Profile Picture">
+                <?php else: ?>
+                    <img src="<?= ROOT ?>/assets/images/default-profile.png" alt="Default Profile Picture">
+                <?php endif; ?>
+            </div>
+            <div class="info_section">
+                <div class="service_name">
+                    <h1 class="nam"><?= esc($shelter->name) ?></h1>
+                    <p class="loc">Location: <?= esc($shelter->location) ?></p>
+                    <p class="loc">Address: <?= esc($user->address) ?></p>
+                </div>
+                <div class="about">
+                    <h2>About Us</h2>
+                    <p><?= !empty($shelter->description) ? esc($shelter->description) : "No description available." ?></p>
+                </div>
+                <div class="contact_button">
+                    <button class="contact-btn" id="contactToggleBtn" data-number="<?= esc($user->mobile_no) ?>">Contact Us</button>
                 </div>
             </div>
         </div>
+
+        <!-- Shelter Details Section -->
+        <div class="shelter-details">
+            <h2>Shelter Details</h2>
+            <p><strong>Capacity:</strong> <?= !empty($shelter->capacity) ? esc($shelter->capacity) : "Not specified" ?></p>
+
+        </div>
+
+        <!-- Products Section -->
+        <h2>Our Pets</h2>
+        <div class="product-grid">
+            <?php foreach ($data['postcards'] as $posts): ?>
+                <?php if (!empty($posts)): ?>
+                    <?php foreach ($posts as $post):
+
+                    ?>
+                        <?php if ($post->status == 0 && $post->is_deleted == 0):
+                        show($post->postimg1);
+                        ?>
+           
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <?php if (!empty($post->postimg1)): ?>
+                                        <img src="<?= ROOT ?>/<?= esc($post->postimg1) ?>" alt="Pet Image">
+                                    <?php else: ?>
+                                        <div class="no-image">No Image Available</div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="product-details">
+                                    <h3><?= esc($post->name) ?></h3>
+                                    <p><strong>Species:</strong> <?= esc($post->species) ?></p>
+                                    <p><strong>Breed:</strong> <?= esc($post->breed) ?></p>
+                                    <p><strong>Age:</strong> <?= esc($post->age) ?> years</p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No products available.</p>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 
+    <script>
+        const contactBtn = document.getElementById('contactToggleBtn');
+        const originalText = 'Contact Us';
+        const contactNumber = contactBtn.getAttribute('data-number');
 
-
-
-
-    <?php include("../app/views/components/footer.php"); ?>
-
+        contactBtn.addEventListener('click', function() {
+            if (contactBtn.textContent === originalText) {
+                contactBtn.textContent = contactNumber;
+            } else {
+                contactBtn.textContent = originalText;
+            }
+        });
+    </script>
 </body>
 
 </html>
