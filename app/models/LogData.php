@@ -1,6 +1,11 @@
 <?php
+
+// Autoload PHPMailer and other dependencies
+// require __DIR__ . '/../../../vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 
 class LogData {
     use Database;
@@ -152,6 +157,7 @@ class LogData {
 
     
     public function checkUpcommingApp(){   
+        // $this->insertLog("HERE2  ");
         $query= "SELECT 
                 ap.appointment_id AS app_id,
                 ap.date AS date,
@@ -176,7 +182,7 @@ class LogData {
                 ap.date ASC;";
         
         $upcoming_app = $this->query($query);
-
+        
 //         $this->insertLog("HERE2  ");
 
 //         $this->insertLog("Result type: " . gettype($upcoming_app));
@@ -192,20 +198,35 @@ class LogData {
             
             $this->insertLog(count($upcoming_app) );
             foreach ($upcoming_app as $req) {
-                
-                $this->insertLog($req->app_id);
                 // Update notification flag
                 $updateQuery = "UPDATE medical_appointments SET noti_sent = 1 WHERE appointment_id = :id AND noti_sent = 0";
                 $this->query($updateQuery, ['id' => $req->app_id]);
-                
-                $this->insertLog($req->app_id);
+        
                 // Send notification to the pet owner
                 $title = $req->pet_name . " : Medical Appointment Reminder!";
                 $message = "Reminder: You have a medical appointment for " . $req->pet_name .
                            " with Dr. " . $req->vet_name . 
                            " scheduled at " . $req->time_slot . " " . $req->date . ".";
-    
+                
+                $getemailQuery = "SELECT email FROM users WHERE id=:user_id";
+                $emailResult=$this->query($getemailQuery,['user_id'=> $req->owner_id]);
+                
+                if (!empty($emailResult)) {
+                    $ownerEmail = $emailResult[0]->email;
+                } else {
+                    $ownerEmail = null; // fallback
+                }
+                // $this->insertLog($ownerEmail);
                 $this->sendNotification($req->owner_id, $title, $message);
+                $this->sendAppointmentEmail(
+                    $ownerEmail,  
+                    $req->vet_name,
+                    $req->medi_name,
+                    $req->pet_name,
+                    $req->time_slot,
+                    $req->date
+                );
+                
     
                 // Log each reminder
                 $this->insertLog("Reminder sent for appointment ID: " . $req->app_id);
@@ -217,7 +238,7 @@ class LogData {
         }
     }
 
-    function sendTestEmail($toEmail,$vet_name,$med_name,$pet_name,$at,) {
+    public function sendAppointmentEmail($toEmail, $vet_name, $med_name, $pet_name, $time, $date) {
         $mail = new PHPMailer(true);
     
         try {
@@ -226,28 +247,39 @@ class LogData {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'sameemadhu2003@gmail.com'; // your Gmail
-            $mail->Password = 'bqbc wqrp okqx hwrn'; // app password
+            $mail->Password = 'bqbc wqrp okqx hwrn'; // Gmail App Password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
     
-            // Enable debugging
-            $mail->SMTPDebug = 2; // Enable verbose debug output
-            $mail->Debugoutput = 'html'; // Output debug info in HTML format
-    
             // Sender and recipient
             $mail->setFrom('sameemadhu2003@gmail.com', 'PawCentral Reminder');
-            $mail->addAddress($toEmail);
+            $mail->addAddress($toEmail); // Owner's email
     
             // Email content
             $mail->isHTML(true);
-            $mail->Subject = 'Reminder from PawCentral: 24h Notice';
-            $mail->Body = '<h1>Hi!</h1><p>This is a test email from PawCentral:.</p>';
+            $mail->Subject = 'PawCentral Reminder: Upcoming Appointment';
+    
+            $mail->Body = "
+                <h3>Medical Appointment Reminder</h3>
+                <p>This is a reminder for your pet <strong>$pet_name</strong>.</p>
+                <p>Appointment Details:</p>
+                <ul>
+                    <li><strong>Veterinarian:</strong> Dr. $vet_name</li>
+                    <li><strong>Medical Provider:</strong> $med_name</li>
+                    <li><strong>Date:</strong> $date</li>
+                    <li><strong>Time:</strong> $time</li>
+                </ul>
+                <p>Please be on time.</p>
+                <br>
+                <p>— PawCentral</p>
+            ";
     
             $mail->send();
-            echo "Test email sent successfully to $toEmail";
+            $this->insertLog("Email sent to $toEmail for pet $pet_name.");
         } catch (Exception $e) {
-            echo "Failed to send email. Error: " . $mail->ErrorInfo;
+            $this->insertLog("Failed to send email to $toEmail. Error: " . $mail->ErrorInfo);
         }
     }
+    
     
 }

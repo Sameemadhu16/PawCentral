@@ -7,7 +7,7 @@ require_once $root . '/app/core/config.php';
 require_once $root . '/app/core/Database.php';
 require_once $root . '/app/models/LogData.php';
 require_once $root . '/vendor/autoload.php';
-require_once __DIR__ . '/send_email.php';
+// require_once __DIR__ . '/send_email.php';
 
 // sendTestEmail('lehanselaka@gmail.com');
 
