@@ -20,10 +20,34 @@
             </div>
             
            <form class="import-form" action="<?=ROOT?>/service/postpet/postpetnext/import/submit" method="POST" onsubmit="return validateImportForm()">
-                <div class="form-group">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" name="country" required>
-                </div>
+           <div class="form-group">
+  <label for="country">Country:</label>
+  <select id="country" name="country" required>
+    <option value="" disabled selected>Select your country</option>
+    <option value="Sri Lanka">Sri Lanka</option>
+    <option value="India">India</option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="Australia">Australia</option>
+    <option value="United States">United States</option>
+    <option value="Canada">Canada</option>
+    <option value="New Zealand">New Zealand</option>
+    <option value="Germany">Germany</option>
+    <option value="France">France</option>
+    <option value="Italy">Italy</option>
+    <option value="Japan">Japan</option>
+    <option value="South Korea">South Korea</option>
+    <option value="Brazil">Brazil</option>
+    <option value="Mexico">Mexico</option>
+    <option value="South Africa">South Africa</option>
+    <option value="Russia">Russia</option>
+    <option value="China">China</option>
+    <option value="Argentina">Argentina</option>
+    <option value="Spain">Spain</option>
+    <option value="Netherlands">Netherlands</option>
+    <option value="Singapore">Singapore</option>
+  </select>
+</div>
+
                 
                 <div class="form-group">
                     <label for="owner">Importing Owner:</label>

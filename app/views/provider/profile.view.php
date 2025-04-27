@@ -94,8 +94,7 @@
                  <label for="last_name">Last Name:</label>
                 <input type="text" id="last_name" name="last_name" value="<?= !empty($profile->last_name) ? htmlspecialchars($profile->last_name) : '' ?>" required> 
                 
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="<?= !empty($profile->location) ? htmlspecialchars($profile->location) : '' ?>" required> 
+              
                 
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" value="<?= !empty($profile->address) ? htmlspecialchars($profile->address) : '' ?>" required> 
@@ -133,8 +132,34 @@
                     <option value="Ratnapura" <?= $profile->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
                 </select> -->
 
-                <label for="Area">Area:</label>
-                <input type="text" id="Area" name="Area" value="<?= !empty($providerDetails->Areas) ? htmlspecialchars($providerDetails->Areas) : '' ?>">
+                <select name="Areas" id="Areas" required>
+    <option value="" disabled <?= empty($providerDetails->Areas) ? 'selected' : '' ?>>Select your area</option>
+    <option value="Ampara" <?= $providerDetails->Areas === 'Ampara' ? 'selected' : '' ?>>Ampara</option>
+    <option value="Anuradhapura" <?= $providerDetails->Areas === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
+    <option value="Badulla" <?= $providerDetails->Areas === 'Badulla' ? 'selected' : '' ?>>Badulla</option>
+    <option value="Batticaloa" <?= $providerDetails->Areas === 'Batticaloa' ? 'selected' : '' ?>>Batticaloa</option>
+    <option value="Colombo" <?= $providerDetails->Areas === 'Colombo' ? 'selected' : '' ?>>Colombo</option>
+    <option value="Galle" <?= $providerDetails->Areas === 'Galle' ? 'selected' : '' ?>>Galle</option>
+    <option value="Gampaha" <?= $providerDetails->Areas === 'Gampaha' ? 'selected' : '' ?>>Gampaha</option>
+    <option value="Hambantota" <?= $providerDetails->Areas === 'Hambantota' ? 'selected' : '' ?>>Hambantota</option>
+    <option value="Jaffna" <?= $providerDetails->Areas === 'Jaffna' ? 'selected' : '' ?>>Jaffna</option>
+    <option value="Kalutara" <?= $providerDetails->Areas === 'Kalutara' ? 'selected' : '' ?>>Kalutara</option>
+    <option value="Kandy" <?= $providerDetails->Areas === 'Kandy' ? 'selected' : '' ?>>Kandy</option>
+    <option value="Kegalle" <?= $providerDetails->Areas === 'Kegalle' ? 'selected' : '' ?>>Kegalle</option>
+    <option value="Kilinochchi" <?= $providerDetails->Areas === 'Kilinochchi' ? 'selected' : '' ?>>Kilinochchi</option>
+    <option value="Kurunegala" <?= $providerDetails->Areas === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
+    <option value="Mannar" <?= $providerDetails->Areas === 'Mannar' ? 'selected' : '' ?>>Mannar</option>
+    <option value="Matale" <?= $providerDetails->Areas === 'Matale' ? 'selected' : '' ?>>Matale</option>
+    <option value="Matara" <?= $providerDetails->Areas === 'Matara' ? 'selected' : '' ?>>Matara</option>
+    <option value="Monaragala" <?= $providerDetails->Areas === 'Monaragala' ? 'selected' : '' ?>>Monaragala</option>
+    <option value="Mullaitivu" <?= $providerDetails->Areas === 'Mullaitivu' ? 'selected' : '' ?>>Mullaitivu</option>
+    <option value="Nuwara Eliya" <?= $providerDetails->Areas === 'Nuwara Eliya' ? 'selected' : '' ?>>Nuwara Eliya</option>
+    <option value="Polonnaruwa" <?= $providerDetails->Areas === 'Polonnaruwa' ? 'selected' : '' ?>>Polonnaruwa</option>
+    <option value="Puttalam" <?= $providerDetails->Areas === 'Puttalam' ? 'selected' : '' ?>>Puttalam</option>
+    <option value="Ratnapura" <?= $providerDetails->Areas === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
+    <option value="Trincomalee" <?= $providerDetails->Areas === 'Trincomalee' ? 'selected' : '' ?>>Trincomalee</option>
+    <option value="Vavuniya" <?= $providerDetails->Areas === 'Vavuniya' ? 'selected' : '' ?>>Vavuniya</option>
+</select>
 
 <!-- NEW: Profile Picture Upload -->
 <label for="profile_pic">Profile Picture:</label>
