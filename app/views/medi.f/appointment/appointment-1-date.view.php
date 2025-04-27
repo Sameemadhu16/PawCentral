@@ -25,7 +25,8 @@
             <!-- Add data attributes to store availability data -->
             <div id="calendar-container" 
                 data-available-days='<?= json_encode($data['availableDays'] ?? [0,1,2,3,4,5,6]) ?>'
-                data-time-range='<?= json_encode($data['timeRange'] ?? ['start' => 8, 'end' => 17]) ?>'>
+                data-time-range='<?= json_encode($data['timeRange'] ?? ['start' => 8, 'end' => 17]) ?>'
+                data-med-id='<?= json_encode($data['med_id'] ?? 1) ?>'>
                 
                 <div class="select-date">
                     <p>Select Date</p>

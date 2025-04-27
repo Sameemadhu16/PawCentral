@@ -256,6 +256,7 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
 
 //appointments
     route('medical-appointment-date','Medical/appointment/Appointment_Date@index');
+    route('medical-appointment-date-times','Medical/appointment/Appointment_Date@getbookedTimesByDate');
     route('medical-appointment-vet','Medical/Appointment/Appointment_Vet@index');
     route('medical-appointment-pet','Medical/Appointment/Appointment_Pet@index');
     route('medical-appointment-reason','Medical/Appointment/Appointment_Reason@index');

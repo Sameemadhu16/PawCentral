@@ -18,11 +18,20 @@ class Calendar {
         // Get the available days from data attributes
         try {
             let parsedDays = JSON.parse(calendarContainer.dataset.availableDays || '[0,1,2,3,4,5,6]');
-            // Ensure parsedDays is an array
+            
+            // Handle case where parsedDays is an object with numeric keys (like {0: 1, 1: 2, 2: 3})
+            // This converts it to a proper array of values 
             if (!Array.isArray(parsedDays)) {
-                console.error('Parsed availableDays is not an array:', parsedDays);
-                parsedDays = [0, 1, 2, 3, 4, 5, 6]; // Fallback to default
+                console.log('Parsed availableDays is not an array:', parsedDays);
+                // Extract values from the object and create a new array
+                if (typeof parsedDays === 'object' && parsedDays !== null) {
+                    parsedDays = Object.values(parsedDays);
+                    console.log('Converted to array:', parsedDays);
+                } else {
+                    parsedDays = [0, 1, 2, 3, 4, 5, 6]; // Fallback to default
+                }
             }
+            
             this.availableDays = parsedDays;
 
             const timeRange = JSON.parse(calendarContainer.dataset.timeRange || '{"start": 8, "end": 17}');
@@ -32,12 +41,21 @@ class Calendar {
                 start: timeRange.start,
                 end: timeRange.end < timeRange.start ? timeRange.end + 12 : timeRange.end
             };
-            
+            const med_id = JSON.parse(calendarContainer.dataset.medId);
+            if (!med_id) {
+                console.error('Medical ID not found in data attributes:', calendarContainer.dataset.medId);    
+                return;
+            }
+            console.log('Medical ID:', med_id);
+            // Store the medical ID in a global variable
+            window.med_id = med_id;
 
         } catch (error) {
             console.error('Error parsing calendar data:', error);
             this.availableDays = [0, 1, 2, 3, 4, 5, 6]; // Fallback
             this.timeRange = { start: 8, end: 17 }; // Fallback
+            this.medicalId = 1; // Fallback
+            window.med_id = this.medicalId;
         }
  
         this.initializeCalendar();
@@ -141,13 +159,19 @@ class Calendar {
                 <p class="date">${i + 1}</p>
             `;
 
-            // Store the date info as a data attribute for easy reference
-            dateElement.dataset.date = date.toISOString().split('T')[0];
+            // Format date manually to avoid timezone issues
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            
+            // Store the properly formatted date as a data attribute
+            dateElement.dataset.date = formattedDate;
 
             // Only add click event to available dates
             if (isAvailable && !isPast) {
                 dateElement.addEventListener('click', () => {
-                    this.selectDate(dateElement, date);
+                    this.selectDate(dateElement, dateElement.dataset.date);
                 });
             }
             
@@ -162,8 +186,8 @@ class Calendar {
         element.classList.add('selected');
         
         // Store the selected date in sessionStorage
-        sessionStorage.setItem('selectedAppointmentDate', date.toISOString().split('T')[0]);
-        
+        sessionStorage.setItem('selectedAppointmentDate', date);
+        console.log("Selected date:", date);
         // Show the time slots section
         const timeSection = document.querySelector('.select-time');
         if (timeSection) {
@@ -171,10 +195,10 @@ class Calendar {
         }
         
         // Update time slots visibility based on selected day
-        this.renderTimeSlots();
+        this.renderTimeSlots(sessionStorage.getItem('selectedAppointmentDate'));
     }
 
-    renderTimeSlots() {
+    renderTimeSlots(date) {
         // First ensure the timeSlotsContainer exists
         this.timeSlotsContainer = document.querySelector('.time-slots');
         
@@ -187,25 +211,53 @@ class Calendar {
         console.log("Rendering time slots with range:", this.timeRange);
         this.timeSlotsContainer.innerHTML = '';
         
-        // Generate time slots from start to end time
-        for (let hour = this.timeRange.start; hour < this.timeRange.end; hour++) {
-            // Create AM slots
-            if (hour < 12) {
-                this.createTimeSlot(`${hour}:00 AM`);
-                this.createTimeSlot(`${hour}:30 AM`);
-            }
-            // Create PM slots
-            else {
-                const pmHour = hour === 12 ? 12 : hour - 12;
-                this.createTimeSlot(`${pmHour}:00 PM`);
-                this.createTimeSlot(`${pmHour}:30 PM`);
-            }
+        //get booked times from the server
+        const med_id = window.med_id; // Use the global variable
+        if (!med_id) {
+            console.error('Medical ID not found in data attributes:', calendarContainer.dataset.med_id);    
+            return;
         }
+        console.log('Medical ID:', med_id);
+        let bookedTimes = [];
+        // Fetch booked times from the server
+        fetch('http://localhost/PawCentral/public/medical-appointment-date-times', {
+            method: 'POST',
+            headers: {  
+                'Content-Type': 'application/json'
+            },
+            //format the date to YYYY-MM-DD
+            body: JSON.stringify({ date: sessionStorage.getItem('selectedAppointmentDate'), med_id: med_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            bookedTimes=data.bookedTimes;
+            console.log("Booked time slots:", bookedTimes);
+            // Generate time slots from start to end time
+            for (let hour = this.timeRange.start; hour < this.timeRange.end; hour++) {
+                // Create AM slots
+                if (hour < 12) {
+                    this.createTimeSlot(`${hour}:00 AM`, bookedTimes);
+                    this.createTimeSlot(`${hour}:30 AM`, bookedTimes);
+                }
+                // Create PM slots
+                else {
+                    const pmHour = hour === 12 ? 12 : hour - 12;
+                    this.createTimeSlot(`${pmHour}:00 PM`, bookedTimes);
+                    this.createTimeSlot(`${pmHour}:30 PM`, bookedTimes);
+                }
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching booked time slots:", error);
+        });
+
+
+        
         
         console.log("Time slots created:", this.timeSlotsContainer.children.length);
     }
 
-    createTimeSlot(timeText) {
+    createTimeSlot(timeText, bookedTimes) {
         const timeSlot = document.createElement('div');
         timeSlot.className = 'one-time';
         
@@ -214,11 +266,23 @@ class Calendar {
         textElement.textContent = timeText;
         timeSlot.appendChild(textElement);
         
-        timeSlot.addEventListener('click', function() {
-            selectTimeSlot(this);
-        });
-        
         this.timeSlotsContainer.appendChild(timeSlot);
+
+        // Check if the timeText is in bookedTimes array of objects
+        const isBooked = bookedTimes.some(item => item.timeslot === timeText);
+        
+        if (isBooked) {
+            timeSlot.classList.add('unavailable');
+            timeSlot.classList.remove('selected');
+        } else {
+            timeSlot.classList.remove('unavailable');
+        }
+
+        timeSlot.addEventListener('click', () => {
+            if (!timeSlot.classList.contains('unavailable')) {
+                selectTimeSlot(timeSlot);
+            }
+        });
         
         // Debug: Log the created time slot
         console.log("Created time slot:", timeText);
@@ -234,8 +298,12 @@ class Calendar {
     // New method to select today's date if it's available
     selectTodayIfAvailable() {
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const todayStr = today.toISOString().split('T')[0];
+        
+        // Format today's date using the same method as in renderDates
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const todayStr = `${year}-${month}-${day}`;
         
         // Look for today's date element by data attribute
         const todayElement = document.querySelector(`.one-date[data-date="${todayStr}"]:not(.unavailable)`);
@@ -244,9 +312,8 @@ class Calendar {
             console.log("Found today's date, selecting it automatically");
             // Use setTimeout to ensure this runs after rendering is complete
             setTimeout(() => {
-                // Simulate a click on today's date
-                const date = new Date(todayStr);
-                this.selectDate(todayElement, date);
+                // Pass the formatted date string directly
+                this.selectDate(todayElement, todayStr);
             }, 100);
         } else {
             console.log("Today's date not found or not available");

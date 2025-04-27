@@ -42,4 +42,15 @@ class MedicalAppointment
         $appointments = $this->query($query, $params);
         return $appointments;
     }
+
+    public function bookedTimesByDate($date, $med_id)
+    {
+        $query = "SELECT timeslot FROM {$this->table} WHERE date = :date AND med_id = :med_id ORDER BY timeslot ASC";
+        $params = [
+            'date' => $date,
+            'med_id' => $med_id
+        ];
+        $bookedTimesByDate = $this->query($query, $params);
+        return $bookedTimesByDate;
+    }
 }
