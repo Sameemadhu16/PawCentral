@@ -34,8 +34,8 @@
                     <p><?= !empty($shelter->description) ? esc($shelter->description) : "No description available." ?></p>
                 </div>
                 <div class="contact_button">
-                    <?php if (!empty($user->mobile_no)): ?>
-                        <button class="contact-btn" id="contactToggleBtn" data-number="<?= esc($user->mobile_no) ?>">Contact Us</button>
+                    <?php if (!empty($shelter->contact_no)): ?>
+                        <button class="contact-btn" id="contactToggleBtn" data-number="<?= esc($shelter->contact_no) ?>">Contact Us</button>
                     <?php else: ?>
                         <p>Contact number not available.</p>
                     <?php endif; ?>
