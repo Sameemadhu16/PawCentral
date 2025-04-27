@@ -111,7 +111,7 @@
     <option value="Day Care" <?= ($providerDetails->service_type ?? '') === 'Day Care' ? 'selected' : '' ?>>Day Care</option>
     <option value="Equipments Seller" <?= ($providerDetails->service_type ?? '') === 'Equipments Seller' ? 'selected' : '' ?>>Equipments Seller</option>
     <option value="Pet Groomer" <?= ($providerDetails->service_type ?? '') === 'Pet Groomer' ? 'selected' : '' ?>>Pet Groomer</option>
-    <option value="Clothing & Accessories" <?= ($providerDetails->service_type ?? '') === 'Clothing & Accessories' ? 'selected' : '' ?>>Clothing & Accessories</option>
+    <option value="Clothing and Accessories" <?= ($providerDetails->service_type ?? '') === 'Clothing and Accessories' ? 'selected' : '' ?>>Clothing & Accessories</option>
 </select>
                 <label for="Opening_hour">Opening Hour:</label>
                 <input type="time" id="opening_hour" name="opening_hour" value="<?= !empty($providerDetails->open_hour) ? htmlspecialchars($providerDetails->open_hour) : '' ?>">
@@ -131,8 +131,8 @@
                     <option value="Kurunegala" <?= $profile->location === 'Kurunegala' ? 'selected' : '' ?>>Kurunegala</option>
                     <option value="Ratnapura" <?= $profile->location === 'Ratnapura' ? 'selected' : '' ?>>Ratnapura</option>
                 </select> -->
-
-                <select name="Areas" id="Areas" required>
+                <label for="Area">Select your Area:</label>
+                <select name="Area" id="Area" required>
     <option value="" disabled <?= empty($providerDetails->Areas) ? 'selected' : '' ?>>Select your area</option>
     <option value="Ampara" <?= $providerDetails->Areas === 'Ampara' ? 'selected' : '' ?>>Ampara</option>
     <option value="Anuradhapura" <?= $providerDetails->Areas === 'Anuradhapura' ? 'selected' : '' ?>>Anuradhapura</option>
