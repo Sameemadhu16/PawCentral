@@ -71,6 +71,9 @@ class Profile{
                 if(isset($_POST['img'])){
                     $data['profile_pic'] = $_POST['img'];
                 }
+                if(isset($_POST['img'])){
+                    $_SESSION['user']->profile_pic = $_POST['img'];
+                } 
                 if($model->update($_SESSION['user_id'], $data) && $merchantModel->updateByUserId($_SESSION['user_id'],$dataMerchant)){
                     echo json_encode([
                         'status' => 'success',
