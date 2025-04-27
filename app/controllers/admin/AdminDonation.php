@@ -92,7 +92,7 @@ class AdminDonation{
 
     private function getAllDonationRequests(){
         $donationModel = new DonationsModel;
-        $query = "SELECT * FROM donation_requests WHERE status != 1";
+        $query = "SELECT * FROM donation_requests WHERE status != 1 ORDER BY id DESC";
         $result = $donationModel->query($query);
         return $result;
     }
