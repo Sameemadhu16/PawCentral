@@ -49,7 +49,7 @@
             <?php if (!empty($shelters)): ?>
                 <?php foreach ($shelters as $shelter): ?>
                     <div class="card">
-                        <img src="<?= ROOT ?>/<?= htmlspecialchars($shelter->image) ?>" alt="<?= htmlspecialchars($shelter->name) ?>">
+                        <img src="<?= ROOT . '/' . ($shelter->image ? $shelter->image : 'assets/images/logos/def.jpg') ?>" alt="<?= htmlspecialchars($shelter->name) ?>">
                         <p class="name"><?= htmlspecialchars($shelter->name) ?></p>
                         <div class="centre-info">
                             <p><?= htmlspecialchars($shelter->location) ?></p>

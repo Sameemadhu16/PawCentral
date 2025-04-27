@@ -65,7 +65,26 @@
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" id="location" name="location">
+                        <div class="dropdown">
+                            <select id="location" name="location" required>
+                                <option value="" disabled selected>Select your town</option>
+                                <option value="Colombo">Colombo</option>
+                                <option value="Kandy">Kandy</option>
+                                <option value="Galle">Galle</option>
+                                <option value="Jaffna">Jaffna</option>
+                                <option value="Anuradhapura">Anuradhapura</option>
+                                <option value="Ratnapura">Ratnapura</option>
+                                <option value="Matara">Matara</option>
+                                <option value="Kurunegala">Kurunegala</option>
+                                <option value="Badulla">Badulla</option>
+                                <option value="Trincomalee">Trincomalee</option>
+                                <option value="Batticaloa">Batticaloa</option>
+                                <option value="Negombo">Negombo</option>
+                                <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                <option value="Hambantota">Hambantota</option>
+                                <option value="Polonnaruwa">Polonnaruwa</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="fileUpload">Proof of service(for only medical provider)</label>

@@ -18,6 +18,7 @@ $log->insertLog("System Check EMail Trigger.");
 // $log->checkEvents();
 // $log->checkExpiredDonationReq();
 // $log->closeOldLostAndFound();
+$log->closeOldApp();
 $log->checkUpcommingApp();
 
 echo "Reminder task ran successfully.";

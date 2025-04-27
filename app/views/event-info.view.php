@@ -68,7 +68,7 @@
                     <label for="email">Email</label>
                     
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    <?php if(isset($_SESSION)): ?>
+                    <?php if(isset($_SESSION['user_id'])): ?>
                         <small>(  your system registered email will be used for registration  )</small>
                     <?php endif; ?>
                     <label for="comment">Comment</label>

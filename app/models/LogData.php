@@ -155,6 +155,115 @@ class LogData {
         }
     }
 
+    public function testInapropriate(){
+        $inappropriateWords = ["badword1", "badword2", "nastyword", "anotherbadword"];
+
+// Assume the form sends input via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userInput = $_POST['yourInputFieldName']; // replace with your field name
+    $foundBadWord = false;
+
+    foreach ($inappropriateWords as $word) {
+        // Check if any bad word exists in the input (case-insensitive)
+        if (stripos($userInput, $word) !== false) {
+            $foundBadWord = true;
+            break;
+        }
+    }
+
+    if ($foundBadWord) {
+        echo "<p style='color: red;'>Submission failed: Inappropriate content detected!</p>";
+        // You can also redirect back or stop further processing
+    } else {
+        // Proceed normally
+        echo "<p style='color: green;'>Form submitted successfully!</p>";
+        // Process the form here...
+    }
+}
+    }
+
+    public function closeOldApp(){   
+        // $this->insertLog("HERE2  ");
+        $query= "SELECT 
+                ap.appointment_id AS app_id,
+                ap.date AS date,
+                ap.timeslot AS time_slot,
+                vt.name AS vet_name,
+                rp.name AS pet_name,
+                mp.name AS medi_name,
+                ap.owner_id
+              FROM 
+                medical_appointments ap
+              JOIN 
+                veterinarians vt ON vt.vet_id = ap.vet_id
+              JOIN 
+                registered_pets rp ON rp.pet_id = ap.pet_id
+              JOIN 
+                medical_providers mp ON mp.med_id = ap.med_id
+              WHERE 
+                ap.status = 'pending' 
+                AND ap.noti_sent = 0
+                AND ap.date < CURDATE() - INTERVAL 1 DAY
+              ORDER BY 
+                ap.date ASC;";
+        
+        $upcoming_app = $this->query($query);
+        
+//         $this->insertLog("HERE2  ");
+
+//         $this->insertLog("Result type: " . gettype($upcoming_app));
+
+// if ($upcoming_app) {
+//     $this->insertLog("IF branch entered.");
+// } else {
+//     $this->insertLog("ELSE branch entered.");
+// }
+
+        if (!empty($upcoming_app)) {
+
+            
+            $this->insertLog(count($upcoming_app) );
+            foreach ($upcoming_app as $req) {
+                // Update notification flag
+                $updateQuery = "UPDATE medical_appointments SET status= 'cancel' WHERE appointment_id = :id";
+                $this->query($updateQuery, ['id' => $req->app_id]);
+        
+                // Send notification to the pet owner
+                // $title = $req->pet_name . " : Medical Appointment Reminder!";
+                // $message = "Reminder: You have a medical appointment for " . $req->pet_name .
+                //            " with Dr. " . $req->vet_name . 
+                //            " scheduled at " . $req->time_slot . " " . $req->date . ".";
+                
+                // $getemailQuery = "SELECT email FROM users WHERE id=:user_id";
+                // $emailResult=$this->query($getemailQuery,['user_id'=> $req->owner_id]);
+                
+                // if (!empty($emailResult)) {
+                //     $ownerEmail = $emailResult[0]->email;
+                // } else {
+                //     $ownerEmail = null; // fallback
+                // }
+                // // $this->insertLog($ownerEmail);
+                // $this->sendNotification($req->owner_id, $title, $message);
+                // $this->sendAppointmentEmail(
+                //     $ownerEmail,  
+                //     $req->vet_name,
+                //     $req->medi_name,
+                //     $req->pet_name,
+                //     $req->time_slot,
+                //     $req->date
+                // );
+                
+    
+                // Log each reminder
+                $this->insertLog("Closed Outdated appointment ID: " . $req->app_id);
+            }
+    
+            $this->insertLog(count($upcoming_app) . " medical appointment notifications sent.");
+        } else {
+            $this->insertLog("No upcoming appointments within 24 hrs.");
+        }
+    }
+
     
     public function checkUpcommingApp(){   
         // $this->insertLog("HERE2  ");
@@ -175,7 +284,7 @@ class LogData {
               JOIN 
                 medical_providers mp ON mp.med_id = ap.med_id
               WHERE 
-                ap.completion_status = 'pending' 
+                ap.status = 'pending' 
                 AND ap.noti_sent = 0
                 AND ap.date < CURDATE() + INTERVAL 1 DAY
               ORDER BY 

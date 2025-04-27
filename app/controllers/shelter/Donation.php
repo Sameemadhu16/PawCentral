@@ -75,7 +75,7 @@ class Donation{
             if ($result) {
 
                 echo "Data inserted successfully. Redirecting...";
-                redirect('shelter/donations');
+                redirect('shelter/donation');
                 exit;
             } else {
 
