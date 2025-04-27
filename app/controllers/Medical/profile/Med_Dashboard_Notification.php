@@ -43,7 +43,7 @@ class Med_Dashboard_Notification{
         $model = new NotificationsModel();
         $model->markAsRead($user_id);
 
-        redirect('medical-center/dashboard/notification');
+        redirect('medical-center/dashboard#notification');
     }
 
     public function markNotiRead($get_data) //fetch the id from GET and update as read
@@ -57,6 +57,6 @@ class Med_Dashboard_Notification{
         $model->markNotiAsRead($user_id,$noti_id); 
         // mark only the correct notification using new func in model
         
-        redirect('medical-center/dashboard/notification');
+        redirect('medical-center/dashboard#notification');
     }
 }
