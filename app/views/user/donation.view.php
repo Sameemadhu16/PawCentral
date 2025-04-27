@@ -223,7 +223,7 @@
                                         <div class="progress-bar" style="width: <?= $progress ?>%;"></div>
                                     </div>
                                     <div class="overflow-hide">
-                                        <p class="amount">Collected: <?= number_format($req->amount, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span> Rs.</p>
+                                        <p class="amount">Collected: <?= number_format($req->collected, 2) ?> / <span class="collected"><?= number_format($req->amount, 2) ?> Rs.</span></p>
                                     </div>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@
     <!-- Success Popup -->
     <div class="overlay" id="overlay"></div>
     <div class="success-popup" id="successPopup">
-        Inquiry successfully sent!
+        Inquiry sent!
     </div>
 
     <script>

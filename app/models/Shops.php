@@ -18,7 +18,7 @@ class Shops{
 
     public function getTotalShopsCount($location = 'all', $service_type = 'all') {
         $query = "SELECT COUNT(*) as total_shops FROM `" . $this->table . "` s 
-                LEFT JOIN users u ON s.user_id = u.id WHERE u.ban=0";
+                LEFT JOIN users u ON s.user_id = u.id WHERE u.status='active'";
         
         $params = [];
         
@@ -41,7 +41,7 @@ class Shops{
         
           $query = "SELECT s.*, s.name as Shop_name, u.mobile_no as contact_no, s.open_hour as open_hours, s.closing_hour as closing_hours, u.profile_pic as image 
                  FROM `" . $this->table . "` s 
-                 LEFT JOIN users u ON s.user_id = u.id WHERE u.ban=0";
+                 LEFT JOIN users u ON s.user_id = u.id WHERE u.status='active'";
         
         $params = [];
         

@@ -46,14 +46,19 @@
                                     <span class="record-value"><?= htmlspecialchars($record->vet_name) ?></span>
                                 </div>
                                 
-                                <!-- <div class="record-item">
-                                    <span class="record-label">Medical Provider</span>
+                                <div class="record-item">
+                                    <span class="record-label">Veterinarian</span>
                                     <span class="record-value"><?= htmlspecialchars($record->vet_name) ?></span>
                                 </div>
-                                 -->
+                                
                                 <div class="record-item">
                                     <span class="record-label">Diagnosis</span>
                                     <span class="record-value"><?= htmlspecialchars($record->diagnosis) ?></span>
+                                </div>
+                                
+                                <div class="record-item">
+                                    <span class="record-label">Treatment</span>
+                                    <span class="record-value"><?= htmlspecialchars($record->treatment) ?></span>
                                 </div>
                                 
                                 <div class="record-notes">

@@ -56,9 +56,9 @@
                     } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider') {
                         echo ROOT . '/medical-center/notifications';
                     } elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller') {
-                        echo ROOT . '/service/notifications';
+                        echo ROOT . '/merchant/notifications';
                     } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov') {
-                        echo ROOT . '/provider/notification';
+                        echo ROOT . '/provider/notifications';
                     } elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user') {
                         echo ROOT . '/userprofile/notifications';
                     } else {
@@ -84,7 +84,7 @@
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider'): ?>
             <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
+                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['medInfo'][0]->img); ?>">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller'): ?>
             <a class="user-profile" href="<?= ROOT ?>/service">

@@ -19,7 +19,7 @@
                 <h1>Import a Pet</h1>
             </div>
             
-            <form class="import-form" action="<?=ROOT?>/service/postpet/postpetnext/import/submit" method="POST">
+           <form class="import-form" action="<?=ROOT?>/service/postpet/postpetnext/import/submit" method="POST" onsubmit="return validateImportForm()">
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <input type="text" id="country" name="country" required>
@@ -48,7 +48,7 @@
                 
                 <div class="form-group">
                     <label for="fees">Import Fees:</label>
-                    <input type="number" id="fees" name="fees" required>
+                    <input type="number" id="fees" name="fees" required min="100" step="0.01">
                 </div>
                 
                 <div class="form-group checkbox-group">
@@ -70,5 +70,23 @@
     </div>
     
     <?php include("../app/views/components/footer.php")?>
+    <script>
+  function validateImportForm() {
+    const fee = parseFloat(document.getElementById('fees').value);
+    const termsChecked = document.getElementById('terms').checked;
+
+    if (isNaN(fee) || fee < 100) {
+      alert("Import fee must be at least Rs. 100.");
+      return false;
+    }
+
+    if (!termsChecked) {
+      alert("You must agree to the terms and conditions.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
 </body>
 </html>

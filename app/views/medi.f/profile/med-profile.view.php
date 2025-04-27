@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <?php
                     $profile_image = !empty($profile->img) 
                                     ? ROOT . '/' . $profile->img 
-                                    : ROOT . '/assets/images/shop.png';
+                                    : ROOT . '/assets/images/user/default_user.jpg';
                     ?>
                     <div class="profile-pic">
                         <img src="<?= $profile_image ?>" alt="Profile Picture">
