@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/shelter/notification.css">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .date-time {
+    position: absolute;bottom: 0 !important; right: 0 !important; margin: 10px;
+}
+    </style>
 </head>
 
 <body class="body">
@@ -23,14 +28,16 @@
                 <?php if (!empty($inquiries)) : ?>
                     <?php foreach ($inquiries as $inquiry) : ?>
                         <?php if($inquiry->reply!=1): ?>
-                        <div class="notification-card">
-                            <h3><?= htmlspecialchars($inquiry->inquiry) ?></h3>
-                            <p class="date-time">
-                                Date: <?= date('Y/m/d', strtotime($inquiry->created_at)) ?><br>
+                        <div class="notification-card" style=" position: relative; ">
+                        <p class="date-times" style="position: absolute;bottom: 0 !important; right: 0 !important; margin: 10px;">
+                                Date: <?= date('Y/m/d', strtotime($inquiry->created_at)) ?>
                                 Time: <?= date('h:i A', strtotime($inquiry->created_at)) ?>
                             </p>
+                            <h3><?= htmlspecialchars($inquiry->inquiry) ?></h3>
+                            
                            
                             <div style="margin-top: 10px;">
+                                
                             <button type="button" class="btn-reply" onclick="toggleReplyForm(<?= $inquiry->inquire_id ?>)"
     style="background-color: #4CAF50; color: white; border: none; padding: 8px 16px; margin-right: 10px; border-radius: 5px; cursor: pointer;">
     <i class="fas fa-reply"></i> Reply
@@ -42,6 +49,7 @@
         <i class="fas fa-times-circle"></i> Ignore
     </button>
 </form>
+                           
                             </div>
                                             <!-- Hidden reply form -->
                                             <form class="reply-form" id="reply-form-<?= $inquiry->inquire_id ?>"
