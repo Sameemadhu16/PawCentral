@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adoption Postinfo</title>
+    <title>Shelter Dashboard-Adoption Postinfo</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/pet-post.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
@@ -210,8 +210,8 @@
         <!-- Description -->
         <div class="description-section">
             <h3>Description</h3>
-            <p >
-                <?=$post->description ?>
+            <p>
+                <?= $post->description ?>
             </p>
         </div>
 
@@ -309,7 +309,7 @@
             }
         </script>
 
-        
+
         <script>
             // Function to replace the "Click to view" text with actual contact info
             document.querySelectorAll('.reveal-info').forEach(function(element) {
@@ -321,52 +321,52 @@
             });
         </script>
 
-        
-<?php
-    // Prepare the base64 images in PHP
-    // print_r($post);
-    // exit();
-    $images = [];
-    if (!empty($post->postimg1)) {
-        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg1);
-    }
-    if (!empty($post->postimg2)) {
-        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg2);
-    }
-    if (!empty($post->postimg3)) {
-        $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg3);
-    }
-    // If no images, use the default
-    if (empty($images)) {
-        $images[] = 'data:image/jpeg;base64,' . base64_encode(file_get_contents(ROOT . '/assets/images/pets/default.jpg'));
-    }
-    ?>
 
-     
-<script>
-        // Embed PHP array into JS array with base64 images
-        const images = <?= json_encode($images); ?>;
-        let currentImageIndex = 0;
-
-        // Load initial image
-        document.getElementById('pet-image').src = images[currentImageIndex];
-
-        // Function to slide to the previous image
-        function prevImage() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                document.getElementById('pet-image').src = images[currentImageIndex];
-            }
+        <?php
+        // Prepare the base64 images in PHP
+        // print_r($post);
+        // exit();
+        $images = [];
+        if (!empty($post->postimg1)) {
+            $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg1);
         }
-
-        // Function to slide to the next image
-        function nextImage() {
-            if (currentImageIndex < images.length - 1) {
-                currentImageIndex++;
-                document.getElementById('pet-image').src = images[currentImageIndex];
-            }
+        if (!empty($post->postimg2)) {
+            $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg2);
         }
-    </script>
+        if (!empty($post->postimg3)) {
+            $images[] = 'data:image/jpeg;base64,' . base64_encode($post->postimg3);
+        }
+        // If no images, use the default
+        if (empty($images)) {
+            $images[] = 'data:image/jpeg;base64,' . base64_encode(file_get_contents(ROOT . '/assets/images/pets/default.jpg'));
+        }
+        ?>
+
+
+        <script>
+            // Embed PHP array into JS array with base64 images
+            const images = <?= json_encode($images); ?>;
+            let currentImageIndex = 0;
+
+            // Load initial image
+            document.getElementById('pet-image').src = images[currentImageIndex];
+
+            // Function to slide to the previous image
+            function prevImage() {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    document.getElementById('pet-image').src = images[currentImageIndex];
+                }
+            }
+
+            // Function to slide to the next image
+            function nextImage() {
+                if (currentImageIndex < images.length - 1) {
+                    currentImageIndex++;
+                    document.getElementById('pet-image').src = images[currentImageIndex];
+                }
+            }
+        </script>
 
     </div>
     <?php include("../app/views/components/footer.php"); ?>

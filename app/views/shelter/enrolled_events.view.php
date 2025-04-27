@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enrolled Events</title>
+    <title>Shelter Dashboard-Enrolled Events</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
-    <title>PawCentral Dashboard - Medical Registrations</title>
+    <title>PawCentral Admin Dashboard - Medical Registrations</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/medicalRegistration.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -91,10 +91,10 @@
                                     <form method="POST" class="action-form">
                                         <input type="hidden" name="med_id" value="<?php echo esc($provider->med_id); ?>">
                                         <button class="action-btn approve" type="submit" name="approve" value="approved" <?= $provider->verifiedStatus == 'approved' ? 'disabled' : '' ?>>
-                                             Approve
+                                            Approve
                                         </button>
                                         <button class="action-btn reject" type="submit" name="reject" <?= $provider->verifiedStatus == 'rejected' ? 'disabled' : '' ?>>
-                                             Reject
+                                            Reject
                                         </button>
                                     </form>
                                 </td>

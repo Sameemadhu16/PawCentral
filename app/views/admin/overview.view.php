@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCentral Dashboard - Overview</title>
+    <title>PawCentral Admin Dashboard - Overview</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/overview.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -181,7 +181,7 @@
     </div>
     <?php include("../app/views/components/footer.php"); ?>
 
-    
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device=width, initial-scale=1.0">
-    <title>PawCentral Dashboard - AdminPosts</title>
+    <title>PawCentral Admin Dashboard - AdminPosts</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/post.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
                 <section class="interactive-sections">
 
                     <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
-                    <img src="<?= ROOT ?>/assets/images/pets/2.jpg" alt="Post Image">
+                        <img src="<?= ROOT ?>/assets/images/pets/2.jpg" alt="Post Image">
                         <div class="card-content">
                             <h3>Pet Adoption Day</h3>
                             <p>Type: Adoption Post</p>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
-                    <img src="<?= ROOT ?>/assets/images/pets/3.jpg" alt="Post Image">
+                        <img src="<?= ROOT ?>/assets/images/pets/3.jpg" alt="Post Image">
                         <div class="card-content">
                             <h3>Volunteer Recruitment</h3>
                             <p>Type: Announcement</p>
@@ -86,7 +86,7 @@
                     </div>
 
                     <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
-                    <img src="<?= ROOT ?>/assets/images/pets/6.jpg" alt="Post Image">
+                        <img src="<?= ROOT ?>/assets/images/pets/6.jpg" alt="Post Image">
                         <div class="card-content">
                             <h3>Lost Pet Found</h3>
                             <p>Type: Alert</p>
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="interactive-card" onclick="window.location.href='<?= ROOT ?>/admin/post_info'">
-                    <img src="<?= ROOT ?>/assets/images/pets/5.jpg" alt="Post Image">
+                        <img src="<?= ROOT ?>/assets/images/pets/5.jpg" alt="Post Image">
                         <div class="card-content">
                             <h3>Adoption Success Story</h3>
                             <p>Type: Story</p>
