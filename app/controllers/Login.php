@@ -80,7 +80,10 @@ class Login{
                 case 'medical_provider':
                     // For medical providers
                     $roleid = $medprov->getRoleIdById($_SESSION['user_id']);
+                    $medinfo=$medprov->getmedinfo($_SESSION['user_id']);
+                    // echo json_encode($medinfo);
                     $_SESSION['role_id'] = $roleid->med_id;
+                    $_SESSION['medInfo']=$medinfo;
                     echo "<script>console.log('Role ID: " . $_SESSION['role_id'] . "');</script>";
                     redirect('medical-center/dashboard');
                     break;

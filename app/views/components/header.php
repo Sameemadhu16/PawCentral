@@ -84,7 +84,7 @@
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider'): ?>
             <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
+                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['medInfo'][0]->img); ?>">
             </a>
         <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller'): ?>
             <a class="user-profile" href="<?= ROOT ?>/service">

@@ -110,8 +110,8 @@ class Med_Dashboard_Veterinarians {
                     throw new Exception("Missing required field: {$key}");
                 }
             }
-
-            $result = $veterinarianModel->create($data);
+            
+                        $result = $veterinarianModel->create($data);
             
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Veterinarian added successfully']);
@@ -147,10 +147,19 @@ class Med_Dashboard_Veterinarians {
             
             if (!empty($_POST['experience'])) {
                 $data['experience'] = $_POST['experience'];
+                // Validate experience is a positive number
+                if (!is_numeric($data['experience']) || $data['experience'] <= 0) {
+                    throw new Exception("Experience must be a positive number");
+                }
             }
             
             if (!empty($_POST['availability'])) {
                 $data['availability'] = $_POST['availability'];
+                // Validate availability format
+                $availabilityPattern = '/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*-\s*(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*\d{1,2}\s*to\s*\d{1,2}$/';
+                if (!preg_match($availabilityPattern, $data['availability'])) {
+                    throw new Exception("Availability must be in format 'Day - Day Hour to Hour' (e.g. Mon - Fri 8 to 5)");
+                }
             }
 
             // Handle image upload if new image is provided
@@ -174,13 +183,6 @@ class Med_Dashboard_Veterinarians {
 
             // Only proceed with update if there are changes
             if (!empty($data)) {
-                // Validate data
-                foreach ($data as $key => $value) {
-                    if (empty($value)) {
-                        throw new Exception("Missing required field: {$key}");
-                    }
-                }
-
                 $result = $veterinarianModel->update($id, $data, 'vet_id');
                 
                 if ($result) {

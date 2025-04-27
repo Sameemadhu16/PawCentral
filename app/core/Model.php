@@ -167,6 +167,11 @@ trait Model
     {
         return $this->first(['user_id' => $id]);
     }
+
+    public function getmedinfo($userid){
+        $query="SELECT * FROM medical_providers WHERE user_id = :userid";
+        return $this->query($query,['userid'=>$userid]);
+    }
 }
 
 
