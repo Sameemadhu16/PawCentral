@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Adoption Post</title>
+    <title>Shelter Dashboard-Update Adoption Post</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
@@ -71,7 +71,7 @@
                     <label for="description">Description:</label>
                     <textarea id="description" name="postdesc" rows="5" required minlength="10" maxlength="500"><?= esc($post->description) ?></textarea>
 
-                    
+
 
                     <button type="submit" name="update">Update</button>
                 </form>
