@@ -36,13 +36,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/<?=strtolower(htmlspecialchars($posts->tradeType))?>?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/<?=strtolower(htmlspecialchars($posts->tradeType))?>?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/<?=strtolower(htmlspecialchars($posts->tradeType))?>?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/<?=strtolower(htmlspecialchars($posts->tradeType))?>?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
@@ -84,13 +84,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/rent?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/rent?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/rent?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/rent?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
@@ -131,13 +131,13 @@
                         
                         <?php if(!empty($posts->img2)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/import?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/import?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img2)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
                         <?php if(!empty($posts->img3)): ?>
                         <div class="slide">
-                        <a href="<?=ROOT?>/findapet/import?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img1)?>" alt="Pet Image 1"> </a>
+                        <a href="<?=ROOT?>/findapet/import?id=<?=htmlspecialchars($posts->pet_id)?>" >  <img src="<?=htmlspecialchars($posts->img3)?>" alt="Pet Image 1"> </a>
                         </div>
                         <?php endif; ?>
                         
@@ -177,81 +177,85 @@
         </div>
  </div>
  <?php include("../app/views/components/footer.php")?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize all sliders
-        document.querySelectorAll('.image-slider').forEach(slider => {
-            const slides = slider.querySelectorAll('.slide');
-            const prevArrow = slider.querySelector('.prev-arrow');
-            const nextArrow = slider.querySelector('.next-arrow');
-            let currentIndex = 0;
-            
-            // Only show arrows if there are multiple slides
-            if (slides.length <= 1) {
-                if (prevArrow) prevArrow.style.display = 'none';
-                if (nextArrow) nextArrow.style.display = 'none';
-            }
-            
-            // Show first slide
-            if (slides.length > 0) {
-                slides[0].classList.add('active');
-            }
-            
-            // Navigation functions
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                slides[index].classList.add('active');
-                currentIndex = index;
-            }
-            
-            function nextSlide() {
-                let newIndex = (currentIndex + 1) % slides.length;
-                showSlide(newIndex);
-            }
-            
-            function prevSlide() {
-                let newIndex = (currentIndex - 1 + slides.length) % slides.length;
-                showSlide(newIndex);
-            }
-            
-            // Event listeners
-            if (nextArrow) nextArrow.addEventListener('click', nextSlide);
-            if (prevArrow) prevArrow.addEventListener('click', prevSlide);
-            
-            // Optional: Auto-advance slides every 5 seconds
-          
-            
-            // Pause on hover
-            slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-           
-        });
-    });
-    document.querySelectorAll('.delete-btn').forEach(link=>{
-        link.addEventListener('click',function(e){
-            e.preventDefault();
-            const deleteUrl=this.href;
-            const modal=document.getElementById('customConfirm');
-            modal.style.display='flex';
-            document.getElementById('confirmYes').onclick=function(){
-                modal.style.display='none';
-                window.location.href=deleteUrl;
-            };
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all sliders
+    document.querySelectorAll('.image-slider').forEach(slider => {
+        const slides = slider.querySelectorAll('.slide');
+        const prevArrow = slider.querySelector('.prev-arrow');
+        const nextArrow = slider.querySelector('.next-arrow');
+        let currentIndex = 0;
 
-            document.getElementById('confirmNo').onclick=function(){
-                modal.style.display='none';
-            };
+        // Only show arrows if there are multiple slides
+        if (slides.length <= 1) {
+            if (prevArrow) prevArrow.style.display = 'none';
+            if (nextArrow) nextArrow.style.display = 'none';
+        }
+
+        // Show the first slide
+        if (slides.length > 0) {
+            slides[0].classList.add('active');
+        }
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentIndex = index;
+        }
+
+        // Navigate to next slide
+        function nextSlide() {
+            let newIndex = (currentIndex + 1) % slides.length;
+            showSlide(newIndex);
+        }
+
+        // Navigate to previous slide
+        function prevSlide() {
+            let newIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+        }
+
+        // Attach event listeners
+        if (nextArrow) nextArrow.addEventListener('click', nextSlide);
+        if (prevArrow) prevArrow.addEventListener('click', prevSlide);
+    });
+
+    // Delete Confirmation Modal
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    const confirmModal = document.getElementById('customConfirm');
+    const confirmYes = document.getElementById('confirmYes');
+    const confirmNo = document.getElementById('confirmNo');
+    let deleteLink = null;
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // prevent immediate navigation
+            deleteLink = this.href; // save the link to navigate if confirmed
+            confirmModal.style.display = 'flex'; // show the confirmation popup
         });
     });
-    
-    // function showCustomConfirm(actionUrlId){
-    //     const modal=document.getElementById('customConfirm');
-    //     modal.style.display='none';
-    //     window.location.href=actionUrl;
-    // };
-    // document.getElementById('confirmNo').onclick=function(){
-    //     modal.style.display='none';
-    // };
-    </script>
+
+    confirmYes.addEventListener('click', function() {
+        if (deleteLink) {
+            window.location.href = deleteLink; // proceed with deletion
+        }
+    });
+
+    confirmNo.addEventListener('click', function() {
+        confirmModal.style.display = 'none'; // close the popup without deleting
+        deleteLink = null; // reset the link
+    });
+
+    // Close modal when clicking outside the box
+    window.addEventListener('click', function(e) {
+        if (e.target === confirmModal) {
+            confirmModal.style.display = 'none';
+            deleteLink = null;
+        }
+    });
+});
+</script>
     
 </body>
 </html>
