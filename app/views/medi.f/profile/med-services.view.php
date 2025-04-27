@@ -14,7 +14,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="container">
         <div class="content-wrapper"> 
             <div class="add-button-div">
-                <button class="add-service-btn" id="add-service-btn">Add a service</button>
+                <button class="add-service-btn btn btn-primary" id="add-service-btn">Add a service</button>
             </div>
             <?php include("../app/views/medi.f/profile/popup/service-add.view.php"); ?>
             <!-- responds -->
@@ -33,7 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
                             <div class='service-title'>
                                 <h3>{$service->service_name}</h3>
                                 <div class='buttons-div'>
-                                    <button class='delete-btn' data-id='{$service->service_id}'>Delete</button>
+                                    <button class='delete-btn btn' data-id='{$service->service_id}'>Remove</button>
                                 </div>
                             </div>
                         </div>";
