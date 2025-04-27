@@ -63,7 +63,6 @@ class RequestToAdopt{
             $pet_id = $_POST['pet_id']; // This is adoption_postid in your adoption_requests table
             $approved_request_id = $_POST['id'];
 
-            // ✅ Updated query using adoption_postid instead of pet_id
             $query = "SELECT * FROM adoption_requests WHERE adoption_postid = ? AND id != ?";
             $data = [$pet_id, $approved_request_id];
             $rejectedRequests = $adoptionModel->query($query, $data);
