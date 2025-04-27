@@ -61,7 +61,14 @@ class Profile{
                     $data['profile_pic'] = $_POST['img'];
                 }
 
+
                 if($model->update($_SESSION['user_id'], $data)){
+                    // Update the session data with the new profile picture
+                    if(isset($_POST['img'])){
+                        $_SESSION['user']->profile_pic = $_POST['img'];
+                    } 
+                    
+                // if($model->update($_SESSION['user_id'], $data)){
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Profile updated successfully'

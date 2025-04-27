@@ -19,6 +19,8 @@ class NotificationsController
         // exit();
         
         // Pass data to the view
+        // print_r($_SESSION);
+        // exit();
         $this->view('user/notification', $data);
     }
 
