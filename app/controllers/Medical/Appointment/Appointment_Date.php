@@ -51,6 +51,7 @@ class Appointment_Date{
         
         // Calculate common available time range across all vets
         $commonTimeRange = $availabilityModel->calculateCommonTimeRange($availableTimes);
+        //remove booked times from the common time range
         
         $data = [
             'vets' => $vets,
@@ -86,6 +87,32 @@ class Appointment_Date{
         error_log("Appointment Date: " . $_SESSION['appointment_date']);
         error_log("Appointment Time: " . $_SESSION['appointment_time']);
         redirect('medical-appointment-vet');
+    }
+
+    public function getbookedTimesByDate() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            header('Content-Type: application/json');
+            // Read JSON input from request body or fallback to POST form data
+            $input = json_decode(file_get_contents('php://input'), true);
+            $date = $input['date'] ?? $_POST['date'] ?? null;
+
+            if (!$date) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'No date provided']);
+                return;
+            }
+            $med_id = $input['med_id'] ?? $_POST['med_id'] ?? null;
+            if (!$med_id) {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'No provider ID provided']);
+                return;
+            }
+            $appointmentModel = new MedicalAppointment();
+            // print_r($date, $med_id);
+            $bookedTimes = $appointmentModel->bookedTimesByDate($date, $med_id);
+            echo json_encode(['status' => 'success', 'bookedTimes' => $bookedTimes]);
+            return;
+        }
     }
 
 }
