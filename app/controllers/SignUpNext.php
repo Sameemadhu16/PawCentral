@@ -56,6 +56,7 @@ class SignUpNext
 
             // IF ITS A MED PROV
             if ($data['service_type'] == 'medical_provider') {
+                // Insert medical provider data
                 $medProvData = [
                     'user_id' => $data['user_id'],
                     'name' => $data['service_name'],
@@ -63,8 +64,36 @@ class SignUpNext
                     'license_proof' => $data['license_proof'] ?? null
                 ];
                 unset($data['service_type']);
+                
+                // Insert into medical_providers table
                 $medprov->insert($medProvData);
-            }   
+            
+                // 1. Send confirmation to the provider
+                $notifmodel = new NotificationsModel();
+                $notifmodel->sendNotification(
+                    $data['user_id'], 
+                    'New Medical Provider', 
+                    'You have successfully signed up as a medical provider. Await for admin approval.'
+                );
+            
+                // 2. Notify all admins - FIXED VERSION
+                $adminQuery = "SELECT id FROM users WHERE role = 'admin'";
+                
+                // Option 1: If your query() returns PDOStatement
+                $stmt = $medprov->query($adminQuery);
+                // $adminUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                // Option 2: If your query() returns array directly
+                // $adminUsers = $medprov->query($adminQuery);
+                
+                foreach ($stmt as $admin) {
+                    $notifmodel->sendNotification(
+                        $admin->id, 
+                        'New Medical Provider Registration',
+                        'A new medical provider ('.$data['service_name'].') has signed up.'
+                    );
+                }
+            }
             //IF SELLER
             else if ($data['service_type'] == 'seller') {
                 unset($data['service_type']);
