@@ -11,15 +11,21 @@ class AdminProfileView{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin'])){
-            $this->updateProfile();
-        }
+        if($this->isAuthorized($this->valid_roles)){
 
-        // Get current profile data
-        $status = $this->getProfile();
-        // Display the profile view form
-        $this->view('admin/profile_view',['profile' => $status]);
+            if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin'])){
+                $this->updateProfile();
+            }
+    
+            // Get current profile data
+            $status = $this->getProfile();
+            // Display the profile view form
+            $this->view('admin/profile_view',['profile' => $status]);
+
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
     /**

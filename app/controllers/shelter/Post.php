@@ -7,29 +7,35 @@ class Post
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if (!($_SESSION['user_id'])) {
-            redirect('home');
-        }
+        if($this->isAuthorized($this->valid_roles)){
 
-        $postModel = new AdoptionPostModel;
-
-        $posts['posts'] = $postModel->getUserPosts();
-
-        // Very important: decode images correctly
-        foreach ($posts['posts'] as $post) {
-            if (isset($post->postimg1)){
-                $post->postimg1 = "data:image/jpeg;base64," . base64_encode($post->postimg1);
-                $post->postimg2 = "data:image/jpeg;base64," . base64_encode($post->postimg2);
-                $post->postimg3 = "data:image/jpeg;base64," . base64_encode($post->postimg3);
-            }else{
-                $post->postimg1 = null;
-                $post->postimg2 = null;
-                $post->postimg3 = null;
+            if (!($_SESSION['user_id'])) {
+                redirect('home');
             }
-        }
+    
+            $postModel = new AdoptionPostModel;
+    
+            $posts['posts'] = $postModel->getUserPosts();
+    
+            // Very important: decode images correctly
+            foreach ($posts['posts'] as $post) {
+                if (isset($post->postimg1)){
+                    $post->postimg1 = "data:image/jpeg;base64," . base64_encode($post->postimg1);
+                    $post->postimg2 = "data:image/jpeg;base64," . base64_encode($post->postimg2);
+                    $post->postimg3 = "data:image/jpeg;base64," . base64_encode($post->postimg3);
+                }else{
+                    $post->postimg1 = null;
+                    $post->postimg2 = null;
+                    $post->postimg3 = null;
+                }
+            }
+    
+            $this->view('shelter/post', $posts);
 
-        $this->view('shelter/post', $posts);
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
 

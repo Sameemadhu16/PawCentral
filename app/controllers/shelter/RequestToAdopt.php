@@ -6,27 +6,33 @@ class RequestToAdopt{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-
-        $A=$this->getAdoptionRequestsByShelter();
-        $this->acceptAdoptionRequest();
-        $this->rejectAdoptionRequest();
-
-        foreach ($A as $B) {
-            if (isset($B->postimg1) && !empty($B->postimg1)) {
-                $B->postimg1 = "data:image/jpeg;base64," . base64_encode($B->postimg1); // Adjust MIME type if not JPEG
-            } else {
-                $B->postimg1 = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
-            }
-        }
-
-        $data = [
-            'adoptionRequests' => $A,
+        if($this->isAuthorized($this->valid_roles)){
             
-        ];
+                    $A=$this->getAdoptionRequestsByShelter();
+                    $this->acceptAdoptionRequest();
+                    $this->rejectAdoptionRequest();
+            
+                    foreach ($A as $B) {
+                        if (isset($B->postimg1) && !empty($B->postimg1)) {
+                            $B->postimg1 = "data:image/jpeg;base64," . base64_encode($B->postimg1); // Adjust MIME type if not JPEG
+                        } else {
+                            $B->postimg1 = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+                        }
+                    }
+            
+                    $data = [
+                        'adoptionRequests' => $A,
+                        
+                    ];
+            
+            
+                    $this->view('shelter/requests_to_adopt',$data);
 
 
-        $this->view('shelter/requests_to_adopt',$data);
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
     private function getAdoptionRequestsByShelter()

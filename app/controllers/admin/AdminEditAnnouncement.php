@@ -7,16 +7,22 @@ class AdminEditAnnouncement
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        $status=$this->getAnnouncement();
+        if($this->isAuthorized($this->valid_roles)){
 
-        if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submitAnnouncement'])) {
-            $announcementModel = new Announcement;
-            $this->editAnnouncement($announcementModel, $status);
 
+            $status=$this->getAnnouncement();
+    
+            if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submitAnnouncement'])) {
+                $announcementModel = new Announcement;
+                $this->editAnnouncement($announcementModel, $status);
+    
+            }
+            $this->view('admin/edit_announcement', ['announcement' => $status]);
+            // $this->view('admin/edit_announcement');
+        } else {
+            //access denied page
+            redirect('403');
         }
-        $this->view('admin/edit_announcement', ['announcement' => $status]);
-        // $this->view('admin/edit_announcement');
     }
 
     private function getAnnouncement()

@@ -4,38 +4,45 @@ class AdminReport
 {
     use Controller;
 
+    private $valid_roles = ['admin'];
+
     public function index()
     {
-        
-        $data = [
-            'userCount' => $this->getUserCount(),
-            'thisMonthUsers' => $this->getThisMonthUsers(),
-            'lastMonthUsers' => $this->getLastMonthUsers(),
-            'monthlyUsers' => $this->getMonthlyUsers(),
+        if ($this->isAuthorized($this->valid_roles)){
 
-            'thisMonthDonations' => $this->getThisMonthDonations(),
-            'lastMonthDonations' => $this->getLastMonthDonations(),
-            'monthlyDonations' => $this->getMonthlyDonations(),
-            'allDonations' => $this->getAllDonations(),
-
-            'thisMonthMedicalProviders' => $this->getThisMonthMedicalProviders(),
-            'lastMonthMedicalProviders' => $this->getLastMonthMedicalProviders(),
-            'monthlyMedicalProviders' => $this->getMonthlyMedicalProviders(),
-            'allMedicalProviders' => $this->getAllMedicalProviders(),
-
-            'thisMonthEvents' => $this->getThisMonthEvents(),
-            'lastMonthEvents' => $this->getLastMonthEvents(),
-            'monthlyEvents' => $this->getMonthlyEvents(),
-            'allEvents' => $this->getAllEvents(),
-
-            'thisMonthRegisteredPets' => $this->getThisMonthRegisteredPets(),
-            'lastMonthRegisteredPets' => $this->getLastMonthRegisteredPets(),
-            'monthlyRegisteredPets' => $this->getMonthlyRegisteredPets(),
-            'allRegisteredPets' => $this->getAllRegisteredPets(),
-        ];
-
-        // show($data);
-        $this->view('admin/report', $data);
+            $data = [
+                'userCount' => $this->getUserCount(),
+                'thisMonthUsers' => $this->getThisMonthUsers(),
+                'lastMonthUsers' => $this->getLastMonthUsers(),
+                'monthlyUsers' => $this->getMonthlyUsers(),
+    
+                'thisMonthDonations' => $this->getThisMonthDonations(),
+                'lastMonthDonations' => $this->getLastMonthDonations(),
+                'monthlyDonations' => $this->getMonthlyDonations(),
+                'allDonations' => $this->getAllDonations(),
+    
+                'thisMonthMedicalProviders' => $this->getThisMonthMedicalProviders(),
+                'lastMonthMedicalProviders' => $this->getLastMonthMedicalProviders(),
+                'monthlyMedicalProviders' => $this->getMonthlyMedicalProviders(),
+                'allMedicalProviders' => $this->getAllMedicalProviders(),
+    
+                'thisMonthEvents' => $this->getThisMonthEvents(),
+                'lastMonthEvents' => $this->getLastMonthEvents(),
+                'monthlyEvents' => $this->getMonthlyEvents(),
+                'allEvents' => $this->getAllEvents(),
+    
+                'thisMonthRegisteredPets' => $this->getThisMonthRegisteredPets(),
+                'lastMonthRegisteredPets' => $this->getLastMonthRegisteredPets(),
+                'monthlyRegisteredPets' => $this->getMonthlyRegisteredPets(),
+                'allRegisteredPets' => $this->getAllRegisteredPets(),
+            ];
+    
+            // show($data);
+            $this->view('admin/report', $data);
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
     // --- PRIVATE FUNCTIONS ---

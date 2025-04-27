@@ -7,15 +7,21 @@ class EventInfo{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        $eventModel = new Event;
+        if($this->isAuthorized($this->valid_roles)){
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitEvent'])) {
-            $this->submit($eventModel);
-            return;
+            $eventModel = new Event;
+    
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitEvent'])) {
+                $this->submit($eventModel);
+                return;
+            }
+    
+            $this->view('shelter/eventInfo');
+
+        } else {
+            //access denied page
+            redirect('403');
         }
-
-        $this->view('shelter/eventInfo');
 
     }
 

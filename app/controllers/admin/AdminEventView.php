@@ -6,44 +6,50 @@ class AdminEventView {
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        
-        $eventId = $_GET['id'] ?? null;
+        if($this->isAuthorized($this->valid_roles)){
 
-        if (!$eventId) {
-            redirect('admin/event'); // Redirect if no event ID is provided
-            exit;
-        }
+            
+            $eventId = $_GET['id'] ?? null;
+    
+            if (!$eventId) {
+                redirect('admin/event'); // Redirect if no event ID is provided
+                exit;
+            }
+    
+            if (isset($_POST['approve'])) {
+                $this->approveEvent($eventId);
+            }
+            if (isset($_POST['reject'])) {
+                $this->rejectEvent($eventId);
+            }
+    
+            $viewEvents = $this->viewEvent($eventId);
+    
+            // Ensure $viewEvents is an object or handle the case where it is not found
+            if (!$viewEvents) {
+                redirect('admin/event'); // Redirect if no event is found
+                exit;
+            }
+    
+            // Process the image for the single event object
+            if (isset($viewEvents->eventimg) && !empty($viewEvents->eventimg)) {
+                $viewEvents->eventimg = "data:image/jpeg;base64," . base64_encode($viewEvents->eventimg); // Adjust MIME type if not JPEG
+            } else {
+                $viewEvents->eventimg = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            }
+    
+            $data = [
+                'event' => $viewEvents,
+            ];
+    
+            show($viewEvents->user_id);
+            
+            $this->view('admin/event_view', $data);
 
-        if (isset($_POST['approve'])) {
-            $this->approveEvent($eventId);
-        }
-        if (isset($_POST['reject'])) {
-            $this->rejectEvent($eventId);
-        }
-
-        $viewEvents = $this->viewEvent($eventId);
-
-        // Ensure $viewEvents is an object or handle the case where it is not found
-        if (!$viewEvents) {
-            redirect('admin/event'); // Redirect if no event is found
-            exit;
-        }
-
-        // Process the image for the single event object
-        if (isset($viewEvents->eventimg) && !empty($viewEvents->eventimg)) {
-            $viewEvents->eventimg = "data:image/jpeg;base64," . base64_encode($viewEvents->eventimg); // Adjust MIME type if not JPEG
         } else {
-            $viewEvents->eventimg = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            //access denied page
+            redirect('403');
         }
-
-        $data = [
-            'event' => $viewEvents,
-        ];
-
-        show($viewEvents->user_id);
-        
-        $this->view('admin/event_view', $data);
     }
 
     private function viewEvent($eventId) {

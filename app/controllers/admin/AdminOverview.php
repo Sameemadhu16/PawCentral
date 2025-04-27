@@ -7,51 +7,57 @@ class AdminOverview {
 
     public function index() {
 
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        // Calculate user growth
-        $prevUsers = $this->getLastMonthUserCount();
-        $currentUsers = $this->getThisMonthUserCount();
-        $userGrowth = ($prevUsers === 0 && $currentUsers === 0) ? 0 : ($prevUsers > 0 ? round((($currentUsers - $prevUsers) / $prevUsers) * 100, 2) : 100);
-
-        // Registered pets growth
-        $prevPets = $this->getLastMonthRegisterPetCount();
-        $currentPets = $this->getThisMonthRegisterPetCount();
-        $petGrowth = ($prevPets === 0 && $currentPets === 0) ? 0 : ($prevPets > 0 ? round((($currentPets - $prevPets) / $prevPets) * 100, 2) : 100);
-
-        // Active users growth
-        $prevActive = $this->getLastMonthActiveUserCount();
-        $currentActive = $this->getThisMonthActiveUserCount();
-        $activeGrowth = ($prevActive === 0 && $currentActive === 0) ? 0 : ($prevActive > 0 ? round((($currentActive - $prevActive) / $prevActive) * 100, 2) : 100);
-
-        // Donation growth
-        $prevDonation = $this->getLastMonthDonations();
-        $currentDonation = $this->getThisMonthDonations();
-        $donationGrowth = ($prevDonation === 0 && $currentDonation === 0) ? 0 : ($prevDonation > 0 ? round((($currentDonation - $prevDonation) / $prevDonation) * 100, 2) : 100);
-
-
-        $data = [
-            'announcementCount' => $this->getAnnouncementCount(),
-            'userCount' => $this->getUserCount(),
-            'activeUser' => $this->getActiveUserCount(),
-            'mediRegCount' => $this->getMedicalRegistrationCount(),
-            'eventCount' => $this->getEventCount(),
-            'donationCount' => $this->getDonationCount(), 
-            'regPetCount' => $this->getRegisteredpetCount(),
-            'donationPrice' => $this->totalDonationPrice(),
-            'adoptionPosts' => $this->getAdoptionPostCount(),
-            'sellingPosts' => $this->getSellingPostCount(),
-            'importingPosts' => $this->getImportPostCount(),
-            'rentingPosts' => $this->getRentPostCount(),
-            'growthUsers' => $userGrowth,
-            'growthPets' => $petGrowth,
-            'growthActiveUsers' => $activeGrowth,
-            'growthDonations' => $donationGrowth,
             
-            //add other data here
-        ];
+                    // Calculate user growth
+                    $prevUsers = $this->getLastMonthUserCount();
+                    $currentUsers = $this->getThisMonthUserCount();
+                    $userGrowth = ($prevUsers === 0 && $currentUsers === 0) ? 0 : ($prevUsers > 0 ? round((($currentUsers - $prevUsers) / $prevUsers) * 100, 2) : 100);
+            
+                    // Registered pets growth
+                    $prevPets = $this->getLastMonthRegisterPetCount();
+                    $currentPets = $this->getThisMonthRegisterPetCount();
+                    $petGrowth = ($prevPets === 0 && $currentPets === 0) ? 0 : ($prevPets > 0 ? round((($currentPets - $prevPets) / $prevPets) * 100, 2) : 100);
+            
+                    // Active users growth
+                    $prevActive = $this->getLastMonthActiveUserCount();
+                    $currentActive = $this->getThisMonthActiveUserCount();
+                    $activeGrowth = ($prevActive === 0 && $currentActive === 0) ? 0 : ($prevActive > 0 ? round((($currentActive - $prevActive) / $prevActive) * 100, 2) : 100);
+            
+                    // Donation growth
+                    $prevDonation = $this->getLastMonthDonations();
+                    $currentDonation = $this->getThisMonthDonations();
+                    $donationGrowth = ($prevDonation === 0 && $currentDonation === 0) ? 0 : ($prevDonation > 0 ? round((($currentDonation - $prevDonation) / $prevDonation) * 100, 2) : 100);
+            
+            
+                    $data = [
+                        'announcementCount' => $this->getAnnouncementCount(),
+                        'userCount' => $this->getUserCount(),
+                        'activeUser' => $this->getActiveUserCount(),
+                        'mediRegCount' => $this->getMedicalRegistrationCount(),
+                        'eventCount' => $this->getEventCount(),
+                        'donationCount' => $this->getDonationCount(), 
+                        'regPetCount' => $this->getRegisteredpetCount(),
+                        'donationPrice' => $this->totalDonationPrice(),
+                        'adoptionPosts' => $this->getAdoptionPostCount(),
+                        'sellingPosts' => $this->getSellingPostCount(),
+                        'importingPosts' => $this->getImportPostCount(),
+                        'rentingPosts' => $this->getRentPostCount(),
+                        'growthUsers' => $userGrowth,
+                        'growthPets' => $petGrowth,
+                        'growthActiveUsers' => $activeGrowth,
+                        'growthDonations' => $donationGrowth,
+                        
+                        //add other data here
+                    ];
+            
+                    $this->view('admin/overview', $data);
 
-        $this->view('admin/overview', $data);
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
     private function getAnnouncementCount(){

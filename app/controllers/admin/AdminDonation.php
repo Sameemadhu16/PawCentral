@@ -8,45 +8,50 @@ class AdminDonation{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['id']) && isset($_POST['approve'])) {
-                $this->approveRequest($_POST['id']);
-                redirect('/admin/donation'); // Redirect to avoid resubmission
-                exit;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['id']) && isset($_POST['approve'])) {
+                    $this->approveRequest($_POST['id']);
+                    redirect('/admin/donation'); // Redirect to avoid resubmission
+                    exit;
+                }
+    
+                if (isset($_POST['id']) && isset($_POST['reject'])) {
+                    $this->rejectDonationModel($_POST['id'], $_POST['reason']);
+                    redirect('/admin/donation');
+                    exit;
+                }
             }
-
-            if (isset($_POST['id']) && isset($_POST['reject'])) {
-                $this->rejectDonationModel($_POST['id'], $_POST['reason']);
-                redirect('/admin/donation');
-                exit;
+    
+            // Retrieve pending donations
+            $pendingDonations = $this->getPendingRequests();
+    
+            // Process images: convert binary `img` data to Base64-encoded string
+            foreach ($pendingDonations as $donation) {
+                if (isset($donation->img) && !empty($donation->img)) {
+                    $donation->img = "data:image/jpeg;base64," . base64_encode($donation->img); // Adjust MIME type if not JPEG
+                } else {
+                    $donation->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+                }
             }
+    
+            // Prepare the view data
+            $data = [
+                'total_donations' => $this->getTotalDonations(),
+                'pending_count' => $this->getPendingRequestCount(),
+                'approved_count' => $this->getApprovedCount(),
+                'pending_donations' => $pendingDonations,
+                'all_requests' => $this->getAllDonationRequests(),
+                'thisMonthDonations' => $this->getThisMonthDonations(),
+            ];
+    
+            $this->view('admin/donation', $data);
+        } else {
+            //access denied page
+            redirect('403');
         }
 
-        // Retrieve pending donations
-        $pendingDonations = $this->getPendingRequests();
-
-        // Process images: convert binary `img` data to Base64-encoded string
-        foreach ($pendingDonations as $donation) {
-            if (isset($donation->img) && !empty($donation->img)) {
-                $donation->img = "data:image/jpeg;base64," . base64_encode($donation->img); // Adjust MIME type if not JPEG
-            } else {
-                $donation->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
-            }
-        }
-
-        // Prepare the view data
-        $data = [
-            'total_donations' => $this->getTotalDonations(),
-            'pending_count' => $this->getPendingRequestCount(),
-            'approved_count' => $this->getApprovedCount(),
-            'pending_donations' => $pendingDonations,
-            'all_requests' => $this->getAllDonationRequests(),
-            'thisMonthDonations' => $this->getThisMonthDonations(),
-        ];
-
-        $this->view('admin/donation', $data);
     }
 
 
