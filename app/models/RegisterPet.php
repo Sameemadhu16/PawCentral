@@ -68,7 +68,7 @@ class RegisterPet
                 JOIN 
                     medical_providers mp ON mp.med_id = ap.med_id
                 WHERE 
-                    ap.owner_id = :owner_id AND ap.completion_status=0
+                    ap.owner_id = :owner_id AND ap.status='pending'
                 ORDER BY 
                     ap.date ASC;";
 
