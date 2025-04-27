@@ -175,7 +175,7 @@ class LogData {
               JOIN 
                 medical_providers mp ON mp.med_id = ap.med_id
               WHERE 
-                ap.completion_status = 0 
+                ap.completion_status = 'pending' 
                 AND ap.noti_sent = 0
                 AND ap.date < CURDATE() + INTERVAL 1 DAY
               ORDER BY 

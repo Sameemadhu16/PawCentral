@@ -73,7 +73,7 @@
                                     <span class="participants"><?= htmlspecialchars($event->enrolled) ?> / <?= htmlspecialchars($event->max_participants) ?> participants enrolled</span>
                                 </div>
                                 <div class="event-actions">
-                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?>')">Close event</button>
+                                <button class="close-event" onclick="showPopup(<?= htmlspecialchars($event->event_id) ?>, '<?= ROOT ?>/userprofile/event/closeevent?id=<?= htmlspecialchars($event->event_id) ?>','Are you sure want to close this event?<br><br><?= htmlspecialchars($event->title) ?> <br> make sure to update participants!')">Close event</button>
                                 <form action="<?= ROOT ?>/events/download_enrollments" method="post">
                                         <input type="hidden" name="event_id" value="<?= $event->event_id ?>"> 
                                         <input type="hidden" name="event_name" value="<?= htmlspecialchars($event->title) ?>">   
@@ -197,10 +197,10 @@
             <h2>Enter Event Information</h2>
             <form id="petForm" action="<?= ROOT ?>/userprofile/event/addevent" method="POST" enctype="multipart/form-data">
                 <label for="title">Event Title:</label>
-                <input type="text" id="title" name="title" eventuired>
+                <input type="text" id="title" name="title" required>
 
                 <label for="eventimg">Upload a cover photo:</label>
-                <input type="file" id="eventimg" name="photos[]" accept="image/*" eventuired>
+                <input type="file" id="eventimg" name="photos[]" accept="image/*" required>
           <div id="imagePreviewContainer"></div>
           <script>
               document.getElementById('eventimg').addEventListener('change', function () {
@@ -233,10 +233,10 @@
           </script>
 
                     <label for="date">Event Date:</label>
-                    <input type="date" id="date" name="date" eventuired>
+                    <input type="date" id="event_date" name="date" title="past date is not valid" required>
 
                     <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="City/Town" eventuired>
+                    <input type="text" id="location" name="location" placeholder="City/Town" required>
 
                     <label for="time">Event Time:</label>
                     <input type="time" id="time" name="time">
@@ -245,31 +245,9 @@
                     <input type="text" id="address" name="address" eventuired>
                     
                     <label for="participants">Max Participants allowed:</label>
-                    <input type="number" id="participants" name="participants" min="2" max="800" eventuired>
+                    <input type="number" id="participants" name="participants" min="2" max="800" required>
 
-                    <script>
-                        document.querySelector('form').addEventListener('submit', function (event) {
-                        const age = document.getElementById('date').value;
-                        const participants = document.getElementById('participants').value;
-
-                        // Validate date
-                        const Date = new Date(document.getElementById('date').value);
-                        const today = new Date();
-                        if (Date > today) {
-                            alert('Event date cannot be in the future.');
-                            event.preventDefault(); // Prevent form submission
-                        }
-
-                        // Validate participant amount
-                        if (participants < 2 || participants > 800) {
-                            alert('Atleast 2 participants must be allowed to participate');
-                            event.preventDefault(); // Prevent form submission
-                            return;
-                        }
-                        // Validate time
-                        });
-                    </script>
-
+                    
                 <label for="eventdesc">Add a description for the event:</label>
           <textarea id="desc" name="desc" rows="7" placeholder="Describe specifics about the event,
 Preeventuisits if there are any.
@@ -325,6 +303,52 @@ or any other information that participants should be aware of."></textarea>
             toggleDiv("CompletedDiv");
         }
     </script>
+    <script>
+                       document.querySelector('#petForm').addEventListener('submit', function(event) {
+    // Get form values
+    const eventDateStr = document.getElementById('event_date').value;
+    const participants = document.getElementById('participants').value;
+    
+    // Parse the event date string (YYYY-MM-DD format)
+    const [year, month, day] = eventDateStr.split('-').map(Number);
+    
+    // Get today's components
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth() + 1; // JS months are 0-indexed
+    const todayDay = today.getDate();
+    
+    // Compare dates component by component
+    let isPastDate = false;
+    
+    if (year < todayYear) {
+        isPastDate = true;
+    } else if (year === todayYear) {
+        if (month < todayMonth) {
+            isPastDate = true;
+        } else if (month === todayMonth) {
+            if (day < todayDay) {
+                isPastDate = true;
+            }
+        }
+    }
+    
+    // Validate date
+    if (isPastDate) {
+        alert('Event date cannot be in the past. Please select a future date.');
+        event.preventDefault(); // Prevent form submission
+        return;
+    }
+    
+    // Validate participant amount
+    if (participants < 2 || participants > 800) {
+        alert('At least 2 participants must be allowed to participate, max 800.');
+        event.preventDefault(); // Prevent form submission
+        return;
+    }
+});
+                    </script>
+
     
     <script src="<?= ROOT ?>/assets/js/popupform.js"></script>
 </body>
