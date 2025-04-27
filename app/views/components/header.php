@@ -73,32 +73,51 @@
         <?php endif; ?>
 
 
-
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']->role == 'admin'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/admin/overview">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
-            </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'shelter'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/shelter/profile">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
-            </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'medical_provider'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/medical-center/dashboard">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['medInfo'][0]->img); ?>">
-            </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user_role'] == 'seller'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/service">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
-            </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'service_prov'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/provider/profile">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
-            </a>
-        <?php elseif (isset($_SESSION['user']) && $_SESSION['user']->role == 'user'): ?>
-            <a class="user-profile" href="<?= ROOT ?>/userprofile">
-                <img src="<?php echo ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic); ?>">
-            </a>
-
+        <?php if (isset($_SESSION['user'])): ?>
+    <?php
+    // Determine default image path
+    $defaultImage = ROOT . "/assets/images/user/default_user.jpg";
+    
+    // Initialize profile image variable
+    $profileImage = $defaultImage;
+    
+    // Handle different user types
+    if ($_SESSION['user']->role == 'medical_provider') {
+        // Medical provider might have image in medInfo or user profile
+        if (!empty($_SESSION['medInfo'][0]->img)) {
+            $profileImage = ROOT . '/' . htmlspecialchars($_SESSION['medInfo'][0]->img);
+        } elseif (!empty($_SESSION['user']->profile_pic)) {
+            $profileImage = ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic);
+        }
+    } elseif (!empty($_SESSION['user']->profile_pic)) {
+        // All other users with profile picture
+        $profileImage = ROOT . '/' . htmlspecialchars($_SESSION['user']->profile_pic);
+    }
+    
+    // Determine profile link based on role
+    $profileLink = ROOT . '/userprofile'; // Default fallback
+    switch ($_SESSION['user']->role) {
+        case 'admin':
+            $profileLink = ROOT . '/admin/overview';
+            break;
+        case 'shelter':
+            $profileLink = ROOT . '/shelter/profile';
+            break;
+        case 'medical_provider':
+            $profileLink = ROOT . '/medical-center/dashboard';
+            break;
+        case 'seller':
+            $profileLink = ROOT . '/service';
+            break;
+        case 'service_prov':
+            $profileLink = ROOT . '/provider/profile';
+            break;
+    }
+    ?>
+    
+    <a class="user-profile" href="<?= $profileLink ?>">
+        <img src="<?= $profileImage ?>" alt="Profile Picture">
+    </a>
 
         <?php else : ?>
             <a class="sign-in-button" href="<?= ROOT ?>/login" style="text-decoration: none; padding: 10px 15px; font-size: 16px; color: #fff; background-color: orange; border-radius: 5px; border: none; display: inline-block; text-align: center; transition: background-color 0.3s ease;">
