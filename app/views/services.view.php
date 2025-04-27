@@ -62,7 +62,7 @@
                         <p class="name"><?= htmlspecialchars($shop->Shop_name) ?></p>
                         <p><?= htmlspecialchars($shop->service_type ?? 'Service') ?></p>
                         <div class="centre-info">
-                            <span class="rating">★★★☆☆</span> <!-- Static rating placeholder -->
+                           
                             <p><?= htmlspecialchars($shop->Areas) ?></p>
                             <p class="hours">
                                 <?= ($shop->open_hours != "00:00:00" && $shop->closing_hours != "00:00:00") 
