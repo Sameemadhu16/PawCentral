@@ -15,7 +15,7 @@ if (php_sapi_name() == "cli") {
 }
 
 // Database Config
-define('DBNAME', 'pawcentral');
+define('DBNAME', 'sam');
 define('DBHOST', 'localhost');
 define('DBUSER', 'root');
 define('DBPASS', '');
