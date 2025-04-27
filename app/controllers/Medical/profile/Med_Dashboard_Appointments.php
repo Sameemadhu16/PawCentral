@@ -14,7 +14,7 @@ class Med_Dashboard_Appointments{
         
         // Pass the provider ID (role_id) along with the date
         $todayCount = count($appointmentModel->getAppointmentsByDate($med_id, $today));
-        $upcomingCount = count($appointmentModel->getAppointmentsByDate($med_id, date('Y-m-d', strtotime('+1 day'))));
+        $upcomingCount = count($appointmentModel->getAppointmentsAhead($med_id, $today));
         
         $this->view("medi.f/profile/med-appointments", [
             'todayCount' => $todayCount,
