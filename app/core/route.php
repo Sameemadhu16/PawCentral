@@ -288,10 +288,15 @@ route('shelter/postinfo/edit','shelter/Postinfo@update');
     route('medical-center/dashboard/veterinarians/edit-vet','Medical/profile/Med_Dashboard_Veterinarians@getVeterinarian');
     route('medical-center/dashboard/veterinarians','Medical/profile/Med_Dashboard_Veterinarians@index');
     
+    //notifications
     route('medical-center/dashboard/notification','Medical/profile/Med_Dashboard_Notification@index');
+    route('medical-center/dashboard/notification/mark-read-notification','Medical/profile/Med_Dashboard_Notification@markNotiRead');
+    // route('medical-center/dashboard/notification/fetch','Medical/profile/Med_Dashboard_Notification@fetchNewNotifications');
+    route('medical-center/dashboard/notification/mark-all-read','Medical/profile/Med_Dashboard_Notification@markAllRead');
+
+    //services
     route('medical-center/dashboard/services','Medical/profile/Med_Dashboard_Services@index');
-    route('medical-center/dashboard/donations','Medical/profile/Med_Dashboard_Donations@index');
-    route('medical-center/dashboard/events','Medical/profile/Med_Dashboard_Events@index');
+
 
     //medical services
     // route('medical-center/dashboard/services/add','Medical/profile/Med_Dashboard_Services@submit');
