@@ -37,8 +37,8 @@
             <input type="hidden" name="vet_id" id="vet-input">
 
             <div class="buttons">
-                <a href="<?=ROOT?>/medical-appointment-date" class="link-medi"><button class="back">Back</button></a>
-                <a href="" class="link-medi"><button class="next" id="next-button">Next</button></a>
+                <button type="button" class="back" onclick="history.back()">Back</button>
+                <a href="<?=ROOT?>/medical-appointment-vet" class="link-medi"><button class="next" id="next-button">Next</button></a>
             </div>  
         </form>
     </div>

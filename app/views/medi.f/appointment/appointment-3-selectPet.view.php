@@ -38,7 +38,7 @@
                 ?>
             </div>
             <div class="buttons">
-                <a href="<?=ROOT?>/medical-appointment-vet" class="link-medi"><button class="back">Back</button></a>
+                <button type="button" class="back" onclick="history.back()">Back</button>
                 <a class="link-medi"><button class="next" id="next-button">Next</button></a>
             </div>  
         </form>

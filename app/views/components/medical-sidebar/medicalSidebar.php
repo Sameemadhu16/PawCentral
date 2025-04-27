@@ -33,16 +33,6 @@
                     <i class="fas fa-bell icon"></i>Notifications
                 </a>
             </li>
-            <!-- <li>
-                <a href="#" class="nav-link" data-page="events">
-                    <i class="fas fa-calendar-alt icon"></i>Events
-                </a>
-            </li> -->
-            <li>
-                <a href="#donations" class="nav-link" data-page="donations">
-                    <i class="fas fa-heart icon"></i>Donations 
-                </a>
-            </li>
             <li class="logout-tab">
                 <a class="nav-link" id="logout">
                     <i class="fas fa-sign-out-alt icon"></i>

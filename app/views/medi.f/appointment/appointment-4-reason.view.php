@@ -26,7 +26,7 @@
             <textarea name="appointment_reason" id="appointment_reason_id" class="font-inter"></textarea>
 
             <div class="buttons">
-                <a href="<?=ROOT?>/medical-appointment-selectpet" class="link-medi"><button class="back">Back</button></a>
+                <button type="button" class="back" onclick="history.back()">Back</button>
                 <a href="" class="link-medi"><button type="submit" class="book" id="book_appointment">Book Appointment</button></a>
             </div> 
         </form>

@@ -62,7 +62,7 @@
             <input type="hidden" name="appointment_time" id="appointment_time">
 
             <div class="buttons">
-                <a href="<?=ROOT?>/medical-center" class="link-medi"><button type="button" class="cancel">Cancel</button></a>
+                <a href="<?=ROOT?>/medical-centers/medical-center?id=<?= $data['med_id'] ?>" class="link-medi"><button type="button" class="cancel">Cancel</button></a>
                 <button type="button" id="next-button" class="next-form next">Next</button>
             </div>
         </form>
