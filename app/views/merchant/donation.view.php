@@ -364,6 +364,7 @@ or any other information that the donators should made aware of to donate to you
     </script>
 
 
+<?php include("../app/views/components/footer.php"); ?>
     <script src="<?= ROOT ?>/assets/js/popupform.js"></script>
 
 </body>
