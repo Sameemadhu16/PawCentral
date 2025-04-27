@@ -7,7 +7,7 @@ class AdminViewAnnouncement
 
     public function index($id)
     {
-        if($this->isAuthorized($this->valid_roles)){
+  
 
             if (!$id) {
                 // Redirect if no ID is provided
@@ -25,16 +25,13 @@ class AdminViewAnnouncement
                         if (!$announcement) {
                             // Redirect if no matching announcement is found
                             redirect('admin/announcement');
-                            //print_r('gg');
+                            print_r('gg');
                         }
                 
                         // Pass the announcement to the view
                         $this->view('admin/view_announcement', ['announcement' => $announcement]);
-            }else
-            //access denied page
-            redirect('403');
+            }
         }
-    }
 
     private function deleteAnnouncement($announcementModel, $id)
     {
