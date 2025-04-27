@@ -45,15 +45,24 @@ class Appointment_Reason{
 
         $appointmentModel = new MedicalAppointment();
         
-        // Check for existing appointment with the same pet_id, date, and timeslot
+        // Check for existing appointment with the same date, and timeslot
         $existingAppointment = $appointmentModel->first([
-            'pet_id' => $pet_id,
+            // 'pet_id' => $pet_id,
             'date' => $date,
-            'timeslot' => $timeslot
+            'timeslot' => $timeslot,
+            'status' => 'pending'
         ]);
+        if(empty($existingAppointment)){
+            $existingAppointment = $appointmentModel->first([
+                'pet_id' => $pet_id,
+                'date' => $date,
+                'timeslot' => $timeslot,
+                'status' => 'complete'
+            ]);
+        }
         
         if ($existingAppointment) {
-            $_SESSION['appointment_error'] = "An appointment for this pet at the same date and time already exists.";
+            $_SESSION['appointment_error'] = "An appointment at the same date and time already exists.";
             unset($_SESSION['appointment_vet_id']);
             unset($_SESSION['appointment_date']);
             unset($_SESSION['appointment_time']);
