@@ -7,24 +7,30 @@ class AdminEvent{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        $pendingEvents = $this->getEvents();
 
-        foreach ($pendingEvents as $event) {
-            if (isset($event->eventimg) && !empty($event->eventimg)) {
-                $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
-            } else {
-                $event->eventimg = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            $pendingEvents = $this->getEvents();
+    
+            foreach ($pendingEvents as $event) {
+                if (isset($event->eventimg) && !empty($event->eventimg)) {
+                    $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
+                } else {
+                    $event->eventimg = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+                }
             }
+    
+            $data = [
+                'events' => $pendingEvents,
+                'allEvents' => $this->getALLEvents()
+            ];
+            // show($data);
+            $this->view('admin/event', $data);
+        } else {
+            //access denied page
+            redirect('403');
         }
 
-        $data = [
-            'events' => $pendingEvents,
-            'allEvents' => $this->getALLEvents()
-        ];
-        // show($data);
-        $this->view('admin/event', $data);
     }
 
     private function getEvents(){

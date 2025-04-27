@@ -7,14 +7,20 @@ class AdminAddAnnouncement
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        $announcementModel = new Announcement;
+        if($this->isAuthorized($this->valid_roles)){
+            $announcementModel = new Announcement;
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitAnnouncement'])) {
-            $this->submit($announcementModel);
-            return;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitAnnouncement'])) {
+                $this->submit($announcementModel);
+                return;
+            }
+            $this->view('admin/add_announcement');
+
+        } else {
+            //access denied page
+            redirect('403');
         }
-        $this->view('admin/add_announcement');
+        
     }
 
     private function submit($announcementModel)

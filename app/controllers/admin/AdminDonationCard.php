@@ -7,36 +7,42 @@ class AdminDonationCard{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['id']) && isset($_POST['approve'])) {
-                $this->approveRequest($_POST['id']);
-                redirect('/admin/donation'); // Redirect to avoid resubmission
-                exit;
-            }
+        if($this->isAuthorized($this->valid_roles)){
 
-            if (isset($_POST['id']) && isset($_POST['reject'])) {
-                $this->rejectDonationModel($_POST['id'], $_POST['reason']);
-                redirect('/admin/donation');
-                exit;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['id']) && isset($_POST['approve'])) {
+                    $this->approveRequest($_POST['id']);
+                    redirect('/admin/donation'); // Redirect to avoid resubmission
+                    exit;
+                }
+    
+                if (isset($_POST['id']) && isset($_POST['reject'])) {
+                    $this->rejectDonationModel($_POST['id'], $_POST['reason']);
+                    redirect('/admin/donation');
+                    exit;
+                }
             }
-        }
-        $donationDetails = $this->getDonationDetails();
+            $donationDetails = $this->getDonationDetails();
+    
+            // Process the image for the single donation object
+            if (isset($donationDetails->img) && !empty($donationDetails->img)) {
+                $donationDetails->img = "data:image/jpeg;base64," . base64_encode($donationDetails->img); // Adjust MIME type if not JPEG
+            } else {
+                $donationDetails->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            }
+    
+            $data = [
+                'donation' => $donationDetails,
+            ];
+    
+            // show($data);
+    
+            $this->view('admin/donation_card', $data);
 
-        // Process the image for the single donation object
-        if (isset($donationDetails->img) && !empty($donationDetails->img)) {
-            $donationDetails->img = "data:image/jpeg;base64," . base64_encode($donationDetails->img); // Adjust MIME type if not JPEG
         } else {
-            $donationDetails->img = ROOT . "/assets/images/default-placeholder.png"; // Fallback image
+            //access denied page
+            redirect('403');
         }
-
-        $data = [
-            'donation' => $donationDetails,
-        ];
-
-        // show($data);
-
-        $this->view('admin/donation_card', $data);
     }
 
     private function getDonationDetails()

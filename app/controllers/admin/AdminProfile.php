@@ -8,18 +8,24 @@ class AdminProfile
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        if (!($_SESSION['user_id'])) {
+            
+                    if (!($_SESSION['user_id'])) {
+            
+                        redirect('home');
+                    }
+            
+                    $model = new UserProfilesModel();
+            
+                    $user['profile'] = $model->getUserInf();
+            
+                    $this->view('admin/profile', $user);
 
-            redirect('home');
+        } else {
+            //access denied page
+            redirect('403');
         }
-
-        $model = new UserProfilesModel();
-
-        $user['profile'] = $model->getUserInf();
-
-        $this->view('admin/profile', $user);
     }
 
     function update()
