@@ -173,7 +173,7 @@
                                     <div class="overflow-hide">
                                         <p class="amount">Requested Amount: <?= number_format($req->amount, 2) ?> Rs.</p>
                                     </div>
-                                    <button class="don-but">Edit Info</button>
+                                    <!-- <button class="don-but">Edit Info</button> -->
                                     <button class="don-but close-but"
                                         onclick="showPopup(
                                             <?= htmlspecialchars($req->id) ?>,
