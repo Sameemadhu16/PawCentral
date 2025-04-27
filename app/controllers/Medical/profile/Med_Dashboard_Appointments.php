@@ -24,7 +24,6 @@ class Med_Dashboard_Appointments{
     }
 
     public function appointmentsByDate() {
-        // Make sure to send headers first to avoid any output before JSON
         header('Content-Type: application/json');
         
         try {

@@ -1006,7 +1006,30 @@ function veterinariansAction() {
         add_form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
+            const experience = document.getElementById('vet-experience').value;
+            const availability = document.getElementById('vet-availability').value;
+            let hasError = false;
             
+            // Reset previous error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            
+            // Validate experience is positive
+            if (experience <= 0) {
+                showError('vet-experience', 'Experience must be a positive number');
+                hasError = true;
+            }
+            
+            // Validate availability format
+            const availabilityRegex = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*-\s*(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*\d{1,2}\s*to\s*\d{1,2}$/;
+            if (!availabilityRegex.test(availability)) {
+                showError('vet-availability', 'Format must be "Day - Day Hour to Hour" (e.g. Mon - Fri 8 to 5)');
+                hasError = true;
+            }
+            
+            if (hasError) {
+                return false; // Stop here if validation fails
+            }
+
             fetch('http://localhost/PawCentral/public/medical-center/dashboard/veterinarians', {
                 method: 'POST',
                 body: formData,
@@ -1124,6 +1147,32 @@ function veterinariansAction() {
     if (editForm) {
         editForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Clear previous error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            
+            // Get form values
+            const experience = editForm.querySelector('#vet-experience').value;
+            const availability = editForm.querySelector('#vet-availability').value;
+            let hasError = false;
+            
+            // Validate experience is positive
+            if (experience <= 0) {
+                showError('vet-experience', 'Experience must be a positive number', editForm);
+                hasError = true;
+            }
+            
+            // Validate availability format
+            const availabilityRegex = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*-\s*(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*\d{1,2}\s*to\s*\d{1,2}$/;
+            if (!availabilityRegex.test(availability)) {
+                showError('vet-availability', 'Format must be "Day - Day Hour to Hour" (e.g. Mon - Fri 8 to 5)', editForm);
+                hasError = true;
+            }
+            
+            if (hasError) {
+                return false; // Stop here if validation fails
+            }
+            
             const formData = new FormData(this);
             
             fetch('http://localhost/PawCentral/public/medical-center/dashboard/veterinarians', {
@@ -1154,6 +1203,25 @@ function veterinariansAction() {
                 alert(error.message || 'Failed to update veterinarian. Please try again.');
             });
         });
+    }
+    
+    // Helper function to show validation errors
+    function showError(fieldId, message, formContext = document) {
+        const field = formContext.querySelector('#' + fieldId) || document.getElementById(fieldId);
+        if (!field) {
+            console.error(`Field with ID ${fieldId} not found`);
+            return;
+        }
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = 'red';
+        errorDiv.style.fontSize = '12px';
+        errorDiv.style.marginTop = '5px';
+        errorDiv.textContent = message;
+        
+        // Insert after the field
+        field.parentNode.appendChild(errorDiv);
     }
 }
 
