@@ -6,23 +6,29 @@ class Notification
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if (!($_SESSION['user_id'])) {
+        if($this->isAuthorized($this->valid_roles)){
 
-            redirect('home');
+            if (!($_SESSION['user_id'])) {
+    
+                redirect('home');
+            }
+            // Initialize the model
+            $model = new NotificationsModel();
+    
+            // Retrieve all pets
+            $data['notifications'] = $model->getNotifications($_SESSION['user_id']);
+    
+            // Process images: convert binary `img1` data to Base64-encoded string
+            // print_r($data);
+            // exit();
+    
+            // Pass data to the view
+            $this->view('shelter/notification', $data);
+
+        } else {
+            //access denied page
+            redirect('403');
         }
-        // Initialize the model
-        $model = new NotificationsModel();
-
-        // Retrieve all pets
-        $data['notifications'] = $model->getNotifications($_SESSION['user_id']);
-
-        // Process images: convert binary `img1` data to Base64-encoded string
-        // print_r($data);
-        // exit();
-
-        // Pass data to the view
-        $this->view('shelter/notification', $data);
     }
 
     public function fetchNewNotifications()

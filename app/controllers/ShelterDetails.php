@@ -22,7 +22,7 @@ class ShelterDetails{
         $data = [
             'shelter' => $shelterdata,
             'user' => $userdata,
-            'postcards' => $this->getPostCardstoProfile()
+            'postcards' => $this->getPostCardstoProfile($shelterdata->id)
         ];
 
         // Very important: decode images correctly
@@ -43,10 +43,10 @@ class ShelterDetails{
         $this->view('petshelterdetails', $data);
     }
 
-    private function getPostCardstoProfile(){
+    private function getPostCardstoProfile($shelter_id){
         $postModel = new AdoptionPostModel;
 
-        $posts['posts'] = $postModel->getUserPosts();
+        $posts['posts'] = $postModel->getShelterPosts($shelter_id);
 
         // Very important: decode images correctly
         foreach ($posts['posts'] as $post) {

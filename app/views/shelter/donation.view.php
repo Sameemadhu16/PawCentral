@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Requests</title>
+    <title>Shelter Dashboard-Donation Requests</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/donation.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/userprofile.css">
@@ -175,7 +175,7 @@
                                     <div class="overflow-hide">
                                         <p class="amount">Requested Amount: <?= number_format($req->amount, 2) ?> Rs.</p>
                                     </div>
-                                    <button class="don-but">Edit Info</button>
+                                    <!-- <button class="don-but">Edit Info</button> -->
                                     <button class="don-but close-but"
                                         onclick="showPopup(
                                             <?= htmlspecialchars($req->id) ?>,

@@ -55,6 +55,16 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
+  .form1 select {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
   
   .form1 input[type="checkbox"] {
     width: auto;

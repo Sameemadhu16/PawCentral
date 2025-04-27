@@ -40,7 +40,6 @@
                 <ul>
                     <li>Edit existing adoption <br/>listings</li>
                     <li>Renew or deactivate posts </li>
-                    <li>Track engagement and <br/>performance</li>
                     <li>Ensure your pets find the <br/>right homes</li>
                 </ul>
                 <button onclick="location.href='<?=ROOT?> /service/manage'">View Post</button>

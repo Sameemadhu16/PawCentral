@@ -52,7 +52,7 @@
                     
                     <div class="card-content">
                         <strong>Sex: <?=htmlspecialchars($posts->sex)?></strong>
-                        <strong>Price: <?=htmlspecialchars($posts->price)?></strong>
+                        <strong>Price(Rs): <?=htmlspecialchars($posts->price)?></strong>
                         <strong>City: <?=htmlspecialchars($posts->City)?></strong>
                         <strong>Species: <?=htmlspecialchars($posts->species)?></strong>
                         <strong>Age: <?=htmlspecialchars($posts->age)?></strong>
@@ -100,7 +100,7 @@
                     
                     <div class="card-content">
                         <strong>Sex: <?=htmlspecialchars($posts->sex)?></strong>
-                        <strong>Rental fee: <?=htmlspecialchars($posts->rental_fee)?></strong>
+                        <strong>Rental fee(Rs): <?=htmlspecialchars($posts->rental_fee)?></strong>
                         <strong>Species: <?=htmlspecialchars($posts->species)?></strong>
                         <strong>Age: <?=htmlspecialchars($posts->age)?></strong>
                     </div>
@@ -147,7 +147,7 @@
                     
                     <div class="card-content">
                         <strong>Sex: <?=htmlspecialchars($posts->sex)?></strong>
-                        <strong>Import fees: <?=htmlspecialchars($posts->import_fees)?></strong>
+                        <strong>Import fees(Rs): <?=htmlspecialchars($posts->import_fees)?></strong>
                         <strong>Species: <?=htmlspecialchars($posts->species)?></strong>
                         <strong>Age: <?=htmlspecialchars($posts->age)?></strong>
                     </div>

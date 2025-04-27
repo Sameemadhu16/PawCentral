@@ -16,31 +16,37 @@ class AdminUserAccount{
 
 
 
-        $this->isAuthorized($this->valid_roles);
-        // $this->getUsers();
-        // if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if($this->isAuthorized($this->valid_roles)){
 
+            // $this->getUsers();
+            // if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    
+    
+            //     show($_POST['status1']);
+            // }
+            if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status1'])){
+                $this->UpdateUserStatus($_POST['id'], $_POST['status1']);
+                // show($_POST);
+            }
+    
+            $data = [
+                'regular' => $this->getUserCountByService('user'),
+                'seller' => $this->getUserCountByService('seller'),
+                'adoptionShelters' => $this->getUserCountByService('shelter'),
+                'careServiceProviders' => $this->getUserCountByService('service_prov'),
+                'medicalProviders' => $this->getUserCountByService('medical_provider'),
+                'users' => $this->getUsers(),
+               // 'status' => $this->UpdateUserStatus(1, 'block')
+    
+                
+            ];
+    
+            $this->view('admin/user_account', $data);
 
-        //     show($_POST['status1']);
-        // }
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status1'])){
-            $this->UpdateUserStatus($_POST['id'], $_POST['status1']);
-            // show($_POST);
+        } else {
+            //access denied page
+            redirect('403');
         }
-
-        $data = [
-            'regular' => $this->getUserCountByService('user'),
-            'seller' => $this->getUserCountByService('seller'),
-            'adoptionShelters' => $this->getUserCountByService('shelter'),
-            'careServiceProviders' => $this->getUserCountByService('service_prov'),
-            'medicalProviders' => $this->getUserCountByService('medical_provider'),
-            'users' => $this->getUsers(),
-           // 'status' => $this->UpdateUserStatus(1, 'block')
-
-            
-        ];
-
-        $this->view('admin/user_account', $data);
     }
 
     private function getUsers(){

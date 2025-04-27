@@ -3,12 +3,16 @@
 class Events{
 
     use Controller;
+    private $roles=['user'];
 
     public function index(){
 
         if(!($_SESSION['user_id'])){
 
             redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
         }
         // Initialize the model
         $model = new EventsModel();
@@ -30,6 +34,13 @@ class Events{
     }
 
     public function NewEvent(){
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $eventmodel = new EventsModel();
@@ -76,6 +87,14 @@ class Events{
     
     public function closeEvent($req_data)
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+
         $model = new EventsModel();
         $insert=explode("?",$req_data['id']);
         $id=$insert[0];
@@ -94,6 +113,14 @@ class Events{
     }
 
     public function showEnrolledEvents(){
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+
         $model = new EventsModel();
         $events['enrolled_events'] = $model->getEnrolledEvents($_SESSION['user_id']);
         foreach ($events['enrolled_events'] as $event) {
@@ -108,6 +135,14 @@ class Events{
 
     public function downloadEnrollments()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['event_id'])) {
             $event_id = $_POST['event_id'];
             $event_name = $_POST['event_name'];

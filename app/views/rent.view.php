@@ -40,9 +40,21 @@
     </div>
     
     <div class="form-group">
-        <label for="renterAddress">Renter Address:</label>
-        <input type="text" id="renterAddress" name="renterAddress" required>
-    </div>
+  <label for="renterAddress">Renter Address:</label>
+  <select id="renterAddress" name="renterAddress" required>
+    <option value="" disabled selected>Select</option>
+    <option value="Colombo">Colombo</option>
+    <option value="Kandy">Kandy</option>
+    <option value="Galle">Galle</option>
+    <option value="Matara">Matara</option>
+    <option value="Jaffna">Jaffna</option>
+    <option value="Negombo">Negombo</option>
+    <option value="Anuradhapura">Anuradhapura</option>
+    <option value="Trincomalee">Trincomalee</option>
+    <option value="Kurunegala">Kurunegala</option>
+    <option value="Ratnapura">Ratnapura</option>
+  </select>
+</div>
     
     <div class="form-group checkbox-group">
         <input type="checkbox" id="agreeTerms" name="agreeTerms" required>

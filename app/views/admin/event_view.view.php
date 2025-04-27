@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Info</title>
+    <title>PawCentral Admin Dashboard -Event Info</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/event_view.css">
@@ -37,16 +37,16 @@
                     <span class="participants"><?= esc($event->enrolled) ?> / <?= esc($event->max_participants) ?> participants enrolled</span>
                 </div>
                 <div class="event-actions">
-                    <?php if($event->status == 0 && $event->approved == 0): ?>
-                    <form method="POST">
-                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
-                        <button class="approve-btn" name="approve" type="submit">Approve</button>
-                    </form>
-                    <form method="POST">
-                        <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
-                        <button class="delete-btn" name="reject" type="submit">Reject</button>
-                    </form>
-                    <?php endif;?>
+                    <?php if ($event->status == 0 && $event->approved == 0): ?>
+                        <form method="POST">
+                            <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                            <button class="approve-btn" name="approve" type="submit">Approve</button>
+                        </form>
+                        <form method="POST">
+                            <input type="hidden" name="event_id" value="<?= esc($event->event_id) ?>">
+                            <button class="delete-btn" name="reject" type="submit">Reject</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
 

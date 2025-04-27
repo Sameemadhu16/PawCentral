@@ -7,20 +7,26 @@ class PostUpdate{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        if (!($_SESSION['user_id'])) {
-            redirect('home');
+            if (!($_SESSION['user_id'])) {
+                redirect('home');
+            }
+    
+            $updatedData = $this->updatePost();
+    
+            $data = [
+                'post' => $this->getPostDetails(),
+                'update' => $updatedData
+            ];
+    
+            $this->view('shelter/postupdate',$data);
+
+        } else {
+            //access denied page
+            redirect('403');
         }
 
-        $updatedData = $this->updatePost();
-
-        $data = [
-            'post' => $this->getPostDetails(),
-            'update' => $updatedData
-        ];
-
-        $this->view('shelter/postupdate',$data);
     }
 
     private function getPostDetails()

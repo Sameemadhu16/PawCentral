@@ -13,7 +13,8 @@ class AdoptionPostModel{
 
     public function getUserPosts()
     {
-        $userId = $_SESSION['role_id']; // Retrieve userId from session
+        $userId = $_SESSION['role_id']; 
+        // Retrieve userId from session
 
         // Fetch rows from the table where user_id matches the session user and status is not 3
         $query = "SELECT * FROM `" . $this->table . "` WHERE `shelter_id` = :userid";
@@ -22,6 +23,20 @@ class AdoptionPostModel{
 
         return $result;
     }
+
+    
+    public function getShelterPosts($shelterId)
+    {
+        $userId = $shelterId; // Use the provided shelter ID
+
+        // Fetch rows from the table where user_id matches the session user and status is not 3
+        $query = "SELECT * FROM `" . $this->table . "` WHERE `shelter_id` = :userid";
+
+        $result = $this->query($query, [':userid' => $shelterId]);
+
+        return $result;
+    }
+    
 
 
     public function addPost($data) {

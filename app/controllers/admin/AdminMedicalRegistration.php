@@ -18,18 +18,24 @@ class AdminMedicalRegistration
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        $medicalProvider = new MedicalProvModel();
-        // show($_SESSION['user']);
+            $medicalProvider = new MedicalProvModel();
+            // show($_SESSION['user']);
+    
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['med_id'])) {
+                $this->approveMedicalProvider($_POST['med_id'], $medicalProvider);
+            }
+    
+            $data = $this->fetchMedicalProviderData($medicalProvider);
+    
+            $this->view('admin/medical_registration', $data);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['med_id'])) {
-            $this->approveMedicalProvider($_POST['med_id'], $medicalProvider);
+        } else {
+            //access denied page
+            redirect('403');
         }
 
-        $data = $this->fetchMedicalProviderData($medicalProvider);
-
-        $this->view('admin/medical_registration', $data);
     }
 
     private function fetchMedicalProviderData($medicalProviderData)

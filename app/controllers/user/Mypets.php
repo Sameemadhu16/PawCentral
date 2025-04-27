@@ -3,13 +3,17 @@
 class Mypets{
 
     use Controller;
+    private $roles = ['user'];
 
     public function index(){
-
         if(!($_SESSION['user_id'])){
 
-            redirect('/403');
+            redirect('home');
         }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+
         // Initialize the model
         $model = new RegisterPet();
         
@@ -40,6 +44,9 @@ class Mypets{
 
             redirect('home');
         }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         
         $petid = $_GET['id'];
         // Initialize the model
@@ -64,7 +71,11 @@ class Mypets{
     public function ShowPetRecords(){
 
         if(!($_SESSION['user_id'])){
+
             redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
         }
         
         $petid = $_GET['id'];
@@ -93,6 +104,14 @@ class Mypets{
     }
 
     public function RegPet(){
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $petmodel = new RegisterPet();
 

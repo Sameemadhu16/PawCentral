@@ -25,16 +25,20 @@
             </div>
             <div class="info_section">
                 <div class="service_name">
-                    <h1 class="nam"><?= esc($shelter->name) ?></h1>
-                    <p class="loc">Location: <?= esc($shelter->location) ?></p>
-                    <p class="loc">Address: <?= esc($user->address) ?></p>
+                    <h1 class="nam"><?= !empty($shelter->name) ? esc($shelter->name) : "Name unavailable" ?></h1>
+                    <p class="loc">Location: <?= !empty($shelter->location) ? esc($shelter->location) : "Location unavailable" ?></p>
+                    <p class="loc">Address: <?= !empty($user->address) ? esc($user->address) : "Address unavailable" ?></p>
                 </div>
                 <div class="about">
                     <h2>About Us</h2>
                     <p><?= !empty($shelter->description) ? esc($shelter->description) : "No description available." ?></p>
                 </div>
                 <div class="contact_button">
-                    <button class="contact-btn" id="contactToggleBtn" data-number="<?= esc($user->mobile_no) ?>">Contact Us</button>
+                    <?php if (!empty($user->mobile_no)): ?>
+                        <button class="contact-btn" id="contactToggleBtn" data-number="<?= esc($user->mobile_no) ?>">Contact Us</button>
+                    <?php else: ?>
+                        <p>Contact number not available.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -49,38 +53,41 @@
         <!-- Products Section -->
         <h2>Our Pets</h2>
         <div class="product-grid">
-            <?php foreach ($data['postcards'] as $posts): ?>
-                <?php if (!empty($posts)): ?>
-                    <?php foreach ($posts as $post):
-
-                    ?>
-                        <?php if ($post->status == 0 && $post->is_deleted == 0):
-                            // show($post->postimg1);
-                        ?>
-
-                            <a class="product-card" href="<?= ROOT ?>/findapet/adoption?id=<?= $post->pet_id ?>">
-                                <div class="product-image">
-                                    <?php if (!empty($post->postimg1)): ?>
-                                        <img src="<?= esc($post->postimg1) ?>" alt="Pet Image">
-                                    <?php else: ?>
-                                        <div class="no-image">No Image Available</div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="product-details">
-                                    <h3><?= esc($post->name) ?></h3>
-                                    <p><strong>Species:</strong> <?= esc($post->species) ?></p>
-                                    <p><strong>Breed:</strong> <?= esc($post->breed) ?></p>
-                                    <p><strong>Age:</strong> <?= esc($post->age) ?> years</p>
-                                </div>
-                            </a>
+            <?php 
+            $hasPets = false; // Track if any post is added
+            foreach ($data['postcards'] as $posts): ?>
+            <?php if (!empty($posts)): ?>
+                <?php foreach ($posts as $post): ?>
+                <?php if ($post->status == 0 && $post->is_deleted == 0): 
+                    $hasPets = true; // A valid post is found
+                ?>
+                    <a class="product-card" href="<?= ROOT ?>/findapet/adoption?id=<?= $post->pet_id ?>">
+                    <div class="product-image">
+                        <?php if (!empty($post->postimg1)): ?>
+                        <img src="<?= esc($post->postimg1) ?>" alt="Pet Image">
+                        <?php else: ?>
+                        <div class="no-image">No Image Available</div>
                         <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>No products available.</p>
+                    </div>
+                    <div class="product-details">
+                        <h3><?= esc($post->name) ?></h3>
+                        <p><strong>Species:</strong> <?= esc($post->species) ?></p>
+                        <p><strong>Breed:</strong> <?= esc($post->breed) ?></p>
+                        <p><strong>Age:</strong> <?= esc($post->age) ?> years</p>
+                    </div>
+                    </a>
                 <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
             <?php endforeach; ?>
+
+            <?php if (!$hasPets): // If no valid posts were found ?>
+            <p>No pets available.</p>
+            <?php endif; ?>
         </div>
     </div>
+    
+    <?php include("../app/views/components/footer.php"); ?>
 
     <script>
         const contactBtn = document.getElementById('contactToggleBtn');
