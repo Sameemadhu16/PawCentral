@@ -27,11 +27,11 @@
                 ?>
                         <div class="request-card">
                             <div class="card-content">
-                                <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->postimg1) ?>');"></div>
+                                <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->postimg1) ?>'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
                                 <div class="details">
                                     <h3>Pet Name: <?= esc($request->name) ?></h3>
                                     <hr>
-                                    <p><strong>Adopter Name:</strong> <?= esc($request->adoptor_name) ?></p>
+                                    <p><strong>Adopter Name:</strong> <?= esc($request->name) ?></p>
                                     <p><strong>Contact:</strong> <?= esc($request->contact_no) ?></p>
                                     <p><strong>Residence:</strong> <?= esc($request->residence) ?></p>
                                     <p><strong>Garden Area:</strong> <?= esc($request->garden_area) ?><span> Perches</span></p>
@@ -43,6 +43,8 @@
                                 <form method="POST">
                                     <input type="hidden" name="pet_id" value="<?= esc($request->pet_id) ?>">
                                     <input type="hidden" name="id" value="<?= esc($request->id) ?>">
+                                    <input type="hidden" name="user_id" value="<?= esc($request->adoptor_id) ?>">
+                                    <input type="hidden" name="pet_name" value="<?= esc($request->name) ?>">
                                     <button class="btn btn-primary" type="submit" name="approve">Approve</button>
                                 </form>
 

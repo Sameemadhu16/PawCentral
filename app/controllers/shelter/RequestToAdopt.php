@@ -49,11 +49,13 @@ class RequestToAdopt{
 
             $adoptionModel = new AdoptionRequest;
             $postModel = new AdoptionPostModel;
+            $notificModel =new NotificationsModel;
             
             $postModel->update($_POST['pet_id'], ['status' => 1],'pet_id'); // Update the status to accepted (1)
             // show($_POST['pet_id']);
             // show($_POST['id']);
             $adoptionModel->update($_POST['id'], ['approved' => 1],'id'); // Update the status to accepted (1)
+            $notificModel->sendNotification($_POST['user_id'],"Adoption Request Accepted",'Adoption of '.$_POST['pet_name'].' by pet shelter');
             redirect('shelter/requests_to_adopt'); // Redirect after processing
         }
     }
