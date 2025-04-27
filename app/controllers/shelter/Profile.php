@@ -77,6 +77,9 @@ class Profile{
                 }
 
                 if(($model->update($_SESSION['user_id'], $data)) && $shelterModel->update($_POST['shelter_id'],$data1,'id') ){
+                    if(isset($_POST['img'])){
+                        $_SESSION['user']->profile_pic = $_POST['img'];
+                    } 
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Profile updated successfully'

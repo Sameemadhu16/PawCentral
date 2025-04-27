@@ -602,31 +602,55 @@ async function completeAppointment(button) {
 
 function cancelAppointment(button) {
     if (confirm('Are you sure you want to cancel this appointment?')) {
-        const card = button.closest('.appointment-card');
-        const completeBtn = card.querySelector('.btn-complete');
-        const cancelBtn = card.querySelector('.btn-cancel');
-        const undoBtn = card.querySelector('.btn-undo');
+        
 
-        addStatusSpan(card, 'Canceled', 'canceled');
-        completeBtn.disabled = true;
-        cancelBtn.disabled = true;
-        undoBtn.disabled = false;
-        undoBtn.style.display = 'block';
-
+        // Data passing to the controller in cancellation
         const appointmentId = button.getAttribute('data-appointment-id');
-        fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/cancelStatus`, { // Removed ID from URL
+        const ownerId = button.getAttribute('data-owner-id');
+        const date = button.getAttribute('data-app-date');
+        const time = button.getAttribute('data-app-time');
+        const petName = button.getAttribute('data-pet-name');
+        
+        // debugging logs
+        console.log('Cancelling appointment ID:', appointmentId);
+        console.log('Owner ID:', ownerId);
+        console.log('Date:', date);
+        console.log('Time:', time);
+        console.log('Pet Name:', petName);
+
+        fetch(`http://localhost/PawCentral/public/medical-center/dashboard/appointments/cancelStatus`, {
             method: 'POST',
             credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json' // Specify content type
-            },
-            body: JSON.stringify({ id: appointmentId }) // Send ID in the body
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ id: appointmentId, owner_id: ownerId, date: date, time:time, pet_name: petName}) 
         })
         .then(response => {
             if (!response.ok) {
                 console.error('Failed to update status to canceled');
                 // Optionally revert UI changes here if the API call fails
             }
+            return response.text().then(text => {
+                console.log('Cancel response:', text);
+                try {
+                    return JSON.parse(text);
+                } catch(e) {
+                    console.log('Not JSON response:', text);
+                    return { status: 'unknown', message: text };
+                }
+            });
+        })
+        .then(data => {
+            console.log('Cancel status updated successfully:', data);
+            const card = button.closest('.appointment-card');
+            const completeBtn = card.querySelector('.btn-complete');
+            const cancelBtn = card.querySelector('.btn-cancel');
+            const undoBtn = card.querySelector('.btn-undo');
+
+            addStatusSpan(card, 'Canceled', 'canceled');
+            completeBtn.disabled = true;
+            cancelBtn.disabled = true;
+            undoBtn.disabled = false;
+            undoBtn.style.display = 'block';
         })
         .catch(error => {
             console.error('Error during cancel appointment:', error);
@@ -919,7 +943,7 @@ function setupDateNavigation() {
                     <div class="actions">
                         <button class="btn-medRecord" data-owner-id="${appointment.owner_id}" data-pet-id="${appointment.pet_id}">View Medical Record</button>
                         <button class="btn-complete" data-appointment-id="${appointment.appointment_id}" data-pet-id="${appointment.pet_id}">Complete</button>
-                        <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}">Cancel</button>
+                        <button class="btn-cancel" data-appointment-id="${appointment.appointment_id}" data-owner-id="${appointment.owner_id}" data-app-date="${appointment.date}" data-app-time="${appointment.timeslot}" data-pet-name="${appointment.pet_name}">Cancel</button>
                         <button class="btn-undo" data-appointment-id="${appointment.appointment_id}" style="display:none">Undo</button>
                     </div>
                 `;

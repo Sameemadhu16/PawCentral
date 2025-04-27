@@ -30,4 +30,16 @@ class MedicalAppointment
         }
         return $appointment;
     }
+
+    public function getAppointmentsAhead($providerId, $date)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE date > :date AND med_id = :med_id ORDER BY date ASC, timeslot ASC";
+        $params = [
+            'date' => $date,
+            'med_id' => $providerId
+        ];
+        // $appointmentsCount = $this->query($query, $params)[0]['Count(*)'];
+        $appointments = $this->query($query, $params);
+        return $appointments;
+    }
 }

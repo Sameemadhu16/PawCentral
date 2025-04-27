@@ -85,6 +85,9 @@ class Profile{
                 }
                 
                 if($model->update($_SESSION['user_id'], $data) && $serviceModel->updateByUserId($_SESSION['user_id'],$dataService)){
+                    if(isset($_POST['img'])){
+                        $_SESSION['user']->profile_pic = $_POST['img'];
+                    } 
                     echo json_encode([
                         'status' => 'success',
                         'message' => 'Profile updated successfully'

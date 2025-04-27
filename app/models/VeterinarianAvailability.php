@@ -83,20 +83,25 @@ class VeterinarianAvailability {
         }
         
         // Find the latest start time and earliest end time
-        $latestStart = 0;
-        $earliestEnd = 24;
+        $earliestStart = $availabilityTimes[0]['start'];
+        $latestEnd = $availabilityTimes[0]['end'];
         
         foreach($availabilityTimes as $timeRange) {
-            if($timeRange['start'] > $latestStart) {
-                $latestStart = $timeRange['start'];
+            if($timeRange['start'] < $earliestStart) {
+                $earliestStart = $timeRange['start'];
             }
             
-            if($timeRange['end'] < $earliestEnd) {
-                $earliestEnd = $timeRange['end'];
+            // Adjust END time for 24-hour format
+            if($timeRange['start']>$timeRange['end']){
+                $timeRange['end'] += 12;
+            }
+            
+            if($timeRange['end'] > $latestEnd) {
+                $latestEnd = $timeRange['end'];
             }
         }
         
-        return ['start' => $latestStart, 'end' => $earliestEnd];
+        return ['start' => $earliestStart, 'end' => $latestEnd];
     }
     
     /**
