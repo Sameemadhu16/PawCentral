@@ -130,14 +130,18 @@ class Med_Dashboard_Appointments{
         exit();
     }
     //update status of appointment to cancel
-    public function cancelStatus() { // Removed $id parameter from signature
+    public function cancelStatus() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Content-Type: application/json');
             // Read JSON input from request body or fallback to POST form data
             $input = json_decode(file_get_contents('php://input'), true);
             $id = $input['id'] ?? $_POST['id'] ?? null;
+            $owner_id = $input['owner_id'] ?? $_POST['owner_id'] ?? null;
+            $date = $input['date'] ?? $_POST['date'] ?? null;
+            $time = $input['time'] ?? $_POST['time'] ?? null;
+            $pet_name = $input['pet_name'] ?? $_POST['pet_name'] ?? null;
 
-            if (!$id) {
+            if (!$id && !$owner_id) {
                 http_response_code(400);
                 echo json_encode(['status' => 'error', 'message' => 'No ID provided']);
                 return;
@@ -151,7 +155,14 @@ class Med_Dashboard_Appointments{
                  http_response_code(500);
                  echo json_encode(['status' => 'error', 'message' => 'Failed to update appointment status']);
             }
-            // redirect('medical-center/dashboard/appointments'); // Consider removing redirect
+
+            //send notification to the user
+            $notiModel=new NotificationsModel();
+            //get owner id by appointment table
+            $to=$owner_id;
+            $title="Cancelation of appointment";
+            $message = "We regret to inform you that the appointment for {$pet_name} scheduled on {$date} at {$time} has been cancelled. Please contact the clinic to reschedule. We apologize for any inconvenience.";
+            $notiModel->sendNotification($to,$title,$message);
             exit();
         }
         http_response_code(405);

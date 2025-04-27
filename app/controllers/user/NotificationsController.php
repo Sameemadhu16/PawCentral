@@ -12,7 +12,6 @@ class NotificationsController
         // Initialize the model
         $model = new NotificationsModel();
 
-        // Retrieve all pets
         $data['notifications'] = $model->getNotifications($_SESSION['user_id']);
         
          // Process images: convert binary `img1` data to Base64-encoded string
