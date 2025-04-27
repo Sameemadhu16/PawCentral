@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Events</title>
+    <title>PawCentral Admin Dashboard - Manage Events</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/user/events.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/form.css">
@@ -91,7 +91,7 @@
                                     </td>
                                     <td>
                                         <span class="status-badge status-<?= strtolower($event->status == 0 && $event->approved == 0 ? 'pending' : ($event->status == 0 && $event->approved == 1 ? 'approved' : 'rejected')) ?>">
-                                            <?= esc($event->status == 0 && $event->approved == 0 ? 'Pending' : ($event->status == 0 && $event->approved == 1 ? 'Approved' : ($event->status == 0 && $event->approved == 2 ? 'Rejected' : 'Closed' ))) ?>
+                                            <?= esc($event->status == 0 && $event->approved == 0 ? 'Pending' : ($event->status == 0 && $event->approved == 1 ? 'Approved' : ($event->status == 0 && $event->approved == 2 ? 'Rejected' : 'Closed'))) ?>
                                         </span>
                                     </td>
                                     <td>

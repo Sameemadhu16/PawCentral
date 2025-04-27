@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shelter Adoption Posts</title>
+    <title>Shelter Dashboard- Adoption Posts</title>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
@@ -55,41 +55,41 @@
                     </div>
 
                     <div class="post-list">
-                        <?php 
+                        <?php
                         $hasPosts = false;
-                        foreach ($posts as $post): 
-                            if ($post->is_deleted == 0 && $post->status == 0): 
+                        foreach ($posts as $post):
+                            if ($post->is_deleted == 0 && $post->status == 0):
                                 $hasPosts = true;
                         ?>
-                            <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?= $post->pet_id ?>'">
-                                <div class="post-card-content">
-                                    <!-- Post Images -->
-                                    <div class="post-images">
-                                        <div class="carousel">
-                                            <div class="carousel-inner">
-                                                <?php foreach ([$post->postimg1] as $index => $image): ?>
-                                                    <?php if ($image): ?>
-                                                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                            <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
-                                                        </div>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
+                                <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?= $post->pet_id ?>'">
+                                    <div class="post-card-content">
+                                        <!-- Post Images -->
+                                        <div class="post-images">
+                                            <div class="carousel">
+                                                <div class="carousel-inner">
+                                                    <?php foreach ([$post->postimg1] as $index => $image): ?>
+                                                        <?php if ($image): ?>
+                                                            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                                <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Post Details -->
-                                    <div class="post-details">
-                                        <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
-                                        <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
-                                        <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
-                                        <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
+                                        <!-- Post Details -->
+                                        <div class="post-details">
+                                            <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
+                                            <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
+                                            <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
+                                            <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php 
-                            endif; 
-                        endforeach; 
+                        <?php
+                            endif;
+                        endforeach;
                         ?>
 
                         <?php if (!$hasPosts): ?>
@@ -105,46 +105,46 @@
                     </div>
 
                     <div class="post-list">
-                        <?php 
+                        <?php
                         $hasAcceptedPosts = false;
-                        foreach ($posts as $post): 
-                            if ($post->status == 1 && $post->is_deleted == 0): 
+                        foreach ($posts as $post):
+                            if ($post->status == 1 && $post->is_deleted == 0):
                                 $hasAcceptedPosts = true;
                         ?>
-                            <div class="post-card">
-                                <div class="post-card-content">
-                                    <!-- Post Images -->
-                                    <div class="post-images">
-                                        <div class="carousel">
-                                            <div class="carousel-inner">
-                                                <?php foreach ([$post->postimg1] as $index => $image): ?>
-                                                    <?php if ($image): ?>
-                                                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                            <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
-                                                        </div>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
+                                <div class="post-card">
+                                    <div class="post-card-content">
+                                        <!-- Post Images -->
+                                        <div class="post-images">
+                                            <div class="carousel">
+                                                <div class="carousel-inner">
+                                                    <?php foreach ([$post->postimg1] as $index => $image): ?>
+                                                        <?php if ($image): ?>
+                                                            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                                <img class="post-image" src="<?= htmlspecialchars($image) ?>" alt="Post Image">
+                                                            </div>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Post Details -->
-                                    <div class="post-details">
-                                        <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
-                                        <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
-                                        <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
-                                        <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
-                                    </div>
+                                        <!-- Post Details -->
+                                        <div class="post-details">
+                                            <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
+                                            <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
+                                            <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
+                                            <p><strong>Breed:</strong> <?= htmlspecialchars($post->breed) ?></p>
+                                        </div>
 
-                                    <!-- Accepted Banner -->
-                                    <div class="accepted-banner">
-                                        <p>Adoption Request Accepted</p>
+                                        <!-- Accepted Banner -->
+                                        <div class="accepted-banner">
+                                            <p>Adoption Request Accepted</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php 
-                            endif; 
-                        endforeach; 
+                        <?php
+                            endif;
+                        endforeach;
                         ?>
 
                         <?php if (!$hasAcceptedPosts): ?>

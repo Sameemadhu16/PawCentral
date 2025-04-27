@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCentral Dashboard - Donations</title>
+    <title>PawCentral Admin Dashboard - Donations</title>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/donation.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="stat-card">
                     <h3>This Month</h3>
-                    <div class="value"><?=$thisMonthDons?> LKR</div>
+                    <div class="value"><?= $thisMonthDons ?> LKR</div>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
             <div class="pending-requests">
                 <?php foreach ($data['pending_donations'] as $request):  ?>
                     <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
-                        
+
                         <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>
                         <div class="card-content">
                             <h3><?= htmlspecialchars($request->title) ?></h3>
@@ -132,11 +132,11 @@
                     </thead>
                     <tbody>
                         <?php foreach ($data['all_requests'] as $allRequests):
-                             ?>
+                        ?>
                             <tr>
                                 <td><?= esc($allRequests->title); ?></td>
-                                
-                                <td><?=esc($allRequests->need_category)?></td>
+
+                                <td><?= esc($allRequests->need_category) ?></td>
                                 <td><?= esc($allRequests->amount); ?></td>
                                 <td><?= esc($allRequests->collected); ?></td>
                                 <td>
@@ -163,8 +163,8 @@
                                                 <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
                                             </form>
                                             <!-- Reject Button -->
-                                            <button type="button" class="action-btn reject-btn"  onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
-                                           
+                                            <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
+
                                             <button class="action-btn view-btn1" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $allRequests->id ?>'">View</button>
                                         <?php else:  ?>
                                             <!-- View Button -->
@@ -185,7 +185,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeRejectModal()">&times;</span>
             <h3>Reject Request</h3>
-            <form method="POST" >
+            <form method="POST">
                 <input type="hidden" name="id" id="rejectRequestId">
                 <label for="reason">Reason for Rejection:</label>
                 <textarea name="reason" id="reason" rows="4" required></textarea>

@@ -40,6 +40,8 @@ class AdminEventView {
         $data = [
             'event' => $viewEvents,
         ];
+
+        show($viewEvents->user_id);
         
         $this->view('admin/event_view', $data);
     }
@@ -54,15 +56,54 @@ class AdminEventView {
         return $eventDetails ? (object) $eventDetails[0] : false;
     }
 
-    private function approveEvent($eventId) {
+    private function approveEvent($eventId)
+    {
         $eventModel = new EventsModel;
+        $notifiModel = new NotificationsModel;
+
+        // 1. Approve the event
         $eventModel->update($eventId, ['approved' => 1], 'event_id');
+
+        // 2. Fetch the event details to get the user_id
+        $event = $eventModel->first(['event_id' => $eventId]);
+        if ($event) {
+            $userId = $event->user_id; // Assuming 'user_id' is the column name in your events table
+
+            // 3. Send notification to the event creator
+            $notifiModel->sendNotification(
+                $userId,
+                "Event Approved",
+                "Your event '" . $event->title . "' has been approved by the admin."
+            );
+        }
+
+        // 4. Redirect after process
         redirect('admin/event');
     }
 
-    private function rejectEvent($eventId) {
+
+    private function rejectEvent($eventId)
+    {
         $eventModel = new EventsModel;
+        $notifiModel = new NotificationsModel;
+
+        // 1. Update event as rejected
         $eventModel->update($eventId, ['approved' => 2], 'event_id');
+
+        // 2. Fetch the event details to get the user_id
+        $event = $eventModel->first(['event_id' => $eventId]);
+        if ($event) {
+            $userId = $event->user_id; // The event creator's ID
+
+            // 3. Send notification to the event creator
+            $notifiModel->sendNotification(
+                $userId,
+                "Event Rejected",
+                "Unfortunately, your event '" . $event->title . "' has been rejected by the admin."
+            );
+        }
+
+        // 4. Redirect after process
         redirect('admin/event');
     }
 }
