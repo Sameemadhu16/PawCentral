@@ -67,7 +67,7 @@
                                         <div class="post-details">
                                             <h3 class="hide_overflow"><?= htmlspecialchars($post->name) ?></h3>
                                             <p><strong>Species:</strong> <?= htmlspecialchars($post->species) ?></p>
-                                            <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> years</p>
+                                            <p><strong>Age:</strong> <?= htmlspecialchars($post->age) ?> Months</p>
                                             <p><strong>Breed:</strong><?= htmlspecialchars($post->breed) ?></p>
                                         </div>
 

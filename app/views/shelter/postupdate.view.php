@@ -29,7 +29,7 @@
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" value="<?= esc($post->name) ?>" required minlength="2" maxlength="50">
 
-                    <label for="age">Age:</label>
+                    <label for="age">Age (In Months):</label>
                     <input type="number" id="age" name="age" value="<?= esc($post->age) ?>" min="0" max="50" required>
 
                     <label for="height">Height (cm):</label>
