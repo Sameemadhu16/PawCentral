@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                     <button class="cancel-btn" onclick="cancelAppointment(<?= $app->appointment_id ?>)">
-                                        <i class="fas fa-times"></i> Cancel
+                                     Pending
                                     </button>
                                 </div>
                             <?php endforeach; ?>
