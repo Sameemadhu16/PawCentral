@@ -7,27 +7,33 @@ class Donation{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if (!($_SESSION['user_id'])) {
+        if($this->isAuthorized($this->valid_roles)){
 
-            redirect('home');
-        }
-        // Initialize the model
-        $model = new DonationsModel();
-
-        // Retrieve all pets
-        $requests['requests'] = $model->getUserReq();
-
-        // Process images: convert binary `img1` data to Base64-encoded string
-        foreach ($requests['requests'] as $req) {
-            if (isset($req->img)) {
-                $req->img = "data:image/jpeg;base64," . base64_encode($req->img); // Adjust MIME type if not JPEG
-            } else {
-                $req->timg = null;
+            if (!($_SESSION['user_id'])) {
+    
+                redirect('home');
             }
-        }
+            // Initialize the model
+            $model = new DonationsModel();
+    
+            // Retrieve all pets
+            $requests['requests'] = $model->getUserReq();
+    
+            // Process images: convert binary `img1` data to Base64-encoded string
+            foreach ($requests['requests'] as $req) {
+                if (isset($req->img)) {
+                    $req->img = "data:image/jpeg;base64," . base64_encode($req->img); // Adjust MIME type if not JPEG
+                } else {
+                    $req->timg = null;
+                }
+            }
+    
+            $this->view('shelter/donation', $requests);
 
-        $this->view('shelter/donation', $requests);
+        } else {
+            //access denied page
+            redirect('403');
+        }
     }
 
     public function AddReq()

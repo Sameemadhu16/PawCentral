@@ -7,21 +7,27 @@ class Profile{
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
-        if(!($_SESSION['user_id'])){
-            
-            redirect('home');
+        if($this->isAuthorized($this->valid_roles)){
+
+            if(!($_SESSION['user_id'])){
+                
+                redirect('home');
+            }
+    
+            $userModel = new UserProfilesModel();
+            $shelterModel = new ShelterModel();
+    
+            $user['profile'] = $userModel->getUserInf();
+            $user['shelter'] = $shelterModel->getShelterById($_SESSION['user_id']);
+    
+            // show($user['shelter']);
+    
+            $this->view('shelter/profile',$user);
+
+        } else {
+            //access denied page
+            redirect('403');
         }
-
-        $userModel = new UserProfilesModel();
-        $shelterModel = new ShelterModel();
-
-        $user['profile'] = $userModel->getUserInf();
-        $user['shelter'] = $shelterModel->getShelterById($_SESSION['user_id']);
-
-        // show($user['shelter']);
-
-        $this->view('shelter/profile',$user);
     }
 
     function update(){

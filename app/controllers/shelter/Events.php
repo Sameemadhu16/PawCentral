@@ -8,28 +8,34 @@ class Events
 
     public function index()
     {
-        $this->isAuthorized($this->valid_roles);
+        if($this->isAuthorized($this->valid_roles)){
 
-        if (!($_SESSION['user_id'])) {
-
-            redirect('home');
-        }
-        // Initialize the model
-        $model = new EventsModel();
-
-        // Retrieve all pets
-        $events['events'] = $model->getUserEvents();
-
-        // Process images: convert binary `img1` data to Base64-encoded string
-        foreach ($events['events'] as $event) {
-            if (isset($event->eventimg)) {
-                $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
-            } else {
-                $event->eventimg = null;
+            if (!($_SESSION['user_id'])) {
+    
+                redirect('home');
             }
+            // Initialize the model
+            $model = new EventsModel();
+    
+            // Retrieve all pets
+            $events['events'] = $model->getUserEvents();
+    
+            // Process images: convert binary `img1` data to Base64-encoded string
+            foreach ($events['events'] as $event) {
+                if (isset($event->eventimg)) {
+                    $event->eventimg = "data:image/jpeg;base64," . base64_encode($event->eventimg); // Adjust MIME type if not JPEG
+                } else {
+                    $event->eventimg = null;
+                }
+            }
+    
+            $this->view('shelter/events', $events);
+
+        } else {
+            //access denied page
+            redirect('403');
         }
 
-        $this->view('shelter/events', $events);
     }
 
     public function NewEvent()
