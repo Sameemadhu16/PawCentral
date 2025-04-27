@@ -43,12 +43,6 @@
                 <div class="image-preview-container"></div>
             </div>
             <div class="form-group">
-                <label for="license_proof">License Proof</label>
-                <input type="file" id="license_proof" name="license_proof" accept="image/*,.pdf">
-                <small>Accepted formats: PDF, JPG, JPEG, PNG, GIF</small>
-
-            </div>
-            <div class="form-group">
                 <input type="hidden" name="medical" value="1">
                 <button type="submit" id="save-button" class="save-button">Save Changes</button>
             </div>

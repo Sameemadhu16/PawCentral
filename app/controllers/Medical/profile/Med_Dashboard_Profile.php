@@ -90,34 +90,6 @@ class Med_Dashboard_Profile {
                 }
             }
             
-            // Handle license proof upload
-            if (isset($_FILES['license_proof']) && $_FILES['license_proof']['error'] == 0) {
-                $target_dir = "uploads/license-proofs/";
-                
-                // Create directory if doesn't exist
-                if (!file_exists($target_dir)) {
-                    mkdir($target_dir, 0777, true);
-                }
-
-                // Generate unique filename
-                $file_name = basename($_FILES['license_proof']['name']);
-                $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-                $target_file = $target_dir . uniqid() . "." . $file_ext;
-
-                // Validate file type
-                $allowed_types = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
-                if (!in_array($file_ext, $allowed_types)) {
-                    throw new Exception("Only JPG, JPEG, PNG, GIF & PDF files are allowed for license proof.");
-                }
-
-                // Upload the file
-                if (move_uploaded_file($_FILES['license_proof']['tmp_name'], $target_file)) {
-                    $medData['license_proof'] = $target_file;
-                } else {
-                    $error = error_get_last();
-                    throw new Exception("Failed to upload license proof: " . ($error ? $error['message'] : 'Unknown error'));
-                }
-            }
 
             // Update user profile in users table
             if (!$user->update($_SESSION['user']->id, $data)) {
