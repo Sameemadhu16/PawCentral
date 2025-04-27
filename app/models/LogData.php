@@ -155,6 +155,33 @@ class LogData {
         }
     }
 
+    public function testInapropriate(){
+        $inappropriateWords = ["badword1", "badword2", "nastyword", "anotherbadword"];
+
+// Assume the form sends input via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userInput = $_POST['yourInputFieldName']; // replace with your field name
+    $foundBadWord = false;
+
+    foreach ($inappropriateWords as $word) {
+        // Check if any bad word exists in the input (case-insensitive)
+        if (stripos($userInput, $word) !== false) {
+            $foundBadWord = true;
+            break;
+        }
+    }
+
+    if ($foundBadWord) {
+        echo "<p style='color: red;'>Submission failed: Inappropriate content detected!</p>";
+        // You can also redirect back or stop further processing
+    } else {
+        // Proceed normally
+        echo "<p style='color: green;'>Form submitted successfully!</p>";
+        // Process the form here...
+    }
+}
+    }
+
     
     public function checkUpcommingApp(){   
         // $this->insertLog("HERE2  ");

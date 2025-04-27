@@ -32,8 +32,8 @@
                     </div>
                     <div class="overflow-hide">
                         <p class="amount">
-                            <span class="collected">Raised: $<?= number_format($collected, 2) ?> / </span>
-                            $<?= number_format($amount, 2) ?>
+                            <span class="collected">Raised: LKR <?= number_format($collected, 2) ?> / </span>
+                            LKR <?= number_format($amount, 2) ?>
                         </p>
                     </div>
                     <a href="<?= ROOT ?>/donationsnsupport/req?id=<?= $request->id ?>" class="donate-button">Donate Now</a>

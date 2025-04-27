@@ -11,7 +11,7 @@ class Services {
         $location = $_GET['location'] ?? 'all';
         $service_type = $_GET['service_type'] ?? 'all';
         $page_no = $_GET['page'] ?? 1;
-        $page_size = 1; // Items per page
+        $page_size = 8; // Items per page
         
         // Calculate offset
         $offset = ($page_no - 1) * $page_size;

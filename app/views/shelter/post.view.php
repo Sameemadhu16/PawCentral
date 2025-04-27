@@ -389,10 +389,10 @@
                 <input type="number" id="age" name="age" min="1" max="240" required>
 
                 <label for="height">Height (cm):</label>
-                <input type="number" id="height" name="height" min="5" max="100" required>
+                <input type="number" id="height" name="height" min="5" max="150" required>
 
                 <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" name="weight" min="0.00" max="150" required>
+                <input type="number" id="weight" name="weight" min="0.00" max="80" required>
 
                 <script>
                     document.querySelector('form').addEventListener('submit', function(event) {
@@ -408,14 +408,14 @@
                         }
 
                         // Validate height
-                        if (height < 5 || height > 100) {
+                        if (height < 5 || height > 150) {
                             alert('Height must be between 5 and 100 cm.');
                             event.preventDefault(); // Prevent form submission
                             return;
                         }
 
                         // Validate weight
-                        if (weight < 0.02 || weight > 150) {
+                        if (weight < 0.02 || weight > 80) {
                             alert('Weight must be between 20g and 150 kg.');
                             event.preventDefault(); // Prevent form submission
                             return;
