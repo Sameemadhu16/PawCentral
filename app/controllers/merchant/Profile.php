@@ -63,7 +63,7 @@ class Profile{
                 $lastName = isset($_POST['last_name']) ? trim($_POST['last_name']) : '';
                 $fullName = $firstName . ' ' . $lastName;
                 $dataMerchant=[
-                    'merchant_name'=>$_POST[$fullName] ?? '',
+                    'merchant_name'=>$fullName,
                      'location' => $_POST['location'] ?? '',
                     'address' => $_POST['address'] ?? ''
                 ];

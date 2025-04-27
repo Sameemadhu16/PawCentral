@@ -47,7 +47,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="fees">Import Fees:</label>
+                    <label for="fees">Import Fees(Rs):</label>
                     <input type="number" id="fees" name="fees" required min="100" step="0.01">
                 </div>
                 
@@ -75,7 +75,7 @@
     const fee = parseFloat(document.getElementById('fees').value);
     const termsChecked = document.getElementById('terms').checked;
 
-    if (isNaN(fee) || fee < 100) {
+    if (isNaN(fee) || fee < 500000) {
       alert("Import fee must be at least Rs. 100.");
       return false;
     }
