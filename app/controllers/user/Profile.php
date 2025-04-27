@@ -3,12 +3,16 @@
 class Profile{
 
     use Controller;
+    private $roles = ['user'];
 
     function index(){
 
         if(!($_SESSION['user_id'])){
-            
+
             redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
         }
 
         $model = new UserProfilesModel();

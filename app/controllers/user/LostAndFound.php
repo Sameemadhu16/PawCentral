@@ -3,9 +3,18 @@
 class LostAndFound
 {
     use Controller;
+    private $roles=['user'];
 
     public function index()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if(!($_SESSION['user_id'])){
             
             redirect('home');
@@ -57,6 +66,14 @@ class LostAndFound
     // Mark as complete (delete)
     public function markAsComplete($mark_data)
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         // collect Data
         $insert=explode("?",$mark_data['id']);
         $id=$insert[0];
@@ -76,6 +93,13 @@ class LostAndFound
 
     public function createReport()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lostnfoundModel = new LostAndFoundModel();
 
@@ -140,6 +164,14 @@ class LostAndFound
 
     public function edit($id)
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if (!$id) {
             // Redirect if no ID is provided
             redirect('lostandfound');

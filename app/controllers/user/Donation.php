@@ -4,11 +4,18 @@ class Donation{
 
     use Controller;
 
+    private $roles = ['user'];
+
     function index(){
         if(!($_SESSION['user_id'])){
 
             redirect('home');
         }
+
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         // Initialize the model
         $model = new DonationsModel();
 
@@ -30,6 +37,13 @@ class Donation{
 
     public function AddReq(){
         
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $donations = new DonationsModel();
 
@@ -108,6 +122,14 @@ class Donation{
 
     //update Donation Requests: make approve = 0 for re review
     function EditReq($id){
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+
         if(!($_SESSION['user_id']) OR $id == NULL){
             redirect('userprofile/donations');
         }
@@ -132,6 +154,14 @@ class Donation{
     }
 
     function UpdateReq(){
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+
         //get data from the form and update the donation request in the table using updateInfo function in donationModel
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $donations = new DonationsModel();
@@ -179,6 +209,13 @@ class Donation{
             redirect('home');
         }
 
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         // Initialize the model
         $model = new DonationsModel();
         $post_id = $id['id']; //req id

@@ -47,6 +47,11 @@ class NotificationsController
 
     public function markAllRead()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+
         if (!isset($_SESSION['user_id'])) return;
         $user_id = $_SESSION['user_id'];
         $model = new NotificationsModel();
