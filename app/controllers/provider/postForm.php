@@ -118,9 +118,7 @@ class PostForm {
        
     }
     public function update(){
-        echo "<pre>";
-        print_r("hello");
-        echo "</pre>";
+     
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $id=$_POST['id'];
             if (!$id) {
