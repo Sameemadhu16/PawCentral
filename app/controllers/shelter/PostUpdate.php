@@ -23,7 +23,6 @@ class PostUpdate{
             $this->view('shelter/postupdate',$data);
 
         } else {
-            //access denied page
             redirect('403');
         }
 
@@ -32,17 +31,15 @@ class PostUpdate{
     private function getPostDetails()
     {
         if (!isset($_GET['id'])) {
-            redirect('shelter/post'); // Redirect if no ID is provided
+            redirect('shelter/post'); 
         }
 
 
         $id = $_GET['id'];
-        // show($id);
         $postMoldel = new AdoptionPostModel();
         $post = $postMoldel->getPostDetailsById(['pet_id' => $id]);
-        // show($post);
         if (!$post) {
-            redirect('shelter/post'); // Redirect if no donation is found
+            redirect('shelter/post'); 
         }
 
         return $post[0];
@@ -57,8 +54,6 @@ class PostUpdate{
             $updateData = [
 
                     'name' => $_POST['name'],
-                    // 'species' => $_POST['species'], // Ensure species is validated
-                    // 'breed' => $_POST['breed'],
                     'sex' => $_POST['sex'],
                     'age' => $_POST['age'],
                     'height' => $_POST['height'],
@@ -67,15 +62,11 @@ class PostUpdate{
                     'neutered' => $_POST['neutered'],
                     'trained' => $_POST['trained'],
                     'vaccinated' => $_POST['vaccinated'],
-                    // 'postimg1' => '',
-                    // 'postimg2' => '',
-                    // 'postimg3' => '',
                     'description' => $_POST['postdesc'] ?? '',
             ];
 
         $postModel->update($_POST['id'],$updateData,'pet_id');
 
         }
-        // $post = $postModel->update();
     }
 }

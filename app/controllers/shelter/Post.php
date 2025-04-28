@@ -17,7 +17,6 @@ class Post
     
             $posts['posts'] = $postModel->getUserPosts();
     
-            // Very important: decode images correctly
             foreach ($posts['posts'] as $post) {
                 if (isset($post->postimg1)){
                     $post->postimg1 = "data:image/jpeg;base64," . base64_encode($post->postimg1);
@@ -33,7 +32,6 @@ class Post
             $this->view('shelter/post', $posts);
 
         } else {
-            //access denied page
             redirect('403');
         }
     }
@@ -44,13 +42,13 @@ class Post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $postModel = new AdoptionPostModel;
 
-            $allowedSpecies = ['Cat', 'Dog', 'Other']; // Enum-like validation
+            $allowedSpecies = ['Cat', 'Dog', 'Other']; 
             $species = in_array($_POST['species'], $allowedSpecies) ? $_POST['species'] : 'Other';
 
             $data = [
                 'shelter_id' => $_SESSION['role_id'],
                 'name' => $_POST['name'],
-                'species' => $species, // Ensure species is validated
+                'species' => $species, 
                 'breed' => $_POST['breed'],
                 'sex' => $_POST['sex'],
                 'age' => $_POST['age'],
@@ -66,7 +64,6 @@ class Post
                 'description' => $_POST['postdesc'] ?? '',
             ];
 
-            // Upload images
             if (isset($_FILES['photos'])) {
                 $images = [];
                 foreach ($_FILES['photos']['tmp_name'] as $key => $tmpName) {
@@ -82,7 +79,6 @@ class Post
             if ($result) {
                 echo "Data inserted successfully. Redirecting...";
                 redirect('shelter/post');
-                // show($data);
                 exit;
             } else {
                 echo "Data insertion failed.";
