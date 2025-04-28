@@ -125,9 +125,7 @@ class PostForm {
                 echo "Error: Missing required data.";
                 return;
             }
-            echo "<pre>";
-            print_r($id);
-            echo "</pre>";
+           
         }
             $product_name = trim(htmlspecialchars($_POST['product_name'] ?? ''));
             $description = trim(htmlspecialchars($_POST['description'] ?? ''));
