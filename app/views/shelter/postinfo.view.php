@@ -171,7 +171,7 @@
             <p>Sex :</p><span><?= esc($post->sex) ?></span>
         </div>
         <div class="specs">
-            <p>Age (In Months):</p><span><?= esc($post->age) ?> years</span>
+            <p>Age (In Months):</p><span><?= esc($post->age) ?> months</span>
         </div>
         <!-- <div class="specs">
             <p>Color :</p><span>Brown</span>

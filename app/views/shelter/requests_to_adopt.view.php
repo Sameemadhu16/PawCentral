@@ -31,7 +31,7 @@
                                 <div class="details">
                                     <h3>Pet Name: <?= esc($request->name) ?></h3>
                                     <hr>
-                                    <p><strong>Adopter Name:</strong> <?= esc($request->name) ?></p>
+                                    <p><strong>Adopter Name:</strong> <?= esc($request->adoptor_name) ?></p>
                                     <p><strong>Contact:</strong> <?= esc($request->contact_no) ?></p>
                                     <p><strong>Residence:</strong> <?= esc($request->residence) ?></p>
                                     <p><strong>Garden Area:</strong> <?= esc($request->garden_area) ?><span> Perches</span></p>
