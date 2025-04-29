@@ -10,7 +10,7 @@ class FindMedi{
         $location = $_GET['location'] ?? 'all';
         $service_type = $_GET['medical_Name'] ?? 'all';
         $page_no = $_GET['page'] ?? 1;
-        $page_size = 5; // Items per page
+        $page_size = 6; // Items per page
         
         // Calculate offset
         $offset = ($page_no - 1) * $page_size;
@@ -45,7 +45,7 @@ class FindMedi{
         $medicalCenterModel = new MedicalProvModel;
         $medical_centers = $medicalCenterModel->get([], [
             'order_column' => 'name',
-            'order_type' => 'desc'
+            'order_type' => 'asc'
         ]);
         $this->view("medi.f/findMedi", ['medical_centers' => $medical_centers]);
     }

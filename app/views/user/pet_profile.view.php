@@ -26,10 +26,10 @@
                     <div class="profile-pic-container">
                         <div class="profile-pic">
                             <img src="<?=esc($pet->petimg)?>" alt="<?= htmlspecialchars($pet->name) ?>">
-                            <div class="edit-overlay" id="change-photo-btn">
+                            <!-- <div class="edit-overlay" id="change-photo-btn">
                                 <i class="fas fa-camera"></i>
                                 <span>Change Photo</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

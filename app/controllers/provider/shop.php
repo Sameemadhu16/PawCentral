@@ -13,6 +13,7 @@ class Shop{
         $userDetails=$user->first(['id'=>$shop_id]);
         // print_r($userDetails);
         // exit();
+        // $query="SELECT shop_products.*,users.first_name,users.last_name FROM shop_products join users on users.id=:shop_products.shop_id "
         $this->view('provider/shop',['ProductPosts'=>$ProductPosts,'shopsDetails'=>$shopsDetails,'userDetails'=>$userDetails]);
 
 

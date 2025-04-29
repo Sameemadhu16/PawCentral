@@ -118,18 +118,14 @@ class PostForm {
        
     }
     public function update(){
-        echo "<pre>";
-        print_r("hello");
-        echo "</pre>";
+     
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $id=$_POST['id'];
             if (!$id) {
                 echo "Error: Missing required data.";
                 return;
             }
-            echo "<pre>";
-            print_r($id);
-            echo "</pre>";
+           
         }
             $product_name = trim(htmlspecialchars($_POST['product_name'] ?? ''));
             $description = trim(htmlspecialchars($_POST['description'] ?? ''));

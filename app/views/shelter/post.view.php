@@ -111,7 +111,7 @@
                             if ($post->status == 1 && $post->is_deleted == 0):
                                 $hasAcceptedPosts = true;
                         ?>
-                                <div class="post-card">
+                                <div class="post-card" onclick="window.location.href='<?= ROOT ?>/shelter/postinfo?id=<?= $post->pet_id ?>'">
                                     <div class="post-card-content">
                                         <!-- Post Images -->
                                         <div class="post-images">

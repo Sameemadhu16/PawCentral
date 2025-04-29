@@ -83,7 +83,7 @@ class AdminDonation{
 
     private function getPendingRequests(){
         $donationModel = new DonationsModel;
-        $query = "SELECT * FROM donation_requests WHERE status= 0 AND approved = 0";
+        $query = "SELECT * FROM donation_requests WHERE status= 0 AND approved = 0 ORDER BY id DESC";
 
         $result = $donationModel->query($query);
         return $result;
