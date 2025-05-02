@@ -1,10 +1,11 @@
 :root {
-    --primary-color: #6A0DAD;
-    --secondary-color: #882FC8;
-    --accent-color: #FFFFFF;
-    --text-color: #000000;
-    --light-gray: #F0F0F0;
-    --dark-gray: #333333;
+    /* Using variables from main.css */
+    --primary-color: var(--primary);
+    --secondary-color: var(--hover-primary);
+    --accent-color: var(--secondary);
+    --text-color: var(--text-primary);
+    --light-gray: var(--background-light);
+    --dark-gray: var(--text-secondary);
     --container-padding: 5%;
 }
 
@@ -20,56 +21,69 @@
 
 .page-style-services .service-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     width: 100%;
     padding: 20px 0;
 }
 
 .page-style-services .service-card {
-    background-color: var(--accent-color);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: var(--card-shadow);
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-style-services .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .page-style-services .service-title {
-    color: var(--primary-color);
-    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-style-services .service-title h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin: 0;
 }
 
 .page-style-services .service-description {
-    color: var(--dark-gray);
-    font-size: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 15px;
 }
 
-.add-service-btn {
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    border: none;
-    padding: 0.625rem 1.25rem;
-    cursor: pointer;
-    margin-bottom: 1.25rem;
-    border-radius: 0.625rem;
-    font-weight: 600;
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
+.add-button-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
 }
 
-.page-style-services .edit-btn, .delete-btn {
-    background-color: var(--secondary-color);
-    color: var(--accent-color);
+.add-service-btn {
+    background-color: var(--button-normal);
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    padding: 0.625rem 1.25rem;
     border: none;
-    padding: 5px 10px;
+    border-radius: 0.4rem;
     cursor: pointer;
-    border-radius: 5px;
-    width: 85px;
+    transition: all 0.3s ease;
+}
+
+.add-service-btn:hover {
+    background-color: var(--button-normal-hover);
 }
 
 .page-style-services .buttons-div {
@@ -77,6 +91,74 @@
     gap: 10px;
 }
 
-.delete-btn {
-    background-color: var(--dark-gray);
+.page-style-services .delete-btn {
+    background-color: var(--danger);
+    color: var(--text-light);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+.page-style-services .delete-btn:hover {
+    background-color: var(--danger-dark);
+}
+
+/* Success and error messages */
+.success-message, .error-message {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.success-message {
+    background-color: rgba(var(--success), 0.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.error-message {
+    background-color: rgba(var(--danger), 0.1);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .page-style-services .service-cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .page-style-services .service-card {
+        padding: 1rem;
+    }
+    
+    .add-service-btn {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .page-style-services .service-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .add-button-div {
+        justify-content: center;
+    }
+    
+    .page-style-services .service-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .page-style-services .buttons-div {
+        align-self: flex-end;
+    }
 }

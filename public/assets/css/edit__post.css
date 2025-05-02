@@ -11,7 +11,9 @@ body {
     color: #333;
     padding: 20px;
 }
-
+.editpost {
+    text-align: center;
+}
 /* Header styling */
 .title h2 {
     font-size: 2em;
@@ -69,7 +71,7 @@ h3.location {
 
 /* Styling for buttons */
 button.button, .submit {
-    background-color: #28a745;
+    background-color: #720eb1;
     color: #fff;
     border: none;
     padding: 12px 20px;
@@ -81,7 +83,7 @@ button.button, .submit {
 }
 
 button.button:hover, .submit:hover {
-    background-color: #218838;
+    background-color: #720eb1;
 }
 
 /* Link styling */

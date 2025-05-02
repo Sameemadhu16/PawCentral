@@ -1,0 +1,21 @@
+//medical todo
+
+    change style
+        update btn 
+        save btn style
+
+    put a confirmation message for profile update
+
+    add loading animation when loading pages
+
+    //services
+        add other services input Field
+
+    //medical record
+    add a query in RegisterPet to get pending appointments
+    add form to the pending appointment
+    then apply submit to add data to the medical record table
+
+    then medical center can mark it as complete
+
+    make appointments as cancel when date passes

@@ -3,19 +3,26 @@
 class AdminEditAnnouncement
 {
     use Controller;
+    private $valid_roles = ['admin'];
 
     public function index()
     {
+        if($this->isAuthorized($this->valid_roles)){
 
-        $status=$this->getAnnouncement();
 
-        if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submitAnnouncement'])) {
-            $announcementModel = new Announcement;
-            $this->editAnnouncement($announcementModel, $status);
-
+            $status=$this->getAnnouncement();
+    
+            if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['submitAnnouncement'])) {
+                $announcementModel = new Announcement;
+                $this->editAnnouncement($announcementModel, $status);
+    
+            }
+            $this->view('admin/edit_announcement', ['announcement' => $status]);
+            // $this->view('admin/edit_announcement');
+        } else {
+            //access denied page
+            redirect('403');
         }
-        $this->view('admin/edit_announcement', ['announcement' => $status]);
-        // $this->view('admin/edit_announcement');
     }
 
     private function getAnnouncement()
@@ -27,16 +34,17 @@ class AdminEditAnnouncement
             $announcementModel = new Announcement();
             $announcement = $announcementModel->first(['id' => $id]);
 
-            // show($announcement);
-            //if the annocemnent exist s then pass to the view
-            if ($announcement) {
-                return $announcement;
-                // $this->view('admin/edit_announcement', ['announcement' => $announcement]);
-                // return true;
-            } else {
-                //redirect to the view announcement page
-                redirect('admin/announcement');
+            if($announcement->status=1){
+                if ($announcement) {
+                    return $announcement;
+                    // $this->view('admin/edit_announcement', ['announcement' => $announcement]);
+                    // return true;
+                } else {
+                    //redirect to the view announcement page
+                    redirect('admin/announcement');
+                }
             }
+            
         }
         // $this->view('admin/edit_announcement');
         //redirect to the view announcement page
@@ -48,16 +56,16 @@ class AdminEditAnnouncement
         $data = [
             'title' => $_POST['title'],
             'content' => $_POST['description'],
-            'updated_at' => date('Y-m-d H:i:s')
+            'updated_at' => date('Y-m-d H:i:s'),
         ];
 
         // Get the ID for the update
         $id = $_POST['id'] ?? null;
-        show($id);
+        // show($id);
 
         if ($id) {
             $announcementModel->update($id, $data);
-            show($announcementModel);
+            // show($announcementModel);
             redirect('admin/announcement');
         } else {
             $this->view('admin/edit_announcement', ['error' => 'Failed to update the announcement. Please try again.', 'announcement' => $status]);

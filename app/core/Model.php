@@ -3,10 +3,9 @@
 trait Model
 {
     use Database;
-    protected $limit = 10;
+    protected $limit = 100;
     protected $offset = 0;
-    protected $order_type = "desc";
-    protected $order_column = "id";
+    protected $order_type = "asc";
 
     // Generic get function for retrieving data with flexible options
     public function get($conditions = [], $options = [])
@@ -139,4 +138,40 @@ trait Model
 
         return $this->query($query, $data) !== false;
     }
+
+    public function getCount($table = null, $conditions = [])
+    {
+        $table = $table ?? $this->table;
+        $query = "SELECT COUNT(*) as count FROM $table";
+        $data = [];
+
+        // Add WHERE clause if conditions are specified
+        if (!empty($conditions)) {
+            $keys = array_keys($conditions);
+            $query .= " WHERE ";
+
+            foreach ($keys as $key) {
+                $query .= "$key = :$key AND ";
+            }
+
+            $query = rtrim($query, " AND ");
+            $data = $conditions;
+        }
+
+        $result = $this->query($query, $data);
+        return $result ? $result[0]->count : 0;
+    }
+
+    
+    public function getRoleIdById($id)
+    {
+        return $this->first(['user_id' => $id]);
+    }
+
+    public function getmedinfo($userid){
+        $query="SELECT * FROM medical_providers WHERE user_id = :userid";
+        return $this->query($query,['userid'=>$userid]);
+    }
 }
+
+

@@ -1,4 +1,3 @@
-
 // JavaScript to dynamically change the button text
 document.addEventListener('DOMContentLoaded', function() {
   const signupButton = document.getElementById('signup-button');
@@ -14,12 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Listen for changes on both radio buttons
-  isServiceYes.addEventListener('change', updateButtonText);
-  isServiceNo.addEventListener('change', updateButtonText);
+  // Check if radio button elements exist before adding event listeners
+  if (isServiceYes && isServiceNo) {
+    // Listen for changes on both radio buttons
+    isServiceYes.addEventListener('change', updateButtonText);
+    isServiceNo.addEventListener('change', updateButtonText);
+  }
 });
-
-
 
 //Function for dissapear error messages after 10 seconds
 document.addEventListener('DOMContentLoaded', function() {

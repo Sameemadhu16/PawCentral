@@ -1,0 +1,160 @@
+body {
+  font-family: 'Arial', sans-serif;
+  /* Soften the gradient for less intensity */
+  background: linear-gradient(to bottom right, #A83C32, #E67E22);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Content Section */
+.h1 {
+  font-size: 160px;
+  margin: 10px;
+  font-weight: 900;
+  color: #F9BF3B; /* Softer yellow for the 403 number */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.content p {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #FFF3E0; /* Softer color for better readability */
+}
+
+/* ASCII Art */
+.ascii-art {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.ascii-art pre {
+  font-size: 10px;
+  font-weight:bolder;
+  color: #F5E3D5; /* Softer color for the ASCII art */
+  margin: 0;
+  padding: 0px;
+  line-height: 1.2;
+}
+
+/* Button */
+.previous-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(139, 69, 19, 0.6); /* Softer brown with transparency */
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.home-btn:hover {
+  background-color: #A0522D; /* Softer hover color */
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 1em;
+  gap: 0px;
+  margin: 0px;
+  padding:10px;
+}
+
+.oops{
+  font-size: 2.3rem;
+  padding: 0;
+  margin: 0;
+  color: #F9BF3B; /* Softer yellow for the "Access Denied" text */
+}
+
+.error {
+  font-weight: 700;
+  font-size: 1.4em;
+  color: #FFF3E0; /* Softer color for better readability */
+}
+
+.valid-roles {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1.2em;
+}
+
+.valid-roles span {
+  background-color: #A0522D;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+/* Media queries */
+@media(max-width:1100px) {
+  .h1{
+      font-size: 130px;
+  }
+  .ascii-art pre {
+      font-size: 6px;
+    }
+    .oops{
+      font-size: 2rem;
+      color: #F9BF3B; /* Softer yellow for the "Access Denied" text */
+  }
+  .error {
+      font-weight: 700;
+      font-size: 1.3em;
+      color: #FFF3E0; /* Softer color for better readability */
+  }
+    .home-btn {
+      padding: 12px 30px;
+      font-size: 20px;
+    }
+}
+
+@media(max-width:520px) {
+  .h1{
+      font-size: 100px;
+  }
+  .ascii-art pre {
+      font-size: 4px;
+  }
+  .ascii-art {
+      flex-direction: column;
+  }
+  .oops{
+      font-size: 1.8rem;
+      color: #F9BF3B; /* Softer yellow for the "Access Denied" text */
+  }
+  .error {
+      font-size: 1.1em;
+      color: #FFF3E0; /* Softer color for better readability */
+  }
+  .home-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  }
+}

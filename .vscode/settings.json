@@ -4,5 +4,12 @@
         "DBPASS",
         "DBUSER",
         "pawcentral"
-    ]
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "php": true
+    }
 }

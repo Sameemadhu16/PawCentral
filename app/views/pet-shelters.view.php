@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/petposts.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/search_cont.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/components/pagination.css">
 </head>
 <body>
     
@@ -12,127 +15,76 @@
 
     <h1 class="heading">Shelters</h1>
 
-  <div class="containers">
-      <!-- Search Container -->
-      <div class="search-container shelters">
-        <div class="searchbox shelters">
-            <label for="">Location</label>
-        <select>
-            <option>Anywhere</option>
-            <option>Panadura</option>
-            <option>asdsdadsasdasdsadgasod</option>
-        </select>
+    <div class="containers">
+        <!-- Search Container -->
+        <div class="search-container shelters">
+    <form method="GET" action="<?= ROOT ?>/shelters" class="shelter-search-form">
+        <div class="searchbox-container">
+            <div class="search-field">
+                <label for="location" class="search-label">Find Pet Shelters by Location</label>
+                <select name="location" id="location" class="location-select">
+                    <option value="all" <?= $pagination['location'] === 'all' ? 'selected' : '' ?>>Anywhere</option>
+                    <?php foreach ($locations as $loc): ?>
+                        <option value="<?= htmlspecialchars($loc->location) ?>" 
+                                <?= $pagination['location'] === $loc->location ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($loc->location) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <button type="submit" class="search-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="search-icon">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                Search
+            </button>
         </div>
+    </form>
+</div>
 
-        <div class="searchbox shelters">
-            <label for="">animal</label>
-        <select>
-            <option>Any</option>
-            <option>Dogs</option>
-            <option>Cats</option>
-            <option>Other</option>
-        </select>
-        </div>
-
-        <button>Search</button>
-    </div>
-    
-
-    <!-- Results Container (Cards) -->
-    <div class="results-container">
         
-        <div class="card">           
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_1.jpg" alt="Puppy">
-            <p class="name">Happy Paws shelter</p>
-            <div class="centre-info">
-                <p>Kalutara</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="medicalcare/id" class="btn-appointment">See more</a>
+
+        <!-- Results Container (Cards) -->
+        <div class="results-container">
+            <?php if (!empty($shelters)): ?>
+                <?php foreach ($shelters as $shelter): ?>
+                    <div class="card">
+                        <img src="<?= ROOT . '/' . ($shelter->image ? $shelter->image : 'assets/images/logos/def.jpg') ?>" alt="<?= htmlspecialchars($shelter->name) ?>">
+                        <p class="name"><?= htmlspecialchars($shelter->name) ?></p>
+                        <div class="centre-info">
+                            <p><?= htmlspecialchars($shelter->location) ?></p>
+                            <!-- <p class="hours"><?= htmlspecialchars($shelter->operating_hours) ?></p> -->
+                            <!-- <p>Contact: <?= htmlspecialchars($shelter->contact_no) ?></p> -->
+                        </div>
+                        <a href="<?= ROOT ?>/petshelters/details?id=<?= $shelter->id ?>" class="btn-appointment">See more</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No shelters found in this location.</p>
+            <?php endif; ?>
         </div>
 
-        <div class="card">    
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_2.png" alt="Dog">
-            <p class="name">Treat - veterinary Clinic</p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
+        <?php if (isset($pagination) && $pagination['total_pages'] > 1): ?>
+            <div class="pagination-container">
+                <?php if ($pagination['current_page'] > 1): ?>
+                    <a href="<?= ROOT ?>/shelters?page=<?= $pagination['current_page'] - 1 ?>&location=<?= $pagination['location'] ?>" class="pagination-button">Previous</a>
+                <?php endif; ?>
 
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_2.jpg" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
+                <?php for ($i = 1; $i <= $pagination['total_pages']; $i++): ?>
+                    <a href="<?= ROOT ?>/shelters?page=<?= $i ?>&location=<?= $pagination['location'] ?>" 
+                       class="pagination-button <?= $i == $pagination['current_page'] ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
 
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/services/service_3.jpg" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
+                <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
+                    <a href="<?= ROOT ?>/shelters?page=<?= $pagination['current_page'] + 1 ?>&location=<?= $pagination['location'] ?>" class="pagination-button">Next</a>
+                <?php endif; ?>
             </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_1.png" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_5.png" alt="Puppy">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_2.png" alt="Dog">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a> 
-        </div>
-
-        <div class="card">
-            <img src="<?= ROOT ?>/assets/images/pets/medical_centres/med_3.png" alt="Cat">
-            <p class="name">Lorem Ipsum </p>
-            <div class="centre-info">
-                <p>Nalluruwa</p>
-                <p class="hours">Mon-Fri: 8am - 6pm</p>
-            </div>
-            <a href="/book" class="btn-appointment">See more</a>
-        </div>
-
+        <?php endif; ?>
     </div>
 
-  </div>
-    <!-- Pagination -->
-    <div class="pagination">
-        <a href="#">&lt;</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">&gt;</a>
-    </div>
-
+    <!-- FOOTER -->
+    <?php include("../app/views/components/footer.php")?>
 </body>
 </html>

@@ -49,9 +49,9 @@
     
 }
 
-.card {
+.cards-container .card {
     width: 150px;
-    background-color:  #FFD692;
+    background-color: #FFD54F;
     padding: 15px;
     border-radius: 8px;
     position: relative;
@@ -63,10 +63,11 @@
     cursor: pointer;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background-color: #ffca76;
+/* Hover effect */
+.cards-container .card:hover {
+    transform: translateY(-5px); /* Slightly lifts the card */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow */
+    background-color: #ffc107; 
 }
 
 

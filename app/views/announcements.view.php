@@ -16,17 +16,17 @@
     <div class="announcement-sec">
         <div id="announcements">
             <!-- Announcements will be inserted here by PHP -->
+             <?php foreach ($announcements as $announcement): ?>
+                <div class="announcement">
+                    <h2> <?=$announcement->title?></h2>
+                    <div class="meta">Date: <?=date('Y-m-d', strtotime($announcement->created_at))?> | Time: <?=date('H:i:s', strtotime($announcement->created_at))?></div>
+                    <p style="padding:5px"><?= esc($announcement->content)?></p>
+                </div>
+                <?php endforeach; ?>
         </div>
     </div>
-    <div class="pagination">
-        <button id="prevPage" onclick="changePage(-1)">Previous</button>
-        <span id="currentPage" class="current-page">1</span>
-        <button id="nextPage" onclick="changePage(1)">Next</button>
-    </div>
-    
+
     <!-- FOOTER -->
 <?php include("../app/views/components/footer.php")?>
-
-    <script src="<?= ROOT?>/assets/js/announcements.js"></script>
 </body>
 </html>

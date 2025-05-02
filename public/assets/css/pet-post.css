@@ -205,7 +205,20 @@
 
 /* Description section */
 .description-section {
-    margin-top: 10px;
+    text-align: left;
+    padding: 0;              /* Remove default padding */
+    margin: 0 auto;          /* Keep it centered if needed */
+    max-width: 800px;        /* Optional: restrict width */
+    width: 100%;             /* Use full container width */
+}
+
+.description-section .description {
+    text-align: left;        /* Ensure left alignment */
+    padding: 0;              /* Remove any padding pushing it inward */
+    margin: 0;
+    white-space: pre-wrap;   /* Wrap long text with line breaks preserved */
+    word-wrap: break-word;
+    display: block;
 }
 .description-section h3 {
     font-size: 18px;
@@ -216,7 +229,9 @@
     font-size: 14px;
     color: #333;
 }
+.section-sell-section {
 
+}
 
 /* Responsive Design */
 @media (max-width: 400px) {

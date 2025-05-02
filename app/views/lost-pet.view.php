@@ -6,6 +6,7 @@
     <title>Lost & Found Pets</title>
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/lost-pet.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
+    <!-- <link rel="stylesheet" href="<?=ROOT?>/assets/css/lostandfound.css"> -->
 </head>
 <body>
     <?php include("../app/views/components/header.php"); ?>
@@ -13,13 +14,13 @@
     <div class="lost-pet-container">
         <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <h1><a href="<?=ROOT?>/lostandfound">Lost & Found pets</a> / <?= htmlspecialchars($pet->status) ?></h1>
+            <h1><a href="<?=ROOT?>/lostandfound">Lost & Found pets</a> / <?= htmlspecialchars($pet->status) ?> <?= htmlspecialchars($pet->type) ?> </h1>
         </div>
 
         <!-- Post Title -->
         <div class="post-title">
             <span id="pet-name"><?= htmlspecialchars($pet->petName ?? 'Unknown') ?></span> 
-            - <span id="pet-breed"><?= htmlspecialchars($pet->breed ?? 'Unknown') ?></span>
+            <span id="pet-breed"><?= htmlspecialchars($pet->breed !='Other' ? " - ".$pet->breed : '') ?></span>
         </div>
 
         <!-- Post Info -->
@@ -41,8 +42,9 @@
         <div class="specs"><p>Height :</p><span><?= htmlspecialchars($pet->height ?? 'Unknown') ?> ft</span></div>
         <div class="specs"><p>Sex :</p><span><?= htmlspecialchars($pet->sex ?? 'Unknown') ?></span></div>
         <div class="specs"><p>Age :</p><span><?= htmlspecialchars($pet->age ?? 'Unknown') ?> months</span></div>
-        <div class="specs"><p>Health Condition :</p><span><?= htmlspecialchars($pet->health_condition ?? 'Unknown') ?></span></div>
+        <div class="specs"><p>Health Condition :</p><span><?= htmlspecialchars($pet->health ?? 'Unknown') ?></span></div>
         <div class="specs"><p>Color :</p><span><?= htmlspecialchars($pet->color ?? 'Unknown') ?></span></div>
+        
 
         <!-- Contact Info -->
         <div class="contact-section">
@@ -51,6 +53,12 @@
             <div class="contact-info">
                 <span id="phone" class="reveal-info" data-info="<?= htmlspecialchars($pet->contactNo ?? 'N/A') ?>">Click to show</span>
             </div>
+        </div>
+
+        <div class="contact-section">
+        <?php if ($pet->reward != 0 or $pet->reward != null): ?>
+            <div class="glimmer-button" style="width:block;"><span><?= htmlspecialchars($pet->reward ?? '0') ?></span> LKR Reward</div>
+        <?php endif; ?>
         </div>
 
         <!-- Description -->

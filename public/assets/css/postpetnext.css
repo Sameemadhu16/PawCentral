@@ -1,161 +1,147 @@
-/* Reset default margin and padding */
-* {
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Container settings */
-.container {
-    max-width: auto;
-    margin: 0 auto;
-    padding: 20px 165px;
 }
 
 /* Title Styling */
-.title h2 {
-    font-size: 28px;
+.title {
     text-align: center;
+    margin: 20px 0;
+}
+
+.title h2 {
+    font-size: 32px;
+    color: #333;
+}
+
+.title hr {
+    width: 50px;
+    height: 2px;
+    background-color: #333;
+    border: none;
+    margin: 10px auto;
+}
+
+/* Main Content Layout */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Column: Guidelines */
+.guidelines {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.guidelines h3 {
+    font-size: 20px;
     color: #333;
     margin-bottom: 10px;
 }
 
-hr {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-top: 2px solid #eee;
+.guidelines ul {
+    list-style: none;
+    padding: 0;
 }
 
-/* Flexbox Layout for Content */
-.div1and2 {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.list {
-    width: 50%;
-}
-
-.list ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.list h4 {
+.guidelines ul li {
     font-size: 16px;
-    font-weight: 600;
+    margin-bottom: 8px;
     color: #555;
+}
+
+/* Right Column: Upload Form */
+.upload-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.upload-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #333;
+    display: block;
     margin-bottom: 5px;
 }
 
-.list p {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-/* File Upload Box */
-.drag-box {
-    width: 45%;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    background-color: #fafafa;
-}
-
-.drag-box h1 {
-    font-size: 18px;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-/* File Input and Submit Button */
-.upload-div {
+input[type="file"] {
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
 }
 
-.upload {
-    width: 50%;
-    padding: 12px 0;
+/* Upload Button */
+.upload-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
     background-color: #b720fe;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-.upload:hover {
-    background-color: #7d0eb1;
+.upload-btn:hover {
+    background-color: #7b0eb1;
 }
 
-/* Summary Text */
+/* Summary Section */
 .summary {
-    margin-bottom: 20px;
+    max-width: 900px;
+    margin: 20px auto;
     text-align: center;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 8px;
 }
 
-.summary h4 {
-    font-size: 14px;
-    color: #555;
-    font-weight: 400;
-}
-
-/* Next Button */
-.next {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.next button {
-    width: 15%;
-    padding: 12px 0;
-    background-color: #b720fe;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.summary p {
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    color: #333;
 }
 
-.next button:hover {
-    background-color: #7d0eb1;
-}
-
-/* Responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        padding: 40px 20px;
-    }
-
-    .div1and2 {
+    .content {
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
     }
 
-    .list, .drag-box {
+    .guidelines, .upload-section {
         width: 100%;
     }
 
-    .upload {
-        width: 40%;
-    }
-
-    .next button {
-        width: 40%;
+    .upload-btn {
+        width: 100%;
     }
 }

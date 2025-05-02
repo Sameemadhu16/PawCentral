@@ -20,8 +20,8 @@
         <main>
 
             <section class="signup-hero">
-                <h2>Find a pet</h2>
-                <p>Get access to all the pet related services.</p>
+                <h2>Hey, Welcome Back!</h2>
+                <!-- <p style="margin:10px">Get access to all the pet related services.</p> -->
                 <span class="image-container">
                     <img src="./assets/images/signupdog.jpg" alt="Happy dog" class="pet-image">
                 </span>
@@ -64,6 +64,9 @@
             </section>
         </main>
     </div>
+    
+    <!-- FOOTER -->
+<?php include("../app/views/components/footer.php")?>
     <script src="./assets/js/signup.js"></script>
 </body>
 

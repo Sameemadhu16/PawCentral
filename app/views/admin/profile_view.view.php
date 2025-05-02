@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCentral Dashboard - Admin Profile</title>
+    <title>PawCentral Admin Dashboard - Admin Profile</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/profile_view.css"> <!-- Link to external CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
@@ -15,7 +16,7 @@
 
     <div class="main-container">
         <div>
-            <!-- <?php include("../app/views/components/admin/adminSidebar.php"); ?> -->
+
         </div>
 
         <div class="container">
@@ -60,7 +61,7 @@
                         </div>
 
                         <div class="button-section">
-                            <button type="submit" class="update-button" name="admin">Save</button>
+                            <button type="submit" class="btn btn-primary" name="admin"><span>Save Profile</span></button>
                         </div>
                     </form>
                 </div>

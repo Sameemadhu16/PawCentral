@@ -1,0 +1,170 @@
+:root {
+  /* Primary Colors */
+  --primary-dark: #6d2eff;  
+  --primary: #8049fe;
+  --primary-light: #a27aff;
+  --yel-color: #FFD700;
+  
+  /* Secondary Colors */
+  --secondary: #FFFFFF;
+  --secondary-dark: #f0f0f0;
+  --secondary-light: #ffffff;
+  
+  /* Background Colors */
+  --background-container: #ebebeb;
+  --background-light: #f5f5f5;
+  --background-dark: #e0e0e0;
+  
+  /* Text Colors */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --text-light: #ffffff;
+  
+  /* Status Colors */
+  --success: #28a745;
+  --success-dark: #1e7e34;
+  --warning: #ffc107;
+  --warning-dark: #d39e00;
+  --danger: #dc3545;
+  --danger-black: #000000;
+  --danger-dark: #c82333;
+  --info: #17a2b8;
+  --info-dark: #138496;
+  
+  /* Border Colors */
+  --border-light: rgba(0, 0, 0, 0.1);
+  --border-medium: rgba(0, 0, 0, 0.2);
+  
+  /* Shadow Colors */
+  --shadow-sm: rgba(0, 0, 0, 0.05);
+  --shadow-md: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  /* Overlay Colors */
+  --overlay-light: rgba(255, 255, 255, 0.8);
+  --overlay-dark: rgba(0, 0, 0, 0.7);
+  
+  /* State Colors */
+  --hover-white: #fff;
+  --hover-primary: #7628b4;
+  --active-primary: #6b0dad;
+  --disabled: #cccccc;
+  
+  /* Accent Colors */
+  --gold: #FFD700;
+  --accent-blue: #007bff;
+  --accent-green: #00c853;
+  --accent-purple: #9c27b0;
+
+  /* BUTTON COLORS */
+  --button-normal: rgb(128, 73, 254, .9);
+  --button-normal-hover: rgb(128, 73, 254);
+  --warn-button: var(--danger);
+  --warn-button-hover: var(--danger-dark);
+  --light-purple: rgb(128, 73, 254, .4);
+  --light-light-purple: rgb(128, 73, 254, .2);
+
+  /* Search bar color */
+  --search-bar-color:rgb(128, 73, 254,.9);
+  
+  /* Scroll bar color  */
+  --scrollbar-color:rgb(128, 73, 254,.4) #ffffff;
+
+
+  /* Box Shadows */
+  --section-div-shadow:0 6px 8px rgba(0, 0, 0, 0.15);
+  --card-shadow:0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-shadow-hover:0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-container);
+}
+
+.container {
+    max-width: auto;
+    /* margin: 0 auto; */
+    padding: 30px 165px;
+    min-height: 55vh;
+    
+    /* display: flex; */
+}
+
+.containers {
+    min-height: 55vh;
+}
+/* Common Button Styles */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    color: var(--text-primary);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-dark);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: var(--text-light);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-dark);
+}
+
+/* Common Card Styles */
+.card {
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    box-shadow: 4px 6px 8px var(--shadow-lg);
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px var(--shadow-lg), 0 4px 8px var(--shadow-md);
+}
+
+@import url('/assets/css/components/search_bar.css');
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 22px 15px;
+    }
+}
+
+@media screen and (min-width: 1445px) {
+    .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 20px 0px;
+    }
+    
+}

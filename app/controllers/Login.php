@@ -1,58 +1,122 @@
 <?php
 
+/**
+ * Login Controller Class
+ * Handles user authentication and login functionality for all user types
+ */
 class Login{
     use Controller;
 
+    /**
+     * Main index method for the login page
+     * Handles both GET and POST requests
+     */
     public function index() {
-
+        // Check if form was submitted via POST
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             $this->authenticate();
         }
 
-         // Display the login form, check for any session errors
+        // Display login form and handle any error messages
         $data['errors'] = $_SESSION['errors'] ?? [];
         unset($_SESSION['errors']); // Clear errors after displaying
         $this->view("signupLogin.f/login",$data);
     }
 
-    private function authenticate() {
+    /**
+     * Authenticate user credentials and handle login process
+     * Creates necessary session variables upon successful login
+     */
+    private function authenticate()
+    {
+        // Initialize model instances for different user types
         $user = new User;
+        $medprov = new MedicalProvModel;
+        $seller = new SellerModel;
+        $shelter = new ShelterModel;
+        $serviceprov = new ServiceProvModel;
 
+        // Get form inputs
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
+        // Validate that both email and password were provided
         if (empty($email) || empty($password)) {
-            // Set error messages in session and redirect back to /login
             $_SESSION['errors'] = ['Please enter your email and password'];
             redirect('login');
         }
 
+        // Attempt to validate user credentials
         if ($user->validateLogin($email, $password)) {
-            // Set user session and redirect to home
-            $_SESSION['user'] = $user->getUserByEmail($email);
+            // Get user data
+            $userData = $user->getUserByEmail($email);
+
+            // Check if user is blocked
+            if ($userData->status === 'block') {
+                $_SESSION['errors'] = ['Your account has been suspended. Please contact support for assistance.'];
+                redirect('login'); // Redirect to 403 Forbidden page
+            }
+
+            // Set up basic user session data (only if not blocked)
+            $_SESSION['user'] = $userData;
             $_SESSION['user_id'] = $_SESSION['user']->id;
-            if ($_SESSION['user']->role == 'admin') {
-                redirect('admin/overview');
+            $_SESSION['user_role'] = $_SESSION['user']->role;
+
+            // Route users to different pages based on their role
+            switch ($_SESSION['user']->role) {
+                case 'admin':
+                    // For admin users
+                    $_SESSION['role_id'] = $_SESSION['user']->id;
+                    redirect('admin/overview');
+                    break;
+
+                case 'shelter':
+                    // For shelter organizations
+                    $roleid = $shelter->getRoleIdById($_SESSION['user_id']);
+                    $_SESSION['role_id'] = $roleid->id;
+                    redirect('shelter/profile');
+                    break;
+
+                case 'medical_provider':
+                    // For medical providers
+                    $roleid = $medprov->getRoleIdById($_SESSION['user_id']);
+                    $medinfo=$medprov->getmedinfo($_SESSION['user_id']);
+                    // echo json_encode($medinfo);
+                    $_SESSION['role_id'] = $roleid->med_id;
+                    $_SESSION['medInfo']=$medinfo;
+                    echo "<script>console.log('Role ID: " . $_SESSION['role_id'] . "');</script>";
+                    redirect('medical-center/dashboard');
+                    break;
+
+                case 'seller':
+                    // For product sellers
+                    $roleid = $seller->getRoleIdById($_SESSION['user_id']);
+                    $_SESSION['role_id'] = $roleid->merchant_id;
+                    redirect('service');
+                    break;
+
+                case 'service_prov':
+                    // For service providers
+                    $roleid = $serviceprov->getRoleIdById($_SESSION['user_id']);
+                    $_SESSION['role_id'] = $roleid->merchant_id;
+                    redirect('provider/profile');
+                    break;
+
+                default:
+                    // For regular users
+                    redirect('home');
             }
-            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'adoption-shelter') {
-                redirect('shelter/profile');
-            }
-            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'medical-provider') {
-                redirect('medical-center/dashboard');
-            }
-            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'seller') {
-                redirect('service');
-            }
-            elseif ($_SESSION['user']->role == 'user' && $_SESSION['user']->service_type == 'care-service-provider') {
-                redirect('provider/profile');
-            }
-        
-            redirect('home');
-            // show($_SESSION['user']);
         } else {
-            // Set error messages in session and redirect back to /login
+            // Handle failed login attempt
             $_SESSION['errors'] = $user->errors;
             redirect('login');
         }
+    }
+    /**
+     * Placeholder method for getting user role
+     * Currently not implemented
+     */
+    private function get_user_role($user_id){
+        // TODO: Implement role retrieval logic if needed
     }
 }

@@ -5,6 +5,7 @@ class Med_Dashboard_Veterinarians {
 
     public function index($parms = null) {
         $id = $parms['id'] ?? null;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Content-Type: application/json');
             $veterinarianModel = new Veterinarians;
@@ -31,14 +32,9 @@ class Med_Dashboard_Veterinarians {
             return;
         }
 
-        // Remove the PUT request handling since we're using POST for edits
-
+        //get the veterinarians
         $veterinarianModel = new Veterinarians;
-        $veterinarians = $veterinarianModel->get([], [
-            'order_column' => 'name',
-            'order_type' => 'desc'
-        ]);
-        echo json_encode($veterinarians);
+        $veterinarians = $veterinarianModel->where(['med_id' => $_SESSION['role_id']]);    
         $this->view("medi.f/profile/med-veterinarians",['veterinarians' => $veterinarians]);
     }
 
@@ -54,17 +50,17 @@ class Med_Dashboard_Veterinarians {
 
         try {
             $veterinarianModel = new Veterinarians;
-            $vet = $veterinarianModel->first(['id' => $id]);
+            $vet = $veterinarianModel->first(['vet_id' => $id]);
             
             if ($vet) {
                 echo json_encode([
                     'status' => 'success',
                     'vet' => [
-                        'id' => $vet->id,
+                        'id' => $vet->vet_id,
                         'name' => $vet->name,
                         'experience' => $vet->experience,
                         'availability' => $vet->availability,
-                        'image_url' => $vet->image_url
+                        'img' => $vet->img
                     ]
                 ]);
             } else {
@@ -82,40 +78,40 @@ class Med_Dashboard_Veterinarians {
             $rootUrl='http://localhost/PawCentral/public/assets/';
             $baseUploadPath = $_SERVER['DOCUMENT_ROOT'] . '/PawCentral/public/assets/uploads/vet-images/';
             $baseUploadUrl = $rootUrl . 'uploads/vet-images/';
-            $defaultImageUrl = $rootUrl . 'images/sample.jpg';
+            $defaultImageUrl = $rootUrl . 'images/user/default_user.jpg';
 
             // Handle image upload
-            if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
-                $imageUrl = $defaultImageUrl;
-            } else {
+            $imageUrl = $defaultImageUrl; // Set default image URL first
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $imageName = time() . '_' . $_FILES['image']['name'];
                 $uploadPath = $baseUploadPath . $imageName;
-                $imageUrl = $baseUploadUrl . $imageName;
+                $tempImageUrl = $baseUploadUrl . $imageName;
 
                 if (!is_dir($baseUploadPath)) {
                     mkdir($baseUploadPath, 0777, true);
                 }
 
-                if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-                    throw new Exception('Failed to move uploaded file');
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+                    $imageUrl = $tempImageUrl;
                 }
             }
 
             $data = [
                 'name' => $_POST['name'] ?? '',
-                'image_url' => $imageUrl,
+                'img' => $imageUrl,
                 'experience' => $_POST['experience'] ?? '',
-                'availability' => $_POST['availability'] ?? ''
+                'availability' => $_POST['availability'] ?? '',
+                'med_id' => $_SESSION['role_id'] ?? null
             ];
 
             // Validate data
             foreach ($data as $key => $value) {
-                if (empty($value)) {
+                if (empty($value) && $key !== 'img') {
                     throw new Exception("Missing required field: {$key}");
                 }
             }
-
-            $result = $veterinarianModel->create($data);
+            
+                        $result = $veterinarianModel->create($data);
             
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Veterinarian added successfully']);
@@ -132,7 +128,7 @@ class Med_Dashboard_Veterinarians {
     }
 
     private function delete($veterinarianModel, $id) {
-        $result = $veterinarianModel->delete($id);
+        $result = $veterinarianModel->delete($id, 'vet_id');
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Veterinarian deleted successfully']);
         } else {
@@ -151,10 +147,19 @@ class Med_Dashboard_Veterinarians {
             
             if (!empty($_POST['experience'])) {
                 $data['experience'] = $_POST['experience'];
+                // Validate experience is a positive number
+                if (!is_numeric($data['experience']) || $data['experience'] <= 0) {
+                    throw new Exception("Experience must be a positive number");
+                }
             }
             
             if (!empty($_POST['availability'])) {
                 $data['availability'] = $_POST['availability'];
+                // Validate availability format
+                $availabilityPattern = '/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*-\s*(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*\d{1,2}\s*to\s*\d{1,2}$/';
+                if (!preg_match($availabilityPattern, $data['availability'])) {
+                    throw new Exception("Availability must be in format 'Day - Day Hour to Hour' (e.g. Mon - Fri 8 to 5)");
+                }
             }
 
             // Handle image upload if new image is provided
@@ -172,20 +177,13 @@ class Med_Dashboard_Veterinarians {
                 }
 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
-                    $data['image_url'] = $imageUrl;
+                    $data['img'] = $imageUrl;
                 }
             }
 
             // Only proceed with update if there are changes
             if (!empty($data)) {
-                // Validate data
-                foreach ($data as $key => $value) {
-                    if (empty($value) && $key !== 'image_url') {
-                        throw new Exception("Missing required field: {$key}");
-                    }
-                }
-
-                $result = $veterinarianModel->update($id, $data);
+                $result = $veterinarianModel->update($id, $data, 'vet_id');
                 
                 if ($result) {
                     echo json_encode(['status' => 'success', 'message' => 'Veterinarian updated successfully', 'vet' => $data]);

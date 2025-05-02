@@ -1,54 +1,31 @@
-/* Define color variables */
-:root {
-    --primary-color: #6A0DAD;
-    --secondary-color: #882FC8;
-    --accent-color: #FFFFFF;
-    --text-color: #000000;
-    --light-gray: #F0F0F0;
-    --dark-gray: #333333;
-  }
-  
-  /* Example usage */
-  /* body {
-    color: var(--text-color);
-    background-color: var(--accent-color);
-  } */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    background-color: #ecececee;
+    background-color: var(--background-container);
 }
 
-.container {
+/* .container {
     max-width: auto;
     margin: 0 auto;
     padding: 22px 165px;
-}
+} */
 
 .dashboard{
     display: flex;
-    /* justify-content: space-between; */
     gap: 15px;
 }
 
 .dashboard .page-window{
-    display: flex;
+    /* display: flex; */
     flex: 1;
     align-items: center;
     padding: 20px;
     width: 100%;
-    background-color: #882FC8;
+    background-color: var(--secondary);
     border-radius: 15px;
 }
 
 .page-window {
     flex: 1;
-    background-color: #fff;
+    background-color: var(--secondary);
     border-radius: 15px;
     padding: 20px;
     min-height: 500px;
@@ -63,11 +40,59 @@ body {
     display: block;
 }
 
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 22px 15px;
-    }
+/* Loading Animation Styles */
+.loading-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
 
+.loading-animation.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.spinner > div {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #333;
+    border-radius: 100%;
+    display: inline-block;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+@media screen and (max-width: 768px) {
     .dashboard {
         flex-direction: column;
     }
@@ -78,11 +103,6 @@ body {
     
 }
 
-@media screen and (min-width: 1445px) {
-    .container {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 20px 0px;
-    }
-    
-}
+/* @media screen and (min-width: 1445px) {
+   
+} */

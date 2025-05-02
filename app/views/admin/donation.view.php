@@ -4,144 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PawCentral Dashboard - Donations</title>
+    <title>PawCentral Admin Dashboard - Donations</title>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/donation.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="<?= ROOT ?>/assets/js/admin/donation.js" defer></script>
+    <script>
+        const ROOT = "<?= ROOT ?>";
+    </script>
 </head>
 
 <body class="body">
     <!-- Include the Header and Sidebar components -->
-    <?php include("../app/views/components/header.php"); ?>
+    <?php include("../app/views/components/header.php");
+    // show($data);
+    ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/admin/adminSidebar.php"); ?>
 
         <div class="content">
-            <h2>Donations</h2>
-            <section class="donations-section">
+            <h2>Donations Management</h2>
 
-                <!-- Donation Card Example -->
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Max</h2>
-                        <p><strong>Reason:</strong> Emergency Surgery</p>
-                        <p><strong>Donation Amount:</strong> 20,000 LKR</p>
-                        <p><strong>Description :</strong> Max requires urgent surgery to treat a broken leg. With your support, we can save his life and give him a chance to walk again.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=2'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=2'">Reject</button>
-                    </div>
+            <!-- Statistics Cards -->
+            <?php
+            // Ensure 'total_donations' exists and is numeric, else default to 0
+            $totalDonations = $data['total_donations'];
+            $pendingCount = $data['pending_count'];
+            $approveCount = $data['approved_count'];
+            $thisMonthDons = $data['thisMonthDonations'];
+            // show($thisMonthDons);
+            // show($data['pending_donations']);
+            ?>
+
+            <div class="donation-overview">
+                <div class="stat-card">
+                    <h3>Total Donations</h3>
+                    <div class="value"><?php echo number_format((float)$totalDonations, 2); ?> LKR</div>
                 </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Buddy</h2>
-                        <p><strong>Reason:</strong> Food Supplies</p>
-                        <p><strong>Donation Amount:</strong> 5,000 LKR</p>
-                        <p><strong>Description :</strong> Buddy is a senior dog who needs daily special dietary food. Your donation will ensure he receives the care he deserves.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=3'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=3'">Reject</button>
-                    </div>
+                <div class="stat-card">
+                    <h3>Pending Requests</h3>
+                    <div class="value"><?php echo number_format((int)$pendingCount) ?></div>
                 </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Luna</h2>
-                        <p><strong>Reason:</strong> Vaccination</p>
-                        <p><strong>Donation Amount:</strong> 8,000 LKR</p>
-                        <p><strong>Description :</strong> Luna is a stray cat that needs vaccinations to protect her from diseases. Help us keep her safe and healthy.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=4'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=4'">Reject</button>
-                    </div>
+                <div class="stat-card">
+                    <h3>Approved Requests</h3>
+                    <div class="value"><?php echo number_format((int)$approveCount) ?></div>
                 </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Rocky</h2>
-                        <p><strong>Reason:</strong> Shelter Renovation</p>
-                        <p><strong>Donation Amount:</strong> 15,000 LKR</p>
-                        <p><strong>Description :</strong> Rocky and other animals are living in an old shelter that needs repairs. Your donation will help create a safe environment for them.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=5'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=5'">Reject</button>
-                    </div>
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <div class="value"><?= $thisMonthDons ?> LKR</div>
                 </div>
+            </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Bella</h2>
-                        <p><strong>Reason:</strong> Medical Treatment</p>
-                        <p><strong>Donation Amount:</strong> 12,000 LKR</p>
-                        <p><strong>Description :</strong> Bella was diagnosed with a respiratory infection. Your kind donation will ensure she receives proper treatment and recovers quickly.</p>
+            <!-- Pending Requests Section -->
+            <div class="section-title">
+                <h2>Pending Requests</h2>
+            </div>
+
+            <div class="pending-requests">
+                <?php foreach ($data['pending_donations'] as $request):  ?>
+                    <div class="request-card" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $request->id ?>'">
+
+                        <div class="pet-image" style="background-image: url('<?= htmlspecialchars($request->img) ?>');"></div>
+                        <div class="card-content">
+                            <h3><?= htmlspecialchars($request->title) ?></h3>
+                            <div class="info">
+                                <span>Requested: <strong><?= number_format($request->amount, 2) ?> LKR</strong></span>
+                                <span>Collected: <strong><?= number_format($request->collected, 2) ?> LKR</strong></span>
+                            </div>
+                            <p class="description"><?= htmlspecialchars($request->info) ?></p>
+                            <div class="progress-container">
+                                <?php
+                                $progress = ($request->amount > 0) ? ($request->collected / $request->amount) * 100 : 0;
+                                ?>
+                                <div class="progress-bar" style="width: <?= $progress ?>%"></div>
+                            </div>
+                            <!-- <div class="card-actions">
+                                <form method="POST">
+                                    <input type="hidden" name="id" value="<?= $request->id ?>">
+                                    <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
+                                </form>
+                                <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $request->id ?>)">Reject</button>
+                            </div> -->
+                        </div>
                     </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=6'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=6'">Reject</button>
-                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <!-- Charts Section -->
+            <!-- <div class="charts-container">
+                <div class="chart-card">
+                    <h3>Donation Trends</h3>
+                    <canvas id="donationTrendChart"></canvas>
                 </div>
-
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Charlie</h2>
-                        <p><strong>Reason:</strong> Adoption Preparation</p>
-                        <p><strong>Donation Amount:</strong> 6,000 LKR</p>
-                        <p><strong>Description :</strong> Charlie needs grooming and basic supplies before he can be adopted. Your donation will make his transition to a loving home smoother.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=7'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=7'">Reject</button>
-                    </div>
+                <div class="chart-card">
+                    <h3>Request Categories</h3>
+                    <canvas id="categoryChart"></canvas>
                 </div>
+            </div> -->
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Milo</h2>
-                        <p><strong>Reason:</strong> Emergency Care</p>
-                        <p><strong>Donation Amount:</strong> 18,000 LKR</p>
-                        <p><strong>Description :</strong> Milo was rescued after an accident and requires immediate care. Your help will ensure he gets the medical attention he needs.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=8'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=8'">Reject</button>
-                    </div>
-                </div>
+            <!-- All Donations List -->
+            <div class="section-title" style="margin-top: 30px;">
+                <h2>All Donation Requests</h2>
+                <!-- <div>
+                    <select id="statusFilter">
+                        <option value="all">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div> -->
+            </div>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Daisy</h2>
-                        <p><strong>Reason:</strong> Spaying</p>
-                        <p><strong>Donation Amount:</strong> 7,000 LKR</p>
-                        <p><strong>Description :</strong> Daisy needs to be spayed to prevent unwanted litters. Your donation will help cover the cost of this important procedure.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=9'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=9'">Reject</button>
-                    </div>
-                </div>
+            <div class="donation-list">
+                <table class="donation-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <!-- <th>Reason</th> -->
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Collected</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['all_requests'] as $allRequests):
+                        ?>
+                            <tr>
+                                <td><?= esc($allRequests->title); ?></td>
 
-                <div class="donation-card">
-                    <div class="donation-info">
-                        <h2>Oscar</h2>
-                        <p><strong>Reason:</strong> Transport to New Home</p>
-                        <p><strong>Donation Amount:</strong> 9,000 LKR</p>
-                        <p><strong>Description :</strong> Oscar has been adopted, but funds are needed to transport him to his new home. Your support can make this happen.</p>
-                    </div>
-                    <div class="donation-actions">
-                        <button class="approve-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/approve?id=10'">Approve</button>
-                        <button class="reject-button" onclick="window.location.href='<?= ROOT ?>/admin/donation/reject?id=10'">Reject</button>
-                    </div>
-                </div>
+                                <td><?= esc($allRequests->need_category) ?></td>
+                                <td><?= esc($allRequests->amount); ?></td>
+                                <td><?= esc($allRequests->collected); ?></td>
+                                <td>
+                                    <span class="tag
+                                        <?php
+                                        if ($allRequests->status == 0 && $allRequests->approved == 0) echo 'pending';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 1) echo 'approved';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 2) echo 'rejected';
+                                        ?>">
+                                        <?php
+                                        if ($allRequests->status == 0 && $allRequests->approved == 0) echo 'Pending';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 1) echo 'Approved';
+                                        elseif ($allRequests->status == 0 && $allRequests->approved == 2) echo 'Rejected';
+                                        // 
+                                        ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-btns">
+                                        <?php if ($allRequests->status == 0 && $allRequests->approved == 0):  ?>
+                                            <!-- Approve Button -->
+                                            <form method="POST">
+                                                <input type="hidden" name="id" value="<?= $allRequests->id ?>">
+                                                <button type="submit" name="approve" class="action-btn approve-btn">Approve</button>
+                                            </form>
+                                            <!-- Reject Button -->
+                                            <button type="button" class="action-btn reject-btn" onclick="openRejectModal(<?= $allRequests->id ?>)">Reject</button>
 
-                <!-- Add more donation cards as needed -->
-            </section>
+                                            <button class="action-btn view-btn1" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $allRequests->id ?>'">View</button>
+                                        <?php else:  ?>
+                                            <!-- View Button -->
+                                            <button class="action-btn view-btn1" onclick="window.location.href='<?= ROOT ?>/admin/donation_card?id=<?= $allRequests->id ?>'">View</button>
+                                        <?php endif; ?>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+    <!-- Reject Reason Modal -->
+    <div id="rejectModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeRejectModal()">&times;</span>
+            <h3>Reject Request</h3>
+            <form method="POST">
+                <input type="hidden" name="id" id="rejectRequestId">
+                <label for="reason">Reason for Rejection:</label>
+                <textarea name="reason" id="reason" rows="4" required></textarea>
+                <button type="submit" name="reject" class="action-btn reject-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(requestId) {
+            document.getElementById('rejectRequestId').value = requestId;
+            document.getElementById('rejectModal').style.display = 'block';
+        }
+
+        function closeRejectModal() {
+            document.getElementById('rejectModal').style.display = 'none';
+        }
+    </script>
+
     <?php include("../app/views/components/footer.php"); ?>
 </body>
 
