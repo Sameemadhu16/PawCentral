@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/index.css">
     <link rel="stylesheet" href="<?=ROOT?>/assets/css/lostandfound.css">
-    <link rel="stylesheet" href="<?=ROOT?>/assets/css/pagination.css">
+    <link rel="stylesheet" href="<?=ROOT?>/assets/css/components/pagination.css">
 </head>
 <body>
     
@@ -15,43 +15,62 @@
 
     <div class="pets-container">
         <div class="lostandfound-sec">
-            <h1 class="heading">Lost & Found pets</h1>
+            <h1 class="heading">Lost & Found Pets</h1>
             <div class="filter-buttons">
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="lost">Lost</button>
-                <button class="filter-btn" data-filter="found">Found</button>
+                <div class="filters">
+                    <button onclick="window.location.href='<?= ROOT ?>/lostandfound?status=all'" class="filter-btn <?= $pagination['status'] === 'all' ? 'active' : '' ?>">All</button>
+                    <button onclick="window.location.href='<?= ROOT ?>/lostandfound?status=Lost'" class="filter-btn <?= $pagination['status'] === 'Lost' ? 'active' : '' ?>">Lost</button>
+                    <button onclick="window.location.href='<?= ROOT ?>/lostandfound?status=Found'" class="filter-btn <?= $pagination['status'] === 'Found' ? 'active' : '' ?>">Found</button>
+                </div>
             </div>
-            <div class="report-lost-buttons">
-                <button id="reportLost">Report Lost</button>
-                <button id="reportFound">Report Found</button>
+
+            <div class="pet-list">
+                <?php if (!empty($posts)): ?>
+                    <?php foreach ($posts as $pet): ?>
+                        <a href="<?= ROOT ?>/lostandfound/postdetails?id=<?= htmlspecialchars($pet->petid) ?>" class="pet-card pet-card-link">
+                            <img src="<?= htmlspecialchars($pet->img1) ?>" alt="<?= htmlspecialchars($pet->petName) ?>" class="pet-image">
+                            <div class="pet-info">
+                                <h2><?= htmlspecialchars($pet->petName) ?> - <?= htmlspecialchars($pet->breed) ?></h2>
+                                <p><strong><?= htmlspecialchars($pet->status) ?></strong></p>
+                                <?php if ($pet->reward != 0 or $pet->reward != null): ?>
+                                    <span class="glimmer-button">Reward</span>
+                                <?php endif; ?>
+                                <p><?= htmlspecialchars($pet->address) ?></p>
+                                <p>Reported on: <?= htmlspecialchars(date('d M Y', strtotime($pet->publishedOn))) ?></p>
+                            </div>
+                            </a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No pets found.</p>
+                <?php endif; ?>
             </div>
-            </div>
-            <div id="petList" class="pet-list"></div>
+
+          
         </div>
-        <div class="pagination">
-            <button id="prevPage">previous</button>
-            <span id="currentPage">1</span>
-            <button id="nextPage">next</button>
-        </div>
+        <?php if (isset($pagination) && $pagination['total_pages'] > 1): ?>
+            <div class="pagination-container">
+                <?php if ($pagination['current_page'] > 1): ?>
+                    <a href="<?= ROOT ?>/lostandfound?page=<?= $pagination['current_page'] - 1 ?>&status=<?= $pagination['status'] ?>" class="pagination-button">Previous</a>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $pagination['total_pages']; $i++): ?>
+                    <a href="<?= ROOT ?>/lostandfound?page=<?= $i ?>&status=<?= $pagination['status'] ?>" 
+                       class="pagination-button <?= $i == $pagination['current_page'] ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($pagination['current_page'] < $pagination['total_pages']): ?>
+                    <a href="<?= ROOT ?>/lostandfound?page=<?= $pagination['current_page'] + 1 ?>&status=<?= $pagination['status'] ?>" class="pagination-button">Next</a>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
     </div>
     
     <!-- FOOTER -->
     <?php include("../app/views/components/footer.php")?>
     
-    <script src="<?= ROOT?>/assets/js/lostandfound.js"></script>
-    
-    <script>
-        // Event listener for the "Report Lost" button
-        document.getElementById('reportLost').addEventListener('click', function() {
-            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-animal'; // Replace with the actual 'lost' form URL
-        });
-
-        // Event listener for the "Report Found" button
-        document.getElementById('reportFound').addEventListener('click', function() {
-            window.location.href = 'http://localhost/PawCentral/public/lostandfound/report-animal'; // This will redirect to your 'found' form
-        });
-    </script>
+    <!-- <script src="<?= ROOT?>/assets/js/lostandfound.js"></script> -->
 
 </body>
 </html>

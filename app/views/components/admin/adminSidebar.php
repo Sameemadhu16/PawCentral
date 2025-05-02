@@ -19,6 +19,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 }
 ?>
 
+<!-- Sidebar Toggle Button (Visible on Mobile) -->
+<div class="sidebar-toggle" onclick="toggleSidebar()">
+    ☰
+</div>
 
 <div class="sidebar" id="sidebar">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
@@ -39,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </li>
 
         <li>
-            <a href="../admin/notification" class="nav-link">
+            <a href="../admin/notifications" class="nav-link">
                 <i class="fas fa-bell icon"></i>
                 Notifications
             </a>
@@ -65,12 +69,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 </i>Events
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a href="../admin/post" class="nav-link">
                 <i class="fas fa-pen-alt icon">
                 </i>Posts
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="../admin/donation" class="nav-link">
                 <i class="fas fa-hand-holding-usd icon">
@@ -98,4 +102,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         var sidebar = document.getElementById("sidebar");
         sidebar.classList.toggle("collapsed");
     });
+
+    // Sidebar Toggle Function
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
 </script>

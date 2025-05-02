@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/index.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/homevid.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <title>Document</title>
 </head>
 <body>
@@ -42,7 +43,7 @@
         <i class="fas fa-user-md"></i> 
         <h4 class="count fontreg extra" data-target="50">0</h4>
         <p>Medical Professionals</p> 
-        <a href="<?=ROOT?>/#">Visit Vets</a> 
+        <a href="<?=ROOT?>/medical-centers">Visit Vets</a> 
     </div> 
     <div class="stat-item" id="shop-stat"> 
         <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
@@ -102,7 +103,7 @@
     <div class="donation-overlay">
         <h1>Help the community in need</h1>
         <div class="donate-icon">
-            <img src="<?= ROOT ?>/assets/images/donate.png" alt="Donation Icon">
+            <img src="<?= ROOT ?>/assets/images/donate.png" alt="Donation Icon" onclick="window.location.href='<?= ROOT ?>/donationsnsupport'">
         </div>
     </div>
 </section>

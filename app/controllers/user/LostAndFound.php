@@ -1,21 +1,20 @@
 <?php
 
-// class LostAndFound{
-
-//     use Controller;
-
-//     function index(){
-//         $this->view('user/lost_and_found');
-//     }
-// }
-
-
 class LostAndFound
 {
     use Controller;
+    private $roles=['user'];
 
     public function index()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if(!($_SESSION['user_id'])){
             
             redirect('home');
@@ -65,12 +64,25 @@ class LostAndFound
     }
 
     // Mark as complete (delete)
-    public function markAsComplete($id)
+    public function markAsComplete($mark_data)
     {
-        $model = new LostAndFoundModel();
-        $data = ['postStatus' => 1]; // Set postStatus to completed
+        if(!($_SESSION['user_id'])){
 
-        $success=$model->update($id['id'], $data, 'petid');
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
+        // collect Data
+        $insert=explode("?",$mark_data['id']);
+        $id=$insert[0];
+        parse_str($insert[1], $queryParams);
+
+        $model = new LostAndFoundModel();
+        $data = ['postStatus' => 1, 'closing_reason' => $queryParams['reason'] ?? 'No Reason Provided']; // Set postStatus to completed
+
+        $success=$model->update($id, $data, 'petid');
 
         if ($success) {
             header("Location: " . ROOT . "/userprofile/lost_and_found?success=Marked as complete");
@@ -81,6 +93,13 @@ class LostAndFound
 
     public function createReport()
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lostnfoundModel = new LostAndFoundModel();
 
@@ -97,6 +116,7 @@ class LostAndFound
                 'sex' => $_POST['sex'],
                 'age' => $_POST['age'],
                 'health' => $_POST['health'],
+                'reward' => $_POST['reward'],
                 'color' => $_POST['color'],
                 'contactNo' => $_POST['contact'],
                 'description' => $_POST['description'],
@@ -144,6 +164,14 @@ class LostAndFound
 
     public function edit($id)
     {
+        if(!($_SESSION['user_id'])){
+
+            redirect('home');
+        }
+        if(!$this->isAuthorized($this->roles)){
+            redirect('403');
+        }
+        
         if (!$id) {
             // Redirect if no ID is provided
             redirect('lostandfound');
@@ -216,7 +244,9 @@ class LostAndFound
                 echo "Failed to update post.";
             }
         }
-    }public function update($postId)
+    }
+    
+    public function update($postId)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Prepare the LostAndFoundModel for update
@@ -231,6 +261,7 @@ class LostAndFound
                 'address' => $_POST['address'],
                 'location' => $_POST['location'],
                 'status' => $_POST['status'],
+                'reward' => $_POST['reward']==null ? 0 : $_POST['reward'],
                 'height' => $_POST['height'],
                 'sex' => $_POST['sex'],
                 'age' => $_POST['age'],
@@ -239,15 +270,15 @@ class LostAndFound
                 'contactNo' => $_POST['contact'],
                 'description' => $_POST['description'],
                 'img1' => isset($_FILES['img1']) && $_FILES['img1']['tmp_name'] 
-        ? file_get_contents($_FILES['img1']['tmp_name']) 
-        : (isset($_POST['old_img1']) ? base64_decode($_POST['old_img1']) : null),
-    'img2' => isset($_FILES['img2']) && $_FILES['img2']['tmp_name'] 
-        ? file_get_contents($_FILES['img2']['tmp_name']) 
-        : (isset($_POST['old_img2']) ? base64_decode($_POST['old_img2']) : null),
-    'img3' => isset($_FILES['img3']) && $_FILES['img3']['tmp_name'] 
-        ? file_get_contents($_FILES['img3']['tmp_name']) 
-        : (isset($_POST['old_img3']) ? base64_decode($_POST['old_img3']) : null)
-            ];
+                    ? file_get_contents($_FILES['img1']['tmp_name']) 
+                    : (isset($_POST['old_img1']) ? base64_decode($_POST['old_img1']) : null),
+                'img2' => isset($_FILES['img2']) && $_FILES['img2']['tmp_name'] 
+                    ? file_get_contents($_FILES['img2']['tmp_name']) 
+                    : (isset($_POST['old_img2']) ? base64_decode($_POST['old_img2']) : null),
+                'img3' => isset($_FILES['img3']) && $_FILES['img3']['tmp_name'] 
+                    ? file_get_contents($_FILES['img3']['tmp_name']) 
+                    : (isset($_POST['old_img3']) ? base64_decode($_POST['old_img3']) : null)
+                        ];
     
             // Perform the update operation
             $result = $lostnfoundModel->update($postId['id'], $data,'petid');

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main/main.css">
     <link rel="stylesheet" href="./assets/css/service.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
     <!-- Include the Header and Sidebar components -->
     <?php include("../app/views/components/header.php"); ?>
 
-    <div class="main-container">
+    <div class="main-container container">
         <?php include("../app/views/components/merchant/sidebar.php"); ?>
 
         <div class="content">
@@ -39,7 +40,6 @@
                 <ul>
                     <li>Edit existing adoption <br/>listings</li>
                     <li>Renew or deactivate posts </li>
-                    <li>Track engagement and <br/>performance</li>
                     <li>Ensure your pets find the <br/>right homes</li>
                 </ul>
                 <button onclick="location.href='<?=ROOT?> /service/manage'">View Post</button>

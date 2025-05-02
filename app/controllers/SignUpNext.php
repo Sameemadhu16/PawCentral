@@ -1,61 +1,132 @@
 <?php
 
-class SignUpNext {
+class SignUpNext
+{
     use Controller;
 
-    public function index() {
-
+    public function index()
+    {
         $user = new User;
+        $medprov = new MedicalProvModel;
+        $seller = new SellerModel;
+        $shelter = new ShelterModel;
+        $serviceprov = new ServiceProvModel;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['stepTwoSubmit'])) {
-            $this->handleSecondStep($user);
+            $this->handleSecondStep($user, $medprov, $seller, $shelter, $serviceprov);
         }
 
-        $this->view("signupLogin.f/signupNext" , $_SESSION['signup_data2'] ?? []);
+        $this->view("signupLogin.f/signupNext", $_SESSION['signup_data2'] ?? []);
         unset($_SESSION['signup_data2']);
     }
 
     // Handle the second step form submission
-    private function handleSecondStep($user) {
-
-
+    private function handleSecondStep($user, $medprov, $seller, $shelter, $serviceprov)
+    {
         // Collect data from session and form submission
-        $data = $_SESSION['signup_data'] ?? [];
+        $userData = $_SESSION['signup_data'] ?? []; //data to be inserted in the user table 
+        $data['is_service'] = $userData['is_service'] ?? 'no'; //data to insert in the relevant service table
         $data['service_type'] = $_POST['service_type'] ?? '';
         $data['service_name'] = $_POST['service_name'] ?? '';
         $data['location'] = $_POST['location'] ?? '';
         $data['proof'] = $_FILES['proof'] ?? null;
         $data['terms'] = $_POST['terms'] ?? '';
 
-        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
 
         if (isset($data['proof']) && !empty($data['proof']['name'])) {
-            $data['proof_of_service'] = $user->uploadFile($data['proof']);
+            $data['license_proof'] = $user->uploadFile($data['proof']);
         }
-        
-        // print_r($data['proof']);
+
         // Validate the data for the second step
         if ($user->validateSecondStep($data)) {
-            // echo "Validation passed.<br>"; // Debug message
             unset($data['terms']);
             unset($data['proof']);
-            // Attempt to create the user in the database
-            $user->insert($data);
-            // echo "User created.<br>"; // Debug message
+            unset($data['is_service']);
+            unset($userData['terms']);
+            unset($userData['is_service']);
+            $userData['role'] = $data['service_type'];
+            
+            // Create the user first
+            $user->insert($userData);
+            
+            // Get the newly created user's ID
+            $userinfo = $user->getUserByEmail($userData['email']);
+            $data['user_id'] = $userinfo->id;
+
+            // IF ITS A MED PROV
+            if ($data['service_type'] == 'medical_provider') {
+                // Insert medical provider data
+                $medProvData = [
+                    'user_id' => $data['user_id'],
+                    'name' => $data['service_name'],
+                    'location' => $data['location'],
+                    'license_proof' => $data['license_proof'] ?? null
+                ];
+                unset($data['service_type']);
+                
+                // Insert into medical_providers table
+                $medprov->insert($medProvData);
+            
+                // 1. Send confirmation to the provider
+                $notifmodel = new NotificationsModel();
+                $notifmodel->sendNotification(
+                    $data['user_id'], 
+                    'New Medical Provider', 
+                    'You have successfully signed up as a medical provider. Await for admin approval.'
+                );
+            
+                // 2. Notify all admins - FIXED VERSION
+                $adminQuery = "SELECT id FROM users WHERE role = 'admin'";
+                
+                // Option 1: If your query() returns PDOStatement
+                $stmt = $medprov->query($adminQuery);
+                // $adminUsers = $stmt->fetchAll(PDO::FETCH_OBJ);
+                
+                // Option 2: If your query() returns array directly
+                // $adminUsers = $medprov->query($adminQuery);
+                
+                foreach ($stmt as $admin) {
+                    $notifmodel->sendNotification(
+                        $admin->id, 
+                        'New Medical Provider Registration',
+                        'A new medical provider ('.$data['service_name'].') has signed up.'
+                    );
+                }
+            }
+            //IF SELLER
+            else if ($data['service_type'] == 'seller') {
+                unset($data['service_type']);
+                $data['merchant_name'] = $data['service_name'];
+                unset($data['service_name']);
+                $seller->insert($data);
+            } 
+            //shelters
+            else if ($data['service_type'] == 'shelter') {
+                unset($data['service_type']);
+                $data['name'] = $data['service_name'];
+                unset($data['service_name']);
+                $shelter->insert($data);
+            } 
+            //Other services
+            else if ($data['service_type'] == 'service_prov') {
+                unset($data['service_type']);
+                $data['name'] = $data['service_name'];
+                unset($data['service_name']);
+                $data['Areas'] = $data['location'];
+                unset($data['location']);
+                $serviceprov->insert($data);
+            }
 
             // Clear session data
             unset($_SESSION['signup_data']);
-            // echo "Session cleared.<br>"; // Debug message
-
+            
             // Redirect to login
             redirect('login');
-            // echo "Redirecting to login.<br>"; // Debug message (should not display if redirect works)
-
         } else {
             // Pass errors to the view if validation fails
             $data['errors'] = $user->errors;
             $_SESSION['signup_data2'] = $data;
-            // $this->view('signupLogin.f/signupNext', $data);
         }
     }
 }

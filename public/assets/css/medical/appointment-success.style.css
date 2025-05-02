@@ -1,0 +1,185 @@
+/* Importing main styles for consistency */
+@import url('/assets/css/main/main.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-container);
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: var(--section-div-shadow);
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+.success-message {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-dark);
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.error-message {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-dark);
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.buttons a {
+    text-decoration: none;
+}
+
+.buttons button {
+    padding: 14px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.back {
+    background-color: #fff;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.back:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+}
+
+.book {
+    background-color: var(--button-normal);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book:hover {
+    background-color: var(--button-normal-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* Success icon animation */
+.success-icon {
+    display: block;
+    margin: 0 auto 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(40, 167, 69, 0.1);
+    position: relative;
+    animation: success-pulse 1.5s infinite;
+}
+
+.success-icon:before {
+    content: '✓';
+    font-size: 40px;
+    color: var(--success);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error-icon{
+    display: block;
+    margin: 0 auto 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(220, 53, 69, 0.1);
+    position: relative;
+    animation: error-pulse 1.5s infinite;
+}
+
+.error-icon:before {
+    content: '✗';
+    font-size: 40px;
+    color: var(--danger);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Pulse animation for success and error icons */
+
+@keyframes success-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+@keyframes error-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+        margin: 30px 15px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .buttons button {
+        width: 100%;
+    }
+}

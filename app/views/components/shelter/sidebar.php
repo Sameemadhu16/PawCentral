@@ -21,8 +21,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
 
 <div class="sidebar" id="sidebar">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/main/main.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin/adminSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="<?= ROOT ?>/assets/js/admin/adminSidebar.js" defer></script>
     <ul>
         <li>
@@ -38,7 +40,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             </a>
         </li> -->
         <li>
-            <a href="../shelter/notification" class="nav-link">
+            <a href="../shelter/notifications" class="nav-link">
                 <i class="fas fa-bell icon"></i>
                 Notifications
             </a>
